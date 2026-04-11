@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../schema/tei_all.rnc"
+            type="application/relax-ng-compact-syntax"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+     xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <!-- ============================================================
+       disp63_bibl.xml
+       Capa de enriquecimiento bibliográfico — Disputatio 63
+       Pedro de Oñate, De contractibus, Tractatus XXI
+       De emptione et venditione
+
+       Jerarquía de ficheros:
+         ../../tei_header.xml          → header compartido del proyecto
+         pg_63_35_izq_bibl.xml         → col. izq. pág. 35 (enriquecida)
+         pg_63_35_der_bibl.xml         → col. der. pág. 35 (enriquecida)
+
+       Fuente diplomática base:
+         ../src/disp63/disp63.xml
+
+       Diferencias respecto a src/:
+         - <bibl> con @corresp apuntando a listBibl del teiHeader
+         - <author> con @ref apuntando a listPerson del teiHeader
+         - <biblScope unit="…"> en lugar de <w> para números
+         - <cit xml:id="…"> envolviendo cada invocación de autoridad
+         - <expan> completadas y <supplied resp="#editor_AV"> marcados
+         - Fusiones erróneas de <bibl> corregidas (Salón/Valencia)
+         - Citas de derecho romano codificadas con <title type="titulus">
+  ============================================================ -->
+
+  <xi:include href="../../tei_header.xml"/>
+
+  <text>
+    <body>
+      <div type="tractatus" n="21">
+        <div type="disputatio" n="63">
+
+          <xi:include href="pg_63_35_izq_bibl.xml"/>
+          <xi:include href="pg_63_35_der_bibl.xml"/>
+          <xi:include href="pg_63_36_izq_bibl.xml"/>
+          <xi:include href="pg_63_36_der_bibl.xml"/>
+          <xi:include href="pg_63_37_izq_bibl.xml"/>
+          <xi:include href="pg_63_37_der_bibl.xml"/>
+        </div>
+      </div>
+    </body>
+  </text>
+
+</TEI>

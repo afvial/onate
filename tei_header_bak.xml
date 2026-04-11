@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teiHeader xmlns="http://www.tei-c.org/ns/1.0">
+
+  <fileDesc>
+
+    <titleStmt>
+      <title type="main">De contractibus</title>
+      <title type="sub">Tractatus XXI: De emptione et venditione</title>
+      <author>
+        <persName>
+          <forename>Pedro</forename>
+          <surname>de Oñate</surname>
+        </persName>
+        <idno type="VIAF">71459763</idno>
+      </author>
+      <editor>
+        <persName>Andrés Vial</persName>
+        <resp>Transcripción diplomática y edición digital</resp>
+      </editor>
+    </titleStmt>
+
+    <editionStmt>
+      <edition>Primera edición digital, <date when="2026">2026</date></edition>
+    </editionStmt>
+
+    <publicationStmt>
+      <publisher>Andrés Vial</publisher>
+      <date when="2026"/>
+      <availability>
+        <licence target="https://creativecommons.org/licenses/by/4.0/">
+          Creative Commons Attribution 4.0 International (CC BY 4.0)
+        </licence>
+      </availability>
+    </publicationStmt>
+
+    <sourceDesc>
+      <biblFull>
+        <titleStmt>
+          <title type="main">De contractibus</title>
+          <title type="volume">Tomus III: De emptione et venditione</title>
+          <author>
+            <persName>
+              <forename>Pedro</forename>
+              <surname>de Oñate</surname>
+            </persName>
+          </author>
+        </titleStmt>
+        <publicationStmt>
+          <publisher>Francesco Cavalli</publisher>
+          <pubPlace>Roma</pubPlace>
+          <date when="1646">1646–1654</date>
+        </publicationStmt>
+        <notesStmt>
+          <note>Digitalización disponible en Google Books.</note>
+        </notesStmt>
+      </biblFull>
+    </sourceDesc>
+
+  </fileDesc>
+
+  <encodingDesc>
+    <projectDesc>
+      <p>Edición digital del Tractatus XXI (<hi rend="italic">De emptione et
+      venditione</hi>) de Pedro de Oñate. El texto se transcribe con criterios
+      diplomáticos preservando las grafías originales del impreso del siglo XVII
+      (ſ, æ, œ, macrones) y codificando abreviaturas mediante
+      <gi>choice</gi>/<gi>abbr</gi>/<gi>expan</gi>. Una versión normalizada se
+      ofrece paralelamente mediante <gi>choice</gi>/<gi>orig</gi>/<gi>reg</gi>.
+      La anotación morfológica (lema, categoría gramatical, morfología) se
+      realiza con LatinCy (modelo la_core_web_lg).</p>
+    </projectDesc>
+    <editorialDecl>
+      <normalization>
+        <p>Las grafías originales del impreso se preservan en el elemento
+        <gi>orig</gi>. La forma normalizada se ofrece en <gi>reg</gi>.
+        Las abreviaturas se desarrollan en <gi>expan</gi> sin marcar
+        las letras restituidas.</p>
+      </normalization>
+      <punctuation>
+        <p>La puntuación original se conserva y se codifica mediante
+        <gi>pc</gi>.</p>
+      </punctuation>
+      <hyphenation>
+        <p>Las palabras partidas por salto de línea se codifican con
+        <gi>lb</gi> con atributo <att>break</att> igual a <val>no</val>
+        dentro del elemento <gi>w</gi>.</p>
+      </hyphenation>
+    </editorialDecl>
+    <tagsDecl>
+      <namespace name="http://www.tei-c.org/ns/1.0">
+        <tagUsage gi="w">Cada token léxico con atributos lemma, pos y msd
+        generados por LatinCy.</tagUsage>
+        <tagUsage gi="pc">Signo de puntuación con atributo type.</tagUsage>
+        <tagUsage gi="choice">Par diplomático/normalizado o abreviatura/expansión.</tagUsage>
+        <tagUsage gi="note">Marginalia del impreso original.</tagUsage>
+      </namespace>
+    </tagsDecl>
+  </encodingDesc>
+
+  <profileDesc>
+    <langUsage>
+      <language ident="la">Latín escolástico, siglo XVII</language>
+    </langUsage>
+    <textClass>
+      <keywords scheme="http://id.loc.gov/authorities/subjects">
+        <term>Contracts (Roman law) -- Early works to 1800</term>
+        <term>Scholasticism</term>
+        <term>Jesuits -- Intellectual life</term>
+      </keywords>
+    </textClass>
+  </profileDesc>
+
+  <revisionDesc>
+    <change when="2026" who="Andrés Vial">Creación del archivo TEI.</change>
+  </revisionDesc>
+
+</teiHeader>

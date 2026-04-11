@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teiHeader xmlns="http://www.tei-c.org/ns/1.0">
+
+  <fileDesc>
+
+    <titleStmt>
+      <title type="main">De contractibus</title>
+      <title type="sub">Tractatus XXI: De emptione et venditione</title>
+      <author>
+        <persName>
+          <forename>Pedro</forename>
+          <surname>de Oñate</surname>
+        </persName>
+        <idno type="VIAF">71459763</idno>
+      </author>
+      <editor xml:id="editor_AV">
+        <persName>Andrés Vial</persName>
+        <resp>Transcripción diplomática y edición digital</resp>
+      </editor>
+    </titleStmt>
+
+    <editionStmt>
+      <edition>Primera edición digital, <date when="2026">2026</date></edition>
+    </editionStmt>
+
+    <publicationStmt>
+      <publisher>Andrés Vial</publisher>
+      <date when="2026"/>
+      <availability>
+        <licence target="https://creativecommons.org/licenses/by/4.0/">
+          Creative Commons Attribution 4.0 International (CC BY 4.0)
+        </licence>
+      </availability>
+    </publicationStmt>
+
+    <sourceDesc>
+      <biblFull>
+        <titleStmt>
+          <title type="main">De contractibus</title>
+          <title type="volume">Tomus III: De emptione et venditione</title>
+          <author>
+            <persName>
+              <forename>Pedro</forename>
+              <surname>de Oñate</surname>
+            </persName>
+          </author>
+        </titleStmt>
+        <publicationStmt>
+          <publisher>Francesco Cavalli</publisher>
+          <pubPlace>Roma</pubPlace>
+          <date when="1646">1646–1654</date>
+        </publicationStmt>
+        <notesStmt>
+          <note>Digitalización disponible en Google Books.</note>
+        </notesStmt>
+      </biblFull>
+
+      <!-- ──────────────────────────────────────────────────────
+           Catálogo de autoridades citadas en las notas marginales
+           del Tractatus XXI. Cada <bibl> recibe un @xml:id al que
+           apuntan los atributos @corresp de las citas en el texto.
+           ────────────────────────────────────────────────────── -->
+      <listBibl xml:id="works_catalog">
+
+        <bibl xml:id="bib_Arist_Ethica">
+          <author ref="#pers_Aristoteles">Aristoteles</author>
+          <title level="m" xml:lang="grc">Ἠθικὰ Νικομάχεια</title>
+          <title level="m" xml:lang="la" type="translated">Ethica Nicomachea</title>
+        </bibl>
+
+        <bibl xml:id="bib_Aquinas_ST">
+          <author ref="#pers_ThomasAquinas">Thomas Aquinas</author>
+          <title level="m" xml:lang="la">Summa Theologiae</title>
+        </bibl>
+
+        <bibl xml:id="bib_Caietanus_ST">
+          <author ref="#pers_Caietanus">Thomas de Vio Caietanus</author>
+          <title level="m" xml:lang="la">Commentaria in Summam Theologicam</title>
+          <note>Comentario al locus ST II–II, q. 77.</note>
+        </bibl>
+
+        <bibl xml:id="bib_Bannes_ST">
+          <author ref="#pers_Bannes">Dominicus Báñez</author>
+          <title level="m" xml:lang="la">Commentaria in Secundam Secundae</title>
+        </bibl>
+
+        <bibl xml:id="bib_Aragon_ST">
+          <author ref="#pers_Aragon">Petrus de Aragón</author>
+          <title level="m" xml:lang="la">De Iustitia et Iure</title>
+        </bibl>
+
+        <bibl xml:id="bib_Salon_ST">
+          <author ref="#pers_Salon">Michael Bartholomaeus Salón</author>
+          <title level="m" xml:lang="la">Commentaria in Secundam Secundae</title>
+        </bibl>
+
+        <bibl xml:id="bib_Valentia_Comm">
+          <author ref="#pers_Valentia">Gregorius de Valencia</author>
+          <title level="m" xml:lang="la">Commentarii Theologici</title>
+        </bibl>
+
+        <bibl xml:id="bib_Antoninus_Summa">
+          <author ref="#pers_Antoninus">Antoninus Florentinus</author>
+          <title level="m" xml:lang="la">Summa Theologica Moralis</title>
+        </bibl>
+
+        <bibl xml:id="bib_Sylvestrina">
+          <author ref="#pers_Prierias">Sylvester Mazzolinus Prieranus</author>
+          <title level="m" xml:lang="la">Summa Sylvestrina</title>
+        </bibl>
+
+        <bibl xml:id="bib_Medina_Restit">
+          <author ref="#pers_Medina">Ioannes de Medina</author>
+          <title level="m" xml:lang="la">Codex de Restitutione et Contractibus</title>
+        </bibl>
+
+        <bibl xml:id="bib_Summenhart_Contr">
+          <author ref="#pers_Summenhart">Conradus Summenhart</author>
+          <title level="m" xml:lang="la">De Contractibus</title>
+        </bibl>
+
+        <bibl xml:id="bib_Navarrus_Manual">
+          <author ref="#pers_Navarrus">Martinus de Azpilcueta</author>
+          <title level="m" xml:lang="la">Enchiridion sive Manuale Confessariorum
+            et Poenitentium</title>
+        </bibl>
+
+        <bibl xml:id="bib_Navarrus_Restit">
+          <author ref="#pers_Navarrus">Martinus de Azpilcueta</author>
+          <title level="m" xml:lang="la">De Restitutione</title>
+        </bibl>
+
+        <bibl xml:id="bib_Molina_IurIure">
+          <author ref="#pers_Molina">Ludovicus de Molina</author>
+          <title level="m" xml:lang="la">De Iustitia et Iure</title>
+        </bibl>
+
+        <bibl xml:id="bib_Salas_Contr">
+          <author ref="#pers_Salas">Ioannes de Salas</author>
+          <title level="m" xml:lang="la">De Contractibus</title>
+        </bibl>
+
+        <bibl xml:id="bib_Toletus_Peccat">
+          <author ref="#pers_Toletus">Franciscus Toletus</author>
+          <title level="m" xml:lang="la">De Septem Peccatis Capitalibus</title>
+        </bibl>
+
+        <bibl xml:id="bib_Reginald_Praxis">
+          <author ref="#pers_Reginaldus">Valerius Reginaldus</author>
+          <title level="m" xml:lang="la">Praxis Fori Poenitentialis</title>
+        </bibl>
+
+        <bibl xml:id="bib_Soto_IusIure">
+          <author ref="#pers_Soto">Dominicus de Soto</author>
+          <title level="m" xml:lang="la">De Iustitia et Iure</title>
+        </bibl>
+
+        <bibl xml:id="bib_Biel_Sent">
+          <author ref="#pers_Biel">Gabriel Biel</author>
+          <title level="m" xml:lang="la">Commentarii in IV Libros Sententiarum</title>
+        </bibl>
+
+        <bibl xml:id="bib_Bonacina_Contr">
+          <author ref="#pers_Bonacina">Martinus Bonacina</author>
+          <title level="m" xml:lang="la">Tractatus de Contractibus</title>
+        </bibl>
+
+        <bibl xml:id="bib_Covarrubias_Var">
+          <author ref="#pers_Covarrubias">Didacus de Covarrubias y Leyva</author>
+          <title level="m" xml:lang="la">Variarum Resolutionum ex Iure
+            Pontificio, Regio et Caesareo</title>
+        </bibl>
+
+        <bibl xml:id="bib_Manuel_Sum">
+          <author ref="#pers_Manuel">Emmanuel Rodrigues</author>
+          <title level="m" xml:lang="la">Suma de Casos de Consciencia</title>
+        </bibl>
+
+        <bibl xml:id="bib_Lessius_IusIure">
+          <author ref="#pers_Lessius">Leonardus Lessius</author>
+          <title level="m" xml:lang="la">De Iustitia et Iure</title>
+        </bibl>
+
+        <bibl xml:id="bib_Filliucci_QMor">
+          <author ref="#pers_Filliucci">Vincentius Filliucius</author>
+          <title level="m" xml:lang="la">Quaestiones Morales de Christianis
+            Officiis</title>
+        </bibl>
+
+        <bibl xml:id="bib_Faustus_Empt" cert="low">
+          <author ref="#pers_Faustus_inc">S. Faustus</author>
+          <title level="m" xml:lang="la">De Emptione</title>
+          <note type="editorial" resp="#editor_AV">Obra y autor no identificados
+            con certeza.</note>
+        </bibl>
+
+        <bibl xml:id="bib_Azor_InstMor">
+          <author ref="#pers_Azor">Ioannes Azorius</author>
+          <title level="m" xml:lang="la">Institutionum Moralium</title>
+        </bibl>
+
+      </listBibl>
+
+    </sourceDesc>
+
+  </fileDesc>
+
+  <encodingDesc>
+    <projectDesc>
+      <p>Edición digital del Tractatus XXI (<hi rend="italic">De emptione et
+      venditione</hi>) de Pedro de Oñate. El texto se transcribe con criterios
+      diplomáticos preservando las grafías originales del impreso del siglo XVII
+      (ſ, æ, œ, macrones) y codificando abreviaturas mediante
+      <gi>choice</gi>/<gi>abbr</gi>/<gi>expan</gi>. Una versión normalizada se
+      ofrece paralelamente mediante <gi>choice</gi>/<gi>orig</gi>/<gi>reg</gi>.
+      La anotación morfológica (lema, categoría gramatical, morfología) se
+      realiza con LatinCy (modelo la_core_web_lg).</p>
+    </projectDesc>
+    <editorialDecl>
+      <normalization>
+        <p>Las grafías originales del impreso se preservan en el elemento
+        <gi>orig</gi>. La forma normalizada se ofrece en <gi>reg</gi>.
+        Las abreviaturas se desarrollan en <gi>expan</gi> sin marcar
+        las letras restituidas.</p>
+      </normalization>
+      <punctuation>
+        <p>La puntuación original se conserva y se codifica mediante
+        <gi>pc</gi>.</p>
+      </punctuation>
+      <hyphenation>
+        <p>Las palabras partidas por salto de línea se codifican con
+        <gi>lb</gi> con atributo <att>break</att> igual a <val>no</val>
+        dentro del elemento <gi>w</gi>.</p>
+      </hyphenation>
+      <!-- Política específica para las citas de autoridad -->
+      <interpretation>
+        <p>Cada invocación de autoridad en las notas marginales se encierra
+        en <gi>cit</gi> con <att>xml:id</att> único. El elemento
+        <gi>bibl</gi> lleva <att>corresp</att> apuntando al registro
+        correspondiente en <gi>listBibl</gi> dentro de <gi>sourceDesc</gi>,
+        y <att>cert</att> indicando la seguridad de la identificación
+        (<val>high</val>, <val>medium</val>, <val>low</val>,
+        <val>unknown</val>). Las adiciones editoriales se marcan con
+        <gi>supplied</gi> y <att>resp</att>. Los comentaristas citados
+        mediante la fórmula <mentioned>ibi</mentioned> se agrupan en
+        <gi>note</gi> con <att>type</att> igual a <val>ref</val> y
+        <att>subtype</att> igual a <val>ibi</val>, anidado dentro del
+        <gi>bibl</gi> de la obra primaria. Las remisiones internas del
+        tipo <mentioned>iuncto N</mentioned> se codifican con
+        <gi>note</gi> <att>subtype</att> <val>iuncto</val> y
+        <gi>ref</gi> <att>type</att> <val>crossref</val>.</p>
+        <p>Valores del atributo <att>unit</att> en <gi>biblScope</gi>:
+          <list type="gloss">
+            <label>book</label><item>libro</item>
+            <label>part</label><item>parte (p. ej. II–II de la ST)</item>
+            <label>chap</label><item>capítulo</item>
+            <label>quaestio</label><item>cuestión</item>
+            <label>articulus</label><item>artículo</item>
+            <label>ad</label><item>respuesta a objeción (ad N.um)</item>
+            <label>dist</label><item>distinción (Sententiae)</item>
+            <label>disput</label><item>disputación</item>
+            <label>punct</label><item>punctum</item>
+            <label>tract</label><item>tractado</item>
+            <label>dub</label><item>dubium</item>
+            <label>tit</label><item>título</item>
+            <label>n</label><item>número (numerus)</item>
+            <label>lemma</label><item>lema en summa alfabética</item>
+          </list>
+        </p>
+      </interpretation>
+    </editorialDecl>
+    <tagsDecl>
+      <namespace name="http://www.tei-c.org/ns/1.0">
+        <tagUsage gi="w">Cada token léxico con atributos lemma, pos y msd
+        generados por LatinCy.</tagUsage>
+        <tagUsage gi="pc">Signo de puntuación con atributo type
+        (period, comma, ampersand).</tagUsage>
+        <tagUsage gi="choice">Par diplomático/normalizado o abreviatura/expansión.</tagUsage>
+        <tagUsage gi="note">Marginalia del impreso original, y notas de
+        tipo <val>ref</val> para agrupar comentaristas citados
+        <mentioned>ibi</mentioned>.</tagUsage>
+        <tagUsage gi="cit">Cita de autoridad completa en nota marginal;
+        contiene siempre un <gi>bibl</gi> y opcionalmente
+        <gi>cit</gi> anidados para comentaristas.</tagUsage>
+        <tagUsage gi="bibl">Referencia bibliográfica concreta; lleva
+        <att>corresp</att> al registro en <gi>listBibl</gi> y
+        <att>cert</att> para la seguridad de identificación.</tagUsage>
+        <tagUsage gi="biblScope">División interna de la obra citada
+        (libro, capítulo, quaestio, etc.); usar <att>unit</att>
+        según los valores declarados en <gi>interpretation</gi>.</tagUsage>
+        <tagUsage gi="supplied">Adición editorial ausente en el original;
+        lleva siempre <att>resp</att>.</tagUsage>
+      </namespace>
+    </tagsDecl>
+  </encodingDesc>
+
+  <profileDesc>
+    <langUsage>
+      <language ident="la">Latín escolástico, siglo XVII</language>
+    </langUsage>
+    <textClass>
+      <keywords scheme="http://id.loc.gov/authorities/subjects">
+        <term>Contracts (Roman law) -- Early works to 1800</term>
+        <term>Scholasticism</term>
+        <term>Jesuits -- Intellectual life</term>
+      </keywords>
+    </textClass>
+
+    <!-- ──────────────────────────────────────────────────────────
+         Registro prosopográfico de los autores citados en las
+         notas marginales. Cada @xml:id es el destino de los
+         atributos @ref en <author> dentro de las citas del texto.
+         ────────────────────────────────────────────────────────── -->
+    <particDesc>
+      <listPerson>
+
+        <person xml:id="pers_Aristoteles">
+          <persName xml:lang="la">Aristoteles</persName>
+          <persName xml:lang="grc">Ἀριστοτέλης</persName>
+          <birth when="-0384"/><death when="-0322"/>
+        </person>
+
+        <person xml:id="pers_ThomasAquinas">
+          <persName xml:lang="la">Thomas Aquinas</persName>
+          <birth when="1225"/><death when="1274"/>
+          <affiliation>Ordo Praedicatorum</affiliation>
+        </person>
+
+        <person xml:id="pers_Caietanus">
+          <persName xml:lang="la">Thomas de Vio Caietanus</persName>
+          <birth when="1469"/><death when="1534"/>
+          <affiliation>Ordo Praedicatorum; Cardinalis</affiliation>
+        </person>
+
+        <person xml:id="pers_Bannes">
+          <persName xml:lang="la">Dominicus Báñez</persName>
+          <birth when="1528"/><death when="1604"/>
+          <affiliation>Ordo Praedicatorum; Universitas Salmanticensis</affiliation>
+        </person>
+
+        <person xml:id="pers_Aragon">
+          <persName xml:lang="la">Petrus de Aragón</persName>
+          <birth when="1545"/><death when="1592"/>
+          <affiliation>Ordo Praedicatorum</affiliation>
+        </person>
+
+        <person xml:id="pers_Salon">
+          <persName xml:lang="la">Michael Bartholomaeus Salón</persName>
+          <birth when="1539"/><death when="1621"/>
+          <affiliation>Ordo Eremitarum Sancti Augustini</affiliation>
+        </person>
+
+        <person xml:id="pers_Valentia">
+          <persName xml:lang="la">Gregorius de Valencia</persName>
+          <birth when="1549"/><death when="1603"/>
+          <affiliation>Societas Iesu</affiliation>
+        </person>
+
+        <person xml:id="pers_Antoninus">
+          <persName xml:lang="la">Antoninus Florentinus</persName>
+          <birth when="1389"/><death when="1459"/>
+          <affiliation>Ordo Praedicatorum; Archiepiscopus Florentinus</affiliation>
+        </person>
+
+        <person xml:id="pers_Prierias">
+          <persName xml:lang="la">Sylvester Mazzolinus Prieranus</persName>
+          <birth when="1456"/><death when="1523"/>
+          <affiliation>Ordo Praedicatorum</affiliation>
+        </person>
+
+        <person xml:id="pers_Medina">
+          <persName xml:lang="la">Ioannes de Medina</persName>
+          <birth when="1490"/><death when="1546"/>
+          <affiliation>Universitas Complutensis</affiliation>
+        </person>
+
+        <person xml:id="pers_Summenhart">
+          <persName xml:lang="la">Conradus Summenhart</persName>
+          <birth when="1455"/><death when="1502"/>
+          <affiliation>Universitas Tubingensis</affiliation>
+        </person>
+
+        <person xml:id="pers_Navarrus">
+          <persName xml:lang="la">Martinus de Azpilcueta</persName>
+          <persName type="nickname">Doctor Navarrus</persName>
+          <birth when="1492"/><death when="1586"/>
+          <affiliation>Universitas Salmanticensis; Universitas
+            Conimbricensis</affiliation>
+        </person>
+
+        <person xml:id="pers_Molina">
+          <persName xml:lang="la">Ludovicus de Molina</persName>
+          <birth when="1535"/><death when="1600"/>
+          <affiliation>Societas Iesu</affiliation>
+        </person>
+
+        <person xml:id="pers_Salas">
+          <persName xml:lang="la">Ioannes de Salas</persName>
+          <birth when="1553"/><death when="1612"/>
+          <affiliation>Societas Iesu</affiliation>
+        </person>
+
+        <person xml:id="pers_Toletus">
+          <persName xml:lang="la">Franciscus Toletus</persName>
+          <birth when="1533"/><death when="1596"/>
+          <affiliation>Societas Iesu; Cardinalis</affiliation>
+        </person>
+
+        <person xml:id="pers_Reginaldus">
+          <persName xml:lang="la">Valerius Reginaldus</persName>
+          <birth when="1545"/><death when="1623"/>
+          <affiliation>Societas Iesu</affiliation>
+        </person>
+
+        <person xml:id="pers_Soto">
+          <persName xml:lang="la">Dominicus de Soto</persName>
+          <birth when="1494"/><death when="1560"/>
+          <affiliation>Ordo Praedicatorum; Universitas Salmanticensis</affiliation>
+        </person>
+
+        <person xml:id="pers_Biel">
+          <persName xml:lang="la">Gabriel Biel</persName>
+          <birth when="1425"/><death when="1495"/>
+          <affiliation>Fratres Vitae Communis; Universitas Tubingensis</affiliation>
+        </person>
+
+        <person xml:id="pers_Bonacina">
+          <persName xml:lang="la">Martinus Bonacina</persName>
+          <birth when="1585"/><death when="1631"/>
+          <affiliation>Societas Iesu</affiliation>
+        </person>
+
+        <person xml:id="pers_Covarrubias">
+          <persName xml:lang="la">Didacus de Covarrubias y Leyva</persName>
+          <birth when="1512"/><death when="1577"/>
+          <affiliation>Episcopus Segobiensis</affiliation>
+        </person>
+
+        <person xml:id="pers_Manuel">
+          <persName xml:lang="la">Emmanuel Rodrigues</persName>
+          <birth when="1553"/><death when="1613"/>
+          <affiliation>Ordo Fratrum Minorum</affiliation>
+        </person>
+
+        <person xml:id="pers_Lessius">
+          <persName xml:lang="la">Leonardus Lessius</persName>
+          <birth when="1554"/><death when="1623"/>
+          <affiliation>Societas Iesu</affiliation>
+        </person>
+
+        <person xml:id="pers_Filliucci">
+          <persName xml:lang="la">Vincentius Filliucius</persName>
+          <birth when="1566"/><death when="1622"/>
+          <affiliation>Societas Iesu</affiliation>
+        </person>
+
+        <person xml:id="pers_Faustus_inc" cert="unknown">
+          <persName xml:lang="la">S. Faustus</persName>
+          <note type="editorial" resp="#editor_AV">Identidad no establecida.
+            La abreviatura <q>S.</q> puede corresponder a un praenomen o a
+            un título honorífico (<hi rend="italic">Sanctus</hi>).</note>
+        </person>
+
+        <person xml:id="pers_Azor">
+          <persName xml:lang="la">Ioannes Azorius</persName>
+          <birth when="1535"/><death when="1603"/>
+          <affiliation>Societas Iesu</affiliation>
+        </person>
+
+      </listPerson>
+    </particDesc>
+
+  </profileDesc>
+
+  <revisionDesc>
+    <change when="2026" who="Andrés Vial">Creación del archivo TEI.</change>
+  </revisionDesc>
+
+</teiHeader>
