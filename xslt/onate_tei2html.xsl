@@ -228,6 +228,12 @@
           /* Cada 5 líneas, número más destacado */
           .lb-num.lb-5 { color: #999; font-weight: bold; }
 
+          /* Cada lb ocupa una sola línea visual */
+          .tei-line {
+            display: block;
+            white-space: nowrap;
+          }
+
           .stats {
             font-size: 0.78rem;
             color: #999;
@@ -299,10 +305,18 @@
   <xsl:template match="tei:p">
     <xsl:choose>
       <xsl:when test="not(preceding-sibling::tei:p)">
-        <p class="tei-p tei-p-first"><xsl:apply-templates/></p>
+        <p class="tei-p tei-p-first">
+          <xsl:text disable-output-escaping="yes">&lt;span class="tei-line"&gt;</xsl:text>
+          <xsl:apply-templates/>
+          <xsl:text disable-output-escaping="yes">&lt;/span&gt;</xsl:text>
+        </p>
       </xsl:when>
       <xsl:otherwise>
-        <p class="tei-p"><xsl:apply-templates/></p>
+        <p class="tei-p">
+          <xsl:text disable-output-escaping="yes">&lt;span class="tei-line"&gt;</xsl:text>
+          <xsl:apply-templates/>
+          <xsl:text disable-output-escaping="yes">&lt;/span&gt;</xsl:text>
+        </p>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -428,11 +442,12 @@
        @n presente → número de línea en margen izquierdo
        normal      → <br/> sin número -->
   <xsl:template match="tei:lb[@break='no']">
-    <xsl:text>-</xsl:text><br/>
+    <xsl:text>-</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;/span&gt;&lt;span class="tei-line"&gt;</xsl:text>
   </xsl:template>
 
   <xsl:template match="tei:lb[not(@break='no') and @n]">
-    <br/>
+    <xsl:text disable-output-escaping="yes">&lt;/span&gt;</xsl:text>
     <xsl:variable name="n" select="@n"/>
     <xsl:variable name="mod5" select="$n mod 5"/>
     <xsl:choose>
@@ -443,10 +458,11 @@
         <span class="lb-num"><xsl:value-of select="$n"/></span>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:text disable-output-escaping="yes">&lt;span class="tei-line"&gt;</xsl:text>
   </xsl:template>
 
   <xsl:template match="tei:lb">
-    <br/>
+    <xsl:text disable-output-escaping="yes">&lt;/span&gt;&lt;span class="tei-line"&gt;</xsl:text>
   </xsl:template>
 
   <!-- CHOICE: renderiza como una sola <span> con forma original y expansión en tooltip.
