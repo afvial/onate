@@ -74,7 +74,8 @@
             border-right: 1px solid #d0c8b8;
             padding-right: 1.5rem;
             padding-left: 2.5rem;   /* espacio para números de línea */
-            overflow-wrap: break-word;
+            white-space: nowrap;    /* edición diplomática: solo &lt;br/&gt; explícitos rompen línea */
+            overflow-x: visible;
           }
           .col:last-child {
             border-right: none;
@@ -158,11 +159,25 @@
           .tip-expan { color: #f0a060; }
 
           span.tei-pc {
-            /* word joiner evita wrap */
+            margin-left: -0.22em;  /* cancela el espacio previo */
           }
           span.tei-hi-italic { font-style: italic; }
           span.tei-q    { font-style: italic; }
           span.tei-bibl { font-style: italic; }
+
+          /* Citas de autoridad */
+          span.tei-cit {
+            border-bottom: 1px dotted #c09050;
+            cursor: default;
+          }
+          span.tei-cit:hover {
+            background: #fdf5e6;
+            border-radius: 2px;
+          }
+          /* Autor dentro de cita */
+          span.tei-author {
+            font-style: italic;
+          }
 
           /* Abreviaturas y grafías originales */
           span.tei-choice {
@@ -228,10 +243,18 @@
           /* Cada 5 líneas, número más destacado */
           .lb-num.lb-5 { color: #999; font-weight: bold; }
 
-          /* Cada lb ocupa una sola línea visual */
-          .tei-line {
-            display: block;
-            white-space: nowrap;
+          /* Separador entre páginas */
+          .page-sep {
+            text-align: center;
+            margin: 2rem 0 0.5rem 0;
+            border-top: 1px solid #bbb;
+            padding-top: 0.4rem;
+          }
+          .page-sep-label {
+            font-size: 0.78rem;
+            color: #888;
+            font-variant: small-caps;
+            letter-spacing: 0.08em;
           }
 
           .stats {
@@ -252,24 +275,33 @@
           Párrafos: <xsl:value-of select="count(//tei:p)"/>
         </div>
 
-        <!-- Una fila por página: izq (posición impar) + der (siguiente) -->
-        <xsl:for-each select="//tei:div[@type='page'][position() mod 2 = 1]">
-          <xsl:variable name="izq" select="."/>
-          <xsl:variable name="der" select="following-sibling::tei:div[@type='page'][1]"/>
-          <div class="page-block">
-            <div class="page-sep">
-              <span class="page-sep-label">Pág. <xsl:value-of select="@n"/></span>
-            </div>
-            <div class="columns">
+        <!-- Una sección por página, dos columnas por sección -->
+        <xsl:for-each select="//tei:div[@type='page'][
+            not(@n = preceding::tei:div[@type='page']/@n)]">
+          <xsl:variable name="page_n" select="@n"/>
+
+          <!-- Cabecera de página (fw del div izquierdo) -->
+          <xsl:apply-templates select="//tei:div[@type='page'][@n=$page_n][1]/tei:fw[@place='top-left']"/>
+
+          <!-- Separador de página -->
+          <div class="page-sep">
+            <span class="page-sep-label">Página <xsl:value-of select="$page_n"/></span>
+          </div>
+
+          <!-- Dos columnas -->
+          <div class="columns">
+            <xsl:for-each select="//tei:div[@type='page'][@n=$page_n]">
+              <xsl:variable name="cb_n" select="tei:cb/@n"/>
               <div class="col">
-                <div class="col-label">Col. izq.</div>
-                <xsl:apply-templates select="$izq/tei:p"/>
+                <div class="col-label">
+                  <xsl:choose>
+                    <xsl:when test="$cb_n='1'">Col. izq.</xsl:when>
+                    <xsl:otherwise>Col. der.</xsl:otherwise>
+                  </xsl:choose>
+                </div>
+                <xsl:apply-templates select="tei:p | tei:note"/>
               </div>
-              <div class="col">
-                <div class="col-label">Col. der.</div>
-                <xsl:apply-templates select="$der/tei:p"/>
-              </div>
-            </div>
+            </xsl:for-each>
           </div>
         </xsl:for-each>
 
@@ -305,18 +337,10 @@
   <xsl:template match="tei:p">
     <xsl:choose>
       <xsl:when test="not(preceding-sibling::tei:p)">
-        <p class="tei-p tei-p-first">
-          <xsl:text disable-output-escaping="yes">&lt;span class="tei-line"&gt;</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text disable-output-escaping="yes">&lt;/span&gt;</xsl:text>
-        </p>
+        <p class="tei-p tei-p-first"><xsl:apply-templates/></p>
       </xsl:when>
       <xsl:otherwise>
-        <p class="tei-p">
-          <xsl:text disable-output-escaping="yes">&lt;span class="tei-line"&gt;</xsl:text>
-          <xsl:apply-templates/>
-          <xsl:text disable-output-escaping="yes">&lt;/span&gt;</xsl:text>
-        </p>
+        <p class="tei-p"><xsl:apply-templates/></p>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -353,7 +377,7 @@
       <xsl:apply-templates/>
       <xsl:if test="@part='I'"><xsl:text>-</xsl:text></xsl:if>
     </span>
-    <xsl:if test="not(@part='I')">
+    <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(@part='I')">
       <xsl:text> </xsl:text>
     </xsl:if>
   </xsl:template>
@@ -390,13 +414,33 @@
     </xsl:if>
   </xsl:template>
 
-  <!-- PUNTUACIÓN: &#8288; (word joiner) impide wrap antes del punto -->
+  <!-- PUNTUACIÓN: margin-left negativo absorbe el espacio previo -->
+  <!-- PUNTUACIÓN: word joiner (U+2060) impide wrap entre palabra y punto.
+       Si viene precedida de lb, emite primero el salto de línea. -->
   <xsl:template match="tei:pc">
-    <xsl:text>&#8288;</xsl:text>
+    <xsl:variable name="prev" select="preceding-sibling::*[1]"/>
+    <xsl:choose>
+      <xsl:when test="$prev[self::tei:lb and not(@break='no') and @n]">
+        <!-- lb antes del pc: el pc se encarga del salto -->
+        <br/>
+        <xsl:variable name="n" select="$prev/@n"/>
+        <xsl:variable name="mod5" select="$n mod 5"/>
+        <xsl:choose>
+          <xsl:when test="$mod5 = 0">
+            <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
+          </xsl:when>
+          <xsl:otherwise>
+            <span class="lb-num"><xsl:value-of select="$n"/></span>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- word joiner: impide wrap entre la palabra anterior y el punto -->
+        <xsl:text>&#x2060;</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
     <span class="tei-pc"><xsl:value-of select="."/></span>
-    <xsl:if test="not(following-sibling::*[1][self::tei:pc])">
-      <xsl:text> </xsl:text>
-    </xsl:if>
+    <xsl:text> </xsl:text>
   </xsl:template>
 
   <!-- CURSIVA -->
@@ -409,18 +453,36 @@
     <span class="tei-q"><xsl:apply-templates/></span>
   </xsl:template>
 
-  <!-- CITA -->
+  <!-- CITA DE AUTORIDAD -->
   <xsl:template match="tei:cit">
     <span class="tei-cit">
-      <xsl:if test="@corresp"><xsl:attribute name="data-corresp"><xsl:value-of select="@corresp"/></xsl:attribute></xsl:if>
-      <xsl:if test="@xml:id"><xsl:attribute name="id"><xsl:value-of select="@xml:id"/></xsl:attribute></xsl:if>
-      <xsl:apply-templates/>
-    </span>
+      <xsl:if test="@xml:id">
+        <xsl:attribute name="id"><xsl:value-of select="@xml:id"/></xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates/></span>
+  </xsl:template>
+
+  <!-- AUTOR -->
+  <xsl:template match="tei:author">
+    <span class="tei-author">
+      <xsl:if test="@ref">
+        <xsl:attribute name="data-ref"><xsl:value-of select="@ref"/></xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates/></span>
+  </xsl:template>
+
+  <!-- ALCANCE BIBLIOGRÁFICO (libro, capítulo, etc.) — se muestra tal cual -->
+  <xsl:template match="tei:biblScope">
+    <xsl:apply-templates/>
   </xsl:template>
 
   <!-- REFERENCIA BIBLIOGRÁFICA inline -->
   <xsl:template match="tei:bibl | tei:ref[@type='bibl']">
-    <span class="tei-bibl"><xsl:apply-templates/></span>
+    <span class="tei-bibl">
+      <xsl:if test="@corresp">
+        <xsl:attribute name="data-corresp"><xsl:value-of select="@corresp"/></xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates/></span>
   </xsl:template>
 
   <!-- NOTAS MARGINALES -->
@@ -442,27 +504,28 @@
        @n presente → número de línea en margen izquierdo
        normal      → <br/> sin número -->
   <xsl:template match="tei:lb[@break='no']">
-    <xsl:text>-</xsl:text>
-    <xsl:text disable-output-escaping="yes">&lt;/span&gt;&lt;span class="tei-line"&gt;</xsl:text>
+    <xsl:text>-</xsl:text><br/>
   </xsl:template>
 
   <xsl:template match="tei:lb[not(@break='no') and @n]">
-    <xsl:text disable-output-escaping="yes">&lt;/span&gt;</xsl:text>
-    <xsl:variable name="n" select="@n"/>
-    <xsl:variable name="mod5" select="$n mod 5"/>
-    <xsl:choose>
-      <xsl:when test="$mod5 = 0">
-        <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
-      </xsl:when>
-      <xsl:otherwise>
-        <span class="lb-num"><xsl:value-of select="$n"/></span>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:text disable-output-escaping="yes">&lt;span class="tei-line"&gt;</xsl:text>
+    <!-- Si el siguiente hermano es pc, el pc se encarga del salto -->
+    <xsl:if test="not(following-sibling::*[1][self::tei:pc])">
+      <br/>
+      <xsl:variable name="n" select="@n"/>
+      <xsl:variable name="mod5" select="$n mod 5"/>
+      <xsl:choose>
+        <xsl:when test="$mod5 = 0">
+          <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
+        </xsl:when>
+        <xsl:otherwise>
+          <span class="lb-num"><xsl:value-of select="$n"/></span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="tei:lb">
-    <xsl:text disable-output-escaping="yes">&lt;/span&gt;&lt;span class="tei-line"&gt;</xsl:text>
+    <br/>
   </xsl:template>
 
   <!-- CHOICE: renderiza como una sola <span> con forma original y expansión en tooltip.

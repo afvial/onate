@@ -33,7 +33,7 @@ BIBL_DIR="bibl/disp63"
 BIBL_MASTER="bibl/disp63/disp63_bibl.xml"
 COMPLETO="output/disp63_bibl_completo.xml"
 HTML_OUT="html/disp63/disp63_bibl.html"
-XSLT="xslt/onate_tei2html.xsl"
+XSLT="xslt/onate_tei2html_bibl.xsl"
 
 # ── Colores ───────────────────────────────────────────────────────────────────
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
