@@ -450,10 +450,12 @@ def _emit_head(parent, lines: list, head_type: str = None):
         lb = etree.SubElement(head_el, f"{{{TEI_NS}}}lb")
         lb.set("n", str(line["line_n"]))
 
-        # ¿Toda la línea es itálica?
+        # ¿Toda la línea (o casi) es itálica?
+        # Usamos 80% para tolerar que el span no incluya puntuación final
         italic_spans = line.get("italic_spans", [])
+        line_len     = len(line["text"].rstrip())
         full_italic  = any(
-            s["offset"] == 0 and s["length"] >= len(line["text"].rstrip())
+            s["offset"] == 0 and s["length"] >= line_len * 0.8
             for s in italic_spans
         )
         if full_italic:
@@ -500,7 +502,7 @@ def _wrap_italic_spans(parent, lines: list, emit_fn):
     En caso contrario emite sin envolver (el italic vendrá del TEI de origen).
     """
     all_full_italic = all(
-        any(s["offset"] == 0 and s["length"] >= len(l["text"].rstrip())
+        any(s["offset"] == 0 and s["length"] >= len(l["text"].rstrip()) * 0.8
             for s in l.get("italic_spans", []))
         for l in lines if l["text"].strip()
     )

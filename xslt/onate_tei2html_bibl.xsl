@@ -259,7 +259,6 @@
             margin: 0.2rem 0 0.6rem 0;
             text-indent: 0;
             letter-spacing: 0.1em;
-            color: #555;
             white-space: normal;
           }
 
