@@ -246,11 +246,11 @@
           /* Encabezados estructurales */
           p.tei-head {
             font-size: 1rem;
-            font-weight: bold;
             text-align: center;
             margin: 1.5rem 0 0.2rem 0;
             text-indent: 0;
             letter-spacing: 0.04em;
+            white-space: normal;
           }
           p.tei-subhead {
             font-size: 0.9rem;
@@ -260,6 +260,7 @@
             text-indent: 0;
             letter-spacing: 0.1em;
             color: #555;
+            white-space: normal;
           }
 
           /* Summarium */
@@ -276,10 +277,8 @@
           li.tei-item {
             margin: 0.25rem 0;
             line-height: var(--lh);
-            font-style: italic;
           }
           span.tei-label {
-            font-style: normal;
             font-weight: bold;
             color: #8a6a2a;
             margin-right: 0.35em;
