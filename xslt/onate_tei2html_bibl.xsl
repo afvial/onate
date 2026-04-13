@@ -265,8 +265,6 @@
           /* Summarium */
           div.tei-summarium {
             margin: 0.6rem 0 0.8rem 0;
-            padding-left: 0.8rem;
-            border-left: 2px solid #c8a96e;
           }
           ol.tei-list {
             list-style: none;
@@ -278,8 +276,6 @@
             line-height: var(--lh);
           }
           span.tei-label {
-            font-weight: bold;
-            color: #8a6a2a;
             margin-right: 0.35em;
           }
 
@@ -633,6 +629,23 @@
   <!-- SUBENCABEZADO (subheading) -->
   <xsl:template match="tei:head[@type='sub']">
     <p class="tei-subhead"><xsl:apply-templates/></p>
+  </xsl:template>
+
+  <!-- Primer lb dentro de item: solo número, sin salto (el label ocupa esa línea) -->
+  <xsl:template match="tei:item//tei:lb[not(@break='no') and @n
+      and not(preceding::tei:lb[
+        ancestor::tei:item[generate-id(.)=
+          generate-id(current()/ancestor::tei:item)]])]">
+    <xsl:variable name="n"    select="@n"/>
+    <xsl:variable name="mod5" select="$n mod 5"/>
+    <xsl:choose>
+      <xsl:when test="$mod5 = 0">
+        <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
+      </xsl:when>
+      <xsl:otherwise>
+        <span class="lb-num"><xsl:value-of select="$n"/></span>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!-- SUMMARIUM -->
