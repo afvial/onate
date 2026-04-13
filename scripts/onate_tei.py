@@ -311,68 +311,113 @@ def emit_token(parent, tok: dict):
         lb.set("n", str(tok["eol"]))
 
 
-def lines_to_tei(lines: list, page_n: int, join_left: str = None) -> etree._Element:
-    div = etree.Element(
-        f"{{{TEI_NS}}}div",
-        attrib={"type": "page", "n": str(page_n)},
-        nsmap={None: TEI_NS, "xi": XI_NS}
-    )
+def _flatten_lines_to_raw_tokens(lines: list, first_lb_ref: list) -> list:
+    """
+    Aplana una lista de líneas en raw_tokens (5-tuplas).
+    first_lb_ref es una lista de un elemento usada como referencia mutable
+    para saber si ya se emitió el primer 'sol'.
+    """
+    raw_tokens = []
+    for li, line in enumerate(lines):
+        is_last = (li == len(lines) - 1)
+        next_n  = lines[li + 1]["line_n"] if not is_last else None
+        segments = apply_abbrev_tags(line["text"], line["abbrevs"])
+        line_toks = []
+        if not first_lb_ref[0]:
+            line_toks.append(("sol", str(line["line_n"]), None, False, False))
+            first_lb_ref[0] = True
+        for seg in segments:
+            exp = seg["expansion"] if seg["is_abbrev"] else None
+            for ttype, ttext in tokenize(seg["text"]):
+                tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
+                line_toks.append((ttype, ttext, tok_exp, False, False))
+        if line_toks and not is_last:
+            last = line_toks[-1]
+            if line["soft_hyphen"]:
+                line_toks[-1] = (last[0], last[1], last[2], False, next_n)
+            else:
+                line_toks[-1] = (last[0], last[1], last[2], next_n, False)
+        raw_tokens.extend(line_toks)
+    return raw_tokens
 
-    # ── Agrupar líneas en párrafos por sangría ────────────────────────────────
-    # Umbral: x > 60 indica inicio de párrafo nuevo.
-    # La primera línea nunca abre párrafo (viene de la página anterior).
+
+def _segment_sentences(tokens: list) -> list:
+    """
+    Segmenta una lista de tokens en frases usando heurística de puntuación.
+    Devuelve lista de listas de tokens.
+    """
+    from onate_bibl import is_author_token as _is_author
+    sentences, sent = [], []
+    for i, tok in enumerate(tokens):
+        sent.append(tok)
+        if tok["kind"] == "dot" and tok["text"] == ".":
+            prev_meaningful = [t for t in sent[:-1]
+                               if t["kind"] in ("word", "word_lb", "abbrev_dot")]
+            if prev_meaningful and prev_meaningful[-1]["kind"] == "abbrev_dot":
+                continue
+            prev_words = [t for t in sent[:-1] if t["kind"] in ("word", "word_lb")]
+            if prev_words and prev_words[-1].get("expansion") is not None:
+                continue
+            upcoming = [t for t in tokens[i + 1:]
+                        if t["kind"] in ("word", "word_lb", "amp", "abbrev_dot")]
+            if not upcoming:
+                sentences.append(sent); sent = []; continue
+            nxt = upcoming[0]
+            if _is_author(nxt) or nxt["kind"] == "abbrev_dot":
+                continue
+            nxt_text = nxt.get("text", nxt.get("left", ""))
+            if nxt_text.isdigit():
+                continue
+            if nxt_text and nxt_text[0].isupper():
+                sentences.append(sent); sent = []
+    if sent:
+        sentences.append(sent)
+    return sentences
+
+
+def _emit_sentences(parent, tokens: list):
+    """Emite tokens segmentados en <s> con agrupación bibl/legal."""
+    for sent in _segment_sentences(tokens):
+        if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
+                   for t in sent):
+            continue
+        s_el = etree.SubElement(parent, f"{{{TEI_NS}}}s")
+        grouped = group_legal_tokens(group_bibl_tokens(sent))
+        for tok in grouped:
+            if tok["kind"] == "hi_bibl":
+                emit_hi_bibl(s_el, tok)
+            elif tok["kind"] == "legal_bibl":
+                emit_legal_bibl(s_el, tok)
+            else:
+                emit_token(s_el, tok)
+
+
+def _emit_para_block(parent, para_lines: list, join_left: str = None,
+                     is_first_block: bool = False):
+    """
+    Agrupa líneas en párrafos por sangría y emite <p><s>...</s></p>.
+    Equivale a la lógica original de lines_to_tei para bloques de párrafo.
+    """
     INDENT_THRESHOLD = 60
-    paragraphs = []
-    current = []
-    for i, line in enumerate(lines):
+    paragraphs, current = [], []
+    for i, line in enumerate(para_lines):
         if not line["text"].strip():
             continue
-        is_first = (i == 0)
-        # Una línea con ¬ es siempre continuación: nunca puede ser frontera
-        # de párrafo aunque su first_x supere el umbral de sangría.
         last_has_hyphen = bool(current and current[-1]["soft_hyphen"])
-        if not is_first and line["first_x"] > INDENT_THRESHOLD and current and not last_has_hyphen:
+        if i > 0 and line["first_x"] > INDENT_THRESHOLD and current and not last_has_hyphen:
             paragraphs.append(current)
             current = []
         current.append(line)
     if current:
         paragraphs.append(current)
 
-    for para_lines in paragraphs:
-        p_el = etree.SubElement(div, f"{{{TEI_NS}}}p")
-        first_lb_emitted = False
+    for pi, para in enumerate(paragraphs):
+        p_el = etree.SubElement(parent, f"{{{TEI_NS}}}p")
+        raw = _flatten_lines_to_raw_tokens(para, [False])
+        tokens = join_split_words(raw)
 
-        # ── Aplanar tokens: (ttype, ttext, expansion, eol, split) ────────────
-        # eol=True   → fin de línea real (insertar <lb/>)
-        # split=True → último token de línea con ¬ (la palabra continúa)
-        raw_tokens = []
-        for li, line in enumerate(para_lines):
-            is_last_line = (li == len(para_lines) - 1)
-            next_line_n  = para_lines[li + 1]["line_n"] if not is_last_line else None
-            segments = apply_abbrev_tags(line["text"], line["abbrevs"])
-            line_toks = []
-            # Insertar lb n solo al inicio del párrafo
-            if not first_lb_emitted:
-                line_toks.append(("sol", str(line["line_n"]), None, False, False))
-                first_lb_emitted = True
-            for seg in segments:
-                exp = seg["expansion"] if seg["is_abbrev"] else None
-                for ttype, ttext in tokenize(seg["text"]):
-                    tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
-                    line_toks.append((ttype, ttext, tok_exp, False, False))
-            if line_toks and not is_last_line:
-                last = line_toks[-1]
-                if line["soft_hyphen"]:
-                    line_toks[-1] = (last[0], last[1], last[2], False, next_line_n)
-                else:
-                    line_toks[-1] = (last[0], last[1], last[2], next_line_n, False)
-            raw_tokens.extend(line_toks)
-
-        # ── Unir palabras partidas ────────────────────────────────────────────
-        tokens = join_split_words(raw_tokens)
-
-        # ── Fusionar fragmento de columna anterior (--join-left) ─────────────
-        if join_left and para_lines is paragraphs[0]:
+        # join_left solo aplica al primer párrafo del primer bloque
+        if join_left and is_first_block and pi == 0:
             for idx, tok in enumerate(tokens):
                 if tok["kind"] == "word":
                     tokens[idx] = {
@@ -385,60 +430,137 @@ def lines_to_tei(lines: list, page_n: int, join_left: str = None) -> etree._Elem
                     }
                     break
 
-        # ── Segmentar en frases ───────────────────────────────────────────────
-        # Reglas de corte:
-        #   SÍ cortar  → punto + palabra de prosa con mayúscula (Secundo, Probatur…)
-        #   NO cortar  → punto seguido de autor (Bannes., Valent…) o abbrev_dot
-        #   NO cortar  → punto seguido de número (localizador)
-        #   NO cortar  → punto si el token anterior era abbrev_dot o tenía expansion
-        from onate_bibl import is_author_token as _is_author
+        _emit_sentences(p_el, tokens)
 
-        sentences = []
-        sent = []
-        for i, tok in enumerate(tokens):
-            sent.append(tok)
-            if tok["kind"] == "dot" and tok["text"] == ".":
-                # No cortar si el token anterior es abbrev_dot o tiene expansion
-                prev_meaningful = [t for t in sent[:-1]
-                                   if t["kind"] in ("word", "word_lb", "abbrev_dot")]
-                if prev_meaningful and prev_meaningful[-1]["kind"] == "abbrev_dot":
-                    continue
-                prev_words = [t for t in sent[:-1] if t["kind"] in ("word", "word_lb")]
-                if prev_words and prev_words[-1].get("expansion") is not None:
-                    continue
-                # Mirar el primer token significativo siguiente
-                upcoming = [t for t in tokens[i + 1:]
-                            if t["kind"] in ("word", "word_lb", "amp", "abbrev_dot")]
-                if not upcoming:
-                    sentences.append(sent); sent = []; continue
-                nxt = upcoming[0]
-                # No cortar si el siguiente es autor o abbrev_dot (continuación de citas)
-                if _is_author(nxt) or nxt["kind"] == "abbrev_dot":
-                    continue
-                # No cortar si el siguiente es un número (localizador)
-                nxt_text = nxt.get("text", nxt.get("left", ""))
-                if nxt_text.isdigit():
-                    continue
-                # Cortar solo si el siguiente empieza con mayúscula (prosa)
-                if nxt_text and nxt_text[0].isupper():
-                    sentences.append(sent); sent = []
-        if sent:
-            sentences.append(sent)
 
-        # ── Emitir frases ─────────────────────────────────────────────────────
-        for sent in sentences:
-            if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
-                       for t in sent):
-                continue
-            s_el = etree.SubElement(p_el, f"{{{TEI_NS}}}s")
-            grouped = group_legal_tokens(group_bibl_tokens(sent))
-            for tok in grouped:
-                if tok["kind"] == "hi_bibl":
-                    emit_hi_bibl(s_el, tok)
-                elif tok["kind"] == "legal_bibl":
-                    emit_legal_bibl(s_el, tok)
-                else:
-                    emit_token(s_el, tok)
+def _emit_head(parent, lines: list, head_type: str = None):
+    """Emite líneas de heading como <head> o <head type="sub">."""
+    attrib = {"type": head_type} if head_type else {}
+    head_el = etree.SubElement(parent, f"{{{TEI_NS}}}head", attrib)
+    raw = _flatten_lines_to_raw_tokens(lines, [False])
+    tokens = join_split_words(raw)
+    for tok in tokens:
+        emit_token(head_el, tok)
+
+
+def _trim_line_by_offset(line: dict, start_offset: int) -> dict:
+    """
+    Devuelve una copia del line con text e abbrevs recortados desde start_offset.
+    Ajusta los offsets de abbrevs al nuevo origen.
+    """
+    raw      = line["text"][start_offset:]
+    stripped = raw.lstrip()
+    actual   = start_offset + (len(raw) - len(stripped))
+    new_abbrevs = [
+        {**a, "offset": a["offset"] - actual}
+        for a in line.get("abbrevs", [])
+        if a["offset"] >= actual
+    ]
+    return {**line, "text": stripped, "abbrevs": new_abbrevs}
+
+
+def _emit_summarium(parent, lines: list):
+    """
+    Emite el bloque summarium como:
+      <div type="summarium"><list>
+        <item n="21"><label>21</label><s>...</s></item>
+        <item><s>...</s></item>
+        ...
+      </list></div>
+
+    Agrupa líneas en items usando:
+      - index_entry_spans → inicio de item numerado
+      - sentence_spans sin continued → fin de item
+    """
+    div_sum = etree.SubElement(parent, f"{{{TEI_NS}}}div", {"type": "summarium"})
+    lst     = etree.SubElement(div_sum, f"{{{TEI_NS}}}list")
+
+    # ── Agrupar líneas en items ───────────────────────────────────────────────
+    # Nuevo item cuando:
+    #   - la línea tiene index_entry_spans (entrada numerada), o
+    #   - el primer sentence_span de la línea NO tiene continued:true
+    #     (lo que indica que esta línea inicia una nueva oración, no continúa la anterior)
+    item_groups: list = []
+    current:     list = []
+
+    for line in lines:
+        if not line["text"].strip():
+            continue
+        has_label = bool(line.get("index_entry_spans"))
+        sents     = line.get("sentence_spans", [])
+        # Si el primer span no tiene continued → esta línea inicia oración nueva
+        first_sent_is_new = sents and not sents[0]["continued"]
+
+        starts_new = has_label or (bool(current) and first_sent_is_new)
+
+        if starts_new and current:
+            item_groups.append(current)
+            current = []
+
+        current.append(line)
+
+    if current:
+        item_groups.append(current)
+
+    # ── Emitir cada item ──────────────────────────────────────────────────────
+    for item_lines in item_groups:
+        item_el = etree.SubElement(lst, f"{{{TEI_NS}}}item")
+
+        first_line = item_lines[0]
+        idx_spans  = first_line.get("index_entry_spans", [])
+        content_lines = list(item_lines)
+
+        if idx_spans:
+            span       = idx_spans[0]
+            label_text = first_line["text"][span["offset"]: span["offset"] + span["length"]]
+            item_el.set("n", label_text.strip())
+            lbl = etree.SubElement(item_el, f"{{{TEI_NS}}}label")
+            lbl.text = label_text.strip()
+            # Recortar la primera línea para excluir el número ya emitido en <label>
+            content_lines[0] = _trim_line_by_offset(first_line,
+                                                     span["offset"] + span["length"])
+
+        # Emitir contenido del item en una <s>
+        s_el = etree.SubElement(item_el, f"{{{TEI_NS}}}s")
+        raw  = _flatten_lines_to_raw_tokens(content_lines, [False])
+        tokens = join_split_words(raw)
+        for tok in tokens:
+            emit_token(s_el, tok)
+
+
+def lines_to_tei(lines: list, page_n: int, join_left: str = None) -> etree._Element:
+    div = etree.Element(
+        f"{{{TEI_NS}}}div",
+        attrib={"type": "page", "n": str(page_n)},
+        nsmap={None: TEI_NS, "xi": XI_NS}
+    )
+
+    # ── Agrupar líneas por structure_type consecutivo ─────────────────────────
+    struct_blocks: list = []   # [(struct_type, [lines])]
+    for line in lines:
+        if not line["text"].strip():
+            continue
+        st = line.get("structure_type")
+        if struct_blocks and struct_blocks[-1][0] == st:
+            struct_blocks[-1][1].append(line)
+        else:
+            struct_blocks.append([st, [line]])
+
+    # ── Emitir cada bloque según su tipo ──────────────────────────────────────
+    first_para = True
+    for struct_type, block_lines in struct_blocks:
+        if struct_type in ("heading", "header"):
+            _emit_head(div, block_lines)
+        elif struct_type == "subheading":
+            _emit_head(div, block_lines, head_type="sub")
+        elif struct_type == "summarium":
+            _emit_summarium(div, block_lines)
+        else:
+            # paragraph o None → lógica original con sangría
+            _emit_para_block(div, block_lines,
+                             join_left=join_left,
+                             is_first_block=first_para)
+            first_para = False
 
     return div
 
