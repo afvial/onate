@@ -808,6 +808,35 @@ def parse_abbrev_tags(custom: str) -> list:
     return sorted(tags, key=lambda t: t["offset"])
 
 
+def parse_structure_type(custom: str) -> str | None:
+    """Extrae el tipo estructural de structure {type:XXX;} en el atributo custom."""
+    m = re.search(r'structure\s*\{[^}]*?type:([^;}]+)', custom)
+    return m.group(1).strip() if m else None
+
+
+def parse_span_tags(custom: str, tag_name: str) -> list:
+    """
+    Extrae todos los spans de un tag dado del atributo custom de Transkribus.
+    Soporta: sentence, index_entry, summary_item, textStyle, etc.
+    Devuelve lista de {offset, length, continued, italic}.
+    """
+    spans = []
+    pattern = rf'{re.escape(tag_name)}\s*\{{([^}}]*)\}}'
+    for m in re.finditer(pattern, custom):
+        body = m.group(1)
+        mo = re.search(r'offset:(\d+)', body)
+        ml = re.search(r'length:(\d+)', body)
+        if not mo or not ml:
+            continue
+        spans.append({
+            'offset':    int(mo.group(1)),
+            'length':    int(ml.group(1)),
+            'continued': 'continued:true' in body,
+            'italic':    'italic:true' in body,
+        })
+    return sorted(spans, key=lambda s: s['offset'])
+
+
 def extract_lines(page_xml_path: Path) -> list:
     tree = etree.parse(str(page_xml_path))
     root = tree.getroot()
@@ -832,12 +861,17 @@ def extract_lines(page_xml_path: Path) -> list:
             if pts:
                 first_x = int(pts.split()[0].split(",")[0])
         lines.append({
-            "text": text,
-            "abbrevs": parse_abbrev_tags(custom),
-            "region_id": region_id,
-            "reading_order": order,
-            "soft_hyphen": soft_hyphen,
-            "first_x": first_x,
+            "text":               text,
+            "abbrevs":            parse_abbrev_tags(custom),
+            "structure_type":     parse_structure_type(custom),
+            "sentence_spans":     parse_span_tags(custom, "sentence"),
+            "index_entry_spans":  parse_span_tags(custom, "index_entry"),
+            "summary_item_spans": parse_span_tags(custom, "summary_item"),
+            "italic_spans":       parse_span_tags(custom, "textStyle"),
+            "region_id":          region_id,
+            "reading_order":      order,
+            "soft_hyphen":        soft_hyphen,
+            "first_x":            first_x,
         })
     lines.sort(key=lambda l: (l["region_id"], l["reading_order"]))
     for i, line in enumerate(lines):
