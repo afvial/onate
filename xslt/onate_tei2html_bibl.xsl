@@ -275,6 +275,8 @@
             margin: 0.25rem 0;
             line-height: var(--lh);
           }
+          span.tei-item-indent { display: inline-block; width: 1.8em; }
+          span.tei-item-cont   { display: inline-block; width: 1.8em; }
           span.tei-label {
             margin-right: 0.35em;
           }
@@ -648,6 +650,25 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- lb de continuación en item con label: br + número + spacer de alineación -->
+  <xsl:template match="tei:item[tei:label]//tei:lb[not(@break='no') and @n
+      and preceding::tei:lb[
+        ancestor::tei:item[generate-id(.)=
+          generate-id(current()/ancestor::tei:item)]]]">
+    <br/>
+    <xsl:variable name="n"    select="@n"/>
+    <xsl:variable name="mod5" select="$n mod 5"/>
+    <xsl:choose>
+      <xsl:when test="$mod5 = 0">
+        <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
+      </xsl:when>
+      <xsl:otherwise>
+        <span class="lb-num"><xsl:value-of select="$n"/></span>
+      </xsl:otherwise>
+    </xsl:choose>
+    <span class="tei-item-cont">&#160;</span>
+  </xsl:template>
+
   <!-- SUMMARIUM -->
   <xsl:template match="tei:div[@type='summarium']">
     <div class="tei-summarium"><xsl:apply-templates/></div>
@@ -655,6 +676,10 @@
 
   <xsl:template match="tei:list">
     <ol class="tei-list"><xsl:apply-templates/></ol>
+  </xsl:template>
+
+  <xsl:template match="tei:item[not(tei:label)]">
+    <li class="tei-item"><span class="tei-item-indent">&#160;&#160;&#160;</span><xsl:apply-templates/></li>
   </xsl:template>
 
   <xsl:template match="tei:item">
