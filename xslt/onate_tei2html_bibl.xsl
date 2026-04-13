@@ -243,6 +243,48 @@
           /* Cada 5 líneas, número más destacado */
           .lb-num.lb-5 { color: #999; font-weight: bold; }
 
+          /* Encabezados estructurales */
+          p.tei-head {
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 1.5rem 0 0.2rem 0;
+            text-indent: 0;
+            letter-spacing: 0.04em;
+          }
+          p.tei-subhead {
+            font-size: 0.9rem;
+            font-variant: small-caps;
+            text-align: center;
+            margin: 0.2rem 0 0.6rem 0;
+            text-indent: 0;
+            letter-spacing: 0.1em;
+            color: #555;
+          }
+
+          /* Summarium */
+          div.tei-summarium {
+            margin: 0.6rem 0 0.8rem 0;
+            padding-left: 0.8rem;
+            border-left: 2px solid #c8a96e;
+          }
+          ol.tei-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+          }
+          li.tei-item {
+            margin: 0.25rem 0;
+            line-height: var(--lh);
+            font-style: italic;
+          }
+          span.tei-label {
+            font-style: normal;
+            font-weight: bold;
+            color: #8a6a2a;
+            margin-right: 0.35em;
+          }
+
           /* Separador entre páginas */
           .page-sep {
             text-align: center;
@@ -299,7 +341,7 @@
                     <xsl:otherwise>Col. der.</xsl:otherwise>
                   </xsl:choose>
                 </div>
-                <xsl:apply-templates select="tei:p | tei:note"/>
+                <xsl:apply-templates select="tei:p | tei:note | tei:head | tei:div[@type='summarium']"/>
               </div>
             </xsl:for-each>
           </div>
@@ -584,5 +626,32 @@
   <!-- Suprimir abbr/orig/expan/reg — gestionados por el template de choice -->
   <xsl:template match="tei:choice/tei:abbr | tei:choice/tei:orig"/>
   <xsl:template match="tei:expan | tei:reg"/>
+
+  <!-- ENCABEZADO principal (header/heading) -->
+  <xsl:template match="tei:head[not(@type)]">
+    <p class="tei-head"><xsl:apply-templates/></p>
+  </xsl:template>
+
+  <!-- SUBENCABEZADO (subheading) -->
+  <xsl:template match="tei:head[@type='sub']">
+    <p class="tei-subhead"><xsl:apply-templates/></p>
+  </xsl:template>
+
+  <!-- SUMMARIUM -->
+  <xsl:template match="tei:div[@type='summarium']">
+    <div class="tei-summarium"><xsl:apply-templates/></div>
+  </xsl:template>
+
+  <xsl:template match="tei:list">
+    <ol class="tei-list"><xsl:apply-templates/></ol>
+  </xsl:template>
+
+  <xsl:template match="tei:item">
+    <li class="tei-item"><xsl:apply-templates/></li>
+  </xsl:template>
+
+  <xsl:template match="tei:label">
+    <span class="tei-label"><xsl:apply-templates/></span>
+  </xsl:template>
 
 </xsl:stylesheet>
