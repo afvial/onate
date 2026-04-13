@@ -434,13 +434,44 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
 
 
 def _emit_head(parent, lines: list, head_type: str = None):
-    """Emite líneas de heading como <head> o <head type="sub">."""
+    """
+    Emite líneas de heading como <head> o <head type="sub">.
+    Cada TextLine genera su propio <lb n="X"> al nivel del <head>,
+    seguido de los tokens (envueltos en <hi rend="italic"> si procede).
+    """
     attrib = {"type": head_type} if head_type else {}
     head_el = etree.SubElement(parent, f"{{{TEI_NS}}}head", attrib)
-    raw = _flatten_lines_to_raw_tokens(lines, [False])
-    tokens = join_split_words(raw)
-    for tok in tokens:
-        emit_token(head_el, tok)
+
+    for line in lines:
+        if not line["text"].strip():
+            continue
+
+        # <lb n="X"> al nivel del head (siempre, incluida la primera línea)
+        lb = etree.SubElement(head_el, f"{{{TEI_NS}}}lb")
+        lb.set("n", str(line["line_n"]))
+
+        # ¿Toda la línea es itálica?
+        italic_spans = line.get("italic_spans", [])
+        full_italic  = any(
+            s["offset"] == 0 and s["length"] >= len(line["text"].rstrip())
+            for s in italic_spans
+        )
+        if full_italic:
+            container = etree.SubElement(head_el, f"{{{TEI_NS}}}hi")
+            container.set("rend", "italic")
+        else:
+            container = head_el
+
+        # Tokens de esta línea (sin lb inter-línea — ya lo pusimos arriba)
+        segments = apply_abbrev_tags(line["text"], line["abbrevs"])
+        raw = []
+        for seg in segments:
+            exp = seg["expansion"] if seg["is_abbrev"] else None
+            for ttype, ttext in tokenize(seg["text"]):
+                tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
+                raw.append((ttype, ttext, tok_exp, False, False))
+        for tok in join_split_words(raw):
+            emit_token(container, tok)
 
 
 def _trim_line_by_offset(line: dict, start_offset: int) -> dict:
@@ -457,6 +488,33 @@ def _trim_line_by_offset(line: dict, start_offset: int) -> dict:
         if a["offset"] >= actual
     ]
     return {**line, "text": stripped, "abbrevs": new_abbrevs}
+
+
+def _wrap_italic_spans(parent, lines: list, emit_fn):
+    """
+    Emite tokens agrupando los que caen dentro de italic_spans de cada línea
+    en <hi rend="italic">. Llama a emit_fn(container, tok) para cada token.
+
+    Estrategia simplificada: si TODAS las líneas del bloque tienen italic_spans
+    que cubren el texto completo, envuelve todo en un único <hi rend="italic">.
+    En caso contrario emite sin envolver (el italic vendrá del TEI de origen).
+    """
+    all_full_italic = all(
+        any(s["offset"] == 0 and s["length"] >= len(l["text"].rstrip())
+            for s in l.get("italic_spans", []))
+        for l in lines if l["text"].strip()
+    )
+    if all_full_italic:
+        hi = etree.SubElement(parent, f"{{{TEI_NS}}}hi")
+        hi.set("rend", "italic")
+        container = hi
+    else:
+        container = parent
+
+    raw = _flatten_lines_to_raw_tokens(lines, [False])
+    tokens = join_split_words(raw)
+    for tok in tokens:
+        emit_fn(container, tok)
 
 
 def _emit_summarium(parent, lines: list):
@@ -520,12 +578,9 @@ def _emit_summarium(parent, lines: list):
             content_lines[0] = _trim_line_by_offset(first_line,
                                                      span["offset"] + span["length"])
 
-        # Emitir contenido del item en una <s>
+        # Emitir contenido del item respetando italic_spans
         s_el = etree.SubElement(item_el, f"{{{TEI_NS}}}s")
-        raw  = _flatten_lines_to_raw_tokens(content_lines, [False])
-        tokens = join_split_words(raw)
-        for tok in tokens:
-            emit_token(s_el, tok)
+        _wrap_italic_spans(s_el, content_lines, emit_token)
 
 
 def lines_to_tei(lines: list, page_n: int, join_left: str = None) -> etree._Element:
