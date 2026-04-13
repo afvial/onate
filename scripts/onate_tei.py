@@ -341,43 +341,103 @@ def _flatten_lines_to_raw_tokens(lines: list, first_lb_ref: list) -> list:
     return raw_tokens
 
 
-def _segment_sentences(tokens: list) -> list:
+def _flatten_lines_with_sent_markers(lines: list) -> list:
     """
-    Segmenta una lista de tokens en frases usando heurística de puntuación.
-    Devuelve lista de listas de tokens.
+    Aplana líneas en raw_tokens usando sentence_spans del PAGE XML.
+    Inserta ('sent_end', ...) en los límites de oración marcados por Transkribus.
+    Cuando una línea no tiene sentence_spans, trata la línea completa como una unidad.
     """
-    from onate_bibl import is_author_token as _is_author
-    sentences, sent = [], []
-    for i, tok in enumerate(tokens):
-        sent.append(tok)
-        if tok["kind"] == "dot" and tok["text"] == ".":
-            prev_meaningful = [t for t in sent[:-1]
-                               if t["kind"] in ("word", "word_lb", "abbrev_dot")]
-            if prev_meaningful and prev_meaningful[-1]["kind"] == "abbrev_dot":
-                continue
-            prev_words = [t for t in sent[:-1] if t["kind"] in ("word", "word_lb")]
-            if prev_words and prev_words[-1].get("expansion") is not None:
-                continue
-            upcoming = [t for t in tokens[i + 1:]
-                        if t["kind"] in ("word", "word_lb", "amp", "abbrev_dot")]
-            if not upcoming:
-                sentences.append(sent); sent = []; continue
-            nxt = upcoming[0]
-            if _is_author(nxt) or nxt["kind"] == "abbrev_dot":
-                continue
-            nxt_text = nxt.get("text", nxt.get("left", ""))
-            if nxt_text.isdigit():
-                continue
-            if nxt_text and nxt_text[0].isupper():
-                sentences.append(sent); sent = []
-    if sent:
-        sentences.append(sent)
+    raw = []
+    first_lb = [False]
+
+    for li, line in enumerate(lines):
+        if not line["text"].strip():
+            continue
+        is_last_line = (li == len(lines) - 1)
+        next_n       = lines[li + 1]["line_n"] if not is_last_line else None
+        text         = line["text"]
+        abbrevs      = line["abbrevs"]
+        sent_spans   = line.get("sentence_spans", [])
+
+        # lb al inicio de la primera línea del bloque
+        if not first_lb[0]:
+            raw.append(("sol", str(line["line_n"]), None, False, False))
+            first_lb[0] = True
+
+        if not sent_spans:
+            # Sin spans: tratar línea completa como fragmento de oración
+            segs = apply_abbrev_tags(text, abbrevs)
+            line_toks = []
+            for seg in segs:
+                exp = seg["expansion"] if seg["is_abbrev"] else None
+                for ttype, ttext in tokenize(seg["text"]):
+                    tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
+                    line_toks.append((ttype, ttext, tok_exp, False, False))
+            if line_toks and not is_last_line:
+                last = line_toks[-1]
+                if line["soft_hyphen"]:
+                    line_toks[-1] = (last[0], last[1], last[2], False, next_n)
+                else:
+                    line_toks[-1] = (last[0], last[1], last[2], next_n, False)
+            raw.extend(line_toks)
+        else:
+            for si, span in enumerate(sent_spans):
+                is_last_span = (si == len(sent_spans) - 1)
+
+                # Texto del span
+                span_text = text[span["offset"]: span["offset"] + span["length"]]
+
+                # Abbrevs que caen dentro del span (offset reajustado)
+                span_abbrevs = [
+                    {**a, "offset": a["offset"] - span["offset"]}
+                    for a in abbrevs
+                    if span["offset"] <= a["offset"] < span["offset"] + span["length"]
+                ]
+
+                segs = apply_abbrev_tags(span_text, span_abbrevs)
+                span_toks = []
+                for seg in segs:
+                    exp = seg["expansion"] if seg["is_abbrev"] else None
+                    for ttype, ttext in tokenize(seg["text"]):
+                        tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
+                        span_toks.append((ttype, ttext, tok_exp, False, False))
+
+                # Fin de línea: solo al último span de la línea
+                if is_last_span and span_toks and not is_last_line:
+                    last = span_toks[-1]
+                    if line["soft_hyphen"]:
+                        span_toks[-1] = (last[0], last[1], last[2], False, next_n)
+                    else:
+                        span_toks[-1] = (last[0], last[1], last[2], next_n, False)
+
+                raw.extend(span_toks)
+
+                # Marcador de fin de oración cuando el span no continúa
+                if not span["continued"]:
+                    raw.append(("sent_end", "", None, False, False))
+
+    return raw
+
+
+def _split_on_sent_markers(tokens: list) -> list:
+    """Divide tokens en frases usando marcadores sent_end."""
+    sentences, current = [], []
+    for tok in tokens:
+        if tok["kind"] == "sent_end":
+            if current:
+                sentences.append(current)
+            current = []
+        else:
+            current.append(tok)
+    if current:
+        sentences.append(current)
     return sentences
+
 
 
 def _emit_sentences(parent, tokens: list):
     """Emite tokens segmentados en <s> con agrupación bibl/legal."""
-    for sent in _segment_sentences(tokens):
+    for sent in _split_on_sent_markers(tokens):
         if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
                    for t in sent):
             continue
@@ -396,7 +456,7 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
                      is_first_block: bool = False):
     """
     Agrupa líneas en párrafos por sangría y emite <p><s>...</s></p>.
-    Equivale a la lógica original de lines_to_tei para bloques de párrafo.
+    Usa sentence_spans del PAGE XML para delimitar oraciones.
     """
     INDENT_THRESHOLD = 60
     paragraphs, current = [], []
@@ -413,7 +473,7 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
 
     for pi, para in enumerate(paragraphs):
         p_el = etree.SubElement(parent, f"{{{TEI_NS}}}p")
-        raw = _flatten_lines_to_raw_tokens(para, [False])
+        raw   = _flatten_lines_with_sent_markers(para)
         tokens = join_split_words(raw)
 
         # join_left solo aplica al primer párrafo del primer bloque
