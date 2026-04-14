@@ -45,6 +45,44 @@ warn() { echo -e "${YELLOW}⚠${NC} $*"; }
 fail() { echo -e "${RED}✗ ERROR:${NC} $*" >&2; exit 1; }
 
 # ── Argumentos ────────────────────────────────────────────────────────────────
+[[ $# -lt 1 ]] && fail "Uso: $0 <página> <columna> [opciones]\n       $0 all [opciones]"
+
+# Modo all: procesar todas las columnas disponibles en orden
+if [[ "$1" == "all" ]]; then
+    shift
+    OPTS="$*"
+    # Descubrir columnas disponibles en orden: lista de "página columna" pairs
+    COLS=()
+    while IFS= read -r f; do
+        b=$(basename "$f" .xml)          # pg_63_35_der
+        p=$(echo "$b" | cut -d_ -f3)    # 35
+        c=$(echo "$b" | cut -d_ -f4)    # der
+        COLS+=("$p" "$c")
+    done < <(ls "${TRANSKRIBUS_DIR}"/pg_63_*.xml 2>/dev/null | sort)
+    [[ ${#COLS[@]} -eq 0 ]] && fail "No se encontraron PAGE XML en ${TRANSKRIBUS_DIR}"
+    echo
+    echo -e "${BOLD}═══════════════════════════════════════════════════${NC}"
+    echo -e "${BOLD} Pipeline completo: ${#COLS[@]} columnas${NC}"
+    echo -e "${BOLD}═══════════════════════════════════════════════════${NC}"
+    i=0
+    while [[ $i -lt ${#COLS[@]} ]]; do
+        p="${COLS[$i]}"; c="${COLS[$((i+1))]}"
+        echo
+        bash "$0" "$p" "$c" --only page2tei $OPTS
+        bash "$0" "$p" "$c" --only enrich $OPTS
+        i=$(( i + 2 ))
+    done
+    # Solo el último ensamblado y HTML
+    echo
+    info "Ensamblado y HTML finales"
+    bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only assemble
+    bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only validate
+    bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only html
+    echo
+    echo -e "${BOLD}${GREEN}✓ Pipeline completo terminado${NC}"
+    exit 0
+fi
+
 [[ $# -lt 2 ]] && fail "Uso: $0 <página> <columna> [opciones]"
 
 PAGE="$1"; COL="$2"; shift 2
@@ -75,11 +113,43 @@ echo -e "${BOLD} Pipeline: página ${PAGE} columna ${COL}${NC}"
 echo -e "${BOLD}═══════════════════════════════════════════════════${NC}"
 
 # ── PASO 1: PAGE XML → TEI diplomático ───────────────────────────────────────
+# Los reclamos tipográficos (catchwords) se detectan automáticamente con
+# --strip-catchword en onate_page2tei.py. El texto detectado se guarda en
+# un archivo temporal (.catchword_PAGE_COL) para usarlo como --join-left
+# en la siguiente columna.
+
 run_page2tei() {
     info "Paso 1 — PAGE XML → TEI diplomático"
     [[ -f "$PAGE_XML" ]] || fail "No existe: $PAGE_XML"
-    python3 "${SCRIPTS_DIR}/onate_page2tei.py" \
-        "$PAGE_XML" --out-xml "$SRC_XML" --page "$PAGE" ${VERBOSE}
+
+    # Leer el catchword guardado por la columna anterior (si existe)
+    JOIN_ARG=""
+    if [[ "$COL" == "der" ]]; then
+        CATCHWORD_FILE=".catchword_${PAGE}_izq"
+    else
+        PREV_PAGE=$(( PAGE - 1 ))
+        CATCHWORD_FILE=".catchword_${PREV_PAGE}_der"
+    fi
+    if [[ -f "$CATCHWORD_FILE" ]]; then
+        FRAGMENT=$(cat "$CATCHWORD_FILE")
+        if [[ -n "$FRAGMENT" ]]; then
+            JOIN_ARG="--join-left $FRAGMENT"
+            info "join-left: '${FRAGMENT}' (de ${CATCHWORD_FILE})"
+        fi
+    fi
+
+    # Ejecutar page2tei con --strip-catchword; capturar el reclamo en stdout
+    CATCHWORD=$(python3 "${SCRIPTS_DIR}/onate_page2tei.py" \
+        "$PAGE_XML" --out-xml "$SRC_XML" --page "$PAGE" \
+        --strip-catchword ${JOIN_ARG} ${VERBOSE})
+
+    # Guardar el reclamo detectado para la siguiente columna
+    SAVE_FILE=".catchword_${PAGE}_${COL}"
+    printf '%s' "$CATCHWORD" > "$SAVE_FILE"
+    if [[ -n "$CATCHWORD" ]]; then
+        info "Reclamo detectado: '${CATCHWORD}' → guardado en ${SAVE_FILE}"
+    fi
+
     ok "TEI diplomático → ${SRC_XML}"
 }
 

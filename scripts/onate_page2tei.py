@@ -35,6 +35,10 @@ def main():
                         help="Fragmento final de la columna anterior para fusionar "
                              "con la primera palabra (p.ej. 'con' si la col. izq. "
                              "terminaba en 'con¬' y esta empieza por 'sistit')")
+    parser.add_argument("--strip-catchword", "-c", action="store_true",
+                        help="Eliminar la última línea si es un reclamo tipográfico "
+                             "(catchword). El texto detectado se imprime en stdout "
+                             "para usarlo como --join-left de la columna siguiente.")
     parser.add_argument("--verbose", "-v", action="store_true",
                         help="Mostrar líneas y abbrev tags detectados")
     args = parser.parse_args()
@@ -49,6 +53,29 @@ def main():
 
     print(f"Leyendo {path.name}...", file=sys.stderr)
     lines = extract_lines(path)
+
+    # ── Detección y eliminación del reclamo (catchword) ──────────────────────
+    # El reclamo es la última línea de la columna: una sola palabra corta,
+    # sin guión de corte (soft_hyphen=False). Se emite en stdout para que
+    # el script de shell lo pase como --join-left a la columna siguiente.
+    if args.strip_catchword and lines:
+        last = lines[-1]
+        last_text = last["text"].strip()
+        words = last_text.split()
+        is_catchword = (
+            len(words) <= 2          # máximo dos palabras (sílaba o palabra entera)
+            and len(last_text) <= 20 # longitud razonable para un reclamo
+            and not last["soft_hyphen"]  # los reclamos no llevan guión de corte
+        )
+        if is_catchword:
+            lines = lines[:-1]
+            # Imprimir el texto del reclamo en stdout para captura en shell
+            print(last_text)
+            print(f"  Reclamo detectado y eliminado: «{last_text}»",
+                  file=sys.stderr)
+        else:
+            print(f"  --strip-catchword: última línea no parece reclamo «{last_text}», "
+                  "se conserva.", file=sys.stderr)
     total_abbrevs = sum(len(l["abbrevs"]) for l in lines)
     total_hyphen  = sum(1 for l in lines if l["soft_hyphen"])
     print(f"  Líneas: {len(lines)}  |  Abreviaturas: {total_abbrevs}"
