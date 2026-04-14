@@ -483,23 +483,48 @@ def _emit_bibl_content(container, tokens: list):
 
 def _join_split_words_6(raw6: list) -> list:
     """
-    Llama a join_split_words con 5-tuplas y preserva el italic (6º elem)
-    en los dicts resultantes. Para word_lb, usa el italic del token izquierdo.
+    Llama a join_split_words con 5-tuplas y asigna italic a cada token
+    resultante consumiendo una cola ordenada de (text, italic) extraída
+    de raw6. Esto es más robusto que el mapeo por índice cuando
+    join_split_words fusiona tokens (soft-hyphen) o los reordena.
     """
-    # Tabla: posición en raw5 → italic
-    italic_map = [t[5] if len(t) > 5 else False for t in raw6]
-    raw5 = [t[:5] for t in raw6]
+    from collections import deque
+
+    # Cola de (text, italic) en el orden en que aparecen en raw6
+    # (excluyendo sol que no produce tokens en el output)
+    queue = deque()
+    for tok in raw6:
+        ttype = tok[0]
+        if ttype == "sol":
+            continue
+        ttext  = tok[1]
+        italic = tok[5] if len(tok) > 5 else False
+        queue.append((ttext, italic))
+
+    def _pop_italic(text: str) -> bool:
+        """Consume la cola hasta encontrar `text` y devuelve su italic."""
+        for _ in range(len(queue)):
+            t, i = queue.popleft()
+            if t == text:
+                return i
+            queue.append((t, i))   # no coincide → vuelve al final
+        return False               # fallback
+
+    raw5   = [t[:5] for t in raw6]
     tokens = join_split_words(raw5)
 
-    # Asignar italic a cada token resultante por orden de aparición
-    src = [0]
     for tok in tokens:
-        if src[0] < len(italic_map):
-            tok["italic"] = italic_map[src[0]]
-        else:
+        kind = tok["kind"]
+        if kind == "sol":
             tok["italic"] = False
-        if tok["kind"] not in ("sol",):
-            src[0] += 1
+        elif kind == "word_lb":
+            # Italic del fragmento izquierdo (pre-guión)
+            tok["italic"] = _pop_italic(tok.get("left", ""))
+            # Consumir también el fragmento derecho
+            _pop_italic(tok.get("right", ""))
+        else:
+            tok["italic"] = _pop_italic(tok.get("text", ""))
+
     return tokens
 
 
