@@ -341,13 +341,46 @@ def _flatten_lines_to_raw_tokens(lines: list, first_lb_ref: list) -> list:
     return raw_tokens
 
 
-def _flatten_lines_with_sent_markers(lines: list) -> list:
+def _offset_is_italic(offset: int, italic_spans: list) -> bool:
+    """True si offset cae dentro de algún italic_span."""
+    return any(s["offset"] <= offset < s["offset"] + s["length"]
+               for s in italic_spans)
+
+
+def _tokenize_with_italic(span_text: str, span_offset: int,
+                           span_abbrevs: list, italic_spans: list) -> list:
     """
-    Aplana líneas en raw_tokens usando sentence_spans del PAGE XML.
-    Inserta ('sent_end', ...) en los límites de oración marcados por Transkribus.
-    Cuando una línea no tiene sentence_spans, trata la línea completa como una unidad.
+    Tokeniza span_text y asigna italic por token según su posición real
+    en la línea original (span_offset + posición dentro del span).
+    Busca cada token en el texto para obtener su posición exacta,
+    evitando desfases causados por espacios que tokenize() descarta.
     """
-    raw = []
+    toks = []
+    segs = apply_abbrev_tags(span_text, span_abbrevs)
+    search_from = 0  # posición de búsqueda dentro de span_text
+    for seg in segs:
+        exp = seg["expansion"] if seg["is_abbrev"] else None
+        for ttype, ttext in tokenize(seg["text"]):
+            tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
+            # Buscar la posición exacta del token en el texto del span
+            idx = span_text.find(ttext, search_from)
+            if idx == -1:
+                idx = search_from  # fallback si no se encuentra
+            char_pos_in_line = span_offset + idx
+            italic = _offset_is_italic(char_pos_in_line, italic_spans)
+            toks.append((ttype, ttext, tok_exp, False, False, italic))
+            search_from = idx + len(ttext)
+    return toks
+
+
+def _flatten_spans(lines: list) -> list:
+    """
+    Devuelve lista de (raw_6tuples, is_sent_end) por SPAN.
+    6-tupla: (ttype, ttext, tok_exp, eol, split, is_italic)
+    El italic se determina por la posición exacta de cada token en el texto
+    de la línea, usando italic_spans del PAGE XML como fuente de verdad.
+    """
+    result   = []
     first_lb = [False]
 
     for li, line in enumerate(lines):
@@ -358,105 +391,163 @@ def _flatten_lines_with_sent_markers(lines: list) -> list:
         text         = line["text"]
         abbrevs      = line["abbrevs"]
         sent_spans   = line.get("sentence_spans", [])
+        italic_spans = line.get("italic_spans", [])
 
-        # lb al inicio de la primera línea del bloque
+        lb_tok = None
         if not first_lb[0]:
-            raw.append(("sol", str(line["line_n"]), None, False, False))
+            lb_tok = ("sol", str(line["line_n"]), None, False, False, False)
             first_lb[0] = True
 
         if not sent_spans:
-            # Sin spans: tratar línea completa como fragmento de oración
-            segs = apply_abbrev_tags(text, abbrevs)
-            line_toks = []
-            for seg in segs:
-                exp = seg["expansion"] if seg["is_abbrev"] else None
-                for ttype, ttext in tokenize(seg["text"]):
-                    tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
-                    line_toks.append((ttype, ttext, tok_exp, False, False))
-            if line_toks and not is_last_line:
-                last = line_toks[-1]
+            # Sin sentence_spans: toda la línea como un span continuo
+            span_abbrevs = abbrevs
+            toks = []
+            if lb_tok:
+                toks.append(lb_tok)
+            toks.extend(_tokenize_with_italic(text, 0, span_abbrevs, italic_spans))
+            if toks and not is_last_line:
+                last = toks[-1]
                 if line["soft_hyphen"]:
-                    line_toks[-1] = (last[0], last[1], last[2], False, next_n)
+                    toks[-1] = (last[0], last[1], last[2], False, next_n, last[5])
                 else:
-                    line_toks[-1] = (last[0], last[1], last[2], next_n, False)
-            raw.extend(line_toks)
+                    toks[-1] = (last[0], last[1], last[2], next_n, False, last[5])
+            result.append((toks, False))
         else:
             for si, span in enumerate(sent_spans):
                 is_last_span = (si == len(sent_spans) - 1)
+                span_offset  = span["offset"]
+                span_text    = text[span_offset: span_offset + span["length"]]
 
-                # Texto del span
-                span_text = text[span["offset"]: span["offset"] + span["length"]]
-
-                # Abbrevs que caen dentro del span (offset reajustado)
                 span_abbrevs = [
-                    {**a, "offset": a["offset"] - span["offset"]}
+                    {**a, "offset": a["offset"] - span_offset}
                     for a in abbrevs
-                    if span["offset"] <= a["offset"] < span["offset"] + span["length"]
+                    if span_offset <= a["offset"] < span_offset + span["length"]
                 ]
 
-                segs = apply_abbrev_tags(span_text, span_abbrevs)
-                span_toks = []
-                for seg in segs:
-                    exp = seg["expansion"] if seg["is_abbrev"] else None
-                    for ttype, ttext in tokenize(seg["text"]):
-                        tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
-                        span_toks.append((ttype, ttext, tok_exp, False, False))
+                toks = []
+                if lb_tok and si == 0:
+                    toks.append(lb_tok)
+                toks.extend(_tokenize_with_italic(
+                    span_text, span_offset, span_abbrevs, italic_spans))
 
-                # Fin de línea: solo al último span de la línea
-                if is_last_span and span_toks and not is_last_line:
-                    last = span_toks[-1]
+                if is_last_span and toks and not is_last_line:
+                    last = toks[-1]
                     if line["soft_hyphen"]:
-                        span_toks[-1] = (last[0], last[1], last[2], False, next_n)
+                        toks[-1] = (last[0], last[1], last[2], False, next_n, last[5])
                     else:
-                        span_toks[-1] = (last[0], last[1], last[2], next_n, False)
+                        toks[-1] = (last[0], last[1], last[2], next_n, False, last[5])
 
-                raw.extend(span_toks)
+                result.append((toks, not span["continued"]))
 
-                # Marcador de fin de oración cuando el span no continúa
-                if not span["continued"]:
-                    raw.append(("sent_end", "", None, False, False))
-
-    return raw
+    return result
 
 
-def _split_on_sent_markers(tokens: list) -> list:
-    """Divide tokens en frases usando marcadores sent_end."""
+def _group_spans_into_sentences(spans: list) -> list:
+    """
+    Agrupa spans en oraciones según is_sent_end.
+    Devuelve lista de listas de raw_6tuples (una lista de spans por oración).
+    """
     sentences, current = [], []
-    for tok in tokens:
-        if tok["kind"] == "sent_end":
-            if current:
-                sentences.append(current)
+    for raw, is_sent_end in spans:
+        current.append(raw)
+        if is_sent_end:
+            sentences.append(current)
             current = []
-        else:
-            current.append(tok)
     if current:
         sentences.append(current)
     return sentences
 
 
 
-def _emit_sentences(parent, tokens: list):
-    """Emite tokens segmentados en <s> con agrupación bibl/legal."""
-    for sent in _split_on_sent_markers(tokens):
+def _emit_bibl_content(container, tokens: list):
+    """Emite tokens con detección bibl/legal SIN añadir <hi> envolvente."""
+    grouped = group_legal_tokens(group_bibl_tokens(tokens))
+    for tok in grouped:
+        if tok["kind"] == "hi_bibl":
+            for group in tok["groups"]:
+                if group["kind"] == "bibl":
+                    bibl = etree.SubElement(container, f"{{{TEI_NS}}}bibl")
+                    for t in group["toks"]:
+                        emit_token(bibl, t)
+                else:
+                    for t in group["toks"]:
+                        emit_token(container, t)
+        elif tok["kind"] == "legal_bibl":
+            bibl = etree.SubElement(container, f"{{{TEI_NS}}}bibl")
+            bibl.set("type", "legal")
+            for t in tok["toks"]:
+                emit_token(bibl, t)
+        else:
+            emit_token(container, tok)
+
+
+def _join_split_words_6(raw6: list) -> list:
+    """
+    Llama a join_split_words con 5-tuplas y preserva el italic (6º elem)
+    en los dicts resultantes. Para word_lb, usa el italic del token izquierdo.
+    """
+    # Tabla: posición en raw5 → italic
+    italic_map = [t[5] if len(t) > 5 else False for t in raw6]
+    raw5 = [t[:5] for t in raw6]
+    tokens = join_split_words(raw5)
+
+    # Asignar italic a cada token resultante por orden de aparición
+    src = [0]
+    for tok in tokens:
+        if src[0] < len(italic_map):
+            tok["italic"] = italic_map[src[0]]
+        else:
+            tok["italic"] = False
+        if tok["kind"] not in ("sol",):
+            src[0] += 1
+    return tokens
+
+
+def _emit_sentence_spans(s_el, all_raw6: list):
+    """
+    Emite una oración abriendo/cerrando <hi rend="italic"> cuando cambia
+    el italic entre tokens consecutivos. Acepta lista plana de 6-tuplas.
+    """
+    from itertools import groupby
+    tokens = _join_split_words_6(all_raw6)
+    if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
+               for t in tokens):
+        return
+
+    for is_italic, grp in groupby(tokens, key=lambda t: t.get("italic", False)):
+        grp = list(grp)
+        # sol/lb sin contenido: siempre al nivel de s_el
         if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
-                   for t in sent):
+                   for t in grp):
+            for tok in grp:
+                emit_token(s_el, tok)
+            continue
+        container = s_el
+        if is_italic:
+            container = etree.SubElement(s_el, f"{{{TEI_NS}}}hi")
+            container.set("rend", "italic")
+        _emit_bibl_content(container, grp)
+
+
+def _emit_sentences(parent, sentence_list: list):
+    """Emite oraciones como <s>, respetando italic por token."""
+    for span_raws in sentence_list:
+        all_raw6 = []
+        for raw in span_raws:
+            all_raw6.extend(raw)
+        if not any(t[0] in ("word","abbrev_dot","amp","pc","dot")
+                   for t in all_raw6):
             continue
         s_el = etree.SubElement(parent, f"{{{TEI_NS}}}s")
-        grouped = group_legal_tokens(group_bibl_tokens(sent))
-        for tok in grouped:
-            if tok["kind"] == "hi_bibl":
-                emit_hi_bibl(s_el, tok)
-            elif tok["kind"] == "legal_bibl":
-                emit_legal_bibl(s_el, tok)
-            else:
-                emit_token(s_el, tok)
+        _emit_sentence_spans(s_el, all_raw6)
 
 
 def _emit_para_block(parent, para_lines: list, join_left: str = None,
                      is_first_block: bool = False):
     """
     Agrupa líneas en párrafos por sangría y emite <p><s>...</s></p>.
-    Usa sentence_spans del PAGE XML para delimitar oraciones.
+    El italic se rastrea por posición exacta de carácter en la línea,
+    resolviendo correctamente soft hyphens que cruzan fronteras italic.
     """
     INDENT_THRESHOLD = 60
     paragraphs, current = [], []
@@ -472,25 +563,46 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
         paragraphs.append(current)
 
     for pi, para in enumerate(paragraphs):
-        p_el = etree.SubElement(parent, f"{{{TEI_NS}}}p")
-        raw   = _flatten_lines_with_sent_markers(para)
-        tokens = join_split_words(raw)
+        p_el      = etree.SubElement(parent, f"{{{TEI_NS}}}p")
+        spans     = _flatten_spans(para)
+        sentences = _group_spans_into_sentences(spans)
 
-        # join_left solo aplica al primer párrafo del primer bloque
-        if join_left and is_first_block and pi == 0:
-            for idx, tok in enumerate(tokens):
+        # join_left: fusionar fragmento de columna anterior con primer token
+        if join_left and is_first_block and pi == 0 and sentences:
+            first_raws = sentences[0]
+            all6 = [t for raw in first_raws for t in raw]
+            toks = _join_split_words_6(all6)
+            for idx, tok in enumerate(toks):
                 if tok["kind"] == "word":
-                    tokens[idx] = {
+                    toks[idx] = {
                         "kind":      "word_lb",
                         "left":      join_left,
                         "right":     tok["text"],
                         "expansion": tok.get("expansion"),
                         "eol":       tok.get("eol", False),
                         "lb_n":      None,
+                        "italic":    tok.get("italic", False),
                     }
                     break
+            if any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
+                   for t in toks):
+                from itertools import groupby
+                s_el = etree.SubElement(p_el, f"{{{TEI_NS}}}s")
+                for is_ital, grp in groupby(toks, key=lambda t: t.get("italic", False)):
+                    grp = list(grp)
+                    cont = s_el
+                    if is_ital:
+                        cont = etree.SubElement(s_el, f"{{{TEI_NS}}}hi")
+                        cont.set("rend", "italic")
+                    _emit_bibl_content(cont, grp)
+            _emit_sentences(p_el, sentences[1:])
+        else:
+            _emit_sentences(p_el, sentences)
 
-        _emit_sentences(p_el, tokens)
+
+
+
+
 
 
 def _emit_head(parent, lines: list, head_type: str = None):
