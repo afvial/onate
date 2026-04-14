@@ -58,6 +58,7 @@ def main():
     # El reclamo es la última línea de la columna: una sola palabra corta,
     # sin guión de corte (soft_hyphen=False). Se emite en stdout para que
     # el script de shell lo pase como --join-left a la columna siguiente.
+    # Se eliminan guiones finales que el HTR pueda haber transcrito (p.ej. "con-").
     if args.strip_catchword and lines:
         last = lines[-1]
         last_text = last["text"].strip()
@@ -69,8 +70,8 @@ def main():
         )
         if is_catchword:
             lines = lines[:-1]
-            # Imprimir el texto del reclamo en stdout para captura en shell
-            print(last_text)
+            catchword = last_text.rstrip('-').strip()
+            print(catchword)
             print(f"  Reclamo detectado y eliminado: «{last_text}»",
                   file=sys.stderr)
         else:

@@ -47,14 +47,7 @@
         </reg>
       </choice>
       <pc type="colon">:</pc>
-      <choice>
-        <abbr>
-          <w>primū</w>
-        </abbr>
-        <expan>
-          <w>primum</w>
-        </expan>
-      </choice>
+      <w>primum</w>
       <choice>
         <orig>
           <w>eſt</w>
@@ -83,12 +76,12 @@
         </reg>
       </choice>
       <choice>
-        <abbr>
-          <w>sequendū</w>
-        </abbr>
-        <expan>
+        <orig>
+          <w>ſequendum</w>
+        </orig>
+        <reg>
           <w>sequendum</w>
-        </expan>
+        </reg>
       </choice>
       <pc type="comma">,</pc>
       <w>quia</w>
@@ -157,141 +150,143 @@
       <w>iubentium</w>
       <pc type="other">.</pc>
       <w>Ita</w>
-      <bibl>
+      <hi rend="italic">
+        <bibl>
+          <choice>
+            <abbr>
+              <w>D.</w>
+            </abbr>
+            <expan>
+              <w></w>
+            </expan>
+          </choice>
+          <choice>
+            <abbr>
+              <w>Th.</w>
+            </abbr>
+            <expan>
+              <w>Thomas</w>
+            </expan>
+          </choice>
+          <w>2</w>
+          <pc type="other">.</pc>
+          <w>2</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>q.</w>
+            </abbr>
+            <expan>
+              <w>quaestio</w>
+            </expan>
+          </choice>
+          <lb n="8"/>
+          <w>27</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>ar.</w>
+            </abbr>
+            <expan>
+              <w>articulo</w>
+            </expan>
+          </choice>
+          <w>1</w>
+          <pc type="other">.</pc>
+        </bibl>
         <choice>
           <abbr>
-            <w>D.</w>
+            <w>&amp;</w>
           </abbr>
           <expan>
-            <w></w>
+            <w>et</w>
           </expan>
         </choice>
+        <w>ibi</w>
+        <w>eius</w>
         <choice>
-          <abbr>
-            <w>Th.</w>
-          </abbr>
-          <expan>
-            <w>Thomas</w>
-          </expan>
+          <orig>
+            <w>expoſitores</w>
+          </orig>
+          <reg>
+            <w>expositores</w>
+          </reg>
         </choice>
-        <w>2</w>
-        <pc type="other">.</pc>
-        <w>2</w>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>q.</w>
-          </abbr>
-          <expan>
-            <w>quaestio</w>
-          </expan>
-        </choice>
-        <lb n="8"/>
-        <w>27</w>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>ar.</w>
-          </abbr>
-          <expan>
-            <w>articulo</w>
-          </expan>
-        </choice>
-        <w>1</w>
-        <pc type="other">.</pc>
-      </bibl>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w>et</w>
-        </expan>
-      </choice>
-      <w>ibi</w>
-      <w>eius</w>
-      <choice>
-        <orig>
-          <w>expoſitores</w>
-        </orig>
-        <reg>
-          <w>expositores</w>
-        </reg>
-      </choice>
-      <pc type="comma">,</pc>
-      <bibl>
-        <choice>
-          <abbr>
-            <w>Caiet.</w>
-          </abbr>
-          <expan>
-            <w>Caietanus</w>
-          </expan>
-        </choice>
-      </bibl>
-      <bibl>
-        <w>A<lb break="no" n="9"/>ragon</w>
         <pc type="comma">,</pc>
-      </bibl>
-      <bibl>
-        <w>Bannes</w>
-        <pc type="comma">,</pc>
-      </bibl>
-      <bibl>
-        <choice>
-          <abbr>
-            <w>Salon.</w>
-          </abbr>
-          <expan>
-            <w>Salon</w>
-          </expan>
-        </choice>
-      </bibl>
-      <bibl>
-        <w>Reginaldus</w>
-        <choice>
-          <abbr>
-            <w>lib.</w>
-          </abbr>
-          <expan>
-            <w>libro</w>
-          </expan>
-        </choice>
-        <w>25</w>
-        <pc type="other">.</pc>
-        <lb n="10"/>
-        <choice>
-          <abbr>
-            <w>cap.</w>
-          </abbr>
-          <expan>
-            <w>capitulo</w>
-          </expan>
-        </choice>
-        <w>16</w>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>sect.</w>
-          </abbr>
-          <expan>
-            <w>sectio</w>
-          </expan>
-        </choice>
-        <w>3</w>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>n.</w>
-          </abbr>
-          <expan>
-            <w>numero</w>
-          </expan>
-        </choice>
-        <w>283</w>
-        <pc type="other">.</pc>
-        <w>Illo</w>
-      </bibl>
+        <bibl>
+          <choice>
+            <abbr>
+              <w>Caiet.</w>
+            </abbr>
+            <expan>
+              <w>Caietanus</w>
+            </expan>
+          </choice>
+        </bibl>
+        <bibl>
+          <w>A<lb break="no" n="9"/>ragon</w>
+          <pc type="comma">,</pc>
+        </bibl>
+        <bibl>
+          <w>Bannes</w>
+          <pc type="comma">,</pc>
+        </bibl>
+        <bibl>
+          <choice>
+            <abbr>
+              <w>Salon.</w>
+            </abbr>
+            <expan>
+              <w>Salon</w>
+            </expan>
+          </choice>
+        </bibl>
+        <bibl>
+          <w>Reginaldus</w>
+          <choice>
+            <abbr>
+              <w>lib.</w>
+            </abbr>
+            <expan>
+              <w>libro</w>
+            </expan>
+          </choice>
+          <w>25</w>
+          <pc type="other">.</pc>
+          <lb n="10"/>
+          <choice>
+            <abbr>
+              <w>cap.</w>
+            </abbr>
+            <expan>
+              <w>capitulo</w>
+            </expan>
+          </choice>
+          <w>16</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>sect.</w>
+            </abbr>
+            <expan>
+              <w>sectio</w>
+            </expan>
+          </choice>
+          <w>3</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>n.</w>
+            </abbr>
+            <expan>
+              <w>numero</w>
+            </expan>
+          </choice>
+          <w>283</w>
+          <pc type="other">.</pc>
+        </bibl>
+      </hi>
+      <w>Illo</w>
       <w>autem</w>
       <w>non</w>
       <lb n="11"/>
@@ -519,14 +514,7 @@
       <pc type="comma">,</pc>
       <lb n="29"/>
       <w>quod</w>
-      <choice>
-        <abbr>
-          <w>tātam</w>
-        </abbr>
-        <expan>
-          <w>tantam</w>
-        </expan>
-      </choice>
+      <w>tantam</w>
       <w>habet</w>
       <w>latitudinem</w>
       <choice>
@@ -558,7 +546,14 @@
         </reg>
       </choice>
       <w>in</w>
-      <w>immē<lb break="no" n="31"/>sam</w>
+      <choice>
+        <orig>
+          <w>immen<lb break="no" n="31"/>ſam</w>
+        </orig>
+        <reg>
+          <w>immensam</w>
+        </reg>
+      </choice>
       <choice>
         <orig>
           <w>excreſcere</w>
@@ -568,23 +563,9 @@
         </reg>
       </choice>
       <w>Et</w>
-      <choice>
-        <abbr>
-          <w>quidē</w>
-        </abbr>
-        <expan>
-          <w>quidem</w>
-        </expan>
-      </choice>
+      <w>quidem</w>
       <w>aliqua</w>
-      <choice>
-        <abbr>
-          <w>quocūque</w>
-        </abbr>
-        <expan>
-          <w>quocunque</w>
-        </expan>
-      </choice>
+      <w>quocunque</w>
       <lb n="32"/>
       <w>maiori</w>
       <pc type="comma">,</pc>
@@ -657,104 +638,106 @@
       </choice>
       <w>arbiter</w>
       <pc type="comma">,</pc>
-      <bibl type="legal">
+      <hi rend="italic">
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <w>in</w>
+          <w>re</w>
+          <w>man<lb break="no" n="36"/>data</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>C.</w>
+            </abbr>
+            <expan>
+              <w>Codex Iustinianus</w>
+            </expan>
+          </choice>
+          <choice>
+            <abbr>
+              <w>mand.</w>
+            </abbr>
+            <expan>
+              <w>de mandato</w>
+            </expan>
+          </choice>
+        </bibl>
         <choice>
           <abbr>
-            <w>l.</w>
+            <w>&amp;</w>
           </abbr>
           <expan>
-            <w>lex</w>
+            <w>et</w>
           </expan>
         </choice>
-        <w>in</w>
-        <w>re</w>
-        <w>man<lb break="no" n="36"/>data</w>
-        <pc type="other">.</pc>
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>reg.</w>
+            </abbr>
+            <expan>
+              <w>regula</w>
+            </expan>
+          </choice>
+          <w>iuris</w>
+        </bibl>
+        <pc type="comma">,</pc>
         <choice>
           <abbr>
-            <w>C.</w>
+            <w>&amp;</w>
           </abbr>
           <expan>
-            <w>Codex Iustinianus</w>
+            <w>et</w>
           </expan>
         </choice>
-        <choice>
-          <abbr>
-            <w>mand.</w>
-          </abbr>
-          <expan>
-            <w>de mandato</w>
-          </expan>
-        </choice>
-      </bibl>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w>et</w>
-        </expan>
-      </choice>
-      <bibl type="legal">
-        <choice>
-          <abbr>
-            <w>reg.</w>
-          </abbr>
-          <expan>
-            <w>regula</w>
-          </expan>
-        </choice>
-        <w>iuris</w>
-      </bibl>
-      <pc type="comma">,</pc>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w>et</w>
-        </expan>
-      </choice>
-      <bibl type="legal">
-        <choice>
-          <abbr>
-            <w>l.</w>
-          </abbr>
-          <expan>
-            <w>lex</w>
-          </expan>
-        </choice>
-        <w>etiam</w>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>§.</w>
-          </abbr>
-          <expan>
-            <w></w>
-          </expan>
-        </choice>
-        <lb n="37"/>
-        <w>licet</w>
-        <choice>
-          <abbr>
-            <w>ff.</w>
-          </abbr>
-          <expan>
-            <w>Digesta</w>
-          </expan>
-        </choice>
-        <w>50</w>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>ma.</w>
-          </abbr>
-          <expan>
-            <w>mandati</w>
-          </expan>
-        </choice>
-      </bibl>
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <w>etiam</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>§.</w>
+            </abbr>
+            <expan>
+              <w></w>
+            </expan>
+          </choice>
+          <lb n="37"/>
+          <w>licet</w>
+          <choice>
+            <abbr>
+              <w>ff.</w>
+            </abbr>
+            <expan>
+              <w>Digesta</w>
+            </expan>
+          </choice>
+          <w>50</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>ma.</w>
+            </abbr>
+            <expan>
+              <w>mandati</w>
+            </expan>
+          </choice>
+        </bibl>
+      </hi>
       <w>ergo</w>
       <choice>
         <orig>
@@ -835,169 +818,171 @@
       </choice>
       <pc type="comma">,</pc>
       <lb n="43"/>
-      <bibl type="legal">
+      <hi rend="italic">
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <w>1</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>§.</w>
+            </abbr>
+            <expan>
+              <w></w>
+            </expan>
+          </choice>
+          <choice>
+            <orig>
+              <w>ſi</w>
+            </orig>
+            <reg>
+              <w>si</w>
+            </reg>
+          </choice>
+          <w>hęres</w>
+          <choice>
+            <abbr>
+              <w>ff.</w>
+            </abbr>
+            <expan>
+              <w>Digesta</w>
+            </expan>
+          </choice>
+          <w>ad</w>
+          <choice>
+            <abbr>
+              <w>Trebel.</w>
+            </abbr>
+            <expan>
+              <w>ad senatus consultum Trebellianum</w>
+            </expan>
+          </choice>
+        </bibl>
         <choice>
           <abbr>
-            <w>l.</w>
+            <w>&amp;</w>
           </abbr>
           <expan>
-            <w>lex</w>
+            <w>et</w>
           </expan>
         </choice>
-        <w>1</w>
-        <pc type="other">.</pc>
+        <w>ibi</w>
         <choice>
           <abbr>
-            <w>§.</w>
+            <w>glos.</w>
           </abbr>
           <expan>
-            <w></w>
-          </expan>
-        </choice>
-        <choice>
-          <orig>
-            <w>ſi</w>
-          </orig>
-          <reg>
-            <w>si</w>
-          </reg>
-        </choice>
-        <w>hęres</w>
-        <choice>
-          <abbr>
-            <w>ff.</w>
-          </abbr>
-          <expan>
-            <w>Digesta</w>
-          </expan>
-        </choice>
-        <w>ad</w>
-        <choice>
-          <abbr>
-            <w>Trebel.</w>
-          </abbr>
-          <expan>
-            <w>ad senatus consultum Trebellianum</w>
-          </expan>
-        </choice>
-      </bibl>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w>et</w>
-        </expan>
-      </choice>
-      <w>ibi</w>
-      <choice>
-        <abbr>
-          <w>glos.</w>
-        </abbr>
-        <expan>
-          <w>glosa</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w>et</w>
-        </expan>
-      </choice>
-      <lb n="44"/>
-      <bibl type="legal">
-        <choice>
-          <abbr>
-            <w>l.</w>
-          </abbr>
-          <expan>
-            <w>lex</w>
-          </expan>
-        </choice>
-        <choice>
-          <orig>
-            <w>quærebatur</w>
-          </orig>
-          <reg>
-            <w>quaerebatur</w>
-          </reg>
-        </choice>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>ff.</w>
-          </abbr>
-          <expan>
-            <w>Digesta</w>
-          </expan>
-        </choice>
-        <w>ad</w>
-        <choice>
-          <abbr>
-            <w>l.</w>
-          </abbr>
-          <expan>
-            <w>lex</w>
+            <w>glosa</w>
           </expan>
         </choice>
         <choice>
           <abbr>
-            <w>Falcid.</w>
+            <w>&amp;</w>
           </abbr>
           <expan>
-            <w>ad legem Falcidiam</w>
+            <w>et</w>
           </expan>
         </choice>
-      </bibl>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w>et</w>
-        </expan>
-      </choice>
-      <bibl type="legal">
+        <lb n="44"/>
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <choice>
+            <orig>
+              <w>quærebatur</w>
+            </orig>
+            <reg>
+              <w>quaerebatur</w>
+            </reg>
+          </choice>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>ff.</w>
+            </abbr>
+            <expan>
+              <w>Digesta</w>
+            </expan>
+          </choice>
+          <w>ad</w>
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <choice>
+            <abbr>
+              <w>Falcid.</w>
+            </abbr>
+            <expan>
+              <w>ad legem Falcidiam</w>
+            </expan>
+          </choice>
+        </bibl>
         <choice>
           <abbr>
-            <w>l.</w>
+            <w>&amp;</w>
           </abbr>
           <expan>
-            <w>lex</w>
+            <w>et</w>
           </expan>
         </choice>
-        <w>debitum</w>
-        <pc type="other">.</pc>
-        <lb n="45"/>
-        <choice>
-          <abbr>
-            <w>ff.</w>
-          </abbr>
-          <expan>
-            <w>Digesta</w>
-          </expan>
-        </choice>
-        <w>ad</w>
-        <choice>
-          <abbr>
-            <w>Trebel.</w>
-          </abbr>
-          <expan>
-            <w>ad senatus consultum Trebellianum</w>
-          </expan>
-        </choice>
-        <w>in</w>
-        <choice>
-          <abbr>
-            <w>fin.</w>
-          </abbr>
-          <expan>
-            <w>in fine</w>
-          </expan>
-        </choice>
-      </bibl>
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <w>debitum</w>
+          <pc type="other">.</pc>
+          <lb n="45"/>
+          <choice>
+            <abbr>
+              <w>ff.</w>
+            </abbr>
+            <expan>
+              <w>Digesta</w>
+            </expan>
+          </choice>
+          <w>ad</w>
+          <choice>
+            <abbr>
+              <w>Trebel.</w>
+            </abbr>
+            <expan>
+              <w>ad senatus consultum Trebellianum</w>
+            </expan>
+          </choice>
+          <w>in</w>
+          <choice>
+            <abbr>
+              <w>fin.</w>
+            </abbr>
+            <expan>
+              <w>in fine</w>
+            </expan>
+          </choice>
+        </bibl>
+      </hi>
       <choice>
         <orig>
           <w>ſed</w>
@@ -1135,14 +1120,7 @@
           <w>ipsis</w>
         </reg>
       </choice>
-      <choice>
-        <abbr>
-          <w>faciūt</w>
-        </abbr>
-        <expan>
-          <w>faciunt</w>
-        </expan>
-      </choice>
+      <w>faciunt</w>
       <lb n="53"/>
       <w>iniuriam</w>
       <pc type="comma">,</pc>
@@ -1157,7 +1135,7 @@
       <w>regulam</w>
       <w>iuris</w>
       <pc type="bracket" subtype="open">[</pc>
-      <w>sciē<lb break="no" n="54"/>ti</w>
+      <w>scien<lb break="no" n="54"/>ti</w>
       <pc type="comma">,</pc>
       <choice>
         <abbr>
