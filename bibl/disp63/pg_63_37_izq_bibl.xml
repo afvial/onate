@@ -3,7 +3,7 @@
   <p>
     <s>
       <lb n="1"/>
-      <w>Prius</w>
+      <w>pretium.<lb break="no"/>Prius</w>
       <w>quam</w>
       <w>directè</w>
       <choice>
@@ -156,67 +156,63 @@
       <w>vendere</w>
       <w>iubentium</w>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <w>Ita</w>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_Aquinas_ST_1">
-          <bibl corresp="#bib_Aquinas_ST" cert="high">
+      <cit xml:id="cit_p37_izq_Aquinas_ST_1">
+        <bibl corresp="#bib_Aquinas_ST" cert="high">
+          <choice>
+            <abbr>
+              <w>D.</w>
+            </abbr>
+            <expan>
+              <w/>
+              <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
+            </expan>
+          </choice>
+          <author ref="#pers_ThomasAquinas">
             <choice>
               <abbr>
-                <w>D.</w>
+                <w>Th.</w>
               </abbr>
               <expan>
-                <w/>
-                <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
+                <w>Thomas</w>
               </expan>
             </choice>
-            <author ref="#pers_ThomasAquinas">
-              <choice>
-                <abbr>
-                  <w>Th.</w>
-                </abbr>
-                <expan>
-                  <w>Thomas</w>
-                </expan>
-              </choice>
-            </author>
-            <biblScope unit="?">
-              <w>2</w>
-            </biblScope>
-            <pc type="other">.</pc>
-            <biblScope unit="?">
-              <w>2</w>
-            </biblScope>
-            <pc type="other">.</pc>
-            <choice>
-              <abbr>
-                <w>q.</w>
-              </abbr>
-              <expan>
-                <w>quaestio</w>
-              </expan>
-            </choice>
-            <lb n="8"/>
-            <biblScope unit="quaestio">
-              <w>27</w>
-            </biblScope>
-            <pc type="other">.</pc>
-            <choice>
-              <abbr>
-                <w>ar.</w>
-              </abbr>
-              <expan>
-                <w>articulo</w>
-              </expan>
-            </choice>
-            <biblScope unit="articulus">
-              <w>1</w>
-            </biblScope>
-            <pc type="other">.</pc>
-          </bibl>
-        </cit>
-      </hi>
+          </author>
+          <biblScope unit="?">
+            <w>2</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <biblScope unit="?">
+            <w>2</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>q.</w>
+            </abbr>
+            <expan>
+              <w>quaestio</w>
+            </expan>
+          </choice>
+          <lb n="8"/>
+          <biblScope unit="quaestio">
+            <w>27</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>ar.</w>
+            </abbr>
+            <expan>
+              <w>articulo</w>
+            </expan>
+          </choice>
+          <biblScope unit="articulus">
+            <w>1</w>
+          </biblScope>
+          <pc type="other">.</pc>
+        </bibl>
+      </cit>
       <choice>
         <abbr>
           <w>&amp;</w>
@@ -236,119 +232,107 @@
         </reg>
       </choice>
       <pc type="comma">,</pc>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_Caietanus_ST_2">
-          <bibl corresp="#bib_Caietanus_ST" cert="high">
-            <author ref="#pers_Caietanus">
-              <choice>
-                <abbr>
-                  <w>Caiet.</w>
-                </abbr>
-                <expan>
-                  <w>Caietanus</w>
-                </expan>
-              </choice>
-            </author>
-          </bibl>
-        </cit>
-      </hi>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_Aragon_ST_3">
-          <bibl corresp="#bib_Aragon_ST" cert="high">
-            <author ref="#pers_Aragon">
-              <w>A<lb break="no" n="9"/>ragon</w>
-            </author>
-            <pc type="comma">,</pc>
-          </bibl>
-        </cit>
-      </hi>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_Bannes_ST_4">
-          <bibl corresp="#bib_Bannes_ST" cert="high">
-            <author ref="#pers_Bannes">
-              <w>Bannes</w>
-            </author>
-            <pc type="comma">,</pc>
-          </bibl>
-        </cit>
-      </hi>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_Salon_ST_5">
-          <bibl corresp="#bib_Salon_ST" cert="high">
-            <author ref="#pers_Salon">
-              <choice>
-                <abbr>
-                  <w>Salon.</w>
-                </abbr>
-                <expan>
-                  <w>Salon</w>
-                </expan>
-              </choice>
-            </author>
-          </bibl>
-        </cit>
-      </hi>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_Reginald_Praxis_6">
-          <bibl corresp="#bib_Reginald_Praxis" cert="high">
-            <author ref="#pers_Reginaldus">
-              <w>Reginaldus</w>
-            </author>
+      <cit xml:id="cit_p37_izq_Caietanus_ST_2">
+        <bibl corresp="#bib_Caietanus_ST" cert="high">
+          <author ref="#pers_Caietanus">
             <choice>
               <abbr>
-                <w>lib.</w>
+                <w>Caiet.</w>
               </abbr>
               <expan>
-                <w>libro</w>
+                <w>Caietanus</w>
               </expan>
             </choice>
-            <biblScope unit="book">
-              <w>25</w>
-            </biblScope>
-            <pc type="other">.</pc>
-            <lb n="10"/>
+          </author>
+        </bibl>
+      </cit>
+      <cit xml:id="cit_p37_izq_Aragon_ST_3">
+        <bibl corresp="#bib_Aragon_ST" cert="high">
+          <author ref="#pers_Aragon">
+            <w>A<lb break="no" n="9"/>ragon</w>
+          </author>
+          <pc type="comma">,</pc>
+        </bibl>
+      </cit>
+      <cit xml:id="cit_p37_izq_Bannes_ST_4">
+        <bibl corresp="#bib_Bannes_ST" cert="high">
+          <author ref="#pers_Bannes">
+            <w>Bannes</w>
+          </author>
+          <pc type="comma">,</pc>
+        </bibl>
+      </cit>
+      <cit xml:id="cit_p37_izq_Salon_ST_5">
+        <bibl corresp="#bib_Salon_ST" cert="high">
+          <author ref="#pers_Salon">
             <choice>
               <abbr>
-                <w>cap.</w>
+                <w>Salon.</w>
               </abbr>
               <expan>
-                <w>capitulo</w>
+                <w>Salon</w>
               </expan>
             </choice>
-            <biblScope unit="chap">
-              <w>16</w>
-            </biblScope>
-            <pc type="other">.</pc>
-            <choice>
-              <abbr>
-                <w>sect.</w>
-              </abbr>
-              <expan>
-                <w>sectio</w>
-              </expan>
-            </choice>
-            <biblScope unit="?">
-              <w>3</w>
-            </biblScope>
-            <pc type="other">.</pc>
-            <choice>
-              <abbr>
-                <w>n.</w>
-              </abbr>
-              <expan>
-                <w>numero</w>
-              </expan>
-            </choice>
-            <biblScope unit="n">
-              <w>283</w>
-            </biblScope>
-            <pc type="other">.</pc>
-          </bibl>
-        </cit>
-      </hi>
-    </s>
-    <s>
-      <w>Illo</w>
+          </author>
+        </bibl>
+      </cit>
+      <cit xml:id="cit_p37_izq_Reginald_Praxis_6">
+        <bibl corresp="#bib_Reginald_Praxis" cert="high">
+          <author ref="#pers_Reginaldus">
+            <w>Reginaldus</w>
+          </author>
+          <choice>
+            <abbr>
+              <w>lib.</w>
+            </abbr>
+            <expan>
+              <w>libro</w>
+            </expan>
+          </choice>
+          <biblScope unit="book">
+            <w>25</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <lb n="10"/>
+          <choice>
+            <abbr>
+              <w>cap.</w>
+            </abbr>
+            <expan>
+              <w>capitulo</w>
+            </expan>
+          </choice>
+          <biblScope unit="chap">
+            <w>16</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>sect.</w>
+            </abbr>
+            <expan>
+              <w>sectio</w>
+            </expan>
+          </choice>
+          <biblScope unit="?">
+            <w>3</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>n.</w>
+            </abbr>
+            <expan>
+              <w>numero</w>
+            </expan>
+          </choice>
+          <biblScope unit="n">
+            <w>283</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <w>Illo</w>
+        </bibl>
+      </cit>
       <w>autem</w>
       <w>non</w>
       <lb n="11"/>
@@ -399,8 +383,6 @@
       </choice>
       <w>debent</w>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <w>Tertio</w>
       <w>loco</w>
       <lb n="14"/>
@@ -537,8 +519,6 @@
       <w>contrahere</w>
       <pc type="other">.</pc>
       <lb n="24"/>
-    </s>
-    <s>
       <w>Pretium</w>
       <pc type="comma">,</pc>
       <w>denique</w>
@@ -676,8 +656,6 @@
       <w>conuenerit</w>
       <pc type="other">.</pc>
       <lb n="34"/>
-    </s>
-    <s>
       <w>Probatur</w>
       <w>primo</w>
       <pc type="comma">,</pc>
@@ -720,40 +698,38 @@
       </choice>
       <w>arbiter</w>
       <pc type="comma">,</pc>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_noref_7">
-          <bibl type="legal">
-            <choice>
-              <abbr>
-                <w>l.</w>
-              </abbr>
-              <expan>
-                <w>lex</w>
-              </expan>
-            </choice>
-            <w>in</w>
-            <w>re</w>
-            <w>man<lb break="no" n="36"/>data</w>
-            <pc type="other">.</pc>
-            <choice>
-              <abbr>
-                <w>C.</w>
-              </abbr>
-              <expan>
-                <w>Codex Iustinianus</w>
-              </expan>
-            </choice>
-            <choice>
-              <abbr>
-                <w>mand.</w>
-              </abbr>
-              <expan>
-                <w>de mandato</w>
-              </expan>
-            </choice>
-          </bibl>
-        </cit>
-      </hi>
+      <cit xml:id="cit_p37_izq_noref_7">
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <w>in</w>
+          <w>re</w>
+          <w>man<lb break="no" n="36"/>data</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>C.</w>
+            </abbr>
+            <expan>
+              <w>Codex Iustinianus</w>
+            </expan>
+          </choice>
+          <choice>
+            <abbr>
+              <w>mand.</w>
+            </abbr>
+            <expan>
+              <w>de mandato</w>
+            </expan>
+          </choice>
+        </bibl>
+      </cit>
       <choice>
         <abbr>
           <w>&amp;</w>
@@ -762,21 +738,19 @@
           <w>et</w>
         </expan>
       </choice>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_noref_8">
-          <bibl type="legal">
-            <choice>
-              <abbr>
-                <w>reg.</w>
-              </abbr>
-              <expan>
-                <w>regula</w>
-              </expan>
-            </choice>
-            <w>iuris</w>
-          </bibl>
-        </cit>
-      </hi>
+      <cit xml:id="cit_p37_izq_noref_8">
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>reg.</w>
+            </abbr>
+            <expan>
+              <w>regula</w>
+            </expan>
+          </choice>
+          <w>iuris</w>
+        </bibl>
+      </cit>
       <pc type="comma">,</pc>
       <choice>
         <abbr>
@@ -786,50 +760,48 @@
           <w>et</w>
         </expan>
       </choice>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_noref_9">
-          <bibl type="legal">
-            <choice>
-              <abbr>
-                <w>l.</w>
-              </abbr>
-              <expan>
-                <w>lex</w>
-              </expan>
-            </choice>
-            <w>etiam</w>
-            <pc type="other">.</pc>
-            <choice>
-              <abbr>
-                <w>§.</w>
-              </abbr>
-              <expan>
-                <w/>
-              </expan>
-            </choice>
-            <lb n="37"/>
-            <w>licet</w>
-            <choice>
-              <abbr>
-                <w>ff.</w>
-              </abbr>
-              <expan>
-                <w>Digesta</w>
-              </expan>
-            </choice>
-            <w>50</w>
-            <pc type="other">.</pc>
-            <choice>
-              <abbr>
-                <w>ma.</w>
-              </abbr>
-              <expan>
-                <w>mandati</w>
-              </expan>
-            </choice>
-          </bibl>
-        </cit>
-      </hi>
+      <cit xml:id="cit_p37_izq_noref_9">
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <w>etiam</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>§.</w>
+            </abbr>
+            <expan>
+              <w/>
+            </expan>
+          </choice>
+          <lb n="37"/>
+          <w>licet</w>
+          <choice>
+            <abbr>
+              <w>ff.</w>
+            </abbr>
+            <expan>
+              <w>Digesta</w>
+            </expan>
+          </choice>
+          <w>50</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>ma.</w>
+            </abbr>
+            <expan>
+              <w>mandati</w>
+            </expan>
+          </choice>
+        </bibl>
+      </cit>
       <w>ergo</w>
       <choice>
         <orig>
@@ -910,56 +882,54 @@
       </choice>
       <pc type="comma">,</pc>
       <lb n="43"/>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_noref_10">
-          <bibl type="legal">
-            <choice>
-              <abbr>
-                <w>l.</w>
-              </abbr>
-              <expan>
-                <w>lex</w>
-              </expan>
-            </choice>
-            <w>1</w>
-            <pc type="other">.</pc>
-            <choice>
-              <abbr>
-                <w>§.</w>
-              </abbr>
-              <expan>
-                <w/>
-              </expan>
-            </choice>
-            <choice>
-              <orig>
-                <w>ſi</w>
-              </orig>
-              <reg>
-                <w>si</w>
-              </reg>
-            </choice>
-            <w>hęres</w>
-            <choice>
-              <abbr>
-                <w>ff.</w>
-              </abbr>
-              <expan>
-                <w>Digesta</w>
-              </expan>
-            </choice>
-            <w>ad</w>
-            <choice>
-              <abbr>
-                <w>Trebel.</w>
-              </abbr>
-              <expan>
-                <w>ad senatus consultum Trebellianum</w>
-              </expan>
-            </choice>
-          </bibl>
-        </cit>
-      </hi>
+      <cit xml:id="cit_p37_izq_noref_10">
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <w>1</w>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>§.</w>
+            </abbr>
+            <expan>
+              <w/>
+            </expan>
+          </choice>
+          <choice>
+            <orig>
+              <w>ſi</w>
+            </orig>
+            <reg>
+              <w>si</w>
+            </reg>
+          </choice>
+          <w>hęres</w>
+          <choice>
+            <abbr>
+              <w>ff.</w>
+            </abbr>
+            <expan>
+              <w>Digesta</w>
+            </expan>
+          </choice>
+          <w>ad</w>
+          <choice>
+            <abbr>
+              <w>Trebel.</w>
+            </abbr>
+            <expan>
+              <w>ad senatus consultum Trebellianum</w>
+            </expan>
+          </choice>
+        </bibl>
+      </cit>
       <choice>
         <abbr>
           <w>&amp;</w>
@@ -986,54 +956,52 @@
         </expan>
       </choice>
       <lb n="44"/>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_noref_11">
-          <bibl type="legal">
-            <choice>
-              <abbr>
-                <w>l.</w>
-              </abbr>
-              <expan>
-                <w>lex</w>
-              </expan>
-            </choice>
-            <choice>
-              <orig>
-                <w>quærebatur</w>
-              </orig>
-              <reg>
-                <w>quaerebatur</w>
-              </reg>
-            </choice>
-            <pc type="other">.</pc>
-            <choice>
-              <abbr>
-                <w>ff.</w>
-              </abbr>
-              <expan>
-                <w>Digesta</w>
-              </expan>
-            </choice>
-            <w>ad</w>
-            <choice>
-              <abbr>
-                <w>l.</w>
-              </abbr>
-              <expan>
-                <w>lex</w>
-              </expan>
-            </choice>
-            <choice>
-              <abbr>
-                <w>Falcid.</w>
-              </abbr>
-              <expan>
-                <w>ad legem Falcidiam</w>
-              </expan>
-            </choice>
-          </bibl>
-        </cit>
-      </hi>
+      <cit xml:id="cit_p37_izq_noref_11">
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <choice>
+            <orig>
+              <w>quærebatur</w>
+            </orig>
+            <reg>
+              <w>quaerebatur</w>
+            </reg>
+          </choice>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>ff.</w>
+            </abbr>
+            <expan>
+              <w>Digesta</w>
+            </expan>
+          </choice>
+          <w>ad</w>
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <choice>
+            <abbr>
+              <w>Falcid.</w>
+            </abbr>
+            <expan>
+              <w>ad legem Falcidiam</w>
+            </expan>
+          </choice>
+        </bibl>
+      </cit>
       <choice>
         <abbr>
           <w>&amp;</w>
@@ -1042,49 +1010,47 @@
           <w>et</w>
         </expan>
       </choice>
-      <hi rend="italic">
-        <cit xml:id="cit_p37_izq_noref_12">
-          <bibl type="legal">
-            <choice>
-              <abbr>
-                <w>l.</w>
-              </abbr>
-              <expan>
-                <w>lex</w>
-              </expan>
-            </choice>
-            <w>debitum</w>
-            <pc type="other">.</pc>
-            <lb n="45"/>
-            <choice>
-              <abbr>
-                <w>ff.</w>
-              </abbr>
-              <expan>
-                <w>Digesta</w>
-              </expan>
-            </choice>
-            <w>ad</w>
-            <choice>
-              <abbr>
-                <w>Trebel.</w>
-              </abbr>
-              <expan>
-                <w>ad senatus consultum Trebellianum</w>
-              </expan>
-            </choice>
-            <w>in</w>
-            <choice>
-              <abbr>
-                <w>fin.</w>
-              </abbr>
-              <expan>
-                <w>in fine</w>
-              </expan>
-            </choice>
-          </bibl>
-        </cit>
-      </hi>
+      <cit xml:id="cit_p37_izq_noref_12">
+        <bibl type="legal">
+          <choice>
+            <abbr>
+              <w>l.</w>
+            </abbr>
+            <expan>
+              <w>lex</w>
+            </expan>
+          </choice>
+          <w>debitum</w>
+          <pc type="other">.</pc>
+          <lb n="45"/>
+          <choice>
+            <abbr>
+              <w>ff.</w>
+            </abbr>
+            <expan>
+              <w>Digesta</w>
+            </expan>
+          </choice>
+          <w>ad</w>
+          <choice>
+            <abbr>
+              <w>Trebel.</w>
+            </abbr>
+            <expan>
+              <w>ad senatus consultum Trebellianum</w>
+            </expan>
+          </choice>
+          <w>in</w>
+          <choice>
+            <abbr>
+              <w>fin.</w>
+            </abbr>
+            <expan>
+              <w>in fine</w>
+            </expan>
+          </choice>
+        </bibl>
+      </cit>
       <choice>
         <orig>
           <w>ſed</w>
@@ -1170,8 +1136,6 @@
       <w>pretio</w>
       <w>conuen<lb break="no" n="50"/>tionali</w>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <w>Tertio</w>
       <pc type="comma">,</pc>
       <w>quia</w>
@@ -1261,8 +1225,6 @@
       <w>fit</w>
       <w>iniuria</w>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <pc type="bracket" subtype="close">]</pc>
       <w>Quarto</w>
       <pc type="comma">,</pc>
@@ -1324,8 +1286,6 @@
       <lb n="58"/>
       <w>recurrere</w>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <w>Quinto</w>
       <pc type="comma">,</pc>
       <w>quia</w>
