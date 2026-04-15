@@ -329,11 +329,10 @@
           <!-- Dos columnas -->
           <div class="columns">
             <xsl:for-each select="//tei:div[@type='page'][@n=$page_n]">
-              <xsl:variable name="cb_n" select="tei:cb/@n"/>
               <div class="col">
                 <div class="col-label">
                   <xsl:choose>
-                    <xsl:when test="$cb_n='1'">Col. izq.</xsl:when>
+                    <xsl:when test="position()=1">Col. izq.</xsl:when>
                     <xsl:otherwise>Col. der.</xsl:otherwise>
                   </xsl:choose>
                 </div>
