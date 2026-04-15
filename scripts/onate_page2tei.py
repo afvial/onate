@@ -59,21 +59,34 @@ def main():
     # sin guión de corte (soft_hyphen=False). Se emite en stdout para que
     # el script de shell lo pase como --join-left a la columna siguiente.
     # Se eliminan guiones finales que el HTR pueda haber transcrito (p.ej. "con-").
+    # ── Detección y eliminación del reclamo (catchword) ─────────────────────
+    # Un reclamo tipográfico es la primera palabra(s) de la columna siguiente.
+    # Solo se elimina si la penúltima línea termina con ¬ (sílaba cortada):
+    # en ese caso el reclamo es la mitad derecha de la palabra y hay que
+    # fusionarla con join_left (join_type=split).
+    # Si no hay ¬, la última línea es texto legítimo — no se elimina.
     if args.strip_catchword and lines:
         last = lines[-1]
         last_text = last["text"].strip()
         words = last_text.split()
-        is_catchword = (
-            len(words) <= 2          # máximo dos palabras (sílaba o palabra entera)
-            and len(last_text) <= 20 # longitud razonable para un reclamo
-            and not last["soft_hyphen"]  # los reclamos no llevan guión de corte
+        penultimate_hyphen = bool(len(lines) >= 2 and lines[-2]["soft_hyphen"])
+        looks_like_catchword = (
+            len(words) <= 2          # máximo dos palabras
+            and len(last_text) <= 20 # longitud razonable
+            and not last["soft_hyphen"]  # el reclamo no lleva ¬
         )
-        if is_catchword:
+        if looks_like_catchword and penultimate_hyphen:
+            # Sílaba cortada con ¬: eliminar y pasar como join_left
             lines = lines[:-1]
-            catchword = last_text.rstrip('-').strip()
+            catchword = last_text.rstrip(".-").strip()
             print(catchword)
-            print(f"  Reclamo detectado y eliminado: «{last_text}»",
+            print("split")
+            print(f"  Reclamo (split) detectado y eliminado: «{last_text}»",
                   file=sys.stderr)
+        elif looks_like_catchword:
+            # Palabra completa: texto legítimo, NO eliminar
+            print(f"  «{last_text}» parece reclamo pero es palabra completa "
+                  "— se conserva.", file=sys.stderr)
         else:
             print(f"  --strip-catchword: última línea no parece reclamo «{last_text}», "
                   "se conserva.", file=sys.stderr)
