@@ -290,6 +290,11 @@
             text-align: right;
             margin-bottom: 0.5rem;
           }
+
+          /* Oraciones partidas entre columnas */
+          .s-part         { border-radius: 2px; transition: background 0.15s; }
+          .s-part-active  { background-color: #e8f0fb; }
+
         </style>
 </head>
 <body>
@@ -3575,7 +3580,7 @@
       ⁠<span class="tei-pc">.</span> 
       <br><span class="lb-num lb-5">60</span>
     </span> 
-    <span class="tei-s">
+    <span class="tei-s s-part" data-sid="s_1_I" data-next="#s_1_F">
       <span class="tei-w" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table><tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma"></td>
@@ -3607,14 +3612,14 @@
       <span class="tei-w" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table><tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma"></td>
-</tr></table></span>con</span> 
+</tr></table></span>con-<br></span> 
     </span> 
   </p>
 </div>
 <div class="col">
 <div class="col-label">Col. der.</div>
 <p class="tei-p tei-p-first">
-    <span class="tei-s">
+    <span class="tei-s s-part" data-sid="s_1_F" data-prev="#s_1_I">
       <br><span class="lb-num">1</span>
       <span class="tei-w" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table><tr>
 <td class="tip-key">lemma</td>
@@ -6709,7 +6714,7 @@
     </span> 
   </p>
 <p class="tei-p">
-    <span class="tei-s">
+    <span class="tei-s s-part" data-sid="s_2_I" data-next="#s_2_F">
       <br><span class="lb-num lb-5">60</span>
       <span class="tei-w" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table><tr>
 <td class="tip-key">lemma</td>
@@ -6759,7 +6764,7 @@
       <span class="tei-w" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table><tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma"></td>
-</tr></table></span>con</span> 
+</tr></table></span>con-<br></span> 
     </span> 
   </p>
 </div>
@@ -6769,7 +6774,7 @@
 <div class="col">
 <div class="col-label">Col. izq.</div>
 <p class="tei-p tei-p-first">
-    <span class="tei-s">
+    <span class="tei-s s-part" data-sid="s_2_F" data-prev="#s_2_I">
       <br><span class="lb-num">1</span>
       <span class="tei-w" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table><tr>
 <td class="tip-key">lemma</td>
@@ -9651,7 +9656,7 @@
 </table></span>poſſe</span>
       ⁠<span class="tei-pc">.</span> 
     </span> 
-    <span class="tei-s">
+    <span class="tei-s s-part" data-sid="s_3_I" data-next="#s_3_F">
       <span class="tei-w" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table><tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma"></td>
@@ -9675,7 +9680,7 @@
 <div class="col">
 <div class="col-label">Col. der.</div>
 <p class="tei-p tei-p-first">
-    <span class="tei-s">
+    <span class="tei-s s-part" data-sid="s_3_F" data-prev="#s_3_I">
       <br><span class="lb-num">1</span>
       <span class="tei-w tei-choice-orig" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table>
 <tr>
@@ -14475,7 +14480,7 @@
 </tr></table></span>recurrere</span>
       ⁠<span class="tei-pc">.</span> 
     </span> 
-    <span class="tei-s">
+    <span class="tei-s s-part" data-sid="s_4_I" data-next="#s_4_F">
       <span class="tei-w" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table><tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma"></td>
@@ -14614,7 +14619,7 @@
 <div class="col">
 <div class="col-label">Col. der.</div>
 <p class="tei-p tei-p-first">
-    <span class="tei-s">
+    <span class="tei-s s-part" data-sid="s_4_F" data-prev="#s_4_I">
       <br><span class="lb-num">1</span>
       <span class="tei-w tei-choice-orig" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table>
 <tr>
@@ -17538,5 +17543,22 @@
 <h3>Colores morfológicos · pasar cursor sobre palabra para ver lemma y POS</h3>
 <span style="color:#1a4a8a">■ VERB</span><span style="color:#222">■ NOUN</span><span style="color:#3a6a3a">■ ADJ</span><span style="color:#7a4a00">■ ADV</span><span style="color:#666">■ ADP</span><span style="color:#888">■ CCONJ</span><span style="color:#7a2a7a">■ PRON</span><span style="color:#aaa">■ X</span>
 </div>
+<script>
+          document.querySelectorAll('.s-part').forEach(function(el) {
+            el.addEventListener('mouseenter', function() {
+              var linkedId = (el.dataset.next || el.dataset.prev || '').replace('#', '');
+              el.classList.add('s-part-active');
+              if (linkedId) {
+                var linked = document.querySelector('[data-sid="' + linkedId + '"]');
+                if (linked) linked.classList.add('s-part-active');
+              }
+            });
+            el.addEventListener('mouseleave', function() {
+              document.querySelectorAll('.s-part-active').forEach(function(e) {
+                e.classList.remove('s-part-active');
+              });
+            });
+          });
+        </script>
 </body>
 </html>

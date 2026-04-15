@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="../../schema/tei_all.rnc"
             type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
@@ -2421,7 +2421,7 @@
       <pc type="other">.</pc>
       <lb n="60"/>
     </s>
-    <s>
+    <s xml:id="s_1_I" part="I" next="#s_1_F">
       <w>Hoc</w>
       <w>autem</w>
       <w>pretium</w>
@@ -2434,13 +2434,13 @@
           <w>indiuisibili</w>
         </reg>
       </choice>
-      <w>con</w>
+      <w>con<lb break="no"/></w>
     </s>
   </p>
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="35">
   <p>
-    <s>
+    <s xml:id="s_1_F" part="F" prev="#s_1_I">
       <lb n="1"/>
       <w>sistit</w>
       <pc type="colon">:</pc>
@@ -4220,7 +4220,7 @@
     </s>
   </p>
   <p>
-    <s>
+    <s xml:id="s_2_I" part="I" next="#s_2_F">
       <lb n="60"/>
       <w>Et</w>
       <w>quia</w>
@@ -4244,13 +4244,13 @@
           <w>et</w>
         </expan>
       </choice>
-      <w>con</w>
+      <w>con<lb break="no"/></w>
     </s>
   </p>
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="36">
   <p>
-    <s>
+    <s xml:id="s_2_F" part="F" prev="#s_2_I">
       <lb n="1"/>
       <w>suetudine</w>
       <w>vulgi</w>
@@ -5856,7 +5856,7 @@
       </choice>
       <pc type="other">.</pc>
     </s>
-    <s>
+    <s xml:id="s_3_I" part="I" next="#s_3_F">
       <w>Sequit</w>
       <w>tertiò</w>
       <pc type="comma">,</pc>
@@ -5867,7 +5867,7 @@
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="36">
   <p>
-    <s>
+    <s xml:id="s_3_F" part="F" prev="#s_3_I">
       <lb n="1"/>
       <choice>
         <orig>
@@ -8423,7 +8423,7 @@
       <w>recurrere</w>
       <pc type="other">.</pc>
     </s>
-    <s>
+    <s xml:id="s_4_I" part="I" next="#s_4_F">
       <w>Quinto</w>
       <pc type="comma">,</pc>
       <w>quia</w>
@@ -8500,7 +8500,7 @@
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="37">
   <p>
-    <s>
+    <s xml:id="s_4_F" part="F" prev="#s_4_I">
       <lb n="1"/>
       <choice>
         <orig>
