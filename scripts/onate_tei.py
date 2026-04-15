@@ -437,7 +437,24 @@ def _flatten_spans(lines: list) -> list:
                     else:
                         toks[-1] = (last[0], last[1], last[2], next_n, False, last[5])
 
-                result.append((toks, not span["continued"]))
+                # Una oración termina cuando el siguiente span NO tiene
+                # continued:true (es decir, empieza una oración nueva).
+                # Transkribus marca continued:true en todos los spans de una
+                # oración que sigue de la línea anterior; el primer span de una
+                # oración nueva NO tiene continued (o tiene continued:false).
+                if not is_last_span:
+                    # Hay más spans en esta línea → esta oración cierra aquí
+                    is_sent_end = True
+                elif not is_last_line:
+                    # Último span de la línea; mirar el primer span de la siguiente
+                    next_line  = lines[li + 1]
+                    next_spans = next_line.get("sentence_spans", [])
+                    next_continued = bool(next_spans and next_spans[0].get("continued"))
+                    is_sent_end = not next_continued
+                else:
+                    # Último span de la última línea → cierra siempre
+                    is_sent_end = True
+                result.append((toks, is_sent_end))
 
     return result
 
