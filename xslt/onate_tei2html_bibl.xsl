@@ -301,6 +301,11 @@
             text-align: right;
             margin-bottom: 0.5rem;
           }
+
+          /* Oraciones partidas entre columnas */
+          .s-part         { border-radius: 2px; transition: background 0.15s; }
+          .s-part-active  { background-color: #e8f0fb; }
+
         </style>
       </head>
       <body>
@@ -354,6 +359,24 @@
           <span style="color:#7a2a7a">■ PRON</span>
           <span style="color:#aaa">■ X</span>
         </div>
+
+        <script>
+          document.querySelectorAll('.s-part').forEach(function(el) {
+            el.addEventListener('mouseenter', function() {
+              var linkedId = (el.dataset.next || el.dataset.prev || '').replace('#', '');
+              el.classList.add('s-part-active');
+              if (linkedId) {
+                var linked = document.querySelector('[data-sid="' + linkedId + '"]');
+                if (linked) linked.classList.add('s-part-active');
+              }
+            });
+            el.addEventListener('mouseleave', function() {
+              document.querySelectorAll('.s-part-active').forEach(function(e) {
+                e.classList.remove('s-part-active');
+              });
+            });
+          });
+        </script>
       </body>
     </html>
   </xsl:template>
@@ -383,8 +406,30 @@
   </xsl:template>
 
   <!-- ORACIÓN -->
-  <xsl:template match="tei:s">
+  <!-- Oración normal -->
+  <xsl:template match="tei:s[not(@part)]">
     <span class="tei-s"><xsl:apply-templates/></span>
+    <xsl:text> </xsl:text>
+  </xsl:template>
+
+  <!-- Oración partida entre columnas (@part="I" o "F") -->
+  <xsl:template match="tei:s[@part]">
+    <span class="tei-s s-part">
+      <xsl:attribute name="data-sid">
+        <xsl:value-of select="@xml:id"/>
+      </xsl:attribute>
+      <xsl:if test="@next">
+        <xsl:attribute name="data-next">
+          <xsl:value-of select="@next"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:if test="@prev">
+        <xsl:attribute name="data-prev">
+          <xsl:value-of select="@prev"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </span>
     <xsl:text> </xsl:text>
   </xsl:template>
 

@@ -76,6 +76,7 @@ if [[ "$1" == "all" ]]; then
     echo
     info "Ensamblado y HTML finales"
     bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only assemble
+    bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only sentences
     bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only validate
     bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only html
     echo
@@ -171,6 +172,16 @@ run_assemble() {
     ok "Ensamblado → ${COMPLETO}"
 }
 
+
+
+# ── PASO 3.5: Límites de <s> entre columnas ──────────────────────────────────
+run_sentences() {
+    info "Paso 3.5 — Límites de <s> entre columnas"
+    [[ -f "$COMPLETO" ]] || fail "No existe: $COMPLETO"
+    python3 "${SCRIPTS_DIR}/onate_sentences.py" "$COMPLETO"
+    ok "Límites de oración → ${COMPLETO}"
+}
+
 # ── PASO 4: Validación ────────────────────────────────────────────────────────
 run_validate() {
     info "Paso 4 — Validación XML"
@@ -204,15 +215,17 @@ case "$ONLY" in
         run_page2tei
         run_enrich
         run_assemble
+        run_sentences
         run_validate
         run_html
         ;;
     page2tei)  run_page2tei ;;
     enrich)    run_enrich ;;
     assemble)  run_assemble ;;
+    sentences) run_sentences ;;
     validate)  run_validate ;;
     html)      run_html ;;
-    *) fail "Paso desconocido: $ONLY (page2tei|enrich|assemble|validate|html)" ;;
+    *) fail "Paso desconocido: $ONLY (page2tei|enrich|assemble|sentences|validate|html)" ;;
 esac
 
 echo
