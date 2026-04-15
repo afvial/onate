@@ -54,42 +54,41 @@ def main():
     print(f"Leyendo {path.name}...", file=sys.stderr)
     lines = extract_lines(path)
 
-    # ── Detección y eliminación del reclamo (catchword) ──────────────────────
-    # El reclamo es la última línea de la columna: una sola palabra corta,
-    # sin guión de corte (soft_hyphen=False). Se emite en stdout para que
-    # el script de shell lo pase como --join-left a la columna siguiente.
-    # Se eliminan guiones finales que el HTR pueda haber transcrito (p.ej. "con-").
-    # ── Detección y eliminación del reclamo (catchword) ─────────────────────
-    # Un reclamo tipográfico es la primera palabra(s) de la columna siguiente.
-    # Solo se elimina si la penúltima línea termina con ¬ (sílaba cortada):
-    # en ese caso el reclamo es la mitad derecha de la palabra y hay que
-    # fusionarla con join_left (join_type=split).
-    # Si no hay ¬, la última línea es texto legítimo — no se elimina.
+    # ── Detección del reclamo tipográfico (catchword) ───────────────────────
+    # El reclamo aparece al final de la columna como guía tipográfica al
+    # encuadernador. Puede ser:
+    #   - una sílaba muy corta (con, rem, vnde — típicamente ≤5 chars)
+    #   - o una sílaba corta tras una línea con ¬ (reclamo en línea propia)
+    #
+    # CASO A — última línea tiene ¬:
+    #   Palabra cortada normal. No se elimina; _emit_para_block añade
+    #   <lb break="no"/> directamente al árbol TEI.
+    #
+    # CASO B — última línea sin ¬, corta, cumple al menos uno de:
+    #   (B1) ≤5 caracteres (sílaba típica de reclamo: con, rem, vnde…)
+    #   (B2) penúltima línea tiene ¬ (el reclamo completa la palabra cortada)
+    #   Se elimina y se emite en stdout como --join-left para la col. siguiente.
+    #
+    # Palabras largas sin ¬ previo (ej. «pretium») se conservan siempre.
     if args.strip_catchword and lines:
         last = lines[-1]
         last_text = last["text"].strip()
         words = last_text.split()
-        penultimate_hyphen = bool(len(lines) >= 2 and lines[-2]["soft_hyphen"])
-        looks_like_catchword = (
-            len(words) <= 2          # máximo dos palabras
-            and len(last_text) <= 20 # longitud razonable
-            and not last["soft_hyphen"]  # el reclamo no lleva ¬
-        )
-        if looks_like_catchword and penultimate_hyphen:
-            # Sílaba cortada con ¬: eliminar y pasar como join_left
+        penultimate_hyphen = len(lines) >= 2 and lines[-2]["soft_hyphen"]
+
+        if last["soft_hyphen"]:
+            pass  # CASO A: onate_tei.py lo maneja
+
+        elif (len(words) <= 2 and not last["soft_hyphen"]
+              and (len(last_text) <= 5 or penultimate_hyphen)):
+            # CASO B: reclamo tipográfico — eliminar y emitir como join_left
             lines = lines[:-1]
-            catchword = last_text.rstrip(".-").strip()
+            catchword = last_text.rstrip(".-").rstrip("-").strip()
             print(catchword)
-            print("split")
-            print(f"  Reclamo (split) detectado y eliminado: «{last_text}»",
-                  file=sys.stderr)
-        elif looks_like_catchword:
-            # Palabra completa: texto legítimo, NO eliminar
-            print(f"  «{last_text}» parece reclamo pero es palabra completa "
-                  "— se conserva.", file=sys.stderr)
+            print(f"  Reclamo detectado y eliminado: «{last_text}»", file=sys.stderr)
+
         else:
-            print(f"  --strip-catchword: última línea no parece reclamo «{last_text}», "
-                  "se conserva.", file=sys.stderr)
+            print(f"  --strip-catchword: «{last_text}» se conserva.", file=sys.stderr)
     total_abbrevs = sum(len(l["abbrevs"]) for l in lines)
     total_hyphen  = sum(1 for l in lines if l["soft_hyphen"])
     print(f"  Líneas: {len(lines)}  |  Abreviaturas: {total_abbrevs}"
