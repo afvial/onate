@@ -58,7 +58,8 @@ if [[ "$1" == "all" ]]; then
         p=$(echo "$b" | cut -d_ -f3)    # 35
         c=$(echo "$b" | cut -d_ -f4)    # der
         COLS+=("$p" "$c")
-    done < <(ls "${TRANSKRIBUS_DIR}"/pg_63_*.xml 2>/dev/null | sort)
+    done < <(ls "${TRANSKRIBUS_DIR}"/pg_63_*.xml 2>/dev/null | \
+        sort -t_ -k3,3n -k4,4r)
     [[ ${#COLS[@]} -eq 0 ]] && fail "No se encontraron PAGE XML en ${TRANSKRIBUS_DIR}"
     echo
     echo -e "${BOLD}═══════════════════════════════════════════════════${NC}"
