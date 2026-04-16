@@ -434,6 +434,36 @@
     <xsl:text> </xsl:text>
   </xsl:template>
 
+  <!-- CHOICE ANIDADO: abbr con variante gráfica (diſp. / disp. / disputatio) -->
+  <xsl:template match="tei:choice[tei:abbr/tei:choice]">
+    <xsl:variable name="inner"   select="tei:abbr/tei:choice"/>
+    <xsl:variable name="w_orig"  select="$inner/tei:orig/tei:w"/>
+    <xsl:variable name="w_reg"   select="$inner/tei:reg/tei:w"/>
+    <xsl:variable name="expan"   select="tei:expan/tei:w"/>
+
+    <span class="tei-w tei-choice-abbr"
+          data-lemma="{$w_orig/@lemma}" data-pos="{$w_orig/@pos}" data-msd="{$w_orig/@msd}">
+      <span class="tooltip">
+        <table>
+          <tr>
+            <td class="tip-key">lemma</td>
+            <td class="tip-lemma"><xsl:value-of select="$w_orig/@lemma"/></td>
+          </tr>
+          <xsl:if test="$expan != ''">
+            <tr>
+              <td class="tip-key">expan</td>
+              <td class="tip-expan"><xsl:value-of select="$expan"/></td>
+            </tr>
+          </xsl:if>
+        </table>
+      </span>
+      <xsl:apply-templates select="$w_orig/node()"/>
+    </span>
+    <xsl:if test="not(following-sibling::*[1][self::tei:pc])">
+      <xsl:text> </xsl:text>
+    </xsl:if>
+  </xsl:template>
+
   <!-- PALABRA -->
   <xsl:template match="tei:w">
     <span class="tei-w" data-lemma="{@lemma}" data-pos="{@pos}" data-msd="{@msd}">
@@ -445,8 +475,8 @@
           </tr>
           <xsl:if test="@orig">
             <tr>
-              <td class="tip-key">orig</td>
-              <td class="tip-orig"><xsl:value-of select="@orig"/></td>
+              <td class="tip-key">reg</td>
+              <td class="tip-expan"><xsl:value-of select="@orig"/></td>
             </tr>
           </xsl:if>
           <xsl:if test="@pos != ''">
@@ -622,6 +652,7 @@
        El <w> lleva lemma/pos/msd; <expan>/<reg> lleva la forma completa. -->
   <xsl:template match="tei:choice">
     <xsl:variable name="w"        select="(tei:abbr|tei:orig)/tei:w"/>
+    <xsl:variable name="reg_w"    select="(tei:expan|tei:reg)/tei:w"/>
     <xsl:variable name="expansion">
       <xsl:choose>
         <xsl:when test="tei:expan"><xsl:value-of select="tei:expan"/></xsl:when>
@@ -654,9 +685,20 @@
               <xsl:with-param name="msd" select="$w/@msd"/>
             </xsl:call-template>
           </xsl:if>
+          <xsl:if test="$reg_w/@orig">
+            <tr>
+              <td class="tip-key">reg</td>
+              <td class="tip-expan"><xsl:value-of select="$reg_w/@orig"/></td>
+            </tr>
+          </xsl:if>
           <xsl:if test="$expansion != ''">
             <tr>
-              <td class="tip-key"><xsl:value-of select="$kind"/></td>
+              <td class="tip-key">
+                <xsl:choose>
+                  <xsl:when test="$kind = 'abbr'">expan</xsl:when>
+                  <xsl:otherwise>reg</xsl:otherwise>
+                </xsl:choose>
+              </td>
               <td class="tip-expan"><xsl:value-of select="$expansion"/></td>
             </tr>
           </xsl:if>
