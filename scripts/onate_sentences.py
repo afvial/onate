@@ -36,6 +36,16 @@ import argparse
 from pathlib import Path
 from lxml import etree
 
+# Importar función de reconstrucción con s larga de onate_tokens
+try:
+    import sys, os
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "."))
+    from onate_tei import apply_long_s_to_split
+    _HAS_LONG_S = True
+except ImportError:
+    _HAS_LONG_S = False
+    def apply_long_s_to_split(left, right): return None, None
+
 # ─── Namespaces ───────────────────────────────────────────────────────────────
 
 NS     = "http://www.tei-c.org/ns/1.0"
@@ -172,8 +182,72 @@ def set_xid(elem, val):
     elem.set(xml_id_attr(), val)
 
 
+def orig_text_of_w(w_elem):
+    """
+    Devuelve el texto diplomático de un <w>, prefiriendo la lectura
+    dentro de <orig> si el padre es un <choice>.
+    Solo extrae el texto del nodo, no de hijos como <lb>.
+    """
+    parent = w_elem.getparent()
+    if parent is not None and parent.tag == T('choice'):
+        orig = parent.find(T('orig'))
+        if orig is not None:
+            orig_w = orig.find(T('w'))
+            if orig_w is not None:
+                return (orig_w.text or '').strip()
+    return (w_elem.text or '').strip()
+
+
+def add_orig_to_split_words(s_end, s_start):
+    """
+    Cuando hay palabra partida entre columnas, reconstruye la forma
+    diplomática completa y la añade como @orig en ambos <w> extremos.
+    """
+    all_w_end = list(s_end.iter(T('w')))
+    if not all_w_end:
+        return
+    w_i = all_w_end[-1]
+    has_split = any(lb.get('break') == 'no' for lb in w_i.findall(T('lb')))
+    if not has_split:
+        return
+
+    # Primer <w> de s_start que no esté dentro de <orig>
+    w_f = None
+    for w in s_start.iter(T('w')):
+        p = w.getparent()
+        in_orig = False
+        while p is not None:
+            if p.tag == T('orig'):
+                in_orig = True
+                break
+            p = p.getparent()
+        if not in_orig:
+            w_f = w
+            break
+
+    if w_f is None:
+        return
+
+    part_i = orig_text_of_w(w_i)
+    part_f = orig_text_of_w(w_f)
+
+    # Intentar reconstruir forma diplomática con s larga
+    if _HAS_LONG_S:
+        orig_left, orig_right = apply_long_s_to_split(part_i, part_f)
+        if orig_left:
+            full = orig_left + orig_right
+        else:
+            full = part_i + part_f
+    else:
+        full = part_i + part_f
+
+    w_i.set('orig', full)
+    w_f.set('orig', full)
+
+
 def apply_continues(s_end, s_start, counter):
-    """Añade @part / @next / @prev al par de <s> que abarca una columna."""
+    """Añade @part / @next / @prev al par de <s> que abarca una columna.
+    Si hay palabra partida, añade también @orig con la forma completa."""
     id_i = f"s_{counter}_I"
     id_f = f"s_{counter}_F"
 
@@ -184,6 +258,8 @@ def apply_continues(s_end, s_start, counter):
     set_xid(s_start, id_f)
     s_start.set('part', 'F')
     s_start.set('prev', f'#{id_i}')
+
+    add_orig_to_split_words(s_end, s_start)
 
     return id_i, id_f
 
