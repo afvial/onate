@@ -663,6 +663,17 @@ LONG_S = {
     "excresceret":      "excreſceret",
     "excrescat":        "excreſcat",
     "excrescent":       "excreſcent",
+
+    # Abreviaturas con s larga (forma diplomática de la abreviatura)
+    "disp.":            "diſp.",
+    "disput.":          "diſput.",
+    "sect.":            "ſect.",
+    "subsect.":         "ſubſect.",
+    "assert.":          "aſſert.",
+    "assert":           "aſſert",
+    "disp":             "diſp",
+    "disput":           "diſput",
+    "sect":             "ſect",
 }
 
 # Raíces diplomáticas: si la forma normalizada *contiene* la subcadena clave,
