@@ -729,6 +729,29 @@ def _apply_long_s_roots(text: str) -> str | None:
     return result if result != text else None
 
 
+def apply_long_s_to_split(left: str, right: str):
+    """
+    Aplica LONG_S (y como fallback LONG_S_ROOTS) a una palabra partida
+    entre dos columnas. Reconstruye la palabra completa, busca la forma
+    diplomática con ſ y distribuye las grafías entre left y right
+    según la longitud original.
+    Devuelve (orig_left, orig_right) o (None, None) si no hay cambio.
+    """
+    full = left + right
+    key  = full.lower()
+    if key in LONG_S:
+        orig_full = LONG_S[key]
+    else:
+        orig_full = _apply_long_s_roots(full)
+        if orig_full is None:
+            return None, None
+    if full and full[0].isupper():
+        orig_full = orig_full[0].upper() + orig_full[1:]
+    if orig_full == full:
+        return None, None
+    return orig_full[:len(left)], orig_full[len(left):]
+
+
 # Grafemas originales del s. XVII que se sustituyen uno a uno
 ORIG_CHARS = {
     "ſ": "s", "æ": "ae", "Æ": "Ae", "œ": "oe", "Œ": "Oe",
