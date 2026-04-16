@@ -11,7 +11,7 @@ from lxml import etree
 from onate_tokens import (
     TEI_NS, XI_NS, PC_TYPES,
     ABBREV_EXPAN, ORIG_REG, MACRON_MAP, LONG_S, ORIG_CHARS,
-    _apply_long_s_roots, apply_abbrev_tags, tokenize,
+    _apply_long_s_roots, apply_abbrev_tags, tokenize, classify_tag,
 )
 from onate_bibl import join_split_words, group_bibl_tokens, group_legal_tokens
 
@@ -56,18 +56,26 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
     reg = ORIG_REG.get(text) or ORIG_REG.get(text.replace("ſ", "s"))
 
     # s larga: lookup en LONG_S (case-insensitive, preserva mayúscula inicial)
+    # Se calcula siempre, incluso para abreviaturas, para poder generar
+    # <choice> anidado cuando hay abbr + variante gráfica.
+    # Para abreviaturas se strip el punto final antes de buscar.
     long_s_orig = None
-    if not reg and not is_abbrev:
-        key = text.lower()
+    if not reg:
+        # Strip punto final para abreviaturas (p.ej. "disput." → "disput")
+        text_base   = text.rstrip(".") if is_abbrev else text
+        suffix      = text[len(text_base):] if is_abbrev else ""
+        key = text_base.lower()
         if key in LONG_S:
-            orig_form = LONG_S[key]
+            orig_form = LONG_S[key] + suffix
             # Preservar mayúscula inicial si la tiene
             if text and text[0].isupper():
                 orig_form = orig_form[0].upper() + orig_form[1:]
             if orig_form != text:
                 long_s_orig = orig_form
         else:
-            long_s_orig = _apply_long_s_roots(text)
+            base_result = _apply_long_s_roots(text_base)
+            if base_result:
+                long_s_orig = base_result + suffix
 
     # Detección automática ae→æ (solo si no hay ya un choice)
     ae_orig = None
@@ -79,9 +87,20 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
 
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         if tag_type == "abbr":
-            inner  = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
-            w      = etree.SubElement(inner,  f"{{{TEI_NS}}}w")
-            w.text = text
+            abbr_el = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
+            if long_s_orig:
+                # <abbr><choice><orig><w>diſput.</w></orig>
+                #               <reg><w>disp.</w></reg></choice></abbr>
+                inner_choice = etree.SubElement(abbr_el, f"{{{TEI_NS}}}choice")
+                orig_el = etree.SubElement(inner_choice, f"{{{TEI_NS}}}orig")
+                w       = etree.SubElement(orig_el, f"{{{TEI_NS}}}w")
+                w.text  = long_s_orig
+                reg_el  = etree.SubElement(inner_choice, f"{{{TEI_NS}}}reg")
+                w_reg   = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
+                w_reg.text = text
+            else:
+                w      = etree.SubElement(abbr_el, f"{{{TEI_NS}}}w")
+                w.text = text
             expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
             w_exp.text = expansion
@@ -100,7 +119,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
         w_reg.text = reg
-    elif long_s_orig:
+    elif long_s_orig and not is_abbrev:
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
         w      = etree.SubElement(orig,   f"{{{TEI_NS}}}w")
@@ -289,13 +308,10 @@ def emit_token(parent, tok: dict):
         add_w(parent, tok["text"], expansion=tok["expansion"],
               is_abbrev=(tok["expansion"] is not None))
     elif kind == "abbrev_dot":
-        choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
-        abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
-        w      = etree.SubElement(abbr,   f"{{{TEI_NS}}}w")
-        w.text = tok["text"]
-        expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
-        w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
-        w_exp.text = ABBREV_EXPAN.get(tok["text"], ABBREV_EXPAN.get(tok["text"].lower(), ""))
+        _abbr_text = tok["text"]
+        _expan_text = ABBREV_EXPAN.get(_abbr_text, ABBREV_EXPAN.get(_abbr_text.lower(), ""))
+        # Reutilizar add_w para generar <choice> anidado si hay long_s
+        add_w(parent, _abbr_text, expansion=_expan_text, is_abbrev=True)
     elif kind == "amp":
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
