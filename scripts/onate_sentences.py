@@ -36,11 +36,11 @@ import argparse
 from pathlib import Path
 from lxml import etree
 
-# Importar función de reconstrucción con s larga de onate_tokens
+# Importar función de reconstrucción con s larga
 try:
     import sys, os
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), "."))
-    from onate_tei import apply_long_s_to_split
+    from onate_tokens import apply_long_s_to_split
     _HAS_LONG_S = True
 except ImportError:
     _HAS_LONG_S = False
@@ -186,22 +186,74 @@ def orig_text_of_w(w_elem):
     """
     Devuelve el texto diplomático de un <w>, prefiriendo la lectura
     dentro de <orig> si el padre es un <choice>.
+    Maneja también el caso en que <w> está dentro de <reg>/<choice>.
     Solo extrae el texto del nodo, no de hijos como <lb>.
     """
     parent = w_elem.getparent()
+    # Caso directo: <choice>/<orig>/<w>  — padre es <choice>
     if parent is not None and parent.tag == T('choice'):
         orig = parent.find(T('orig'))
         if orig is not None:
             orig_w = orig.find(T('w'))
             if orig_w is not None:
                 return (orig_w.text or '').strip()
+    # Caso inverso: <w> está en <reg>; abuelo puede ser <choice>
+    if parent is not None and parent.tag == T('reg'):
+        grandparent = parent.getparent()
+        if grandparent is not None and grandparent.tag == T('choice'):
+            orig = grandparent.find(T('orig'))
+            if orig is not None:
+                orig_w = orig.find(T('w'))
+                if orig_w is not None:
+                    return (orig_w.text or '').strip()
     return (w_elem.text or '').strip()
+
+
+def _w_f_in_choice(w_f):
+    """True si w_f está dentro de <reg>/<choice> — el <choice> ya
+    muestra la forma orig visualmente; no hay que añadir @orig."""
+    parent = w_f.getparent()
+    if parent is not None and parent.tag == T('reg'):
+        gp = parent.getparent()
+        if gp is not None and gp.tag == T('choice'):
+            return True
+    return False
+
+
+def _make_choice(parent_elem, w_elem, orig_text, reg_text, keep_lb=False):
+    """
+    Reemplaza w_elem en su padre por un <choice>:
+      <choice>
+        <orig><w>orig_text[<lb break="no"/>]</w></orig>
+        <reg><w>reg_text</w></reg>
+      </choice>
+    Si keep_lb=True conserva el <lb break="no"/> dentro del <orig>/<w>.
+    """
+    idx = list(parent_elem).index(w_elem)
+    parent_elem.remove(w_elem)
+
+    choice = etree.Element(T('choice'))
+    orig_el = etree.SubElement(choice, T('orig'))
+    w_orig  = etree.SubElement(orig_el, T('w'))
+    w_orig.text = orig_text
+    if keep_lb:
+        lb = etree.SubElement(w_orig, T('lb'))
+        lb.set('break', 'no')
+
+    reg_el = etree.SubElement(choice, T('reg'))
+    w_reg  = etree.SubElement(reg_el, T('w'))
+    w_reg.text = reg_text
+
+    parent_elem.insert(idx, choice)
+    return choice
 
 
 def add_orig_to_split_words(s_end, s_start):
     """
     Cuando hay palabra partida entre columnas, reconstruye la forma
-    diplomática completa y la añade como @orig en ambos <w> extremos.
+    completa (reg) y la forma diplomática con ſ (orig), y genera
+    <choice><orig>/<reg></choice> en ambos extremos — análogo al
+    tratamiento de palabras partidas por cambio de línea.
     """
     all_w_end = list(s_end.iter(T('w')))
     if not all_w_end:
@@ -228,21 +280,36 @@ def add_orig_to_split_words(s_end, s_start):
     if w_f is None:
         return
 
-    part_i = orig_text_of_w(w_i)
-    part_f = orig_text_of_w(w_f)
+    part_i = orig_text_of_w(w_i)   # "con"
+    part_f = orig_text_of_w(w_f)   # "suetudine" / "sistit"
+    reg    = part_i + part_f        # "consuetudine" / "consistit"
 
-    # Intentar reconstruir forma diplomática con s larga
+    # Forma diplomática con ſ
     if _HAS_LONG_S:
         orig_left, orig_right = apply_long_s_to_split(part_i, part_f)
-        if orig_left:
-            full = orig_left + orig_right
-        else:
-            full = part_i + part_f
     else:
-        full = part_i + part_f
+        orig_left, orig_right = None, None
 
-    w_i.set('orig', full)
-    w_f.set('orig', full)
+    diplo_i = orig_left  if orig_left  else part_i   # "con"  / "conſ"
+    diplo_f = orig_right if orig_right else part_f   # "ſuetudine" / "ſiſtit"
+
+    # Padre directo de w_i (puede ser <s> u otro elemento)
+    parent_i = w_i.getparent()
+    if parent_i is not None:
+        _make_choice(parent_i, w_i, diplo_i, reg, keep_lb=True)
+
+    # Padre directo de w_f (puede ser <s>, <reg>, etc.)
+    # Si ya está en <choice>/<reg>, reemplazar ese <choice> entero
+    parent_f = w_f.getparent()
+    if parent_f is not None and parent_f.tag == T('reg'):
+        gp = parent_f.getparent()
+        if gp is not None and gp.tag == T('choice'):
+            ggp = gp.getparent()
+            if ggp is not None:
+                _make_choice(ggp, gp, diplo_f, reg, keep_lb=False)
+            return
+    if parent_f is not None:
+        _make_choice(parent_f, w_f, diplo_f, reg, keep_lb=False)
 
 
 def apply_continues(s_end, s_start, counter):
