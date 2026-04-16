@@ -142,6 +142,7 @@
           .tooltip td { padding: 0 0.4em 0 0; vertical-align: top; }
           .tooltip .tip-key   { color: #888; }
           .tooltip .tip-lemma { color: #7ec8e3; font-weight: bold; }
+          .tooltip .tip-orig  { color: #c8a87e; font-style: italic; }
           .tooltip .tip-pos   { color: #f0c060; }
           .tooltip .tip-val   { color: #aaddaa; }
           span.tei-w:hover .tooltip { display: block; }
@@ -442,6 +443,12 @@
             <td class="tip-key">lemma</td>
             <td class="tip-lemma"><xsl:value-of select="@lemma"/></td>
           </tr>
+          <xsl:if test="@orig">
+            <tr>
+              <td class="tip-key">orig</td>
+              <td class="tip-orig"><xsl:value-of select="@orig"/></td>
+            </tr>
+          </xsl:if>
           <xsl:if test="@pos != ''">
             <tr>
               <td class="tip-key">POS</td>
