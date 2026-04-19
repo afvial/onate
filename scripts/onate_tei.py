@@ -11,7 +11,7 @@ from lxml import etree
 from onate_tokens import (
     TEI_NS, XI_NS, PC_TYPES,
     ABBREV_EXPAN, ORIG_REG, MACRON_MAP, LONG_S, ORIG_CHARS,
-    _apply_long_s_roots, apply_abbrev_tags, tokenize, classify_tag,
+    _apply_long_s_roots, apply_abbrev_tags, tokenize,
 )
 from onate_bibl import join_split_words, group_bibl_tokens, group_legal_tokens
 
@@ -56,26 +56,18 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
     reg = ORIG_REG.get(text) or ORIG_REG.get(text.replace("ſ", "s"))
 
     # s larga: lookup en LONG_S (case-insensitive, preserva mayúscula inicial)
-    # Se calcula siempre, incluso para abreviaturas, para poder generar
-    # <choice> anidado cuando hay abbr + variante gráfica.
-    # Para abreviaturas se strip el punto final antes de buscar.
     long_s_orig = None
-    if not reg:
-        # Strip punto final para abreviaturas (p.ej. "disput." → "disput")
-        text_base   = text.rstrip(".") if is_abbrev else text
-        suffix      = text[len(text_base):] if is_abbrev else ""
-        key = text_base.lower()
+    if not reg and not is_abbrev:
+        key = text.lower()
         if key in LONG_S:
-            orig_form = LONG_S[key] + suffix
+            orig_form = LONG_S[key]
             # Preservar mayúscula inicial si la tiene
             if text and text[0].isupper():
                 orig_form = orig_form[0].upper() + orig_form[1:]
             if orig_form != text:
                 long_s_orig = orig_form
         else:
-            base_result = _apply_long_s_roots(text_base)
-            if base_result:
-                long_s_orig = base_result + suffix
+            long_s_orig = _apply_long_s_roots(text)
 
     # Detección automática ae→æ (solo si no hay ya un choice)
     ae_orig = None
@@ -87,20 +79,9 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
 
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         if tag_type == "abbr":
-            abbr_el = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
-            if long_s_orig:
-                # <abbr><choice><orig><w>diſput.</w></orig>
-                #               <reg><w>disp.</w></reg></choice></abbr>
-                inner_choice = etree.SubElement(abbr_el, f"{{{TEI_NS}}}choice")
-                orig_el = etree.SubElement(inner_choice, f"{{{TEI_NS}}}orig")
-                w       = etree.SubElement(orig_el, f"{{{TEI_NS}}}w")
-                w.text  = long_s_orig
-                reg_el  = etree.SubElement(inner_choice, f"{{{TEI_NS}}}reg")
-                w_reg   = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-                w_reg.text = text
-            else:
-                w      = etree.SubElement(abbr_el, f"{{{TEI_NS}}}w")
-                w.text = text
+            inner  = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
+            w      = etree.SubElement(inner,  f"{{{TEI_NS}}}w")
+            w.text = text
             expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
             w_exp.text = expansion
@@ -119,7 +100,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
         w_reg.text = reg
-    elif long_s_orig and not is_abbrev:
+    elif long_s_orig:
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
         w      = etree.SubElement(orig,   f"{{{TEI_NS}}}w")
@@ -308,10 +289,13 @@ def emit_token(parent, tok: dict):
         add_w(parent, tok["text"], expansion=tok["expansion"],
               is_abbrev=(tok["expansion"] is not None))
     elif kind == "abbrev_dot":
-        _abbr_text = tok["text"]
-        _expan_text = ABBREV_EXPAN.get(_abbr_text, ABBREV_EXPAN.get(_abbr_text.lower(), ""))
-        # Reutilizar add_w para generar <choice> anidado si hay long_s
-        add_w(parent, _abbr_text, expansion=_expan_text, is_abbrev=True)
+        choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+        abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
+        w      = etree.SubElement(abbr,   f"{{{TEI_NS}}}w")
+        w.text = tok["text"]
+        expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
+        w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
+        w_exp.text = ABBREV_EXPAN.get(tok["text"], ABBREV_EXPAN.get(tok["text"].lower(), ""))
     elif kind == "amp":
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
@@ -729,29 +713,61 @@ def _trim_line_by_offset(line: dict, start_offset: int) -> dict:
 
 def _wrap_italic_spans(parent, lines: list, emit_fn):
     """
-    Emite tokens agrupando los que caen dentro de italic_spans de cada línea
-    en <hi rend="italic">. Llama a emit_fn(container, tok) para cada token.
-
-    Estrategia simplificada: si TODAS las líneas del bloque tienen italic_spans
-    que cubren el texto completo, envuelve todo en un único <hi rend="italic">.
-    En caso contrario emite sin envolver (el italic vendrá del TEI de origen).
+    Emite tokens asignando italic por posición exacta en cada línea
+    usando italic_spans del PAGE XML. Agrupa tokens consecutivos con
+    el mismo valor de italic en <hi rend="italic"> o texto plano.
     """
-    all_full_italic = all(
-        any(s["offset"] == 0 and s["length"] >= len(l["text"].rstrip()) * 0.8
-            for s in l.get("italic_spans", []))
-        for l in lines if l["text"].strip()
-    )
-    if all_full_italic:
-        hi = etree.SubElement(parent, f"{{{TEI_NS}}}hi")
-        hi.set("rend", "italic")
-        container = hi
-    else:
-        container = parent
+    from itertools import groupby
+    # Construir 6-tuplas con italic por posición
+    all_toks = []
+    first_lb_ref = [False]
+    for line in lines:
+        italic_spans = line.get("italic_spans", [])
+        segs = apply_abbrev_tags(line["text"], line.get("abbrevs", []))
+        line_toks = []
+        if not first_lb_ref[0]:
+            line_toks.append(("sol", str(line["line_n"]), None, False, False, False))
+            first_lb_ref[0] = True
+        search_from = 0
+        for seg in segs:
+            exp = seg["expansion"] if seg["is_abbrev"] else None
+            for ttype, ttext in tokenize(seg["text"]):
+                tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
+                idx = line["text"].find(ttext, search_from)
+                if idx == -1:
+                    idx = search_from
+                italic = _offset_is_italic(idx, italic_spans)
+                line_toks.append((ttype, ttext, tok_exp, False, False, italic))
+                search_from = idx + len(ttext)
+        # Marcar eol en el último token no-sol si hay soft_hyphen
+        if line.get("soft_hyphen") and line_toks:
+            last = line_toks[-1]
+            line_toks[-1] = (last[0], last[1], last[2], False, True, last[5])
+        all_toks.extend(line_toks)
 
-    raw = _flatten_lines_to_raw_tokens(lines, [False])
-    tokens = join_split_words(raw)
-    for tok in tokens:
-        emit_fn(container, tok)
+    # _join_split_words_6 opera sobre 6-tuplas raw
+    # all_toks ya son 6-tuplas, el resultado es lista de dicts
+    tokens_raw = [t if isinstance(t, tuple) else 
+                  (t.get("kind","word"), t.get("text",""), t.get("expansion"),
+                   t.get("eol",False), t.get("split",False), t.get("italic",False))
+                  for t in all_toks]
+    tokens = _join_split_words_6(tokens_raw)
+
+    for is_italic, grp in groupby(tokens, key=lambda t: t.get("italic", False)):
+        grp = list(grp)
+        if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
+                   for t in grp):
+            for tok in grp:
+                emit_fn(parent, tok)
+            continue
+        if is_italic:
+            hi = etree.SubElement(parent, f"{{{TEI_NS}}}hi")
+            hi.set("rend", "italic")
+            container = hi
+        else:
+            container = parent
+        for tok in grp:
+            emit_fn(container, tok)
 
 
 def _emit_summarium(parent, lines: list):
