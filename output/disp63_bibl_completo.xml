@@ -985,20 +985,34 @@
             <pc type="other">.</pc>
           </bibl>
         </cit>
-        <cit xml:id="cit_p35_izq_noref_2">
-          <bibl>
-            <w>D.</w>
+        <cit xml:id="cit_p35_izq_Aquinas_ST_2">
+          <bibl corresp="#bib_Aquinas_ST" cert="high">
             <choice>
               <abbr>
-                <w>Th.</w>
+                <w>D.</w>
               </abbr>
               <expan>
-                <w>Thomas</w>
+                <w/>
+                <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
               </expan>
             </choice>
-            <w>2</w>
+            <author ref="#pers_ThomasAquinas">
+              <choice>
+                <abbr>
+                  <w>Th.</w>
+                </abbr>
+                <expan>
+                  <w>Thomas</w>
+                </expan>
+              </choice>
+            </author>
+            <biblScope unit="?">
+              <w>2</w>
+            </biblScope>
             <pc type="other">.</pc>
-            <w>2</w>
+            <biblScope unit="?">
+              <w>2</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1008,7 +1022,9 @@
                 <w>quaestio</w>
               </expan>
             </choice>
-            <w>77</w>
+            <biblScope unit="quaestio">
+              <w>77</w>
+            </biblScope>
             <pc type="other">.</pc>
             <lb n="24"/>
             <choice>
@@ -1019,10 +1035,14 @@
                 <w>articulo</w>
               </expan>
             </choice>
-            <w>1</w>
+            <biblScope unit="articulus">
+              <w>1</w>
+            </biblScope>
             <pc type="other">.</pc>
             <w>ad</w>
-            <w>1</w>
+            <biblScope unit="ad">
+              <w>1</w>
+            </biblScope>
             <pc type="other">.</pc>
           </bibl>
         </cit>
@@ -1102,14 +1122,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſput.</w>
-                  </orig>
-                  <reg>
-                    <w>disput.</w>
-                  </reg>
-                </choice>
+                <w>disput.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -1443,14 +1456,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -1956,7 +1962,14 @@
         <lb n="39"/>
         <cit xml:id="cit_p35_izq_noref_22">
           <bibl>
-            <w>S.</w>
+            <choice>
+              <abbr>
+                <w>S.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
           </bibl>
         </cit>
         <cit xml:id="cit_p35_izq_Faustus_Empt_23">
@@ -2450,7 +2463,15 @@
       <hi rend="italic">
         <cit xml:id="cit_p35_der_Aug_CivDei_1">
           <bibl corresp="#bib_Aug_CivDei" cert="high">
-            <w>D.</w>
+            <choice>
+              <abbr>
+                <w>D.</w>
+              </abbr>
+              <expan>
+                <w/>
+                <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
+              </expan>
+            </choice>
             <author ref="#pers_Augustinus">
               <choice>
                 <abbr>
@@ -2871,14 +2892,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -3126,14 +3140,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -3184,7 +3191,14 @@
         </cit>
         <cit xml:id="cit_p35_der_noref_8">
           <bibl>
-            <w>S.</w>
+            <choice>
+              <abbr>
+                <w>S.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
           </bibl>
         </cit>
         <cit xml:id="cit_p35_der_Faustus_Empt_9">
@@ -3199,14 +3213,7 @@
             </choice>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -4699,7 +4706,14 @@
                 <w>lex</w>
               </expan>
             </choice>
-            <w>§.</w>
+            <choice>
+              <abbr>
+                <w>§.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
             <w>Marcellus</w>
           </bibl>
         </cit>
@@ -4751,7 +4765,14 @@
         </cit>
         <cit xml:id="cit_p36_izq_noref_6">
           <bibl>
-            <w>S.</w>
+            <choice>
+              <abbr>
+                <w>S.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
             <choice>
               <abbr>
                 <w>fin.</w>
@@ -4790,7 +4811,14 @@
         </cit>
         <cit xml:id="cit_p36_izq_noref_7">
           <bibl>
-            <w>D.</w>
+            <choice>
+              <abbr>
+                <w>D.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
             <w>Tho</w>
             <pc type="other">.</pc>
             <w>2</w>
@@ -4889,14 +4917,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -5103,8 +5124,16 @@
         </cit>
         <cit xml:id="cit_p36_izq_Faustus_Empt_15">
           <bibl corresp="#bib_Faustus_Empt" cert="low">
-            <w>S.</w>
             <author ref="#pers_Faustus_inc">
+              <choice>
+                <abbr>
+                  <w>S.</w>
+                </abbr>
+                <expan>
+                  <w/>
+                  <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
+                </expan>
+              </choice>
               <choice>
                 <abbr>
                   <w>Faust.</w>
@@ -5116,14 +5145,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -6015,14 +6037,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -6222,9 +6237,19 @@
     </s>
     <s>
       <hi rend="italic">
-        <cit xml:id="cit_p36_der_noref_6">
-          <bibl>
-            <w>S.</w>
+        <cit xml:id="cit_p36_der_Faustus_Empt_6">
+          <bibl corresp="#bib_Faustus_Empt" cert="low">
+            <author ref="#pers_Faustus_inc">
+              <choice>
+                <abbr>
+                  <w>S.</w>
+                </abbr>
+                <expan>
+                  <w/>
+                  <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
+                </expan>
+              </choice>
+            </author>
             <w>Faustinus</w>
             <w>de</w>
           </bibl>
@@ -7277,20 +7302,34 @@
     <s>
       <w>Ita</w>
       <hi rend="italic">
-        <cit xml:id="cit_p37_izq_noref_1">
-          <bibl>
-            <w>D.</w>
+        <cit xml:id="cit_p37_izq_Aquinas_ST_1">
+          <bibl corresp="#bib_Aquinas_ST" cert="high">
             <choice>
               <abbr>
-                <w>Th.</w>
+                <w>D.</w>
               </abbr>
               <expan>
-                <w>Thomas</w>
+                <w/>
+                <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
               </expan>
             </choice>
-            <w>2</w>
+            <author ref="#pers_ThomasAquinas">
+              <choice>
+                <abbr>
+                  <w>Th.</w>
+                </abbr>
+                <expan>
+                  <w>Thomas</w>
+                </expan>
+              </choice>
+            </author>
+            <biblScope unit="?">
+              <w>2</w>
+            </biblScope>
             <pc type="other">.</pc>
-            <w>2</w>
+            <biblScope unit="?">
+              <w>2</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -7301,7 +7340,9 @@
               </expan>
             </choice>
             <lb n="8"/>
-            <w>27</w>
+            <biblScope unit="quaestio">
+              <w>27</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -7311,7 +7352,9 @@
                 <w>articulo</w>
               </expan>
             </choice>
-            <w>1</w>
+            <biblScope unit="articulus">
+              <w>1</w>
+            </biblScope>
             <pc type="other">.</pc>
           </bibl>
         </cit>
@@ -7410,14 +7453,7 @@
             <pc type="other">.</pc>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>ſect.</w>
-                  </orig>
-                  <reg>
-                    <w>sect.</w>
-                  </reg>
-                </choice>
+                <w>sect.</w>
               </abbr>
               <expan>
                 <w>sectio</w>
@@ -7873,7 +7909,14 @@
             </choice>
             <w>etiam</w>
             <pc type="other">.</pc>
-            <w>§.</w>
+            <choice>
+              <abbr>
+                <w>§.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
             <lb n="37"/>
             <w>licet</w>
             <choice>
@@ -7992,7 +8035,14 @@
             </choice>
             <w>1</w>
             <pc type="other">.</pc>
-            <w>§.</w>
+            <choice>
+              <abbr>
+                <w>§.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
             <choice>
               <orig>
                 <w>ſi</w>
@@ -8604,14 +8654,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -8645,8 +8688,16 @@
               <w>2</w>
             </biblScope>
             <pc type="other">.</pc>
-            <w>§.</w>
-            <biblScope unit="punct">
+            <choice>
+              <abbr>
+                <w>§.</w>
+              </abbr>
+              <expan>
+                <w/>
+                <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
+              </expan>
+            </choice>
+            <biblScope unit="?">
               <w>3</w>
             </biblScope>
             <pc type="other">.</pc>
@@ -9326,14 +9377,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -9580,14 +9624,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -9639,14 +9676,7 @@
         <pc type="other">.</pc>
         <choice>
           <abbr>
-            <choice>
-              <orig>
-                <w>diſput.</w>
-              </orig>
-              <reg>
-                <w>disput.</w>
-              </reg>
-            </choice>
+            <w>disput.</w>
           </abbr>
           <expan>
             <w>disputatio</w>
@@ -9995,8 +10025,8 @@
       <item n="21">
         <label>21</label>
         <s>
+          <lb n="45"/>
           <hi rend="italic">
-            <lb n="45"/>
             <w>Vendentes</w>
             <w>non</w>
             <choice>
@@ -10009,7 +10039,6 @@
             </choice>
             <w>ad</w>
             <w>libitum</w>
-            <lb n="46"/>
             <w>pretium</w>
             <w>rerum</w>
             <w>venalum</w>
@@ -10020,8 +10049,8 @@
       </item>
       <item>
         <s>
+          <lb n="47"/>
           <hi rend="italic">
-            <lb n="47"/>
             <w>Tria</w>
             <w>dubia</w>
             <w>tractanda</w>
@@ -10032,8 +10061,8 @@
       <item n="22">
         <label>22</label>
         <s>
+          <lb n="48"/>
           <hi rend="italic">
-            <lb n="48"/>
             <choice>
               <orig>
                 <w>Iuſtum</w>
@@ -10045,7 +10074,6 @@
             <w>pretium</w>
             <w>rerum</w>
             <w>vendibilium</w>
-            <lb n="49"/>
             <w>ex</w>
             <w>quamplurimis</w>
             <choice>
@@ -10056,7 +10084,6 @@
                 <w>circumstantijs</w>
               </reg>
             </choice>
-            <lb n="50"/>
             <choice>
               <orig>
                 <w>eſt</w>
@@ -10080,14 +10107,13 @@
       <item n="23">
         <label>23</label>
         <s>
+          <lb n="51"/>
           <hi rend="italic">
-            <lb n="51"/>
             <w>Quidam</w>
             <w>affirmant</w>
             <w>pretium</w>
             <w>rerum</w>
             <w>in</w>
-            <lb n="52"/>
             <choice>
               <orig>
                 <w>ſe</w>
@@ -10118,7 +10144,6 @@
             </choice>
             <w>coram</w>
             <w>Deo</w>
-            <lb n="53"/>
             <choice>
               <orig>
                 <w>ſemper</w>
@@ -10143,8 +10168,8 @@
       <item n="24">
         <label>24</label>
         <s xml:id="s_5_I" part="I" next="#s_5_F">
+          <lb n="54"/>
           <hi rend="italic">
-            <lb n="54"/>
             <w>Et</w>
             <w>ex</w>
             <choice>
@@ -10158,7 +10183,6 @@
             <w>ignorantia</w>
             <w>nostra</w>
             <w>habere</w>
-            <lb n="55"/>
             <w>latitudinem</w>
             <w>etiam</w>
             <w>pretium</w>
@@ -10174,8 +10198,8 @@
     <list>
       <item>
         <s xml:id="s_5_F" part="F" prev="#s_5_I">
+          <lb n="1"/>
           <hi rend="italic">
-            <lb n="1"/>
             <w>gare</w>
             <w>non</w>
             <w>veram</w>
@@ -10198,19 +10222,20 @@
         <s>
           <lb n="2"/>
           <w>Tribus</w>
-          <w>argumentis</w>
-          <w>probatur</w>
-          <choice>
-            <orig>
-              <w>hæc</w>
-            </orig>
-            <reg>
-              <w>haec</w>
-            </reg>
-          </choice>
-          <lb n="3"/>
-          <w>opinio</w>
-          <pc type="other">.</pc>
+          <hi rend="italic">
+            <w>argumentis</w>
+            <w>probatur</w>
+            <choice>
+              <orig>
+                <w>hæc</w>
+              </orig>
+              <reg>
+                <w>haec</w>
+              </reg>
+            </choice>
+            <w>opinio</w>
+            <pc type="other">.</pc>
+          </hi>
         </s>
       </item>
       <item n="26">
@@ -10218,52 +10243,52 @@
         <s>
           <lb n="4"/>
           <w>Secunda</w>
-          <w>opinio</w>
-          <w>communior</w>
-          <pc type="comma">,</pc>
-          <choice>
-            <abbr>
-              <w>&amp;</w>
-            </abbr>
-            <expan>
-              <w>et</w>
-            </expan>
-          </choice>
-          <w>cer<lb break="no" n="5"/>ta</w>
-          <w>pretia</w>
-          <w>rerum</w>
-          <w>habere</w>
-          <w>ex</w>
-          <w>ſe</w>
-          <pc type="comma">,</pc>
-          <choice>
-            <abbr>
-              <w>&amp;</w>
-            </abbr>
-            <expan>
-              <w>et</w>
-            </expan>
-          </choice>
-          <lb n="6"/>
-          <w>coram</w>
-          <w>Deo</w>
-          <w>latitudinem</w>
-          <pc type="comma">,</pc>
-          <w>vulgare</w>
-          <lb n="7"/>
-          <w>ſcilicet</w>
-          <pc type="comma">,</pc>
-          <choice>
-            <abbr>
-              <w>&amp;</w>
-            </abbr>
-            <expan>
-              <w>et</w>
-            </expan>
-          </choice>
-          <w>conuentionale</w>
-          <w>pre<lb break="no" n="8"/>tium</w>
-          <pc type="other">.</pc>
+          <hi rend="italic">
+            <w>opinio</w>
+            <w>communior</w>
+            <pc type="comma">,</pc>
+            <choice>
+              <abbr>
+                <w>&amp;</w>
+              </abbr>
+              <expan>
+                <w>et</w>
+              </expan>
+            </choice>
+            <w>cer<lb break="no" n="True"/>ta</w>
+            <w>pretia</w>
+            <w>rerum</w>
+            <w>habere</w>
+            <w>ex</w>
+            <w>ſe</w>
+            <pc type="comma">,</pc>
+            <choice>
+              <abbr>
+                <w>&amp;</w>
+              </abbr>
+              <expan>
+                <w>et</w>
+              </expan>
+            </choice>
+            <w>coram</w>
+            <w>Deo</w>
+            <w>latitudinem</w>
+            <pc type="comma">,</pc>
+            <w>vulgare</w>
+            <w>ſcilicet</w>
+            <pc type="comma">,</pc>
+            <choice>
+              <abbr>
+                <w>&amp;</w>
+              </abbr>
+              <expan>
+                <w>et</w>
+              </expan>
+            </choice>
+            <w>conuentionale</w>
+            <w>pre<lb break="no" n="True"/>tium</w>
+            <pc type="other">.</pc>
+          </hi>
         </s>
       </item>
       <item n="27">
@@ -10271,10 +10296,12 @@
         <s>
           <lb n="9"/>
           <w>Probatur</w>
-          <w>tribus</w>
-          <w>argumentis</w>
-          <w>efficaci<lb break="no" n="10"/>ter</w>
-          <pc type="other">.</pc>
+          <hi rend="italic">
+            <w>tribus</w>
+            <w>argumentis</w>
+            <w>efficaci<lb break="no" n="True"/>ter</w>
+            <pc type="other">.</pc>
+          </hi>
         </s>
       </item>
       <item n="28">
@@ -10282,76 +10309,73 @@
         <s>
           <lb n="11"/>
           <w>Probatur</w>
-          <w>ratione</w>
-          <w>à</w>
-          <w>priori</w>
-          <pc type="comma">,</pc>
-          <w>quia</w>
-          <w>pre<lb break="no" n="12"/>tium</w>
-          <w>ſumit</w>
-          <w>ſuum</w>
-          <w>ordinem</w>
-          <w>eſ<lb break="no" n="13"/>ſentialem</w>
-          <w>non</w>
-          <w>à</w>
-          <w>ſcientia</w>
-          <w>Dei</w>
-          <pc type="comma">,</pc>
-          <choice>
-            <orig>
-              <w>ſed</w>
-            </orig>
-            <reg>
-              <w>sed</w>
-            </reg>
-          </choice>
-          <lb n="14"/>
-          <w>ab</w>
-          <w>opinione</w>
-          <w>hominum</w>
-          <pc type="comma">,</pc>
-          <choice>
-            <abbr>
-              <w>&amp;</w>
-            </abbr>
-            <expan>
-              <w>et</w>
-            </expan>
-          </choice>
-          <w>ipſius</w>
-          <lb n="15"/>
-          <w>vulgi</w>
-          <pc type="other">.</pc>
-          <lb n="16"/>
-          <w>Nec</w>
-          <w>refert</w>
-          <w>vera</w>
-          <w>ne</w>
-          <choice>
-            <orig>
-              <w>ſit</w>
-            </orig>
-            <reg>
-              <w>sit</w>
-            </reg>
-          </choice>
-          <w>opinio</w>
-          <w>vulgi</w>
-          <pc type="comma">,</pc>
-          <lb n="17"/>
-          <w>aut</w>
-          <w>falsa</w>
-          <pc type="comma">,</pc>
-          <w>nam</w>
-          <w>qualiscumq</w>
-          <pc type="semicolon">;</pc>
-          <w>ſit</w>
-          <pc type="comma">,</pc>
-          <lb n="18"/>
-          <w>verum</w>
-          <w>facit</w>
-          <w>pretium</w>
-          <pc type="other">.</pc>
+          <hi rend="italic">
+            <w>ratione</w>
+            <w>à</w>
+            <w>priori</w>
+            <pc type="comma">,</pc>
+            <w>quia</w>
+            <w>pre<lb break="no" n="True"/>tium</w>
+            <w>ſumit</w>
+            <w>ſuum</w>
+            <w>ordinem</w>
+            <w>eſ<lb break="no" n="True"/>ſentialem</w>
+            <w>non</w>
+            <w>à</w>
+            <w>ſcientia</w>
+            <w>Dei</w>
+            <pc type="comma">,</pc>
+            <choice>
+              <orig>
+                <w>ſed</w>
+              </orig>
+              <reg>
+                <w>sed</w>
+              </reg>
+            </choice>
+            <w>ab</w>
+            <w>opinione</w>
+            <w>hominum</w>
+            <pc type="comma">,</pc>
+            <choice>
+              <abbr>
+                <w>&amp;</w>
+              </abbr>
+              <expan>
+                <w>et</w>
+              </expan>
+            </choice>
+            <w>ipſius</w>
+            <w>vulgi</w>
+            <pc type="other">.</pc>
+            <w>Nec</w>
+            <w>refert</w>
+            <w>vera</w>
+            <w>ne</w>
+            <choice>
+              <orig>
+                <w>ſit</w>
+              </orig>
+              <reg>
+                <w>sit</w>
+              </reg>
+            </choice>
+            <w>opinio</w>
+            <w>vulgi</w>
+            <pc type="comma">,</pc>
+            <w>aut</w>
+            <w>falsa</w>
+            <pc type="comma">,</pc>
+            <w>nam</w>
+            <w>qualiscumq</w>
+            <pc type="semicolon">;</pc>
+            <w>ſit</w>
+            <pc type="comma">,</pc>
+            <w>verum</w>
+            <w>facit</w>
+            <w>pretium</w>
+            <pc type="other">.</pc>
+          </hi>
         </s>
       </item>
       <item n="29">
@@ -10359,75 +10383,76 @@
         <s>
           <lb n="19"/>
           <w>Tribus</w>
-          <w>exemplis</w>
-          <choice>
-            <orig>
-              <w>hæc</w>
-            </orig>
-            <reg>
-              <w>haec</w>
-            </reg>
-          </choice>
-          <w>veritas</w>
-          <w>illuſtra<lb break="no" n="20"/>tur</w>
-          <pc type="comma">,</pc>
-          <w>ſcilicet</w>
-          <pc type="comma">,</pc>
-          <choice>
-            <orig>
-              <w>præſcriptionis</w>
-            </orig>
-            <reg>
-              <w>praeſcriptionis</w>
-            </reg>
-          </choice>
-          <pc type="comma">,</pc>
-          <choice>
-            <abbr>
-              <w>&amp;</w>
-            </abbr>
-            <expan>
-              <w>et</w>
-            </expan>
-          </choice>
-          <lb n="21"/>
-          <w>vſucapionis</w>
-          <pc type="comma">,</pc>
-          <choice>
-            <abbr>
-              <w>&amp;</w>
-            </abbr>
-            <expan>
-              <w>et</w>
-            </expan>
-          </choice>
-          <w>iudicis</w>
-          <w>iudican<lb break="no" n="22"/>tis</w>
-          <choice>
-            <orig>
-              <w>ſecundum</w>
-            </orig>
-            <reg>
-              <w>secundum</w>
-            </reg>
-          </choice>
-          <w>allegata</w>
-          <pc type="comma">,</pc>
-          <choice>
-            <abbr>
-              <w>&amp;</w>
-            </abbr>
-            <expan>
-              <w>et</w>
-            </expan>
-          </choice>
-          <w>operan<lb break="no" n="23"/>tis</w>
-          <w>vere</w>
-          <w>bene</w>
-          <w>ex</w>
-          <w>ignorantia</w>
-          <w>in<lb break="no" n="24"/>uincibili</w>
-          <pc type="other">.</pc>
+          <hi rend="italic">
+            <w>exemplis</w>
+            <choice>
+              <orig>
+                <w>hæc</w>
+              </orig>
+              <reg>
+                <w>haec</w>
+              </reg>
+            </choice>
+            <w>veritas</w>
+            <w>illuſtra<lb break="no" n="True"/>tur</w>
+            <pc type="comma">,</pc>
+            <w>ſcilicet</w>
+            <pc type="comma">,</pc>
+            <choice>
+              <orig>
+                <w>præſcriptionis</w>
+              </orig>
+              <reg>
+                <w>praeſcriptionis</w>
+              </reg>
+            </choice>
+            <pc type="comma">,</pc>
+            <choice>
+              <abbr>
+                <w>&amp;</w>
+              </abbr>
+              <expan>
+                <w>et</w>
+              </expan>
+            </choice>
+            <w>vſucapionis</w>
+            <pc type="comma">,</pc>
+            <choice>
+              <abbr>
+                <w>&amp;</w>
+              </abbr>
+              <expan>
+                <w>et</w>
+              </expan>
+            </choice>
+            <w>iudicis</w>
+            <w>iudican<lb break="no" n="True"/>tis</w>
+            <choice>
+              <orig>
+                <w>ſecundum</w>
+              </orig>
+              <reg>
+                <w>secundum</w>
+              </reg>
+            </choice>
+            <w>allegata</w>
+            <pc type="comma">,</pc>
+            <choice>
+              <abbr>
+                <w>&amp;</w>
+              </abbr>
+              <expan>
+                <w>et</w>
+              </expan>
+            </choice>
+            <w>operan<lb break="no" n="True"/>tis</w>
+            <w>vere</w>
+            <w>bene</w>
+            <w>ex</w>
+            <w>ignorantia</w>
+            <w>in<lb break="no" n="True"/>uincibili</w>
+            <pc type="other">.</pc>
+          </hi>
         </s>
       </item>
       <item n="30">
@@ -10435,11 +10460,13 @@
         <s>
           <lb n="25"/>
           <w>Satis</w>
-          <w>fit</w>
-          <w>argumentis</w>
-          <w>in</w>
-          <w>contrarium</w>
-          <pc type="other">.</pc>
+          <hi rend="italic">
+            <w>fit</w>
+            <w>argumentis</w>
+            <w>in</w>
+            <w>contrarium</w>
+            <pc type="other">.</pc>
+          </hi>
         </s>
       </item>
     </list>
@@ -11087,7 +11114,14 @@
   </head>
   <head type="sub">
     <lb n="2"/>
-    <w>V.</w>
+    <choice>
+      <abbr>
+        <w>V.</w>
+      </abbr>
+      <expan>
+        <w/>
+      </expan>
+    </choice>
     <w>rerum</w>
     <w>pretium</w>
     <w>ex</w>

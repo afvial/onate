@@ -454,7 +454,14 @@
                 <w>lex</w>
               </expan>
             </choice>
-            <w>§.</w>
+            <choice>
+              <abbr>
+                <w>§.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
             <w>Marcellus</w>
           </bibl>
         </cit>
@@ -506,7 +513,14 @@
         </cit>
         <cit xml:id="cit_p36_izq_noref_6">
           <bibl>
-            <w>S.</w>
+            <choice>
+              <abbr>
+                <w>S.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
             <choice>
               <abbr>
                 <w>fin.</w>
@@ -545,7 +559,14 @@
         </cit>
         <cit xml:id="cit_p36_izq_noref_7">
           <bibl>
-            <w>D.</w>
+            <choice>
+              <abbr>
+                <w>D.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
             <w>Tho</w>
             <pc type="other">.</pc>
             <w>2</w>
@@ -644,14 +665,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -858,8 +872,16 @@
         </cit>
         <cit xml:id="cit_p36_izq_Faustus_Empt_15">
           <bibl corresp="#bib_Faustus_Empt" cert="low">
-            <w>S.</w>
             <author ref="#pers_Faustus_inc">
+              <choice>
+                <abbr>
+                  <w>S.</w>
+                </abbr>
+                <expan>
+                  <w/>
+                  <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
+                </expan>
+              </choice>
               <choice>
                 <abbr>
                   <w>Faust.</w>
@@ -871,14 +893,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>

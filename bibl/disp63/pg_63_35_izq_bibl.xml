@@ -473,20 +473,34 @@
             <pc type="other">.</pc>
           </bibl>
         </cit>
-        <cit xml:id="cit_p35_izq_noref_2">
-          <bibl>
-            <w>D.</w>
+        <cit xml:id="cit_p35_izq_Aquinas_ST_2">
+          <bibl corresp="#bib_Aquinas_ST" cert="high">
             <choice>
               <abbr>
-                <w>Th.</w>
+                <w>D.</w>
               </abbr>
               <expan>
-                <w>Thomas</w>
+                <w/>
+                <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
               </expan>
             </choice>
-            <w>2</w>
+            <author ref="#pers_ThomasAquinas">
+              <choice>
+                <abbr>
+                  <w>Th.</w>
+                </abbr>
+                <expan>
+                  <w>Thomas</w>
+                </expan>
+              </choice>
+            </author>
+            <biblScope unit="?">
+              <w>2</w>
+            </biblScope>
             <pc type="other">.</pc>
-            <w>2</w>
+            <biblScope unit="?">
+              <w>2</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -496,7 +510,9 @@
                 <w>quaestio</w>
               </expan>
             </choice>
-            <w>77</w>
+            <biblScope unit="quaestio">
+              <w>77</w>
+            </biblScope>
             <pc type="other">.</pc>
             <lb n="24"/>
             <choice>
@@ -507,10 +523,14 @@
                 <w>articulo</w>
               </expan>
             </choice>
-            <w>1</w>
+            <biblScope unit="articulus">
+              <w>1</w>
+            </biblScope>
             <pc type="other">.</pc>
             <w>ad</w>
-            <w>1</w>
+            <biblScope unit="ad">
+              <w>1</w>
+            </biblScope>
             <pc type="other">.</pc>
           </bibl>
         </cit>
@@ -590,14 +610,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſput.</w>
-                  </orig>
-                  <reg>
-                    <w>disput.</w>
-                  </reg>
-                </choice>
+                <w>disput.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -931,14 +944,7 @@
             </author>
             <choice>
               <abbr>
-                <choice>
-                  <orig>
-                    <w>diſp.</w>
-                  </orig>
-                  <reg>
-                    <w>disp.</w>
-                  </reg>
-                </choice>
+                <w>disp.</w>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -1444,7 +1450,14 @@
         <lb n="39"/>
         <cit xml:id="cit_p35_izq_noref_22">
           <bibl>
-            <w>S.</w>
+            <choice>
+              <abbr>
+                <w>S.</w>
+              </abbr>
+              <expan>
+                <w/>
+              </expan>
+            </choice>
           </bibl>
         </cit>
         <cit xml:id="cit_p35_izq_Faustus_Empt_23">
