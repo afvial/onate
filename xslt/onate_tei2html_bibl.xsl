@@ -4,6 +4,8 @@
   xmlns:tei="http://www.tei-c.org/ns/1.0"
   exclude-result-prefixes="tei">
 
+  <xsl:strip-space elements="tei:s tei:item tei:hi tei:list tei:div tei:p tei:note"/>
+
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
   <!-- ============================================================ -->
@@ -477,7 +479,9 @@
       </xsl:otherwise>
     </xsl:choose>
     <span class="tei-pc"><xsl:value-of select="."/></span>
-    <xsl:text> </xsl:text>
+    <xsl:if test="not(following-sibling::*[1][self::tei:lb])">
+      <xsl:text> </xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <!-- CURSIVA -->
@@ -613,7 +617,7 @@
       <!-- Texto original: puede contener <lb break="no"/> -->
       <xsl:apply-templates select="$w/node()"/>
     </span>
-    <xsl:if test="not(following-sibling::*[1][self::tei:pc])">
+    <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(following-sibling::*[1][self::tei:lb])">
       <xsl:text> </xsl:text>
     </xsl:if>
   </xsl:template>
