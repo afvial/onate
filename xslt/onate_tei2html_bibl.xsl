@@ -142,7 +142,6 @@
           .tooltip td { padding: 0 0.4em 0 0; vertical-align: top; }
           .tooltip .tip-key   { color: #888; }
           .tooltip .tip-lemma { color: #7ec8e3; font-weight: bold; }
-          .tooltip .tip-orig  { color: #c8a87e; font-style: italic; }
           .tooltip .tip-pos   { color: #f0c060; }
           .tooltip .tip-val   { color: #aaddaa; }
           span.tei-w:hover .tooltip { display: block; }
@@ -302,11 +301,6 @@
             text-align: right;
             margin-bottom: 0.5rem;
           }
-
-          /* Oraciones partidas entre columnas */
-          .s-part         { border-radius: 2px; transition: background 0.15s; }
-          .s-part-active  { background-color: #e8f0fb; }
-
         </style>
       </head>
       <body>
@@ -360,24 +354,6 @@
           <span style="color:#7a2a7a">■ PRON</span>
           <span style="color:#aaa">■ X</span>
         </div>
-
-        <script>
-          document.querySelectorAll('.s-part').forEach(function(el) {
-            el.addEventListener('mouseenter', function() {
-              var linkedId = (el.dataset.next || el.dataset.prev || '').replace('#', '');
-              el.classList.add('s-part-active');
-              if (linkedId) {
-                var linked = document.querySelector('[data-sid="' + linkedId + '"]');
-                if (linked) linked.classList.add('s-part-active');
-              }
-            });
-            el.addEventListener('mouseleave', function() {
-              document.querySelectorAll('.s-part-active').forEach(function(e) {
-                e.classList.remove('s-part-active');
-              });
-            });
-          });
-        </script>
       </body>
     </html>
   </xsl:template>
@@ -407,61 +383,9 @@
   </xsl:template>
 
   <!-- ORACIÓN -->
-  <!-- Oración normal -->
-  <xsl:template match="tei:s[not(@part)]">
+  <xsl:template match="tei:s">
     <span class="tei-s"><xsl:apply-templates/></span>
     <xsl:text> </xsl:text>
-  </xsl:template>
-
-  <!-- Oración partida entre columnas (@part="I" o "F") -->
-  <xsl:template match="tei:s[@part]">
-    <span class="tei-s s-part">
-      <xsl:attribute name="data-sid">
-        <xsl:value-of select="@xml:id"/>
-      </xsl:attribute>
-      <xsl:if test="@next">
-        <xsl:attribute name="data-next">
-          <xsl:value-of select="@next"/>
-        </xsl:attribute>
-      </xsl:if>
-      <xsl:if test="@prev">
-        <xsl:attribute name="data-prev">
-          <xsl:value-of select="@prev"/>
-        </xsl:attribute>
-      </xsl:if>
-      <xsl:apply-templates/>
-    </span>
-    <xsl:text> </xsl:text>
-  </xsl:template>
-
-  <!-- CHOICE ANIDADO: abbr con variante gráfica (diſp. / disp. / disputatio) -->
-  <xsl:template match="tei:choice[tei:abbr/tei:choice]">
-    <xsl:variable name="inner"   select="tei:abbr/tei:choice"/>
-    <xsl:variable name="w_orig"  select="$inner/tei:orig/tei:w"/>
-    <xsl:variable name="w_reg"   select="$inner/tei:reg/tei:w"/>
-    <xsl:variable name="expan"   select="tei:expan/tei:w"/>
-
-    <span class="tei-w tei-choice-abbr"
-          data-lemma="{$w_orig/@lemma}" data-pos="{$w_orig/@pos}" data-msd="{$w_orig/@msd}">
-      <span class="tooltip">
-        <table>
-          <tr>
-            <td class="tip-key">lemma</td>
-            <td class="tip-lemma"><xsl:value-of select="$w_orig/@lemma"/></td>
-          </tr>
-          <xsl:if test="$expan != ''">
-            <tr>
-              <td class="tip-key">expan</td>
-              <td class="tip-expan"><xsl:value-of select="$expan"/></td>
-            </tr>
-          </xsl:if>
-        </table>
-      </span>
-      <xsl:apply-templates select="$w_orig/node()"/>
-    </span>
-    <xsl:if test="not(following-sibling::*[1][self::tei:pc])">
-      <xsl:text> </xsl:text>
-    </xsl:if>
   </xsl:template>
 
   <!-- PALABRA -->
@@ -473,12 +397,6 @@
             <td class="tip-key">lemma</td>
             <td class="tip-lemma"><xsl:value-of select="@lemma"/></td>
           </tr>
-          <xsl:if test="@orig">
-            <tr>
-              <td class="tip-key">reg</td>
-              <td class="tip-expan"><xsl:value-of select="@orig"/></td>
-            </tr>
-          </xsl:if>
           <xsl:if test="@pos != ''">
             <tr>
               <td class="tip-key">POS</td>
@@ -496,7 +414,7 @@
       <xsl:apply-templates/>
       <xsl:if test="@part='I'"><xsl:text>-</xsl:text></xsl:if>
     </span>
-    <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(@part='I')">
+    <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(following-sibling::*[1][self::tei:lb]) and not(@part='I')">
       <xsl:text> </xsl:text>
     </xsl:if>
   </xsl:template>
@@ -652,7 +570,6 @@
        El <w> lleva lemma/pos/msd; <expan>/<reg> lleva la forma completa. -->
   <xsl:template match="tei:choice">
     <xsl:variable name="w"        select="(tei:abbr|tei:orig)/tei:w"/>
-    <xsl:variable name="reg_w"    select="(tei:expan|tei:reg)/tei:w"/>
     <xsl:variable name="expansion">
       <xsl:choose>
         <xsl:when test="tei:expan"><xsl:value-of select="tei:expan"/></xsl:when>
@@ -685,20 +602,9 @@
               <xsl:with-param name="msd" select="$w/@msd"/>
             </xsl:call-template>
           </xsl:if>
-          <xsl:if test="$reg_w/@orig">
-            <tr>
-              <td class="tip-key">reg</td>
-              <td class="tip-expan"><xsl:value-of select="$reg_w/@orig"/></td>
-            </tr>
-          </xsl:if>
           <xsl:if test="$expansion != ''">
             <tr>
-              <td class="tip-key">
-                <xsl:choose>
-                  <xsl:when test="$kind = 'abbr'">expan</xsl:when>
-                  <xsl:otherwise>reg</xsl:otherwise>
-                </xsl:choose>
-              </td>
+              <td class="tip-key"><xsl:value-of select="$kind"/></td>
               <td class="tip-expan"><xsl:value-of select="$expansion"/></td>
             </tr>
           </xsl:if>
@@ -710,6 +616,27 @@
     <xsl:if test="not(following-sibling::*[1][self::tei:pc])">
       <xsl:text> </xsl:text>
     </xsl:if>
+  </xsl:template>
+
+  <!-- lb break="no" de continuación en item con label (soft-hyphen entre líneas):
+       guión + br + número + spacer de alineación.
+       Solo aplica si hay un lb precedente en el mismo item (no es el primero). -->
+  <xsl:template match="tei:item[tei:label]//tei:w/tei:lb[@break='no' and @n
+      and preceding::tei:lb[
+        ancestor::tei:item[generate-id(.)=
+          generate-id(current()/ancestor::tei:item)]]]">
+    <xsl:text>-</xsl:text><br/>
+    <xsl:variable name="n"    select="@n"/>
+    <xsl:variable name="mod5" select="$n mod 5"/>
+    <xsl:choose>
+      <xsl:when test="$mod5 = 0">
+        <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
+      </xsl:when>
+      <xsl:otherwise>
+        <span class="lb-num"><xsl:value-of select="$n"/></span>
+      </xsl:otherwise>
+    </xsl:choose>
+    <span class="tei-item-cont">&#160;</span>
   </xsl:template>
 
   <!-- Suprimir abbr/orig/expan/reg — gestionados por el template de choice -->
