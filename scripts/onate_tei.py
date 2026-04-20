@@ -342,8 +342,9 @@ def _flatten_lines_to_raw_tokens(lines: list, first_lb_ref: list) -> list:
 
 
 def _offset_is_italic(offset: int, italic_spans: list) -> bool:
-    """True si offset cae dentro de algún italic_span."""
-    return any(s["offset"] <= offset < s["offset"] + s["length"]
+    """True si offset cae dentro de algún italic_span con italic:True."""
+    return any(s.get("italic", True) and
+               s["offset"] <= offset < s["offset"] + s["length"]
                for s in italic_spans)
 
 
@@ -708,66 +709,40 @@ def _trim_line_by_offset(line: dict, start_offset: int) -> dict:
         for a in line.get("abbrevs", [])
         if a["offset"] >= actual
     ]
-    return {**line, "text": stripped, "abbrevs": new_abbrevs}
+    new_italic = [
+        {**s, "offset": max(0, s["offset"] - actual),
+         "length": s["length"] - max(0, actual - s["offset"])}
+        for s in line.get("italic_spans", [])
+        if s["offset"] + s["length"] > actual
+    ]
+    return {**line, "text": stripped, "abbrevs": new_abbrevs,
+            "italic_spans": new_italic}
 
 
 def _wrap_italic_spans(parent, lines: list, emit_fn):
     """
-    Emite tokens asignando italic por posición exacta en cada línea
-    usando italic_spans del PAGE XML. Agrupa tokens consecutivos con
-    el mismo valor de italic en <hi rend="italic"> o texto plano.
+    Emite tokens de un bloque summarium dentro de <hi rend="italic">
+    si todas las líneas del bloque tienen italic_spans que cubren
+    sustancialmente el texto. Usa _flatten_lines_to_raw_tokens para
+    preservar correctamente eol/split/lb.
     """
-    from itertools import groupby
-    # Construir 6-tuplas con italic por posición
-    all_toks = []
-    first_lb_ref = [False]
-    for line in lines:
-        italic_spans = line.get("italic_spans", [])
-        segs = apply_abbrev_tags(line["text"], line.get("abbrevs", []))
-        line_toks = []
-        if not first_lb_ref[0]:
-            line_toks.append(("sol", str(line["line_n"]), None, False, False, False))
-            first_lb_ref[0] = True
-        search_from = 0
-        for seg in segs:
-            exp = seg["expansion"] if seg["is_abbrev"] else None
-            for ttype, ttext in tokenize(seg["text"]):
-                tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
-                idx = line["text"].find(ttext, search_from)
-                if idx == -1:
-                    idx = search_from
-                italic = _offset_is_italic(idx, italic_spans)
-                line_toks.append((ttype, ttext, tok_exp, False, False, italic))
-                search_from = idx + len(ttext)
-        # Marcar eol en el último token no-sol si hay soft_hyphen
-        if line.get("soft_hyphen") and line_toks:
-            last = line_toks[-1]
-            line_toks[-1] = (last[0], last[1], last[2], False, True, last[5])
-        all_toks.extend(line_toks)
+    all_full_italic = all(
+        any(s.get("italic", True) and
+            s["offset"] == 0 and s["length"] >= len(l["text"].rstrip()) * 0.8
+            for s in l.get("italic_spans", []))
+        for l in lines if l["text"].strip()
+    )
+    if all_full_italic:
+        hi = etree.SubElement(parent, f"{{{TEI_NS}}}hi")
+        hi.set("rend", "italic")
+        container = hi
+    else:
+        container = parent
 
-    # _join_split_words_6 opera sobre 6-tuplas raw
-    # all_toks ya son 6-tuplas, el resultado es lista de dicts
-    tokens_raw = [t if isinstance(t, tuple) else 
-                  (t.get("kind","word"), t.get("text",""), t.get("expansion"),
-                   t.get("eol",False), t.get("split",False), t.get("italic",False))
-                  for t in all_toks]
-    tokens = _join_split_words_6(tokens_raw)
-
-    for is_italic, grp in groupby(tokens, key=lambda t: t.get("italic", False)):
-        grp = list(grp)
-        if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
-                   for t in grp):
-            for tok in grp:
-                emit_fn(parent, tok)
-            continue
-        if is_italic:
-            hi = etree.SubElement(parent, f"{{{TEI_NS}}}hi")
-            hi.set("rend", "italic")
-            container = hi
-        else:
-            container = parent
-        for tok in grp:
-            emit_fn(container, tok)
+    raw    = _flatten_lines_to_raw_tokens(lines, [False])
+    tokens = join_split_words(raw)
+    for tok in tokens:
+        emit_fn(container, tok)
 
 
 def _emit_summarium(parent, lines: list):
