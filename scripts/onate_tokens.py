@@ -331,7 +331,7 @@ LONG_S = {
     "sic":              "ſic",
     "sub":              "ſub",
     "sine":             "ſine",
-    "sive":             "ſiue",
+    "siue":             "ſiue",
     "sibi":             "ſibi",
     "seu":              "ſeu",
     "satis":            "ſatis",
