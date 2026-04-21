@@ -301,8 +301,8 @@ ORIG_REG = {
 
 # Macrones que representan letras abreviadas
 MACRON_MAP = {
-    "ā": "am", "ē": "em", "ī": "im", "ō": "om", "ū": "um",
-    "Ā": "Am", "Ē": "Em", "Ī": "Im", "Ō": "Om", "Ū": "Um",
+    "ā": "am", "ē": "em", "ī": "im", "ō": "on", "ū": "um",
+    "Ā": "Am", "Ē": "Em", "Ī": "Im", "Ō": "On", "Ū": "Um",
 }
 
 # Grafías con s larga frecuentes en impresos latinos del s. XVII

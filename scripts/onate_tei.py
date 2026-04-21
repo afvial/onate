@@ -211,6 +211,27 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
         reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
         w_reg.text = full_text
+    elif any(c in full_text for c in MACRON_MAP):
+        macron_exp = _expand_macrons(full_text)
+        if macron_exp and macron_exp != full_text:
+            # Aplicar s larga a la expansión y reconstruir orig con macrón
+            ls_exp = _apply_long_s_roots(macron_exp) or macron_exp
+            # Reconstruir orig: reemplazar letras expandidas por macrón
+            macron_reverse = {v: k for k, v in MACRON_MAP.items()}
+            orig_ls = ls_exp
+            for letters, macron_char in sorted(macron_reverse.items(), key=lambda x: -len(x[0])):
+                orig_ls = orig_ls.replace(letters, macron_char, 1)
+            # Dividir en left/right según longitud del left original
+            w_left  = orig_ls[:len(left)]
+            w_right = orig_ls[len(left):]
+            choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+            abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
+            _make_w_lb(abbr, w_left, w_right)
+            expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
+            w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
+            w_exp.text = macron_exp
+        else:
+            _make_w_lb(parent, left, right)
     elif ae_full:
         ae_left  = ae_full[:len(left)]
         ae_right = ae_full[len(left):]
