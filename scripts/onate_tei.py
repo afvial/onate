@@ -296,6 +296,13 @@ def emit_token(parent, tok: dict):
         expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
         w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
         w_exp.text = ABBREV_EXPAN.get(tok["text"], ABBREV_EXPAN.get(tok["text"].lower(), ""))
+    elif kind == "sic":
+        choice  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+        sic_el  = etree.SubElement(choice, f"{{{TEI_NS}}}sic")
+        w_sic   = etree.SubElement(sic_el, f"{{{TEI_NS}}}w")
+        w_sic.text = tok["text"]
+        corr_el = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
+        corr_el.text = tok.get("expansion") or ""
     elif kind == "amp":
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
@@ -321,16 +328,21 @@ def _flatten_lines_to_raw_tokens(lines: list, first_lb_ref: list) -> list:
     for li, line in enumerate(lines):
         is_last = (li == len(lines) - 1)
         next_n  = lines[li + 1]["line_n"] if not is_last else None
-        segments = apply_abbrev_tags(line["text"], line["abbrevs"])
+        segments = apply_abbrev_tags(line["text"], line["abbrevs"], line.get("sic_spans", []))
         line_toks = []
         if not first_lb_ref[0]:
             line_toks.append(("sol", str(line["line_n"]), None, False, False))
             first_lb_ref[0] = True
         for seg in segments:
             exp = seg["expansion"] if seg["is_abbrev"] else None
+            is_sic = seg.get("is_sic", False)
+            sic_corr = seg.get("corr", None)
             for ttype, ttext in tokenize(seg["text"]):
-                tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
-                line_toks.append((ttype, ttext, tok_exp, False, False))
+                if is_sic and ttype == "word":
+                    line_toks.append(("sic", ttext, sic_corr, False, False))
+                else:
+                    tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
+                    line_toks.append((ttype, ttext, tok_exp, False, False))
         if line_toks and not is_last:
             last = line_toks[-1]
             if line["soft_hyphen"]:
@@ -349,7 +361,8 @@ def _offset_is_italic(offset: int, italic_spans: list) -> bool:
 
 
 def _tokenize_with_italic(span_text: str, span_offset: int,
-                           span_abbrevs: list, italic_spans: list) -> list:
+                           span_abbrevs: list, italic_spans: list,
+                           sic_spans: list = None) -> list:
     """
     Tokeniza span_text y asigna italic por token según su posición real
     en la línea original (span_offset + posición dentro del span).
@@ -357,19 +370,24 @@ def _tokenize_with_italic(span_text: str, span_offset: int,
     evitando desfases causados por espacios que tokenize() descarta.
     """
     toks = []
-    segs = apply_abbrev_tags(span_text, span_abbrevs)
+    segs = apply_abbrev_tags(span_text, span_abbrevs, sic_spans or [])
     search_from = 0  # posición de búsqueda dentro de span_text
     for seg in segs:
         exp = seg["expansion"] if seg["is_abbrev"] else None
+        is_sic = seg.get("is_sic", False)
+        sic_corr = seg.get("corr", None)
         for ttype, ttext in tokenize(seg["text"]):
-            tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
             # Buscar la posición exacta del token en el texto del span
             idx = span_text.find(ttext, search_from)
             if idx == -1:
                 idx = search_from  # fallback si no se encuentra
             char_pos_in_line = span_offset + idx
             italic = _offset_is_italic(char_pos_in_line, italic_spans)
-            toks.append((ttype, ttext, tok_exp, False, False, italic))
+            if is_sic and ttype == "word":
+                toks.append(("sic", ttext, sic_corr, False, False, italic))
+            else:
+                tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
+                toks.append((ttype, ttext, tok_exp, False, False, italic))
             search_from = idx + len(ttext)
     return toks
 
@@ -405,7 +423,7 @@ def _flatten_spans(lines: list) -> list:
             toks = []
             if lb_tok:
                 toks.append(lb_tok)
-            toks.extend(_tokenize_with_italic(text, 0, span_abbrevs, italic_spans))
+            toks.extend(_tokenize_with_italic(text, 0, span_abbrevs, italic_spans, line.get("sic_spans", [])))
             if toks and not is_last_line:
                 last = toks[-1]
                 if line["soft_hyphen"]:
@@ -428,8 +446,13 @@ def _flatten_spans(lines: list) -> list:
                 toks = []
                 if lb_tok and si == 0:
                     toks.append(lb_tok)
+                span_sic = [
+                    {**s, "offset": s["offset"] - span_offset}
+                    for s in line.get("sic_spans", [])
+                    if span_offset <= s["offset"] < span_offset + span["length"]
+                ]
                 toks.extend(_tokenize_with_italic(
-                    span_text, span_offset, span_abbrevs, italic_spans))
+                    span_text, span_offset, span_abbrevs, italic_spans, span_sic))
 
                 if is_last_span and toks and not is_last_line:
                     last = toks[-1]
@@ -545,14 +568,14 @@ def _emit_sentence_spans(s_el, all_raw6: list):
     """
     from itertools import groupby
     tokens = _join_split_words_6(all_raw6)
-    if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
+    if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic")
                for t in tokens):
         return
 
     for is_italic, grp in groupby(tokens, key=lambda t: t.get("italic", False)):
         grp = list(grp)
         # sol/lb sin contenido: siempre al nivel de s_el
-        if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
+        if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic")
                    for t in grp):
             for tok in grp:
                 emit_token(s_el, tok)
@@ -619,7 +642,7 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
                         "italic":    tok.get("italic", False),
                     }
                     break
-            if any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot")
+            if any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic")
                    for t in toks):
                 from itertools import groupby
                 s_el = etree.SubElement(p_el, f"{{{TEI_NS}}}s")
@@ -685,7 +708,7 @@ def _emit_head(parent, lines: list, head_type: str = None):
             container = head_el
 
         # Tokens de esta línea (sin lb inter-línea — ya lo pusimos arriba)
-        segments = apply_abbrev_tags(line["text"], line["abbrevs"])
+        segments = apply_abbrev_tags(line["text"], line["abbrevs"], line.get("sic_spans", []))
         raw = []
         for seg in segments:
             exp = seg["expansion"] if seg["is_abbrev"] else None

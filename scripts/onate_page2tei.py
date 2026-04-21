@@ -79,7 +79,7 @@ def main():
         if last["soft_hyphen"]:
             pass  # CASO A: onate_tei.py lo maneja
 
-        elif (len(words) <= 2 and not last["soft_hyphen"]
+        elif (len(words) <= 2 and not last["soft_hyphen"] and not last.get("sic_spans")
               and (len(last_text) <= 5 or penultimate_hyphen)):
             # CASO B: reclamo tipográfico — eliminar y emitir como join_left
             lines = lines[:-1]

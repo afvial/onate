@@ -146,6 +146,7 @@
           .tooltip .tip-pos   { color: #f0c060; }
           .tooltip .tip-val   { color: #aaddaa; }
           span.tei-w:hover .tooltip { display: block; }
+          span.tei-sic:hover .tooltip { display: block; }
 
           /* abbr: subrayado punteado marrón (forma abreviada) */
           span.tei-choice-abbr {
@@ -162,6 +163,7 @@
           span.tei-pc {
             margin-left: -0.05em;  /* separación mínima */
           }
+          span.tei-sic { position: relative; cursor: default; }
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
           span.tei-bibl { font-style: italic; padding-right: 0.15em; }
@@ -571,6 +573,36 @@
   <!-- CHOICE: renderiza como una sola <span> con forma original y expansión en tooltip.
        La estructura TEI es <choice><abbr|orig><w/></abbr|orig><expan|reg/></choice>.
        El <w> lleva lemma/pos/msd; <expan>/<reg> lleva la forma completa. -->
+  <!-- CHOICE sic/corr: texto original con subrayado rojo, corr en tooltip -->
+  <xsl:template match="tei:choice[tei:sic]">
+    <span class="tei-sic">
+      <span class="tooltip">
+        <table>
+          <tr>
+            <td class="tip-key">lemma</td>
+            <td class="tip-lemma"><xsl:value-of select="tei:sic/tei:w/@lemma"/></td>
+          </tr>
+          <xsl:if test="tei:sic/tei:w/@pos != ''">
+            <tr>
+              <td class="tip-key">POS</td>
+              <td class="tip-pos"><xsl:value-of select="tei:sic/tei:w/@pos"/></td>
+            </tr>
+          </xsl:if>
+          <tr>
+            <td class="tip-key">corr</td>
+            <td class="tip-expan"><xsl:value-of select="tei:corr"/></td>
+          </tr>
+        </table>
+      </span>
+      <xsl:value-of select="tei:sic/tei:w"/>
+    </span>
+    <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(following-sibling::*[1][self::tei:lb])">
+      <xsl:text> </xsl:text>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="tei:choice/tei:sic | tei:choice/tei:corr"/>
+
   <xsl:template match="tei:choice">
     <xsl:variable name="w"        select="(tei:abbr|tei:orig)/tei:w"/>
     <xsl:variable name="expansion">

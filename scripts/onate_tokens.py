@@ -843,6 +843,25 @@ def parse_abbrev_tags(custom: str) -> list:
     return sorted(tags, key=lambda t: t["offset"])
 
 
+def parse_sic_tags(custom: str) -> list:
+    """Extrae tags sic {offset:N;length:M;corr:VALUE;} del atributo custom de Transkribus."""
+    import re as _re
+    tags = []
+    for m in _re.finditer(
+        r'sic\s*\{[^}]*?offset:(\d+);[^}]*?length:(\d+);[^}]*?(?:corr:([^;}]+))?[^}]*?\}',
+        custom
+    ):
+        corr = (m.group(3) or "").strip().strip("'\"")
+        corr = corr.replace("¬", "-")
+        tags.append({
+            "offset": int(m.group(1)),
+            "length": int(m.group(2)),
+            "corr":   corr,
+            "_type":  "sic",
+        })
+    return sorted(tags, key=lambda t: t["offset"])
+
+
 def parse_structure_type(custom: str) -> str | None:
     """Extrae el tipo estructural de structure {type:XXX;} en el atributo custom."""
     m = re.search(r'structure\s*\{[^}]*?type:([^;}]+)', custom)
@@ -895,6 +914,14 @@ def extract_lines(page_xml_path: Path) -> list:
             pts = baseline.get("points", "")
             if pts:
                 first_x = int(pts.split()[0].split(",")[0])
+        # Si un sic tag tiene corr que termina en ¬, la línea es realmente
+        # un soft hyphen — el error original fue omitir el guión de partición
+        sic_spans = parse_sic_tags(custom)
+        for sic in sic_spans:
+            if sic.get("corr", "").endswith("¬"):
+                soft_hyphen = True
+                sic["corr"] = sic["corr"][:-1]  # quitar ¬ del corr
+
         lines.append({
             "text":               text,
             "abbrevs":            parse_abbrev_tags(custom),
@@ -903,6 +930,7 @@ def extract_lines(page_xml_path: Path) -> list:
             "index_entry_spans":  parse_span_tags(custom, "index_entry"),
             "summary_item_spans": parse_span_tags(custom, "summary_item"),
             "italic_spans":       parse_span_tags(custom, "textStyle"),
+            "sic_spans":          sic_spans,
             "region_id":          region_id,
             "reading_order":      order,
             "soft_hyphen":        soft_hyphen,
@@ -916,25 +944,35 @@ def extract_lines(page_xml_path: Path) -> list:
 
 # ── Segmentación por abbrev tags ──────────────────────────────────────────────
 
-def apply_abbrev_tags(text: str, abbrevs: list) -> list:
+def apply_abbrev_tags(text: str, abbrevs: list, sic_tags: list = None) -> list:
     """
-    Divide el texto en segmentos {text, expansion, is_abbrev}.
+    Divide el texto en segmentos {text, expansion, is_abbrev, is_sic, corr}.
     Los offsets son posiciones de caracteres en el texto original.
+    Combina abbrev tags y sic tags en una sola pasada ordenada por offset.
     """
-    if not abbrevs:
-        return [{"text": text, "expansion": None, "is_abbrev": False}]
+    combined = sorted(
+        [dict(t, _type="abbrev") for t in abbrevs] +
+        [dict(t) for t in (sic_tags or [])],
+        key=lambda t: t["offset"]
+    )
+    if not combined:
+        return [{"text": text, "expansion": None, "is_abbrev": False, "is_sic": False, "corr": None}]
     segments = []
     pos = 0
-    for tag in abbrevs:
-        o, l, exp = tag["offset"], tag["length"], tag["expansion"]
+    for tag in combined:
+        o, l = tag["offset"], tag["length"]
         if pos < o:
-            segments.append({"text": text[pos:o], "expansion": None, "is_abbrev": False})
-        abbr_text = text[o: o + l]
-        if abbr_text:
-            segments.append({"text": abbr_text, "expansion": exp or None, "is_abbrev": True})
+            segments.append({"text": text[pos:o], "expansion": None, "is_abbrev": False, "is_sic": False, "corr": None})
+        seg_text = text[o: o + l]
+        if seg_text:
+            if tag.get("_type") == "sic":
+                segments.append({"text": seg_text, "expansion": None, "is_abbrev": False, "is_sic": True, "corr": tag.get("corr", "")})
+            else:
+                exp = tag.get("expansion") or None
+                segments.append({"text": seg_text, "expansion": exp, "is_abbrev": True, "is_sic": False, "corr": None})
         pos = o + l
     if pos < len(text):
-        segments.append({"text": text[pos:], "expansion": None, "is_abbrev": False})
+        segments.append({"text": text[pos:], "expansion": None, "is_abbrev": False, "is_sic": False, "corr": None})
     return segments
 
 
