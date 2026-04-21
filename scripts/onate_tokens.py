@@ -401,6 +401,7 @@ LONG_S = {
     "quaestionem":      "quæſtionem",
     "quaestio":         "quæſtio",
     "praestatio":       "præſtatio",
+    "praescribit":      "præſcribit",
     "praesumptio":      "præſumptio",
     "substantia":       "ſubſtantia",
     "subiectum":        "ſubiectum",
