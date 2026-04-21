@@ -581,8 +581,8 @@
     </xsl:variable>
     <xsl:variable name="kind">
       <xsl:choose>
-        <xsl:when test="tei:abbr">abbr</xsl:when>
-        <xsl:otherwise>orig</xsl:otherwise>
+        <xsl:when test="tei:abbr">expan</xsl:when>
+        <xsl:otherwise>reg</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
 
