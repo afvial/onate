@@ -602,9 +602,12 @@
   </xsl:template>
 
   <xsl:template match="tei:choice/tei:sic | tei:choice/tei:corr"/>
+  <!-- Suprimir choice anidado dentro de abbr y todos sus descendientes -->
+  <xsl:template match="tei:abbr/tei:choice | tei:abbr/tei:choice/tei:orig | tei:abbr/tei:choice/tei:reg | tei:abbr/tei:choice/tei:orig/tei:w | tei:abbr/tei:choice/tei:reg/tei:w"/>
 
+  
   <xsl:template match="tei:choice">
-    <xsl:variable name="w"        select="(tei:abbr|tei:orig)/tei:w"/>
+    <xsl:variable name="w" select="((tei:abbr|tei:orig)//tei:w)[1]"/>
     <xsl:variable name="expansion">
       <xsl:choose>
         <xsl:when test="tei:expan"><xsl:value-of select="tei:expan"/></xsl:when>

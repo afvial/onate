@@ -126,7 +126,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             w.text = text
             expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
-            w_exp.text = macron_exp
+            w_exp.text = macron_exp.replace("ſ", "s")
         else:
             w = etree.SubElement(parent, f"{{{TEI_NS}}}w")
             w.text = text
@@ -205,12 +205,29 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
         w_reg.text = reg_full
     elif long_s_left:
-        choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
-        orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
-        _make_w_lb(orig, long_s_left, long_s_right)
-        reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
-        w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-        w_reg.text = full_text
+        # Verificar si además hay macrón → choice anidado
+        ls_full = long_s_left + long_s_right
+        macron_exp = _expand_macrons(ls_full) if any(c in ls_full for c in MACRON_MAP) else None
+        if macron_exp and macron_exp != ls_full:
+            # <choice><abbr><choice><orig>long_s<reg>normalizado</choice></abbr><expan>expandido</expan></choice>
+            outer  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+            abbr   = etree.SubElement(outer,  f"{{{TEI_NS}}}abbr")
+            inner  = etree.SubElement(abbr,   f"{{{TEI_NS}}}choice")
+            orig   = etree.SubElement(inner,  f"{{{TEI_NS}}}orig")
+            _make_w_lb(orig, long_s_left, long_s_right)
+            reg_el = etree.SubElement(inner,  f"{{{TEI_NS}}}reg")
+            w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
+            w_reg.text = full_text
+            expan  = etree.SubElement(outer,  f"{{{TEI_NS}}}expan")
+            w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
+            w_exp.text = macron_exp.replace("ſ", "s")
+        else:
+            choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+            orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
+            _make_w_lb(orig, long_s_left, long_s_right)
+            reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
+            w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
+            w_reg.text = full_text
     elif any(c in full_text for c in MACRON_MAP):
         macron_exp = _expand_macrons(full_text)
         if macron_exp and macron_exp != full_text:
