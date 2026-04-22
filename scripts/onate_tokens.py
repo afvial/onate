@@ -324,6 +324,14 @@ LONG_S = {
     # inesse / insunt
     "insunt":           "inſunt",
     "inest":            "ineſt",
+    "indiuisibile":     "indiuiſibile",
+    "indiuisibilis":    "indiuiſibilis",
+    "indiuisibilem":    "indiuiſibilem",
+    "indiuisibili":     "indiuiſibili",
+    "indiuisibiles":    "indiuiſibiles",
+    "indiuisibilium":   "indiuiſibilium",
+    "indiuisibilibus":  "indiuiſibilibus",
+    "indiuisibiliter":  "indiuiſibiliter",
     "inesse":           "ineſſe",
     # conjunciones/adverbios frecuentes
     "sed":              "ſed",
