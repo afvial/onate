@@ -67,7 +67,7 @@
             margin-right: auto;
           }
           .col {
-            width: 25em;
+            width: 20em;
             flex-shrink: 0;
             flex-grow: 0;
           }
@@ -254,15 +254,16 @@
             text-indent: 0;
             letter-spacing: 0.04em;
             white-space: normal;
+            width: 20em;
           }
           p.tei-subhead {
             font-size: 0.9rem;
-            
             text-align: center;
             margin: 0.2rem 0 0.6rem 0;
             text-indent: 0;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             white-space: normal;
+            width: 20em;
           }
 
           /* Summarium */
