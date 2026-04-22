@@ -351,6 +351,19 @@ def emit_token(parent, tok: dict):
         w_sic.text = tok["text"]
         corr_el = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
         corr_el.text = tok.get("expansion") or ""
+    elif kind == "sic_lb":
+        # Palabra errónea cortada con guion: <choice><sic><w>left</w></sic><corr/></choice><lb break="no"/><w>right</w>
+        choice  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+        sic_el  = etree.SubElement(choice, f"{{{TEI_NS}}}sic")
+        w_sic   = etree.SubElement(sic_el, f"{{{TEI_NS}}}w")
+        w_sic.text = tok["left"]
+        corr_el = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
+        corr_el.text = tok.get("expansion") or ""
+        lb = etree.SubElement(parent, f"{{{TEI_NS}}}lb")
+        lb.set("break", "no")
+        if tok.get("lb_n"):
+            lb.set("n", str(tok["lb_n"]))
+        add_w(parent, tok["right"])
     elif kind == "amp":
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
@@ -615,14 +628,14 @@ def _emit_sentence_spans(s_el, all_raw6: list):
     """
     from itertools import groupby
     tokens = _join_split_words_6(all_raw6)
-    if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic")
+    if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic","sic_lb")
                for t in tokens):
         return
 
     for is_italic, grp in groupby(tokens, key=lambda t: t.get("italic", False)):
         grp = list(grp)
         # sol/lb sin contenido: siempre al nivel de s_el
-        if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic")
+        if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic","sic_lb")
                    for t in grp):
             for tok in grp:
                 emit_token(s_el, tok)
@@ -689,7 +702,7 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
                         "italic":    tok.get("italic", False),
                     }
                     break
-            if any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic")
+            if any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic","sic_lb")
                    for t in toks):
                 from itertools import groupby
                 s_el = etree.SubElement(p_el, f"{{{TEI_NS}}}s")

@@ -37,25 +37,37 @@ def join_split_words(para_tokens: list) -> list:
             i += 1
             continue
         if (split
-                and ttype == "word"
+                and ttype in ("word", "sic")
                 and i + 1 < len(para_tokens)
                 and para_tokens[i + 1][0] == "word"):
             r_type, r_text, r_exp, r_eol, r_split = para_tokens[i + 1]
-            if expansion and r_exp:
-                combined = expansion + r_exp
-            elif expansion:
-                combined = expansion + r_text
-            elif r_exp:
-                combined = ttext + r_exp
+            if ttype == "sic":
+                # Palabra errónea cortada con guion: <choice><sic/><corr/></choice><lb/><w>right</w>
+                result.append({
+                    "kind":      "sic_lb",
+                    "left":      ttext,
+                    "right":     r_text,
+                    "expansion": expansion,
+                    "eol":       r_eol,
+                    "lb_n":      split,
+                })
+                i += 2
             else:
-                combined = None
-            result.append({
-                "kind": "word_lb",
-                "left": ttext, "right": r_text,
-                "expansion": combined, "eol": r_eol,
-                "lb_n": split,
-            })
-            i += 2
+                if expansion and r_exp:
+                    combined = expansion + r_exp
+                elif expansion:
+                    combined = expansion + r_text
+                elif r_exp:
+                    combined = ttext + r_exp
+                else:
+                    combined = None
+                result.append({
+                    "kind": "word_lb",
+                    "left": ttext, "right": r_text,
+                    "expansion": combined, "eol": r_eol,
+                    "lb_n": split,
+                })
+                i += 2
         else:
             result.append({
                 "kind": ttype, "text": ttext,
