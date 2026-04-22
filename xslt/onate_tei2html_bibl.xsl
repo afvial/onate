@@ -42,7 +42,7 @@
             margin: 1.5rem 0 1rem 0;
             font-size: 0.82rem;
             color: #555;
-            font-variant: small-caps;
+            
           }
 
           /* Cuadrícula de líneas — igual que el original impreso */
@@ -87,7 +87,7 @@
             color: #aaa;
             text-align: center;
             margin-bottom: var(--lh);
-            font-variant: small-caps;
+            
             letter-spacing: 0.05em;
           }
 
@@ -257,7 +257,7 @@
           }
           p.tei-subhead {
             font-size: 0.9rem;
-            font-variant: small-caps;
+            
             text-align: center;
             margin: 0.2rem 0 0.6rem 0;
             text-indent: 0;
@@ -294,7 +294,7 @@
           .page-sep-label {
             font-size: 0.78rem;
             color: #888;
-            font-variant: small-caps;
+            
             letter-spacing: 0.08em;
           }
 

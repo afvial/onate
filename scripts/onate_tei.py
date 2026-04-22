@@ -925,7 +925,15 @@ def lines_to_tei(lines: list, page_n: int, join_left: str = None) -> etree._Elem
         if struct_type in ("heading", "header"):
             _emit_head(div, block_lines)
         elif struct_type == "subheading":
-            _emit_head(div, block_lines, head_type="sub")
+            # Si la primera línea es continuación de oración anterior → párrafo
+            first_sents = block_lines[0].get("sentence_spans", []) if block_lines else []
+            if first_sents and first_sents[0].get("continued"):
+                _emit_para_block(div, block_lines,
+                                 join_left=join_left,
+                                 is_first_block=first_para)
+                first_para = False
+            else:
+                _emit_head(div, block_lines, head_type="sub")
         elif struct_type == "summarium":
             _emit_summarium(div, block_lines)
         else:
