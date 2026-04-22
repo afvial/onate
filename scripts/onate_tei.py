@@ -62,7 +62,9 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         if key in LONG_S:
             orig_form = LONG_S[key]
             # Preservar mayúscula inicial si la tiene
-            if text and text[0].isupper():
+            if text and text.isupper():
+                orig_form = orig_form.upper()
+            elif text and text[0].isupper():
                 orig_form = orig_form[0].upper() + orig_form[1:]
             if orig_form != text:
                 long_s_orig = orig_form
@@ -148,7 +150,9 @@ def apply_long_s_to_split(left: str, right: str):
         if orig_full is None:
             return None, None
     # Preservar mayúscula inicial
-    if full and full[0].isupper():
+    if full and full.isupper():
+        orig_full = orig_full.upper()
+    elif full and full[0].isupper():
         orig_full = orig_full[0].upper() + orig_full[1:]
     if orig_full == full:
         return None, None
