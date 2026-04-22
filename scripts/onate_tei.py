@@ -71,10 +71,22 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         else:
             long_s_orig = _apply_long_s_roots(text)
 
-    # Detección automática ae→æ (solo si no hay ya un choice)
+    # Detección automática ae→æ y ę→ae (solo si no hay ya un choice)
     ae_orig = None
-    if not reg and not long_s_orig and not is_abbrev and "ae" in text:
-        ae_orig = text.replace("ae", "æ")
+    ae_reg  = None
+    if not reg and not long_s_orig and not is_abbrev:
+        if "ae" in text:
+            ae_orig = text.replace("ae", "æ")
+            if ae_orig == text:
+                ae_orig = None
+        elif "ę" in text or "Ę" in text:
+            ae_reg  = text.replace("ę", "ae").replace("Ę", "Ae")
+            if ae_reg == text:
+                ae_orig = ae_reg = None
+            else:
+                # Aplicar s larga sobre la forma con ae y reconstruir con ę
+                ls = LONG_S.get(ae_reg) or LONG_S.get(ae_reg.lower()) or _apply_long_s_roots(ae_reg) or ae_reg
+                ae_orig = ls.replace("ae", "ę").replace("æ", "ę").replace("Ae", "Ę").replace("Æ", "Ę")
 
     if is_abbrev and expansion:
         tag_type = classify_tag(text, expansion)
@@ -117,7 +129,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         w.text = ae_orig
         reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-        w_reg.text = text
+        w_reg.text = ae_reg if ae_reg else text
     else:
         # Macrones en texto plano (no marcado como abbrev por Transkribus)
         macron_exp = _expand_macrons(text) if not is_abbrev else None

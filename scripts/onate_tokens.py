@@ -335,6 +335,12 @@ LONG_S = {
     "singulis":         "ſingulis",
     "postea":           "poſtea",
     "aestimandum":      "æſtimandum",
+    "aestimamus":       "æſtimamus",
+    "aestimas":         "æſtimas",
+    "aestimabit":       "æſtimabit",
+    "aestimabunt":      "æſtimabunt",
+    "aestimabimus":     "æſtimabimus",
+    "aestimabimus":     "æſtimabimus",
     "sermonem":         "ſermonem",
     "sectione":         "ſectione",
     "nostra":           "noſtra",
@@ -834,7 +840,7 @@ def apply_long_s_to_split(left: str, right: str):
 
 # Grafemas originales del s. XVII que se sustituyen uno a uno
 ORIG_CHARS = {
-    "ſ": "s", "æ": "ae", "Æ": "Ae", "œ": "oe", "Œ": "Oe",
+    "ſ": "s", "æ": "ae", "Æ": "Ae", "œ": "oe", "Œ": "Oe", "ę": "ae", "Ę": "Ae",
 }
 
 
