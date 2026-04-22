@@ -437,8 +437,8 @@ def _flatten_spans(lines: list) -> list:
     El italic se determina por la posición exacta de cada token en el texto
     de la línea, usando italic_spans del PAGE XML como fuente de verdad.
     """
-    result   = []
-    first_lb = [False]
+    result  = []
+    need_lb = True   # primera línea siempre necesita lb_tok
 
     for li, line in enumerate(lines):
         if not line["text"].strip():
@@ -451,9 +451,9 @@ def _flatten_spans(lines: list) -> list:
         italic_spans = line.get("italic_spans", [])
 
         lb_tok = None
-        if not first_lb[0]:
-            lb_tok = ("sol", str(line["line_n"]), None, False, False, False)
-            first_lb[0] = True
+        if need_lb:
+            lb_tok  = ("sol", str(line["line_n"]), None, False, False, False)
+            need_lb = False
 
         if not sent_spans:
             # Sin sentence_spans: toda la línea como un span continuo
@@ -494,7 +494,20 @@ def _flatten_spans(lines: list) -> list:
 
                 if is_last_span and toks and not is_last_line:
                     last = toks[-1]
-                    if line["soft_hyphen"]:
+                    # Calcular is_sent_end primero
+                    if not is_last_span:
+                        _is_sent_end_for_eol = True
+                    else:
+                        next_line2  = lines[li + 1]
+                        next_spans2 = next_line2.get("sentence_spans", [])
+                        next_cont2  = bool(next_spans2 and next_spans2[0].get("continued"))
+                        _is_sent_end_for_eol = not next_cont2
+
+                    if _is_sent_end_for_eol:
+                        # La oración termina aquí: el <lb> irá al INICIO
+                        # de la siguiente <s>, no al final de ésta.
+                        need_lb = True
+                    elif line["soft_hyphen"]:
                         toks[-1] = (last[0], last[1], last[2], False, next_n, last[5])
                     else:
                         toks[-1] = (last[0], last[1], last[2], next_n, False, last[5])
