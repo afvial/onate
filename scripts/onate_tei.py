@@ -84,7 +84,6 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             if ae_reg == text:
                 ae_orig = ae_reg = None
             else:
-                # Aplicar s larga sobre la forma con ae y reconstruir con ę
                 ls = LONG_S.get(ae_reg) or LONG_S.get(ae_reg.lower()) or _apply_long_s_roots(ae_reg) or ae_reg
                 ae_orig = ls.replace("ae", "ę").replace("æ", "ę").replace("Ae", "Ę").replace("Æ", "Ę")
 
@@ -221,11 +220,9 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
         w_reg.text = reg_full
     elif long_s_left:
-        # Verificar si además hay macrón → choice anidado
         ls_full = long_s_left + long_s_right
         macron_exp = _expand_macrons(ls_full) if any(c in ls_full for c in MACRON_MAP) else None
         if macron_exp and macron_exp != ls_full:
-            # <choice><abbr><choice><orig>long_s<reg>normalizado</choice></abbr><expan>expandido</expan></choice>
             outer  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
             abbr   = etree.SubElement(outer,  f"{{{TEI_NS}}}abbr")
             inner  = etree.SubElement(abbr,   f"{{{TEI_NS}}}choice")
@@ -247,14 +244,11 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
     elif any(c in full_text for c in MACRON_MAP):
         macron_exp = _expand_macrons(full_text)
         if macron_exp and macron_exp != full_text:
-            # Aplicar s larga a la expansión y reconstruir orig con macrón
             ls_exp = _apply_long_s_roots(macron_exp) or macron_exp
-            # Reconstruir orig: reemplazar letras expandidas por macrón
             macron_reverse = {v: k for k, v in MACRON_MAP.items()}
             orig_ls = ls_exp
             for letters, macron_char in sorted(macron_reverse.items(), key=lambda x: -len(x[0])):
                 orig_ls = orig_ls.replace(letters, macron_char, 1)
-            # Dividir en left/right según longitud del left original
             w_left  = orig_ls[:len(left)]
             w_right = orig_ls[len(left):]
             choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
@@ -262,7 +256,7 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
             _make_w_lb(abbr, w_left, w_right)
             expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
-            w_exp.text = macron_exp
+            w_exp.text = macron_exp.replace("ſ", "s")
         else:
             _make_w_lb(parent, left, right)
     elif ae_full:
@@ -431,10 +425,9 @@ def _tokenize_with_italic(span_text: str, span_offset: int,
         is_sic = seg.get("is_sic", False)
         sic_corr = seg.get("corr", None)
         for ttype, ttext in tokenize(seg["text"]):
-            # Buscar la posición exacta del token en el texto del span
             idx = span_text.find(ttext, search_from)
             if idx == -1:
-                idx = search_from  # fallback si no se encuentra
+                idx = search_from
             char_pos_in_line = span_offset + idx
             italic = _offset_is_italic(char_pos_in_line, italic_spans)
             if is_sic and ttype == "word":
@@ -453,8 +446,8 @@ def _flatten_spans(lines: list) -> list:
     El italic se determina por la posición exacta de cada token en el texto
     de la línea, usando italic_spans del PAGE XML como fuente de verdad.
     """
-    result  = []
-    need_lb = True   # primera línea siempre necesita lb_tok
+    result   = []
+    first_lb = [False]
 
     for li, line in enumerate(lines):
         if not line["text"].strip():
@@ -467,9 +460,9 @@ def _flatten_spans(lines: list) -> list:
         italic_spans = line.get("italic_spans", [])
 
         lb_tok = None
-        if need_lb:
-            lb_tok  = ("sol", str(line["line_n"]), None, False, False, False)
-            need_lb = False
+        if not first_lb[0]:
+            lb_tok = ("sol", str(line["line_n"]), None, False, False, False)
+            first_lb[0] = True
 
         if not sent_spans:
             # Sin sentence_spans: toda la línea como un span continuo
@@ -510,20 +503,7 @@ def _flatten_spans(lines: list) -> list:
 
                 if is_last_span and toks and not is_last_line:
                     last = toks[-1]
-                    # Calcular is_sent_end primero
-                    if not is_last_span:
-                        _is_sent_end_for_eol = True
-                    else:
-                        next_line2  = lines[li + 1]
-                        next_spans2 = next_line2.get("sentence_spans", [])
-                        next_cont2  = bool(next_spans2 and next_spans2[0].get("continued"))
-                        _is_sent_end_for_eol = not next_cont2
-
-                    if _is_sent_end_for_eol:
-                        # La oración termina aquí: el <lb> irá al INICIO
-                        # de la siguiente <s>, no al final de ésta.
-                        need_lb = True
-                    elif line["soft_hyphen"]:
+                    if line["soft_hyphen"]:
                         toks[-1] = (last[0], last[1], last[2], False, next_n, last[5])
                     else:
                         toks[-1] = (last[0], last[1], last[2], next_n, False, last[5])
@@ -746,35 +726,18 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
 def _emit_head(parent, lines: list, head_type: str = None):
     """
     Emite líneas de heading como <head> o <head type="sub">.
-    Cada TextLine genera su propio <lb n="X"> al nivel del <head>,
-    seguido de los tokens (envueltos en <hi rend="italic"> si procede).
+    Procesa línea a línea pero fusiona palabras partidas con soft hyphen
+    pasando el primer token de la línea siguiente cuando hay ¬.
     """
     attrib = {"type": head_type} if head_type else {}
     head_el = etree.SubElement(parent, f"{{{TEI_NS}}}head", attrib)
 
+    # Pre-tokenizar todas las líneas
+    line_raws = []
     for line in lines:
         if not line["text"].strip():
+            line_raws.append([])
             continue
-
-        # <lb n="X"> al nivel del head (siempre, incluida la primera línea)
-        lb = etree.SubElement(head_el, f"{{{TEI_NS}}}lb")
-        lb.set("n", str(line["line_n"]))
-
-        # ¿Toda la línea (o casi) es itálica?
-        # Usamos 80% para tolerar que el span no incluya puntuación final
-        italic_spans = line.get("italic_spans", [])
-        line_len     = len(line["text"].rstrip())
-        full_italic  = any(
-            s["offset"] == 0 and s["length"] >= line_len * 0.8
-            for s in italic_spans
-        )
-        if full_italic:
-            container = etree.SubElement(head_el, f"{{{TEI_NS}}}hi")
-            container.set("rend", "italic")
-        else:
-            container = head_el
-
-        # Tokens de esta línea (sin lb inter-línea — ya lo pusimos arriba)
         segments = apply_abbrev_tags(line["text"], line["abbrevs"], line.get("sic_spans", []))
         raw = []
         for seg in segments:
@@ -782,8 +745,50 @@ def _emit_head(parent, lines: list, head_type: str = None):
             for ttype, ttext in tokenize(seg["text"]):
                 tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
                 raw.append((ttype, ttext, tok_exp, False, False))
+        line_raws.append(raw)
+
+    skip_lb = set()  # line indices whose lb was already emitted via soft-hyphen
+    for li, line in enumerate(lines):
+        if not line["text"].strip():
+            continue
+        is_last = (li == len(lines) - 1)
+
+        # <lb n="X"> — omitir si esta línea fue consumida por soft-hyphen anterior
+        if li not in skip_lb:
+            lb = etree.SubElement(head_el, f"{{{TEI_NS}}}lb")
+            lb.set("n", str(line["line_n"]))
+
+        # ¿Toda la línea es itálica?
+        italic_spans = line.get("italic_spans", [])
+        line_len     = len(line["text"].rstrip())
+        full_italic  = any(
+            s["offset"] == 0 and s["length"] >= line_len * 0.8
+            for s in italic_spans
+        )
+        container = etree.SubElement(head_el, f"{{{TEI_NS}}}hi") if full_italic else head_el
+        if full_italic:
+            container.set("rend", "italic")
+
+        raw = list(line_raws[li])
+        if not raw:
+            continue  # línea consumida por soft hyphen anterior
+
+        if line["soft_hyphen"] and not is_last:
+            # Añadir primer token de la línea siguiente para fusión
+            next_raw = line_raws[li + 1]
+            next_n   = lines[li + 1]["line_n"]
+            if raw and next_raw:
+                last = raw[-1]
+                raw[-1] = (last[0], last[1], last[2], False, next_n)
+                raw.append(next_raw[0])  # primer token de la siguiente línea
+        
         for tok in join_split_words(raw):
             emit_token(container, tok)
+        
+        # Si hubo soft hyphen, la siguiente línea empieza desde el token 1
+        if line["soft_hyphen"] and not is_last:
+            line_raws[li + 1] = line_raws[li + 1][1:]
+            skip_lb.add(li + 1)
 
 
 def _trim_line_by_offset(line: dict, start_offset: int) -> dict:
@@ -925,15 +930,7 @@ def lines_to_tei(lines: list, page_n: int, join_left: str = None) -> etree._Elem
         if struct_type in ("heading", "header"):
             _emit_head(div, block_lines)
         elif struct_type == "subheading":
-            # Si la primera línea es continuación de oración anterior → párrafo
-            first_sents = block_lines[0].get("sentence_spans", []) if block_lines else []
-            if first_sents and first_sents[0].get("continued"):
-                _emit_para_block(div, block_lines,
-                                 join_left=join_left,
-                                 is_first_block=first_para)
-                first_para = False
-            else:
-                _emit_head(div, block_lines, head_type="sub")
+            _emit_head(div, block_lines, head_type="sub")
         elif struct_type == "summarium":
             _emit_summarium(div, block_lines)
         else:

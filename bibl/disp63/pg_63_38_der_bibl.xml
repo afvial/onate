@@ -37,9 +37,7 @@
         <w>sit</w>
       </reg>
     </choice>
-    <w>in</w>
-    <lb n="3"/>
-    <w>diuisibile</w>
+    <w>in<lb break="no" n="3"/>diuisibile</w>
     <pc type="comma">,</pc>
     <choice>
       <abbr>
@@ -58,9 +56,14 @@
       </reg>
     </choice>
     <w>ex</w>
-    <w>no</w>
-    <lb n="4"/>
-    <w>stra</w>
+    <choice>
+      <orig>
+        <w>no<lb break="no" n="4"/>ſtra</w>
+      </orig>
+      <reg>
+        <w>nostra</w>
+      </reg>
+    </choice>
     <w>ignorantia</w>
     <w>habeat</w>
     <pc type="other">.</pc>
