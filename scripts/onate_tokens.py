@@ -77,6 +77,7 @@ ABBREV_EXPAN = {
     "lib.":       "libro",
     "n.":         "numero",
     "nu.":        "numero",
+    "num.":        "numero",
     "art.":       "articulo",
     "ar.":        "articulo",
     "artic.":     "articulo",
