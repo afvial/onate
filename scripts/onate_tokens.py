@@ -167,6 +167,7 @@ ABBREV_EXPAN = {
     "Bas.":       "Basilius",
     # Autores escolásticos frecuentes en Oñate
     "Nau.":       "Navarrus",
+    "Nauarr.":    "Navarrus",
     "Mol.":       "Molina",
     "Molin.":     "Molina",
     "Less.":      "Lessius",
