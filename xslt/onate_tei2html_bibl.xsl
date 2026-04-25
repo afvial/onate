@@ -609,6 +609,8 @@
   
   <xsl:template match="tei:choice">
     <xsl:variable name="w" select="((tei:abbr|tei:orig)//tei:w)[1]"/>
+    <!-- Fallback NLP: usar expan/w o reg/w cuando abbr/orig/w no tiene @lemma -->
+    <xsl:variable name="w_nlp" select="((tei:expan|tei:reg)//tei:w)[1]"/>
     <xsl:variable name="expansion">
       <xsl:choose>
         <xsl:when test="tei:expan"><xsl:value-of select="tei:expan"/></xsl:when>
@@ -621,24 +623,43 @@
         <xsl:otherwise>reg</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <!-- Seleccionar fuente de atributos NLP: preferir abbr/w si tiene @lemma, sino expan/w -->
+    <xsl:variable name="lemma">
+      <xsl:choose>
+        <xsl:when test="$w/@lemma != ''"><xsl:value-of select="$w/@lemma"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="$w_nlp/@lemma"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="pos">
+      <xsl:choose>
+        <xsl:when test="$w/@pos != ''"><xsl:value-of select="$w/@pos"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="$w_nlp/@pos"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="msd">
+      <xsl:choose>
+        <xsl:when test="$w/@msd != ''"><xsl:value-of select="$w/@msd"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="$w_nlp/@msd"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
 
     <span class="tei-w tei-choice-{$kind}"
-          data-lemma="{$w/@lemma}" data-pos="{$w/@pos}" data-msd="{$w/@msd}">
+          data-lemma="{$lemma}" data-pos="{$pos}" data-msd="{$msd}">
       <span class="tooltip">
         <table>
           <tr>
             <td class="tip-key">lemma</td>
-            <td class="tip-lemma"><xsl:value-of select="$w/@lemma"/></td>
+            <td class="tip-lemma"><xsl:value-of select="$lemma"/></td>
           </tr>
-          <xsl:if test="$w/@pos != ''">
+          <xsl:if test="$pos != ''">
             <tr>
               <td class="tip-key">POS</td>
-              <td class="tip-pos"><xsl:value-of select="$w/@pos"/></td>
+              <td class="tip-pos"><xsl:value-of select="$pos"/></td>
             </tr>
           </xsl:if>
-          <xsl:if test="$w/@msd != ''">
+          <xsl:if test="$msd != ''">
             <xsl:call-template name="format-msd">
-              <xsl:with-param name="msd" select="$w/@msd"/>
+              <xsl:with-param name="msd" select="$msd"/>
             </xsl:call-template>
           </xsl:if>
           <xsl:if test="$expansion != ''">
