@@ -29,6 +29,7 @@ set -euo pipefail
 SCRIPTS_DIR="scripts"
 TRANSKRIBUS_DIR="transkribus/disp63"
 SRC_DIR="src/disp63"
+NLP_DIR="nlp/disp63"
 BIBL_DIR="bibl/disp63"
 BIBL_MASTER="bibl/disp63/disp63_bibl.xml"
 COMPLETO="output/disp63_bibl_completo.xml"
@@ -70,6 +71,7 @@ if [[ "$1" == "all" ]]; then
         p="${COLS[$i]}"; c="${COLS[$((i+1))]}"
         echo
         bash "$0" "$p" "$c" --only page2tei $OPTS
+        bash "$0" "$p" "$c" --only nlp $OPTS
         bash "$0" "$p" "$c" --only enrich $OPTS
         i=$(( i + 2 ))
     done
@@ -105,9 +107,10 @@ done
 STEM="pg_63_${PAGE}_${COL}"
 PAGE_XML="${TRANSKRIBUS_DIR}/${STEM}.xml"
 SRC_XML="${SRC_DIR}/${STEM}.xml"
+NLP_XML="${NLP_DIR}/${STEM}.xml"
 BIBL_XML="${BIBL_DIR}/${STEM}_bibl.xml"
 
-mkdir -p "$SRC_DIR" "$BIBL_DIR" "output" "html/disp63"
+mkdir -p "$SRC_DIR" "$NLP_DIR" "$BIBL_DIR" "output" "html/disp63"
 
 echo
 echo -e "${BOLD}═══════════════════════════════════════════════════${NC}"
@@ -155,12 +158,20 @@ run_page2tei() {
     ok "TEI diplomático → ${SRC_XML}"
 }
 
+# ── PASO 1.5: Anotación morfológica NLP ──────────────────────────────────────
+run_nlp() {
+    info "Paso 1.5 — Anotación morfológica NLP"
+    [[ -f "$SRC_XML" ]] || fail "No existe: $SRC_XML"
+    python3 "${SCRIPTS_DIR}/onate_nlp.py" "$SRC_XML" --out "$NLP_XML"
+    ok "TEI anotado → ${NLP_XML}"
+}
+
 # ── PASO 2: Enriquecimiento bibliográfico ─────────────────────────────────────
 run_enrich() {
     info "Paso 2 — Enriquecimiento bibliográfico"
-    [[ -f "$SRC_XML" ]] || fail "No existe: $SRC_XML"
+    [[ -f "$NLP_XML" ]] || fail "No existe: $NLP_XML (ejecuta primero el paso nlp)"
     python3 "${SCRIPTS_DIR}/bibl_enricher.py" \
-        "$SRC_XML" "$BIBL_XML" ${FORCE_BIBL}
+        "$NLP_XML" "$BIBL_XML" ${FORCE_BIBL}
     ok "TEI enriquecido → ${BIBL_XML}"
 }
 
@@ -214,6 +225,7 @@ run_html() {
 case "$ONLY" in
     "")
         run_page2tei
+        run_nlp
         run_enrich
         run_assemble
         run_sentences
@@ -221,12 +233,13 @@ case "$ONLY" in
         run_html
         ;;
     page2tei)  run_page2tei ;;
+    nlp)       run_nlp ;;
     enrich)    run_enrich ;;
     assemble)  run_assemble ;;
     sentences) run_sentences ;;
     validate)  run_validate ;;
     html)      run_html ;;
-    *) fail "Paso desconocido: $ONLY (page2tei|enrich|assemble|sentences|validate|html)" ;;
+    *) fail "Paso desconocido: $ONLY (page2tei|nlp|enrich|assemble|sentences|validate|html)" ;;
 esac
 
 echo
