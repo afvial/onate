@@ -673,7 +673,10 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
         if not line["text"].strip():
             continue
         last_has_hyphen = bool(current and current[-1]["soft_hyphen"])
-        if i > 0 and line["first_x"] > INDENT_THRESHOLD and current and not last_has_hyphen:
+        # Nueva <p> por sangría (Transkribus) o por marca ¶ (staging)
+        indent_break    = i > 0 and line["first_x"] > INDENT_THRESHOLD and not last_has_hyphen
+        editorial_break = line.get("paragraph_break", False) and current
+        if (indent_break or editorial_break) and current:
             paragraphs.append(current)
             current = []
         current.append(line)

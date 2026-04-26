@@ -28,6 +28,7 @@ set -euo pipefail
 # ── Configuración ─────────────────────────────────────────────────────────────
 SCRIPTS_DIR="scripts"
 TRANSKRIBUS_DIR="transkribus/disp63"
+STAGING_DIR="staging/disp63"
 SRC_DIR="src/disp63"
 NLP_DIR="nlp/disp63"
 BIBL_DIR="bibl/disp63"
@@ -106,16 +107,30 @@ done
 # ── Nombres de archivo ────────────────────────────────────────────────────────
 STEM="pg_63_${PAGE}_${COL}"
 PAGE_XML="${TRANSKRIBUS_DIR}/${STEM}.xml"
+STAGING_XML="${STAGING_DIR}/${STEM}.xml"
 SRC_XML="${SRC_DIR}/${STEM}.xml"
 NLP_XML="${NLP_DIR}/${STEM}.xml"
 BIBL_XML="${BIBL_DIR}/${STEM}_bibl.xml"
 
-mkdir -p "$SRC_DIR" "$NLP_DIR" "$BIBL_DIR" "output" "html/disp63"
+mkdir -p "$STAGING_DIR" "$SRC_DIR" "$NLP_DIR" "$BIBL_DIR" "output" "html/disp63"
 
 echo
 echo -e "${BOLD}═══════════════════════════════════════════════════${NC}"
 echo -e "${BOLD} Pipeline: página ${PAGE} columna ${COL}${NC}"
 echo -e "${BOLD}═══════════════════════════════════════════════════${NC}"
+
+# ── PASO 0: Normalización PAGE XML → staging/ ────────────────────────────────
+run_normalize() {
+    info "Paso 0 — Normalización PAGE XML → staging/"
+    [[ -f "$PAGE_XML" ]] || fail "No existe: $PAGE_XML"
+    if [[ -f "$STAGING_XML" ]]; then
+        warn "Ya existe staging: ${STAGING_XML} — se conserva sin sobrescribir"
+        warn "  (edítalo manualmente o bórralo para regenerar desde Transkribus)"
+    else
+        python3 "${SCRIPTS_DIR}/onate_normalize.py" "$PAGE_XML" --out "$STAGING_XML"
+        ok "PAGE XML normalizado → ${STAGING_XML}"
+    fi
+}
 
 # ── PASO 1: PAGE XML → TEI diplomático ───────────────────────────────────────
 # Los reclamos tipográficos (catchwords) se detectan automáticamente con
@@ -126,6 +141,12 @@ echo -e "${BOLD}═════════════════════�
 run_page2tei() {
     info "Paso 1 — PAGE XML → TEI diplomático"
     [[ -f "$PAGE_XML" ]] || fail "No existe: $PAGE_XML"
+    # Usar staging/ si existe (puede tener marcas editoriales), sino Transkribus
+    local SOURCE_XML="$PAGE_XML"
+    if [[ -f "$STAGING_XML" ]]; then
+        SOURCE_XML="$STAGING_XML"
+        info "Usando staging: ${STAGING_XML}"
+    fi
 
     # Leer el catchword guardado por la columna anterior (si existe)
     JOIN_ARG=""
@@ -145,7 +166,7 @@ run_page2tei() {
 
     # Ejecutar page2tei con --strip-catchword; capturar el reclamo en stdout
     CATCHWORD=$(python3 "${SCRIPTS_DIR}/onate_page2tei.py" \
-        "$PAGE_XML" --out-xml "$SRC_XML" --page "$PAGE" \
+        "$SOURCE_XML" --out-xml "$SRC_XML" --page "$PAGE" \
         --strip-catchword ${JOIN_ARG} ${VERBOSE})
 
     # Guardar el reclamo detectado para la siguiente columna
@@ -161,7 +182,7 @@ run_page2tei() {
 # ── PASO 1.5: Anotación morfológica NLP ──────────────────────────────────────
 run_nlp() {
     info "Paso 1.5 — Anotación morfológica NLP"
-    [[ -f "$SRC_XML" ]] || fail "No existe: $SRC_XML"
+    [[ -f "$SRC_XML" ]] || fail "No existe: $SRC_XML (ejecuta primero page2tei)"
     python3 "${SCRIPTS_DIR}/onate_nlp.py" "$SRC_XML" --out "$NLP_XML"
     ok "TEI anotado → ${NLP_XML}"
 }
@@ -169,7 +190,7 @@ run_nlp() {
 # ── PASO 2: Enriquecimiento bibliográfico ─────────────────────────────────────
 run_enrich() {
     info "Paso 2 — Enriquecimiento bibliográfico"
-    [[ -f "$NLP_XML" ]] || fail "No existe: $NLP_XML (ejecuta primero el paso nlp)"
+    [[ -f "$NLP_XML" ]] || fail "No existe: $NLP_XML (ejecuta primero nlp)"
     python3 "${SCRIPTS_DIR}/bibl_enricher.py" \
         "$NLP_XML" "$BIBL_XML" ${FORCE_BIBL}
     ok "TEI enriquecido → ${BIBL_XML}"
@@ -232,6 +253,7 @@ case "$ONLY" in
         run_validate
         run_html
         ;;
+    normalize) run_normalize ;;
     page2tei)  run_page2tei ;;
     nlp)       run_nlp ;;
     enrich)    run_enrich ;;
@@ -239,7 +261,7 @@ case "$ONLY" in
     sentences) run_sentences ;;
     validate)  run_validate ;;
     html)      run_html ;;
-    *) fail "Paso desconocido: $ONLY (page2tei|nlp|enrich|assemble|sentences|validate|html)" ;;
+    *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|enrich|assemble|sentences|validate|html)" ;;
 esac
 
 echo

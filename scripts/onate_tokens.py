@@ -984,8 +984,47 @@ def parse_span_tags(custom: str, tag_name: str) -> list:
 
 
 def extract_lines(page_xml_path: Path) -> list:
+    """
+    Lee líneas desde:
+      - Formato staging ligero: <lines><line id="...">texto</line></lines>
+      - PAGE XML de Transkribus: formato habitual con TextLine y coordenadas
+
+    Devuelve lista de dicts compatibles con el resto del pipeline.
+    """
     tree = etree.parse(str(page_xml_path))
     root = tree.getroot()
+
+    # ── Formato staging ligero ────────────────────────────────────────────────
+    if root.tag == "lines":
+        lines = []
+        for i, line_elem in enumerate(root.findall("line")):
+            text = (line_elem.text or "").strip()
+            if not text:
+                continue
+            soft_hyphen = text.rstrip().endswith("¬")
+            if soft_hyphen:
+                text = text.rstrip()[:-1].rstrip()
+            lines.append({
+                "text":               text,
+                "abbrevs":            [],
+                "structure_type":     None,
+                "sentence_spans":     [],
+                "index_entry_spans":  [],
+                "summary_item_spans": [],
+                "italic_spans":       [],
+                "sic_spans":          [],
+                "region_id":          "r1",
+                "reading_order":      i,
+                "soft_hyphen":        soft_hyphen,
+                "first_x":            0,
+                "line_n":             i + 1,
+            })
+        # Procesar marcas editoriales (¶ // * @ @@)
+        if _has_editorial_marks(lines):
+            parse_editorial_marks(lines)
+        return lines
+
+    # ── PAGE XML de Transkribus ───────────────────────────────────────────────
     lines = []
     for tl in root.iter(f"{{{PAGE_NS}}}TextLine"):
         equiv = tl.find(f".//{{{PAGE_NS}}}TextEquiv/{{{PAGE_NS}}}Unicode")
@@ -1031,6 +1070,9 @@ def extract_lines(page_xml_path: Path) -> list:
     lines.sort(key=lambda l: (l["region_id"], l["reading_order"]))
     for i, line in enumerate(lines):
         line["line_n"] = i + 1
+    # Procesar marcas editoriales si el archivo viene de staging/
+    if _has_editorial_marks(lines):
+        parse_editorial_marks(lines)
     return lines
 
 
@@ -1113,3 +1155,246 @@ def tokenize(text: str) -> list:
 
 # ── Construcción TEI ──────────────────────────────────────────────────────────
 
+
+
+# ── Marcas editoriales (staging/) ────────────────────────────────────────────
+
+def _close_span(lines: list, kind: str,
+                end_li: int, start_li: int,
+                start_off: int, end_off: int) -> None:
+    """
+    Registra un span (italic o bibl) que va desde lines[start_li][start_off]
+    hasta lines[end_li][end_off].
+    kind: 'italic' | 'bibl'
+    Si cruza líneas, registra fragmentos en cada línea con length=end_of_line
+    calculado a posteriori (se fija cuando se procesa esa línea).
+    """
+    INF = float("inf")
+    if start_li == end_li:
+        if kind == "italic":
+            lines[end_li]["italic_spans"].append({
+                "offset": start_off, "length": end_off - start_off,
+                "italic": True, "continued": False,
+            })
+        else:
+            lines[end_li]["bibl_spans"].append({
+                "offset": start_off, "length": end_off - start_off,
+            })
+    else:
+        # Línea de inicio: hasta el final (length=INF → se reemplaza al final del loop)
+        if kind == "italic":
+            lines[start_li]["italic_spans"].append({
+                "offset": start_off, "length": INF,
+                "italic": True, "continued": False,
+            })
+            for mid in range(start_li + 1, end_li):
+                lines[mid]["italic_spans"].append({
+                    "offset": 0, "length": INF,
+                    "italic": True, "continued": True,
+                })
+            lines[end_li]["italic_spans"].append({
+                "offset": 0, "length": end_off,
+                "italic": True, "continued": True,
+            })
+        else:
+            lines[start_li]["bibl_spans"].append({
+                "offset": start_off, "length": INF,
+            })
+            for mid in range(start_li + 1, end_li):
+                lines[mid]["bibl_spans"].append({
+                    "offset": 0, "length": INF,
+                })
+            lines[end_li]["bibl_spans"].append({
+                "offset": 0, "length": end_off,
+            })
+
+
+def _has_editorial_marks(lines: list) -> bool:
+    """True si alguna línea contiene marcas editoriales."""
+    marks = {"¶", "*", "@", "/"}
+    return any(
+        any(ch in marks for ch in line.get("text", ""))
+        for line in lines
+    )
+
+
+def parse_editorial_marks(lines: list) -> None:
+    """
+    Procesa marcas editoriales en el texto Unicode de staging/:
+
+      ¶      → nueva <p> antes de esta posición
+      //     → límite de oración en esta posición
+      *…*    → span itálico (puede cruzar líneas)
+      @…@    → span bibliográfico (puede cruzar líneas)
+      @@     → cierra bibl actual y abre nuevo inmediatamente
+
+    Modifica los dicts de línea in-place:
+      - Elimina las marcas del texto limpio
+      - Ajusta offsets de abbrevs/sic/italic_spans existentes
+      - Convierte sentence_breaks en sentence_spans compatibles con _flatten_spans
+      - Añade: paragraph_break (bool), bibl_spans ([{offset, length}])
+      - Extiende italic_spans con spans de *…*
+    """
+    # Estado entre líneas
+    in_italic = False
+    in_bibl   = False
+    italic_start_li = italic_start_off = None
+    bibl_start_li   = bibl_start_off   = None
+
+    # Continuidad de oración: True = la siguiente línea continúa la oración actual
+    sentence_is_open = False
+
+    for li, line in enumerate(lines):
+        text = line["text"]
+
+        # Inicializar campos nuevos
+        line.setdefault("paragraph_break", False)
+        line.setdefault("bibl_spans", [])
+
+        # ── Escanear y limpiar marcas ─────────────────────────────────────
+        clean_chars     = []
+        sentence_breaks = []   # posiciones en clean donde cae //
+        para_break      = False
+        removed         = []   # [(orig_pos, n_chars)]
+
+        i = 0
+        while i < len(text):
+            ch = text[i]
+
+            # ¶ → párrafo
+            if ch == "¶":
+                para_break = True
+                removed.append((i, 1))
+                i += 1
+                continue
+
+            # // → límite de oración
+            if ch == "/" and i + 1 < len(text) and text[i + 1] == "/":
+                sentence_breaks.append(len(clean_chars))
+                removed.append((i, 2))
+                i += 2
+                continue
+
+            # @@ → cierra bibl actual, abre nuevo
+            if ch == "@" and i + 1 < len(text) and text[i + 1] == "@":
+                if in_bibl:
+                    _close_span(lines, "bibl", li,
+                                bibl_start_li, bibl_start_off, len(clean_chars))
+                in_bibl = True
+                bibl_start_li  = li
+                bibl_start_off = len(clean_chars)
+                removed.append((i, 2))
+                i += 2
+                continue
+
+            # @ → abre / cierra bibl
+            if ch == "@":
+                if not in_bibl:
+                    in_bibl = True
+                    bibl_start_li  = li
+                    bibl_start_off = len(clean_chars)
+                else:
+                    in_bibl = False
+                    _close_span(lines, "bibl", li,
+                                bibl_start_li, bibl_start_off, len(clean_chars))
+                removed.append((i, 1))
+                i += 1
+                continue
+
+            # * → abre / cierra italic
+            if ch == "*":
+                if not in_italic:
+                    in_italic = True
+                    italic_start_li  = li
+                    italic_start_off = len(clean_chars)
+                else:
+                    in_italic = False
+                    _close_span(lines, "italic", li,
+                                italic_start_li, italic_start_off, len(clean_chars))
+                removed.append((i, 1))
+                i += 1
+                continue
+
+            clean_chars.append(ch)
+            i += 1
+
+        clean_text = "".join(clean_chars)
+
+        # ── Reemplazar INF por longitud real de la línea ──────────────────
+        # (solo en líneas ya procesadas; la línea actual aún no tiene spans con INF
+        # añadidos en _close_span para sí misma — esos se añadieron con length real)
+        real_len = len(clean_text)
+        for span in line.get("italic_spans", []):
+            if span.get("length") == float("inf"):
+                span["length"] = real_len
+        for span in line.get("bibl_spans", []):
+            if span.get("length") == float("inf"):
+                span["length"] = real_len
+
+        # ── Ajustar offsets existentes por los chars eliminados ───────────
+        if removed:
+            def adjust(off):
+                return off - sum(n for p, n in removed if p < off)
+            for a in line.get("abbrevs", []):
+                a["offset"] = adjust(a["offset"])
+            for s in line.get("sic_spans", []):
+                s["offset"] = adjust(s["offset"])
+            # italic_spans de Transkribus (no los recién añadidos desde *)
+            for s in line.get("italic_spans", []):
+                if not s.get("continued") and s.get("_editorial") is not True:
+                    if s.get("offset") is not None:
+                        s["offset"] = adjust(s["offset"])
+
+        line["text"] = clean_text
+
+        # ── Párrafo ───────────────────────────────────────────────────────
+        if para_break:
+            line["paragraph_break"] = True
+            sentence_is_open = False
+
+        # ── sentence_spans desde sentence_breaks ──────────────────────────
+        # Construir lista de spans que _flatten_spans ya entiende.
+        # Positions: [0] + sentence_breaks + (nada, el final lo marca length)
+        breaks = sorted(set(sentence_breaks))
+
+        if breaks or not sentence_is_open:
+            # Necesitamos generar sentence_spans explícitos
+            cuts = [0] + breaks + [len(clean_text)]
+            spans = []
+            for idx in range(len(cuts) - 1):
+                start = cuts[idx]
+                end   = cuts[idx + 1]
+                if end <= start:
+                    continue
+                spans.append({
+                    "offset":    start,
+                    "length":    end - start,
+                    "continued": sentence_is_open if idx == 0 else False,
+                    "italic":    False,
+                })
+                sentence_is_open = False  # tras primer span, siempre nueva oración
+
+            if spans:
+                line["sentence_spans"] = spans
+
+            # La última oración de la línea continúa en la siguiente
+            # solo si no terminó exactamente en el último break
+            if breaks and breaks[-1] >= len(clean_text):
+                sentence_is_open = False
+            else:
+                sentence_is_open = True
+
+        else:
+            # Línea sin marcas que continúa una oración abierta:
+            # Añadir un span explícito con continued=True para que
+            # _flatten_spans no cierre la oración al final de la línea.
+            if clean_text.strip():
+                line.setdefault("sentence_spans", None)
+                if not line.get("sentence_spans"):
+                    line["sentence_spans"] = [{
+                        "offset":    0,
+                        "length":    len(clean_text),
+                        "continued": True,
+                        "italic":    False,
+                    }]
+            sentence_is_open = True
