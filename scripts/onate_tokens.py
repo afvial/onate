@@ -1020,8 +1020,7 @@ def extract_lines(page_xml_path: Path) -> list:
                 "line_n":             i + 1,
             })
         # Procesar marcas editoriales (¶ // * @ @@)
-        if _has_editorial_marks(lines):
-            parse_editorial_marks(lines)
+        parse_editorial_marks(lines)
         return lines
 
     # ── PAGE XML de Transkribus ───────────────────────────────────────────────
@@ -1071,8 +1070,7 @@ def extract_lines(page_xml_path: Path) -> list:
     for i, line in enumerate(lines):
         line["line_n"] = i + 1
     # Procesar marcas editoriales si el archivo viene de staging/
-    if _has_editorial_marks(lines):
-        parse_editorial_marks(lines)
+    parse_editorial_marks(lines)
     return lines
 
 

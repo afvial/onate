@@ -624,7 +624,7 @@ def _emit_sentence_spans(s_el, all_raw6: list):
         if is_italic:
             container = etree.SubElement(s_el, f"{{{TEI_NS}}}hi")
             container.set("rend", "italic")
-            _emit_bibl_content(container, grp)
+        _emit_bibl_content(container, grp)
 
 
 def _emit_sentences(parent, sentence_list: list):
