@@ -281,47 +281,28 @@ def add_pc(parent, text: str):
 
 
 def emit_legal_bibl(parent, legal_tok: dict):
-    """Emite <hi rend="italic"><bibl type="legal"> para una cita jurídica.
-    En el impreso toda referencia bibliográfica va en cursiva, incluyendo
-    las jurídicas aunque Transkribus no las marque como tal.
-    """
-    hi   = etree.SubElement(parent, f"{{{TEI_NS}}}hi")
-    hi.set("rend", "italic")
-    bibl = etree.SubElement(hi, f"{{{TEI_NS}}}bibl")
+    """Emite <bibl type="legal"> para una cita jurídica."""
+    bibl = etree.SubElement(parent, f"{{{TEI_NS}}}bibl")
     bibl.set("type", "legal")
     for tok in legal_tok["toks"]:
         emit_token(bibl, tok)
 
 
 def emit_hi_bibl(parent, hi_tok: dict):
-    """Emite un único <hi rend="italic"> por bloque bibliográfico.
-    Dentro van todos los <bibl> y los conectores inter (ibi, ex parte, &)
-    en el orden en que aparecen, separados por el & que los precede.
-
-    Estructura resultante:
-      <hi rend="italic">
-        <bibl>...</bibl>          ← primer bibl
-        & et                      ← conector (&) + inter (ibi / ex parte)
-        <bibl>...</bibl>          ← segundo bibl
-      </hi>
+    """Emite bloques bibliográficos como <bibl> directo al padre.
+    La itálica viene exclusivamente de las marcas *…* del staging.
     """
     groups = hi_tok["groups"]
     if not groups:
         return
-
-    # Un único <hi> para todo el bloque
-    hi = etree.SubElement(parent, f"{{{TEI_NS}}}hi")
-    hi.set("rend", "italic")
-
     for group in groups:
         if group["kind"] == "bibl":
-            bibl = etree.SubElement(hi, f"{{{TEI_NS}}}bibl")
+            bibl = etree.SubElement(parent, f"{{{TEI_NS}}}bibl")
             for tok in group["toks"]:
                 emit_token(bibl, tok)
-        else:  # inter — ibi, ex parte, etc. van dentro del <hi>
+        else:
             for tok in group["toks"]:
-                emit_token(hi, tok)
-
+                emit_token(parent, tok)
 
 
 def emit_token(parent, tok: dict):
@@ -634,7 +615,6 @@ def _emit_sentence_spans(s_el, all_raw6: list):
 
     for is_italic, grp in groupby(tokens, key=lambda t: t.get("italic", False)):
         grp = list(grp)
-        # sol/lb sin contenido: siempre al nivel de s_el
         if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic","sic_lb")
                    for t in grp):
             for tok in grp:
@@ -644,7 +624,7 @@ def _emit_sentence_spans(s_el, all_raw6: list):
         if is_italic:
             container = etree.SubElement(s_el, f"{{{TEI_NS}}}hi")
             container.set("rend", "italic")
-        _emit_bibl_content(container, grp)
+            _emit_bibl_content(container, grp)
 
 
 def _emit_sentences(parent, sentence_list: list):
@@ -832,23 +812,10 @@ def _trim_line_by_offset(line: dict, start_offset: int) -> dict:
 
 def _wrap_italic_spans(parent, lines: list, emit_fn):
     """
-    Emite tokens de un bloque summarium dentro de <hi rend="italic">
-    si todas las líneas del bloque tienen italic_spans que cubren
-    sustancialmente el texto. Usa _flatten_lines_to_raw_tokens para
-    preservar correctamente eol/split/lb.
+    Emite tokens sin envolver en <hi> automáticamente.
+    La itálica viene exclusivamente de las marcas *…* del staging.
     """
-    all_full_italic = all(
-        any(s.get("italic", True) and
-            s["offset"] == 0 and s["length"] >= len(l["text"].rstrip()) * 0.8
-            for s in l.get("italic_spans", []))
-        for l in lines if l["text"].strip()
-    )
-    if all_full_italic:
-        hi = etree.SubElement(parent, f"{{{TEI_NS}}}hi")
-        hi.set("rend", "italic")
-        container = hi
-    else:
-        container = parent
+    container = parent
 
     raw    = _flatten_lines_to_raw_tokens(lines, [False])
     tokens = join_split_words(raw)

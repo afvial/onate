@@ -166,7 +166,7 @@
           span.tei-sic { position: relative; cursor: default; }
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
-          span.tei-bibl { font-style: italic; padding-right: 0.15em; }
+          span.tei-bibl { padding-right: 0.15em; }
 
           /* Citas de autoridad */
           span.tei-cit {
@@ -177,11 +177,7 @@
             background: #fdf5e6;
             border-radius: 2px;
           }
-          /* Autor dentro de cita */
-          span.tei-author {
-            font-style: italic;
-          }
-
+         
           /* Abreviaturas y grafías originales */
           span.tei-choice {
             position: relative;
