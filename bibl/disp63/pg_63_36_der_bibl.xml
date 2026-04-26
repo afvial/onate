@@ -98,8 +98,6 @@
       </choice>
       <w lemma="uenio" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act">venire</w>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <w lemma="ita" pos="ADV">Ita</w>
       <cit xml:id="cit_p36_der_Caietanus_ST_1">
         <bibl corresp="#bib_Caietanus_ST" cert="high">
@@ -109,17 +107,17 @@
                 <w>Caiet.</w>
               </abbr>
               <expan>
-                <w lemma="Caietanus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Caietanus</w>
+                <w>Caietanus</w>
               </expan>
             </choice>
           </author>
           <lb n="6"/>
           <biblScope unit="?">
-            <w lemma="2" pos="NUM">2</w>
+            <w>2</w>
           </biblScope>
           <pc type="other">.</pc>
           <biblScope unit="?">
-            <w lemma="2" pos="NUM">2</w>
+            <w>2</w>
           </biblScope>
           <pc type="other">.</pc>
           <choice>
@@ -127,11 +125,11 @@
               <w>q.</w>
             </abbr>
             <expan>
-              <w lemma="quaestio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">quaestio</w>
+              <w>quaestio</w>
             </expan>
           </choice>
           <biblScope unit="quaestio">
-            <w lemma="77" pos="NUM">77</w>
+            <w>77</w>
           </biblScope>
           <pc type="other">.</pc>
           <choice>
@@ -139,18 +137,20 @@
               <w>ar.</w>
             </abbr>
             <expan>
-              <w lemma="articulus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">articulo</w>
+              <w>articulo</w>
             </expan>
           </choice>
           <biblScope unit="articulus">
-            <w lemma="1" pos="NUM">1</w>
+            <w>1</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <w>ad</w>
+          <biblScope unit="ad">
+            <w>1</w>
           </biblScope>
           <pc type="other">.</pc>
         </bibl>
       </cit>
-      <w lemma="ad" pos="ADP">ad</w>
-      <w lemma="1" pos="NUM">1</w>
-      <pc type="other">.</pc>
       <cit xml:id="cit_p36_der_Molina_IurIure_2">
         <bibl corresp="#bib_Molina_IurIure" cert="high">
           <author ref="#pers_Molina">
@@ -159,7 +159,7 @@
                 <w>Mol.</w>
               </abbr>
               <expan>
-                <w lemma="Molina" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Molina</w>
+                <w>Molina</w>
               </expan>
             </choice>
           </author>
@@ -168,11 +168,11 @@
               <w>disp.</w>
             </abbr>
             <expan>
-              <w lemma="disputatio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">disputatio</w>
+              <w>disputatio</w>
             </expan>
           </choice>
           <biblScope unit="disput">
-            <w lemma="347" pos="NUM">347</w>
+            <w>347</w>
           </biblScope>
           <pc type="other">.</pc>
         </bibl>
@@ -197,21 +197,21 @@
                 <w>Medin.</w>
               </abbr>
               <expan>
-                <w lemma="Medina" pos="PROPN" msd="Case=Voc|Gender=Fem|Number=Sing">Medina</w>
+                <w>Medina</w>
+              </expan>
+            </choice>
+            <choice>
+              <abbr>
+                <w>C.</w>
+              </abbr>
+              <expan>
+                <w>Codex Iustinianus</w>
               </expan>
             </choice>
           </author>
+          <w>de</w>
         </bibl>
       </cit>
-      <choice>
-        <abbr>
-          <w>C.</w>
-        </abbr>
-        <expan>
-          <w lemma="Codex" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Codex Iustinianus</w>
-        </expan>
-      </choice>
-      <w lemma="de" pos="ADP">de</w>
       <w lemma="restitutio" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing">restitutione</w>
       <lb n="8"/>
       <choice>
@@ -227,43 +227,47 @@
       <cit xml:id="cit_p36_der_Soto_IusIure_4">
         <bibl corresp="#bib_Soto_IusIure" cert="high">
           <author ref="#pers_Soto">
-            <w lemma="Sotus" pos="PROPN" msd="Case=Acc|Gender=Masc|Number=Sing">Soto</w>
+            <w>Soto</w>
           </author>
           <biblScope unit="?">
-            <w lemma="6" pos="NUM">6</w>
+            <w>6</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <w>de</w>
+          <choice>
+            <abbr>
+              <w>iust.</w>
+            </abbr>
+            <expan>
+              <w>iustitia</w>
+            </expan>
+          </choice>
+          <choice>
+            <abbr>
+              <w>q.</w>
+            </abbr>
+            <expan>
+              <w>quaestio</w>
+            </expan>
+          </choice>
+          <biblScope unit="quaestio">
+            <w>2</w>
+          </biblScope>
+          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>art.</w>
+            </abbr>
+            <expan>
+              <w>articulo</w>
+            </expan>
+          </choice>
+          <biblScope unit="articulus">
+            <w>3</w>
           </biblScope>
           <pc type="other">.</pc>
         </bibl>
       </cit>
-      <w lemma="de" pos="ADP">de</w>
-      <choice>
-        <abbr>
-          <w>iust.</w>
-        </abbr>
-        <expan>
-          <w lemma="iustitia" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">iustitia</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>q.</w>
-        </abbr>
-        <expan>
-          <w lemma="quaestio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">quaestio</w>
-        </expan>
-      </choice>
-      <w lemma="2" pos="NUM">2</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>art.</w>
-        </abbr>
-        <expan>
-          <w lemma="articulus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">articulo</w>
-        </expan>
-      </choice>
-      <w lemma="3" pos="NUM">3</w>
-      <pc type="other">.</pc>
       <cit xml:id="cit_p36_der_Covarrubias_Var_5">
         <bibl corresp="#bib_Covarrubias_Var" cert="high">
           <author ref="#pers_Covarrubias">
@@ -272,12 +276,12 @@
                 <w>Couarr.</w>
               </abbr>
               <expan>
-                <w lemma="Couarrubias" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Covarrubias</w>
+                <w>Covarrubias</w>
               </expan>
             </choice>
           </author>
           <biblScope unit="?">
-            <w lemma="2" pos="NUM">2</w>
+            <w>2</w>
           </biblScope>
           <pc type="other">.</pc>
           <lb n="9"/>
@@ -286,7 +290,7 @@
               <w>var.</w>
             </abbr>
             <expan>
-              <w lemma="uarius" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Plur">variarum</w>
+              <w>variarum</w>
             </expan>
           </choice>
           <choice>
@@ -294,16 +298,16 @@
               <w>cap.</w>
             </abbr>
             <expan>
-              <w lemma="capitulum" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing">capitulo</w>
+              <w>capitulo</w>
             </expan>
           </choice>
           <biblScope unit="chap">
-            <w lemma="3" pos="NUM">3</w>
+            <w>3</w>
           </biblScope>
           <pc type="other">.</pc>
+          <w>ad</w>
         </bibl>
       </cit>
-      <w lemma="ad" pos="ADP">ad</w>
       <w lemma="facio" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">fi</w>
       <pc type="other">.</pc>
       <choice>
@@ -357,8 +361,6 @@
         </reg>
       </choice>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <cit xml:id="cit_p36_der_Faustus_Empt_6">
         <bibl corresp="#bib_Faustus_Empt" cert="low">
           <author ref="#pers_Faustus_inc">
@@ -372,10 +374,10 @@
               </expan>
             </choice>
           </author>
-          <w lemma="Faustinus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Faustinus</w>
+          <w>Faustinus</w>
+          <w>de</w>
         </bibl>
       </cit>
-      <w lemma="de" pos="ADP">de</w>
       <w lemma="emptio" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">em<lb break="no" n="12"/>ptione</w>
       <choice>
         <abbr>
@@ -453,18 +455,18 @@
       <cit xml:id="cit_p36_der_Soto_IusIure_7">
         <bibl corresp="#bib_Soto_IusIure" cert="high">
           <author ref="#pers_Soto">
-            <w lemma="Sotus" pos="PROPN" msd="Case=Acc|Gender=Masc|Number=Sing">Soto</w>
+            <w>Soto</w>
           </author>
           <choice>
             <abbr>
               <w>lib.</w>
             </abbr>
             <expan>
-              <w lemma="liber" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">libro</w>
+              <w>libro</w>
             </expan>
           </choice>
           <biblScope unit="book">
-            <w lemma="6" pos="NUM">6</w>
+            <w>6</w>
           </biblScope>
           <pc type="other">.</pc>
           <choice>
@@ -472,11 +474,11 @@
               <w>q.</w>
             </abbr>
             <expan>
-              <w lemma="quaestio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">quaestio</w>
+              <w>quaestio</w>
             </expan>
           </choice>
           <biblScope unit="quaestio">
-            <w lemma="2" pos="NUM">2</w>
+            <w>2</w>
           </biblScope>
           <pc type="other">.</pc>
           <choice>
@@ -484,21 +486,17 @@
               <w>ar.</w>
             </abbr>
             <expan>
-              <w lemma="articulus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">articulo</w>
+              <w>articulo</w>
             </expan>
           </choice>
           <biblScope unit="articulus">
-            <w lemma="3" pos="NUM">3</w>
+            <w>3</w>
           </biblScope>
           <pc type="other">.</pc>
+          <lb n="15"/>
+          <w>Pretium</w>
         </bibl>
       </cit>
-    </s>
-  </p>
-  <p>
-    <s>
-      <lb n="15"/>
-      <w lemma="pretium" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing">Pretium</w>
       <w lemma="conuentionalis" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing">conuentionale</w>
       <w lemma="tertio" pos="ADV">tertio</w>
       <w lemma="locus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">loco</w>
@@ -652,8 +650,6 @@
       </choice>
       <w lemma="uestis" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">vestis</w>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <w lemma="quia" pos="SCONJ">Quia</w>
       <w lemma="ergo" pos="ADV">ergo</w>
       <w lemma="tunc" pos="ADV">tunc</w>
@@ -784,8 +780,6 @@
       <w lemma="conuentionalis" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing">conuentionale</w>
       <w lemma="dico" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">dicitur</w>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <w lemma="quod" pos="SCONJ">Quod</w>
       <choice>
         <orig>
@@ -910,8 +904,6 @@
         </reg>
       </choice>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <w lemma="ita" pos="ADV">Ita</w>
       <w lemma="hic" pos="DET" msd="Case=Acc|Gender=Neut|Number=Sing">hoc</w>
       <w lemma="pretium" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">pretium</w>
@@ -1018,10 +1010,6 @@
       </choice>
       <w lemma="diminuo" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">diminuta</w>
       <pc type="other">.</pc>
-    </s>
-  </p>
-  <p>
-    <s>
       <lb n="46"/>
       <w lemma="sed" pos="CCONJ">Sed</w>
       <choice>
@@ -1150,8 +1138,6 @@
         </reg>
       </choice>
       <pc type="other">.</pc>
-    </s>
-    <s>
       <w lemma="quod" pos="SCONJ">Quod</w>
       <choice>
         <orig>
