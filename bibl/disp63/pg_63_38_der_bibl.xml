@@ -895,33 +895,25 @@
       </choice>
       <pc type="comma">,</pc>
       <w lemma="dico" pos="VERB" msd="Case=Abl|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act">dicente</w>
-      <cit xml:id="cit_p38_der_Arist_Ethica_1">
-        <bibl corresp="#bib_Arist_Ethica" cert="high">
-          <author ref="#pers_Aristoteles">
-            <choice>
-              <abbr>
-                <w>Arist.</w>
-              </abbr>
-              <expan>
-                <w>Aristoteles</w>
-              </expan>
-            </choice>
-          </author>
-          <choice>
-            <abbr>
-              <w>lib.</w>
-            </abbr>
-            <expan>
-              <w>libro</w>
-            </expan>
-          </choice>
-          <lb n="52"/>
-          <biblScope unit="book">
-            <w>1</w>
-          </biblScope>
-          <pc type="other">.</pc>
-        </bibl>
-      </cit>
+      <choice>
+        <abbr>
+          <w>Arist.</w>
+        </abbr>
+        <expan>
+          <w lemma="Aristoteles" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Aristoteles</w>
+        </expan>
+      </choice>
+      <choice>
+        <abbr>
+          <w>lib.</w>
+        </abbr>
+        <expan>
+          <w lemma="liber" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">libro</w>
+        </expan>
+      </choice>
+      <lb n="52"/>
+      <w lemma="1" pos="NUM">1</w>
+      <pc type="other">.</pc>
       <w lemma="mags" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">magn</w>
       <pc type="other">.</pc>
       <w lemma="moralis" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">moral</w>
