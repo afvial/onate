@@ -4,7 +4,7 @@
   xmlns:tei="http://www.tei-c.org/ns/1.0"
   exclude-result-prefixes="tei">
 
-  <xsl:strip-space elements="tei:s tei:item tei:hi tei:list tei:div tei:p tei:note"/>
+  <xsl:strip-space elements="tei:s tei:item tei:hi tei:list tei:div tei:note"/>
 
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
@@ -83,21 +83,24 @@
             padding-right: 0;
           }
           .col-label {
-            font-size: 0.72rem;
-            color: #aaa;
-            text-align: center;
-            margin-bottom: var(--lh);
-            
-            letter-spacing: 0.05em;
+          font-size: 0.72rem;
+          color: #aaa;
+          text-align: center;
+          margin-bottom: var(--lh);
+          
+          letter-spacing: 0.05em;
           }
 
-          p.tei-p {
-            margin: 0;
-            text-indent: 1.2em;
-            line-height: var(--lh);
+          span.tei-p {
+          display: block;
+          margin: 0;
+          text-indent: 1.2em;
+          line-height: var(--lh);
           }
-          p.tei-p-first {
-            text-indent: 0;
+          span.tei-p-first {
+          display: block;
+          margin: 0;
+          text-indent: 0;
           }
 
           span.tei-s { display: inline; }
@@ -374,10 +377,10 @@
   <xsl:template match="tei:p">
     <xsl:choose>
       <xsl:when test="not(preceding-sibling::tei:p)">
-        <p class="tei-p tei-p-first"><xsl:apply-templates/></p>
+        <span class="tei-p tei-p-first"><xsl:apply-templates/></span>
       </xsl:when>
       <xsl:otherwise>
-        <p class="tei-p"><xsl:apply-templates/></p>
+        <span class="tei-p"><xsl:apply-templates/></span>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -549,7 +552,10 @@
   <xsl:template match="tei:lb[not(@break='no') and @n]">
     <!-- Si el siguiente hermano es pc, el pc se encarga del salto -->
     <xsl:if test="not(following-sibling::*[1][self::tei:pc])">
-      <br/>
+      <!-- Suprimir <br/> en lb n=1 de párrafos no-primeros (la sangría lo marca) -->
+      <xsl:if test="not(not(preceding-sibling::*) and parent::tei:s[not(preceding-sibling::*)] and ancestor::tei:p[preceding-sibling::tei:p])">
+        <br/>
+      </xsl:if>
       <xsl:variable name="n" select="@n"/>
       <xsl:variable name="mod5" select="$n mod 5"/>
       <xsl:choose>
