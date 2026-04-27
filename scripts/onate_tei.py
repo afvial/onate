@@ -533,9 +533,9 @@ def _group_spans_into_sentences(spans: list) -> list:
 
 
 
-def _emit_bibl_content(container, tokens: list):
+def _emit_bibl_content(container, tokens: list, staging: bool = False):
     """Emite tokens con detección bibl/legal SIN añadir <hi> envolvente."""
-    grouped = group_legal_tokens(group_bibl_tokens(tokens))
+    grouped = tokens if staging else group_legal_tokens(group_bibl_tokens(tokens))
     for tok in grouped:
         if tok["kind"] == "hi_bibl":
             for group in tok["groups"]:
@@ -602,7 +602,7 @@ def _join_split_words_6(raw6: list) -> list:
     return tokens
 
 
-def _emit_sentence_spans(s_el, all_raw6: list):
+def _emit_sentence_spans(s_el, all_raw6: list, staging: bool = False):
     """
     Emite una oración abriendo/cerrando <hi rend="italic"> cuando cambia
     el italic entre tokens consecutivos. Acepta lista plana de 6-tuplas.
@@ -624,10 +624,10 @@ def _emit_sentence_spans(s_el, all_raw6: list):
         if is_italic:
             container = etree.SubElement(s_el, f"{{{TEI_NS}}}hi")
             container.set("rend", "italic")
-        _emit_bibl_content(container, grp)
+        _emit_bibl_content(container, grp, staging=staging)
 
 
-def _emit_sentences(parent, sentence_list: list):
+def _emit_sentences(parent, sentence_list: list, staging: bool = False):
     """Emite oraciones como <s>, respetando italic por token."""
     for span_raws in sentence_list:
         all_raw6 = []
@@ -637,11 +637,11 @@ def _emit_sentences(parent, sentence_list: list):
                    for t in all_raw6):
             continue
         s_el = etree.SubElement(parent, f"{{{TEI_NS}}}s")
-        _emit_sentence_spans(s_el, all_raw6)
+        _emit_sentence_spans(s_el, all_raw6, staging=staging)
 
 
 def _emit_para_block(parent, para_lines: list, join_left: str = None,
-                     is_first_block: bool = False):
+                     is_first_block: bool = False, staging: bool = False):
     """
     Agrupa líneas en párrafos por sangría y emite <p><s>...</s></p>.
     El italic se rastrea por posición exacta de carácter en la línea,
@@ -695,10 +695,10 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
                     if is_ital:
                         cont = etree.SubElement(s_el, f"{{{TEI_NS}}}hi")
                         cont.set("rend", "italic")
-                    _emit_bibl_content(cont, grp)
-            _emit_sentences(p_el, sentences[1:])
+                    _emit_bibl_content(cont, grp, staging=staging)
+            _emit_sentences(p_el, sentences[1:], staging=staging)
         else:
-            _emit_sentences(p_el, sentences)
+            _emit_sentences(p_el, sentences, staging=staging)
 
         # Si es el último párrafo y su última línea termina en ¬ (palabra
         # cortada que continúa en la columna siguiente), añadir
@@ -889,7 +889,7 @@ def _emit_summarium(parent, lines: list):
         _wrap_italic_spans(s_el, content_lines, emit_token)
 
 
-def lines_to_tei(lines: list, page_n: int, join_left: str = None) -> etree._Element:
+def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool = False) -> etree._Element:
     div = etree.Element(
         f"{{{TEI_NS}}}div",
         attrib={"type": "page", "n": str(page_n)},
@@ -920,7 +920,8 @@ def lines_to_tei(lines: list, page_n: int, join_left: str = None) -> etree._Elem
             # paragraph o None → lógica original con sangría
             _emit_para_block(div, block_lines,
                              join_left=join_left,
-                             is_first_block=first_para)
+                             is_first_block=first_para,
+                             staging=staging)
             first_para = False
 
     return div
