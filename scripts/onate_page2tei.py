@@ -52,6 +52,7 @@ def main():
         sys.exit(1)
 
     print(f"Leyendo {path.name}...", file=sys.stderr)
+    is_staging = etree.parse(str(path)).getroot().tag == "lines"
     lines = extract_lines(path)
 
     # ── Detección del reclamo tipográfico (catchword) ───────────────────────
@@ -114,7 +115,7 @@ def main():
     if args.out_xml:
         out = Path(args.out_xml)
         out.parent.mkdir(parents=True, exist_ok=True)
-        div  = lines_to_tei(lines, args.page, join_left=args.join_left)
+        div  = lines_to_tei(lines, args.page, join_left=args.join_left, staging=is_staging)
         tree = etree.ElementTree(div)
         tree.write(str(out), encoding="UTF-8",
                    xml_declaration=True, pretty_print=True)
