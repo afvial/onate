@@ -770,24 +770,17 @@ def enrich_bibl(bibl_elem, report: list, dry_run: bool = False):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def process_file(input_path: Path, output_path: Path,
-                 dry_run: bool = False, verbose: bool = True,
-                 force_bibl: bool = False) -> list:
+                 dry_run: bool = False, verbose: bool = True) -> list:
+    
     """
     Lee un archivo de página TEI, aplica los tres pasos del pipeline
     y escribe el resultado.
     Devuelve el informe de transformaciones.
 
-    force_bibl=True → reconstruye <bibl> aunque ya existan
-                       (útil tras edición manual del src/)
     """
     parser = etree.XMLParser(remove_blank_text=True)
     tree   = etree.parse(str(input_path), parser)
     root   = tree.getroot()
-
-    # ── Paso 0: detectar y envolver secuencias bibliográficas en <bibl> ─────────
-    bibl_added = 0
-    if not dry_run:
-        bibl_added  = detect_and_wrap_bibls(root, force=force_bibl)
 
     report = []
     total  = 0
@@ -817,9 +810,8 @@ def process_file(input_path: Path, output_path: Path,
     if verbose:
         print(f"\n{'[DRY-RUN] ' if dry_run else ''}{input_path.name}")
         if not dry_run:
-            print(f"  <bibl> detectados y añadidos   : {bibl_added}")
-        print(f"  <bibl> encontrados sin @corresp : {total}")
-        print(f"  Enriquecidos automáticamente   : {enriched}")
+            print(f"  <bibl> encontrados sin @corresp : {total}")
+            print(f"  Enriquecidos automáticamente   : {enriched}")
         print(f"  Sin coincidencia (revisar)     : {total - enriched}")
         if not dry_run:
             print(f"  <cit> añadidos                 : {cit_added}")
@@ -871,7 +863,6 @@ def main():
 
     dry_run    = '--dry-run'    in args
     do_report  = '--report'    in args
-    force_bibl = '--force-bibl' in args
     args = [a for a in args if not a.startswith('--')]
 
     # Modo batch
@@ -893,8 +884,7 @@ def main():
         for xml in xmls:
             suffix = '_bibl' if '_bibl' not in xml.stem else ''
             out = out_dir / (xml.stem + suffix + '.xml')
-            r = process_file(xml, out, dry_run=dry_run,
-                             force_bibl=force_bibl)
+            r = process_file(xml, out, dry_run=dry_run)
             all_report.extend(r)
         if do_report:
             print_report(all_report)
@@ -916,7 +906,7 @@ def main():
         output_path = input_path.with_stem(input_path.stem + '_bibl')
 
     report = process_file(input_path, output_path,
-                         dry_run=dry_run, force_bibl=force_bibl)
+                         dry_run=dry_run)
 
     if do_report:
         print_report(report)
