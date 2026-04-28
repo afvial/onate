@@ -47,7 +47,14 @@
         </reg>
       </choice>
       <pc type="colon">:</pc>
-      <w lemma="primum" pos="ADV">primum</w>
+      <choice>
+        <abbr>
+          <w>primū</w>
+        </abbr>
+        <expan>
+          <w lemma="primum" pos="ADV">primum</w>
+        </expan>
+      </choice>
       <choice>
         <orig>
           <w lemma="sum" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin">eſt</w>
@@ -76,12 +83,12 @@
         </reg>
       </choice>
       <choice>
-        <orig>
-          <w lemma="sequor" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Gdv|Voice=Pass">ſequendum</w>
-        </orig>
-        <reg>
+        <abbr>
+          <w>sequendū</w>
+        </abbr>
+        <expan>
           <w lemma="sequor" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Gdv|Voice=Pass">sequendum</w>
-        </reg>
+        </expan>
       </choice>
       <pc type="comma">,</pc>
       <w lemma="quia" pos="SCONJ">quia</w>
@@ -156,129 +163,188 @@
       <w lemma="uendo" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act">vendere</w>
       <w lemma="iubeo" pos="VERB" msd="Aspect=Imp|Case=Gen|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act">iubentium</w>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="ita" pos="ADV">Ita</w>
-      <choice>
-        <abbr>
-          <w>D.</w>
-        </abbr>
-        <expan>
-          <w/>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>Th.</w>
-        </abbr>
-        <expan>
-          <w lemma="Thomas" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Thomas</w>
-        </expan>
-      </choice>
-      <w lemma="2" pos="NUM">2</w>
-      <pc type="other">.</pc>
-      <w lemma="2" pos="NUM">2</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>q.</w>
-        </abbr>
-        <expan>
-          <w lemma="quaestio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">quaestio</w>
-        </expan>
-      </choice>
-      <lb n="8"/>
-      <w lemma="27" pos="NUM">27</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>ar.</w>
-        </abbr>
-        <expan>
-          <w lemma="articulus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">articulo</w>
-        </expan>
-      </choice>
-      <w lemma="1" pos="NUM">1</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w lemma="et" pos="CCONJ">et</w>
-        </expan>
-      </choice>
-      <w lemma="ibi" pos="ADV">ibi</w>
-      <w lemma="is" pos="PRON" msd="Case=Gen|Gender=Masc|Number=Sing|Person=3">eius</w>
-      <choice>
-        <orig>
-          <w lemma="expositor" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=2|Tense=Past|VerbForm=Fin|Voice=Act">expoſitores</w>
-        </orig>
-        <reg>
-          <w lemma="expositor" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=2|Tense=Past|VerbForm=Fin|Voice=Act">expositores</w>
-        </reg>
-      </choice>
-      <pc type="comma">,</pc>
-      <choice>
-        <abbr>
-          <w>Caiet.</w>
-        </abbr>
-        <expan>
-          <w lemma="Caietanus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Caietanus</w>
-        </expan>
-      </choice>
-      <w lemma="Aragon" pos="PROPN">A<lb break="no" n="9"/>ragon</w>
-      <pc type="comma">,</pc>
-      <w lemma="Bannes" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Bannes</w>
-      <pc type="comma">,</pc>
-      <choice>
-        <abbr>
-          <w>Salon.</w>
-        </abbr>
-        <expan>
-          <w lemma="Salon" pos="PROPN" msd="Case=Nom|Gender=Neut|Number=Sing">Salon</w>
-        </expan>
-      </choice>
-      <w lemma="Reginaldus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Reginaldus</w>
-      <choice>
-        <abbr>
-          <w>lib.</w>
-        </abbr>
-        <expan>
-          <w lemma="liber" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">libro</w>
-        </expan>
-      </choice>
-      <w lemma="25" pos="NUM">25</w>
-      <pc type="other">.</pc>
-      <lb n="10"/>
-      <choice>
-        <abbr>
-          <w>cap.</w>
-        </abbr>
-        <expan>
-          <w lemma="capitulum" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing">capitulo</w>
-        </expan>
-      </choice>
-      <w lemma="16" pos="NUM">16</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>sect.</w>
-        </abbr>
-        <expan>
-          <w lemma="sectio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">sectio</w>
-        </expan>
-      </choice>
-      <w lemma="3" pos="NUM">3</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>n.</w>
-        </abbr>
-        <expan>
-          <w lemma="numero" pos="ADV">numero</w>
-        </expan>
-      </choice>
-      <w lemma="283" pos="NUM">283</w>
-      <pc type="other">.</pc>
+      <hi rend="italic">
+        <cit xml:id="cit_p37_izq_Aquinas_ST_1">
+          <bibl corresp="#bib_Aquinas_ST" cert="high">
+            <choice>
+              <abbr>
+                <w>D.</w>
+              </abbr>
+              <expan>
+                <w/>
+                <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
+              </expan>
+            </choice>
+            <author ref="#pers_ThomasAquinas">
+              <choice>
+                <abbr>
+                  <w>Th.</w>
+                </abbr>
+                <expan>
+                  <w>Thomas</w>
+                </expan>
+              </choice>
+            </author>
+            <biblScope unit="?">
+              <w>2</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <biblScope unit="?">
+              <w>2</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>q.</w>
+              </abbr>
+              <expan>
+                <w>quaestio</w>
+              </expan>
+            </choice>
+            <lb n="8"/>
+            <biblScope unit="quaestio">
+              <w>27</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>ar.</w>
+              </abbr>
+              <expan>
+                <w>articulo</w>
+              </expan>
+            </choice>
+            <biblScope unit="articulus">
+              <w>1</w>
+            </biblScope>
+            <pc type="other">.</pc>
+          </bibl>
+        </cit>
+        <choice>
+          <abbr>
+            <w>&amp;</w>
+          </abbr>
+          <expan>
+            <w lemma="et" pos="CCONJ">et</w>
+          </expan>
+        </choice>
+        <w lemma="ibi" pos="ADV">ibi</w>
+        <w lemma="is" pos="PRON" msd="Case=Gen|Gender=Masc|Number=Sing|Person=3">eius</w>
+        <choice>
+          <orig>
+            <w lemma="expositor" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=2|Tense=Past|VerbForm=Fin|Voice=Act">expoſitores</w>
+          </orig>
+          <reg>
+            <w lemma="expositor" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=2|Tense=Past|VerbForm=Fin|Voice=Act">expositores</w>
+          </reg>
+        </choice>
+        <pc type="comma">,</pc>
+        <cit xml:id="cit_p37_izq_Caietanus_ST_2">
+          <bibl corresp="#bib_Caietanus_ST" cert="high">
+            <author ref="#pers_Caietanus">
+              <choice>
+                <abbr>
+                  <w>Caiet.</w>
+                </abbr>
+                <expan>
+                  <w>Caietanus</w>
+                </expan>
+              </choice>
+            </author>
+          </bibl>
+        </cit>
+        <cit xml:id="cit_p37_izq_Aragon_ST_3">
+          <bibl corresp="#bib_Aragon_ST" cert="high">
+            <author ref="#pers_Aragon">
+              <w>A<lb break="no" n="9"/>ragon</w>
+            </author>
+          </bibl>
+        </cit>
+        <pc type="comma">,</pc>
+        <cit xml:id="cit_p37_izq_Bannes_ST_4">
+          <bibl corresp="#bib_Bannes_ST" cert="high">
+            <author ref="#pers_Bannes">
+              <w>Bannes</w>
+            </author>
+          </bibl>
+        </cit>
+        <pc type="comma">,</pc>
+        <cit xml:id="cit_p37_izq_Salon_ST_5">
+          <bibl corresp="#bib_Salon_ST" cert="high">
+            <author ref="#pers_Salon">
+              <choice>
+                <abbr>
+                  <w>Salon.</w>
+                </abbr>
+                <expan>
+                  <w>Salon</w>
+                </expan>
+              </choice>
+            </author>
+          </bibl>
+        </cit>
+        <cit xml:id="cit_p37_izq_Reginald_Praxis_6">
+          <bibl corresp="#bib_Reginald_Praxis" cert="high">
+            <author ref="#pers_Reginaldus">
+              <w>Reginaldus</w>
+            </author>
+            <choice>
+              <abbr>
+                <w>lib.</w>
+              </abbr>
+              <expan>
+                <w>libro</w>
+              </expan>
+            </choice>
+            <biblScope unit="book">
+              <w>25</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <lb n="10"/>
+            <choice>
+              <abbr>
+                <w>cap.</w>
+              </abbr>
+              <expan>
+                <w>capitulo</w>
+              </expan>
+            </choice>
+            <biblScope unit="chap">
+              <w>16</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>sect.</w>
+              </abbr>
+              <expan>
+                <w>sectio</w>
+              </expan>
+            </choice>
+            <biblScope unit="?">
+              <w>3</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>n.</w>
+              </abbr>
+              <expan>
+                <w>numero</w>
+              </expan>
+            </choice>
+            <biblScope unit="n">
+              <w>283</w>
+            </biblScope>
+            <pc type="other">.</pc>
+          </bibl>
+        </cit>
+      </hi>
+    </s>
+    <s>
       <w lemma="ille" pos="ADV">Illo</w>
       <w lemma="autem" pos="PART">autem</w>
       <w lemma="non" pos="PART">non</w>
@@ -330,6 +396,8 @@
       </choice>
       <w lemma="debeo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">debent</w>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="tertius" pos="ADV">Tertio</w>
       <w lemma="locus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">loco</w>
       <lb n="14"/>
@@ -375,6 +443,10 @@
       </choice>
       <w lemma="teneo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">tenentur</w>
       <pc type="other">.</pc>
+    </s>
+  </p>
+  <p>
+    <s>
       <lb n="18"/>
       <w lemma="secundus" pos="ADP">Secundum</w>
       <choice>
@@ -462,6 +534,8 @@
       <w lemma="contraho" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act">contrahere</w>
       <pc type="other">.</pc>
       <lb n="24"/>
+    </s>
+    <s>
       <w lemma="pretium" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing">Pretium</w>
       <pc type="comma">,</pc>
       <w lemma="denique" pos="ADV">denique</w>
@@ -478,7 +552,14 @@
       <w lemma="is" pos="PRON" msd="Case=Acc|Gender=Fem|Number=Sing">eam</w>
       <w lemma="iudicium" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing">iudicio</w>
       <w lemma="prudens" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Plur">prudentium</w>
-      <w lemma="expendo" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass">expensam</w>
+      <choice>
+        <abbr>
+          <w>expensā</w>
+        </abbr>
+        <expan>
+          <w lemma="expendo" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass">expensam</w>
+        </expan>
+      </choice>
       <lb n="27"/>
       <w lemma="contraho" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Gdv|Voice=Pass">contrahendam</w>
       <choice>
@@ -490,6 +571,10 @@
         </reg>
       </choice>
       <pc type="other">.</pc>
+    </s>
+  </p>
+  <p>
+    <s>
       <lb n="28"/>
       <w lemma="de" pos="ADP">De</w>
       <w lemma="hic" pos="DET" msd="Case=Acc|Gender=Neut|Number=Sing">hoc</w>
@@ -499,7 +584,14 @@
       <pc type="comma">,</pc>
       <lb n="29"/>
       <w lemma="qui" pos="PRON" msd="Case=Acc|Gender=Neut|Number=Sing">quod</w>
-      <w lemma="tantus" pos="DET" msd="Case=Acc|Gender=Fem|Number=Sing">tantam</w>
+      <choice>
+        <abbr>
+          <w>tātam</w>
+        </abbr>
+        <expan>
+          <w lemma="tantus" pos="DET" msd="Case=Acc|Gender=Fem|Number=Sing">tantam</w>
+        </expan>
+      </choice>
       <w lemma="habeo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">habet</w>
       <w lemma="latitudo" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">latitudinem</w>
       <choice>
@@ -532,12 +624,12 @@
       </choice>
       <w lemma="in" pos="ADP">in</w>
       <choice>
-        <orig>
-          <w lemma="immensus" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Sing">immen<lb break="no" n="31"/>ſam</w>
-        </orig>
-        <reg>
+        <abbr>
+          <w>īmen<lb break="no" n="31"/>sā</w>
+        </abbr>
+        <expan>
           <w lemma="immensus" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Sing">immensam</w>
-        </reg>
+        </expan>
       </choice>
       <choice>
         <orig>
@@ -548,9 +640,24 @@
         </reg>
       </choice>
       <w lemma="et" pos="CCONJ">Et</w>
-      <w lemma="quidem" pos="PART">quidem</w>
+      <choice>
+        <abbr>
+          <w>quidē</w>
+        </abbr>
+        <expan>
+          <w lemma="quidem" pos="PART">quidem</w>
+        </expan>
+      </choice>
       <w lemma="aliquis" pos="PRON" msd="Case=Nom|Gender=Fem|Number=Sing">aliqua</w>
-      <w lemma="quocun" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act">quocunque</w>
+      <choice>
+        <abbr>
+          <w>quocūq</w>
+        </abbr>
+        <expan>
+          <w lemma="quocunq" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Past|VerbForm=Fin|Voice=Act">quocunq</w>
+        </expan>
+      </choice>
+      <pc type="semicolon">;</pc>
       <lb n="32"/>
       <w lemma="magnus" pos="ADJ" msd="Case=Dat|Gender=Fem|Number=Sing">maiori</w>
       <pc type="comma">,</pc>
@@ -581,18 +688,14 @@
       <w lemma="conuenio" pos="VERB" msd="Aspect=Perf|Mood=Sub|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act">conuenerit</w>
       <pc type="other">.</pc>
       <lb n="34"/>
+    </s>
+    <s>
       <w lemma="probo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">Probatur</w>
       <w lemma="primo" pos="ADV">primo</w>
       <pc type="comma">,</pc>
       <w lemma="quia" pos="SCONJ">quia</w>
-      <choice>
-        <orig>
-          <w lemma="unusquisque" pos="DET" msd="Case=Nom|Gender=Masc|Number=Sing">vnuſquiſque</w>
-        </orig>
-        <reg>
-          <w lemma="unusquisque" pos="DET" msd="Case=Nom|Gender=Masc|Number=Sing">vnusquisque</w>
-        </reg>
-      </choice>
+      <w lemma="unusquisq" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">vnusquisq</w>
+      <pc type="semicolon">;</pc>
       <choice>
         <orig>
           <w lemma="suus" pos="DET" msd="Case=Gen|Gender=Fem|Number=Sing">ſuæ</w>
@@ -623,98 +726,100 @@
       </choice>
       <w lemma="arbiter" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Sing">arbiter</w>
       <pc type="comma">,</pc>
-      <choice>
-        <abbr>
-          <w>l.</w>
-        </abbr>
-        <expan>
-          <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
-        </expan>
-      </choice>
-      <w lemma="in" pos="ADP">in</w>
-      <w lemma="res" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing">re</w>
-      <w lemma="mandatum" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Plur">man<lb break="no" n="36"/>data</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>C.</w>
-        </abbr>
-        <expan>
-          <w lemma="Codex" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Codex Iustinianus</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>mand.</w>
-        </abbr>
-        <expan>
-          <w lemma="de" pos="ADP">de mandato</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w lemma="et" pos="CCONJ">et</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>reg.</w>
-        </abbr>
-        <expan>
-          <w lemma="regula" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">regula</w>
-        </expan>
-      </choice>
-      <w lemma="ius" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">iuris</w>
-      <pc type="comma">,</pc>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w lemma="et" pos="CCONJ">et</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>l.</w>
-        </abbr>
-        <expan>
-          <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
-        </expan>
-      </choice>
-      <w lemma="etiam" pos="ADV">etiam</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>§.</w>
-        </abbr>
-        <expan>
-          <w/>
-        </expan>
-      </choice>
-      <lb n="37"/>
-      <w lemma="licet" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">licet</w>
-      <choice>
-        <abbr>
-          <w>ff.</w>
-        </abbr>
-        <expan>
-          <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Digesta</w>
-        </expan>
-      </choice>
-      <w lemma="50" pos="NUM">50</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>ma.</w>
-        </abbr>
-        <expan>
-          <w lemma="mando" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">mandati</w>
-        </expan>
-      </choice>
+      <hi rend="italic">
+        <choice>
+          <abbr>
+            <w>l.</w>
+          </abbr>
+          <expan>
+            <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
+          </expan>
+        </choice>
+        <w lemma="in" pos="ADP">in</w>
+        <w lemma="res" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing">re</w>
+        <w lemma="mandatum" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Plur">man<lb break="no" n="36"/>data</w>
+        <pc type="other">.</pc>
+        <choice>
+          <abbr>
+            <w>C.</w>
+          </abbr>
+          <expan>
+            <w lemma="Codex" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Codex Iustinianus</w>
+          </expan>
+        </choice>
+        <choice>
+          <abbr>
+            <w>mand.</w>
+          </abbr>
+          <expan>
+            <w lemma="de" pos="ADP">de mandato</w>
+          </expan>
+        </choice>
+        <choice>
+          <abbr>
+            <w>&amp;</w>
+          </abbr>
+          <expan>
+            <w lemma="et" pos="CCONJ">et</w>
+          </expan>
+        </choice>
+        <choice>
+          <abbr>
+            <w>reg.</w>
+          </abbr>
+          <expan>
+            <w lemma="regula" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">regula</w>
+          </expan>
+        </choice>
+        <w lemma="ius" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">iuris</w>
+        <pc type="comma">,</pc>
+        <choice>
+          <abbr>
+            <w>&amp;</w>
+          </abbr>
+          <expan>
+            <w lemma="et" pos="CCONJ">et</w>
+          </expan>
+        </choice>
+        <choice>
+          <abbr>
+            <w>l.</w>
+          </abbr>
+          <expan>
+            <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
+          </expan>
+        </choice>
+        <w lemma="etiam" pos="ADV">etiam</w>
+        <pc type="other">.</pc>
+        <choice>
+          <abbr>
+            <w>§.</w>
+          </abbr>
+          <expan>
+            <w/>
+          </expan>
+        </choice>
+        <lb n="37"/>
+        <w lemma="licet" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">licet</w>
+        <choice>
+          <abbr>
+            <w>ff.</w>
+          </abbr>
+          <expan>
+            <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Digesta</w>
+          </expan>
+        </choice>
+        <w lemma="50" pos="NUM">50</w>
+        <pc type="other">.</pc>
+        <choice>
+          <abbr>
+            <w>ma.</w>
+          </abbr>
+          <expan>
+            <w lemma="mando" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">mandati</w>
+          </expan>
+        </choice>
+      </hi>
       <w lemma="ergo" pos="ADV">ergo</w>
       <choice>
         <orig>
@@ -776,6 +881,8 @@
           <w lemma="respublica" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">republica</w>
         </expan>
       </choice>
+    </s>
+    <s>
       <w lemma="Secundus" pos="PROPN" msd="Case=Acc|Gender=Masc|Number=Sing">Secundo</w>
       <pc type="comma">,</pc>
       <w lemma="quia" pos="SCONJ">quia</w>
@@ -795,170 +902,172 @@
       </choice>
       <pc type="comma">,</pc>
       <lb n="43"/>
-      <choice>
-        <abbr>
-          <w>l.</w>
-        </abbr>
-        <expan>
-          <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
-        </expan>
-      </choice>
-      <w lemma="1" pos="NUM">1</w>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>§.</w>
-        </abbr>
-        <expan>
-          <w/>
-        </expan>
-      </choice>
-      <choice>
-        <orig>
-          <w lemma="si" pos="SCONJ">ſi</w>
-        </orig>
-        <reg>
-          <w lemma="si" pos="SCONJ">si</w>
-        </reg>
-      </choice>
-      <choice>
-        <orig>
-          <w lemma="haereo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">hęres</w>
-        </orig>
-        <reg>
-          <w lemma="haereo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">haeres</w>
-        </reg>
-      </choice>
-      <choice>
-        <abbr>
-          <w>ff.</w>
-        </abbr>
-        <expan>
-          <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Digesta</w>
-        </expan>
-      </choice>
-      <w lemma="ad" pos="ADP">ad</w>
-      <choice>
-        <abbr>
-          <w>Trebel.</w>
-        </abbr>
-        <expan>
-          <w lemma="ad" pos="ADP">ad senatus consultum Trebellianum</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w lemma="et" pos="CCONJ">et</w>
-        </expan>
-      </choice>
-      <w lemma="ibi" pos="ADV">ibi</w>
-      <choice>
-        <abbr>
-          <w>glos.</w>
-        </abbr>
-        <expan>
-          <w lemma="glossa" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing">glosa</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w lemma="et" pos="CCONJ">et</w>
-        </expan>
-      </choice>
-      <lb n="44"/>
-      <choice>
-        <abbr>
-          <w>l.</w>
-        </abbr>
-        <expan>
-          <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
-        </expan>
-      </choice>
-      <choice>
-        <orig>
-          <w lemma="quaero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Pass">quærebatur</w>
-        </orig>
-        <reg>
-          <w lemma="quaero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Pass">quaerebatur</w>
-        </reg>
-      </choice>
-      <pc type="other">.</pc>
-      <choice>
-        <abbr>
-          <w>ff.</w>
-        </abbr>
-        <expan>
-          <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Digesta</w>
-        </expan>
-      </choice>
-      <w lemma="ad" pos="ADP">ad</w>
-      <choice>
-        <abbr>
-          <w>l.</w>
-        </abbr>
-        <expan>
-          <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>Falcid.</w>
-        </abbr>
-        <expan>
-          <w lemma="ad" pos="ADP">ad legem Falcidiam</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>&amp;</w>
-        </abbr>
-        <expan>
-          <w lemma="et" pos="CCONJ">et</w>
-        </expan>
-      </choice>
-      <choice>
-        <abbr>
-          <w>l.</w>
-        </abbr>
-        <expan>
-          <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
-        </expan>
-      </choice>
-      <w lemma="debeo" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">debitum</w>
-      <pc type="other">.</pc>
-      <lb n="45"/>
-      <choice>
-        <abbr>
-          <w>ff.</w>
-        </abbr>
-        <expan>
-          <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Digesta</w>
-        </expan>
-      </choice>
-      <w lemma="ad" pos="ADP">ad</w>
-      <choice>
-        <abbr>
-          <w>Trebel.</w>
-        </abbr>
-        <expan>
-          <w lemma="ad" pos="ADP">ad senatus consultum Trebellianum</w>
-        </expan>
-      </choice>
-      <w lemma="in" pos="ADP">in</w>
-      <choice>
-        <abbr>
-          <w>fin.</w>
-        </abbr>
-        <expan>
-          <w lemma="in" pos="ADP">in fine</w>
-        </expan>
-      </choice>
+      <hi rend="italic">
+        <choice>
+          <abbr>
+            <w>l.</w>
+          </abbr>
+          <expan>
+            <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
+          </expan>
+        </choice>
+        <w lemma="1" pos="NUM">1</w>
+        <pc type="other">.</pc>
+        <choice>
+          <abbr>
+            <w>§.</w>
+          </abbr>
+          <expan>
+            <w/>
+          </expan>
+        </choice>
+        <choice>
+          <orig>
+            <w lemma="si" pos="SCONJ">ſi</w>
+          </orig>
+          <reg>
+            <w lemma="si" pos="SCONJ">si</w>
+          </reg>
+        </choice>
+        <choice>
+          <orig>
+            <w lemma="haereo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">hęres</w>
+          </orig>
+          <reg>
+            <w lemma="haereo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">haeres</w>
+          </reg>
+        </choice>
+        <choice>
+          <abbr>
+            <w>ff.</w>
+          </abbr>
+          <expan>
+            <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Digesta</w>
+          </expan>
+        </choice>
+        <w lemma="ad" pos="ADP">ad</w>
+        <choice>
+          <abbr>
+            <w>Trebel.</w>
+          </abbr>
+          <expan>
+            <w lemma="ad" pos="ADP">ad senatus consultum Trebellianum</w>
+          </expan>
+        </choice>
+        <choice>
+          <abbr>
+            <w>&amp;</w>
+          </abbr>
+          <expan>
+            <w lemma="et" pos="CCONJ">et</w>
+          </expan>
+        </choice>
+        <w lemma="ibi" pos="ADV">ibi</w>
+        <choice>
+          <abbr>
+            <w>glos.</w>
+          </abbr>
+          <expan>
+            <w lemma="glossa" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing">glosa</w>
+          </expan>
+        </choice>
+        <choice>
+          <abbr>
+            <w>&amp;</w>
+          </abbr>
+          <expan>
+            <w lemma="et" pos="CCONJ">et</w>
+          </expan>
+        </choice>
+        <lb n="44"/>
+        <choice>
+          <abbr>
+            <w>l.</w>
+          </abbr>
+          <expan>
+            <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
+          </expan>
+        </choice>
+        <choice>
+          <orig>
+            <w lemma="quaero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Pass">quærebatur</w>
+          </orig>
+          <reg>
+            <w lemma="quaero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Pass">quaerebatur</w>
+          </reg>
+        </choice>
+        <pc type="other">.</pc>
+        <choice>
+          <abbr>
+            <w>ff.</w>
+          </abbr>
+          <expan>
+            <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Digesta</w>
+          </expan>
+        </choice>
+        <w lemma="ad" pos="ADP">ad</w>
+        <choice>
+          <abbr>
+            <w>l.</w>
+          </abbr>
+          <expan>
+            <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
+          </expan>
+        </choice>
+        <choice>
+          <abbr>
+            <w>Falcid.</w>
+          </abbr>
+          <expan>
+            <w lemma="ad" pos="ADP">ad legem Falcidiam</w>
+          </expan>
+        </choice>
+        <choice>
+          <abbr>
+            <w>&amp;</w>
+          </abbr>
+          <expan>
+            <w lemma="et" pos="CCONJ">et</w>
+          </expan>
+        </choice>
+        <choice>
+          <abbr>
+            <w>l.</w>
+          </abbr>
+          <expan>
+            <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
+          </expan>
+        </choice>
+        <w lemma="debeo" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">debitum</w>
+        <pc type="other">.</pc>
+        <lb n="45"/>
+        <choice>
+          <abbr>
+            <w>ff.</w>
+          </abbr>
+          <expan>
+            <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Digesta</w>
+          </expan>
+        </choice>
+        <w lemma="ad" pos="ADP">ad</w>
+        <choice>
+          <abbr>
+            <w>Trebel.</w>
+          </abbr>
+          <expan>
+            <w lemma="ad" pos="ADP">ad senatus consultum Trebellianum</w>
+          </expan>
+        </choice>
+        <w lemma="in" pos="ADP">in</w>
+        <choice>
+          <abbr>
+            <w>fin.</w>
+          </abbr>
+          <expan>
+            <w lemma="in" pos="ADP">in fine</w>
+          </expan>
+        </choice>
+      </hi>
       <choice>
         <orig>
           <w lemma="sed" pos="CCONJ">ſed</w>
@@ -1044,6 +1153,8 @@
       <w lemma="pretium" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing">pretio</w>
       <w lemma="conuentionalis" pos="NOUN" msd="Case=Dat|Gender=Neut|Number=Sing">conuen<lb break="no" n="50"/>tionali</w>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="tertius" pos="ADV">Tertio</w>
       <pc type="comma">,</pc>
       <w lemma="quia" pos="SCONJ">quia</w>
@@ -1096,7 +1207,14 @@
           <w lemma="ipse" pos="DET" msd="Case=Dat|Gender=Fem|Number=Plur">ipsis</w>
         </reg>
       </choice>
-      <w lemma="facio" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">faciunt</w>
+      <choice>
+        <abbr>
+          <w>faciūt</w>
+        </abbr>
+        <expan>
+          <w lemma="facio" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">faciunt</w>
+        </expan>
+      </choice>
       <lb n="53"/>
       <w lemma="iniuria" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">iniuriam</w>
       <pc type="comma">,</pc>
@@ -1111,7 +1229,14 @@
       <w lemma="regula" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">regulam</w>
       <w lemma="ius" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">iuris</w>
       <pc type="bracket" subtype="open">[</pc>
-      <w lemma="scio" pos="VERB" msd="Aspect=Imp|Case=Dat|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act">scien<lb break="no" n="54"/>ti</w>
+      <choice>
+        <abbr>
+          <w>scie<lb break="no" n="54"/>nti</w>
+        </abbr>
+        <expan>
+          <w lemma="scio" pos="VERB" msd="Aspect=Imp|Case=Dat|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act">scienti</w>
+        </expan>
+      </choice>
       <pc type="comma">,</pc>
       <choice>
         <abbr>
@@ -1127,6 +1252,8 @@
       <w lemma="iniuria" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">iniuria</w>
       <pc type="other">.</pc>
       <pc type="bracket" subtype="close">]</pc>
+    </s>
+    <s>
       <w lemma="quartus" pos="ADV">Quarto</w>
       <pc type="comma">,</pc>
       <lb n="55"/>
@@ -1187,6 +1314,8 @@
       <lb n="58"/>
       <w lemma="recurro" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act">recurrere</w>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="Quintus" pos="PROPN" msd="Case=Dat|Gender=Masc|Number=Sing">Quinto</w>
       <pc type="comma">,</pc>
       <w lemma="quia" pos="SCONJ">quia</w>
