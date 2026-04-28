@@ -1737,7 +1737,16 @@
       <w lemma="infra" pos="ADP">infra</w>
       <w lemma="explico" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Fut|VerbForm=Fin|Voice=Act">explicabimus</w>
       <pc type="other">.</pc>
-      <w lemma="itaque" pos="ADV">Itaque</w>
+    </s>
+    <s>
+      <choice>
+        <abbr>
+          <w>Itaq;</w>
+        </abbr>
+        <expan>
+          <w lemma="itaque" pos="ADV">Itaque</w>
+        </expan>
+      </choice>
       <lb n="48"/>
       <w lemma="pretium" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">pretium</w>
       <w lemma="legalis" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Sing">legale</w>
@@ -1751,8 +1760,10 @@
       </choice>
       <pc type="comma">,</pc>
       <w lemma="qui" pos="PRON" msd="Case=Acc|Gender=Neut|Number=Sing">quod</w>
-      <w lemma="lreipo" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">lreip</w>
-      <pc type="other">.</pc>
+      <hi rend="italic">
+        <w lemma="lreipo" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">lreip</w>
+        <pc type="other">.</pc>
+      </hi>
       <w lemma="taxo" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">taxatum</w>
       <lb n="49"/>
       <choice>
@@ -1867,43 +1878,59 @@
         </reg>
       </choice>
       <hi rend="italic">
-        <w lemma="Salon" pos="PROPN" msd="Case=Nom|Gender=Neut|Number=Sing">Salon</w>
-        <w lemma="22" pos="NUM">22</w>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>q.</w>
-          </abbr>
-          <expan>
-            <w lemma="quaestio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">quaestio</w>
-          </expan>
-        </choice>
-        <w lemma="77" pos="NUM">77</w>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>ar.</w>
-          </abbr>
-          <expan>
-            <w lemma="articulus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">articulo</w>
-          </expan>
-        </choice>
-        <w lemma="1" pos="NUM">1</w>
-        <pc type="other">.</pc>
-        <w lemma="controuero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">contro<lb break="no" n="55"/>uers</w>
-        <pc type="other">.</pc>
-        <w lemma="1" pos="NUM">1</w>
-        <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>n.</w>
-          </abbr>
-          <expan>
-            <w lemma="numero" pos="ADV">numero</w>
-          </expan>
-        </choice>
-        <w lemma="5" pos="NUM">5</w>
-        <pc type="other">.</pc>
+        <cit xml:id="cit_p35_izq_Salon_ST_27">
+          <bibl corresp="#bib_Salon_ST" cert="high">
+            <author ref="#pers_Salon">
+              <w>Salon</w>
+            </author>
+            <biblScope unit="?">
+              <w>22</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>q.</w>
+              </abbr>
+              <expan>
+                <w>quaestio</w>
+              </expan>
+            </choice>
+            <biblScope unit="quaestio">
+              <w>77</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>ar.</w>
+              </abbr>
+              <expan>
+                <w>articulo</w>
+              </expan>
+            </choice>
+            <biblScope unit="articulus">
+              <w>1</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <w>contro<lb break="no" n="55"/>uers</w>
+            <pc type="other">.</pc>
+            <biblScope unit="articulus">
+              <w>1</w>
+            </biblScope>
+            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>n.</w>
+              </abbr>
+              <expan>
+                <w>numero</w>
+              </expan>
+            </choice>
+            <biblScope unit="n">
+              <w>5</w>
+            </biblScope>
+            <pc type="other">.</pc>
+          </bibl>
+        </cit>
       </hi>
     </s>
   </p>
