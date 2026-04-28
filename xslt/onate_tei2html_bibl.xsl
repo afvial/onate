@@ -422,7 +422,11 @@
       <xsl:apply-templates/>
       <xsl:if test="@part='I'"><xsl:text>-</xsl:text></xsl:if>
     </span>
-    <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(following-sibling::*[1][self::tei:lb]) and not(@part='I') and not(not(following-sibling::*) and parent::*/following-sibling::*[1][self::tei:pc])">
+    <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and
+                  not(following-sibling::*[1][self::tei:lb]) and
+                  not(@part='I') and
+                  not(not(following-sibling::*) and
+                      ancestor::*[following-sibling::*][1]/following-sibling::*[1][self::tei:pc])">
       <xsl:text> </xsl:text>
     </xsl:if>
   </xsl:template>
