@@ -183,16 +183,16 @@ run_page2tei() {
 run_nlp() {
     info "Paso 1.5 — Anotación morfológica NLP"
     [[ -f "$SRC_XML" ]] || fail "No existe: $SRC_XML (ejecuta primero page2tei)"
-    python3 "${SCRIPTS_DIR}/onate_nlp.py" "$SRC_XML" --out "$NLP_XML"
-    ok "TEI anotado → ${NLP_XML}"
+    python3 "${SCRIPTS_DIR}/onate_nlp.py" "$SRC_XML" --out "$SRC_XML"
+    ok "TEI anotado → ${SRC_XML}"
 }
 
 # ── PASO 2: Enriquecimiento bibliográfico ─────────────────────────────────────
 run_enrich() {
     info "Paso 2 — Enriquecimiento bibliográfico"
-    [[ -f "$NLP_XML" ]] || fail "No existe: $NLP_XML (ejecuta primero nlp)"
+    [[ -f "$SRC_XML" ]] || fail "No existe: $SRC_XML (ejecuta primero page2tei)"
     python3 "${SCRIPTS_DIR}/bibl_enricher.py" \
-        "$NLP_XML" "$BIBL_XML" ${FORCE_BIBL}
+        "$SRC_XML" "$BIBL_XML"
     ok "TEI enriquecido → ${BIBL_XML}"
 }
 
@@ -239,6 +239,7 @@ run_html() {
     [[ -f "$XSLT" ]]     || { warn "XSLT no encontrado: ${XSLT}"; return; }
     [[ -f "$COMPLETO" ]] || fail "No existe: $COMPLETO"
     xsltproc "$XSLT" "$COMPLETO" > "$HTML_OUT"
+    xsltproc --param show-tooltips "false()" "$XSLT" "$COMPLETO" > "html/disp63/disp63_simple.html"
     ok "HTML → ${HTML_OUT}"
 }
 
