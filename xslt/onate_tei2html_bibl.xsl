@@ -4,9 +4,12 @@
   xmlns:tei="http://www.tei-c.org/ns/1.0"
   exclude-result-prefixes="tei">
 
-  <xsl:strip-space elements="tei:s tei:item tei:hi tei:list tei:div tei:note"/>
+  <xsl:strip-space elements="*"/>
+  <xsl:preserve-space elements="tei:w tei:pc tei:orig tei:reg tei:abbr tei:expan tei:sic tei:corr tei:num"/>
 
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+
+  <xsl:param name="show-tooltips" select="true()"/>
 
   <!-- ============================================================ -->
   <!-- RAÍZ                                                         -->
@@ -164,12 +167,12 @@
           .tip-expan { color: #f0a060; }
 
           span.tei-pc {
-            margin-left: -0.05em;  /* separación mínima */
+            margin-left: -0.10em;  /* separación mínima */
           }
           span.tei-sic { position: relative; cursor: default; }
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
-          span.tei-bibl { padding-right: 0.15em; }
+          span.tei-bibl { margin-right: -0.05em; }
 
           /* Citas de autoridad */
           span.tei-cit {
@@ -394,30 +397,32 @@
   <!-- PALABRA -->
   <xsl:template match="tei:w">
     <span class="tei-w" data-lemma="{@lemma}" data-pos="{@pos}" data-msd="{@msd}">
-      <span class="tooltip">
-        <table>
-          <tr>
-            <td class="tip-key">lemma</td>
-            <td class="tip-lemma"><xsl:value-of select="@lemma"/></td>
-          </tr>
-          <xsl:if test="@pos != ''">
+      <xsl:if test="$show-tooltips">
+        <span class="tooltip">
+          <table>
             <tr>
-              <td class="tip-key">POS</td>
-              <td class="tip-pos"><xsl:value-of select="@pos"/></td>
+              <td class="tip-key">lemma</td>
+              <td class="tip-lemma"><xsl:value-of select="@lemma"/></td>
             </tr>
-          </xsl:if>
-          <xsl:if test="@msd != ''">
-            <xsl:call-template name="format-msd">
-              <xsl:with-param name="msd" select="@msd"/>
-            </xsl:call-template>
-          </xsl:if>
-        </table>
-      </span>
+            <xsl:if test="@pos != ''">
+              <tr>
+                <td class="tip-key">POS</td>
+                <td class="tip-pos"><xsl:value-of select="@pos"/></td>
+              </tr>
+            </xsl:if>
+            <xsl:if test="@msd != ''">
+              <xsl:call-template name="format-msd">
+                <xsl:with-param name="msd" select="@msd"/>
+              </xsl:call-template>
+            </xsl:if>
+          </table>
+        </span>
+      </xsl:if>
       <!-- part="I": añadir guión al final -->
       <xsl:apply-templates/>
       <xsl:if test="@part='I'"><xsl:text>-</xsl:text></xsl:if>
     </span>
-    <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(following-sibling::*[1][self::tei:lb]) and not(@part='I')">
+    <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(following-sibling::*[1][self::tei:lb]) and not(@part='I') and not(not(following-sibling::*) and parent::*/following-sibling::*[1][self::tei:pc])">
       <xsl:text> </xsl:text>
     </xsl:if>
   </xsl:template>
@@ -579,24 +584,26 @@
   <!-- CHOICE sic/corr: texto original con subrayado rojo, corr en tooltip -->
   <xsl:template match="tei:choice[tei:sic]">
     <span class="tei-sic">
-      <span class="tooltip">
-        <table>
-          <tr>
-            <td class="tip-key">lemma</td>
-            <td class="tip-lemma"><xsl:value-of select="tei:sic/tei:w/@lemma"/></td>
-          </tr>
-          <xsl:if test="tei:sic/tei:w/@pos != ''">
+      <xsl:if test="$show-tooltips">
+        <span class="tooltip">
+          <table>
             <tr>
-              <td class="tip-key">POS</td>
-              <td class="tip-pos"><xsl:value-of select="tei:sic/tei:w/@pos"/></td>
+              <td class="tip-key">lemma</td>
+              <td class="tip-lemma"><xsl:value-of select="tei:sic/tei:w/@lemma"/></td>
             </tr>
-          </xsl:if>
-          <tr>
-            <td class="tip-key">corr</td>
-            <td class="tip-expan"><xsl:value-of select="tei:corr"/></td>
-          </tr>
-        </table>
-      </span>
+            <xsl:if test="tei:sic/tei:w/@pos != ''">
+              <tr>
+                <td class="tip-key">POS</td>
+                <td class="tip-pos"><xsl:value-of select="tei:sic/tei:w/@pos"/></td>
+              </tr>
+            </xsl:if>
+            <tr>
+              <td class="tip-key">corr</td>
+              <td class="tip-expan"><xsl:value-of select="tei:corr"/></td>
+            </tr>
+          </table>
+        </span>
+      </xsl:if>
       <xsl:value-of select="tei:sic/tei:w"/>
     </span>
     <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(following-sibling::*[1][self::tei:lb])">
@@ -647,31 +654,33 @@
 
     <span class="tei-w tei-choice-{$kind}"
           data-lemma="{$lemma}" data-pos="{$pos}" data-msd="{$msd}">
-      <span class="tooltip">
-        <table>
-          <tr>
-            <td class="tip-key">lemma</td>
-            <td class="tip-lemma"><xsl:value-of select="$lemma"/></td>
-          </tr>
-          <xsl:if test="$pos != ''">
+      <xsl:if test="$show-tooltips">
+        <span class="tooltip">
+          <table>
             <tr>
-              <td class="tip-key">POS</td>
-              <td class="tip-pos"><xsl:value-of select="$pos"/></td>
+              <td class="tip-key">lemma</td>
+              <td class="tip-lemma"><xsl:value-of select="$lemma"/></td>
             </tr>
-          </xsl:if>
-          <xsl:if test="$msd != ''">
-            <xsl:call-template name="format-msd">
-              <xsl:with-param name="msd" select="$msd"/>
-            </xsl:call-template>
-          </xsl:if>
-          <xsl:if test="$expansion != ''">
-            <tr>
-              <td class="tip-key"><xsl:value-of select="$kind"/></td>
-              <td class="tip-expan"><xsl:value-of select="$expansion"/></td>
-            </tr>
-          </xsl:if>
-        </table>
-      </span>
+            <xsl:if test="$pos != ''">
+              <tr>
+                <td class="tip-key">POS</td>
+                <td class="tip-pos"><xsl:value-of select="$pos"/></td>
+              </tr>
+            </xsl:if>
+            <xsl:if test="$msd != ''">
+              <xsl:call-template name="format-msd">
+                <xsl:with-param name="msd" select="$msd"/>
+              </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$expansion != ''">
+              <tr>
+                <td class="tip-key"><xsl:value-of select="$kind"/></td>
+                <td class="tip-expan"><xsl:value-of select="$expansion"/></td>
+              </tr>
+            </xsl:if>
+          </table>
+        </span>
+      </xsl:if>
       <!-- Texto original: puede contener <lb break="no"/> -->
       <xsl:apply-templates select="$w/node()"/>
     </span>
