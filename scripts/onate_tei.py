@@ -402,11 +402,22 @@ def _offset_is_italic(offset: int, italic_spans: list) -> bool:
                for s in italic_spans)
 
 
+def _get_bibl_id(offset: int, bibl_spans: list, line_len: int = 99999) -> int:
+    """Devuelve el global_id del bibl_span al que pertenece offset, o 0."""
+    for s in bibl_spans:
+        length = s["length"] if s["length"] != float("inf") else line_len
+        if s["offset"] <= offset < s["offset"] + length:
+            return s.get("global_id", 1)
+    return 0
+
+
 def _tokenize_with_italic(span_text: str, span_offset: int,
                            span_abbrevs: list, italic_spans: list,
-                           sic_spans: list = None) -> list:
+                           sic_spans: list = None,
+                           bibl_spans: list = None,
+                           line_len: int = 99999) -> list:
     """
-    Tokeniza span_text y asigna italic por token según su posición real
+    Tokeniza span_text y asigna italic y is_bibl por token según su posición real
     en la línea original (span_offset + posición dentro del span).
     Busca cada token en el texto para obtener su posición exacta,
     evitando desfases causados por espacios que tokenize() descarta.
@@ -423,23 +434,47 @@ def _tokenize_with_italic(span_text: str, span_offset: int,
             if idx == -1:
                 idx = search_from
             char_pos_in_line = span_offset + idx
-            italic = _offset_is_italic(char_pos_in_line, italic_spans)
+            italic   = _offset_is_italic(char_pos_in_line, italic_spans)
+            bibl_id  = _get_bibl_id(char_pos_in_line, bibl_spans or [], line_len)
             if is_sic and ttype == "word":
-                toks.append(("sic", ttext, sic_corr, False, False, italic))
+                toks.append(("sic", ttext, sic_corr, False, False, italic, bibl_id))
             else:
                 tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
-                toks.append((ttype, ttext, tok_exp, False, False, italic))
+                toks.append((ttype, ttext, tok_exp, False, False, italic, bibl_id))
             search_from = idx + len(ttext)
     return toks
 
 
+def _assign_global_bibl_ids(lines: list) -> None:
+    """
+    Asigna global_id a cada bibl_span para que bibls que cruzan líneas
+    compartan el mismo ID. Modifica los dicts in-place.
+    Un bibl con length=inf continúa en el primer span (offset=0) de la línea siguiente.
+    """
+    global_id  = 0
+    open_bibl  = False  # True si el último span de la línea anterior era inf
+
+    for line in lines:
+        bibl_spans = line.get("bibl_spans", [])
+        if not bibl_spans:
+            open_bibl = False
+            continue
+
+        for i, span in enumerate(bibl_spans):
+            is_continuation = open_bibl and i == 0 and span["offset"] == 0
+            if not is_continuation:
+                global_id += 1
+            span["global_id"] = global_id
+            open_bibl = (span["length"] == float("inf"))
+
+
 def _flatten_spans(lines: list) -> list:
     """
-    Devuelve lista de (raw_6tuples, is_sent_end) por SPAN.
-    6-tupla: (ttype, ttext, tok_exp, eol, split, is_italic)
-    El italic se determina por la posición exacta de cada token en el texto
-    de la línea, usando italic_spans del PAGE XML como fuente de verdad.
+    Devuelve lista de (raw_7tuples, is_sent_end) por SPAN.
+    7-tupla: (ttype, ttext, tok_exp, eol, split, is_italic, bibl_id)
+    El italic y bibl_id se determinan por la posición exacta de cada token.
     """
+    _assign_global_bibl_ids(lines)
     result   = []
     first_lb = [False]
 
@@ -452,10 +487,11 @@ def _flatten_spans(lines: list) -> list:
         abbrevs      = line["abbrevs"]
         sent_spans   = line.get("sentence_spans", [])
         italic_spans = line.get("italic_spans", [])
+        bibl_spans   = line.get("bibl_spans", [])
 
         lb_tok = None
         if not first_lb[0]:
-            lb_tok = ("sol", str(line["line_n"]), None, False, False, False)
+            lb_tok = ("sol", str(line["line_n"]), None, False, False, False, 0)
             first_lb[0] = True
 
         if not sent_spans:
@@ -464,13 +500,15 @@ def _flatten_spans(lines: list) -> list:
             toks = []
             if lb_tok:
                 toks.append(lb_tok)
-            toks.extend(_tokenize_with_italic(text, 0, span_abbrevs, italic_spans, line.get("sic_spans", [])))
+            toks.extend(_tokenize_with_italic(text, 0, span_abbrevs, italic_spans,
+                                              line.get("sic_spans", []), bibl_spans,
+                                              line_len=len(text)))
             if toks and not is_last_line:
                 last = toks[-1]
                 if line["soft_hyphen"]:
-                    toks[-1] = (last[0], last[1], last[2], False, next_n, last[5])
+                    toks[-1] = (last[0], last[1], last[2], False, next_n, last[5], last[6])
                 else:
-                    toks[-1] = (last[0], last[1], last[2], next_n, False, last[5])
+                    toks[-1] = (last[0], last[1], last[2], next_n, False, last[5], last[6])
             result.append((toks, False))
         else:
             for si, span in enumerate(sent_spans):
@@ -493,14 +531,15 @@ def _flatten_spans(lines: list) -> list:
                     if span_offset <= s["offset"] < span_offset + span["length"]
                 ]
                 toks.extend(_tokenize_with_italic(
-                    span_text, span_offset, span_abbrevs, italic_spans, span_sic))
+                    span_text, span_offset, span_abbrevs, italic_spans, span_sic, bibl_spans,
+                    line_len=len(text)))
 
                 if is_last_span and toks and not is_last_line:
                     last = toks[-1]
                     if line["soft_hyphen"]:
-                        toks[-1] = (last[0], last[1], last[2], False, next_n, last[5])
+                        toks[-1] = (last[0], last[1], last[2], False, next_n, last[5], last[6])
                     else:
-                        toks[-1] = (last[0], last[1], last[2], next_n, False, last[5])
+                        toks[-1] = (last[0], last[1], last[2], next_n, False, last[5], last[6])
 
                 if not is_last_span:
                     is_sent_end = True
@@ -557,32 +596,33 @@ def _emit_bibl_content(container, tokens: list, staging: bool = False):
 
 def _join_split_words_6(raw6: list) -> list:
     """
-    Llama a join_split_words con 5-tuplas y asigna italic a cada token
-    resultante consumiendo una cola ordenada de (text, italic) extraída
-    de raw6. Esto es más robusto que el mapeo por índice cuando
+    Llama a join_split_words con 5-tuplas y asigna italic e is_bibl a cada token
+    resultante consumiendo una cola ordenada de (text, italic, is_bibl) extraída
+    de raw6/raw7. Esto es más robusto que el mapeo por índice cuando
     join_split_words fusiona tokens (soft-hyphen) o los reordena.
     """
     from collections import deque
 
-    # Cola de (text, italic) en el orden en que aparecen en raw6
+    # Cola de (text, italic, is_bibl) en el orden en que aparecen en raw6/7
     # (excluyendo sol que no produce tokens en el output)
     queue = deque()
     for tok in raw6:
         ttype = tok[0]
         if ttype == "sol":
             continue
-        ttext  = tok[1]
-        italic = tok[5] if len(tok) > 5 else False
-        queue.append((ttext, italic))
+        ttext   = tok[1]
+        italic  = tok[5] if len(tok) > 5 else False
+        bibl_id = tok[6] if len(tok) > 6 else 0
+        queue.append((ttext, italic, bibl_id))
 
-    def _pop_italic(text: str) -> bool:
-        """Consume la cola hasta encontrar `text` y devuelve su italic."""
+    def _pop_attrs(text: str):
+        """Consume la cola hasta encontrar `text` y devuelve (italic, bibl_id)."""
         for _ in range(len(queue)):
-            t, i = queue.popleft()
+            t, i, b = queue.popleft()
             if t == text:
-                return i
-            queue.append((t, i))   # no coincide → vuelve al final
-        return False               # fallback
+                return i, b
+            queue.append((t, i, b))
+        return False, 0           # fallback
 
     raw5   = [t[:5] for t in raw6]
     tokens = join_split_words(raw5)
@@ -590,14 +630,17 @@ def _join_split_words_6(raw6: list) -> list:
     for tok in tokens:
         kind = tok["kind"]
         if kind == "sol":
-            tok["italic"] = False
+            tok["italic"]   = False
+            tok["bibl_id"]  = 0
         elif kind == "word_lb":
-            # Italic del fragmento izquierdo (pre-guión)
-            tok["italic"] = _pop_italic(tok.get("left", ""))
-            # Consumir también el fragmento derecho
-            _pop_italic(tok.get("right", ""))
+            italic, bibl_id = _pop_attrs(tok.get("left", ""))
+            tok["italic"]  = italic
+            tok["bibl_id"] = bibl_id
+            _pop_attrs(tok.get("right", ""))
         else:
-            tok["italic"] = _pop_italic(tok.get("text", ""))
+            italic, bibl_id = _pop_attrs(tok.get("text", ""))
+            tok["italic"]  = italic
+            tok["bibl_id"] = bibl_id
 
     return tokens
 
@@ -605,7 +648,8 @@ def _join_split_words_6(raw6: list) -> list:
 def _emit_sentence_spans(s_el, all_raw6: list, staging: bool = False):
     """
     Emite una oración abriendo/cerrando <hi rend="italic"> cuando cambia
-    el italic entre tokens consecutivos. Acepta lista plana de 6-tuplas.
+    el italic entre tokens consecutivos. Acepta lista plana de 6/7-tuplas.
+    En modo staging, además agrupa tokens con is_bibl=True en <bibl>.
     """
     from itertools import groupby
     tokens = _join_split_words_6(all_raw6)
@@ -613,18 +657,40 @@ def _emit_sentence_spans(s_el, all_raw6: list, staging: bool = False):
                for t in tokens):
         return
 
-    for is_italic, grp in groupby(tokens, key=lambda t: t.get("italic", False)):
-        grp = list(grp)
-        if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic","sic_lb")
-                   for t in grp):
-            for tok in grp:
-                emit_token(s_el, tok)
-            continue
-        container = s_el
-        if is_italic:
-            container = etree.SubElement(s_el, f"{{{TEI_NS}}}hi")
-            container.set("rend", "italic")
-        _emit_bibl_content(container, grp, staging=staging)
+    if staging:
+        for is_italic, outer_grp in groupby(tokens, key=lambda t: t.get("italic", False)):
+            outer_grp = list(outer_grp)
+            if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic","sic_lb")
+                       for t in outer_grp):
+                for tok in outer_grp:
+                    emit_token(s_el, tok)
+                continue
+            container = s_el
+            if is_italic:
+                container = etree.SubElement(s_el, f"{{{TEI_NS}}}hi")
+                container.set("rend", "italic")
+            for bibl_id, inner_grp in groupby(outer_grp, key=lambda t: t.get("bibl_id", 0)):
+                inner_grp = list(inner_grp)
+                if bibl_id:
+                    bibl_el = etree.SubElement(container, f"{{{TEI_NS}}}bibl")
+                    for tok in inner_grp:
+                        emit_token(bibl_el, tok)
+                else:
+                    for tok in inner_grp:
+                        emit_token(container, tok)
+    else:
+        for is_italic, grp in groupby(tokens, key=lambda t: t.get("italic", False)):
+            grp = list(grp)
+            if not any(t["kind"] in ("word","word_lb","amp","pc","dot","abbrev_dot","sic","sic_lb")
+                       for t in grp):
+                for tok in grp:
+                    emit_token(s_el, tok)
+                continue
+            container = s_el
+            if is_italic:
+                container = etree.SubElement(s_el, f"{{{TEI_NS}}}hi")
+                container.set("rend", "italic")
+            _emit_bibl_content(container, grp, staging=staging)
 
 
 def _emit_sentences(parent, sentence_list: list, staging: bool = False):
