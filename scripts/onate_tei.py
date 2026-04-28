@@ -10,7 +10,7 @@ Importa de onate_tokens y onate_bibl.
 from lxml import etree
 from onate_tokens import (
     TEI_NS, XI_NS, PC_TYPES,
-    ABBREV_EXPAN, ORIG_REG, MACRON_MAP, LONG_S, ORIG_CHARS,
+    ABBREV_EXPAN, ABBREV_SEMICOLON_EXPAN, ORIG_REG, MACRON_MAP, LONG_S, ORIG_CHARS,
     _apply_long_s_roots, apply_abbrev_tags, tokenize,
 )
 from onate_bibl import join_split_words, group_bibl_tokens, group_legal_tokens
@@ -324,7 +324,8 @@ def emit_token(parent, tok: dict):
         w.text = tok["text"]
         expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
         w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
-        w_exp.text = ABBREV_EXPAN.get(tok["text"], ABBREV_EXPAN.get(tok["text"].lower(), ""))
+        w_exp.text = (ABBREV_EXPAN.get(tok["text"], ABBREV_EXPAN.get(tok["text"].lower(), ""))
+                     or ABBREV_SEMICOLON_EXPAN.get(tok["text"], ABBREV_SEMICOLON_EXPAN.get(tok["text"].lower(), "")))
     elif kind == "sic":
         choice  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         sic_el  = etree.SubElement(choice, f"{{{TEI_NS}}}sic")

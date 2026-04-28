@@ -71,6 +71,16 @@ ABBREV_WITH_DOT = {
 
 # Expansiones canónicas de abreviaturas conocidas (nominativo)
 # Las que no están aquí quedan vacías para completar en Emacs
+ABBREV_WITH_SEMICOLON = {
+    "Itaq;", "qualiscumq;", "Qvomodocumq;",
+}
+
+ABBREV_SEMICOLON_EXPAN = {
+    "Itaq;":        "Itaque",
+    "qualiscumq;":  "qualiscumque",
+    "Qvomodocumq;": "Quomodocumque",
+}
+
 ABBREV_EXPAN = {
     # Referencias estructurales
     "cap.":       "capitulo",
@@ -1148,7 +1158,24 @@ def tokenize(text: str) -> list:
                 continue
         result.append((ttype, ttext))
         i += 1
-    return result
+    # Fusionar word+semicolon cuando forman abreviatura conocida (e.g. Itaq;)
+    result2 = []
+    i = 0
+    while i < len(result):
+        ttype, ttext = result[i]
+        if (ttype == "word"
+                and i + 1 < len(result)
+                and result[i+1][0] == "pc"
+                and result[i+1][1] == ";"
+                and not ttext.isdigit()):
+            candidate = ttext + ";"
+            if candidate in ABBREV_WITH_SEMICOLON or candidate.lower() in ABBREV_WITH_SEMICOLON:
+                result2.append(("abbrev_dot", candidate))
+                i += 2
+                continue
+        result2.append((ttype, ttext))
+        i += 1
+    return result2
 
 
 # ── Construcción TEI ──────────────────────────────────────────────────────────
