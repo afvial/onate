@@ -167,7 +167,7 @@
           .tip-expan { color: #f0a060; }
 
           span.tei-pc {
-            margin-left: -0.10em;  /* separación mínima */
+            margin-left: 0.0em;  /* separación mínima */
           }
           span.tei-sic { position: relative; cursor: default; }
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
