@@ -4870,14 +4870,7 @@
                 <w>lex</w>
               </expan>
             </choice>
-            <choice>
-              <abbr>
-                <w>§.</w>
-              </abbr>
-              <expan>
-                <w/>
-              </expan>
-            </choice>
+            <w>§.</w>
             <w>Marcellus</w>
           </bibl>
         </cit>
@@ -4930,14 +4923,7 @@
             </choice>
             <w>in</w>
             <w>I</w>
-            <choice>
-              <abbr>
-                <w>§.</w>
-              </abbr>
-              <expan>
-                <w/>
-              </expan>
-            </choice>
+            <w>§.</w>
             <choice>
               <abbr>
                 <w>fin.</w>
@@ -4976,14 +4962,7 @@
         </cit>
         <cit xml:id="cit_p36_izq_noref_6">
           <bibl>
-            <choice>
-              <abbr>
-                <w>D.</w>
-              </abbr>
-              <expan>
-                <w/>
-              </expan>
-            </choice>
+            <w>D.</w>
             <w>Tho</w>
             <pc type="other">.</pc>
             <w>2</w>
@@ -5082,7 +5061,14 @@
             </author>
             <choice>
               <abbr>
-                <w>disp.</w>
+                <choice>
+                  <orig>
+                    <w>diſp.</w>
+                  </orig>
+                  <reg>
+                    <w>disp.</w>
+                  </reg>
+                </choice>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -5309,16 +5295,8 @@
         </cit>
         <cit xml:id="cit_p36_izq_Faustus_Empt_16">
           <bibl corresp="#bib_Faustus_Empt" cert="low">
+            <w>S.</w>
             <author ref="#pers_Faustus_inc">
-              <choice>
-                <abbr>
-                  <w>S.</w>
-                </abbr>
-                <expan>
-                  <w/>
-                  <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
-                </expan>
-              </choice>
               <choice>
                 <abbr>
                   <w>Faust.</w>
@@ -5330,7 +5308,14 @@
             </author>
             <choice>
               <abbr>
-                <w>disp.</w>
+                <choice>
+                  <orig>
+                    <w>diſp.</w>
+                  </orig>
+                  <reg>
+                    <w>disp.</w>
+                  </reg>
+                </choice>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -6262,7 +6247,14 @@
             </author>
             <choice>
               <abbr>
-                <w>disp.</w>
+                <choice>
+                  <orig>
+                    <w>diſp.</w>
+                  </orig>
+                  <reg>
+                    <w>disp.</w>
+                  </reg>
+                </choice>
               </abbr>
               <expan>
                 <w>disputatio</w>
@@ -6470,19 +6462,9 @@
     </s>
     <s>
       <hi rend="italic">
-        <cit xml:id="cit_p36_der_Faustus_Empt_7">
-          <bibl corresp="#bib_Faustus_Empt" cert="low">
-            <author ref="#pers_Faustus_inc">
-              <choice>
-                <abbr>
-                  <w>S.</w>
-                </abbr>
-                <expan>
-                  <w/>
-                  <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
-                </expan>
-              </choice>
-            </author>
+        <cit xml:id="cit_p36_der_noref_7">
+          <bibl>
+            <w>S.</w>
             <w>Faustinus</w>
             <w>de</w>
             <w>em<lb break="no" n="12"/>ptione</w>
@@ -6494,9 +6476,7 @@
                 <w>quaestio</w>
               </expan>
             </choice>
-            <biblScope unit="quaestio">
-              <w>5</w>
-            </biblScope>
+            <w>5</w>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -6506,9 +6486,7 @@
                 <w>numero</w>
               </expan>
             </choice>
-            <biblScope unit="n">
-              <w>7</w>
-            </biblScope>
+            <w>7</w>
             <pc type="other">.</pc>
             <w>qui</w>
             <w>bene</w>
@@ -6520,9 +6498,7 @@
                 <w>numero</w>
               </expan>
             </choice>
-            <biblScope unit="n">
-              <w>7</w>
-            </biblScope>
+            <w>7</w>
             <pc type="other">.</pc>
           </bibl>
         </cit>
@@ -7001,10 +6977,17 @@
       <lb n="37"/>
       <choice>
         <orig>
-          <w lemma="usus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">vsu</w>
+          <choice>
+            <orig>
+              <w lemma="usus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">vſu</w>
+            </orig>
+            <reg>
+              <w lemma="usus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">vsu</w>
+            </reg>
+          </choice>
         </orig>
         <reg>
-          <w lemma="usus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">usu</w>
+          <w>usu</w>
         </reg>
       </choice>
       <choice>
