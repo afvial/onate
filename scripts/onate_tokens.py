@@ -541,6 +541,16 @@ LONG_S = {
     "iuste":            "iuſte",
     "iustè":            "iuſtè",
     "iniustum":         "iniuſtum",
+    # pretium supremum / infimum (latitud del precio justo)
+    "supremum":         "ſupremum",
+    "supremus":         "ſupremus",
+    "suprema":          "ſuprema",
+    "supremae":         "ſupremae",
+    "supremam":         "ſupremam",
+    "supremi":          "ſupremi",
+    "supremo":          "ſupremo",
+    "supremis":         "ſupremis",
+    "supremorum":       "ſupremorum",
     "satisfactio":      "ſatisfactio",
     "satisfacit":       "ſatisfacit",
     "stipulatio":       "ſtipulatio",
@@ -666,6 +676,17 @@ LONG_S = {
     "vsuris":           "vſuris",
     "vsuras":           "vſuras",
     "vsu":              "vſu",
+    # usus/vsus — declinación completa (4ª decl.) en ambas grafías
+    "vsus":             "vſus",       # nom./gen. sg. & acc. pl.
+    "vsui":             "vſui",       # dat. sg.
+    "vsum":             "vſum",       # acc. sg.
+    "vsuum":            "vſuum",      # gen. pl.
+    "vsibus":           "vſibus",     # dat./abl. pl.
+    "usus":             "uſus",
+    "usui":             "uſui",
+    "usum":             "uſum",
+    "usuum":            "uſuum",
+    "usibus":           "uſibus",
     # praesens / præsens y flexiones
     "praesenti":        "præſenti",
     "praesens":         "præſens",
@@ -804,6 +825,9 @@ LONG_S_ROOTS = [
     ("aestimat",   "æſtimat"),    # aestimatione, aestimationem, aestimationis…
     ("rigoros",    "rigoroſ"),    # rigorosi, rigorosus, rigorosa…
     # cons- general (va al final: actúa solo si ninguna raíz más específica coincidió)
+    ("suprem",      "ſuprem"),      # supremum, supremus, suprema… (pretium supremum)
+    ("suprem",      "ſuprem"),      # supremum, supremus, suprema… (pretium supremum)
+    ("suprem",      "ſuprem"),      # supremum, supremus, suprema… (pretium supremum)
     ("cresc",      "creſc"),       # excrescere, decrescere, accrescere, increscere…
     ("sist",       "ſiſt"),        # consistit, subsistit, insistit, persistit…
     ("cons",       "conſ"),        # consurgit, consuetudo, consensus…
