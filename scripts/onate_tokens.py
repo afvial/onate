@@ -530,6 +530,8 @@ LONG_S = {
     "institutum":       "inſtitutum",
     "immensam":         "immenſam",
     "iustum":           "iuſtum",
+    # abreviaturas de iustus/iustitia con s larga
+    "iust.":            "iuſt.",
     "iustam":           "iuſtam",
     "iustus":           "iuſtus",
     "iusta":            "iuſta",
