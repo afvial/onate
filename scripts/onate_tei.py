@@ -57,7 +57,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
 
     # s larga: lookup en LONG_S (case-insensitive, preserva mayúscula inicial)
     long_s_orig = None
-    if not reg and not is_abbrev:
+    if not is_abbrev:
         key = text.lower()
         if key in LONG_S:
             orig_form = LONG_S[key]
@@ -68,7 +68,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
                 orig_form = orig_form[0].upper() + orig_form[1:]
             if orig_form != text:
                 long_s_orig = orig_form
-        else:
+        elif not reg:
             long_s_orig = _apply_long_s_roots(text)
 
     # Detección automática ae→æ y ę→ae (solo si no hay ya un choice)
@@ -108,8 +108,18 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
     elif reg:
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
-        w      = etree.SubElement(orig,   f"{{{TEI_NS}}}w")
-        w.text = text
+        if long_s_orig:
+            # choice anidado: orig=diplomático(vſu) / reg=grafía-v(vsu)
+            inner      = etree.SubElement(orig,  f"{{{TEI_NS}}}choice")
+            inner_orig = etree.SubElement(inner, f"{{{TEI_NS}}}orig")
+            w          = etree.SubElement(inner_orig, f"{{{TEI_NS}}}w")
+            w.text     = long_s_orig
+            inner_reg  = etree.SubElement(inner, f"{{{TEI_NS}}}reg")
+            w_inner    = etree.SubElement(inner_reg,  f"{{{TEI_NS}}}w")
+            w_inner.text = text
+        else:
+            w      = etree.SubElement(orig, f"{{{TEI_NS}}}w")
+            w.text = text
         reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
         w_reg.text = reg
