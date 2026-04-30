@@ -167,34 +167,20 @@
     <s>
       <w lemma="ita" pos="ADV">Ita</w>
       <hi rend="italic">
-        <cit xml:id="cit_p37_izq_Aquinas_ST_1">
-          <bibl corresp="#bib_Aquinas_ST" cert="high">
+        <cit xml:id="cit_p37_izq_noref_1">
+          <bibl>
+            <w>D.</w>
             <choice>
               <abbr>
-                <w>D.</w>
+                <w>Th.</w>
               </abbr>
               <expan>
-                <w/>
-                <supplied resp="#editor_AV" cert="low">[expan. desideratur]</supplied>
+                <w>Thomas</w>
               </expan>
             </choice>
-            <author ref="#pers_ThomasAquinas">
-              <choice>
-                <abbr>
-                  <w>Th.</w>
-                </abbr>
-                <expan>
-                  <w>Thomas</w>
-                </expan>
-              </choice>
-            </author>
-            <biblScope unit="?">
-              <w>2</w>
-            </biblScope>
+            <w>2</w>
             <pc type="other">.</pc>
-            <biblScope unit="?">
-              <w>2</w>
-            </biblScope>
+            <w>2</w>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -205,9 +191,7 @@
               </expan>
             </choice>
             <lb n="8"/>
-            <biblScope unit="quaestio">
-              <w>27</w>
-            </biblScope>
+            <w>27</w>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -217,9 +201,7 @@
                 <w>articulo</w>
               </expan>
             </choice>
-            <biblScope unit="articulus">
-              <w>1</w>
-            </biblScope>
+            <w>1</w>
             <pc type="other">.</pc>
           </bibl>
         </cit>
@@ -318,7 +300,14 @@
             <pc type="other">.</pc>
             <choice>
               <abbr>
-                <w>sect.</w>
+                <choice>
+                  <orig>
+                    <w>ſect.</w>
+                  </orig>
+                  <reg>
+                    <w>sect.</w>
+                  </reg>
+                </choice>
               </abbr>
               <expan>
                 <w>sectio</w>
@@ -625,7 +614,7 @@
       <w lemma="in" pos="ADP">in</w>
       <choice>
         <abbr>
-          <w>īmen<lb break="no" n="31"/>sā</w>
+          <w>immē<lb break="no" n="31"/>sam</w>
         </abbr>
         <expan>
           <w lemma="immensus" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Sing">immensam</w>
@@ -791,14 +780,7 @@
         </choice>
         <w lemma="etiam" pos="ADV">etiam</w>
         <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>§.</w>
-          </abbr>
-          <expan>
-            <w/>
-          </expan>
-        </choice>
+        <w lemma="§" pos="X">§.</w>
         <lb n="37"/>
         <w lemma="licet" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">licet</w>
         <choice>
@@ -913,14 +895,7 @@
         </choice>
         <w lemma="1" pos="NUM">1</w>
         <pc type="other">.</pc>
-        <choice>
-          <abbr>
-            <w>§.</w>
-          </abbr>
-          <expan>
-            <w/>
-          </expan>
-        </choice>
+        <w lemma="§" pos="X">§.</w>
         <choice>
           <orig>
             <w lemma="si" pos="SCONJ">ſi</w>
@@ -1231,7 +1206,7 @@
       <pc type="bracket" subtype="open">[</pc>
       <choice>
         <abbr>
-          <w>scie<lb break="no" n="54"/>nti</w>
+          <w>sciē<lb break="no" n="54"/>ti</w>
         </abbr>
         <expan>
           <w lemma="scio" pos="VERB" msd="Aspect=Imp|Case=Dat|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act">scienti</w>
