@@ -72,7 +72,7 @@ ABBREV_WITH_DOT = {
 # Expansiones canónicas de abreviaturas conocidas (nominativo)
 # Las que no están aquí quedan vacías para completar en Emacs
 ABBREV_WITH_SEMICOLON = {
-    "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;",
+    "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;", "vnusquisq;", "Vnusquisq;",
 }
 
 ABBREV_SEMICOLON_EXPAN = {
@@ -83,6 +83,9 @@ ABBREV_SEMICOLON_EXPAN = {
     "Quocūq;":      "Quocumque",
     "quocumq;":     "quocumque",
     "Quocumq;":     "Quocumque",
+    "vnusquisq;":   "unusquisque",
+    "Vnusquisq;":   "Unusquisque",
+    "Vnusquisq;":   "Vnuſquiſque",
 }
 
 ABBREV_EXPAN = {
@@ -563,6 +566,7 @@ LONG_S = {
     "probatissimam":    "probatiſſimam",
     "probatissima":     "probatiſſima",
     "vnusquisque":      "vnuſquiſque",
+    "vnusquisq;":         "vnuſquiſq;",
     "versatur":         "verſsatur",
     # sanctus y derivados
     "sanctitatem":      "ſanctitatem",
@@ -963,8 +967,8 @@ def classify_tag(text: str, expansion: str) -> str:
     if text.strip() in ("&", "&amp;"):
         return "abbr"
 
-    # Regla 1: termina en punto → abbr
-    if text.rstrip().endswith("."):
+    # Regla 1: termina en punto o semicolon → abbr
+    if text.rstrip().endswith(".") or text.rstrip().endswith(";"):
         return "abbr"
 
     # Regla 2: contiene macron → abbr

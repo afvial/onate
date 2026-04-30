@@ -62,9 +62,6 @@ def is_in_abbr(elem) -> bool:
     for anc in elem.iterancestors():
         if anc.tag == ABBR_TAG:
             return True
-        # Salir si llegamos a <choice> — no seguir subiendo
-        if local(anc.tag) == "choice":
-            break
     return False
 
 
