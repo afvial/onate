@@ -610,13 +610,12 @@
       <w lemma="aliquis" pos="PRON" msd="Case=Nom|Gender=Fem|Number=Sing">aliqua</w>
       <choice>
         <abbr>
-          <w>quocūq</w>
+          <w>quocūq;</w>
         </abbr>
         <expan>
-          <w lemma="quocunq" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Past|VerbForm=Fin|Voice=Act">quocunq</w>
+          <w lemma="quocumque" pos="SCONJ">quocumque</w>
         </expan>
       </choice>
-      <pc type="semicolon">;</pc>
       <lb n="32"/>
       <w lemma="magnus" pos="ADJ" msd="Case=Dat|Gender=Fem|Number=Sing">maiori</w>
       <pc type="comma">,</pc>
@@ -653,8 +652,21 @@
       <w lemma="primo" pos="ADV">primo</w>
       <pc type="comma">,</pc>
       <w lemma="quia" pos="SCONJ">quia</w>
-      <w lemma="unusquisq" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">vnusquisq</w>
-      <pc type="semicolon">;</pc>
+      <choice>
+        <abbr>
+          <choice>
+            <orig>
+              <w>vnuſquiſq;</w>
+            </orig>
+            <reg>
+              <w>vnusquisq;</w>
+            </reg>
+          </choice>
+        </abbr>
+        <expan>
+          <w lemma="unusquisque" pos="DET" msd="Case=Nom|Gender=Masc|Number=Sing">unusquisque</w>
+        </expan>
+      </choice>
       <choice>
         <orig>
           <w lemma="suus" pos="DET" msd="Case=Gen|Gender=Fem|Number=Sing">ſuæ</w>
