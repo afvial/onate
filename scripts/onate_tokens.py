@@ -72,13 +72,17 @@ ABBREV_WITH_DOT = {
 # Expansiones canónicas de abreviaturas conocidas (nominativo)
 # Las que no están aquí quedan vacías para completar en Emacs
 ABBREV_WITH_SEMICOLON = {
-    "Itaq;", "qualiscumq;", "Qvomodocumq;",
+    "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;",
 }
 
 ABBREV_SEMICOLON_EXPAN = {
     "Itaq;":        "Itaque",
     "qualiscumq;":  "qualiscumque",
     "Qvomodocumq;": "Quomodocumque",
+    "quocūq;":      "quocumque",
+    "Quocūq;":      "Quocumque",
+    "quocumq;":     "quocumque",
+    "Quocumq;":     "Quocumque",
 }
 
 ABBREV_EXPAN = {
