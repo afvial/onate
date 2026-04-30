@@ -269,8 +269,8 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
             orig_ls = ls_exp
             for letters, macron_char in sorted(macron_reverse.items(), key=lambda x: -len(x[0])):
                 orig_ls = orig_ls.replace(letters, macron_char, 1)
-            w_left  = orig_ls[:len(left)]
-            w_right = orig_ls[len(left):]
+            w_left  = left
+            w_right = right
             choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
             abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
             _make_w_lb(abbr, w_left, w_right)
