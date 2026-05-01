@@ -1234,7 +1234,7 @@ def extract_lines(page_xml_path: Path) -> list:
         lines.append({
             "text":               text,
             "abbrevs":            parse_abbrev_tags(custom),
-            "structure_type":     parse_structure_type(custom),
+            "structure_type":     None,  # se asigna en parse_editorial_marks
             "sentence_spans":     parse_span_tags(custom, "sentence"),
             "index_entry_spans":  parse_span_tags(custom, "index_entry"),
             "summary_item_spans": parse_span_tags(custom, "summary_item"),
@@ -1454,6 +1454,41 @@ def parse_editorial_marks(lines: list) -> None:
         i = 0
         while i < len(text):
             ch = text[i]
+
+            # ## → head type="main"
+            if ch == "#" and i + 1 < len(text) and text[i + 1] == "#":
+                line["structure_type"] = "main"
+                removed.append((i, 2))
+                i += 2
+                continue
+
+            # # → head type="sub"
+            if ch == "#" and (i + 1 >= len(text) or text[i + 1] != "#"):
+                line["structure_type"] = "sub"
+                removed.append((i, 1))
+                i += 1
+                continue
+
+            # ## → head type="main"
+            if ch == "#" and i + 1 < len(text) and text[i + 1] == "#":
+                line["structure_type"] = "main"
+                removed.append((i, 2))
+                i += 2
+                continue
+
+            # # → head type="sub"
+            if ch == "#" and (i + 1 >= len(text) or text[i + 1] != "#"):
+                line["structure_type"] = "sub"
+                removed.append((i, 1))
+                i += 1
+                continue
+
+            # >> → summarium item
+            if ch == ">" and i + 1 < len(text) and text[i + 1] == ">":
+                line["structure_type"] = "summarium"
+                removed.append((i, 2))
+                i += 2
+                continue
 
             # ¶ → párrafo
             if ch == "¶":

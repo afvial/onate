@@ -992,9 +992,9 @@ def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool 
     # ── Emitir cada bloque según su tipo ──────────────────────────────────────
     first_para = True
     for struct_type, block_lines in struct_blocks:
-        if struct_type in ("heading", "header"):
+        if struct_type in ("heading", "header", "main"):
             _emit_head(div, block_lines)
-        elif struct_type == "subheading":
+        elif struct_type in ("subheading", "sub"):
             _emit_head(div, block_lines, head_type="sub")
         elif struct_type == "summarium":
             _emit_summarium(div, block_lines)
