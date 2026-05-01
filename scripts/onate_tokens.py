@@ -591,6 +591,7 @@ LONG_S = {
     "sui":                "ſui",
     "Sui":                "Sui",
     "transgredi":         "tranſgredi",
+    "opusc.":             "opuſc.",
     "transgredior":       "tranſgredior",
     "transgreditur":      "tranſgreditur",
     "transgrediuntur":    "tranſgrediuntur",
