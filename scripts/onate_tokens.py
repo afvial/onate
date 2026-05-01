@@ -569,6 +569,8 @@ LONG_S = {
     "vnusquisq;":         "vnuſquiſq;",
     "Ledes.":              "Ledeſ.",
     "ledes.":              "ledeſ.",
+    "sum.":               "ſum.",
+    "Sum.":               "Sum.",
     "versatur":         "verſsatur",
     # sanctus y derivados
     "sanctitatem":      "ſanctitatem",
