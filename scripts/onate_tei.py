@@ -936,8 +936,8 @@ def _emit_summarium(parent, lines: list):
         sents     = line.get("sentence_spans", [])
         # Si el primer span no tiene continued → esta línea inicia oración nueva
         first_sent_is_new = sents and not sents[0]["continued"]
-
-        starts_new = has_label or (bool(current) and first_sent_is_new)
+        is_item_start = line.get("item_start", False)
+        starts_new = is_item_start or has_label or (bool(current) and first_sent_is_new)
 
         if starts_new and current:
             item_groups.append(current)
@@ -956,15 +956,14 @@ def _emit_summarium(parent, lines: list):
         idx_spans  = first_line.get("index_entry_spans", [])
         content_lines = list(item_lines)
 
-        if idx_spans:
-            span       = idx_spans[0]
-            label_text = first_line["text"][span["offset"]: span["offset"] + span["length"]]
-            item_el.set("n", label_text.strip())
+        import re as _re
+        m = _re.match(r"^(\d+)\s", first_line["text"].strip())
+        if m:
+            label_text = m.group(1)
+            item_el.set("n", label_text)
             lbl = etree.SubElement(item_el, f"{{{TEI_NS}}}label")
-            lbl.text = label_text.strip()
-            # Recortar la primera línea para excluir el número ya emitido en <label>
-            content_lines[0] = _trim_line_by_offset(first_line,
-                                                     span["offset"] + span["length"])
+            lbl.text = label_text
+            content_lines[0] = _trim_line_by_offset(first_line, len(label_text))
 
         # Emitir contenido del item respetando italic_spans
         s_el = etree.SubElement(item_el, f"{{{TEI_NS}}}s")
@@ -989,6 +988,14 @@ def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool 
         else:
             struct_blocks.append([st, [line]])
 
+    # ── Fusionar bloques summarium adyacentes ────────────────────────────────
+    merged_blocks: list = []
+    for st, bl in struct_blocks:
+        if st == "summarium" and merged_blocks and merged_blocks[-1][0] == "summarium":
+            merged_blocks[-1][1].extend(bl)
+        else:
+            merged_blocks.append([st, list(bl)])
+    struct_blocks = merged_blocks
     # ── Emitir cada bloque según su tipo ──────────────────────────────────────
     first_para = True
     for struct_type, block_lines in struct_blocks:

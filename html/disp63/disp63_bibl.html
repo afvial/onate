@@ -54,7 +54,7 @@
             margin-right: auto;
           }
           .col {
-            width: 20em;
+            width: 19em;
             flex-shrink: 0;
             flex-grow: 0;
           }
@@ -229,27 +229,29 @@
             pointer-events: none;
             user-select: none;
           }
+
           /* Cada 5 líneas, número más destacado */
           .lb-num.lb-5 { color: #999; font-weight: bold; }
 
           /* Encabezados estructurales */
           p.tei-head {
-            font-size: 1rem;
+            font-size: 1.05rem;
+            font-style: italic;
             text-align: center;
-            margin: 1.5rem 0 0.2rem 0;
+            margin: 0.8rem 0 0.1rem 0;
             text-indent: 0;
             letter-spacing: 0.04em;
             white-space: normal;
-            width: 20em;
+            width: 100%;
           }
           p.tei-subhead {
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-align: center;
             margin: 0.2rem 0 0.6rem 0;
             text-indent: 0;
             letter-spacing: 0.05em;
             white-space: normal;
-            width: 20em;
+            width: 100%;
           }
 
           /* Summarium */
@@ -264,9 +266,29 @@
           li.tei-item {
             margin: 0.25rem 0;
             line-height: var(--lh);
+            font-style: italic;
+            position: relative;
+            padding-left: 2.5em;
+          }
+          li.tei-item .lb-num {
+            position: absolute;
+            left: -2.5rem;
+            width: 2rem;
+            text-align: right;
+            float: none;
+            margin-left: 0;
+          }
+          li.tei-item span.tei-label {
+            font-style: normal;
+            position: absolute;
+            left: 0;
+            width: 2.5em;
+          }
+          span.tei-item-body {
+            display: inline;
           }
           span.tei-item-indent { display: inline-block; width: 1.8em; }
-          span.tei-item-cont   { display: inline-block; width: 1.8em; }
+          span.tei-item-cont   { display: none; }
           span.tei-label {
             margin-right: 0.35em;
           }
@@ -298,8 +320,8 @@
 </h1>
 <h2>Disputatio LXIII · Sectio I</h2>
 <div class="stats">
-          Palabras: 3843 ·
-          Oraciones: 62 ·
+          Palabras: 3836 ·
+          Oraciones: 65 ·
           Párrafos: 27</div>
 <div class="page-sep"><span class="page-sep-label">Página 35</span></div>
 <div class="columns">
@@ -6402,27 +6424,61 @@
           indiuisibili
         </td>
 </tr>
-</table></span>indiuiſibili</span> <span class="tei-w tei-choice-reg" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table>
+</table></span>indiuiſibili</span> <span class="tei-w" data-lemma="con" data-pos="PART" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma"></td>
+<td class="tip-lemma">con</td>
 </tr>
 <tr>
-<td class="tip-key">reg</td>
-<td class="tip-expan">conſiſtit</td>
+<td class="tip-key">POS</td>
+<td class="tip-pos">PART</td>
 </tr>
 </table></span>con-<br></span> </span> </span>
 </div>
 <div class="col">
 <div class="col-label">Col. der.</div>
-<span class="tei-p tei-p-first"><span class="tei-s"><br><span class="lb-num">1</span><span class="tei-w tei-choice-reg" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table>
+<span class="tei-p tei-p-first"><span class="tei-s"><br><span class="lb-num">1</span><span class="tei-w tei-choice-reg" data-lemma="sisto" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma"></td>
+<td class="tip-lemma">sisto</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">3</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
 </tr>
 <tr>
 <td class="tip-key">reg</td>
-<td class="tip-expan">conſiſtit</td>
+<td class="tip-expan">
+          sistit
+        </td>
 </tr>
 </table></span>ſiſtit</span>⁠<span class="tei-pc">:</span> <span class="tei-w" data-lemma="cum" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
@@ -12817,14 +12873,14 @@
           et
         </td>
 </tr>
-</table></span>&amp;</span> <span class="tei-w tei-choice-reg" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table>
+</table></span>&amp;</span> <span class="tei-w" data-lemma="con" data-pos="PART" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma"></td>
+<td class="tip-lemma">con</td>
 </tr>
 <tr>
-<td class="tip-key">reg</td>
-<td class="tip-expan">consuetudine</td>
+<td class="tip-key">POS</td>
+<td class="tip-pos">PART</td>
 </tr>
 </table></span>con-<br></span> </span> </span>
 </div>
@@ -12833,16 +12889,28 @@
 <div class="columns">
 <div class="col">
 <div class="col-label">Col. izq.</div>
-<span class="tei-p tei-p-first"><span class="tei-s"><br><span class="lb-num">1</span><span class="tei-w tei-choice-reg" data-lemma="" data-pos="" data-msd=""><span class="tooltip"><table>
+<span class="tei-p tei-p-first"><span class="tei-s"><br><span class="lb-num">1</span><span class="tei-w" data-lemma="suetudo" data-pos="NOUN" data-msd="Case=Voc|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma"></td>
+<td class="tip-lemma">suetudo</td>
 </tr>
 <tr>
-<td class="tip-key">reg</td>
-<td class="tip-expan">consuetudine</td>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
 </tr>
-</table></span>ſuetudine</span> <span class="tei-w" data-lemma="uulgus" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Voc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>suetudine</span> <span class="tei-w" data-lemma="uulgus" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">uulgus</td>
@@ -37343,17 +37411,9 @@
 <td class="tip-pos">ADV</td>
 </tr>
 </table></span>SVMMARIVM</span>⁠<span class="tei-pc">.</span> </p>
-<div class="tei-summarium"><ol class="tei-list"><li class="tei-item">
-<span class="tei-item-indent">   </span><span class="tei-s"><span class="lb-num lb-5">45</span><span class="tei-w" data-lemma="21" data-pos="NUM" data-msd=""><span class="tooltip"><table>
-<tr>
-<td class="tip-key">lemma</td>
-<td class="tip-lemma">21</td>
-</tr>
-<tr>
-<td class="tip-key">POS</td>
-<td class="tip-pos">NUM</td>
-</tr>
-</table></span>21</span> <span class="tei-w" data-lemma="Uendentes" data-pos="PROPN" data-msd="Case=Nom|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+<div class="tei-summarium"><ol class="tei-list">
+<li class="tei-item">
+<span class="tei-label">21</span><span class="tei-item-body"><span class="tei-s"><span class="lb-num lb-5">45</span><span class="tei-w" data-lemma="Uendentes" data-pos="PROPN" data-msd="Case=Nom|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">Uendentes</td>
@@ -37468,7 +37528,7 @@
 <td class="tip-key">Voice</td>
 <td class="tip-val">Pass</td>
 </tr>
-</table></span>libitum</span><br><span class="lb-num">46</span><span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+</table></span>libitum</span><br><span class="lb-num">46</span><span class="tei-item-cont"> </span><span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">pretium</td>
@@ -37552,7 +37612,7 @@
 <td class="tip-key">Voice</td>
 <td class="tip-val">Act</td>
 </tr>
-</table></span>taxare</span>⁠<span class="tei-pc">.</span><br><span class="lb-num">47</span><span class="tei-w" data-lemma="tria" data-pos="NUM" data-msd="Case=Nom|Gender=Neut|Number=Plur"><span class="tooltip"><table>
+</table></span>taxare</span>⁠<span class="tei-pc">.</span><br><span class="lb-num">47</span><span class="tei-item-cont"> </span><span class="tei-w" data-lemma="tria" data-pos="NUM" data-msd="Case=Nom|Gender=Neut|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">tria</td>
@@ -37627,16 +37687,10 @@
 <td class="tip-key">Voice</td>
 <td class="tip-val">Pass</td>
 </tr>
-</table></span>tractanda</span>⁠<span class="tei-pc">.</span><br><span class="lb-num">48</span><span class="tei-w" data-lemma="22" data-pos="NUM" data-msd=""><span class="tooltip"><table>
-<tr>
-<td class="tip-key">lemma</td>
-<td class="tip-lemma">22</td>
-</tr>
-<tr>
-<td class="tip-key">POS</td>
-<td class="tip-pos">NUM</td>
-</tr>
-</table></span>22</span> <span class="tei-w tei-choice-reg" data-lemma="Iustus" data-pos="PROPN" data-msd="Case=Acc|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+</table></span>tractanda</span>⁠<span class="tei-pc">.</span> </span> </span>
+</li>
+<li class="tei-item">
+<span class="tei-label">22</span><span class="tei-item-body"><span class="tei-s"><span class="lb-num">48</span><span class="tei-w tei-choice-reg" data-lemma="Iustus" data-pos="PROPN" data-msd="Case=Acc|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">Iustus</td>
@@ -37726,7 +37780,7 @@
 <td class="tip-key">Number</td>
 <td class="tip-val">Sing</td>
 </tr>
-</table></span>vendibilium</span><br><span class="lb-num">49</span><span class="tei-w" data-lemma="ex" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+</table></span>vendibilium</span><br><span class="lb-num">49</span><span class="tei-item-cont"> </span><span class="tei-w" data-lemma="ex" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">ex</td>
@@ -37771,7 +37825,7 @@
               circumstantijs
             </td>
 </tr>
-</table></span>circumſtantijs</span><br><span class="lb-num lb-5">50</span><span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
+</table></span>circumſtantijs</span><br><span class="lb-num lb-5">50</span><span class="tei-item-cont"> </span><span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">sum</td>
@@ -37849,16 +37903,10 @@
               aestimandum
             </td>
 </tr>
-</table></span>æſtimandum</span>⁠<span class="tei-pc">.</span><br><span class="lb-num">51</span><span class="tei-w" data-lemma="23" data-pos="NUM" data-msd=""><span class="tooltip"><table>
-<tr>
-<td class="tip-key">lemma</td>
-<td class="tip-lemma">23</td>
-</tr>
-<tr>
-<td class="tip-key">POS</td>
-<td class="tip-pos">NUM</td>
-</tr>
-</table></span>23</span> <span class="tei-w" data-lemma="quidam" data-pos="DET" data-msd="Case=Nom|Gender=Masc|Number=Plur"><span class="tooltip"><table>
+</table></span>æſtimandum</span>⁠<span class="tei-pc">.</span> </span> </span>
+</li>
+<li class="tei-item">
+<span class="tei-label">23</span><span class="tei-item-body"><span class="tei-s"><span class="lb-num">51</span><span class="tei-w" data-lemma="quidam" data-pos="DET" data-msd="Case=Nom|Gender=Masc|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">quidam</td>
@@ -37967,7 +38015,7 @@
 <td class="tip-key">POS</td>
 <td class="tip-pos">ADP</td>
 </tr>
-</table></span>in</span><br><span class="lb-num">52</span><span class="tei-w tei-choice-reg" data-lemma="sui" data-pos="PRON" data-msd="Case=Acc|Number=Sing|Person=3"><span class="tooltip"><table>
+</table></span>in</span><br><span class="lb-num">52</span><span class="tei-item-cont"> </span><span class="tei-w tei-choice-reg" data-lemma="sui" data-pos="PRON" data-msd="Case=Acc|Number=Sing|Person=3"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">sui</td>
@@ -38084,7 +38132,7 @@
 <td class="tip-key">Number</td>
 <td class="tip-val">Sing</td>
 </tr>
-</table></span>Deo</span><br><span class="lb-num">53</span><span class="tei-w tei-choice-reg" data-lemma="semper" data-pos="ADV" data-msd=""><span class="tooltip"><table>
+</table></span>Deo</span><br><span class="lb-num">53</span><span class="tei-item-cont"> </span><span class="tei-w tei-choice-reg" data-lemma="semper" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">semper</td>
@@ -38149,16 +38197,10 @@
               indiuisibile
             </td>
 </tr>
-</table></span>indiuiſibile</span>⁠<span class="tei-pc">.</span><br><span class="lb-num">54</span><span class="tei-w" data-lemma="24" data-pos="NUM" data-msd=""><span class="tooltip"><table>
-<tr>
-<td class="tip-key">lemma</td>
-<td class="tip-lemma">24</td>
-</tr>
-<tr>
-<td class="tip-key">POS</td>
-<td class="tip-pos">NUM</td>
-</tr>
-</table></span>24</span> <span class="tei-w" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+</table></span>indiuiſibile</span>⁠<span class="tei-pc">.</span> </span> </span>
+</li>
+<li class="tei-item">
+<span class="tei-label">24</span><span class="tei-item-body"><span class="tei-s"><span class="lb-num">54</span><span class="tei-w" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">et</td>
@@ -38276,7 +38318,7 @@
 <td class="tip-key">Voice</td>
 <td class="tip-val">Act</td>
 </tr>
-</table></span>habere</span><br><span class="lb-num lb-5">55</span><span class="tei-w" data-lemma="latitudo" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+</table></span>habere</span><br><span class="lb-num lb-5">55</span><span class="tei-item-cont"> </span><span class="tei-w" data-lemma="latitudo" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">latitudo</td>
@@ -38336,7 +38378,9 @@
 <td class="tip-key">POS</td>
 <td class="tip-pos">X</td>
 </tr>
-</table></span>vul</span> </span> </li></ol></div>
+</table></span>vul</span> </span> </span>
+</li>
+</ol></div>
 </div>
 </div>
 <div class="page-sep"><span class="page-sep-label">Página 38</span></div>

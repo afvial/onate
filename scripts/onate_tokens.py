@@ -1483,9 +1483,17 @@ def parse_editorial_marks(lines: list) -> None:
                 i += 1
                 continue
 
-            # >> → summarium item
+            # >>> → inicio de item del summarium
+            if ch == ">" and i + 1 < len(text) and text[i + 1] == ">" and i + 2 < len(text) and text[i + 2] == ">":
+                line["structure_type"] = "summarium"
+                line["item_start"] = True
+                removed.append((i, 3))
+                i += 3
+                continue
+            # >> → continuación de item del summarium
             if ch == ">" and i + 1 < len(text) and text[i + 1] == ">":
                 line["structure_type"] = "summarium"
+                line["item_start"] = False
                 removed.append((i, 2))
                 i += 2
                 continue

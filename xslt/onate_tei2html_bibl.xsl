@@ -70,7 +70,7 @@
             margin-right: auto;
           }
           .col {
-            width: 20em;
+            width: 19em;
             flex-shrink: 0;
             flex-grow: 0;
           }
@@ -245,27 +245,29 @@
             pointer-events: none;
             user-select: none;
           }
+
           /* Cada 5 líneas, número más destacado */
           .lb-num.lb-5 { color: #999; font-weight: bold; }
 
           /* Encabezados estructurales */
           p.tei-head {
-            font-size: 1rem;
+            font-size: 1.05rem;
+            font-style: italic;
             text-align: center;
-            margin: 1.5rem 0 0.2rem 0;
+            margin: 0.8rem 0 0.1rem 0;
             text-indent: 0;
             letter-spacing: 0.04em;
             white-space: normal;
-            width: 20em;
+            width: 100%;
           }
           p.tei-subhead {
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-align: center;
             margin: 0.2rem 0 0.6rem 0;
             text-indent: 0;
             letter-spacing: 0.05em;
             white-space: normal;
-            width: 20em;
+            width: 100%;
           }
 
           /* Summarium */
@@ -280,9 +282,29 @@
           li.tei-item {
             margin: 0.25rem 0;
             line-height: var(--lh);
+            font-style: italic;
+            position: relative;
+            padding-left: 2.5em;
+          }
+          li.tei-item .lb-num {
+            position: absolute;
+            left: -2.5rem;
+            width: 2rem;
+            text-align: right;
+            float: none;
+            margin-left: 0;
+          }
+          li.tei-item span.tei-label {
+            font-style: normal;
+            position: absolute;
+            left: 0;
+            width: 2.5em;
+          }
+          span.tei-item-body {
+            display: inline;
           }
           span.tei-item-indent { display: inline-block; width: 1.8em; }
-          span.tei-item-cont   { display: inline-block; width: 1.8em; }
+          span.tei-item-cont   { display: none; }
           span.tei-label {
             margin-right: 0.35em;
           }
@@ -774,11 +796,16 @@
   </xsl:template>
 
   <xsl:template match="tei:item[not(tei:label)]">
-    <li class="tei-item"><span class="tei-item-indent">&#160;&#160;&#160;</span><xsl:apply-templates/></li>
+    <li class="tei-item">
+      <span class="tei-item-body"><xsl:apply-templates/></span>
+    </li>
   </xsl:template>
 
-  <xsl:template match="tei:item">
-    <li class="tei-item"><xsl:apply-templates/></li>
+  <xsl:template match="tei:item[tei:label]">
+    <li class="tei-item">
+      <xsl:apply-templates select="tei:label"/>
+      <span class="tei-item-body"><xsl:apply-templates select="*[not(self::tei:label)]|text()"/></span>
+    </li>
   </xsl:template>
 
   <xsl:template match="tei:label">
