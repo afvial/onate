@@ -287,12 +287,11 @@
             padding-left: 2.5em;
           }
           li.tei-item .lb-num {
-            position: absolute;
-            left: -2.5rem;
+            float: left;
+            clear: left;
+            margin-left: -5rem;
             width: 2rem;
             text-align: right;
-            float: none;
-            margin-left: 0;
           }
           li.tei-item span.tei-label {
             font-style: normal;
@@ -301,7 +300,7 @@
             width: 2.5em;
           }
           span.tei-item-body {
-            display: inline;
+            display: block;
           }
           span.tei-item-indent { display: inline-block; width: 1.8em; }
           span.tei-item-cont   { display: none; }
