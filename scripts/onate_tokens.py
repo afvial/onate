@@ -1267,23 +1267,38 @@ def apply_abbrev_tags(text: str, abbrevs: list, sic_tags: list = None) -> list:
         key=lambda t: t["offset"]
     )
     if not combined:
-        return [{"text": text, "expansion": None, "is_abbrev": False, "is_sic": False, "corr": None}]
+        return [{"text": text, "expansion": None, "is_abbrev": False,
+                 "is_sic": False, "is_unclear": False, "is_supplied": False, "corr": None}]
     segments = []
     pos = 0
     for tag in combined:
         o, l = tag["offset"], tag["length"]
         if pos < o:
-            segments.append({"text": text[pos:o], "expansion": None, "is_abbrev": False, "is_sic": False, "corr": None})
+            segments.append({"text": text[pos:o], "expansion": None, "is_abbrev": False,
+                              "is_sic": False, "is_unclear": False, "is_supplied": False, "corr": None})
         seg_text = text[o: o + l]
         if seg_text:
             if tag.get("_type") == "sic":
-                segments.append({"text": seg_text, "expansion": None, "is_abbrev": False, "is_sic": True, "corr": tag.get("corr", "")})
+                segments.append({"text": seg_text, "expansion": None, "is_abbrev": False,
+                                  "is_sic": True, "is_unclear": False, "is_supplied": False,
+                                  "corr": tag.get("corr", "")})
+            elif tag.get("_type") == "unclear":
+                segments.append({"text": seg_text, "expansion": None, "is_abbrev": False,
+                                  "is_sic": False, "is_unclear": True, "is_supplied": False,
+                                  "corr": None})
+            elif tag.get("_type") == "supplied":
+                segments.append({"text": seg_text, "expansion": None, "is_abbrev": False,
+                                  "is_sic": False, "is_unclear": False, "is_supplied": True,
+                                  "corr": None})
             else:
                 exp = tag.get("expansion") or None
-                segments.append({"text": seg_text, "expansion": exp, "is_abbrev": True, "is_sic": False, "corr": None})
+                segments.append({"text": seg_text, "expansion": exp, "is_abbrev": True,
+                                  "is_sic": False, "is_unclear": False, "is_supplied": False,
+                                  "corr": None})
         pos = o + l
     if pos < len(text):
-        segments.append({"text": text[pos:], "expansion": None, "is_abbrev": False, "is_sic": False, "corr": None})
+        segments.append({"text": text[pos:], "expansion": None, "is_abbrev": False,
+                         "is_sic": False, "is_unclear": False, "is_supplied": False, "corr": None})
     return segments
 
 
@@ -1405,7 +1420,7 @@ def _close_span(lines: list, kind: str,
 
 def _has_editorial_marks(lines: list) -> bool:
     """True si alguna línea contiene marcas editoriales."""
-    marks = {"¶", "*", "@", "/"}
+    marks = {"¶", "*", "@", "/", "{"}
     return any(
         any(ch in marks for ch in line.get("text", ""))
         for line in lines
@@ -1549,6 +1564,67 @@ def parse_editorial_marks(lines: list) -> None:
                     _close_span(lines, "italic", li,
                                 italic_start_li, italic_start_off, len(clean_chars))
                 removed.append((i, 1))
+                i += 1
+                continue
+
+            # { → sic/unclear/supplied según contenido
+            if ch == "{":
+                end = text.find("}", i + 1)
+                if end != -1:
+                    inner = text[i + 1:end]
+                    if "|" in inner:
+                        # {texto erróneo|corrección}  →  <choice><sic><w/><corr><w/>
+                        sic_text, corr_text = inner.split("|", 1)
+                        corr_raw_len = len(corr_text)   # longitud en el texto original
+                        # Si el corr termina en ¬, la línea parte una palabra
+                        if corr_text.endswith("¬"):
+                            corr_text = corr_text[:-1]
+                            line["soft_hyphen"] = True
+                        sic_start = len(clean_chars)
+                        clean_chars.extend(list(sic_text))
+                        # Eliminar { y |corr} del clean; sic_text queda intacto
+                        removed.append((i, 1))
+                        removed.append((i + 1 + len(sic_text), corr_raw_len + 2))
+                        line.setdefault("sic_spans", []).append({
+                            "offset": sic_start,
+                            "length": len(sic_text),
+                            "corr":   corr_text,
+                            "_type":  "sic",
+                        })
+                        i = end + 1
+                        continue
+                    elif inner.startswith("[") and inner.endswith("]"):
+                        # {[texto]}  →  <supplied><w/>
+                        supplied_text = inner[1:-1]
+                        supplied_start = len(clean_chars)
+                        clean_chars.extend(list(supplied_text))
+                        removed.append((i, 2))                             # {[
+                        removed.append((i + 2 + len(supplied_text), 2))   # ]}
+                        line.setdefault("sic_spans", []).append({
+                            "offset": supplied_start,
+                            "length": len(supplied_text),
+                            "corr":   None,
+                            "_type":  "supplied",
+                        })
+                        i = end + 1
+                        continue
+                    elif inner.endswith("?"):
+                        # {texto?}  →  <unclear><w/>
+                        unclear_text = inner[:-1]
+                        unclear_start = len(clean_chars)
+                        clean_chars.extend(list(unclear_text))
+                        removed.append((i, 1))                              # {
+                        removed.append((i + 1 + len(unclear_text), 2))     # ?}
+                        line.setdefault("sic_spans", []).append({
+                            "offset": unclear_start,
+                            "length": len(unclear_text),
+                            "corr":   None,
+                            "_type":  "unclear",
+                        })
+                        i = end + 1
+                        continue
+                # { sin patrón reconocido → tratar como literal
+                clean_chars.append(ch)
                 i += 1
                 continue
 

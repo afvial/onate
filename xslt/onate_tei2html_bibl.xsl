@@ -575,6 +575,42 @@
        break="no" → guión visible + <br/> (palabra cortada entre líneas)
        @n presente → número de línea en margen izquierdo
        normal      → <br/> sin número -->
+  <!-- lb break="no" dentro de sic: sin guión (el original no lo tenía),
+       pero con número de línea si lo lleva -->
+  <xsl:template match="tei:sic//tei:lb[@break='no']">
+    <br/>
+    <xsl:if test="@n">
+      <xsl:variable name="n"    select="@n"/>
+      <xsl:variable name="mod5" select="$n mod 5"/>
+      <xsl:choose>
+        <xsl:when test="$mod5 = 0">
+          <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
+        </xsl:when>
+        <xsl:otherwise>
+          <span class="lb-num"><xsl:value-of select="$n"/></span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- lb break="no" general: guión visible (palabra partida entre líneas) -->
+  <!-- lb break="no" dentro de sic: sin guión (el original no lo tenía) -->
+  <xsl:template match="tei:sic//tei:lb[@break='no']" priority="1">
+    <br/>
+    <xsl:if test="@n">
+      <xsl:variable name="n"    select="@n"/>
+      <xsl:variable name="mod5" select="$n mod 5"/>
+      <xsl:choose>
+        <xsl:when test="$mod5 = 0">
+          <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
+        </xsl:when>
+        <xsl:otherwise>
+          <span class="lb-num"><xsl:value-of select="$n"/></span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template match="tei:lb[@break='no']">
     <xsl:text>-</xsl:text><br/>
   </xsl:template>
@@ -624,12 +660,12 @@
             </xsl:if>
             <tr>
               <td class="tip-key">corr</td>
-              <td class="tip-expan"><xsl:value-of select="tei:corr"/></td>
+              <td class="tip-expan"><xsl:value-of select="tei:corr/tei:w"/></td>
             </tr>
           </table>
         </span>
       </xsl:if>
-      <xsl:value-of select="tei:sic/tei:w"/>
+      <xsl:apply-templates select="tei:sic/tei:w/node()"/>
     </span>
     <xsl:if test="not(following-sibling::*[1][self::tei:pc]) and not(following-sibling::*[1][self::tei:lb])">
       <xsl:text> </xsl:text>

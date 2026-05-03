@@ -349,18 +349,30 @@ def emit_token(parent, tok: dict):
         corr_el = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
         corr_el.text = tok.get("expansion") or ""
     elif kind == "sic_lb":
-        # Palabra errónea cortada con guion: <choice><sic><w>left</w></sic><corr/></choice><lb break="no"/><w>right</w>
+        # <choice>
+        #   <sic><w>left<lb break="no" n="N"/>right</w></sic>   ← diplomático
+        #   <corr><w lemma=...>left-<lb break="no" n="N"/>right</w></corr>  ← NLP
+        # </choice>
         choice  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
-        sic_el  = etree.SubElement(choice, f"{{{TEI_NS}}}sic")
-        w_sic   = etree.SubElement(sic_el, f"{{{TEI_NS}}}w")
-        w_sic.text = tok["left"]
-        corr_el = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
-        corr_el.text = tok.get("expansion") or ""
-        lb = etree.SubElement(parent, f"{{{TEI_NS}}}lb")
-        lb.set("break", "no")
+
+        sic_el      = etree.SubElement(choice, f"{{{TEI_NS}}}sic")
+        w_sic       = etree.SubElement(sic_el, f"{{{TEI_NS}}}w")
+        w_sic.text  = tok["left"]
+        lb_sic      = etree.SubElement(w_sic, f"{{{TEI_NS}}}lb")
+        lb_sic.set("break", "no")
         if tok.get("lb_n"):
-            lb.set("n", str(tok["lb_n"]))
-        add_w(parent, tok["right"])
+            lb_sic.set("n", str(tok["lb_n"]))
+        lb_sic.tail = tok["right"]
+
+        corr_left   = tok.get("expansion") or tok["left"]
+        corr_el     = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
+        w_corr      = etree.SubElement(corr_el, f"{{{TEI_NS}}}w")
+        w_corr.text = corr_left + "-"
+        lb_corr     = etree.SubElement(w_corr, f"{{{TEI_NS}}}lb")
+        lb_corr.set("break", "no")
+        if tok.get("lb_n"):
+            lb_corr.set("n", str(tok["lb_n"]))
+        lb_corr.tail = tok["right"]
     elif kind == "amp":
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
