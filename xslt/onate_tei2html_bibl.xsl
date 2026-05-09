@@ -116,7 +116,7 @@
             transition: border-color 0.15s;
             position: relative;
           }
-          span.tei-w:hover { border-bottom: 1px dotted #7a9abf; }
+          span.tei-w:hover { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
 
           span.tei-w[data-pos="VERB"]  { color: #1a4a8a; }
           span.tei-w[data-pos="NOUN"]  { color: #222; }
