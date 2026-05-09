@@ -464,6 +464,7 @@ LONG_S = {
     "significatione":   "ſignificatione",
     "sariae":           "ſariæ",
     "subintrat":        "ſubintrat",
+    "sciremus":         "ſciremus",
     "scientes":         "ſcientes",
     "sumitur":          "ſumitur",
     "summus":           "ſummus",
@@ -484,6 +485,7 @@ LONG_S = {
     "aestimatio":       "æſtimatio",
     "mensura":          "menſura",
     "permutationem":    "permutationem",
+    "sumus":            "ſumus",
     "possumus":         "poſſumus",
     "posset":           "poſſet",
     "possent":          "poſſent",
@@ -976,6 +978,9 @@ LONG_S_ROOTS = [
     ("cresc",      "creſc"),       # excrescere, decrescere, accrescere, increscere…
     ("sist",       "ſiſt"),        # consistit, subsistit, insistit, persistit…
     ("proposit",   "propoſit"),    # proposita, propositum, propositi, propositis…
+    ("circunstant", "circunſtant"),  # circunstantias, circunstantiarum…
+    ("excus",       "excuſ"),         # excusari, excusat, excusatio…
+    ("posit",       "poſit"),          # posita, positum, positio… (excl. opp-, supp- ya en LONG_S)
     ("cons",       "conſ"),        # consurgit, consuetudo, consensus…
 ]
 
