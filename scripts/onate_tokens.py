@@ -1194,8 +1194,11 @@ def extract_lines(page_xml_path: Path) -> list:
             text = (line_elem.text or "").strip()
             if not text:
                 continue
-            soft_hyphen = text.rstrip().endswith("¬")
+            soft_hyphen     = text.rstrip().endswith("¬")
+            no_hyphen_break = text.rstrip().endswith("~")
             if soft_hyphen:
+                text = text.rstrip()[:-1].rstrip()
+            elif no_hyphen_break:
                 text = text.rstrip()[:-1].rstrip()
             lines.append({
                 "text":               text,
@@ -1209,6 +1212,7 @@ def extract_lines(page_xml_path: Path) -> list:
                 "region_id":          "r1",
                 "reading_order":      i,
                 "soft_hyphen":        soft_hyphen,
+                "no_hyphen_break":    no_hyphen_break,
                 "first_x":            0,
                 "line_n":             i + 1,
             })
@@ -1223,8 +1227,14 @@ def extract_lines(page_xml_path: Path) -> list:
         if equiv is None or not equiv.text:
             continue
         raw = equiv.text
-        soft_hyphen = raw.rstrip().endswith("¬")
-        text = raw.rstrip()[:-1].rstrip() if soft_hyphen else raw.rstrip()
+        soft_hyphen     = raw.rstrip().endswith("¬")
+        no_hyphen_break = raw.rstrip().endswith("~")
+        if soft_hyphen:
+            text = raw.rstrip()[:-1].rstrip()
+        elif no_hyphen_break:
+            text = raw.rstrip()[:-1].rstrip()
+        else:
+            text = raw.rstrip()
         custom = tl.get("custom", "")
         parent = tl.getparent()
         region_id = parent.get("id", "") if parent is not None else ""
@@ -1257,6 +1267,7 @@ def extract_lines(page_xml_path: Path) -> list:
             "region_id":          region_id,
             "reading_order":      order,
             "soft_hyphen":        soft_hyphen,
+            "no_hyphen_break":    no_hyphen_break,
             "first_x":            first_x,
         })
     lines.sort(key=lambda l: (l["region_id"], l["reading_order"]))

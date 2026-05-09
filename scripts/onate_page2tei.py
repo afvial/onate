@@ -77,8 +77,8 @@ def main():
         words = last_text.split()
         penultimate_hyphen = len(lines) >= 2 and lines[-2]["soft_hyphen"]
 
-        if last["soft_hyphen"]:
-            pass  # CASO A: onate_tei.py lo maneja
+        if last["soft_hyphen"] or last.get("no_hyphen_break"):
+            pass  # CASO A: onate_tei.py lo maneja (¬ o ~)
 
         elif (len(words) <= 2 and not last["soft_hyphen"] and not last.get("sic_spans")
               and (len(last_text) <= 5 or penultimate_hyphen)):
@@ -90,11 +90,12 @@ def main():
 
         else:
             print(f"  --strip-catchword: «{last_text}» se conserva.", file=sys.stderr)
-    total_abbrevs = sum(len(l["abbrevs"]) for l in lines)
-    total_hyphen  = sum(1 for l in lines if l["soft_hyphen"])
+    total_abbrevs   = sum(len(l["abbrevs"]) for l in lines)
+    total_hyphen    = sum(1 for l in lines if l["soft_hyphen"])
+    total_no_hyphen = sum(1 for l in lines if l.get("no_hyphen_break"))
     print(f"  Líneas: {len(lines)}  |  Abreviaturas: {total_abbrevs}"
-          f"  |  Guiones ¬: {total_hyphen}", file=sys.stderr)
-
+          f"  |  Guiones ¬: {total_hyphen}"
+          f"  |  Sin guion ~: {total_no_hyphen}", file=sys.stderr)
 
     if args.verbose:
         for l in lines:
@@ -103,7 +104,7 @@ def main():
                 f"«{s['text']}»→{s['expansion']}"
                 for s in segs if s["is_abbrev"]
             ) if any(s["is_abbrev"] for s in segs) else ""
-            print(f"  {'¬' if l['soft_hyphen'] else ' '} "
+            print(f"  {'¬' if l['soft_hyphen'] else ('~' if l.get('no_hyphen_break') else ' ')} "
                   f"{l['text'][:55]:55s}{abbr_str}", file=sys.stderr)
 
     if args.out_txt:

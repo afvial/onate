@@ -192,11 +192,16 @@ def apply_long_s_to_split(left: str, right: str):
     return orig_left, orig_right
 
 
-def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = None):
+def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = None,
+             no_hyphen: bool = False):
     """
     Añade una palabra partida por salto de línea:
       <w>left<lb break="no"/>right</w>
     Con <choice><orig> o <choice><abbr> si hay expansion.
+    no_hyphen=True → el original no tenía guion (error tipográfico, marcado con ~)
+                      → <lb break="no"/> sin rend="hyphen"
+    no_hyphen=False → el original tenía guion (¬)
+                      → <lb break="no" rend="hyphen"/>
     """
     # Texto completo reconstruido para classify_tag
     full_text = left + right
@@ -217,6 +222,8 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
         w.text = w_left
         lb = etree.SubElement(w, f"{{{TEI_NS}}}lb")
         lb.set("break", "no")
+        if not no_hyphen:
+            lb.set("rend", "hyphen")   # el original tenía guion tipográfico (¬)
         if lb_n: lb.set("n", str(lb_n))
         lb.tail = w_right
         return w
@@ -333,7 +340,8 @@ def emit_token(parent, tok: dict):
         lb.set("n", tok["text"])
     elif kind == "word_lb":
         add_w_lb(parent, tok["left"], tok["right"],
-                 expansion=tok["expansion"], lb_n=tok.get("lb_n"))
+                 expansion=tok["expansion"], lb_n=tok.get("lb_n"),
+                 no_hyphen=tok.get("no_hyphen", False))
     elif kind == "word":
         add_w(parent, tok["text"], expansion=tok["expansion"],
               is_abbrev=(tok["expansion"] is not None))
@@ -417,6 +425,9 @@ def _flatten_lines_to_raw_tokens(lines: list, first_lb_ref: list) -> list:
             last = line_toks[-1]
             if line["soft_hyphen"]:
                 line_toks[-1] = (last[0], last[1], last[2], False, next_n)
+            elif line.get("no_hyphen_break"):
+                # ~ : unir sin guion; se marca con next_n negativo para distinguir de ¬
+                line_toks[-1] = (last[0], last[1], last[2], False, -next_n)
             else:
                 line_toks[-1] = (last[0], last[1], last[2], next_n, False)
         raw_tokens.extend(line_toks)
@@ -535,6 +546,8 @@ def _flatten_spans(lines: list) -> list:
                 last = toks[-1]
                 if line["soft_hyphen"]:
                     toks[-1] = (last[0], last[1], last[2], False, next_n, last[5], last[6])
+                elif line.get("no_hyphen_break"):
+                    toks[-1] = (last[0], last[1], last[2], False, -next_n, last[5], last[6])
                 else:
                     toks[-1] = (last[0], last[1], last[2], next_n, False, last[5], last[6])
             result.append((toks, False))
@@ -566,6 +579,8 @@ def _flatten_spans(lines: list) -> list:
                     last = toks[-1]
                     if line["soft_hyphen"]:
                         toks[-1] = (last[0], last[1], last[2], False, next_n, last[5], last[6])
+                    elif line.get("no_hyphen_break"):
+                        toks[-1] = (last[0], last[1], last[2], False, -next_n, last[5], last[6])
                     else:
                         toks[-1] = (last[0], last[1], last[2], next_n, False, last[5], last[6])
 
@@ -652,7 +667,17 @@ def _join_split_words_6(raw6: list) -> list:
             queue.append((t, i, b))
         return False, 0           # fallback
 
+    # Detectar qué textos vienen de un quiebre sin guion (~)
+    # La señal es split negativo en la 5ª posición de la tupla
+    no_hyphen_texts = set()
+    for tok in raw6:
+        if len(tok) > 4 and isinstance(tok[4], int) and tok[4] < 0:
+            no_hyphen_texts.add(tok[1])
+
     raw5   = [t[:5] for t in raw6]
+    # Normalizar next_n negativo a positivo para join_split_words
+    raw5 = [(t[0], t[1], t[2], t[3], abs(t[4]) if isinstance(t[4], int) else t[4])
+            for t in raw5]
     tokens = join_split_words(raw5)
 
     for tok in tokens:
@@ -662,8 +687,9 @@ def _join_split_words_6(raw6: list) -> list:
             tok["bibl_id"]  = 0
         elif kind == "word_lb":
             italic, bibl_id = _pop_attrs(tok.get("left", ""))
-            tok["italic"]  = italic
-            tok["bibl_id"] = bibl_id
+            tok["italic"]    = italic
+            tok["bibl_id"]   = bibl_id
+            tok["no_hyphen"] = tok.get("left", "") in no_hyphen_texts
             _pop_attrs(tok.get("right", ""))
         else:
             italic, bibl_id = _pop_attrs(tok.get("text", ""))
@@ -1036,7 +1062,7 @@ def build_clean_txt(lines: list) -> str:
         if prev_region and line["region_id"] != prev_region:
             out.append("")
         prev_region = line["region_id"]
-        suffix = "¬" if line["soft_hyphen"] else ""
+        suffix = "¬" if line["soft_hyphen"] else ("~" if line.get("no_hyphen_break") else "")
         out.append(line["text"] + suffix)
     return "\n".join(out)
 
