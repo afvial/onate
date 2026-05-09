@@ -651,8 +651,22 @@
           <w lemma="sui" pos="PRON" msd="Case=Acc|Number=Sing|Person=3">se</w>
         </reg>
       </choice>
-      <w lemma="ipse" pos="DET" msd="Case=Abl|Gender=Masc|Number=Sing">ipso</w>
-      <w lemma="secludo" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">se<lb break="no" n="36"/>clusa</w>
+      <choice>
+        <orig>
+          <w lemma="ipse" pos="DET" msd="Case=Abl|Gender=Masc|Number=Sing">ipſo</w>
+        </orig>
+        <reg>
+          <w lemma="ipse" pos="DET" msd="Case=Abl|Gender=Masc|Number=Sing">ipso</w>
+        </reg>
+      </choice>
+      <choice>
+        <orig>
+          <w lemma="secludo" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">ſe<lb break="no" n="36"/>clusa</w>
+        </orig>
+        <reg>
+          <w lemma="secludo" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">seclusa</w>
+        </reg>
+      </choice>
       <w lemma="ignorantia" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">ignorantia</w>
       <w lemma="in" pos="ADP">in</w>
       <choice>
@@ -693,13 +707,34 @@
       <pc type="other">.</pc>
       <lb n="38"/>
       <w lemma="uel" pos="CCONJ">vel</w>
-      <w lemma="ipse" pos="DET" msd="Case=Nom|Gender=Masc|Number=Sing">ipse</w>
-      <w lemma="sol" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">sol</w>
+      <choice>
+        <orig>
+          <w lemma="ipse" pos="DET" msd="Case=Nom|Gender=Masc|Number=Sing">ipſe</w>
+        </orig>
+        <reg>
+          <w lemma="ipse" pos="DET" msd="Case=Nom|Gender=Masc|Number=Sing">ipse</w>
+        </reg>
+      </choice>
+      <choice>
+        <orig>
+          <w lemma="sol" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">ſol</w>
+        </orig>
+        <reg>
+          <w lemma="sol" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">sol</w>
+        </reg>
+      </choice>
       <w lemma="quot" pos="DET">quot</w>
       <w lemma="ab" pos="ADP">ab</w>
       <w lemma="hinc" pos="ADV">hinc</w>
       <w lemma="leucio" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">leucis</w>
-      <w lemma="disto" pos="VERB" msd="Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">distet</w>
+      <choice>
+        <orig>
+          <w lemma="disto" pos="VERB" msd="Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">diſtet</w>
+        </orig>
+        <reg>
+          <w lemma="disto" pos="VERB" msd="Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">distet</w>
+        </reg>
+      </choice>
       <w lemma="pla" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">pla</w>
       <lb n="39"/>
       <w lemma="num" pos="PART">num</w>
@@ -711,7 +746,14 @@
           <w lemma="sum" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin">est</w>
         </reg>
       </choice>
-      <w lemma="distantia" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">distantiam</w>
+      <choice>
+        <orig>
+          <w lemma="distantia" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">diſtantiam</w>
+        </orig>
+        <reg>
+          <w lemma="distantia" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">distantiam</w>
+        </reg>
+      </choice>
       <w lemma="ille" pos="DET" msd="Case=Acc|Gender=Fem|Number=Sing">illam</w>
       <choice>
         <orig>
@@ -851,7 +893,14 @@
       <w lemma="pretium" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing">pretio</w>
       <w lemma="debeo" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">debeat</w>
       <lb n="47"/>
-      <w lemma="pensito" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Pass">pensitari</w>
+      <choice>
+        <orig>
+          <w lemma="pensito" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Pass">penſitari</w>
+        </orig>
+        <reg>
+          <w lemma="pensito" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Pass">pensitari</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
     </s>
     <s>
@@ -916,7 +965,14 @@
             <w>in</w>
             <w>1</w>
             <pc type="other">.</pc>
-            <w>dist</w>
+            <choice>
+              <orig>
+                <w>diſt</w>
+              </orig>
+              <reg>
+                <w>dist</w>
+              </reg>
+            </choice>
             <pc type="other">.</pc>
             <w>33</w>
             <pc type="other">.</pc>
