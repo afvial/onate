@@ -1176,6 +1176,37 @@ def parse_span_tags(custom: str, tag_name: str) -> list:
     return sorted(spans, key=lambda s: s['offset'])
 
 
+
+def _parse_staging_sic(text: str):
+    """
+    Parsea patrones {sic|corr} en texto de staging.
+    Devuelve (clean_text, sic_spans) donde sic_spans es lista de
+    {"start": int, "end": int, "corr": str} con offsets en clean_text.
+    Ejemplos:
+      "{cnnsue|consue}¬"  →  "cnnsue¬",  [{start, end, corr="consue"}]
+      "texto {err|ok} fin" →  "texto err fin", [{start, end, corr="ok"}]
+    """
+    pattern = re.compile(r"\{([^|{}]+)\|([^|{}]*)\}")
+    sic_spans = []
+    clean = ""
+    prev_end = 0
+    for m in pattern.finditer(text):
+        clean += text[prev_end:m.start()]
+        offset = len(clean)
+        sic_text = m.group(1)
+        corr_text = m.group(2)
+        clean += sic_text
+        sic_spans.append({
+            "offset": offset,
+            "length": len(sic_text),
+            "corr":   corr_text,
+            "_type":  "sic",
+        })
+        prev_end = m.end()
+    clean += text[prev_end:]
+    return clean, sic_spans
+
+
 def extract_lines(page_xml_path: Path) -> list:
     """
     Lee líneas desde:
@@ -1200,6 +1231,7 @@ def extract_lines(page_xml_path: Path) -> list:
                 text = text.rstrip()[:-1].rstrip()
             elif no_hyphen_break:
                 text = text.rstrip()[:-1].rstrip()
+            text, sic_spans = _parse_staging_sic(text)
             lines.append({
                 "text":               text,
                 "abbrevs":            [],
@@ -1208,7 +1240,7 @@ def extract_lines(page_xml_path: Path) -> list:
                 "index_entry_spans":  [],
                 "summary_item_spans": [],
                 "italic_spans":       [],
-                "sic_spans":          [],
+                "sic_spans":          sic_spans,
                 "region_id":          "r1",
                 "reading_order":      i,
                 "soft_hyphen":        soft_hyphen,
@@ -1227,14 +1259,8 @@ def extract_lines(page_xml_path: Path) -> list:
         if equiv is None or not equiv.text:
             continue
         raw = equiv.text
-        soft_hyphen     = raw.rstrip().endswith("¬")
-        no_hyphen_break = raw.rstrip().endswith("~")
-        if soft_hyphen:
-            text = raw.rstrip()[:-1].rstrip()
-        elif no_hyphen_break:
-            text = raw.rstrip()[:-1].rstrip()
-        else:
-            text = raw.rstrip()
+        soft_hyphen = raw.rstrip().endswith("¬")
+        text = raw.rstrip()[:-1].rstrip() if soft_hyphen else raw.rstrip()
         custom = tl.get("custom", "")
         parent = tl.getparent()
         region_id = parent.get("id", "") if parent is not None else ""
@@ -1267,7 +1293,6 @@ def extract_lines(page_xml_path: Path) -> list:
             "region_id":          region_id,
             "reading_order":      order,
             "soft_hyphen":        soft_hyphen,
-            "no_hyphen_break":    no_hyphen_break,
             "first_x":            first_x,
         })
     lines.sort(key=lambda l: (l["region_id"], l["reading_order"]))

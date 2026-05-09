@@ -11,6 +11,10 @@ Excluye <w> que sean descendientes de:
 
 Incluye <w> dentro de <sic> (forma impresa) y <orig> (grafía original).
 
+Para cada <choice><sic><w>/<corr><w>:
+  - Anota usando el texto de <corr><w> (forma correcta para el NLP)
+  - Copia los mismos atributos al <corr><w>
+
 Para cada <choice><orig><w>/<reg><w>:
   - Anota el <w> de <reg> (forma normalizada) → el modelo la procesa mejor
   - Copia los mismos atributos al <w> de <orig>
@@ -125,6 +129,29 @@ def collect_w_elements(tree):
             norm = get_norm_text(w)
             if norm:
                 results.append((w, norm, None))
+            continue
+
+        # <choice><sic><w> / <corr><w>
+        # Usamos el texto de <corr><w> para el NLP (forma correcta);
+        # anotamos el <sic><w> y copiamos los atributos al <corr><w>.
+        if parent_tag == "sic" and grandparent_tag == "choice":
+            corr_w = None
+            for sibling in grandparent:
+                if local(sibling.tag) == "corr":
+                    corr_children = list(sibling)
+                    if corr_children and local(corr_children[0].tag) == "w":
+                        corr_w = corr_children[0]
+                    break
+            if corr_w is not None:
+                norm = get_norm_text(corr_w)
+                if norm:
+                    # w_elem = sic/w, reg_w = corr/w (destino de copia)
+                    results.append((w, norm, corr_w))
+            else:
+                # No hay corr: anotar con el texto del sic directamente
+                norm = get_norm_text(w)
+                if norm:
+                    results.append((w, norm, None))
             continue
 
         # <choice><orig><w> / <reg><w>

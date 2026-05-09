@@ -572,19 +572,33 @@
 
 
   <!-- SALTO DE LÍNEA: preserva la disposición tipográfica original.
-       break="no" @rend="hyphen" → guión visible + <br/>  (original tenía guion, marcado ¬)
-       break="no" sin @rend       → solo <br/>, sin guion  (original sin guion, marcado ~)
-       @n presente                → número de línea en margen
-       normal                     → <br/> sin número
-
-       Tres casos por prioridad:
-         1. sic//lb[@break='no']         → sin guion (el sic preserva el original erróneo)
-         2. lb[@break='no'][@rend='hyphen'] → guion + <br/>  (¬)
-         3. lb[@break='no'][not(@rend)]  → solo <br/>         (~)
+       Tres casos para lb[@break='no'] dentro de <sic>:
+         prioridad 3 — sic//lb[@rend='hyphen'] → guion visible (error ortográfico, original tenía guion)
+         prioridad 2 — sic//lb sin rend         → sin guion  (error era el guion ausente)
+       Dos casos generales:
+         prioridad 1 — lb[@rend='hyphen']        → guion + <br/>  (¬)
+         prioridad 1 — lb[not(@rend)]            → solo <br/>      (~)
   -->
 
-  <!-- Caso 1: lb dentro de <sic> → sin guion, con número si lo lleva -->
-  <xsl:template match="tei:sic//tei:lb[@break='no']" priority="2">
+  <!-- sic con guion: el error es ortográfico, el original tenía guion tipográfico -->
+  <xsl:template match="tei:sic//tei:lb[@break='no'][@rend='hyphen']" priority="3">
+    <xsl:text>-</xsl:text><br/>
+    <xsl:if test="@n">
+      <xsl:variable name="n"    select="@n"/>
+      <xsl:variable name="mod5" select="$n mod 5"/>
+      <xsl:choose>
+        <xsl:when test="$mod5 = 0">
+          <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
+        </xsl:when>
+        <xsl:otherwise>
+          <span class="lb-num"><xsl:value-of select="$n"/></span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- sic sin guion: el original no tenía guion, sin número -->
+  <xsl:template match="tei:sic//tei:lb[@break='no'][not(@rend)]" priority="2">
     <br/>
     <xsl:if test="@n">
       <xsl:variable name="n"    select="@n"/>
@@ -600,13 +614,12 @@
     </xsl:if>
   </xsl:template>
 
-  <!-- Caso 2: lb break="no" con rend="hyphen" → el original tenía guion tipográfico (¬) -->
+  <!-- lb break="no" general: guion visible (¬) -->
   <xsl:template match="tei:lb[@break='no'][@rend='hyphen']" priority="1">
     <xsl:text>-</xsl:text><br/>
   </xsl:template>
 
-  <!-- Caso 3: lb break="no" sin rend → el original NO tenía guion (error tipog., marcado ~)
-       Solo <br/>; el lector ve la palabra unida sin guion, que es lo que hay en el impreso. -->
+  <!-- lb break="no" sin rend: sin guion (~) -->
   <xsl:template match="tei:lb[@break='no'][not(@rend)]" priority="1">
     <br/>
     <xsl:if test="@n">
