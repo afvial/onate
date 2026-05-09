@@ -192,11 +192,12 @@ def apply_long_s_to_split(left: str, right: str):
     return orig_left, orig_right
 
 
-def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = None):
+def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = None,
+             no_hyphen: bool = False):
     """
     Añade una palabra partida por salto de línea:
       <w>left<lb break="no"/>right</w>
-    Con <choice><orig> o <choice><abbr> si hay expansion.
+    no_hyphen=True (marcado ~) → rend="no-hyphen"; False → sin rend (muestra guion)
     """
     # Texto completo reconstruido para classify_tag
     full_text = left + right
@@ -217,6 +218,8 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
         w.text = w_left
         lb = etree.SubElement(w, f"{{{TEI_NS}}}lb")
         lb.set("break", "no")
+        if no_hyphen:
+            lb.set("rend", "no-hyphen")
         if lb_n: lb.set("n", str(lb_n))
         lb.tail = w_right
         return w
@@ -333,7 +336,8 @@ def emit_token(parent, tok: dict):
         lb.set("n", tok["text"])
     elif kind == "word_lb":
         add_w_lb(parent, tok["left"], tok["right"],
-                 expansion=tok["expansion"], lb_n=tok.get("lb_n"))
+                 expansion=tok["expansion"], lb_n=tok.get("lb_n"),
+                 no_hyphen=tok.get("no_hyphen", False))
     elif kind == "word":
         add_w(parent, tok["text"], expansion=tok["expansion"],
               is_abbrev=(tok["expansion"] is not None))
@@ -362,8 +366,8 @@ def emit_token(parent, tok: dict):
         w_sic.text  = tok["left"]
         lb_sic      = etree.SubElement(w_sic, f"{{{TEI_NS}}}lb")
         lb_sic.set("break", "no")
-        if not no_hyph:
-            lb_sic.set("rend", "hyphen")
+        if no_hyph:
+            lb_sic.set("rend", "no-hyphen")
         if tok.get("lb_n"):
             lb_sic.set("n", str(tok["lb_n"]))
         lb_sic.tail = tok["right"]

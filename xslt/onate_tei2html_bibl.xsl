@@ -169,7 +169,14 @@
           span.tei-pc {
             margin-left: 0.0em;  /* separación mínima */
           }
-          span.tei-sic { position: relative; cursor: default; }
+          span.tei-sic {
+            display: inline;
+            cursor: default;
+            border-bottom: 1px dotted transparent;
+            transition: border-color 0.15s;
+            position: relative;
+          }
+          span.tei-sic:hover { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
           span.tei-bibl { margin-right: -0.05em; }
@@ -572,33 +579,17 @@
 
 
   <!-- SALTO DE LÍNEA: preserva la disposición tipográfica original.
-       Tres casos para lb[@break='no'] dentro de <sic>:
-         prioridad 3 — sic//lb[@rend='hyphen'] → guion visible (error ortográfico, original tenía guion)
-         prioridad 2 — sic//lb sin rend         → sin guion  (error era el guion ausente)
-       Dos casos generales:
-         prioridad 1 — lb[@rend='hyphen']        → guion + <br/>  (¬)
-         prioridad 1 — lb[not(@rend)]            → solo <br/>      (~)
+       break="no" → guión visible + <br/> (palabra cortada entre líneas)
+       @n presente → número de línea en margen izquierdo
+       normal      → <br/> sin número -->
+  <!-- lb[@break='no'] — lógica retrocompatible:
+    El marcador ~ produce rend="no-hyphen"; todo lo demás muestra guion.
+    p2 sic//lb[@rend='no-hyphen'] → sin guion (~ dentro de sic)
+    p1 sic//lb                    → guion (¬ dentro de sic, retrocompat.)
+    p1 lb[@rend='no-hyphen']      → sin guion (~)
+       lb[@break='no']            → guion (¬ y archivos anteriores)
   -->
-
-  <!-- sic con guion: el error es ortográfico, el original tenía guion tipográfico -->
-  <xsl:template match="tei:sic//tei:lb[@break='no'][@rend='hyphen']" priority="3">
-    <xsl:text>-</xsl:text><br/>
-    <xsl:if test="@n">
-      <xsl:variable name="n"    select="@n"/>
-      <xsl:variable name="mod5" select="$n mod 5"/>
-      <xsl:choose>
-        <xsl:when test="$mod5 = 0">
-          <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
-        </xsl:when>
-        <xsl:otherwise>
-          <span class="lb-num"><xsl:value-of select="$n"/></span>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:if>
-  </xsl:template>
-
-  <!-- sic sin guion: el original no tenía guion, sin número -->
-  <xsl:template match="tei:sic//tei:lb[@break='no'][not(@rend)]" priority="2">
+  <xsl:template match="tei:sic//tei:lb[@break='no'][@rend='no-hyphen']" priority="2">
     <br/>
     <xsl:if test="@n">
       <xsl:variable name="n"    select="@n"/>
@@ -614,13 +605,23 @@
     </xsl:if>
   </xsl:template>
 
-  <!-- lb break="no" general: guion visible (¬) -->
-  <xsl:template match="tei:lb[@break='no'][@rend='hyphen']" priority="1">
+  <xsl:template match="tei:sic//tei:lb[@break='no']" priority="1">
     <xsl:text>-</xsl:text><br/>
+    <xsl:if test="@n">
+      <xsl:variable name="n"    select="@n"/>
+      <xsl:variable name="mod5" select="$n mod 5"/>
+      <xsl:choose>
+        <xsl:when test="$mod5 = 0">
+          <span class="lb-num lb-5"><xsl:value-of select="$n"/></span>
+        </xsl:when>
+        <xsl:otherwise>
+          <span class="lb-num"><xsl:value-of select="$n"/></span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
-  <!-- lb break="no" sin rend: sin guion (~) -->
-  <xsl:template match="tei:lb[@break='no'][not(@rend)]" priority="1">
+  <xsl:template match="tei:lb[@break='no'][@rend='no-hyphen']" priority="1">
     <br/>
     <xsl:if test="@n">
       <xsl:variable name="n"    select="@n"/>
@@ -634,6 +635,10 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="tei:lb[@break='no']">
+    <xsl:text>-</xsl:text><br/>
   </xsl:template>
 
   <xsl:template match="tei:lb[not(@break='no') and @n]">
@@ -678,6 +683,11 @@
                 <td class="tip-key">POS</td>
                 <td class="tip-pos"><xsl:value-of select="tei:sic/tei:w/@pos"/></td>
               </tr>
+            </xsl:if>
+            <xsl:if test="tei:sic/tei:w/@msd != ''">
+              <xsl:call-template name="format-msd">
+                <xsl:with-param name="msd" select="tei:sic/tei:w/@msd"/>
+              </xsl:call-template>
             </xsl:if>
             <tr>
               <td class="tip-key">corr</td>
