@@ -6,8 +6,9 @@ Tractatus XXI: *De emptione et venditione*, Disputatio LXIII.
 ## Overview
 
 This project produces a TEI XML diplomatic edition from Transkribus HTR output,
-with bibliographic enrichment, sentence segmentation, and an HTML review interface.
-The pipeline is entirely command-line driven and version-controlled with Git.
+with morphological annotation, bibliographic enrichment, sentence segmentation,
+and an HTML review interface. The pipeline is entirely command-line driven and
+version-controlled with Git.
 
 **Editor:** Andrés Vial  
 **Source:** *De contractibus*, Tomus III, Francesco Cavalli, Rome, 1646–1654  
@@ -21,7 +22,8 @@ The pipeline is entirely command-line driven and version-controlled with Git.
 |---|---|
 | [Transkribus](https://transkribus.eu) | HTR transcription → PAGE XML |
 | Python 3 + lxml | Pipeline scripts |
-| Emacs + nxml-mode | Manual TEI editing and review |
+| [LatinCy](https://huggingface.co/latincy) (`la_core_web_sm`) | Morphological annotation (POS, lemma, MSD) |
+| Emacs + nxml-mode | Manual staging review and TEI editing |
 | xsltproc | TEI → HTML transformation |
 | Git | Version control |
 
@@ -32,11 +34,12 @@ The pipeline is entirely command-line driven and version-controlled with Git.
 ```
 onate/
 ├── transkribus/disp63/     PAGE XML exports from Transkribus (one file per column)
-├── src/disp63/             TEI diplomatic layer (output of Step 1)
-├── bibl/disp63/            TEI bibliographic layer (output of Step 2)
+├── staging/disp63/         Normalised staging files (one file per column, manually reviewed)
+├── src/disp63/             TEI diplomatic layer + morphological annotation
+├── bibl/disp63/            TEI bibliographic layer
 │   └── disp63_bibl.xml     XInclude master file
-├── output/                 Assembled XML (output of Step 3)
-├── html/disp63/            HTML review interface (output of Step 5)
+├── output/                 Assembled XML
+├── html/disp63/            HTML review interface
 ├── xslt/                   XSLT stylesheets
 ├── scripts/                Python pipeline scripts
 ├── schema/                 RelaxNG schema (tei_all.rnc)
@@ -52,41 +55,82 @@ Each page of the source is a two-column folio. Columns are processed in reading
 order (left before right) and identified as `pg_63_NN_izq` (left) and
 `pg_63_NN_der` (right).
 
+The pipeline has two phases. The first — normalisation — produces a staging file
+that is reviewed and edited manually before the automated steps run. The second
+phase is fully automated and driven by `procesar_pagina.sh`.
+
 ```
-Transkribus PAGE XML
+transkribus/disp63/pg_63_NN_col.xml      Transkribus PAGE XML export
+        │
+        ▼  onate_normalize.py
+staging/disp63/pg_63_NN_col.xml          Normalised staging file
+        │
+        │  ← manual review (staging markers, sic/corr, etc.)
         │
         ▼  Step 1 — onate_page2tei.py
-src/disp63/pg_63_NN_col.xml          TEI diplomatic transcript
+src/disp63/pg_63_NN_col.xml              TEI diplomatic transcript
+        │
+        ▼  Step 1.5 — onate_nlp.py
+src/disp63/pg_63_NN_col.xml              + morphological annotation (POS, lemma, MSD)
         │
         ▼  Step 2 — bibl_enricher.py
-bibl/disp63/pg_63_NN_col_bibl.xml    TEI + bibliographic markup
+bibl/disp63/pg_63_NN_col_bibl.xml        TEI + bibliographic markup
         │
         ▼  Step 3 — xmllint --xinclude
-output/disp63_bibl_completo.xml      Full assembled XML
+output/disp63_bibl_completo.xml          Full assembled XML
         │
         ▼  Step 3.5 — onate_sentences.py
-output/disp63_bibl_completo.xml      Sentence spans across column boundaries
+output/disp63_bibl_completo.xml          + sentence spans across column boundaries
         │
         ▼  Step 4 — validation
         │
         ▼  Step 5 — xsltproc
-html/disp63/disp63_bibl.html         HTML review interface
+html/disp63/disp63_bibl.html             HTML review interface
 ```
 
-### Running the full pipeline
+### Normalisation
 
 ```bash
-./procesar_pagina.sh all
+python3 scripts/onate_normalize.py transkribus/disp63/pg_63_NN_col.xml \
+    --out staging/disp63/pg_63_NN_col.xml
 ```
 
-### Running individual steps
+This cleans up Unicode artefacts from the HTR output and reports suspected
+unhy­phen­ated word breaks for manual review. The resulting staging file is then
+edited before the pipeline runs.
+
+#### Staging markers
+
+| Marker | Meaning | TEI output |
+|---|---|---|
+| `¬` | Word continues on next line (original hyphen present) | `<lb break="no"/>` |
+| `~` | Word continues on next line (hyphen missing — compositor error) | `<lb break="no" rend="no-hyphen"/>` |
+| `{sic\|corr}` | Typographic error with correction | `<choice><sic>…</sic><corr>…</corr></choice>` |
+| `{sic\|}` | Error with no correction | `<sic>…</sic>` |
+| `//` | Sentence boundary | `</s><s>` |
+| `##` / `#` | Heading level 1 / 2 | `<head>` |
+| `@ref@` | Bibliographic reference | `<bibl>` candidate |
+
+### Running the automated pipeline
 
 ```bash
 # Single column, all steps
 ./procesar_pagina.sh 37 izq
 
-# Single step only
+# Left column only (no assembly — right column not yet available)
+./procesar_pagina.sh 39 izq --only page2tei
+./procesar_pagina.sh 39 izq --only nlp
+./procesar_pagina.sh 39 izq --only enrich
+
+# Right column — runs all steps including assembly
+./procesar_pagina.sh 39 der
+```
+
+#### Individual steps
+
+```bash
 ./procesar_pagina.sh 37 izq --only page2tei
+./procesar_pagina.sh 37 izq --only nlp
 ./procesar_pagina.sh 37 izq --only enrich
 ./procesar_pagina.sh 37 der --only assemble
 ./procesar_pagina.sh 37 der --only sentences
@@ -94,7 +138,7 @@ html/disp63/disp63_bibl.html         HTML review interface
 ./procesar_pagina.sh 37 der --only html
 ```
 
-### Options
+#### Options
 
 ```
 --force-bibl    Rebuild <bibl> elements even if already present
@@ -105,15 +149,19 @@ html/disp63/disp63_bibl.html         HTML review interface
 
 ## Scripts
 
+### `scripts/onate_normalize.py`
+Cleans Transkribus PAGE XML output and writes a staging file ready for manual
+review. Detects suspected unhyphenated word breaks and reports them as warnings.
+
 ### `scripts/onate_tokens.py`
 Lexical tables and tokenizer. Contains:
 - `LONG_S` — dictionary mapping normalized forms to diplomatic forms with long-s (ſ)
 - `LONG_S_ROOTS` — root-based rules for long-s conversion not covered by the dictionary
 - `ABBREV_EXPAN` — abbreviation expansion dictionary
 - `ORIG_REG` — manual orthographic variants (v/u, ae/æ, etc.)
-- `apply_long_s_to_split()` — reconstructs diplomatic form for words split across columns
+- `apply_long_s_to_split()` — reconstructs diplomatic form for words split across lines
 - `classify_tag()` — determines whether a token is `<abbr>` or `<orig>`
-- `extract_lines()` — parses PAGE XML and extracts text lines with metadata
+- `extract_lines()` — parses the staging file and extracts text lines with metadata
 
 ### `scripts/onate_tei.py`
 TEI tree builder. Contains:
@@ -122,14 +170,20 @@ TEI tree builder. Contains:
 - `emit_token()` — dispatches tokens to the appropriate builder function
 - `lines_to_tei()` — converts a list of lines into a `<div type="page">` element
 
-### `scripts/onate_bibl.py`
-Bibliographic token grouping. Detects sequences of author + work + locator tokens
-and groups them into `<bibl>` candidates.
-
 ### `scripts/onate_page2tei.py`
-Main entry point. Orchestrates extraction, tokenization, and TEI generation for
-a single column. Handles catchword detection (`--strip-catchword`) and
-cross-column word joining (`--join-left`).
+Main entry point for TEI generation. Orchestrates extraction, tokenization, and
+TEI tree building for a single column. Handles catchword detection
+(`--strip-catchword`) and cross-column word joining (`--join-left`).
+
+### `scripts/onate_nlp.py`
+Morphological annotation. Runs LatinCy (`la_core_web_sm`) over the `<w>`
+elements in the TEI file and adds `@lemma`, `@pos`, and `@msd` attributes
+in place.
+
+### `scripts/onate_bibl.py`
+Bibliographic token grouping. Detects sequences of author + work + locator
+tokens in the staging file and groups them into `<bibl>` candidates for the
+enrichment step.
 
 ### `scripts/bibl_enricher.py`
 Bibliographic enrichment. Adds `@corresp`, `<author ref>`, `<biblScope>`, and
@@ -181,11 +235,16 @@ abbreviated forms are encoded in an inner `<choice>`:
 ```
 
 ### Words split at line boundaries
+The `~` staging marker indicates a compositor error (break without hyphen);
+`¬` indicates an original hyphen. Both produce `<lb break="no"/>`, but `~`
+additionally carries `rend="no-hyphen"`:
+
 ```xml
-<choice>
-  <orig><w>conſue<lb break="no" n="48"/>tudine</w></orig>
-  <reg><w>consuetudine</w></reg>
-</choice>
+<!-- ¬ — original hyphen -->
+<w>conſue<lb break="no" n="48"/>tudine</w>
+
+<!-- ~ — missing hyphen (compositor error) -->
+<w>pla<lb break="no" rend="no-hyphen" n="38"/>num</w>
 ```
 
 ### Words split at column boundaries
@@ -221,7 +280,8 @@ abbreviated forms are encoded in an inner `<choice>`:
 The HTML output (`html/disp63/disp63_bibl.html`) displays the text in two
 columns per page with:
 - **Morphological colour-coding** by POS tag (VERB, NOUN, ADJ, etc.)
-- **Tooltips** on hover showing `reg` (normalized form) or `expan` (expansion)
+- **Tooltips** on hover showing lemma, POS, morphological features, and
+  normalized or expanded form
 - **Sentence highlighting**: hovering over a sentence fragment that continues
   in the adjacent column highlights both fragments simultaneously
 - **Line numbers** matching the PAGE XML source
@@ -236,7 +296,8 @@ git clone https://github.com/afvial/onate.git
 cd onate
 python3 -m venv venv
 source venv/bin/activate
-pip install lxml
+pip install lxml spacy
+python3 -m spacy download la_core_web_sm
 
 # System dependencies (Debian/Ubuntu)
 sudo apt install libxml2-utils xsltproc
