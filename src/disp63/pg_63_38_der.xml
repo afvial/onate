@@ -817,9 +817,14 @@
           <w lemma="iustus" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing">iusta</w>
         </reg>
       </choice>
-      <w lemma="probabio" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Pass">probabi</w>
-      <lb n="42"/>
-      <w lemma="lito" pos="VERB" msd="Mood=Imp|Number=Plur|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">litate</w>
+      <choice>
+        <sic>
+          <w lemma="probabilitas" pos="VERB" msd="Mood=Imp|Number=Plur|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">probabi<lb break="no" n="42"/>litate</w>
+        </sic>
+        <corr>
+          <w>probabi-<lb break="no" n="42"/>litate</w>
+        </corr>
+      </choice>
       <w lemma="in" pos="ADP">in</w>
       <w lemma="uario" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Plur">varias</w>
       <w lemma="opinio" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Plur">opiniones</w>
