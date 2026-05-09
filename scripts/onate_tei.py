@@ -420,6 +420,8 @@ def _flatten_lines_to_raw_tokens(lines: list, first_lb_ref: list) -> list:
             last = line_toks[-1]
             if line["soft_hyphen"]:
                 line_toks[-1] = (last[0], last[1], last[2], False, next_n)
+            elif line.get("no_hyphen_break"):
+                line_toks[-1] = (last[0], last[1], last[2], False, -next_n)
             else:
                 line_toks[-1] = (last[0], last[1], last[2], next_n, False)
         raw_tokens.extend(line_toks)
@@ -538,6 +540,8 @@ def _flatten_spans(lines: list) -> list:
                 last = toks[-1]
                 if line["soft_hyphen"]:
                     toks[-1] = (last[0], last[1], last[2], False, next_n, last[5], last[6])
+                elif line.get("no_hyphen_break"):
+                    toks[-1] = (last[0], last[1], last[2], False, -next_n, last[5], last[6])
                 else:
                     toks[-1] = (last[0], last[1], last[2], next_n, False, last[5], last[6])
             result.append((toks, False))
@@ -569,6 +573,8 @@ def _flatten_spans(lines: list) -> list:
                     last = toks[-1]
                     if line["soft_hyphen"]:
                         toks[-1] = (last[0], last[1], last[2], False, next_n, last[5], last[6])
+                    elif line.get("no_hyphen_break"):
+                        toks[-1] = (last[0], last[1], last[2], False, -next_n, last[5], last[6])
                     else:
                         toks[-1] = (last[0], last[1], last[2], next_n, False, last[5], last[6])
 
