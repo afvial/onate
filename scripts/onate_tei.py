@@ -162,13 +162,28 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
             w_reg.text = text
     elif ae_orig:
-        choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
-        orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
-        w      = etree.SubElement(orig,   f"{{{TEI_NS}}}w")
-        w.text = ae_orig
-        reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
-        w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-        w_reg.text = ae_reg if ae_reg else text
+        macron_exp = _expand_macrons(text) if any(c in text for c in MACRON_MAP) else None
+        if macron_exp and macron_exp != text:
+            outer  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+            abbr   = etree.SubElement(outer,  f"{{{TEI_NS}}}abbr")
+            inner  = etree.SubElement(abbr,   f"{{{TEI_NS}}}choice")
+            orig   = etree.SubElement(inner,  f"{{{TEI_NS}}}orig")
+            w      = etree.SubElement(orig,   f"{{{TEI_NS}}}w")
+            w.text = _to_display(ae_orig)
+            reg_el = etree.SubElement(inner,  f"{{{TEI_NS}}}reg")
+            w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
+            w_reg.text = _to_display(ae_reg if ae_reg else text)
+            expan  = etree.SubElement(outer,  f"{{{TEI_NS}}}expan")
+            w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
+            w_exp.text = macron_exp.replace("ſ", "s")
+        else:
+            choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+            orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
+            w      = etree.SubElement(orig,   f"{{{TEI_NS}}}w")
+            w.text = ae_orig
+            reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
+            w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
+            w_reg.text = ae_reg if ae_reg else text
     else:
         # Macrones en texto plano (no marcado como abbrev por Transkribus)
         macron_exp = _expand_macrons(text) if not is_abbrev else None

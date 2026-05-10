@@ -14485,12 +14485,19 @@
         </reg>
       </choice>
       <choice>
-        <orig>
-          <w lemma="praeponedus" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass">præponēdus</w>
-        </orig>
-        <reg>
-          <w lemma="praeponedus" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass">praeponēdus</w>
-        </reg>
+        <abbr>
+          <choice>
+            <orig>
+              <w>præponēdus</w>
+            </orig>
+            <reg>
+              <w>praeponēdus</w>
+            </reg>
+          </choice>
+        </abbr>
+        <expan>
+          <w lemma="praepono" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass">praeponendus</w>
+        </expan>
       </choice>
       <pc type="comma">,</pc>
       <choice>
