@@ -24,6 +24,11 @@ _MACRON_MEDIAL = {"ā": "an", "ē": "en", "ī": "in", "ō": "on", "ô": "on", "�
 _MACRON_CHARS  = set(_MACRON_FINAL)
 
 
+_STAGING_TO_DISPLAY = str.maketrans({"ô": "ō"})
+
+def _to_display(t: str) -> str:
+    return t.translate(_STAGING_TO_DISPLAY)
+
 def _expand_macrons(text: str) -> str | None:
     """
     Expande macrones en una palabra según su posición:
@@ -171,7 +176,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
             abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
             w      = etree.SubElement(abbr,   f"{{{TEI_NS}}}w")
-            w.text = text
+            w.text = _to_display(text)
             expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
             w_exp.text = macron_exp.replace("ſ", "s")
