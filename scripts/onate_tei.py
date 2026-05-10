@@ -134,13 +134,28 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
         w_reg.text = reg
     elif long_s_orig:
-        choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
-        orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
-        w      = etree.SubElement(orig,   f"{{{TEI_NS}}}w")
-        w.text = long_s_orig
-        reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
-        w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-        w_reg.text = text
+        macron_exp = _expand_macrons(long_s_orig) if any(c in long_s_orig for c in MACRON_MAP) else None
+        if macron_exp and macron_exp != long_s_orig:
+            outer  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+            abbr   = etree.SubElement(outer,  f"{{{TEI_NS}}}abbr")
+            inner  = etree.SubElement(abbr,   f"{{{TEI_NS}}}choice")
+            orig   = etree.SubElement(inner,  f"{{{TEI_NS}}}orig")
+            w      = etree.SubElement(orig,   f"{{{TEI_NS}}}w")
+            w.text = long_s_orig
+            reg_el = etree.SubElement(inner,  f"{{{TEI_NS}}}reg")
+            w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
+            w_reg.text = text
+            expan  = etree.SubElement(outer,  f"{{{TEI_NS}}}expan")
+            w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
+            w_exp.text = macron_exp.replace('ſ', 's')
+        else:
+            choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
+            orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
+            w      = etree.SubElement(orig,   f"{{{TEI_NS}}}w")
+            w.text = long_s_orig
+            reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
+            w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
+            w_reg.text = text
     elif ae_orig:
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
