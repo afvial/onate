@@ -13389,13 +13389,27 @@
       </choice>
       <w lemma="pretium" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing">pretio</w>
       <w lemma="conuentionalis" pos="NOUN" msd="Case=Dat|Gender=Neut|Number=Sing">conuentionali</w>
-      <w lemma="interse" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Sing">in<lb break="no" n="23"/>terse</w>
+      <choice>
+        <orig>
+          <w lemma="interse" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Sing">in<lb break="no" n="23"/>terſe</w>
+        </orig>
+        <reg>
+          <w lemma="interse" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Sing">interse</w>
+        </reg>
+      </choice>
       <w lemma="contraho" pos="VERB" msd="Case=Nom|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Act">contrahentes</w>
       <pc type="comma">,</pc>
       <w lemma="omnis" pos="DET" msd="Case=Abl|Gender=Fem|Number=Sing">omni</w>
       <w lemma="ignorantia" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">ignorantia</w>
       <lb n="24"/>
-      <w lemma="excludo" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass">exclusa</w>
+      <choice>
+        <orig>
+          <w lemma="excludo" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass">excluſa</w>
+        </orig>
+        <reg>
+          <w lemma="excludo" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass">exclusa</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <choice>
         <abbr>
@@ -13459,7 +13473,14 @@
           <w lemma="Molina" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Molina</w>
         </expan>
       </choice>
-      <w lemma="diseut" pos="SCONJ">di<lb break="no" n="27"/>seut</w>
+      <choice>
+        <orig>
+          <w lemma="diseut" pos="SCONJ">di<lb break="no" n="27"/>ſeut</w>
+        </orig>
+        <reg>
+          <w lemma="diseut" pos="SCONJ">diseut</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="347" pos="NUM">347</w>
       <pc type="other">.</pc>
@@ -13497,7 +13518,14 @@
       <pc type="other">.</pc>
       <choice>
         <abbr>
-          <w>controuers.</w>
+          <choice>
+            <orig>
+              <w>controuerſ.</w>
+            </orig>
+            <reg>
+              <w>controuers.</w>
+            </reg>
+          </choice>
         </abbr>
         <expan>
           <w lemma="controuersia" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">controversia</w>
@@ -13506,7 +13534,14 @@
       <lb n="28"/>
       <w lemma="3" pos="NUM">3</w>
       <pc type="other">.</pc>
-      <w lemma="conclus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">conclus</w>
+      <choice>
+        <orig>
+          <w lemma="conclus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">concluſ</w>
+        </orig>
+        <reg>
+          <w lemma="conclus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">conclus</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="2" pos="NUM">2</w>
       <pc type="other">.</pc>
