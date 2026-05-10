@@ -37,7 +37,14 @@
         </reg>
       </choice>
       <w lemma="in" pos="ADP">in</w>
-      <w lemma="indiuisibilis" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing">indivisi<lb break="no" n="2"/>bili</w>
+      <choice>
+        <orig>
+          <w lemma="indiuisibilis" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing">indiuiſi<lb break="no" n="2"/>bili</w>
+        </orig>
+        <reg>
+          <w lemma="indiuisibilis" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing">indiuisibili</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="Secundus" pos="PROPN" msd="Case=Acc|Gender=Masc|Number=Sing">Secundo</w>
       <pc type="comma">,</pc>
@@ -208,7 +215,14 @@
         </reg>
       </choice>
       <w lemma="orbis" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">orbis</w>
-      <w lemma="occidentalis" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">occidentalis</w>
+      <choice>
+        <abbr>
+          <w>occidētalis</w>
+        </abbr>
+        <expan>
+          <w lemma="occidentalis" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">occidentalis</w>
+        </expan>
+      </choice>
       <w lemma="ab" pos="ADP">ab</w>
       <w lemma="orientalis" pos="ADJ" msd="Case=Dat|Gender=Fem|Number=Sing">orientali</w>
       <pc type="comma">,</pc>
@@ -222,7 +236,8 @@
           <w lemma="terra" pos="NOUN" msd="Case=Dat|Gender=Fem|Number=Sing">terrae</w>
         </reg>
       </choice>
-      <w lemma="abempyreo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act">abempyreo</w>
+      <w lemma="ab" pos="ADP">ab</w>
+      <w lemma="empyreo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act">empyreo</w>
       <w lemma="caelum" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act">coelo</w>
       <choice>
         <orig>
