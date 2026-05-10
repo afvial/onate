@@ -17,9 +17,9 @@ from onate_bibl import join_split_words, group_bibl_tokens, group_legal_tokens
 
 # Mapa de macrones por posición
 # Final → sustituye vocal+m; medial → sustituye vocal+n
-_MACRON_FINAL = {"ā": "am", "ē": "em", "ī": "im", "ō": "om", "ū": "um",
+_MACRON_FINAL = {"ā": "am", "ē": "em", "ī": "im", "ō": "om", "ô": "on", "ū": "um",
                  "Ā": "Am", "Ē": "Em", "Ī": "Im", "Ō": "Om", "Ū": "Um"}
-_MACRON_MEDIAL = {"ā": "an", "ē": "en", "ī": "in", "ō": "on", "ū": "un",
+_MACRON_MEDIAL = {"ā": "an", "ē": "en", "ī": "in", "ō": "on", "ô": "on", "ū": "un",
                   "Ā": "An", "Ē": "En", "Ī": "In", "Ō": "On", "Ū": "Un"}
 _MACRON_CHARS  = set(_MACRON_FINAL)
 

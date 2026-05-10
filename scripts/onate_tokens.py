@@ -320,7 +320,7 @@ ORIG_REG = {
 
 # Macrones que representan letras abreviadas
 MACRON_MAP = {
-    "ā": "am", "ē": "em", "ī": "im", "ō": "on", "ū": "um",
+    "ā": "am", "ē": "em", "ī": "im", "ō": "on", "ô": "on", "ū": "um",
     "Ā": "Am", "Ē": "Em", "Ī": "Im", "Ō": "On", "Ū": "Um",
 }
 
