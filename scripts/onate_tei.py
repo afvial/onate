@@ -386,7 +386,8 @@ def emit_token(parent, tok: dict):
         w_sic   = etree.SubElement(sic_el, f"{{{TEI_NS}}}w")
         w_sic.text = tok["text"]
         corr_el = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
-        corr_el.text = tok.get("expansion") or ""
+        w_corr  = etree.SubElement(corr_el, f"{{{TEI_NS}}}w")
+        w_corr.text = tok.get("expansion") or ""
     elif kind == "sic_lb":
         # <choice>
         #   <sic><w>left<lb break="no" n="N"/>right</w></sic>   ← diplomático
