@@ -241,12 +241,19 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
     # LONG_S para palabras partidas
     long_s_left, long_s_right = apply_long_s_to_split(left, right)
 
-    # ae→æ para palabras partidas
+    # ae→æ y ę→ae para palabras partidas
     ae_full = None
-    if not reg_full and not long_s_left and "ae" in full_text:
-        ae_full = full_text.replace("ae", "æ")
-        if ae_full == full_text:
-            ae_full = None
+    ae_ę_reg = None
+    if not reg_full and not long_s_left:
+        if "ae" in full_text:
+            ae_full = full_text.replace("ae", "æ")
+            if ae_full == full_text:
+                ae_full = None
+        elif "ę" in full_text or "Ę" in full_text:
+            ae_reg_text = full_text.replace("ę", "ae").replace("Ę", "Ae")
+            if ae_reg_text != full_text:
+                ae_full  = full_text
+                ae_ę_reg = ae_reg_text
 
     def _make_w_lb(parent_el, w_left, w_right):
         w = etree.SubElement(parent_el, f"{{{TEI_NS}}}w")
@@ -325,7 +332,7 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
         _make_w_lb(orig, ae_left, ae_right)
         reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-        w_reg.text = full_text
+        w_reg.text = ae_ę_reg if ae_ę_reg else full_text
     else:
         _make_w_lb(parent, left, right)
 
