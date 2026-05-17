@@ -9,14 +9,7 @@
           <w lemma="Contractus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Contractus</w>
           <w lemma="emptio" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">emptionis</w>
           <w lemma="longe" pos="ADV">longè</w>
-          <choice>
-            <orig>
-              <w lemma="distinguo" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">diſtin<lb break="no" n="2"/>ctus</w>
-            </orig>
-            <reg>
-              <w lemma="distinguo" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">distinctus</w>
-            </reg>
-          </choice>
+          <w lemma="distinguo" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">distin<lb break="no" n="2"/>ctus</w>
           <choice>
             <orig>
               <w lemma="sum" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin">eſt</w>
@@ -50,7 +43,7 @@
           </choice>
           <choice>
             <orig>
-              <w lemma="aestimo" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Gdv|Voice=Pass">æſtimand<lb break="no" n="4"/>æ</w>
+              <w lemma="aestimo" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Gdv|Voice=Pass">æstiman<lb break="no" n="4"/>dæ</w>
             </orig>
             <reg>
               <w lemma="aestimo" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Gdv|Voice=Pass">aestimandae</w>
@@ -80,7 +73,7 @@
           <w lemma="pretium" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">pretium</w>
           <choice>
             <orig>
-              <w lemma="substantia" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Plur">ſubstantiae</w>
+              <w lemma="substantia" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Plur">ſubſtantiæ</w>
             </orig>
             <reg>
               <w lemma="substantia" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Plur">substantiae</w>
@@ -239,14 +232,7 @@
           </choice>
           <w lemma="emptor" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing">empto<lb break="no" n="14"/>ris</w>
           <w lemma="non" pos="PART">non</w>
-          <choice>
-            <orig>
-              <w lemma="possum" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">poteſt</w>
-            </orig>
-            <reg>
-              <w lemma="possum" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">potest</w>
-            </reg>
-          </choice>
+          <w lemma="possum" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">potest</w>
           <w lemma="res" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">res</w>
           <w lemma="carus" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing">carius</w>
           <w lemma="ueo" pos="VERB" msd="Aspect=Prosp|Case=Gen|Number=Sing|VerbForm=Ger|Voice=Pass">vendi</w>
@@ -305,7 +291,14 @@
           <w lemma="uelut" pos="SCONJ">veluti</w>
           <w lemma="cum" pos="SCONJ">cum</w>
           <w lemma="res" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing">re</w>
-          <w lemma="transmitto" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">transmittit</w>
+          <choice>
+            <orig>
+              <w lemma="transmitto" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">tranſmittit</w>
+            </orig>
+            <reg>
+              <w lemma="transmitto" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">transmittit</w>
+            </reg>
+          </choice>
           <pc type="other">.</pc>
         </s>
       </item>
@@ -364,7 +357,14 @@
   <p>
     <s>
       <lb n="24"/>
-      <w lemma="circumfero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">CIrcumfertur</w>
+      <choice>
+        <sic>
+          <w lemma="circumfero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">CIrcumfertur</w>
+        </sic>
+        <corr>
+          <w lemma="circumfero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">Circumfertur</w>
+        </corr>
+      </choice>
       <w lemma="tamquam" pos="SCONJ">tanquam</w>
       <w lemma="communis" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing">commune</w>
       <lb n="25"/>
@@ -403,7 +403,14 @@
       <lb n="28"/>
       <w lemma="ius" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">iuris</w>
       <w lemma="munimentum" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing">munimento</w>
-      <w lemma="suffulcio" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">suffulta</w>
+      <choice>
+        <orig>
+          <w lemma="suffulcio" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">ſuffulta</w>
+        </orig>
+        <reg>
+          <w lemma="suffulcio" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">suffulta</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <w lemma="nam" pos="PART">nam</w>
       <w lemma="probo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">proba<lb break="no" n="29"/>tur</w>
@@ -573,7 +580,14 @@
       <lb n="33"/>
       <w lemma="Doctor" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Plur">Doctoribus</w>
       <w lemma="in" pos="ADP">in</w>
-      <w lemma="scopulus" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur">scopulos</w>
+      <choice>
+        <orig>
+          <w lemma="scopulus" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur">ſcopulos</w>
+        </orig>
+        <reg>
+          <w lemma="scopulus" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur">scopulos</w>
+        </reg>
+      </choice>
       <w lemma="hic" pos="DET" msd="Case=Gen|Gender=Fem|Number=Sing">huius</w>
       <w lemma="error" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing">erroris</w>
       <lb n="34"/>
@@ -607,7 +621,14 @@
             <w lemma="lex" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">lex</w>
           </expan>
         </choice>
-        <w lemma="siseruus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Sing">siseruus</w>
+        <choice>
+          <orig>
+            <w lemma="siseruus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Sing">ſiſeruus</w>
+          </orig>
+          <reg>
+            <w lemma="siseruus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Sing">siseruus</w>
+          </reg>
+        </choice>
         <w lemma="furtiuus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">fur<lb break="no" n="35"/>tiuus</w>
         <w lemma="14" pos="NUM">14</w>
         <pc type="other">.</pc>
@@ -646,7 +667,7 @@
         </reg>
       </choice>
       <w lemma="debeo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Fut|VerbForm=Fin|Voice=Act">debebit</w>
-      <pc type="other">.</pc>
+      <pc type="comma">,</pc>
       <lb n="37"/>
       <w lemma="quantus" pos="DET" msd="Case=Gen|Gender=Masc|Number=Sing">quanti</w>
       <w lemma="emptor" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">emptorem</w>
@@ -713,8 +734,8 @@
             <w lemma="possum" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">potest</w>
           </reg>
         </choice>
+        <pc type="other">.</pc>
       </hi>
-      <pc type="other">.</pc>
       <choice>
         <abbr>
           <w>&amp;</w>
@@ -898,10 +919,17 @@
       <lb n="46"/>
       <w lemma="cautio" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing">cautione</w>
       <pc type="other">.</pc>
-      <w lemma="i" pos="NUM" msd="Number=Plur">J</w>
+      <pc type="bracket" subtype="close">]</pc>
       <w lemma="ubi" pos="ADV">vbi</w>
       <hi rend="italic">
-        <w lemma="gloss" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">gloss</w>
+        <choice>
+          <orig>
+            <w lemma="gloss" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">gloſſ</w>
+          </orig>
+          <reg>
+            <w lemma="gloss" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">gloss</w>
+          </reg>
+        </choice>
         <pc type="other">.</pc>
         <w lemma="lit" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">lit</w>
         <pc type="other">.</pc>
@@ -976,7 +1004,14 @@
         </reg>
       </choice>
       <w lemma="omnis" pos="DET" msd="Case=Gen|Gender=Fem|Number=Plur">omnium</w>
-      <w lemma="regulo" pos="VERB" msd="Case=Acc|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act">regularum</w>
+      <choice>
+        <abbr>
+          <w>regularū</w>
+        </abbr>
+        <expan>
+          <w lemma="regulo" pos="VERB" msd="Case=Acc|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act">regularum</w>
+        </expan>
+      </choice>
       <pc type="comma">,</pc>
       <choice>
         <orig>
@@ -992,12 +1027,17 @@
       <w lemma="res" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Plur">rerum</w>
       <w lemma="do" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">dantur</w>
       <pc type="comma">,</pc>
-      <w lemma="non" pos="PART">non</w>
+      <choice>
+        <abbr>
+          <w>nō</w>
+        </abbr>
+        <expan>
+          <w lemma="non" pos="PART">non</w>
+        </expan>
+      </choice>
       <w lemma="probo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">probatur</w>
       <w lemma="ab" pos="ADP">à</w>
-      <w lemma="do" pos="PRON" msd="Case=Nom|Number=Sing|Person=2">Do</w>
-      <lb n="51"/>
-      <w lemma="ctoribus" pos="VERB" msd="Aspect=Imp|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act">ctoribus</w>
+      <w lemma="Doctor" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Plur">Do<lb break="no" rend="no-hyphen" n="51"/>ctoribus</w>
       <pc type="semicolon">;</pc>
       <choice>
         <orig>
@@ -1030,7 +1070,14 @@
       </choice>
       <w lemma="extermino" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Gdv|Voice=Pass">exterminanda</w>
       <w lemma="tamquam" pos="ADV">tamquam</w>
-      <w lemma="manifestus" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing">ma<lb break="no" n="53"/>nifestum</w>
+      <choice>
+        <orig>
+          <w lemma="manifestus" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing">ma<lb break="no" n="53"/>nifeſtum</w>
+        </orig>
+        <reg>
+          <w lemma="manifestus" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing">manifestum</w>
+        </reg>
+      </choice>
       <w lemma="error" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">errorem</w>
       <pc type="comma">,</pc>
       <choice>
@@ -1041,7 +1088,14 @@
           <w lemma="et" pos="CCONJ">et</w>
         </expan>
       </choice>
-      <w lemma="iniustitia" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">iniustitiam</w>
+      <choice>
+        <orig>
+          <w lemma="iniustitia" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">iniuſtitiam</w>
+        </orig>
+        <reg>
+          <w lemma="iniustitia" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">iniustitiam</w>
+        </reg>
+      </choice>
       <w lemma="contineo" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing">conti<lb break="no" n="54"/>nens</w>
       <pc type="other">.</pc>
     </s>
@@ -1057,7 +1111,14 @@
           <w lemma="exprimo" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">expresso</w>
         </reg>
       </choice>
-      <w lemma="statuo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">sta<lb break="no" n="55"/>tuitur</w>
+      <choice>
+        <orig>
+          <w lemma="statuo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">ſta<lb break="no" n="55"/>tuitur</w>
+        </orig>
+        <reg>
+          <w lemma="statuo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">statuitur</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <hi rend="italic">
         <choice>
