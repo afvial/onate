@@ -15,7 +15,16 @@ from onate_tokens import (
 )
 from onate_bibl import join_split_words, group_bibl_tokens, group_legal_tokens
 
-# Mapa de macrones por posición
+# ── Overrides de s larga por línea de staging ────────────────────────────────
+# Notación en staging: [-palabra] suprime s larga; [+palabra] la fuerza.
+# Se actualiza por bloque antes de emitir sus tokens.
+_LONG_S_OVERRIDES: dict = {}   # palabra.lower() → True (forzar) | False (suprimir)
+
+def set_long_s_overrides(overrides: dict) -> None:
+    global _LONG_S_OVERRIDES
+    _LONG_S_OVERRIDES = overrides or {}
+
+# ── Mapa de macrones por posición
 # Final → sustituye vocal+m; medial → sustituye vocal+n
 _MACRON_FINAL = {"ā": "am", "ē": "em", "ī": "im", "ō": "om", "ô": "on", "ū": "um",
                  "Ā": "Am", "Ē": "Em", "Ī": "Im", "Ō": "Om", "Ū": "Um"}
@@ -62,7 +71,8 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
 
     # s larga: lookup en LONG_S (case-insensitive, preserva mayúscula inicial)
     long_s_orig = None
-    if True:  # también para abreviaturas
+    _ls_override = _LONG_S_OVERRIDES.get(text.lower())  # True=forzar, False=suprimir
+    if _ls_override is not False:  # None (sin override) o True (forzar) → proceder
         key = text.lower()
         if key in LONG_S:
             orig_form = LONG_S[key]
@@ -209,6 +219,9 @@ def apply_long_s_to_split(left: str, right: str):
     """
     full = left + right
     key = full.lower()
+    # Respetar override [-palabra] del staging
+    if _LONG_S_OVERRIDES.get(key) is False:
+        return None, None
     if key in LONG_S:
         orig_full = LONG_S[key]
     else:
@@ -829,6 +842,11 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
 
     for pi, para in enumerate(paragraphs):
         p_el      = etree.SubElement(parent, f"{{{TEI_NS}}}p")
+        # Activar overrides de s larga para este párrafo
+        combined_overrides: dict = {}
+        for line in para:
+            combined_overrides.update(line.get("long_s_overrides", {}))
+        set_long_s_overrides(combined_overrides)
         spans     = _flatten_spans(para)
         sentences = _group_spans_into_sentences(spans)
 
@@ -876,6 +894,7 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
                 if all_w:
                     lb = etree.SubElement(all_w[-1], f"{{{TEI_NS}}}lb")
                     lb.set("break", "no")
+    set_long_s_overrides({})  # limpiar overrides al salir del bloque
 
 
 
@@ -1047,9 +1066,15 @@ def _emit_summarium(parent, lines: list):
             lbl.text = label_text
             content_lines[0] = _trim_line_by_offset(first_line, len(label_text))
 
+        # Activar overrides de s larga para este item
+        _item_overrides = {}
+        for _l in item_lines:
+            _item_overrides.update(_l.get("long_s_overrides", {}))
+        set_long_s_overrides(_item_overrides)
         # Emitir contenido del item respetando italic_spans
         s_el = etree.SubElement(item_el, f"{{{TEI_NS}}}s")
         _wrap_italic_spans(s_el, content_lines, emit_token)
+    set_long_s_overrides({})
 
 
 def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool = False) -> etree._Element:

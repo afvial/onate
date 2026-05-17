@@ -19,7 +19,7 @@ import argparse
 from pathlib import Path
 from lxml import etree
 
-from onate_tokens import TEI_NS, extract_lines, apply_abbrev_tags
+from onate_tokens import TEI_NS, extract_lines, apply_abbrev_tags, parse_long_s_overrides, parse_long_s_overrides
 from onate_tei    import lines_to_tei, build_clean_txt
 
 def main():
@@ -54,6 +54,18 @@ def main():
     print(f"Leyendo {path.name}...", file=sys.stderr)
     is_staging = etree.parse(str(path)).getroot().tag == "lines"
     lines = extract_lines(path)
+    for _line in lines:
+        if '[' in _line["text"]:
+            _clean, _overrides = parse_long_s_overrides(_line["text"])
+            if _overrides:
+                _line["text"]             = _clean
+                _line["long_s_overrides"] = _overrides
+    for _line in lines:
+        if '[' in _line["text"]:
+            _clean, _overrides = parse_long_s_overrides(_line["text"])
+            if _overrides:
+                _line["text"]             = _clean
+                _line["long_s_overrides"] = _overrides
 
     # ── Detección del reclamo tipográfico (catchword) ───────────────────────
     # El reclamo aparece al final de la columna como guía tipográfica al

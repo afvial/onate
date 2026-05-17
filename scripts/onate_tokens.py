@@ -1247,6 +1247,37 @@ def _parse_staging_sic(text: str):
     return clean, sic_spans
 
 
+import re as _re
+
+_LONG_S_OVERRIDE_RE = _re.compile(r'\[([+-])(\w+)\]')
+
+def parse_long_s_overrides(text: str):
+    """
+    Extrae [-palabra]/[+palabra] del texto de staging.
+    Devuelve (texto_limpio, overrides_dict).
+    overrides_dict: {palabra.lower(): True (forzar) | False (suprimir)}
+    """
+    overrides: dict = {}
+    def _replace(m):
+        sign, word = m.group(1), m.group(2)
+        overrides[word.lower()] = (sign == '+')
+        return word
+    clean = _LONG_S_OVERRIDE_RE.sub(_replace, text)
+    return clean, overrides
+
+import re as _re
+
+_LONG_S_OVERRIDE_RE = _re.compile(r'\[([+-])(\w+)\]')
+
+def parse_long_s_overrides(text: str):
+    overrides = {}
+    def _replace(m):
+        sign, word = m.group(1), m.group(2)
+        overrides[word.lower()] = (sign == '+')
+        return ''
+    clean = _LONG_S_OVERRIDE_RE.sub(_replace, text).strip()
+    return clean, overrides
+
 def extract_lines(page_xml_path: Path) -> list:
     """
     Lee líneas desde:
