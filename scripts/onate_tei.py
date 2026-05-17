@@ -87,6 +87,22 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             long_s_orig = _apply_long_s_roots(text)
 
     # Detección automática ae→æ, oe→œ y ę→ae (solo si no hay ya un choice)
+    # Aplicar æ/œ sobre long_s_orig si contiene dígrafos ae/oe sin convertir
+    if long_s_orig:
+        if "ae" in long_s_orig:
+            long_s_orig = long_s_orig.replace("ae", "æ").replace("Ae", "Æ")
+        if "oe" in long_s_orig:
+            long_s_orig = long_s_orig.replace("oe", "œ").replace("Oe", "Œ")
+        if long_s_orig == text:
+            long_s_orig = None
+    # Aplicar æ/œ sobre long_s_orig si contiene dígrafos ae/oe sin convertir
+    if long_s_orig:
+        if "ae" in long_s_orig:
+            long_s_orig = long_s_orig.replace("ae", "æ").replace("Ae", "Æ")
+        if "oe" in long_s_orig:
+            long_s_orig = long_s_orig.replace("oe", "œ").replace("Oe", "Œ")
+        if long_s_orig == text:
+            long_s_orig = None
     ae_orig = None
     ae_reg  = None
     if not reg and not long_s_orig and not is_abbrev:
@@ -239,8 +255,10 @@ def apply_long_s_to_split(left: str, right: str):
         orig_full = orig_full[0].upper() + orig_full[1:]
     if orig_full == full:
         return None, None
-    orig_left  = orig_full[:len(left)]
-    orig_right = orig_full[len(left):]
+    _n_lig    = left.lower().count("ae") + left.lower().count("oe")
+    _idx      = len(left) - _n_lig
+    orig_left  = orig_full[:_idx]
+    orig_right = orig_full[_idx:]
     return orig_left, orig_right
 
 
@@ -346,8 +364,10 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
         else:
             _make_w_lb(parent, left, right)
     elif ae_full:
-        ae_left  = ae_full[:len(left)]
-        ae_right = ae_full[len(left):]
+        _n_lig   = left.lower().count("ae") + left.lower().count("oe")
+        _idx     = len(left) - _n_lig
+        ae_left  = ae_full[:_idx]
+        ae_right = ae_full[_idx:]
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
         _make_w_lb(orig, ae_left, ae_right)
