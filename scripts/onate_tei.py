@@ -86,12 +86,16 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         elif not reg:
             long_s_orig = _apply_long_s_roots(text)
 
-    # Detección automática ae→æ y ę→ae (solo si no hay ya un choice)
+    # Detección automática ae→æ, oe→œ y ę→ae (solo si no hay ya un choice)
     ae_orig = None
     ae_reg  = None
     if not reg and not long_s_orig and not is_abbrev:
         if "ae" in text:
             ae_orig = text.replace("ae", "æ")
+            if ae_orig == text:
+                ae_orig = None
+        elif "oe" in text or "Oe" in text:
+            ae_orig = text.replace("oe", "œ").replace("Oe", "Œ")
             if ae_orig == text:
                 ae_orig = None
         elif "ę" in text or "Ę" in text:
@@ -260,6 +264,10 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
     if not reg_full and not long_s_left:
         if "ae" in full_text:
             ae_full = full_text.replace("ae", "æ")
+            if ae_full == full_text:
+                ae_full = None
+        elif "oe" in full_text or "Oe" in full_text:
+            ae_full = full_text.replace("oe", "œ").replace("Oe", "Œ")
             if ae_full == full_text:
                 ae_full = None
         elif "ę" in full_text or "Ę" in full_text:

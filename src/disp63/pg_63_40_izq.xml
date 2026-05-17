@@ -494,7 +494,14 @@
         <label>37</label>
         <s>
           <lb n="31"/>
-          <w lemma="effroenata" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">Effroenata</w>
+          <choice>
+            <orig>
+              <w lemma="effroenata" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">Effrœnata</w>
+            </orig>
+            <reg>
+              <w lemma="effroenata" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">Effroenata</w>
+            </reg>
+          </choice>
           <w lemma="licentia" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">licentia</w>
           <choice>
             <orig>
@@ -801,12 +808,19 @@
           <w lemma="aut" pos="CCONJ">aut</w>
           <w lemma="magnus" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Sing">maiorem</w>
           <choice>
-            <orig>
-              <w lemma="industria" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">induſtriam</w>
-            </orig>
-            <reg>
+            <abbr>
+              <choice>
+                <orig>
+                  <w>induſtriā</w>
+                </orig>
+                <reg>
+                  <w>industriā</w>
+                </reg>
+              </choice>
+            </abbr>
+            <expan>
               <w lemma="industria" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">industriam</w>
-            </reg>
+            </expan>
           </choice>
           <lb n="54"/>
           <choice>
