@@ -33,25 +33,10 @@ OUT_XSL  = Path(sys.argv[2]) if len(sys.argv) > 2 else Path("xslt/onate_tei2html
 
 # ── CSS adicional del facsímil ────────────────────────────────────────────────
 FACS_CSS = """
-          /* ── Desactivar hover de oración (sustituido por hover de línea) ── */
-          span.tei-s:hover { background-color: transparent !important; }
+          /* Texto: comportamiento base (hover oración y palabra desde CSS base) */
 
-          /* ── Highlight de LÍNEA (celeste) ──────────────────────────────── */
-          span.tei-w.line-hl {
-            background-color: #e8f0fb !important;
-            border-radius: 1px;
-          }
-
-          /* ── Highlight de PALABRA (ámbar) ──────────────────────────────── */
-          span.tei-w.word-hl {
-            background-color: #ffd080 !important;
-            border-radius: 2px;
-          }
-
-          /* ── Layout col-wrap ────────────────────────────────────────────── */
-          .columns {
-            display: block;
-          }
+          /* Layout */
+          .columns { display: block; }
           .col-wrap {
             display: flex;
             flex-direction: row;
@@ -59,7 +44,7 @@ FACS_CSS = """
             margin-bottom: 2rem;
           }
 
-          /* ── Panel facsímil (siempre visible) ──────────────────────────── */
+          /* Panel facsímil */
           .facs-panel {
             display: block;
             width: 400px;
@@ -68,24 +53,17 @@ FACS_CSS = """
             margin-left: 0.75rem;
             background: #f5f0e8;
           }
-          .facs-scroll {
-            position: relative;
-            width: 400px;
-          }
-          .facs-img {
-            display: block;
-            width: 100%;
-          }
-          /* lb-num de break="no": en DOM pero invisible */
-          .lb-num.lb-break { visibility: hidden; }
-
+          .facs-scroll { position: relative; width: 400px; }
+          .facs-img   { display: block; width: 100%; }
           .facs-canvas {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             width: 100%;
             pointer-events: none;
-          }"""
+          }
+
+          /* lb-num de break=no: en DOM pero invisible */
+          .lb-num.lb-break { visibility: hidden; }"""
 
 # ── JavaScript del visor ──────────────────────────────────────────────────────
 JS_CODE = r"""(function () {
@@ -97,8 +75,8 @@ JS_CODE = r"""(function () {
 
   function initAllPanels() {
     alignPanels();
-    document.querySelectorAll('.facs-panel[data-col-id]').forEach(function (panel) {
-      initPanel(panel, panel.dataset.colId);
+    document.querySelectorAll('.facs-panel[data-col-id]').forEach(function (p) {
+      initPanel(p, p.dataset.colId);
     });
     wireColumns();
   }
@@ -113,16 +91,41 @@ JS_CODE = r"""(function () {
     });
   }
 
-  /* Añadir data-lb a cada .tei-w según el lb-num que lo precede */
+  /* data-lb en words y pc */
   function buildLineMap(col) {
     var lbs = Array.from(col.querySelectorAll('.lb-num'));
-    col.querySelectorAll('.tei-w').forEach(function (w) {
+    col.querySelectorAll('.tei-w, .tei-pc').forEach(function (el) {
       var n = null;
       for (var i = 0; i < lbs.length; i++)
-        if (lbs[i].compareDocumentPosition(w) & 4)   /* w viene después */
+        if (lbs[i].compareDocumentPosition(el) & 4)
           n = parseInt(lbs[i].textContent.trim(), 10);
-      if (n !== null) w.dataset.lb = String(n);
+      if (n !== null) el.dataset.lb = String(n);
     });
+  }
+
+  /* Línea del par en palabras cortadas:
+     Caso A: lb-break DENTRO del word (un solo span)
+     Caso B: lb-break como hermano del word (dos spans) */
+  function getBrokenPartnerLine(wEl) {
+    /* Caso A */
+    var inner = wEl.querySelector('.lb-break');
+    if (inner) return parseInt(inner.textContent.trim(), 10);
+    /* Caso B: lb-break como siguiente hermano */
+    var el = wEl.nextSibling;
+    while (el && (el.nodeType === 3 ||
+                  (el.nodeType === 1 && el.tagName === 'BR')))
+      el = el.nextSibling;
+    if (el && el.nodeType === 1 &&
+        el.classList && el.classList.contains('lb-break'))
+      return parseInt(el.textContent.trim(), 10);
+    /* Caso B inverso: este word es la Parte F */
+    el = wEl.previousSibling;
+    while (el && (el.nodeType === 3 && el.textContent.trim() === ''))
+      el = el.previousSibling;
+    if (el && el.nodeType === 1 &&
+        el.classList && el.classList.contains('lb-break'))
+      return parseInt(wEl.dataset.lb, 10); /* usar su propia línea como "principal" */
+    return null;
   }
 
   function initPanel(panel, colId) {
@@ -137,11 +140,12 @@ JS_CODE = r"""(function () {
     fetch(COORDS_BASE + colId + '.json')
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (d) { cache[colId] = d; })
-      .catch(function (e) { cache[colId] = false; console.warn('onate-facs:', colId, e.message); });
+      .catch(function (e) { cache[colId] = false;
+                            console.warn('onate-facs:', colId, e.message); });
   }
 
   function syncCanvas(panel) {
-    var img    = panel.querySelector('.facs-img');
+    var img = panel.querySelector('.facs-img');
     var canvas = panel.querySelector('.facs-canvas');
     canvas.width  = img.naturalWidth  || img.offsetWidth;
     canvas.height = img.naturalHeight || img.offsetHeight;
@@ -150,90 +154,170 @@ JS_CODE = r"""(function () {
       (img.offsetWidth / (img.naturalWidth || img.offsetWidth || 1))) + 'px';
   }
 
-  /* Dibujar en canvas: línea en celeste + palabra en ámbar (posición estimada) */
-  function drawOnCanvas(colId, lineN, wordEl, col) {
-    var data = cache[colId];
-    if (!data || !data.lines) return;
+  /* Normalizar texto para matching: minúsculas, ſ→s, sin puntuación */
+  function norm(t) {
+    return (t || '').toLowerCase()
+      .replace(/ſ/g, 's')   /* long-s */
+      .replace(/[.,;:!?&\-()[\]{}'"]/g, '')
+      .trim();
+  }
+
+  /* Extraer solo el texto visible de la palabra (sin .tooltip ni .lb-break) */
+  function wordText(wEl) {
+    if (!wEl) return '';
+    var clone = wEl.cloneNode(true);
+    var tip = clone.querySelector('.tooltip');
+    if (tip) tip.remove();
+    clone.querySelectorAll('.lb-num, .lb-break').forEach(function (s) { s.remove(); });
+    return clone.textContent.replace(/\s+/g, ' ').trim();
+  }
+
+  /* Normalización avanzada: ſ→s, ae/oe, sin puntuación */
+  function normAdv(t) {
+    return (t || '').toLowerCase()
+      .replace(/ſ/g, 's')        /* long-s */
+      .replace(/æ/g, 'ae')       /* æ */
+      .replace(/œ/g, 'oe')       /* œ */
+      .replace(/[.,;:!?&()\[\]{}\-]/g, '')
+      .replace(/\s+/g, '')
+      .trim();
+  }
+
+  /* Score de similitud textual (0 = igual, Infinity = sin relación) */
+  function textScore(a, b) {
+    if (!a || !b) return Infinity;
+    if (a === b) return 0;
+    if (a.startsWith(b)) return a.length - b.length;
+    if (b.startsWith(a)) return b.length - a.length + 0.5;
+    /* Prefijo común largo */
+    var common = 0;
+    while (common < a.length && common < b.length && a[common] === b[common])
+      common++;
+    if (common >= Math.min(a.length, b.length) * 0.7)
+      return Math.abs(a.length - b.length) + (Math.min(a.length,b.length) - common);
+    return Infinity;
+  }
+
+  /* Solo saltar la primera palabra cuando la línea empieza con continuación
+     de palabra cortada (flag broken_start puesto por onate_coords.py desde ¬).
+     Con coords de Transkribus no se necesita heurística. */
+  function countLeadingSkip(line) {
+    return line.broken_start ? 1 : 0;
+  }
+
+  /* Encontrar la mejor palabra de Tesseract para un tei-w */
+  function findTessWord(line, wordEl, allToks) {
+    if (!line || !line.words || !line.words.length) return null;
+    var b = line.bbox;
+    var lws = allToks.filter(function (el) {
+      return el.classList.contains('tei-w'); });
+
+    /* Saltar continuaciones al inicio de línea */
+    var skip  = countLeadingSkip(line);
+    var twords = line.words.slice(skip);
+    if (!twords.length) return line.words[0];
+
+    /* Intento 1: match por texto normalizado */
+    var teiNorm = normAdv(wordEl ? wordText(wordEl) : '');
+    if (teiNorm.length > 1) {
+      var best = null, bestScore = Infinity;
+      twords.forEach(function (tw) {
+        var s = textScore(teiNorm, normAdv(tw.text));
+        if (s < bestScore) { bestScore = s; best = tw; }
+      });
+      if (bestScore <= 3) return best;
+    }
+
+    /* Intento 2: X proporcional sobre twords (sin continuaciones) */
+    var charsBefore = 0;
+    if (wordEl && allToks.length) {
+      for (var ci = 0; ci < allToks.length; ci++) {
+        if (allToks[ci] === wordEl) break;
+        charsBefore += allToks[ci].textContent.trim().length + 1;
+      }
+    }
+    var wordChars  = wordEl ? wordText(wordEl).length : 3;
+    var totalChars = allToks.reduce(function (s, el) {
+      return s + wordText(el).length + 1; }, 0) || 1;
+    var propX = b.x + ((charsBefore + wordChars * 0.5) / totalChars) * b.w;
+    var nearest = null, nearDist = Infinity;
+    twords.forEach(function (tw) {
+      var d = Math.abs(tw.bbox.x + tw.bbox.w * 0.5 - propX);
+      if (d < nearDist) { nearDist = d; nearest = tw; }
+    });
+    return nearest || twords[0];
+  }
+
+  /* Dibujar rectángulo ámbar de palabra en el canvas */
+  function drawWordRect(ctx, data, lineN, wordEl, col, alpha) {
     var line = data.lines[String(lineN)];
     if (!line) return;
+    var allToks = col ? Array.from(
+      col.querySelectorAll('.tei-w[data-lb="' + lineN + '"],' +
+                           '.tei-pc[data-lb="' + lineN + '"]')) : [];
+    var best = findTessWord(line, wordEl, allToks);
+    if (!best) return;
+    var wb = best.bbox;
+    ctx.fillStyle   = 'rgba(186,117,23,' + (alpha || 0.38) + ')';
+    ctx.fillRect  (wb.x-2, wb.y-2, wb.w+4, wb.h+4);
+    ctx.strokeStyle = '#BA7517';
+    ctx.lineWidth   = alpha < 0.3 ? 1.5 : 2;
+    ctx.strokeRect(wb.x-2, wb.y-2, wb.w+4, wb.h+4);
+  }
 
+  function drawOnCanvas(colId, lineN, wordEl, col, partnerLineN) {
+    var data = cache[colId];
+    if (!data || !data.lines || !lineN) return;
     document.querySelectorAll('.facs-panel[data-col-id="' + colId + '"]')
       .forEach(function (panel) {
         var canvas = panel.querySelector('.facs-canvas');
         var ctx    = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        var b = line.bbox;
-
-        /* ── Línea: celeste ─────────────────────────────────────────────── */
-        ctx.fillStyle   = 'rgba(100, 160, 230, 0.18)';
-        ctx.fillRect  (b.x - 3, b.y - 3, b.w + 6, b.h + 6);
-        ctx.strokeStyle = '#4a90d9';
-        ctx.lineWidth   = 2;
-        ctx.strokeRect(b.x - 3, b.y - 3, b.w + 6, b.h + 6);
-
-        /* palabra: solo en el texto (class word-hl), no en el canvas */
+        /* Palabra principal */
+        drawWordRect(ctx, data, lineN, wordEl, col, 0.38);
+        /* Segunda mitad de palabra cortada: directamente words[0]
+           (la continuación es siempre la primera palabra de esa línea;
+           no pasar por findTessWord/countLeadingSkip que la saltaría) */
+        if (partnerLineN && partnerLineN !== lineN) {
+          var pl = data.lines[String(partnerLineN)];
+          if (pl && pl.words && pl.words.length) {
+            var pw = pl.words[0].bbox;
+            ctx.fillStyle   = 'rgba(186,117,23,0.22)';
+            ctx.fillRect  (pw.x-2, pw.y-2, pw.w+4, pw.h+4);
+            ctx.strokeStyle = '#BA7517';
+            ctx.lineWidth   = 1.5;
+            ctx.strokeRect(pw.x-2, pw.y-2, pw.w+4, pw.h+4);
+          }
+        }
       });
   }
 
   function clearCanvas(colId) {
-    document.querySelectorAll('.facs-panel[data-col-id="' + colId + '"] .facs-canvas')
-      .forEach(function (canvas) {
-        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
-      });
+    document.querySelectorAll(
+      '.facs-panel[data-col-id="' + colId + '"] .facs-canvas')
+      .forEach(function (c) {
+        c.getContext('2d').clearRect(0, 0, c.width, c.height); });
   }
 
-  /* Conectar columnas */
   function wireColumns() {
     document.querySelectorAll('.col[data-col-id]').forEach(function (col) {
-      var colId    = col.dataset.colId;
-      var lastLine = null;
-
+      var colId = col.dataset.colId;
       buildLineMap(col);
 
-      col.addEventListener('mouseover', function (e) {
-        var word  = e.target.closest ? e.target.closest('.tei-w') : null;
-        var lineN = word ? parseInt(word.dataset.lb, 10) : null;
-
-        /* Fallback: detectar línea por posición en documento */
-        if (!lineN) {
-          var lbs = col.querySelectorAll('.lb-num'), found = null;
-          lbs.forEach(function (s) {
-            if (s.compareDocumentPosition(e.target) & 4)
-              found = parseInt(s.textContent.trim(), 10);
-          });
-          lineN = found || null;
-        }
-
-        /* word-hl: solo la palabra */
-        col.querySelectorAll('.tei-w.word-hl')
-           .forEach(function (w) { w.classList.remove('word-hl'); });
-        if (word) word.classList.add('word-hl');
-
-        /* line-hl: todas las palabras de la línea */
-        if (lineN !== lastLine) {
-          if (lastLine !== null)
-            col.querySelectorAll('.tei-w[data-lb="' + lastLine + '"]')
-               .forEach(function (w) { w.classList.remove('line-hl'); });
-          if (lineN !== null)
-            col.querySelectorAll('.tei-w[data-lb="' + lineN + '"]')
-               .forEach(function (w) { w.classList.add('line-hl'); });
-          lastLine = lineN;
-        }
-
-        /* Canvas: línea (celeste) + palabra (ámbar) */
-        drawOnCanvas(colId, lineN, word, col);
+      col.querySelectorAll('.tei-w').forEach(function (wEl) {
+        wEl.addEventListener('mouseenter', function () {
+          var lineN       = parseInt(wEl.dataset.lb, 10) || null;
+          var partnerLine = getBrokenPartnerLine(wEl);
+          drawOnCanvas(colId, lineN, wEl, col, partnerLine);
+        });
+        wEl.addEventListener('mouseleave', function (e) {
+          var to = e.relatedTarget;
+          if (to && to.classList && to.classList.contains('tei-w')) return;
+          clearCanvas(colId);
+        });
       });
 
-      col.addEventListener('mouseleave', function () {
-        col.querySelectorAll('.tei-w.word-hl, .tei-w.line-hl')
-           .forEach(function (w) {
-             w.classList.remove('word-hl');
-             w.classList.remove('line-hl');
-           });
-        clearCanvas(colId);
-        lastLine = null;
-      });
+      col.addEventListener('mouseleave', function () { clearCanvas(colId); });
     });
   }
 

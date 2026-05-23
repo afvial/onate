@@ -170,10 +170,101 @@ def extract_coords(page_xml_path: Path, img_override: str | None = None) -> dict
     }
 
 
+def _norm(text: str) -> str:
+    """Normalizar texto para matching: minúsculas, ſ→s, æ→ae, sin puntuación."""
+    import unicodedata
+    text = text.lower()
+    for a, b in [('ſ','s'),('æ','ae'),('œ','oe'),('¬',''),('-','')]:
+        text = text.replace(a, b)
+    return ''.join(
+        c for c in text if not unicodedata.category(c).startswith('P')
+    ).strip()
+
+
+def _align(tran_words: list, tess_words: list) -> list:
+    """
+    Alinea palabras de Transkribus (texto fiable) con bboxes de Tesseract.
+    Devuelve lista de {"text": str, "bbox": dict}.
+    """
+    if not tess_words:
+        return []
+    if not tran_words:
+        return tess_words
+
+    n_t, n_s = len(tran_words), len(tess_words)
+
+    # Caso simple: mismo número → 1:1 directo
+    if n_t == n_s:
+        return [{"text": tw, "bbox": tv["bbox"]}
+                for tw, tv in zip(tran_words, tess_words)]
+
+    result   = [None] * n_t
+    used     = set()
+
+    # Fase 1: match por texto normalizado
+    for i, tw in enumerate(tran_words):
+        tn = _norm(tw)
+        if len(tn) < 2:
+            continue
+        best_j, best_sc = -1, 3.1
+        for j, tv in enumerate(tess_words):
+            if j in used:
+                continue
+            tn2 = _norm(tv["text"])
+            if tn2 == tn:
+                sc = 0
+            elif tn2.startswith(tn) or tn.startswith(tn2):
+                sc = abs(len(tn2) - len(tn)) * 0.5
+            else:
+                continue
+            if sc < best_sc:
+                best_sc, best_j = sc, j
+        if best_j >= 0:
+            result[i] = {"text": tw, "bbox": tess_words[best_j]["bbox"]}
+            used.add(best_j)
+
+    # Fase 2: rellenar huecos por posición X proporcional
+    x_min     = min(tv["bbox"]["x"] for tv in tess_words)
+    x_max     = max(tv["bbox"]["x"] + tv["bbox"]["w"] for tv in tess_words)
+    line_w    = max(x_max - x_min, 1)
+    total_ch  = sum(len(w) + 1 for w in tran_words) or 1
+    chars_acc = 0
+
+    for i, tw in enumerate(tran_words):
+        if result[i] is None:
+            cx = x_min + (chars_acc + len(tw) / 2) / total_ch * line_w
+            best_j, best_d = -1, float('inf')
+            for j, tv in enumerate(tess_words):
+                if j in used:
+                    continue
+                d = abs(tv["bbox"]["x"] + tv["bbox"]["w"] / 2 - cx)
+                if d < best_d:
+                    best_d, best_j = d, j
+            if best_j >= 0:
+                result[i] = {"text": tw, "bbox": tess_words[best_j]["bbox"]}
+                used.add(best_j)
+            else:
+                # Bbox sintético entre vecinos
+                prev = next((r["bbox"] for r in reversed(result[:i]) if r), tess_words[0]["bbox"])
+                nxt  = next((r["bbox"] for r in result[i+1:] if r), tess_words[-1]["bbox"])
+                est_x = (prev["x"] + prev["w"] + nxt["x"]) // 2
+                est_w = max(8, (nxt["x"] - prev["x"] - prev["w"]) // 2)
+                result[i] = {"text": tw, "bbox": {
+                    "x": est_x, "y": prev["y"], "w": est_w, "h": prev["h"]
+                }}
+        chars_acc += len(tw) + 1
+
+    return [r for r in result if r is not None]
+
+
 def add_tesseract_words(data: dict, img_path: str) -> int:
     """
-    Enriquece data["lines"] con coordenadas de palabras via Tesseract.
-    Solo actúa en líneas que no tienen words de Transkribus.
+    Enriquece data["lines"] con coordenadas de palabras.
+    Estrategia:
+      1. Divide el texto Transkribus de cada línea en palabras.
+      2. Corre Tesseract (--psm 7) en el recorte de cada línea.
+      3. Alinea texto Transkribus ↔ bboxes Tesseract.
+      4. Marca "broken_end" / "broken_start" para palabras cortadas (¬).
     Devuelve el número de líneas enriquecidas.
     """
     img_file = Path(img_path)
@@ -187,35 +278,74 @@ def add_tesseract_words(data: dict, img_path: str) -> int:
         print("  Aviso: pytesseract/Pillow no disponibles.", file=sys.stderr)
         return 0
 
-    print("  Ejecutando Tesseract para coordenadas de palabras…")
-    img   = Image.open(img_file).convert("RGB")
-    tdata = pytesseract.image_to_data(img, lang="lat", output_type=pytesseract.Output.DICT)
+    print("  Ejecutando Tesseract por línea (psm 7) + alineación Transkribus…")
+    img = Image.open(img_file).convert("RGB")
+    W, H = img.size
 
+    sorted_lnums = sorted(data["lines"].keys(), key=int)
     enriched = 0
-    for lnum, ldata in data["lines"].items():
+
+    for k, lnum in enumerate(sorted_lnums):
+        ldata = data["lines"][lnum]
         if ldata.get("words"):
             continue
+
         b = ldata["bbox"]
-        line_words = []
-        for i in range(len(tdata["text"])):
-            t = tdata["text"][i].strip()
-            if not t or int(tdata["conf"][i]) < 20:
+        tran_text = ldata.get("text", "").strip()
+
+        # Palabras de Transkribus (sin el ¬ final)
+        tran_words = [w.rstrip("¬") for w in tran_text.split() if w.strip("¬")]
+
+        # Recorte de la línea con padding
+        pad = 5
+        x0, y0 = max(0, b["x"] - pad), max(0, b["y"] - pad)
+        x1, y1 = min(W, b["x"] + b["w"] + pad), min(H, b["y"] + b["h"] + pad)
+        line_crop = img.crop((x0, y0, x1, y1))
+
+        try:
+            td = pytesseract.image_to_data(
+                line_crop, lang="lat",
+                config="--psm 7 --oem 1",
+                output_type=pytesseract.Output.DICT,
+            )
+        except Exception as e:
+            print(f"  Aviso línea {lnum}: {e}", file=sys.stderr)
+            continue
+
+        tess_words = []
+        for i in range(len(td["text"])):
+            t = td["text"][i].strip()
+            if not t or int(td["conf"][i]) < 15:
                 continue
-            wy = tdata["top"][i] + tdata["height"][i] * 0.5
-            if b["y"] <= wy <= b["y"] + b["h"]:
-                line_words.append({
-                    "bbox": {
-                        "x": tdata["left"][i],
-                        "y": tdata["top"][i],
-                        "w": tdata["width"][i],
-                        "h": tdata["height"][i],
-                    },
-                    "text": t,
-                })
-        line_words.sort(key=lambda w: w["bbox"]["x"])
-        if line_words:
-            ldata["words"] = line_words
+            tess_words.append({
+                "bbox": {
+                    "x": td["left"][i] + x0,
+                    "y": td["top"][i] + y0,
+                    "w": td["width"][i],
+                    "h": td["height"][i],
+                },
+                "text": t,
+            })
+        tess_words.sort(key=lambda w: w["bbox"]["x"])
+
+        if not tess_words:
+            continue
+
+        aligned = _align(tran_words, tess_words)
+        if aligned:
+            ldata["words"] = aligned
+            # Marcar si la línea termina con palabra cortada (¬)
+            if tran_text.endswith("¬"):
+                ldata["broken_end"] = True
             enriched += 1
+
+    # Marcar líneas que empiezan con continuación de palabra cortada
+    for k, lnum in enumerate(sorted_lnums):
+        if k == 0:
+            continue
+        prev_lnum = sorted_lnums[k - 1]
+        if data["lines"][prev_lnum].get("broken_end"):
+            data["lines"][lnum]["broken_start"] = True
 
     return enriched
 
