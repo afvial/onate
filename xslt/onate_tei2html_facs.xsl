@@ -537,10 +537,23 @@
   function initPanel(panel, colId) {
     if (panel.dataset.ready) return;
     panel.dataset.ready = '1';
-    var img = panel.querySelector('.facs-img');
+    var img    = panel.querySelector('.facs-img');
+    var canvas = panel.querySelector('.facs-canvas');
+
+    function trySync() {
+      if (img.naturalWidth > 0 && canvas.width <= 300)
+        syncCanvas(panel);
+    }
+
+    img.addEventListener('load',  trySync);
+    img.addEventListener('error', function () {
+      console.warn('onate-facs: imagen no encontrada:', img.src);
+    });
     img.src = FACS_BASE + colId + FACS_EXT;
-    img.onload = function () { syncCanvas(panel); };
-    if (img.complete && img.naturalWidth) syncCanvas(panel);
+    /* Varios intentos para imágenes en caché (onload no siempre dispara) */
+    trySync();
+    setTimeout(trySync,  50);
+    setTimeout(trySync, 300);
     if (cache.hasOwnProperty(colId)) return;
     cache[colId] = null;
     fetch(COORDS_BASE + colId + '.json')
@@ -550,14 +563,25 @@
                             console.warn('onate-facs:', colId, e.message); });
   }
 
+  /* Sincronizar canvas con la imagen: trabaja en coords de pantalla.
+     Guarda los factores de escala en canvas._sx/_sy para drawWordRect. */
   function syncCanvas(panel) {
-    var img = panel.querySelector('.facs-img');
+    var img    = panel.querySelector('.facs-img');
     var canvas = panel.querySelector('.facs-canvas');
-    canvas.width  = img.naturalWidth  || img.offsetWidth;
-    canvas.height = img.naturalHeight || img.offsetHeight;
-    canvas.style.height = Math.round(
-      (img.naturalHeight || img.offsetHeight) *
-      (img.offsetWidth / (img.naturalWidth || img.offsetWidth || 1))) + 'px';
+    var nw     = img.naturalWidth;
+    var nh     = img.naturalHeight;
+    if (!nw || !nh) return;
+    /* .facs-scroll tiene width fija en CSS → fiable aunque img aún no esté pintada */
+    var scroll = panel.querySelector('.facs-scroll');
+    var dw     = (scroll && scroll.offsetWidth > 0) ? scroll.offsetWidth
+                 : (img.offsetWidth > 0 ? img.offsetWidth : 400);
+    var dh     = Math.round(nh * dw / nw);
+    canvas.width  = dw;
+    canvas.height = dh;
+    canvas.style.width  = dw + 'px';
+    canvas.style.height = dh + 'px';
+    canvas._sx = dw / nw;
+    canvas._sy = dh / nh;
   }
 
   /* Normalizar texto para matching: minúsculas, ſ→s, sin puntuación */
@@ -663,12 +687,28 @@
                            '.tei-pc[data-lb="' + lineN + '"]')) : [];
     var best = findTessWord(line, wordEl, allToks);
     if (!best) return;
-    var wb = best.bbox;
+    /* Extender bbox para incluir puntuación inmediatamente siguiente */
+    var wb = {x: best.bbox.x, y: best.bbox.y, w: best.bbox.w, h: best.bbox.h};
+    var bestIdx = line.words.indexOf(best);
+    if (bestIdx >= 0 && bestIdx < line.words.length - 1) {
+      var nextW = line.words[bestIdx + 1];
+      if (normAdv(nextW.text || '').length === 0 && nextW.bbox.x <= wb.x + wb.w + 12)
+        wb.w = (nextW.bbox.x + nextW.bbox.w) - wb.x;
+    }
+    /* Asegurar que el canvas esté sincronizado antes de dibujar */
+    var canvas = ctx.canvas;
+    var panel  = canvas.closest ? canvas.closest('.facs-panel') : null;
+    if (panel) {
+      var img = panel.querySelector('.facs-img');
+      if (img && img.offsetWidth > 0 && canvas._sx === undefined) syncCanvas(panel);
+    }
+    var sx = canvas._sx || 1;
+    var sy = canvas._sy || 1;
     ctx.fillStyle   = 'rgba(186,117,23,' + (alpha || 0.38) + ')';
-    ctx.fillRect  (wb.x-2, wb.y-2, wb.w+4, wb.h+4);
+    ctx.fillRect  (wb.x*sx - 2, wb.y*sy - 2, wb.w*sx + 4, wb.h*sy + 4);
     ctx.strokeStyle = '#BA7517';
     ctx.lineWidth   = alpha < 0.3 ? 1.5 : 2;
-    ctx.strokeRect(wb.x-2, wb.y-2, wb.w+4, wb.h+4);
+    ctx.strokeRect(wb.x*sx - 2, wb.y*sy - 2, wb.w*sx + 4, wb.h*sy + 4);
   }
 
   function drawOnCanvas(colId, lineN, wordEl, col, partnerLineN) {
@@ -688,11 +728,12 @@
           var pl = data.lines[String(partnerLineN)];
           if (pl && pl.words && pl.words.length) {
             var pw = pl.words[0].bbox;
+            var sx = canvas._sx || 1, sy = canvas._sy || 1;
             ctx.fillStyle   = 'rgba(186,117,23,0.22)';
-            ctx.fillRect  (pw.x-2, pw.y-2, pw.w+4, pw.h+4);
+            ctx.fillRect  (pw.x*sx-2, pw.y*sy-2, pw.w*sx+4, pw.h*sy+4);
             ctx.strokeStyle = '#BA7517';
             ctx.lineWidth   = 1.5;
-            ctx.strokeRect(pw.x-2, pw.y-2, pw.w+4, pw.h+4);
+            ctx.strokeRect(pw.x*sx-2, pw.y*sy-2, pw.w*sx+4, pw.h*sy+4);
           }
         }
       });
