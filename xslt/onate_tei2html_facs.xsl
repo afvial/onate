@@ -784,7 +784,22 @@
   <!-- El base solo genera guión + <br/> sin lb-num. Aquí añadimos un    -->
   <!-- lb-num invisible para que buildLineMap detecte el cambio de línea. -->
   <!-- ================================================================== -->
-  <xsl:template match="tei:lb[@break='no']">
+  <xsl:template match="tei:lb[@break='no'][@rend='no-hyphen']" priority="2">
+    <br/>
+    <xsl:if test="@n">
+      <xsl:variable name="n"    select="@n"/>
+      <xsl:variable name="mod5" select="$n mod 5"/>
+      <xsl:choose>
+        <xsl:when test="$mod5 = 0">
+          <span class="lb-num lb-5 lb-break"><xsl:value-of select="$n"/></span>
+        </xsl:when>
+        <xsl:otherwise>
+          <span class="lb-num lb-break"><xsl:value-of select="$n"/></span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+  <xsl:template match="tei:lb[@break='no']" priority="1">
     <xsl:text>-</xsl:text><br/>
     <xsl:if test="@n">
       <xsl:variable name="n"    select="@n"/>
