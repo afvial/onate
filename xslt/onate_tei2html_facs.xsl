@@ -655,13 +655,23 @@
 
     /* Intento 1: match por texto normalizado */
     var teiNorm = normAdv(wordEl ? wordText(wordEl) : '');
-    if (teiNorm.length > 1) {
+    if (teiNorm.length >= 1) {
       var best = null, bestScore = Infinity;
       twords.forEach(function (tw) {
         var s = textScore(teiNorm, normAdv(tw.text));
         if (s < bestScore) { bestScore = s; best = tw; }
       });
-      if (bestScore <= 3) return best;
+      if (bestScore <= 4) return best;
+      /* Fallback: buscar palabra del coords que contenga el token TEI */
+      twords.forEach(function (tw) {
+        var tn = normAdv(tw.text);
+        var an = teiNorm;
+        if (an.length >= 2 && tn.includes(an)) {
+          var s = tn.length - an.length + 1;
+          if (s < bestScore) { bestScore = s; best = tw; }
+        }
+      });
+      if (bestScore < Infinity) return best;
     }
 
     /* Intento 2: X proporcional sobre twords (sin continuaciones) */
@@ -710,10 +720,10 @@
     }
     var sx = canvas._sx || 1;
     var sy = canvas._sy || 1;
-    ctx.fillStyle   = 'rgba(186,117,23,' + (alpha || 0.38) + ')';
+    ctx.fillStyle   = 'rgba(186,117,23,' + (alpha || 0.18) + ')';
     ctx.fillRect  (wb.x*sx - 2, wb.y*sy - 2, wb.w*sx + 4, wb.h*sy + 4);
     ctx.strokeStyle = '#BA7517';
-    ctx.lineWidth   = alpha < 0.3 ? 1.5 : 2;
+    ctx.lineWidth   = alpha < 0.3 ? 1 : 1.5;
     ctx.strokeRect(wb.x*sx - 2, wb.y*sy - 2, wb.w*sx + 4, wb.h*sy + 4);
   }
 

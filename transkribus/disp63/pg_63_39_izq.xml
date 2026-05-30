@@ -3,15 +3,10 @@
   <Metadata>
     <Creator>prov=READ-COOP:name=PyLaia@TranskribusPlatform:version=2.43.0:model_id=52640:lm=none:date=23_05_2026_16:24</Creator>
     <Created>2026-05-09T18:57:42.046+02:00</Created>
-    <LastChange>2026-05-23T16:24:59.722+02:00</LastChange>
+    <LastChange>2026-05-23T19:49:35.969+02:00</LastChange>
     <TranskribusMetadata docId="15148368" pageId="119339533" pageNr="10" userId="510662" imgUrl="https://files.transkribus.eu/Get?fileType=view&amp;id=BOFNKEJOLKWPWZDVXMPISIKM" imageId="101100574"/>
   </Metadata>
   <Page imageFilename="119339533.png" imageWidth="1062" imageHeight="4017">
-    <ReadingOrder>
-      <OrderedGroup id="ro_1779546257154" caption="Regions reading order">
-        <RegionRefIndexed index="0" regionRef="tr_1"/>
-      </OrderedGroup>
-    </ReadingOrder>
     <TextRegion orientation="0.0" id="tr_1" custom="readingOrder {index:0;}">
       <Coords points="10,19 10,3998 1053,3998 1053,19"/>
       <TextLine id="tr_1_tl_1" custom="readingOrder {index:0;}">
@@ -401,11 +396,15 @@
         </Word>
         <Word id="tr_1_tl_11_w2a">
           <Coords points="138,685 138,745 201,745 201,685"/>
-          <TextEquiv><Unicode>ab</Unicode></TextEquiv>
+          <TextEquiv>
+            <Unicode>ab</Unicode>
+          </TextEquiv>
         </Word>
         <Word id="tr_1_tl_11_w2b">
-          <Coords points="206,685 206,745 422,745 422,685"/>
-          <TextEquiv><Unicode>empyreo</Unicode></TextEquiv>
+          <Coords points="201,685 201,745 422,745 422,685"/>
+          <TextEquiv>
+            <Unicode>empyreo</Unicode>
+          </TextEquiv>
         </Word>
         <Word id="tr_1_tl_11_w3">
           <Coords points="462,685 462,745 568,745 568,685"/>
@@ -555,7 +554,7 @@
           </TextEquiv>
         </Word>
         <TextEquiv>
-          <Unicode>&amp; hanc sententiam probabilem reputat.</Unicode>
+          <Unicode>&amp; hanc sententiam probabilem reputat</Unicode>
         </TextEquiv>
       </TextLine>
       <TextLine id="tr_1_tl_15" custom="readingOrder {index:14;}">
@@ -585,10 +584,16 @@
             <Unicode>dub.</Unicode>
           </TextEquiv>
         </Word>
-        <Word id="tr_1_tl_15_w5">
-          <Coords points="538,953 538,1013 703,1013 703,953"/>
+        <Word id="tr_1_tl_15_w5a">
+          <Coords points="538,953 538,1013 604,1013 604,953"/>
           <TextEquiv>
-            <Unicode>4.num</Unicode>
+            <Unicode>4.</Unicode>
+          </TextEquiv>
+        </Word>
+        <Word id="tr_1_tl_15_w5b">
+          <Coords points="604,953 604,1013 703,1013 703,953"/>
+          <TextEquiv>
+            <Unicode>num</Unicode>
           </TextEquiv>
         </Word>
         <Word id="tr_1_tl_15_w6">
@@ -598,7 +603,7 @@
           </TextEquiv>
         </Word>
         <TextEquiv>
-          <Unicode>Salas de emption. dub. 4.num 5.</Unicode>
+          <Unicode>Salas de emption. dub. 4. num 5.</Unicode>
         </TextEquiv>
       </TextLine>
       <TextLine id="tr_1_tl_16" custom="readingOrder {index:15;}">
