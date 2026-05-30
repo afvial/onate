@@ -13109,7 +13109,14 @@
         </reg>
       </choice>
       <w lemma="orbis" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">orbis</w>
-      <w lemma="occidentalis" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">occidentalis</w>
+      <choice>
+        <abbr>
+          <w>occidētalis</w>
+        </abbr>
+        <expan>
+          <w lemma="occidentalis" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">occidentalis</w>
+        </expan>
+      </choice>
       <w lemma="ab" pos="ADP">ab</w>
       <w lemma="orientalis" pos="ADJ" msd="Case=Dat|Gender=Fem|Number=Sing">orientali</w>
       <pc type="comma">,</pc>

@@ -358,11 +358,11 @@
 </h1>
 <h2>Disputatio LXIII · Sectio I</h2>
 <div class="stats">
-          Palabras: 5488 ·
+          Palabras: 5489 ·
           Oraciones: 120 ·
           Párrafos: 33</div>
 <div class="stats">
-          Palabras: 5488 ·
+          Palabras: 5489 ·
           Oraciones: 120 ·
           Párrafos: 33</div>
 <div class="page-sep"><span class="page-sep-label">Página 35</span></div>
@@ -51363,7 +51363,7 @@
 <td class="tip-key">Number</td>
 <td class="tip-val">Sing</td>
 </tr>
-</table></span>orbis</span> <span class="tei-w" data-lemma="occidentalis" data-pos="NOUN" data-msd="Case=Gen|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+</table></span>orbis</span> <span class="tei-w tei-choice-expan" data-lemma="occidentalis" data-pos="NOUN" data-msd="Case=Gen|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">occidentalis</td>
@@ -51384,7 +51384,13 @@
 <td class="tip-key">Number</td>
 <td class="tip-val">Sing</td>
 </tr>
-</table></span>occidentalis</span> <span class="tei-w" data-lemma="ab" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">expan</td>
+<td class="tip-expan">
+          occidentalis
+        </td>
+</tr>
+</table></span>occidētalis</span> <span class="tei-w" data-lemma="ab" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
 <td class="tip-lemma">ab</td>
@@ -77259,6 +77265,12 @@
   /* Extraer solo el texto visible de la palabra (sin .tooltip ni .lb-break) */
   function wordText(wEl) {
     if (!wEl) return '';
+    /* Para choice/orig: usar la forma expandida para matching con coords */
+    var expan = wEl.querySelector('.tip-expan');
+    if (expan) {
+      var expanText = expan.textContent.replace(/\s+/g, ' ').trim();
+      if (expanText) return expanText;
+    }
     var clone = wEl.cloneNode(true);
     var tip = clone.querySelector('.tooltip');
     if (tip) tip.remove();

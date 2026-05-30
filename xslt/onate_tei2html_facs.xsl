@@ -595,6 +595,12 @@
   /* Extraer solo el texto visible de la palabra (sin .tooltip ni .lb-break) */
   function wordText(wEl) {
     if (!wEl) return '';
+    /* Para choice/orig: usar la forma expandida para matching con coords */
+    var expan = wEl.querySelector('.tip-expan');
+    if (expan) {
+      var expanText = expan.textContent.replace(/\s+/g, ' ').trim();
+      if (expanText) return expanText;
+    }
     var clone = wEl.cloneNode(true);
     var tip = clone.querySelector('.tooltip');
     if (tip) tip.remove();
