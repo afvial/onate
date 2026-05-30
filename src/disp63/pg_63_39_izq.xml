@@ -299,7 +299,14 @@
         </expan>
       </choice>
       <w lemma="propter" pos="ADP">propter</w>
-      <w lemma="ignorantia" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">ignorantiam</w>
+      <choice>
+        <abbr>
+          <w>ignorātiam</w>
+        </abbr>
+        <expan>
+          <w lemma="ignorantia" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">ignorantiam</w>
+        </expan>
+      </choice>
       <choice>
         <orig>
           <w lemma="diuisibilis" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">diuiſibilis</w>
