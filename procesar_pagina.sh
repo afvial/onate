@@ -241,6 +241,13 @@ run_html() {
     xsltproc "$XSLT" "$COMPLETO" > "$HTML_OUT"
     xsltproc --param show-tooltips "false()" "$XSLT" "$COMPLETO" > "html/disp63/disp63_simple.html"
     ok "HTML → ${HTML_OUT}"
+    # Regenerar facs
+    python3 scripts/generate_facs_xsl.py
+    local FACS_XSLT="xslt/onate_tei2html_facs.xsl"
+    local FACS_OUT="html/disp63/disp63_facs.html"
+    [[ -f "$FACS_XSLT" ]] || { warn "XSLT facs no encontrado"; return; }
+    xsltproc "$FACS_XSLT" "$COMPLETO" > "$FACS_OUT"
+    ok "HTML facs → ${FACS_OUT}"
 }
 
 # ── Ejecutar ──────────────────────────────────────────────────────────────────
