@@ -672,7 +672,32 @@
         var s = textScore(teiNorm, normAdv(tw.text));
         if (s < bestScore) { bestScore = s; best = tw; }
       });
-      if (bestScore <= 4) return best;
+      if (bestScore <= 4) {
+        /* Si hay empate (varias palabras con el mismo score), usar posición */
+        var tied = twords.filter(function(tw) {
+          return textScore(teiNorm, normAdv(tw.text)) === bestScore;
+        });
+        if (tied.length === 1) return tied[0];
+        /* Desempatar por proximidad de posición X */
+        var charsBefore2 = 0;
+        if (wordEl && allToks.length) {
+          for (var ci2 = 0; ci2 < allToks.length; ci2++) {
+            if (allToks[ci2] === wordEl) break;
+            charsBefore2 += wordText(allToks[ci2]).length + 1;
+          }
+        }
+        var wordChars2  = wordEl ? wordText(wordEl).length : 3;
+        var totalChars2 = allToks.reduce(function(s, el) {
+          return s + wordText(el).length + 1; }, 0) || 1;
+        var b2 = line.bbox;
+        var propX2 = b2.x + ((charsBefore2 + wordChars2 * 0.5) / totalChars2) * b2.w;
+        var nearest2 = null, nearDist2 = Infinity;
+        tied.forEach(function(tw) {
+          var d = Math.abs(tw.bbox.x + tw.bbox.w * 0.5 - propX2);
+          if (d < nearDist2) { nearDist2 = d; nearest2 = tw; }
+        });
+        return nearest2 || tied[0];
+      }
       /* Fallback: buscar palabra del coords que contenga el token TEI */
       twords.forEach(function (tw) {
         var tn = normAdv(tw.text);
