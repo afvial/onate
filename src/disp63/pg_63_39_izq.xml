@@ -873,17 +873,24 @@
           <w lemma="ipse" pos="DET" msd="Case=Nom|Gender=Fem|Number=Sing">ipsa</w>
         </reg>
       </choice>
-      <w lemma="homo" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Plur">hominum</w>
+      <choice>
+        <abbr>
+          <w>hominū</w>
+        </abbr>
+        <expan>
+          <w lemma="homo" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Plur">hominum</w>
+        </expan>
+      </choice>
       <w lemma="attendo" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Plur|Person=2|Tense=Past|VerbForm=Fin|Voice=Act">attentis</w>
       <lb n="33"/>
       <w lemma="omnis" pos="DET" msd="Case=Dat|Gender=Fem|Number=Plur">omnibus</w>
       <choice>
-        <orig>
-          <w lemma="circunstantium" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur">circunſtantijs</w>
-        </orig>
-        <reg>
+        <abbr>
+          <w>circunstātijs</w>
+        </abbr>
+        <expan>
           <w lemma="circunstantium" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur">circunstantijs</w>
-        </reg>
+        </expan>
       </choice>
       <pc type="comma">,</pc>
       <choice>
@@ -916,13 +923,36 @@
         </expan>
       </choice>
       <w lemma="ex" pos="ADP">ex</w>
-      <w lemma="comparatio" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing">comparatione</w>
+      <choice>
+        <abbr>
+          <w>cōparatione</w>
+        </abbr>
+        <expan>
+          <w lemma="comparatio" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing">conparatione</w>
+        </expan>
+      </choice>
       <w lemma="res" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing">rei</w>
       <w lemma="ad" pos="ADP">ad</w>
       <lb n="35"/>
-      <w lemma="pretium" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">pretium</w>
-      <w lemma="resulto" pos="VERB" msd="Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act">resultans</w>
+      <choice>
+        <abbr>
+          <w>pretiū</w>
+        </abbr>
+        <expan>
+          <w lemma="pretium" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">pretium</w>
+        </expan>
+      </choice>
+      <choice>
+        <orig>
+          <w lemma="resulto" pos="VERB" msd="Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act">reſultans</w>
+        </orig>
+        <reg>
+          <w lemma="resulto" pos="VERB" msd="Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act">resultans</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="sed" pos="CCONJ">Sed</w>
       <choice>
         <orig>
