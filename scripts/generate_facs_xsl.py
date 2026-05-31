@@ -182,7 +182,7 @@ JS_CODE = r"""(function () {
   function norm(t) {
     return (t || '').toLowerCase()
       .replace(/ſ/g, 's')   /* long-s */
-      .replace(/[.,;:!?&\-()[\]{}'"]/g, '')
+      .replace(/[.,;:!?\-()[\]{}'"]/g, '')
       .trim();
   }
 
@@ -198,8 +198,14 @@ JS_CODE = r"""(function () {
     var clone = wEl.cloneNode(true);
     var tip = clone.querySelector('.tooltip');
     if (tip) tip.remove();
+    var hasBreak = clone.querySelector('.lb-break');
     clone.querySelectorAll('.lb-num, .lb-break').forEach(function (s) { s.remove(); });
-    return clone.textContent.replace(/\s+/g, ' ').trim();
+    var fullText = clone.textContent.replace(/\s+/g, ' ').trim();
+    if (hasBreak) {
+      var dashIdx = fullText.indexOf('-');
+      if (dashIdx > 0) return fullText.substring(0, dashIdx).trim();
+    }
+    return fullText;
   }
 
   /* Normalización avanzada: ſ→s, ae/oe, sin puntuación */
@@ -208,7 +214,8 @@ JS_CODE = r"""(function () {
       .replace(/ſ/g, 's')        /* long-s */
       .replace(/æ/g, 'ae')       /* æ */
       .replace(/œ/g, 'oe')       /* œ */
-      .replace(/[.,;:!?&()\[\]{}\-]/g, '')
+      .replace(/&/g, 'et')          /* & → et */
+      .replace(/[.,;:!?()\[\]{}\-]/g, '')
       .replace(/\s+/g, '')
       .trim();
   }
@@ -248,6 +255,10 @@ JS_CODE = r"""(function () {
     if (!twords.length) return line.words[0];
 
     /* Intento 1: match por texto normalizado */
+    /* Para palabras cortadas: la primera parte es siempre la última palabra de la línea */
+    if (wordEl && wordEl.querySelector('.lb-break') && twords.length > 0) {
+      return twords[twords.length - 1];
+    }
     var teiNorm = normAdv(wordEl ? wordText(wordEl) : '');
     if (teiNorm.length >= 1) {
       var best = null, bestScore = Infinity;
@@ -273,7 +284,7 @@ JS_CODE = r"""(function () {
     if (wordEl && allToks.length) {
       for (var ci = 0; ci < allToks.length; ci++) {
         if (allToks[ci] === wordEl) break;
-        charsBefore += allToks[ci].textContent.trim().length + 1;
+        charsBefore += wordText(allToks[ci]).length + 1;
       }
     }
     var wordChars  = wordEl ? wordText(wordEl).length : 3;
@@ -363,6 +374,12 @@ JS_CODE = r"""(function () {
 
       col.querySelectorAll('.tei-w').forEach(function (wEl) {
         wEl.addEventListener('mouseenter', function () {
+          /* Saltar tokens cuyo texto visible normaliza a vacío (& etc.) */
+          var _clone = wEl.cloneNode(true);
+          var _tip = _clone.querySelector('.tooltip');
+          if (_tip) _tip.remove();
+          var _vis = _clone.textContent.replace(/\s+/g, ' ').trim();
+          if (!normAdv(_vis)) return;
           var lineN       = parseInt(wEl.dataset.lb, 10) || null;
           var partnerLine = getBrokenPartnerLine(wEl);
           drawOnCanvas(colId, lineN, wEl, col, partnerLine);
