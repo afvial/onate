@@ -317,9 +317,13 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
         w_out  = etree.SubElement(outer, f"{{{TEI_NS}}}w")
         w_out.text = expansion
     elif reg_full:
+        # Aplicar LONG_S a left/right si corresponde
+        ls_l, ls_r = apply_long_s_to_split(left, right)
+        w_left  = ls_l if ls_l is not None else left
+        w_right = ls_r if ls_r is not None else right
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
-        _make_w_lb(orig, left, right)
+        _make_w_lb(orig, w_left, w_right)
         reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
         w_reg.text = reg_full
