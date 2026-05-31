@@ -316,6 +316,9 @@ ORIG_REG = {
     "ſunt": "sunt", "ſed": "sed", "ſi": "si", "ſub": "sub",
     "iuſtitiam": "iustitiam", "iuſtitiae": "iustitiae",
     "indiuiſibili": "indiuisibili",
+    "intrinſecum": "intrinsecum", "intrinſeci": "intrinseci",
+    "intrinſeco": "intrinseco",   "intrinſecis": "intrinsecis",
+    "intrinſeca": "intrinseca",   "intrinſecae": "intrinsecae",
 }
 
 # Macrones que representan letras abreviadas
@@ -352,6 +355,13 @@ LONG_S = {
     "indiuisibilibus":  "indiuiſibilibus",
     "indiuisibiliter":  "indiuiſibiliter",
     "inesse":           "ineſſe",
+    "intrinsecum":      "intrinſecum",
+    "intrinsecū":       "intrinſecū",
+    "intrinseci":       "intrinſeci",
+    "intrinseco":       "intrinſeco",
+    "intrinsecis":      "intrinſecis",
+    "intrinseca":       "intrinſeca",
+    "intrinsecae":      "intrinſecae",
     # conjunciones/adverbios frecuentes
     "sed":              "ſed",
     "si":               "ſi",
