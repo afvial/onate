@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../../schema/tei_all.rnc"
             type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
@@ -2514,7 +2514,7 @@
       <pc type="other">.</pc>
       <lb n="60"/>
     </s>
-    <s xml:id="s_1_I" part="I" next="#s_1_F">
+    <s>
       <w lemma="hic" pos="DET" msd="Case=Acc|Gender=Neut|Number=Sing">Hoc</w>
       <w lemma="autem" pos="PART">autem</w>
       <w lemma="pretium" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">pretium</w>
@@ -2527,14 +2527,23 @@
           <w lemma="indiuisibilis" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing">indiuisibili</w>
         </reg>
       </choice>
-      <choice><orig><w>con<lb break="no"/></w></orig><reg><w>conſiſtit</w></reg></choice></s>
+      <w lemma="con" pos="PART">con<lb break="no"/></w>
+    </s>
   </p>
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="35">
   <p>
-    <s xml:id="s_1_F" part="F" prev="#s_1_I">
+    <s>
       <lb n="1"/>
-      <choice><orig><w>ſiſtit</w></orig><reg><w>conſiſtit</w></reg></choice><pc type="colon">:</pc>
+      <choice>
+        <orig>
+          <w lemma="sisto" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">ſiſtit</w>
+        </orig>
+        <reg>
+          <w lemma="sisto" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">sistit</w>
+        </reg>
+      </choice>
+      <pc type="colon">:</pc>
       <w lemma="cum" pos="SCONJ">cùm</w>
       <w lemma="enim" pos="PART">enim</w>
       <pc type="comma">,</pc>
@@ -4373,7 +4382,7 @@
     </s>
   </p>
   <p>
-    <s xml:id="s_2_I" part="I" next="#s_2_F">
+    <s>
       <lb n="60"/>
       <w lemma="et" pos="CCONJ">Et</w>
       <w lemma="quia" pos="SCONJ">quia</w>
@@ -4397,14 +4406,16 @@
           <w lemma="et" pos="CCONJ">et</w>
         </expan>
       </choice>
-      <choice><orig><w>con<lb break="no"/></w></orig><reg><w>consuetudine</w></reg></choice></s>
+      <w lemma="con" pos="PART">con<lb break="no"/></w>
+    </s>
   </p>
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="36">
   <p>
-    <s xml:id="s_2_F" part="F" prev="#s_2_I">
+    <s>
       <lb n="1"/>
-      <choice><orig><w>ſuetudine</w></orig><reg><w>consuetudine</w></reg></choice><w lemma="uulgus" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing">vulgi</w>
+      <w lemma="suetudo" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Sing">suetudine</w>
+      <w lemma="uulgus" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing">vulgi</w>
       <w lemma="compono" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">componitur</w>
       <pc type="comma">,</pc>
       <w lemma="in" pos="ADP">in</w>
@@ -6079,7 +6090,7 @@
       </choice>
       <pc type="other">.</pc>
     </s>
-    <s xml:id="s_3_I" part="I" next="#s_3_F">
+    <s>
       <w lemma="sequor" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">Sequitur</w>
       <w lemma="tertio" pos="ADV">tertiò</w>
       <pc type="comma">,</pc>
@@ -6090,7 +6101,7 @@
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="36">
   <p>
-    <s xml:id="s_3_F" part="F" prev="#s_3_I">
+    <s>
       <lb n="1"/>
       <choice>
         <orig>
@@ -8734,7 +8745,7 @@
       <w lemma="recurro" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act">recurrere</w>
       <pc type="other">.</pc>
     </s>
-    <s xml:id="s_4_I" part="I" next="#s_4_F">
+    <s>
       <w lemma="Quintus" pos="PROPN" msd="Case=Dat|Gender=Masc|Number=Sing">Quinto</w>
       <pc type="comma">,</pc>
       <w lemma="quia" pos="SCONJ">quia</w>
@@ -8811,7 +8822,7 @@
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="37">
   <p>
-    <s xml:id="s_4_F" part="F" prev="#s_4_I">
+    <s>
       <lb n="1"/>
       <choice>
         <orig>
@@ -10640,7 +10651,7 @@
       </item>
       <item n="24">
         <label>24</label>
-        <s xml:id="s_5_I" part="I" next="#s_5_F">
+        <s>
           <lb n="54"/>
           <w lemma="et" pos="CCONJ">Et</w>
           <w lemma="ex" pos="ADP">ex</w>
@@ -10676,7 +10687,7 @@
   <div type="summarium">
     <list>
       <item>
-        <s xml:id="s_5_F" part="F" prev="#s_5_I">
+        <s>
           <lb n="1"/>
           <w lemma="go" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act">gare</w>
           <w lemma="non" pos="PART">non</w>
@@ -12766,7 +12777,7 @@
         </cit>
       </hi>
     </s>
-    <s xml:id="s_6_I" part="I" next="#s_6_F">
+    <s>
       <w lemma="probo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">Probatur</w>
       <pc type="comma">,</pc>
       <w lemma="quia" pos="SCONJ">quia</w>
@@ -12896,14 +12907,23 @@
       </choice>
       <w lemma="habeo" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act">habere</w>
       <w lemma="non" pos="PART">non</w>
-      <choice><orig><w>poſ<lb break="no"/></w></orig><reg><w>poſſunt</w></reg></choice></s>
+      <w lemma="poſ" pos="ADV">poſ<lb break="no"/></w>
+    </s>
   </p>
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="39">
   <p>
-    <s xml:id="s_6_F" part="F" prev="#s_6_I">
+    <s>
       <lb n="1"/>
-      <choice><orig><w>ſunt</w></orig><reg><w>poſſunt</w></reg></choice><pc type="comma">,</pc>
+      <choice>
+        <orig>
+          <w lemma="sum" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin">ſunt</w>
+        </orig>
+        <reg>
+          <w lemma="sum" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin">sunt</w>
+        </reg>
+      </choice>
+      <pc type="comma">,</pc>
       <choice>
         <orig>
           <w lemma="sed" pos="CCONJ">ſed</w>
@@ -12946,7 +12966,14 @@
       </choice>
       <choice>
         <abbr>
-          <w>Arist.</w>
+          <choice>
+            <orig>
+              <w>Ariſt.</w>
+            </orig>
+            <reg>
+              <w>Arist.</w>
+            </reg>
+          </choice>
         </abbr>
         <expan>
           <w lemma="Aristoteles" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Aristoteles</w>
@@ -14260,7 +14287,7 @@
       </choice>
       <pc type="other">.</pc>
     </s>
-    <s xml:id="s_7_I" part="I" next="#s_7_F">
+    <s>
       <w lemma="Quintus" pos="PROPN" msd="Case=Dat|Gender=Masc|Number=Sing">Quintò</w>
       <pc type="comma">,</pc>
       <w lemma="quia" pos="SCONJ">quia</w>
@@ -14364,7 +14391,7 @@
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="39">
   <p>
-    <s xml:id="s_7_F" part="F" prev="#s_7_I" cert="low">
+    <s>
       <lb n="1"/>
       <w lemma="uermis" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">vermis</w>
       <pc type="comma">,</pc>
@@ -15658,7 +15685,7 @@
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="40">
   <p>
-    <s cert="low">
+    <s>
       <lb n="1"/>
       <w lemma="ad" pos="ADP">Ad</w>
       <choice>

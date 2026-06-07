@@ -619,6 +619,8 @@ LONG_S = {
     "vnusquisq;":         "vnuſquiſq;",
     "Ledes.":              "Ledeſ.",
     "ledes.":              "ledeſ.",
+    "arist.":              "Ariſt.",
+    "aristot.":            "Ariſtot.",
     "sum.":               "ſum.",
     "Sum.":               "Sum.",
     "restit.":            "reſtit.",
