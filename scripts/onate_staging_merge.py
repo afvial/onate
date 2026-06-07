@@ -30,13 +30,34 @@ ANNOTATION_RE = re.compile(
     r'|\*[^*]+\*'    # cursiva       *verbum*
     r'|¶'            # párrafo
     r'|¬'            # corte de palabra
+    r'|~'            # corte sin guion
     r'|//'           # salto de línea / sentencia
+    r'|\*'             # asterisco suelto (cursiva sin cerrar)
 )
+
+MACRON_EXPAND = {
+    'ā': 'am', 'ē': 'em', 'ī': 'im', 'ō': 'on', 'ô': 'on', 'ū': 'um',
+    'Ā': 'Am', 'Ē': 'Em', 'Ī': 'Im', 'Ō': 'On', 'Ū': 'Um',
+}
+
+def expand_macrons(text: str) -> str:
+    for m, exp in MACRON_EXPAND.items():
+        text = text.replace(m, exp)
+    return text
+
+def expand_macrons_alt(text: str) -> str:
+    """Variante alternativa: usa n en vez de m para nasales."""
+    alt = {'am': 'an', 'em': 'en', 'om': 'on', 'um': 'un',
+           'Am': 'An', 'Em': 'En', 'Om': 'On', 'Um': 'Un'}
+    result = expand_macrons(text)
+    for a, b in alt.items():
+        result = result.replace(a, b)
+    return result
 
 
 def strip_anns(text: str) -> str:
-    """Texto sin marcas de anotación."""
-    return ANNOTATION_RE.sub('', text)
+    """Texto sin marcas de anotación, con macrones expandidos."""
+    return expand_macrons(ANNOTATION_RE.sub('', text))
 
 
 def extract_anns(text: str) -> list[tuple[float, str]]:
@@ -141,6 +162,12 @@ def main():
 
         if old_clean == new_clean:
             continue  # sin cambio
+        # Ignorar líneas del staging que contienen macrones (anotación manual)
+        if any(c in old_text for c in 'āēīōūĀĒĪŌŪ'):
+            continue
+        # Ignorar líneas cuyo texto base es vacío pero tienen anotaciones
+        if not old_clean and old_text.strip():
+            continue
 
         # Extraer anotaciones del texto antiguo
         anns   = extract_anns(old_text)

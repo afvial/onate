@@ -164,12 +164,7 @@ def main():
     if args.out:
         output_path = Path(args.out)
     else:
-        # transkribus/disp63/pg_63_35_der.xml → staging/disp63/pg_63_35_der.xml
-        try:
-            rel = input_path.relative_to("transkribus")
-            output_path = Path("staging") / rel
-        except ValueError:
-            output_path = Path("staging") / input_path.name
+        sys.exit("ERROR: --out es obligatorio. Usa --out <ruta> para evitar sobreescribir el staging.")
 
     normalize(input_path, output_path, args.dry_run)
 
