@@ -234,6 +234,16 @@ run_validate() {
 }
 
 # ── PASO 5: HTML ──────────────────────────────────────────────────────────────
+run_coords() {
+    info "Paso 4.5 — Coordenadas PAGE XML → JSON"
+    local PAGE_XML="transkribus/disp63/pg_63_${PAGE}_${COL}.xml"
+    local COORDS_OUT="coords/disp63/pg_63_${PAGE}_${COL}.json"
+    local IMG="facsimiles/disp63/pg_63_${PAGE}_${COL}.png"
+    [[ -f "$PAGE_XML" ]] || { warn "PAGE XML no encontrado: ${PAGE_XML}"; return; }
+    python3 scripts/onate_coords.py "$PAGE_XML" --out "$COORDS_OUT" --img "$IMG"
+    ok "Coords → ${COORDS_OUT}"
+}
+
 run_html() {
     info "Paso 5 — Transformación a HTML"
     [[ -f "$XSLT" ]]     || { warn "XSLT no encontrado: ${XSLT}"; return; }
@@ -259,6 +269,7 @@ case "$ONLY" in
         run_assemble
         run_sentences
         run_validate
+        run_coords
         run_html
         ;;
     normalize) run_normalize ;;
@@ -268,6 +279,7 @@ case "$ONLY" in
     assemble)  run_assemble ;;
     sentences) run_sentences ;;
     validate)  run_validate ;;
+    coords)    run_coords ;;
     html)      run_html ;;
     *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|enrich|assemble|sentences|validate|html)" ;;
 esac
