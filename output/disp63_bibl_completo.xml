@@ -15506,7 +15506,14 @@
           <w lemma="sum" pos="AUX" msd="Aspect=Imp|VerbForm=Inf">esse</w>
         </reg>
       </choice>
-      <w lemma="ptohibitum" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Pass">ptohibitum</w>
+      <choice>
+        <sic>
+          <w lemma="prohibeo" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Pass">ptohibitum</w>
+        </sic>
+        <corr>
+          <w lemma="prohibeo" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Pass">prohibitum</w>
+        </corr>
+      </choice>
       <pc type="comma">,</pc>
       <choice>
         <abbr>
@@ -15582,7 +15589,14 @@
         </expan>
       </choice>
       <w lemma="realiter" pos="ADV">realiter</w>
-      <w lemma="non" pos="PART">non</w>
+      <choice>
+        <abbr>
+          <w>nō</w>
+        </abbr>
+        <expan>
+          <w lemma="non" pos="PART">non</w>
+        </expan>
+      </choice>
       <lb n="51"/>
       <w lemma="pecco" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">peccat</w>
       <pc type="comma">,</pc>

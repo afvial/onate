@@ -670,7 +670,10 @@
        El <w> lleva lemma/pos/msd; <expan>/<reg> lleva la forma completa. -->
   <!-- CHOICE sic/corr: texto original con subrayado rojo, corr en tooltip -->
   <xsl:template match="tei:choice[tei:sic]">
-    <span class="tei-sic">
+    <span class="tei-w tei-sic"
+          data-lemma="{tei:sic/tei:w/@lemma}"
+          data-pos="{tei:sic/tei:w/@pos}"
+          data-msd="{tei:sic/tei:w/@msd}">
       <xsl:if test="$show-tooltips">
         <span class="tooltip">
           <table>
