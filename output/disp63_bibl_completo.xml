@@ -14371,7 +14371,7 @@
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="39">
   <p>
-    <s xml:id="s_7_F" part="F" prev="#s_7_I" cert="low">
+    <s xml:id="s_7_F" part="F" prev="#s_7_I">
       <lb n="1"/>
       <w lemma="uermis" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">vermis</w>
       <pc type="comma">,</pc>
@@ -14481,12 +14481,19 @@
         </reg>
       </choice>
       <choice>
-        <orig>
-          <w lemma="praepono" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass">præponendus</w>
-        </orig>
-        <reg>
+        <abbr>
+          <choice>
+            <orig>
+              <w>præponēdus</w>
+            </orig>
+            <reg>
+              <w>praeponēdus</w>
+            </reg>
+          </choice>
+        </abbr>
+        <expan>
           <w lemma="praepono" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass">praeponendus</w>
-        </reg>
+        </expan>
       </choice>
       <pc type="comma">,</pc>
       <choice>
@@ -14501,10 +14508,21 @@
       <pc type="comma">,</pc>
       <w lemma="qui" pos="PRON" msd="Case=Acc|Gender=Neut|Number=Sing">quod</w>
       <w lemma="nemo" pos="PRON" msd="Case=Nom|Number=Sing">nemo</w>
-      <w lemma="sanus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur">sani</w>
+      <choice>
+        <orig>
+          <w lemma="sanus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur">ſani</w>
+        </orig>
+        <reg>
+          <w lemma="sanus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur">sani</w>
+        </reg>
+      </choice>
       <w lemma="caput" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">capitis</w>
       <w lemma="dico" pos="VERB" msd="Aspect=Perf|Mood=Sub|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act">dixerit</w>
       <pc type="other">.</pc>
+    </s>
+  </p>
+  <p>
+    <s>
       <lb n="7"/>
       <w lemma="hic" pos="DET" msd="Case=Acc|Gender=Fem|Number=Sing">Hanc</w>
       <w lemma="ultimus" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Sing">vltimam</w>
@@ -14605,6 +14623,8 @@
         </reg>
       </choice>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="qui" pos="PRON" msd="Case=Dat|Gender=Masc|Number=Plur">Quibus</w>
       <w lemma="addo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act">addo</w>
       <w lemma="ratio" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">rationem</w>
@@ -14838,6 +14858,8 @@
       <w lemma="latitudo" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">latitudinem</w>
       <w lemma="habeo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">habet</w>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="neque" pos="CCONJ">Neque</w>
       <choice>
         <orig>
@@ -14940,6 +14962,8 @@
       </choice>
       <w lemma="efficio" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">efficit</w>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="Accipio" pos="PROPN" msd="Case=Acc|Gender=Masc|Number=Sing">Accipe</w>
       <choice>
         <orig>
@@ -15125,6 +15149,8 @@
       <w lemma="fundo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">fundatur</w>
       <pc type="other">.</pc>
       <lb n="35"/>
+    </s>
+    <s>
       <w lemma="licet" pos="VERB" msd="Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">Licet</w>
       <w lemma="enim" pos="PART">enim</w>
       <w lemma="deus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">Deus</w>
@@ -15164,6 +15190,8 @@
         </reg>
       </choice>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="et" pos="CCONJ">Et</w>
       <w lemma="iudex" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">iudicem</w>
       <pc type="comma">,</pc>
@@ -15361,6 +15389,8 @@
       <lb n="44"/>
       <w lemma="iudico" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">iudicatur</w>
       <pc type="other">.</pc>
+    </s>
+    <s>
       <w lemma="demum" pos="ADV">Demum</w>
       <choice>
         <orig>
@@ -15585,6 +15615,10 @@
       </choice>
       <w lemma="ordo" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">ordinem</w>
       <pc type="other">.</pc>
+    </s>
+  </p>
+  <p>
+    <s cert="low">
       <lb n="56"/>
       <w lemma="ad" pos="ADP">Ad</w>
       <w lemma="primum" pos="ADV">primum</w>
