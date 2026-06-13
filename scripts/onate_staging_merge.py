@@ -35,6 +35,10 @@ ANNOTATION_RE = re.compile(
     r'|\*'             # asterisco suelto (cursiva sin cerrar)
 )
 
+# Anotaciones de corrección manual: {orig|corr}
+# orig = lo que dice el facsímil/Transkribus, corr = forma corregida
+CHOICE_RE = re.compile(r'\{([^{}|]*)\|([^{}]*)\}')
+
 MACRON_EXPAND = {
     'ā': 'am', 'ē': 'em', 'ī': 'im', 'ō': 'on', 'ô': 'on', 'ū': 'um',
     'Ā': 'Am', 'Ē': 'Em', 'Ī': 'Im', 'Ō': 'On', 'Ū': 'Um',
@@ -56,7 +60,9 @@ def expand_macrons_alt(text: str) -> str:
 
 
 def strip_anns(text: str) -> str:
-    """Texto sin marcas de anotación, con macrones expandidos."""
+    """Texto sin marcas de anotación, con macrones expandidos.
+    Las anotaciones {orig|corr} se reducen a 'orig' (forma de Transkribus)."""
+    text = CHOICE_RE.sub(lambda m: m.group(1), text)
     return expand_macrons(ANNOTATION_RE.sub('', text))
 
 
@@ -169,14 +175,38 @@ def main():
         if not old_clean and old_text.strip():
             continue
 
+        # Anotaciones de corrección {orig|corr}: la palabra 'orig' debe seguir
+        # presente en el texto nuevo para poder reinsertar la marca con
+        # seguridad. Si Transkribus cambió justo esa palabra, no se toca la
+        # línea y se avisa para revisión manual.
+        choices = CHOICE_RE.findall(old_text)
+        skip_line = False
+        for orig, corr in choices:
+            if expand_macrons(orig) not in new_clean:
+                print(f"  ⚠ Línea {lid}: corrección manual "
+                      f"{{{orig}|{corr}}} no encontrada en el texto nuevo "
+                      f"('{new_clean[:60]}'). Línea NO actualizada — "
+                      f"revisar manualmente.")
+                skip_line = True
+        if skip_line:
+            continue
+
         # Extraer anotaciones del texto antiguo
         anns   = extract_anns(old_text)
         merged = apply_anns(new_clean, anns)
+
+        # Reinsertar las anotaciones {orig|corr} en el texto fusionado
+        for orig, corr in choices:
+            merged = merged.replace(expand_macrons(orig),
+                                     f'{{{orig}|{corr}}}', 1)
 
         changes += 1
         print(f"  Línea {lid}: '{old_clean[:45]}' → '{new_clean[:45]}'")
         if anns:
             print(f"    Anotaciones: {[a for _, a in anns]}")
+        if choices:
+            print(f"    Correcciones preservadas: "
+                  f"{[f'{{{o}|{c}}}' for o, c in choices]}")
 
         if not args.dry_run:
             el.text = merged
