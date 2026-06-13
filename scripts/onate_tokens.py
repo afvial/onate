@@ -394,6 +394,18 @@ LONG_S = {
     "sanitate":         "ſanitate",
     "sanitatis":        "ſanitatis",
     "sanitates":        "ſanitates",
+
+    # pretiosior y variantes (s medial -> ſ)
+    "pretiosior":       "pretioſior",
+    "pretiosius":       "pretioſius",
+    "pretiosiorem":     "pretioſiorem",
+    "pretiosioris":     "pretioſioris",
+    "pretiosiori":      "pretioſiori",
+    "pretiosiore":      "pretioſiore",
+    "pretiosiores":     "pretioſiores",
+    "pretiosiora":      "pretioſiora",
+    "pretiosiorum":     "pretioſiorum",
+    "pretiosioribus":   "pretioſioribus",
     "si":               "ſi",
     "sic":              "ſic",
     "sub":              "ſub",
@@ -491,6 +503,7 @@ LONG_S = {
     "super":            "ſuper",
     # términos jurídico-escolásticos de Oñate
     "secundum":         "ſecundum",
+    "secundū":          "ſecundū",
     "sequendum":        "ſequendum",
     "secundam":         "ſecundam",
     "secundo":          "ſecundo",

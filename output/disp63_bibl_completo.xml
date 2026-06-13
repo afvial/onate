@@ -14504,7 +14504,14 @@
           <w lemma="et" pos="CCONJ">et</w>
         </expan>
       </choice>
-      <w lemma="pretiosus" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing">pre<lb break="no" n="6"/>tiosior</w>
+      <choice>
+        <orig>
+          <w lemma="pretiosus" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing">pre<lb break="no" n="6"/>tioſior</w>
+        </orig>
+        <reg>
+          <w lemma="pretiosus" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing">pretiosior</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <w lemma="qui" pos="PRON" msd="Case=Acc|Gender=Neut|Number=Sing">quod</w>
       <w lemma="nemo" pos="PRON" msd="Case=Nom|Number=Sing">nemo</w>
@@ -14735,7 +14742,14 @@
       </choice>
       <w lemma="cum" pos="SCONJ">cum</w>
       <w lemma="deus" pos="NOUN" msd="Case=Dat|Gender=Masc|Number=Sing">Deo</w>
-      <w lemma="comprehendo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">comprehen<lb break="no" n="18"/>dit</w>
+      <choice>
+        <abbr>
+          <w>comprehē<lb break="no" n="18"/>dit</w>
+        </abbr>
+        <expan>
+          <w lemma="comprehendo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">comprehendit</w>
+        </expan>
+      </choice>
       <pc type="colon">:</pc>
       <w lemma="tamen" pos="ADV">tamen</w>
       <choice>
@@ -15064,7 +15078,14 @@
           <w lemma="solus" pos="ADV">solum</w>
         </reg>
       </choice>
-      <w lemma="coran" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">coran</w>
+      <choice>
+        <abbr>
+          <w>corā</w>
+        </abbr>
+        <expan>
+          <w lemma="coram" pos="ADV">coram</w>
+        </expan>
+      </choice>
       <lb n="32"/>
       <w lemma="homo" pos="NOUN" msd="Case=Dat|Gender=Masc|Number=Plur">hominibus</w>
       <pc type="comma">,</pc>
@@ -15158,7 +15179,14 @@
       <w lemma="ille" pos="DET" msd="Case=Acc|Gender=Masc|Number=Sing">illum</w>
       <w lemma="fallo" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Pass">falli</w>
       <pc type="comma">,</pc>
-      <w lemma="etiam" pos="ADV">etiam</w>
+      <choice>
+        <abbr>
+          <w>etiā</w>
+        </abbr>
+        <expan>
+          <w lemma="etiam" pos="ADV">etiam</w>
+        </expan>
+      </choice>
       <lb n="36"/>
       <choice>
         <orig>
@@ -15355,12 +15383,19 @@
         </reg>
       </choice>
       <choice>
-        <orig>
-          <w lemma="secundum" pos="ADP">ſecundum</w>
-        </orig>
-        <reg>
+        <abbr>
+          <choice>
+            <orig>
+              <w>ſecundū</w>
+            </orig>
+            <reg>
+              <w>secundū</w>
+            </reg>
+          </choice>
+        </abbr>
+        <expan>
           <w lemma="secundum" pos="ADP">secundum</w>
-        </reg>
+        </expan>
       </choice>
       <lb n="43"/>
       <w lemma="ago" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Plur">acta</w>
