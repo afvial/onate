@@ -25,14 +25,21 @@ except ImportError:
     sys.exit("ERROR: pip install lxml")
 
 # ── Marcas de anotación del staging ──────────────────────────────────────────
+# El staging se procesa línea por línea (una <line> a la vez), así que una
+# marca de apertura/cierre (@...@, *...*) puede tener sus dos extremos en
+# líneas DISTINTAS cuando Transkribus reordena o funde líneas del PAGE XML.
+# Por eso @ y * se tratan como marcadores ATÓMICOS (el símbolo suelto), no
+# como r'@[^@]+@' que exige encontrar el par completo dentro del mismo
+# fragmento de texto: así cada extremo se extrae y reinserta de forma
+# independiente, por posición relativa, sin importar en qué línea caiga.
 ANNOTATION_RE = re.compile(
-    r'@[^@]+@'       # referencias  @Suárez, De legibus@
-    r'|\*[^*]+\*'    # cursiva       *verbum*
+    r'^##'           # heading principal (inicio de línea)
+    r'|^#'           # sub-heading (inicio de línea)
+    r'|//'           # salto de línea / sentencia
     r'|¶'            # párrafo
     r'|¬'            # corte de palabra
     r'|~'            # corte sin guion
-    r'|//'           # salto de línea / sentencia
-    r'|\*'             # asterisco suelto (cursiva sin cerrar)
+    r'|[@*]'         # apertura/cierre de referencia (@) o cursiva (*)
 )
 
 # Anotaciones de corrección manual: {orig|corr}

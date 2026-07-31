@@ -122,13 +122,8 @@ def extract_coords(page_xml_path: Path, img_override: str | None = None) -> dict
     lines = {}
     skipped = 0
 
-    for tl in findall(root, ".//p:TextLine"):
-        tl_id = tl.get("id", "")
-        line_num = line_num_from_id(tl_id)
-
-        if line_num is None:
-            skipped += 1
-            continue
+    for i, tl in enumerate(findall(root, ".//p:TextLine"), start=1):
+        line_num = i
 
         coords_el = find(tl, "p:Coords")
         if coords_el is None:
@@ -138,7 +133,7 @@ def extract_coords(page_xml_path: Path, img_override: str | None = None) -> dict
         bbox = points_to_bbox(coords_el.get("points", ""))
 
         # Texto de la línea
-        text_el = find(tl, ".//p:TextEquiv/p:Unicode")
+        text_el = find(tl, "p:TextEquiv/p:Unicode")
         text = (text_el.text or "").strip() if text_el is not None else ""
 
         entry = {"bbox": bbox, "text": text}

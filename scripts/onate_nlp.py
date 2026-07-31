@@ -255,8 +255,8 @@ def main():
     ap.add_argument("input", help="Archivo src/ TEI a anotar")
     ap.add_argument("--out", default=None,
                     help="Archivo de salida (default: sobreescribe el input)")
-    ap.add_argument("--model", default="la_core_web_sm",
-                    help="Modelo spaCy a usar (default: la_core_web_sm)")
+    ap.add_argument("--model", default="la_core_web_lg",
+                    help="Modelo spaCy a usar (default: la_core_web_lg)")
     ap.add_argument("--dry-run", action="store_true",
                     help="Mostrar anotaciones sin modificar el archivo")
     args = ap.parse_args()
