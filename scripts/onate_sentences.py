@@ -47,18 +47,31 @@ from pathlib import Path
 from lxml import etree
 
 _NLP_MODEL = None
+_NLP_UNAVAILABLE = False  # evita reintentar cargar un modelo que ya falló
 
 
 def _get_nlp(model_name):
     """Carga el modelo spaCy/LatinCy una sola vez (lazy: solo si hace
     falta anotar alguna palabra partida; evita el coste de carga cuando
-    la página no tiene ningún caso)."""
-    global _NLP_MODEL
+    la página no tiene ningún caso). Devuelve None si falla, en vez de
+    propagar la excepción — un modelo no disponible no debe abortar todo
+    el script y perder el trabajo de límites de oración ya calculado."""
+    global _NLP_MODEL, _NLP_UNAVAILABLE
+    if _NLP_UNAVAILABLE:
+        return None
     if _NLP_MODEL is None:
-        import spacy
-        print(f"  Cargando modelo NLP ({model_name}) para palabra(s) "
-              f"partida(s) entre columnas...", file=sys.stderr)
-        _NLP_MODEL = spacy.load(model_name)
+        try:
+            import spacy
+            print(f"  Cargando modelo NLP ({model_name}) para palabra(s) "
+                  f"partida(s) entre columnas...", file=sys.stderr)
+            _NLP_MODEL = spacy.load(model_name)
+        except Exception as e:
+            print(f"  ⚠ No se pudo cargar el modelo NLP ({model_name}): {e}\n"
+                  f"    La(s) palabra(s) partida(s) se enlazarán igual "
+                  f"(@wpair) pero sin lemma/pos/msd en el tooltip.",
+                  file=sys.stderr)
+            _NLP_UNAVAILABLE = True
+            return None
     return _NLP_MODEL
 
 
@@ -79,12 +92,23 @@ def annotate_split_word(reg_text, w_elements, model_name):
     consulta al modelo, que procesa mejor la ortografía regularizada
     (igual que onate_nlp.py hace con <reg>). Los atributos resultantes se
     copian tal cual a los cuatro <w>; lo guardado en el XML no cambia.
+
+    Si el modelo no está disponible o falla el análisis, no anota nada
+    pero tampoco interrumpe el resto del procesamiento (el @wpair y el
+    @part/@next/@prev ya se aplicaron antes de llegar aquí).
     """
     if not reg_text:
         return
     query_text = reg_text.replace('ſ', 's')
     nlp = _get_nlp(model_name)
-    doc = nlp(query_text)
+    if nlp is None:
+        return
+    try:
+        doc = nlp(query_text)
+    except Exception as e:
+        print(f"  ⚠ Error al analizar {query_text!r} con el modelo NLP: {e}",
+              file=sys.stderr)
+        return
     if not doc:
         return
     tok   = doc[0]
@@ -370,7 +394,11 @@ def add_orig_to_split_words(s_end, s_start, counter, model_name):
 
     part_i = orig_text_of_w(w_i)   # "con"
     part_f = orig_text_of_w(w_f)   # "suetudine" / "sistit"
-    reg    = part_i + part_f        # "consuetudine" / "consistit"
+    # Normalizar ſ→s: part_i/part_f pueden venir con ſ (forma diplomática
+    # cruda, tal como la almacena onate_tei.py) — reg debe ser siempre la
+    # forma normalizada, igual que en cualquier otro <choice><reg> del
+    # documento (p.ej. "consistit", no "conſiſtit").
+    reg    = (part_i + part_f).replace('ſ', 's')  # "consuetudine" / "possunt"
 
     # Forma diplomática con ſ
     if _HAS_LONG_S:
@@ -487,11 +515,16 @@ def process(xml_path: Path, output_path: Path, report_only: bool = False,
         })
 
         if not report_only:
-            if result == 'continues':
-                apply_continues(s_end, s_start, counter, model_name)
-                counter += 1
-            elif result == 'uncertain':
-                apply_uncertain(s_end, s_start)
+            try:
+                if result == 'continues':
+                    apply_continues(s_end, s_start, counter, model_name)
+                    counter += 1
+                elif result == 'uncertain':
+                    apply_uncertain(s_end, s_start)
+            except Exception as e:
+                print(f"  ⚠ Error procesando {label_a} → {label_b}: {e}\n"
+                      f"    Se deja esta transición sin marcar y se "
+                      f"continúa con el resto.", file=sys.stderr)
 
     # ── Informe ────────────────────────────────────────────────────────────────
     print()
