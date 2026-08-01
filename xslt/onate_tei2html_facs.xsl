@@ -128,6 +128,12 @@
 
           span.tei-s { display: inline; }
           span.tei-s:hover { background-color: #e8f0fb; border-radius: 2px; }
+          span.tei-s.s-part { border-radius: 2px; transition: background 0.15s; }
+          span.tei-s.s-part.s-part-active { background-color: #e8f0fb; }
+          /* Palabra partida entre columnas/páginas: además del fondo celeste
+             heredado de la oración, un subrayado la distingue como palabra
+             concreta (no toda la oración) mientras está activo el par. */
+          span.tei-w.wpair-active { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
 
           span.tei-w {
             display: inline;
@@ -171,6 +177,10 @@
           .tooltip .tip-lemma { color: #7ec8e3; font-weight: bold; }
           .tooltip .tip-pos   { color: #f0c060; }
           .tooltip .tip-val   { color: #aaddaa; }
+          .tooltip.cit-tooltip { font-family: inherit; font-size: 0.7rem; font-style: normal; }
+          .tooltip .ct-author { color: #7ec8e3; font-weight: bold; }
+          .tooltip .ct-work   { color: #f0c060; font-style: italic; }
+          .tooltip .ct-loc    { color: #aaddaa; }
           span.tei-w:hover .tooltip { display: block; }
           span.tei-sic:hover .tooltip { display: block; }
 
@@ -199,7 +209,9 @@
           span.tei-sic:hover { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
-          span.tei-bibl { margin-right: -0.05em; }
+          span.tei-bibl { margin-right: -0.05em; position: relative; cursor: default; }
+          span.tei-bibl:hover > .tooltip.cit-tooltip { display: block; }
+          .tooltip.cit-tooltip:empty { display: none !important; }
 
           /* Citas de autoridad */
           span.tei-cit {
@@ -478,6 +490,7 @@
   var FACS_EXT     = '.png';
   var EXTRA_OFFSET = 44;
   var cache = {};
+  var BIBL_CATALOG_URL = '../../bibl_catalog.json';
 
   function initAllPanels() {
     alignPanels();
@@ -485,6 +498,9 @@
       initPanel(p, p.dataset.colId);
     });
     wireColumns();
+    loadBiblCatalog();
+    wireSplitSentences();
+    wireWordPairs();
   }
 
   function alignPanels() {
@@ -796,6 +812,82 @@
       '.facs-panel[data-col-id="' + colId + '"] .facs-canvas')
       .forEach(function (c) {
         c.getContext('2d').clearRect(0, 0, c.width, c.height); });
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;',
+               '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function loadBiblCatalog() {
+    fetch(BIBL_CATALOG_URL)
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (catalog) { populateCitTooltips(catalog); })
+      .catch(function (e) {
+        /* Sin catálogo disponible: las citas simplemente no muestran
+           tooltip. No es un error fatal para el resto del visor. */
+        console.warn('bibl_catalog.json no disponible:', e);
+      });
+  }
+
+  function populateCitTooltips(catalog) {
+    document.querySelectorAll('.tei-bibl[data-corresp]').forEach(function (span) {
+      var id = span.dataset.corresp.replace(/^#/, '');
+      var entry = catalog[id];
+      var tip = span.querySelector(':scope > .tooltip.cit-tooltip');
+      if (!entry || !tip) return;
+
+      var html = '';
+      if (entry.author) html += '<span class="ct-author">' + escapeHtml(entry.author) + '</span>';
+      if (entry.title) {
+        if (html) html += ' · ';
+        html += '<span class="ct-work">' + escapeHtml(entry.title) + '</span>';
+      }
+      tip.innerHTML = html;
+    });
+  }
+
+  function wireSplitSentences() {
+    document.querySelectorAll('.s-part[data-sid]').forEach(function (el) {
+      var linkedId = el.dataset.next || el.dataset.prev || '';
+      el.addEventListener('mouseenter', function () {
+        el.classList.add('s-part-active');
+        if (linkedId) {
+          var linked = document.querySelector('.s-part[data-sid="' + linkedId + '"]');
+          if (linked) linked.classList.add('s-part-active');
+        }
+      });
+      el.addEventListener('mouseleave', function () {
+        document.querySelectorAll('.s-part-active').forEach(function (e) {
+          e.classList.remove('s-part-active');
+        });
+      });
+    });
+  }
+
+  function wireWordPairs() {
+    document.querySelectorAll('[data-wpair]').forEach(function (el) {
+      el.addEventListener('mouseenter', function () {
+        var pid = el.dataset.wpair;
+        document.querySelectorAll('[data-wpair="' + pid + '"]').forEach(function (halfEl) {
+          halfEl.classList.add('wpair-active');
+          var halfCol = halfEl.closest('.col[data-col-id]');
+          if (!halfCol) return;
+          var lineN = parseInt(halfEl.dataset.lb, 10) || null;
+          drawOnCanvas(halfCol.dataset.colId, lineN, halfEl, halfCol, null);
+        });
+      });
+      el.addEventListener('mouseleave', function () {
+        var pid = el.dataset.wpair;
+        document.querySelectorAll('[data-wpair="' + pid + '"]').forEach(function (halfEl) {
+          halfEl.classList.remove('wpair-active');
+          var halfCol = halfEl.closest('.col[data-col-id]');
+          if (halfCol) clearCanvas(halfCol.dataset.colId);
+        });
+      });
+    });
   }
 
   function wireColumns() {

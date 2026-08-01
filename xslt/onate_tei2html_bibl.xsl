@@ -108,6 +108,12 @@
 
           span.tei-s { display: inline; }
           span.tei-s:hover { background-color: #e8f0fb; border-radius: 2px; }
+          span.tei-s.s-part { border-radius: 2px; transition: background 0.15s; }
+          span.tei-s.s-part.s-part-active { background-color: #e8f0fb; }
+          /* Palabra partida entre columnas/páginas: además del fondo celeste
+             heredado de la oración, un subrayado la distingue como palabra
+             concreta (no toda la oración) mientras está activo el par. */
+          span.tei-w.wpair-active { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
 
           span.tei-w {
             display: inline;
@@ -151,6 +157,10 @@
           .tooltip .tip-lemma { color: #7ec8e3; font-weight: bold; }
           .tooltip .tip-pos   { color: #f0c060; }
           .tooltip .tip-val   { color: #aaddaa; }
+          .tooltip.cit-tooltip { font-family: inherit; font-size: 0.7rem; font-style: normal; }
+          .tooltip .ct-author { color: #7ec8e3; font-weight: bold; }
+          .tooltip .ct-work   { color: #f0c060; font-style: italic; }
+          .tooltip .ct-loc    { color: #aaddaa; }
           span.tei-w:hover .tooltip { display: block; }
           span.tei-sic:hover .tooltip { display: block; }
 
@@ -179,7 +189,9 @@
           span.tei-sic:hover { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
-          span.tei-bibl { margin-right: -0.05em; }
+          span.tei-bibl { margin-right: -0.05em; position: relative; cursor: default; }
+          span.tei-bibl:hover > .tooltip.cit-tooltip { display: block; }
+          .tooltip.cit-tooltip:empty { display: none !important; }
 
           /* Citas de autoridad */
           span.tei-cit {
@@ -417,15 +429,37 @@
   </xsl:template>
 
   <!-- ORACIÓN -->
-  <xsl:template match="tei:s">
+  <!-- Oración normal -->
+  <xsl:template match="tei:s[not(@part)]">
     <span class="tei-s"><xsl:apply-templates/></span>
+    <xsl:text> </xsl:text>
+  </xsl:template>
+
+  <!-- Oración partida entre columnas/páginas (@part="I" o "F") -->
+  <xsl:template match="tei:s[@part]">
+    <span class="tei-s s-part">
+      <xsl:attribute name="data-sid">
+        <xsl:value-of select="@xml:id"/>
+      </xsl:attribute>
+      <xsl:if test="@next">
+        <xsl:attribute name="data-next">
+          <xsl:value-of select="substring-after(@next,'#')"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:if test="@prev">
+        <xsl:attribute name="data-prev">
+          <xsl:value-of select="substring-after(@prev,'#')"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </span>
     <xsl:text> </xsl:text>
   </xsl:template>
 
   <!-- PALABRA -->
   <xsl:template match="tei:w">
     <span class="tei-w" data-lemma="{@lemma}" data-pos="{@pos}" data-msd="{@msd}">
-      <xsl:if test="$show-tooltips">
+      <xsl:if test="$show-tooltips and normalize-space(@lemma) != ''">
         <span class="tooltip">
           <table>
             <tr>
@@ -445,6 +479,12 @@
             </xsl:if>
           </table>
         </span>
+      </xsl:if>
+      <xsl:if test="$show-tooltips and normalize-space(@lemma) = '' and ancestor::tei:bibl">
+        <!-- Sin tooltip de lemma/POS aquí: la palabra pertenece a una cita
+             bibliográfica. El tooltip real vive en el <span class="tei-bibl">
+             ancestro (ver template de tei:bibl) y lo puebla JS desde el
+             catálogo (data-corresp), no la estructura interna del bibl. -->
       </xsl:if>
       <!-- part="I": añadir guión al final -->
       <xsl:apply-templates/>
@@ -561,6 +601,14 @@
       <xsl:if test="@corresp">
         <xsl:attribute name="data-corresp"><xsl:value-of select="@corresp"/></xsl:attribute>
       </xsl:if>
+      <!-- Placeholder vacío: JS lo puebla al cargar la página consultando
+           el catálogo (bibl_catalog.json) por data-corresp. No se rellena
+           aquí en el XSLT porque la estructura interna de <bibl> (dónde
+           quedó el <author>, si el <choice> es el correcto, etc.) es
+           frágil y no siempre coincide con el catálogo real. -->
+      <xsl:if test="$show-tooltips and @corresp">
+        <span class="tooltip cit-tooltip"></span>
+      </xsl:if>
       <xsl:apply-templates/></span>
   </xsl:template>
 
@@ -674,13 +722,15 @@
           data-lemma="{tei:sic/tei:w/@lemma}"
           data-pos="{tei:sic/tei:w/@pos}"
           data-msd="{tei:sic/tei:w/@msd}">
-      <xsl:if test="$show-tooltips">
+      <xsl:if test="$show-tooltips and not(ancestor::tei:bibl)">
         <span class="tooltip">
           <table>
-            <tr>
-              <td class="tip-key">lemma</td>
-              <td class="tip-lemma"><xsl:value-of select="tei:sic/tei:w/@lemma"/></td>
-            </tr>
+            <xsl:if test="tei:sic/tei:w/@lemma != ''">
+              <tr>
+                <td class="tip-key">lemma</td>
+                <td class="tip-lemma"><xsl:value-of select="tei:sic/tei:w/@lemma"/></td>
+              </tr>
+            </xsl:if>
             <xsl:if test="tei:sic/tei:w/@pos != ''">
               <tr>
                 <td class="tip-key">POS</td>
@@ -749,13 +799,18 @@
 
     <span class="tei-w tei-choice-{$kind}"
           data-lemma="{$lemma}" data-pos="{$pos}" data-msd="{$msd}">
-      <xsl:if test="$show-tooltips">
+      <xsl:if test="@wpair">
+        <xsl:attribute name="data-wpair"><xsl:value-of select="@wpair"/></xsl:attribute>
+      </xsl:if>
+      <xsl:if test="$show-tooltips and ($lemma != '' or $expansion != '') and not(ancestor::tei:bibl)">
         <span class="tooltip">
           <table>
-            <tr>
-              <td class="tip-key">lemma</td>
-              <td class="tip-lemma"><xsl:value-of select="$lemma"/></td>
-            </tr>
+            <xsl:if test="$lemma != ''">
+              <tr>
+                <td class="tip-key">lemma</td>
+                <td class="tip-lemma"><xsl:value-of select="$lemma"/></td>
+              </tr>
+            </xsl:if>
             <xsl:if test="$pos != ''">
               <tr>
                 <td class="tip-key">POS</td>

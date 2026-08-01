@@ -68,9 +68,15 @@ def expand_macrons_alt(text: str) -> str:
 
 def strip_anns(text: str) -> str:
     """Texto sin marcas de anotación, con macrones expandidos.
-    Las anotaciones {orig|corr} se reducen a 'orig' (forma de Transkribus)."""
+    Las anotaciones {orig|corr} se reducen a 'orig' (forma de Transkribus).
+    Colapsa espacios múltiples que quedan al quitar un marcador atómico
+    (ej. '16.@ @ Palacios' -> '16.  Palacios' -> '16. Palacios'), igual que
+    normalize_unicode() hace del lado del texto nuevo de Transkribus, para
+    que ambos lados de la comparación queden normalizados por igual."""
     text = CHOICE_RE.sub(lambda m: m.group(1), text)
-    return expand_macrons(ANNOTATION_RE.sub('', text))
+    text = ANNOTATION_RE.sub('', text)
+    text = re.sub(r'  +', ' ', text)
+    return expand_macrons(text)
 
 
 def extract_anns(text: str) -> list[tuple[float, str]]:

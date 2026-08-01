@@ -72,6 +72,7 @@ JS_CODE = r"""(function () {
   var FACS_EXT     = '.png';
   var EXTRA_OFFSET = 44;
   var cache = {};
+  var BIBL_CATALOG_URL = '../../bibl_catalog.json';
 
   function initAllPanels() {
     alignPanels();
@@ -79,6 +80,9 @@ JS_CODE = r"""(function () {
       initPanel(p, p.dataset.colId);
     });
     wireColumns();
+    loadBiblCatalog();
+    wireSplitSentences();
+    wireWordPairs();
   }
 
   function alignPanels() {
@@ -390,6 +394,82 @@ JS_CODE = r"""(function () {
       '.facs-panel[data-col-id="' + colId + '"] .facs-canvas')
       .forEach(function (c) {
         c.getContext('2d').clearRect(0, 0, c.width, c.height); });
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;',
+               '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function loadBiblCatalog() {
+    fetch(BIBL_CATALOG_URL)
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (catalog) { populateCitTooltips(catalog); })
+      .catch(function (e) {
+        /* Sin catálogo disponible: las citas simplemente no muestran
+           tooltip. No es un error fatal para el resto del visor. */
+        console.warn('bibl_catalog.json no disponible:', e);
+      });
+  }
+
+  function populateCitTooltips(catalog) {
+    document.querySelectorAll('.tei-bibl[data-corresp]').forEach(function (span) {
+      var id = span.dataset.corresp.replace(/^#/, '');
+      var entry = catalog[id];
+      var tip = span.querySelector(':scope > .tooltip.cit-tooltip');
+      if (!entry || !tip) return;
+
+      var html = '';
+      if (entry.author) html += '<span class="ct-author">' + escapeHtml(entry.author) + '</span>';
+      if (entry.title) {
+        if (html) html += ' · ';
+        html += '<span class="ct-work">' + escapeHtml(entry.title) + '</span>';
+      }
+      tip.innerHTML = html;
+    });
+  }
+
+  function wireSplitSentences() {
+    document.querySelectorAll('.s-part[data-sid]').forEach(function (el) {
+      var linkedId = el.dataset.next || el.dataset.prev || '';
+      el.addEventListener('mouseenter', function () {
+        el.classList.add('s-part-active');
+        if (linkedId) {
+          var linked = document.querySelector('.s-part[data-sid="' + linkedId + '"]');
+          if (linked) linked.classList.add('s-part-active');
+        }
+      });
+      el.addEventListener('mouseleave', function () {
+        document.querySelectorAll('.s-part-active').forEach(function (e) {
+          e.classList.remove('s-part-active');
+        });
+      });
+    });
+  }
+
+  function wireWordPairs() {
+    document.querySelectorAll('[data-wpair]').forEach(function (el) {
+      el.addEventListener('mouseenter', function () {
+        var pid = el.dataset.wpair;
+        document.querySelectorAll('[data-wpair="' + pid + '"]').forEach(function (halfEl) {
+          halfEl.classList.add('wpair-active');
+          var halfCol = halfEl.closest('.col[data-col-id]');
+          if (!halfCol) return;
+          var lineN = parseInt(halfEl.dataset.lb, 10) || null;
+          drawOnCanvas(halfCol.dataset.colId, lineN, halfEl, halfCol, null);
+        });
+      });
+      el.addEventListener('mouseleave', function () {
+        var pid = el.dataset.wpair;
+        document.querySelectorAll('[data-wpair="' + pid + '"]').forEach(function (halfEl) {
+          halfEl.classList.remove('wpair-active');
+          var halfCol = halfEl.closest('.col[data-col-id]');
+          if (halfCol) clearCanvas(halfCol.dataset.colId);
+        });
+      });
+    });
   }
 
   function wireColumns() {

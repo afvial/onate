@@ -29,12 +29,75 @@ Heurística
     3. Punct. final (. ? !) + primera palabra en mayúsc.  → NUEVA oración
     4. Sin punct. final + primera palabra en mayúscula    → DUDOSA (cert="low")
     5. Punct. final + primera palabra en minúscula        → DUDOSA (anomalía)
+
+Anotación NLP de palabras partidas
+───────────────────────────────────
+Cuando la palabra se reconstruye entre columnas (p.ej. "con-" + "sistit" →
+"consistit"), ninguna de las dos mitades pudo anotarse morfológicamente en
+el paso `nlp` (que corre por columna, antes de ensamblar) porque ninguna es
+una palabra latina válida por sí sola. Aquí, una vez reconstruida la forma
+completa, se anota con el mismo modelo que usa onate_nlp.py y se copia el
+resultado a los cuatro <w> involucrados (orig+reg de ambas mitades) — igual
+que onate_nlp.py copia entre <orig>/<reg> en los pares ya existentes.
 """
 
 import sys
 import argparse
 from pathlib import Path
 from lxml import etree
+
+_NLP_MODEL = None
+
+
+def _get_nlp(model_name):
+    """Carga el modelo spaCy/LatinCy una sola vez (lazy: solo si hace
+    falta anotar alguna palabra partida; evita el coste de carga cuando
+    la página no tiene ningún caso)."""
+    global _NLP_MODEL
+    if _NLP_MODEL is None:
+        import spacy
+        print(f"  Cargando modelo NLP ({model_name}) para palabra(s) "
+              f"partida(s) entre columnas...", file=sys.stderr)
+        _NLP_MODEL = spacy.load(model_name)
+    return _NLP_MODEL
+
+
+def _morph_to_msd(token):
+    m = token.morph
+    return str(m) if m else ""
+
+
+def annotate_split_word(reg_text, w_elements, model_name):
+    """
+    Anota lemma/pos/msd en todos los <w> dados (orig+reg de ambas mitades
+    de la palabra partida), usando la forma completa reconstruida
+    (reg_text) para el análisis — la única que es una palabra latina
+    válida para el modelo.
+
+    reg_text puede conservar la ſ larga (se construye concatenando los
+    fragmentos diplomáticos originales); se normaliza a 's' solo para la
+    consulta al modelo, que procesa mejor la ortografía regularizada
+    (igual que onate_nlp.py hace con <reg>). Los atributos resultantes se
+    copian tal cual a los cuatro <w>; lo guardado en el XML no cambia.
+    """
+    if not reg_text:
+        return
+    query_text = reg_text.replace('ſ', 's')
+    nlp = _get_nlp(model_name)
+    doc = nlp(query_text)
+    if not doc:
+        return
+    tok   = doc[0]
+    lemma = tok.lemma_ or ""
+    pos   = tok.pos_   or ""
+    msd   = _morph_to_msd(tok)
+    for w in w_elements:
+        if w is None:
+            continue
+        w.set('lemma', lemma)
+        w.set('pos',   pos)
+        if msd:
+            w.set('msd', msd)
 
 # Importar función de reconstrucción con s larga
 try:
@@ -93,15 +156,41 @@ def ends_with_closing_punct(s_elem):
     return False
 
 
+def _is_inside_reg(w_elem):
+    """True si w_elem cuelga de <reg> (forma normalizada de un <choice>
+    orig/reg ya existente) — esa copia nunca lleva el <lb break='no'/>
+    físico, que vive en la forma diplomática <orig>."""
+    parent = w_elem.getparent()
+    while parent is not None:
+        if parent.tag == T('reg'):
+            return True
+        parent = parent.getparent()
+    return False
+
+
+def last_real_w(s_elem):
+    """
+    Último <w> del <s> en orden de documento, ignorando los que cuelgan
+    de <reg> (forma normalizada de un <choice> orig/reg ya existente,
+    p.ej. una alternancia ſ/s aplicada por onate_tei.py antes de que se
+    procesen los límites de columna). Sin esto, si el último token ya
+    está envuelto en <choice><orig>/<reg></choice>, <reg> aparece después
+    de <orig> en el documento y su <w> "gana" por error — perdiendo el
+    <lb break='no'/> real, que solo vive en <orig>.
+    """
+    ws = [w for w in s_elem.iter(T('w')) if not _is_inside_reg(w)]
+    return ws[-1] if ws else None
+
+
 def has_word_split(s_elem):
     """
-    True si el último <w> contiene un <lb break='no'/>,
-    indicando que la palabra continúa en la siguiente línea/columna.
+    True si el último <w> "real" (ver last_real_w) contiene un
+    <lb break='no'/>, indicando que la palabra continúa en la
+    siguiente línea/columna.
     """
-    ws = list(s_elem.iter(T('w')))
-    if not ws:
+    last_w = last_real_w(s_elem)
+    if last_w is None:
         return False
-    last_w = ws[-1]
     for lb in last_w.findall(T('lb')):
         if lb.get('break') == 'no':
             return True
@@ -248,17 +337,16 @@ def _make_choice(parent_elem, w_elem, orig_text, reg_text, keep_lb=False):
     return choice
 
 
-def add_orig_to_split_words(s_end, s_start):
+def add_orig_to_split_words(s_end, s_start, counter, model_name):
     """
     Cuando hay palabra partida entre columnas, reconstruye la forma
     completa (reg) y la forma diplomática con ſ (orig), y genera
     <choice><orig>/<reg></choice> en ambos extremos — análogo al
     tratamiento de palabras partidas por cambio de línea.
     """
-    all_w_end = list(s_end.iter(T('w')))
-    if not all_w_end:
+    w_i = last_real_w(s_end)
+    if w_i is None:
         return
-    w_i = all_w_end[-1]
     has_split = any(lb.get('break') == 'no' for lb in w_i.findall(T('lb')))
     if not has_split:
         return
@@ -295,24 +383,44 @@ def add_orig_to_split_words(s_end, s_start):
 
     # Padre directo de w_i (puede ser <s> u otro elemento)
     parent_i = w_i.getparent()
+    choice_i = None
     if parent_i is not None:
-        _make_choice(parent_i, w_i, diplo_i, reg, keep_lb=True)
+        choice_i = _make_choice(parent_i, w_i, diplo_i, reg, keep_lb=True)
 
     # Padre directo de w_f (puede ser <s>, <reg>, etc.)
     # Si ya está en <choice>/<reg>, reemplazar ese <choice> entero
     parent_f = w_f.getparent()
+    choice_f = None
     if parent_f is not None and parent_f.tag == T('reg'):
         gp = parent_f.getparent()
         if gp is not None and gp.tag == T('choice'):
             ggp = gp.getparent()
             if ggp is not None:
-                _make_choice(ggp, gp, diplo_f, reg, keep_lb=False)
-            return
-    if parent_f is not None:
-        _make_choice(parent_f, w_f, diplo_f, reg, keep_lb=False)
+                choice_f = _make_choice(ggp, gp, diplo_f, reg, keep_lb=False)
+    if choice_f is None and parent_f is not None:
+        choice_f = _make_choice(parent_f, w_f, diplo_f, reg, keep_lb=False)
+
+    # Enlazar ambas mitades: @wpair compartido permite que el HTML/JS las
+    # resalte juntas (texto + rectángulo en AMBOS paneles de facsímil),
+    # aunque caigan en columnas o páginas distintas.
+    if choice_i is not None and choice_f is not None:
+        wpair = f'wp_{counter}'
+        choice_i.set('wpair', wpair)
+        choice_f.set('wpair', wpair)
+
+        # Anotar lemma/pos/msd en los cuatro <w> (orig+reg de ambas
+        # mitades) usando la forma reconstruida completa (reg) — ninguna
+        # mitad por separado es una palabra latina válida para el NLP.
+        w_elements = [
+            choice_i.find(f"{T('orig')}/{T('w')}"),
+            choice_i.find(f"{T('reg')}/{T('w')}"),
+            choice_f.find(f"{T('orig')}/{T('w')}"),
+            choice_f.find(f"{T('reg')}/{T('w')}"),
+        ]
+        annotate_split_word(reg, w_elements, model_name)
 
 
-def apply_continues(s_end, s_start, counter):
+def apply_continues(s_end, s_start, counter, model_name):
     """Añade @part / @next / @prev al par de <s> que abarca una columna.
     Si hay palabra partida, añade también @orig con la forma completa."""
     id_i = f"s_{counter}_I"
@@ -326,7 +434,7 @@ def apply_continues(s_end, s_start, counter):
     s_start.set('part', 'F')
     s_start.set('prev', f'#{id_i}')
 
-    add_orig_to_split_words(s_end, s_start)
+    add_orig_to_split_words(s_end, s_start, counter, model_name)
 
     return id_i, id_f
 
@@ -346,7 +454,8 @@ def col_label(div, idx):
     return f"p{n}_{col}"
 
 
-def process(xml_path: Path, output_path: Path, report_only: bool = False):
+def process(xml_path: Path, output_path: Path, report_only: bool = False,
+            model_name: str = 'la_core_web_lg'):
     parser = etree.XMLParser(remove_blank_text=False)
     tree   = etree.parse(str(xml_path), parser)
     root   = tree.getroot()
@@ -379,7 +488,7 @@ def process(xml_path: Path, output_path: Path, report_only: bool = False):
 
         if not report_only:
             if result == 'continues':
-                apply_continues(s_end, s_start, counter)
+                apply_continues(s_end, s_start, counter, model_name)
                 counter += 1
             elif result == 'uncertain':
                 apply_uncertain(s_end, s_start)
@@ -418,6 +527,9 @@ def main():
         help='Archivo de salida (por defecto: in-place)')
     parser.add_argument('--report', action='store_true',
         help='Solo mostrar diagnóstico sin modificar el XML')
+    parser.add_argument('--model', default='la_core_web_lg',
+        help='Modelo spaCy/LatinCy para anotar palabras partidas '
+             '(default: la_core_web_lg, igual que onate_nlp.py)')
     args = parser.parse_args()
 
     xml_path = Path(args.input)
@@ -427,7 +539,7 @@ def main():
 
     out_path = Path(args.output) if args.output else xml_path
 
-    process(xml_path, out_path, report_only=args.report)
+    process(xml_path, out_path, report_only=args.report, model_name=args.model)
 
 
 if __name__ == '__main__':
