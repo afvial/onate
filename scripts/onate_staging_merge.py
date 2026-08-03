@@ -51,9 +51,21 @@ MACRON_EXPAND = {
     'Ā': 'Am', 'Ē': 'Em', 'Ī': 'Im', 'Ō': 'On', 'Ū': 'Um',
 }
 
+# Abreviaturas que Transkribus expande sistemáticamente (comportamiento del
+# modelo, no un error puntual del HTR) y que por eso se corrigen a mano en
+# el staging en vez de en Transkribus (ver onate_tokens.ABBREV_SEMICOLON_EXPAN
+# para el diccionario completo que sí usa el pipeline TEI). Aquí solo se
+# necesita para que la comparación del merge no marque la línea como
+# cambiada — de momento, acotado a los casos confirmados.
+ABBREV_EXPAND_STAGING = {
+    'Itaq;': 'Itaque',
+}
+
 def expand_macrons(text: str) -> str:
     for m, exp in MACRON_EXPAND.items():
         text = text.replace(m, exp)
+    for abbr, exp in ABBREV_EXPAND_STAGING.items():
+        text = text.replace(abbr, exp)
     return text
 
 def expand_macrons_alt(text: str) -> str:
