@@ -337,6 +337,7 @@ MACRON_MAP = {
 # el valor es la forma diplomática con ſ.
 # Regla general: ſ aparece en posición inicial y medial, nunca final.
 LONG_S = {
+    "potestas":         "poteſtas",
     # formas de sum/esse
     "est":              "eſt",
     "esse":             "eſſe",
@@ -348,6 +349,11 @@ LONG_S = {
     "esset":            "eſſet",
     "essent":           "eſſent",
     "esse":             "eſſe",
+    # expresse/expressè: convención ſs (solo la primera s larga), no ſſ
+    # como aplicaría por defecto la regla general ss→ſſ — confirmado
+    # contra el facsímil.
+    "expresse":         "expreſse",
+    "expressè":         "expreſsè",
     # inesse / insunt
     "insunt":           "inſunt",
     "inest":            "ineſt",
@@ -1036,6 +1042,7 @@ LONG_S = {
 # sin tener que enumerar cada forma.
 # Orden importante: raíces más largas primero para evitar solapamientos.
 LONG_S_ROOTS = [
+    ("potestat",    "poteſtat"),   # potestatis, potestati, potestatem, potestate...
     # administr- antes que ministr- y magistr-
     ("administr",  "adminiſtr"),  # administratio, administratorem…
     ("ministr",    "miniſtr"),    # ministrare, ministrat…

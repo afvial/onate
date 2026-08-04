@@ -226,7 +226,7 @@ def main():
                                      f'{{{orig}|{corr}}}', 1)
 
         changes += 1
-        print(f"  Línea {lid}: '{old_clean[:45]}' → '{new_clean[:45]}'")
+        print(f"  Línea {lid}: '{old_clean}' → '{new_clean}'")
         if anns:
             print(f"    Anotaciones: {[a for _, a in anns]}")
         if choices:

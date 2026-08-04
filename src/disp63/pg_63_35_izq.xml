@@ -1305,16 +1305,7 @@
           </choice>
           <w>11</w>
           <pc type="other">.</pc>
-          <choice>
-            <abbr>
-              <w>iun.</w>
-            </abbr>
-            <expan>
-              <w>iuncto</w>
-            </expan>
-          </choice>
-          <lb n="38"/>
-          <w>cto</w>
+          <w>iun<lb break="no" n="38"/>cto</w>
           <w>15</w>
           <pc type="other">.</pc>
         </bibl>
@@ -1433,7 +1424,7 @@
       <w lemma="hic" pos="DET" msd="Case=Nom|Gender=Masc|Number=Plur">hi</w>
       <choice>
         <orig>
-          <w lemma="expresse" pos="VERB" msd="Aspect=Perf|Case=Voc|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">ex<lb break="no" n="41"/>preſſè</w>
+          <w lemma="expresse" pos="VERB" msd="Aspect=Perf|Case=Voc|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">ex<lb break="no" n="41"/>preſsè</w>
         </orig>
         <reg>
           <w lemma="expresse" pos="VERB" msd="Aspect=Perf|Case=Voc|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">expressè</w>
@@ -1549,16 +1540,7 @@
         </expan>
       </choice>
       <w lemma="uendo" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">venditor</w>
-      <choice>
-        <sic>
-          <w lemma="ra¬" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing">ra</w>
-        </sic>
-        <corr>
-          <w lemma="ra¬" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing">ra¬</w>
-        </corr>
-      </choice>
-      <lb n="47"/>
-      <w lemma="tionabiliter" pos="ADV">tionabiliter</w>
+      <w lemma="rationabiliter" pos="ADV">ra<lb break="no" rend="no-hyphen" n="47"/>tionabiliter</w>
       <pc type="comma">,</pc>
       <choice>
         <orig>
@@ -1638,7 +1620,14 @@
       <w lemma="quis" pos="ADV">quo</w>
       <w lemma="conuenio" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">conuenit</w>
       <w lemma="inter" pos="ADP">inter</w>
-      <w lemma="emptor" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">emptorem</w>
+      <choice>
+        <abbr>
+          <w>emptorē</w>
+        </abbr>
+        <expan>
+          <w lemma="emptor" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">emptorem</w>
+        </expan>
+      </choice>
       <pc type="comma">,</pc>
       <lb n="52"/>
       <choice>
@@ -1705,7 +1694,7 @@
       <w lemma="ita" pos="ADV">Ita</w>
       <choice>
         <orig>
-          <w lemma="expresse" pos="VERB" msd="Aspect=Perf|Case=Voc|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">expreſſè</w>
+          <w lemma="expresse" pos="VERB" msd="Aspect=Perf|Case=Voc|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">expreſsè</w>
         </orig>
         <reg>
           <w lemma="expresse" pos="VERB" msd="Aspect=Perf|Case=Voc|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass">expressè</w>
@@ -1800,7 +1789,14 @@
       </choice>
       <w lemma="ad" pos="ADP">ad</w>
       <w lemma="is" pos="PRON" msd="Case=Acc|Gender=Neut|Number=Sing">id</w>
-      <w lemma="potestas" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">potestatem</w>
+      <choice>
+        <orig>
+          <w lemma="potestas" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">poteſtatem</w>
+        </orig>
+        <reg>
+          <w lemma="potestas" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">potestatem</w>
+        </reg>
+      </choice>
       <w lemma="habeo" pos="VERB" msd="Aspect=Imp|Case=Gen|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act">habentium</w>
       <w lemma="taxo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass">ta<lb break="no" n="59"/>xatur</w>
       <pc type="semicolon">;</pc>
