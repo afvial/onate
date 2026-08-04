@@ -271,30 +271,27 @@ JS_CODE = r"""(function () {
         if (s < bestScore) { bestScore = s; best = tw; }
       });
       if (bestScore <= 4) {
-        /* Si hay empate (varias palabras con el mismo score), usar posición */
+        /* Si hay empate (varias palabras con el mismo score), usar el
+           orden de ocurrencia: "la 2ª vez que aparece este texto en el
+           TEI" empareja con "la 2ª vez que aparece en las coordenadas".
+           Más fiable que estimar posición X por conteo de caracteres,
+           que falla cuando la tokenización TEI (p.ej. '1' + <pc>.</pc>
+           separados) no coincide exactamente con la de Transkribus
+           ('1.' como un solo token). */
         var tied = twords.filter(function(tw) {
           return textScore(teiNorm, normAdv(tw.text)) === bestScore;
         });
         if (tied.length === 1) return tied[0];
-        /* Desempatar por proximidad de posición X */
-        var charsBefore2 = 0;
+
+        var occurrenceIdx = 0;
         if (wordEl && allToks.length) {
           for (var ci2 = 0; ci2 < allToks.length; ci2++) {
             if (allToks[ci2] === wordEl) break;
-            charsBefore2 += wordText(allToks[ci2]).length + 1;
+            if (normAdv(wordText(allToks[ci2])) === teiNorm) occurrenceIdx++;
           }
         }
-        var wordChars2  = wordEl ? wordText(wordEl).length : 3;
-        var totalChars2 = allToks.reduce(function(s, el) {
-          return s + wordText(el).length + 1; }, 0) || 1;
-        var b2 = line.bbox;
-        var propX2 = b2.x + ((charsBefore2 + wordChars2 * 0.5) / totalChars2) * b2.w;
-        var nearest2 = null, nearDist2 = Infinity;
-        tied.forEach(function(tw) {
-          var d = Math.abs(tw.bbox.x + tw.bbox.w * 0.5 - propX2);
-          if (d < nearDist2) { nearDist2 = d; nearest2 = tw; }
-        });
-        return nearest2 || tied[0];
+        if (occurrenceIdx < tied.length) return tied[occurrenceIdx];
+        return tied[tied.length - 1];
       }
       /* Fallback: buscar palabra del coords que contenga el token TEI */
       twords.forEach(function (tw) {
