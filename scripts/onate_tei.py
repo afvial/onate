@@ -1114,6 +1114,24 @@ def _emit_summarium(parent, lines: list):
         _wrap_italic_spans(s_el, content_lines, emit_token)
     set_long_s_overrides({})
 
+    # Si la ÚLTIMA línea del summarium completo termina en ¬, la palabra
+    # continúa fuera de este bloque (párrafo siguiente, o incluso columna
+    # siguiente) — join_split_words() no puede detectarlo, porque solo ve
+    # las líneas del summarium, nunca lo que viene después. Se marca aquí
+    # a mano el <lb break="no"/> en el último <w> emitido, igual que hace
+    # _emit_para_block() para el mismo caso dentro del cuerpo del texto,
+    # así onate_sentences.py puede reconstruir la palabra si el corte cae
+    # justo en el límite de columna/página.
+    if item_groups and item_groups[-1] and item_groups[-1][-1].get("soft_hyphen"):
+        all_s = lst.findall(f".//{{{TEI_NS}}}s")
+        if all_s:
+            last_ws = all_s[-1].findall(f".//{{{TEI_NS}}}w")
+            if last_ws:
+                last_w = last_ws[-1]
+                if not last_w.findall(f"{{{TEI_NS}}}lb"):
+                    lb = etree.SubElement(last_w, f"{{{TEI_NS}}}lb")
+                    lb.set("break", "no")
+
 
 def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool = False) -> etree._Element:
     div = etree.Element(

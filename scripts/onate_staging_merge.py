@@ -35,6 +35,8 @@ except ImportError:
 ANNOTATION_RE = re.compile(
     r'^##'           # heading principal (inicio de línea)
     r'|^#'           # sub-heading (inicio de línea)
+    r'|^>+'          # summarium: '>>>' inicio de dubium numerado,
+                      # '>>' línea de continuación (inicio de línea)
     r'|//'           # salto de línea / sentencia
     r'|¶'            # párrafo
     r'|¬'            # corte de palabra
