@@ -44,15 +44,21 @@ def _expand_macrons(text: str) -> str | None:
       medial (no último carácter significativo) → vocal + n
       final  (último carácter significativo)     → vocal + m
     Devuelve la forma expandida o None si no hay macrones.
+
+    La puntuación final (. , : ! ? ) ]) no cuenta como "algo sigue" al
+    decidir la posición — solo letras/dígitos reales cuentan. Antes solo
+    se ignoraba el punto, así que un macrón seguido de coma (p.ej.
+    'sequendū,') se leía como medial y daba 'sequendun,' en vez de la
+    forma correcta 'sequendum,'.
     """
     if not any(c in text for c in _MACRON_CHARS):
         return None
     result = []
-    stripped = text.rstrip(".")
+    stripped = text.rstrip(".,:!?)]")
     for idx, ch in enumerate(text):
         if ch not in _MACRON_CHARS:
             result.append(ch); continue
-        # ¿Es el último carácter significativo (antes del punto final)?
+        # ¿Es el último carácter significativo (antes de puntuación final)?
         is_final = (idx == len(stripped) - 1)
         expansion = _MACRON_FINAL[ch] if is_final else _MACRON_MEDIAL[ch]
         result.append(expansion)

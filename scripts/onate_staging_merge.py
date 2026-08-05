@@ -46,10 +46,20 @@ ANNOTATION_RE = re.compile(
 # orig = lo que dice el facsímil/Transkribus, corr = forma corregida
 CHOICE_RE = re.compile(r'\{([^{}|]*)\|([^{}]*)\}')
 
-MACRON_EXPAND = {
-    'ā': 'am', 'ē': 'em', 'ī': 'im', 'ō': 'on', 'ô': 'on', 'ū': 'um',
-    'Ā': 'Am', 'Ē': 'Em', 'Ī': 'Im', 'Ō': 'On', 'Ū': 'Um',
-}
+# Expansión de macrones: MISMA lógica que onate_tei.py (posición dentro
+# de la palabra decide m/n), copiada literalmente de sus tablas
+# _MACRON_FINAL/_MACRON_MEDIAL. Antes esto era una sustitución fija por
+# vocal (ā siempre -> am) que no coincidía con lo que el pipeline real
+# hace — causaba falsos positivos/negativos en el --dry-run para
+# palabras donde el macrón medial expande con "n" (tãtam -> tantam),
+# y llevó a introducir por error una notación de tilde (ã, ẽ...) que
+# el pipeline real NO reconoce (rompe el lemma/tooltip). Esa notación
+# ya no hace falta: con esta lógica, el macrón normal (ā) basta.
+_MACRON_FINAL = {"ā": "am", "ē": "em", "ī": "im", "ō": "om", "ô": "on", "ū": "um",
+                 "Ā": "Am", "Ē": "Em", "Ī": "Im", "Ō": "Om", "Ū": "Um"}
+_MACRON_MEDIAL = {"ā": "an", "ē": "en", "ī": "in", "ō": "on", "ô": "on", "ū": "un",
+                  "Ā": "An", "Ē": "En", "Ī": "In", "Ō": "On", "Ū": "Un"}
+_MACRON_CHARS = set(_MACRON_FINAL)
 
 # Abreviaturas que Transkribus expande sistemáticamente (comportamiento del
 # modelo, no un error puntual del HTR) y que por eso se corrigen a mano en
@@ -59,11 +69,44 @@ MACRON_EXPAND = {
 # cambiada — de momento, acotado a los casos confirmados.
 ABBREV_EXPAND_STAGING = {
     'Itaq;': 'Itaque',
+    'quocunq;': 'quocunque',
+    'vnusquisq;': 'vnusquisque',
 }
 
+def _expand_macrons_positional(text: str) -> str:
+    """Expande macrones según posición dentro de CADA palabra de `text`
+    (separadas por espacio): final de palabra -> m, medial -> n. Igual
+    que onate_tei.py._expand_macrons, pero aplicado palabra por palabra
+    ya que aquí `text` es una línea completa, no una palabra suelta."""
+    if not any(c in text for c in _MACRON_CHARS):
+        return text
+    words = text.split(' ')
+    out_words = []
+    for w in words:
+        if not any(c in w for c in _MACRON_CHARS):
+            out_words.append(w)
+            continue
+        # Puntuación que no cuenta como "algo sigue" al decidir la posición
+        # del macrón (antes solo se ignoraba el punto '.', así que
+        # 'sequendū,' se leía como medial -> 'sequendun,' en vez de final
+        # -> 'sequendum,'). El ';' se deja fuera a propósito: en 'quocūq;'
+        # el ';' es parte de la abreviatura y su presencia SÍ debe seguir
+        # contando como "algo sigue" (hay una 'q' real entre el macrón y
+        # el ';', así que da igual; se deja documentado por si cambia el
+        # caso en el futuro).
+        stripped = w.rstrip('.,:!?)]')
+        chars = []
+        for idx, ch in enumerate(w):
+            if ch not in _MACRON_CHARS:
+                chars.append(ch)
+                continue
+            is_final = (idx == len(stripped) - 1)
+            chars.append(_MACRON_FINAL[ch] if is_final else _MACRON_MEDIAL[ch])
+        out_words.append(''.join(chars))
+    return ' '.join(out_words)
+
 def expand_macrons(text: str) -> str:
-    for m, exp in MACRON_EXPAND.items():
-        text = text.replace(m, exp)
+    text = _expand_macrons_positional(text)
     for abbr, exp in ABBREV_EXPAND_STAGING.items():
         text = text.replace(abbr, exp)
     return text
@@ -84,11 +127,20 @@ def strip_anns(text: str) -> str:
     Colapsa espacios múltiples que quedan al quitar un marcador atómico
     (ej. '16.@ @ Palacios' -> '16.  Palacios' -> '16. Palacios'), igual que
     normalize_unicode() hace del lado del texto nuevo de Transkribus, para
-    que ambos lados de la comparación queden normalizados por igual."""
+    que ambos lados de la comparación queden normalizados por igual.
+
+    Los macrones se expanden ANTES de quitar los marcadores de anotación
+    (¬, @, *...): la lógica posicional (final=m, medial=n) necesita ver
+    si algo sigue inmediatamente al carácter con macrón — p.ej. 'cō¬'
+    debe leerse como medial (algo sigue: ¬, la palabra continúa en la
+    siguiente línea) y dar 'con¬', no 'com¬'. Si se quitara el ¬ primero,
+    'cō' parecería el final absoluto de la palabra y daría el resultado
+    equivocado."""
     text = CHOICE_RE.sub(lambda m: m.group(1), text)
+    text = expand_macrons(text)
     text = ANNOTATION_RE.sub('', text)
     text = re.sub(r'  +', ' ', text)
-    return expand_macrons(text)
+    return text
 
 
 def extract_anns(text: str) -> list[tuple[float, str]]:
@@ -182,6 +234,7 @@ def main():
 
     # ── Comparar y fusionar ──────────────────────────────────────────────────
     changes = 0
+    macron_warnings = []
     for lid, new_text in new_map.items():
         if lid not in old_map:
             continue
@@ -193,8 +246,22 @@ def main():
 
         if old_clean == new_clean:
             continue  # sin cambio
-        # Ignorar líneas del staging que contienen macrones (anotación manual)
+        # Líneas del staging con macrones (ā, ē, ī, ō, ū): el macrón no es
+        # un marcador atómico como @/*/¬ — extract_anns()/apply_anns() no
+        # lo reconocen ni lo reinsertan. Si se aplicara el merge normal,
+        # el texto fusionado saldría de new_clean (siempre sin macrones,
+        # Transkribus nunca los escribe), perdiéndolo para siempre aunque
+        # la palabra en sí no haya cambiado. Por eso se avisa y se deja
+        # la línea intacta para revisión manual, en vez de sobrescribirla
+        # o saltarla en silencio (que ocultaría cambios reales en el resto
+        # de la línea).
         if any(c in old_text for c in 'āēīōūĀĒĪŌŪ'):
+            print(f"  ⚠ Línea {lid}: contiene macrón — no se aplica "
+                  f"automáticamente (el merge no sabe reinsertarlo). "
+                  f"Revisar manualmente:")
+            print(f"      staging:    '{old_clean}'")
+            print(f"      transkribus: '{new_clean}'")
+            macron_warnings.append(lid)
             continue
         # Ignorar líneas cuyo texto base es vacío pero tienen anotaciones
         if not old_clean and old_text.strip():
@@ -237,11 +304,15 @@ def main():
             el.text = merged
 
     print()
-    if changes == 0:
+    if changes == 0 and not macron_warnings:
         print("✓ Sin cambios de texto — el staging está actualizado.")
         return
 
-    print(f"  {changes} línea(s) con cambios de texto.")
+    if changes:
+        print(f"  {changes} línea(s) con cambios de texto.")
+    if macron_warnings:
+        print(f"  {len(macron_warnings)} línea(s) con macrón pendiente(s) "
+              f"de revisión manual: {', '.join(macron_warnings)}")
 
     if args.dry_run:
         print("  (--dry-run: no se ha escrito nada)")

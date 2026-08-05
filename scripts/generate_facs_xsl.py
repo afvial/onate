@@ -190,15 +190,13 @@ JS_CODE = r"""(function () {
       .trim();
   }
 
-  /* Extraer solo el texto visible de la palabra (sin .tooltip ni .lb-break) */
+  /* Extraer solo el texto visible de la palabra (sin .tooltip ni .lb-break).
+     Siempre el texto tal como aparece en pantalla: Transkribus normalmente
+     transcribe la forma diplomática literal (ſ, æ, ę, abreviaturas...),
+     así que ese es el texto que debe compararse contra las coords en la
+     inmensa mayoría de los casos. */
   function wordText(wEl) {
     if (!wEl) return '';
-    /* Para choice/orig: usar la forma expandida para matching con coords */
-    var expan = wEl.querySelector('.tip-expan');
-    if (expan) {
-      var expanText = expan.textContent.replace(/\s+/g, ' ').trim();
-      if (expanText) return expanText;
-    }
     var clone = wEl.cloneNode(true);
     var tip = clone.querySelector('.tooltip');
     if (tip) tip.remove();
@@ -212,11 +210,27 @@ JS_CODE = r"""(function () {
     return fullText;
   }
 
-  /* Normalización avanzada: ſ→s, ae/oe, sin puntuación */
+  /* Forma alternativa (normalizada/expandida) tomada del tooltip, SOLO
+     como candidato de respaldo cuando el texto visible no encuentra
+     coincidencia — útil en páginas procesadas con OCR de Tesseract donde
+     la forma normalizada a veces matchea mejor que la diplomática con ſ.
+     No se usa nunca como primer intento: para páginas con palabra a
+     palabra real de Transkribus, el texto visible YA es el correcto y
+     forzar aquí la forma reg/expandida rompe el matching (p. ej.
+     'hęres' visible vs 'haeres' del tooltip 'reg'). */
+  function wordAltText(wEl) {
+    if (!wEl) return '';
+    var expan = wEl.querySelector('.tip-expan');
+    if (!expan) return '';
+    return expan.textContent.replace(/\s+/g, ' ').trim();
+  }
+
+  /* Normalización avanzada: ſ→s, ae/oe/ę, sin puntuación */
   function normAdv(t) {
     return (t || '').toLowerCase()
       .replace(/ſ/g, 's')        /* long-s */
       .replace(/æ/g, 'ae')       /* æ */
+      .replace(/ę/g, 'ae')       /* ę (e caudata, variante de æ) */
       .replace(/œ/g, 'oe')       /* œ */
       .replace(/&/g, 'et')          /* & → et */
       .replace(/[.,;:!?()\[\]{}\-]/g, '')
@@ -258,13 +272,20 @@ JS_CODE = r"""(function () {
     var twords = line.words.slice(skip);
     if (!twords.length) return line.words[0];
 
-    /* Intento 1: match por texto normalizado */
+    /* Intento 1: match por texto normalizado.
+       matchByText() encapsula la lógica de un intento dado un texto TEI
+       normalizado, para poder probar primero el texto visible y, solo si
+       ese falla, reintentar con la forma alternativa (reg/expandida) del
+       tooltip — nunca al revés, porque el texto visible es normalmente
+       el que coincide con la transcripción palabra a palabra real de
+       Transkribus. */
     /* Para palabras cortadas: la primera parte es siempre la última palabra de la línea */
     if (wordEl && wordEl.querySelector('.lb-break') && twords.length > 0) {
       return twords[twords.length - 1];
     }
-    var teiNorm = normAdv(wordEl ? wordText(wordEl) : '');
-    if (teiNorm.length >= 1) {
+
+    function matchByText(teiNorm) {
+      if (teiNorm.length < 1) return null;
       var best = null, bestScore = Infinity;
       twords.forEach(function (tw) {
         var s = textScore(teiNorm, normAdv(tw.text));
@@ -302,7 +323,20 @@ JS_CODE = r"""(function () {
           if (s < bestScore) { bestScore = s; best = tw; }
         }
       });
-      if (bestScore < Infinity) return best;
+      return bestScore < Infinity ? best : null;
+    }
+
+    var teiNorm = normAdv(wordEl ? wordText(wordEl) : '');
+    var m1 = matchByText(teiNorm);
+    if (m1) return m1;
+
+    /* Solo si el texto visible no encontró nada: reintentar con la forma
+       alternativa (reg/expandida) del tooltip, p. ej. útil en páginas
+       con OCR de Tesseract donde la forma normalizada matchea mejor. */
+    var altNorm = normAdv(wordEl ? wordAltText(wordEl) : '');
+    if (altNorm && altNorm !== teiNorm) {
+      var m2 = matchByText(altNorm);
+      if (m2) return m2;
     }
 
     /* Intento 2: X proporcional sobre twords (sin continuaciones) */

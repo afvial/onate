@@ -47,6 +47,24 @@ EXPAN_TAG  = f"{TEI}expan"
 ORIG_TAG   = f"{TEI}orig"
 REG_TAG    = f"{TEI}reg"
 
+# Palabras cuya ortografía diplomáticamente correcta (según la regla
+# posicional del macrón: medial -> n) LatinCy lematiza mal, porque su
+# vocabulario de entrenamiento solo reconoce bien la variante asimilada
+# con m (más común en ediciones modernas). Se consulta al modelo con la
+# forma de esta lista en vez de la real; el texto guardado en el XML
+# (el que ve el lector) no se toca — igual que se hace con ſ->s para la
+# consulta al modelo, sin cambiar lo que se muestra.
+NLP_QUERY_OVERRIDES = {
+    'quocunque': 'quocumque',
+    'Quocunque': 'Quocumque',
+}
+
+
+def _nlp_query_text(norm: str) -> str:
+    """Texto a enviar al modelo para lematizar: usa la forma que el
+    modelo reconoce mejor cuando difiere de la forma diplomática real."""
+    return NLP_QUERY_OVERRIDES.get(norm, norm)
+
 
 def local(tag: str) -> str:
     """Devuelve el nombre local del tag sin namespace."""
@@ -210,7 +228,7 @@ def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool
     nlp = spacy.load(model_name)
 
     # Procesar en lotes para eficiencia
-    texts  = [norm for _, norm, _ in items]
+    texts  = [_nlp_query_text(norm) for _, norm, _ in items]
     elems  = [(w, reg) for w, _, reg in items]
 
     docs = list(nlp.pipe(texts, batch_size=256))

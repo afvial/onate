@@ -79,8 +79,8 @@ ABBREV_SEMICOLON_EXPAN = {
     "Itaq;":        "Itaque",
     "qualiscumq;":  "qualiscumque",
     "Qvomodocumq;": "Quomodocumque",
-    "quocūq;":      "quocumque",
-    "Quocūq;":      "Quocumque",
+    "quocūq;":      "quocunque",
+    "Quocūq;":      "Quocunque",
     "quocumq;":     "quocumque",
     "Quocumq;":     "Quocumque",
     "vnusquisq;":   "unusquisque",
@@ -337,7 +337,6 @@ MACRON_MAP = {
 # el valor es la forma diplomática con ſ.
 # Regla general: ſ aparece en posición inicial y medial, nunca final.
 LONG_S = {
-    "potestas":         "poteſtas",
     # formas de sum/esse
     "est":              "eſt",
     "esse":             "eſſe",
@@ -1042,7 +1041,6 @@ LONG_S = {
 # sin tener que enumerar cada forma.
 # Orden importante: raíces más largas primero para evitar solapamientos.
 LONG_S_ROOTS = [
-    ("potestat",    "poteſtat"),   # potestatis, potestati, potestatem, potestate...
     # administr- antes que ministr- y magistr-
     ("administr",  "adminiſtr"),  # administratio, administratorem…
     ("ministr",    "miniſtr"),    # ministrare, ministrat…
