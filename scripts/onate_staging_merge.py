@@ -76,36 +76,28 @@ ABBREV_EXPAND_STAGING = {
 }
 
 def _expand_macrons_positional(text: str) -> str:
-    """Expande macrones según posición dentro de CADA palabra de `text`
-    (separadas por espacio): final de palabra -> m, medial -> n. Igual
-    que onate_tei.py._expand_macrons, pero aplicado palabra por palabra
-    ya que aquí `text` es una línea completa, no una palabra suelta."""
+    """Expande macrones mirando la LETRA siguiente (no solo la posición),
+    igual que onate_tei.py._expand_macrons — ver esa función para el
+    detalle de la regla (labial->m, otra letra->n, ¬->n, fin real->m).
+    Al mirar directamente el carácter siguiente en el texto completo,
+    los espacios entre palabras ya actúan como 'fin real' sin necesidad
+    de separar la línea en palabras."""
     if not any(c in text for c in _MACRON_CHARS):
         return text
-    words = text.split(' ')
-    out_words = []
-    for w in words:
-        if not any(c in w for c in _MACRON_CHARS):
-            out_words.append(w)
+    chars = []
+    n = len(text)
+    for idx, ch in enumerate(text):
+        if ch not in _MACRON_CHARS:
+            chars.append(ch)
             continue
-        # Puntuación que no cuenta como "algo sigue" al decidir la posición
-        # del macrón (antes solo se ignoraba el punto '.', así que
-        # 'sequendū,' se leía como medial -> 'sequendun,' en vez de final
-        # -> 'sequendum,'). El ';' se deja fuera a propósito: en 'quocūq;'
-        # el ';' es parte de la abreviatura y su presencia SÍ debe seguir
-        # contando como "algo sigue" (hay una 'q' real entre el macrón y
-        # el ';', así que da igual; se deja documentado por si cambia el
-        # caso en el futuro).
-        stripped = w.rstrip('.,:!?)]')
-        chars = []
-        for idx, ch in enumerate(w):
-            if ch not in _MACRON_CHARS:
-                chars.append(ch)
-                continue
-            is_final = (idx == len(stripped) - 1)
-            chars.append(_MACRON_FINAL[ch] if is_final else _MACRON_MEDIAL[ch])
-        out_words.append(''.join(chars))
-    return ' '.join(out_words)
+        nxt = text[idx + 1] if idx + 1 < n else ''
+        if nxt.isalpha() and nxt.lower() in "bpm":
+            chars.append(_MACRON_FINAL[ch])
+        elif nxt.isalpha() or nxt == '¬':
+            chars.append(_MACRON_MEDIAL[ch])
+        else:
+            chars.append(_MACRON_FINAL[ch])
+    return ''.join(chars)
 
 def expand_macrons(text: str) -> str:
     text = _expand_macrons_positional(text)

@@ -40,27 +40,31 @@ def _to_display(t: str) -> str:
 
 def _expand_macrons(text: str) -> str | None:
     """
-    Expande macrones en una palabra según su posición:
-      medial (no último carácter significativo) → vocal + n
-      final  (último carácter significativo)     → vocal + m
+    Expande macrones según la LETRA que sigue inmediatamente (no solo
+    la posición dentro de la palabra):
+      sigue labial (b, p, m)      → vocal + m  (asimilación: cōp→comp)
+      sigue cualquier otra letra  → vocal + n  (cōs→cons, cūq→cunq)
+      sigue ¬ (palabra continúa
+        en línea/col. siguiente,
+        letra real desconocida)   → vocal + n  (cō¬→con¬, como siempre)
+      no sigue nada (puntuación,
+        espacio, fin real)        → vocal + m  (quidē→quidem, sequendū,→sequendum,)
     Devuelve la forma expandida o None si no hay macrones.
-
-    La puntuación final (. , : ! ? ) ]) no cuenta como "algo sigue" al
-    decidir la posición — solo letras/dígitos reales cuentan. Antes solo
-    se ignoraba el punto, así que un macrón seguido de coma (p.ej.
-    'sequendū,') se leía como medial y daba 'sequendun,' en vez de la
-    forma correcta 'sequendum,'.
     """
     if not any(c in text for c in _MACRON_CHARS):
         return None
     result = []
-    stripped = text.rstrip(".,:!?)]")
+    n = len(text)
     for idx, ch in enumerate(text):
         if ch not in _MACRON_CHARS:
             result.append(ch); continue
-        # ¿Es el último carácter significativo (antes de puntuación final)?
-        is_final = (idx == len(stripped) - 1)
-        expansion = _MACRON_FINAL[ch] if is_final else _MACRON_MEDIAL[ch]
+        nxt = text[idx + 1] if idx + 1 < n else ''
+        if nxt.isalpha() and nxt.lower() in "bpm":
+            expansion = _MACRON_FINAL[ch]
+        elif nxt.isalpha() or nxt == '¬':
+            expansion = _MACRON_MEDIAL[ch]
+        else:
+            expansion = _MACRON_FINAL[ch]
         result.append(expansion)
     return "".join(result)
 
