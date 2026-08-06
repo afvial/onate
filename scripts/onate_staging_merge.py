@@ -197,6 +197,31 @@ def parse_lines(xml_path: Path) -> dict[str, str]:
     return result
 
 
+def _macron_diff_is_isolated(old_text: str, new_clean: str) -> bool:
+    """
+    True si CADA palabra del staging que contiene macrón, ya expandida,
+    aparece literalmente en new_clean — es decir, el macrón no es la
+    causa de que old_clean != new_clean (el cambio real está en otra
+    parte de la línea, p.ej. un punto final que falta). En ese caso es
+    seguro dejar que el merge normal se aplique: new_clean ya trae esa
+    palabra bien, así que reinsertar anotaciones sobre new_clean no
+    pierde nada.
+
+    False si alguna palabra con macrón, expandida, NO aparece en
+    new_clean (Transkribus leyó esa palabra distinto — p.ej. 'coran' en
+    vez de 'coram') — ahí sí hace falta revisión manual, porque no hay
+    forma segura de saber si el nuevo texto es una mejora real o un
+    error de lectura.
+    """
+    for word in old_text.split():
+        if not any(c in word for c in 'āēīōūĀĒĪŌŪ'):
+            continue
+        expanded = strip_anns(word).strip()
+        if expanded and expanded not in new_clean:
+            return False
+    return True
+
+
 def main():
     ap = argparse.ArgumentParser(
         description='Aplica cambios de texto al staging conservando anotaciones.')
@@ -249,7 +274,7 @@ def main():
         # la línea intacta para revisión manual, en vez de sobrescribirla
         # o saltarla en silencio (que ocultaría cambios reales en el resto
         # de la línea).
-        if any(c in old_text for c in 'āēīōūĀĒĪŌŪ'):
+        if any(c in old_text for c in 'āēīōūĀĒĪŌŪ') and not _macron_diff_is_isolated(old_text, new_clean):
             print(f"  ⚠ Línea {lid}: contiene macrón — no se aplica "
                   f"automáticamente (el merge no sabe reinsertarlo). "
                   f"Revisar manualmente:")
