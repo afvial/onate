@@ -81,8 +81,16 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
 
     # s larga: lookup en LONG_S (case-insensitive, preserva mayúscula inicial)
     long_s_orig = None
-    _ls_override = _LONG_S_OVERRIDES.get(text.lower())  # True=forzar, False=suprimir
-    if _ls_override is not False:  # None (sin override) o True (forzar) → proceder
+    _ls_override = _LONG_S_OVERRIDES.get(text.lower())  # True=forzar, False=suprimir, str=forma exacta
+    if isinstance(_ls_override, str):
+        orig_form = _ls_override
+        if text and text.isupper():
+            orig_form = orig_form.upper()
+        elif text and text[0].isupper():
+            orig_form = orig_form[0].upper() + orig_form[1:]
+        if orig_form != text:
+            long_s_orig = orig_form
+    elif _ls_override is not False:  # None (sin override) o True (forzar) -> proceder
         key = text.lower()
         if key in LONG_S:
             orig_form = LONG_S[key]
