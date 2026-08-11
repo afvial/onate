@@ -455,9 +455,28 @@ def emit_token(parent, tok: dict):
         sic_el  = etree.SubElement(choice, f"{{{TEI_NS}}}sic")
         w_sic   = etree.SubElement(sic_el, f"{{{TEI_NS}}}w")
         w_sic.text = tok["text"]
+        corr_text = tok.get("expansion") or ""
         corr_el = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
-        w_corr  = etree.SubElement(corr_el, f"{{{TEI_NS}}}w")
-        w_corr.text = tok.get("expansion") or ""
+        # Si la forma corregida tiene variante diplomatica propia (s larga,
+        # ss->ſſ, etc.), anidar choice orig/reg dentro de <corr>, igual que
+        # se hace con abreviaturas + s larga.
+        _corr_key = corr_text.lower()
+        _corr_ls  = LONG_S.get(_corr_key) or _apply_long_s_roots(corr_text)
+        if _corr_ls and _corr_ls != corr_text:
+            if corr_text and corr_text.isupper():
+                _corr_ls = _corr_ls.upper()
+            elif corr_text and corr_text[0].isupper():
+                _corr_ls = _corr_ls[0].upper() + _corr_ls[1:]
+            inner      = etree.SubElement(corr_el, f"{{{TEI_NS}}}choice")
+            inner_orig = etree.SubElement(inner, f"{{{TEI_NS}}}orig")
+            w_io       = etree.SubElement(inner_orig, f"{{{TEI_NS}}}w")
+            w_io.text  = _corr_ls
+            inner_reg  = etree.SubElement(inner, f"{{{TEI_NS}}}reg")
+            w_ir       = etree.SubElement(inner_reg, f"{{{TEI_NS}}}w")
+            w_ir.text  = corr_text
+        else:
+            w_corr     = etree.SubElement(corr_el, f"{{{TEI_NS}}}w")
+            w_corr.text = corr_text
     elif kind == "sic_lb":
         # <choice>
         #   <sic><w>left<lb break="no" n="N"/>right</w></sic>   ← diplomático

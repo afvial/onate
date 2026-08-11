@@ -151,7 +151,6 @@ def collect_w_elements(tree):
 
         # <choice><sic><w> / <corr><w>
         # Usamos el texto de <corr><w> para el NLP (forma correcta);
-        # anotamos el <sic><w> y copiamos los atributos al <corr><w>.
         if parent_tag == "sic" and grandparent_tag == "choice":
             corr_w = None
             for sibling in grandparent:
@@ -159,6 +158,16 @@ def collect_w_elements(tree):
                     corr_children = list(sibling)
                     if corr_children and local(corr_children[0].tag) == "w":
                         corr_w = corr_children[0]
+                    elif corr_children and local(corr_children[0].tag) == "choice":
+                        # corr contiene un choice anidado (orig=diplomatico con
+                        # s larga / reg=forma plana). Usar reg/w para el NLP y
+                        # como destino de copia de atributos.
+                        for ch in corr_children[0]:
+                            if local(ch.tag) == "reg":
+                                reg_children = list(ch)
+                                if reg_children and local(reg_children[0].tag) == "w":
+                                    corr_w = reg_children[0]
+                                break
                     break
             if corr_w is not None:
                 norm = get_norm_text(corr_w)

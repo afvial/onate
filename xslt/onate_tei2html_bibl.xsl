@@ -742,9 +742,20 @@
                 <xsl:with-param name="msd" select="tei:sic/tei:w/@msd"/>
               </xsl:call-template>
             </xsl:if>
+            <xsl:if test="tei:corr/tei:choice/tei:orig/tei:w">
+              <tr>
+                <td class="tip-key">corr</td>
+                <td class="tip-expan"><xsl:value-of select="tei:corr/tei:choice/tei:orig/tei:w"/></td>
+              </tr>
+            </xsl:if>
             <tr>
-              <td class="tip-key">corr</td>
-              <td class="tip-expan"><xsl:value-of select="tei:corr/tei:w"/></td>
+              <td class="tip-key">
+                <xsl:choose>
+                  <xsl:when test="tei:corr/tei:choice/tei:orig/tei:w">reg</xsl:when>
+                  <xsl:otherwise>corr</xsl:otherwise>
+                </xsl:choose>
+              </td>
+              <td class="tip-expan"><xsl:value-of select="tei:corr/tei:w | tei:corr/tei:choice/tei:reg/tei:w"/></td>
             </tr>
           </table>
         </span>
@@ -796,6 +807,9 @@
         <xsl:otherwise><xsl:value-of select="$w_nlp/@msd"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <!-- Forma con macron pero sin s larga, cuando abbr contiene un choice
+         anidado (p.ej. abbr=ſecundū / expan=secundum / reg=secundū) -->
+    <xsl:variable name="reg_nested" select="tei:abbr/tei:choice/tei:reg/tei:w"/>
 
     <span class="tei-w tei-choice-{$kind}"
           data-lemma="{$lemma}" data-pos="{$pos}" data-msd="{$msd}">
@@ -821,6 +835,12 @@
               <xsl:call-template name="format-msd">
                 <xsl:with-param name="msd" select="$msd"/>
               </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$reg_nested != ''">
+              <tr>
+                <td class="tip-key">reg</td>
+                <td class="tip-expan"><xsl:value-of select="$reg_nested"/></td>
+              </tr>
             </xsl:if>
             <xsl:if test="$expansion != ''">
               <tr>
