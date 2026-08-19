@@ -1164,10 +1164,13 @@ def _emit_summarium(parent, lines: list):
                     lb.set("break", "no")
 
 
-def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool = False) -> etree._Element:
+def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool = False, col: str = None) -> etree._Element:
+    _attrib = {"type": "page", "n": str(page_n)}
+    if col:
+        _attrib["col"] = col
     div = etree.Element(
         f"{{{TEI_NS}}}div",
-        attrib={"type": "page", "n": str(page_n)},
+        attrib=_attrib,
         nsmap={None: TEI_NS, "xi": XI_NS}
     )
 

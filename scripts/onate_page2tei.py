@@ -128,7 +128,8 @@ def main():
     if args.out_xml:
         out = Path(args.out_xml)
         out.parent.mkdir(parents=True, exist_ok=True)
-        div  = lines_to_tei(lines, args.page, join_left=args.join_left, staging=is_staging)
+        _col_name = Path(args.page_xml).stem.split("_")[-1]  # pg_63_33_unica.xml -> unica
+        div  = lines_to_tei(lines, args.page, join_left=args.join_left, staging=is_staging, col=_col_name)
         tree = etree.ElementTree(div)
         tree.write(str(out), encoding="UTF-8",
                    xml_declaration=True, pretty_print=True)

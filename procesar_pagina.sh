@@ -154,7 +154,18 @@ run_page2tei() {
         CATCHWORD_FILE=".catchword_${PAGE}_izq"
     else
         PREV_PAGE=$(( PAGE - 1 ))
-        CATCHWORD_FILE=".catchword_${PREV_PAGE}_der"
+        if [[ -f ".catchword_${PREV_PAGE}_der" ]]; then
+            CATCHWORD_FILE=".catchword_${PREV_PAGE}_der"
+        else
+            # Página anterior de una sola columna (p.ej. "unica") u otro
+            # nombre no estándar: buscar cualquier catchword de esa página.
+            CANDIDATES=( .catchword_${PREV_PAGE}_* )
+            if [[ -f "${CANDIDATES[0]:-}" ]]; then
+                CATCHWORD_FILE="${CANDIDATES[0]}"
+            else
+                CATCHWORD_FILE=".catchword_${PREV_PAGE}_der"
+            fi
+        fi
     fi
     if [[ -f "$CATCHWORD_FILE" ]]; then
         FRAGMENT=$(cat "$CATCHWORD_FILE")

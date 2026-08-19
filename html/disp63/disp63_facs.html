@@ -352,6 +352,30 @@
             margin-left: 0.75rem;
             background: #f5f0e8;
           }
+          /* Página de una sola columna: facsímil arriba, texto abajo.
+             column-reverse invierte visualmente sin tocar el DOM (el
+             texto sigue siendo .col, el facsímil .facs-panel). */
+          .columns.single-col .col-wrap {
+            flex-direction: column-reverse;
+            align-items: center;
+          }
+          .columns.single-col .col {
+            border-right: none;   /* .col nunca es :last-child aquí (le sigue .facs-panel) */
+            margin-left: -10rem;   /* desplazar a la izquierda */
+          }
+          .columns.single-col .facs-panel {
+            width: 100%;
+            max-width: 45em;
+            min-width: 0;
+            margin-left: 0;
+            margin-bottom: 0.75rem;
+            border-left: none;
+            border-bottom: 1px solid #d0c8b8;
+          }
+          .columns.single-col .facs-scroll,
+          .columns.single-col .facs-img {
+            width: 100%;
+          }
           .facs-scroll { position: relative; width: 400px; }
           .facs-img   { display: block; width: 100%; }
           .facs-canvas {
@@ -370,13 +394,1688 @@
 </h1>
 <h2>Disputatio LXIII · Sectio I</h2>
 <div class="stats">
-          Palabras: 6236 ·
-          Oraciones: 169 ·
-          Párrafos: 37</div>
+          Palabras: 6330 ·
+          Oraciones: 171 ·
+          Párrafos: 38</div>
 <div class="stats">
-          Palabras: 6236 ·
-          Oraciones: 169 ·
-          Párrafos: 37</div>
+          Palabras: 6330 ·
+          Oraciones: 171 ·
+          Párrafos: 38</div>
+<div class="page-sep"><span class="page-sep-label">Página 33</span></div>
+<div class="columns single-col"><div class="col-wrap">
+<div class="col" data-col-id="pg_63_33_unica">
+<p class="tei-head"><br><span class="lb-num">1</span><span class="tei-w" data-lemma="disputatio" data-pos="NOUN" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">disputatio</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+</table></span>DISPVTATIO</span> <span class="tei-w" data-lemma="lXIII" data-pos="NUM" data-msd="Number=Plur"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">lXIII</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NUM</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+</table></span>LXIII</span>⁠<span class="tei-pc">.</span> </p>
+<p class="tei-subhead"><br><span class="lb-num">2</span><span class="tei-w" data-lemma="de" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">de</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>De</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Abl|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">pretium</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>pretio</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Plur"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">res</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+</table></span>rerum</span> <span class="tei-w" data-lemma="uendibilis" data-pos="ADJ" data-msd="Case=Gen|Gender=Neut|Number=Plur"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">uendibilis</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADJ</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+</table></span>vendibilium</span>⁠<span class="tei-pc">.</span> </p>
+<span class="tei-p tei-p-first"><span class="tei-s"><br><span class="lb-num">3</span><span class="tei-w" data-lemma="materia" data-pos="NOUN" data-msd="Case=Nom|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">materia</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>MATERIAM</span> <span class="tei-w" data-lemma="hic" data-pos="DET" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">hic</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">DET</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>huius</span> <span class="tei-w" data-lemma="contraho" data-pos="VERB" data-msd="Aspect=Perf|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">contraho</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Perf</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Part</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Pass</td>
+</tr>
+</table></span>contractus</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|VerbForm=Inf"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">sum</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">AUX</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Inf</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          esse
+        </td>
+</tr>
+</table></span>eſſe</span> <span class="tei-w" data-lemma="dico" data-pos="VERB" data-msd="Aspect=Perf|Mood=Ind|Number=Plur|Person=1|Tense=Past|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">dico</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Perf</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">1</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Past</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
+</tr>
+</table></span>diximus</span> <span class="tei-w" data-lemma="ex" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">ex</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>ex</span> <span class="tei-w" data-lemma="pars" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">pars</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>parte</span> <span class="tei-w" data-lemma="uendo" data-pos="VERB" data-msd="Aspect=Imp|Case=Gen|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">uendo</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Part</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
+</tr>
+</table></span>vendentis</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">res</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>rem</span><br><span class="lb-num">4</span><span class="tei-w" data-lemma="uendibilis" data-pos="ADJ" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">uendibilis</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADJ</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>vendibilem</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-reg" data-lemma="seu" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">seu</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">CCONJ</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          seu
+        </td>
+</tr>
+</table></span>ſeu</span> <span class="tei-w" data-lemma="merx" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">merx</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>mercem</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="quis" data-pos="PRON" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">quis</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">PRON</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>cuius</span> <span class="tei-w" data-lemma="dominium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">dominium</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>dominium</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">in</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>in</span> <span class="tei-w" data-lemma="emptor" data-pos="NOUN" data-msd="Case=Acc|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">emptor</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>emptorem</span> <span class="tei-w" data-lemma="transfero" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">transfero</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">3</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
+</tr>
+</table></span>trans-<br><span class="lb-num lb-5 lb-break">5</span>fert</span>⁠<span class="tei-pc">;</span> <span class="tei-w" data-lemma="ex" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">ex</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>ex</span> <span class="tei-w" data-lemma="pars" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">pars</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>parte</span> <span class="tei-w" data-lemma="uero" data-pos="PART" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">uero</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">PART</td>
+</tr>
+</table></span>verò</span> <span class="tei-w" data-lemma="emptor" data-pos="NOUN" data-msd="Case=Gen|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">emptor</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>emptoris</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">pretium</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>pretium</span> <span class="tei-w" data-lemma="merx" data-pos="NOUN" data-msd="Case=Nom|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">merx</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>mercis</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="quis" data-pos="PRON" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">quis</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">PRON</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>cuius</span> <span class="tei-w" data-lemma="dominium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">dominium</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>dominium</span><br><span class="lb-num">6</span><span class="tei-w" data-lemma="pariter" data-pos="ADV" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">pariter</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADV</td>
+</tr>
+</table></span>pariter</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">in</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>in</span> <span class="tei-w" data-lemma="uendo" data-pos="NOUN" data-msd="Case=Acc|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">uendo</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>venditorem</span> <span class="tei-w" data-lemma="transfundo" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">transfundo</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">3</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
+</tr>
+</table></span>transfundit</span>⁠<span class="tei-pc">:</span> <span class="tei-w" data-lemma="dico" data-pos="VERB" data-msd="Aspect=Perf|Mood=Ind|Number=Plur|Person=1|Tense=Past|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">dico</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Perf</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">1</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Past</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
+</tr>
+</table></span>diximus</span> <span class="tei-w" data-lemma="de" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">de</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>de</span> <span class="tei-w" data-lemma="merx" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">merx</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>merce</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-reg" data-lemma="seu" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">seu</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">CCONJ</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          seu
+        </td>
+</tr>
+</table></span>ſeu</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">res</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>re</span> <span class="tei-w" data-lemma="uendibilis" data-pos="ADJ" data-msd="Case=Abl|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">uendibilis</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADJ</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>ven-<br><span class="lb-num lb-break">7</span>dibili</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="dico" data-pos="VERB" data-msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">dico</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Sub</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">1</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
+</tr>
+</table></span>dicamus</span> <span class="tei-w" data-lemma="modo" data-pos="ADV" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">modo</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADV</td>
+</tr>
+</table></span>modo</span> <span class="tei-w" data-lemma="de" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">de</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>de</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Abl|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">pretium</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>pretio</span>⁠<span class="tei-pc">;</span> <span class="tei-w" data-lemma="quia" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">quia</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">SCONJ</td>
+</tr>
+</table></span>quia</span> <span class="tei-w" data-lemma="totus" data-pos="DET" data-msd="Case=Nom|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">totus</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">DET</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>tota</span> <span class="tei-w" data-lemma="hic" data-pos="DET" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">hic</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">DET</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>huius</span> <span class="tei-w" data-lemma="contraho" data-pos="VERB" data-msd="Aspect=Perf|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">contraho</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Perf</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Part</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Pass</td>
+</tr>
+</table></span>contractus</span> <span class="tei-w tei-choice-reg" data-lemma="iustitia" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">iustitia</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          iustitia
+        </td>
+</tr>
+</table></span>iu-<br><span class="lb-num lb-break">8</span>ſtitia</span> <span class="tei-w tei-choice-reg" data-lemma="consisto" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">consisto</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">3</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          consistit
+        </td>
+</tr>
+</table></span>conſiſtit</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">in</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>in</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Abl|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">pretium</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>pretio</span> <span class="tei-w" data-lemma="cum" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">cum</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">SCONJ</td>
+</tr>
+</table></span>cum</span> <span class="tei-w" data-lemma="merx" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">merx</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>merce</span> <span class="tei-w tei-choice-reg" data-lemma="coaequo" data-pos="VERB" data-msd="Aspect=Prosp|Case=Abl|Number=Sing|VerbForm=Ger|Voice=Pass"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">coaequo</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Prosp</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Ger</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Pass</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          coaequando
+        </td>
+</tr>
+</table></span>coæquando</span>⁠<span class="tei-pc">.</span> </span> <span class="tei-s"><span class="tei-w" data-lemma="ita" data-pos="ADV" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">ita</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADV</td>
+</tr>
+</table></span>Ita</span> <span class="tei-w tei-choice-reg" data-lemma="ut" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">ut</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">SCONJ</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          ut
+        </td>
+</tr>
+</table></span>vt</span> <span class="tei-w" data-lemma="ualor" data-pos="NOUN" data-msd="Case=Nom|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">ualor</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>valor</span> <span class="tei-w" data-lemma="merx" data-pos="NOUN" data-msd="Case=Nom|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">merx</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>mer-<br><span class="lb-num lb-break">9</span>cis</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">et</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">CCONJ</td>
+</tr>
+<tr>
+<td class="tip-key">expan</td>
+<td class="tip-expan">
+          et
+        </td>
+</tr>
+</table></span>&amp;</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Gen|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">pretium</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>pretij</span> <span class="tei-w" data-lemma="unus" data-pos="NUM" data-msd="Case=Nom|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">unus</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NUM</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>vnus</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="idem" data-pos="DET" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">idem</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">DET</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>idemque</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">sum</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">AUX</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Sub</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">3</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          sit
+        </td>
+</tr>
+</table></span>ſit</span>⁠<span class="tei-pc">.</span> <span class="tei-w tei-choice-reg" data-lemma="desudo" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Fut|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">desudo</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">3</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Fut</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          Desudabit
+        </td>
+</tr>
+</table></span>Deſudabit</span> <span class="tei-w" data-lemma="ergo" data-pos="ADV" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">ergo</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADV</td>
+</tr>
+</table></span>ergo</span> <span class="tei-w" data-lemma="hic" data-pos="DET" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">hic</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">DET</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>huius</span> <span class="tei-w tei-choice-reg" data-lemma="disputatio" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">disputatio</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          disputationis
+        </td>
+</tr>
+</table></span>diſputationis</span> <span class="tei-w" data-lemma="labor" data-pos="NOUN" data-msd="Case=Nom|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">labor</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>labor</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">in</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>in</span><br><span class="lb-num lb-5">10</span><span class="tei-w" data-lemma="hic" data-pos="DET" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">hic</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">DET</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>hoc</span> <span class="tei-w tei-choice-reg" data-lemma="iustus" data-pos="ADJ" data-msd="Case=Abl|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">iustus</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADJ</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          iusto
+        </td>
+</tr>
+</table></span>iuſto</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Abl|Gender=Neut|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">pretium</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>pretio</span> <span class="tei-w" data-lemma="explico" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">explico</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">1</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Act</td>
+</tr>
+</table></span>explicando</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">et</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">CCONJ</td>
+</tr>
+<tr>
+<td class="tip-key">expan</td>
+<td class="tip-expan">
+          et
+        </td>
+</tr>
+</table></span>&amp;</span> <span class="tei-w" data-lemma="cum" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">cum</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">SCONJ</td>
+</tr>
+</table></span>cum</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">res</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>re</span> <span class="tei-w" data-lemma="uenalis" data-pos="ADJ" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">uenalis</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADJ</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>venali</span> <span class="tei-w tei-choice-reg" data-lemma="coaequo" data-pos="VERB" data-msd="Aspect=Prosp|Case=Abl|Number=Sing|VerbForm=Ger|Voice=Pass"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">coaequo</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Prosp</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Ger</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Pass</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          coaequando
+        </td>
+</tr>
+</table></span>coæquando</span>⁠<span class="tei-pc">.</span> </span> </span>
+</div>
+<div class="facs-panel" data-col-id="pg_63_33_unica"><div class="facs-scroll">
+<img class="facs-img" alt="facsímil"><canvas class="facs-canvas"></canvas>
+</div></div>
+</div></div>
 <div class="page-sep"><span class="page-sep-label">Página 34</span></div>
 <div class="columns">
 <div class="col-wrap">

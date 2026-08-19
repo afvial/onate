@@ -53,6 +53,30 @@ FACS_CSS = """
             margin-left: 0.75rem;
             background: #f5f0e8;
           }
+          /* Página de una sola columna: facsímil arriba, texto abajo.
+             column-reverse invierte visualmente sin tocar el DOM (el
+             texto sigue siendo .col, el facsímil .facs-panel). */
+          .columns.single-col .col-wrap {
+            flex-direction: column-reverse;
+            align-items: center;
+          }
+          .columns.single-col .col {
+            border-right: none;   /* .col nunca es :last-child aquí (le sigue .facs-panel) */
+            margin-left: -10rem;   /* desplazar a la izquierda */
+          }
+          .columns.single-col .facs-panel {
+            width: 100%;
+            max-width: 45em;
+            min-width: 0;
+            margin-left: 0;
+            margin-bottom: 0.75rem;
+            border-left: none;
+            border-bottom: 1px solid #d0c8b8;
+          }
+          .columns.single-col .facs-scroll,
+          .columns.single-col .facs-img {
+            width: 100%;
+          }
           .facs-scroll { position: relative; width: 400px; }
           .facs-img   { display: block; width: 100%; }
           .facs-canvas {
@@ -597,14 +621,25 @@ def build_facs_xsl(base_src: str, base_path: Path) -> str:
             <span class="page-sep-label">Página <xsl:value-of select="$page_n"/></span>
           </div>
 
-          <!-- Dos columnas con panel facsímil -->
-          <div class="columns">
+          <!-- Columnas con panel facsímil. ncols=1 -> layout vertical -->
+          <xsl:variable name="ncols" select="count(//tei:div[@type='page'][@n=$page_n])"/>
+          <div>
+            <xsl:attribute name="class">
+              <xsl:choose>
+                <xsl:when test="$ncols = 1">columns single-col</xsl:when>
+                <xsl:otherwise>columns</xsl:otherwise>
+              </xsl:choose>
+            </xsl:attribute>
             <xsl:for-each select="//tei:div[@type='page'][@n=$page_n]">
-              <!-- col-id = nombre del fichero fuente sin extensión:
-                   pg_63_39_izq, pg_63_39_der, pg_63_40_izq …
-                   Coincide directamente con PAGE XML, coords JSON e imagen. -->
+              <!-- col-id = nombre real del fichero fuente, tomado del
+                   atributo @col grabado por onate_page2tei.py (izq, der,
+                   unica, etc.). Coincide directamente con PAGE XML,
+                   coords JSON e imagen. Fallback a izq/der por posición
+                   solo si @col no existe (páginas procesadas antes de
+                   este cambio). -->
               <xsl:variable name="col_side">
                 <xsl:choose>
+                  <xsl:when test="@col"><xsl:value-of select="@col"/></xsl:when>
                   <xsl:when test="position()=1">izq</xsl:when>
                   <xsl:otherwise>der</xsl:otherwise>
                 </xsl:choose>
@@ -614,12 +649,15 @@ def build_facs_xsl(base_src: str, base_path: Path) -> str:
               </xsl:variable>
               <div class="col-wrap">
                 <div class="col" data-col-id="{$col_id}">
-                  <div class="col-label">
-                    <xsl:choose>
-                      <xsl:when test="position()=1">Col. izq.</xsl:when>
-                      <xsl:otherwise>Col. der.</xsl:otherwise>
-                    </xsl:choose>
-                  </div>
+                  <xsl:if test="$ncols &gt; 1">
+                    <div class="col-label">
+                      <xsl:choose>
+                        <xsl:when test="$col_side='izq'">Col. izq.</xsl:when>
+                        <xsl:when test="$col_side='der'">Col. der.</xsl:when>
+                        <xsl:otherwise><xsl:value-of select="$col_side"/></xsl:otherwise>
+                      </xsl:choose>
+                    </div>
+                  </xsl:if>
                   <xsl:apply-templates select="tei:p | tei:note | tei:head | tei:div[@type='summarium']"/>
                 </div>
                 <div class="facs-panel" data-col-id="{$col_id}">
