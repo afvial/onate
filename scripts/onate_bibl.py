@@ -36,6 +36,22 @@ def join_split_words(para_tokens: list) -> list:
             result.append({"kind": "sol", "text": ttext, "expansion": None, "eol": False})
             i += 1
             continue
+        # Caso especial: la segunda mitad de la palabra partida coincide con
+        # una abreviatura conocida (p.ej. "subuer¬" + "tit." = "subuertit."),
+        # y el tokenizador ya fusionó "tit"+"." en un solo token abbrev_dot.
+        # Lo "desarmamos": tratamos el texto sin el punto como la
+        # continuación de la palabra, y reinsertamos el punto como <pc>
+        # justo después, para no perder ni la palabra ni el punto final.
+        if (split
+                and ttype in ("word", "sic")
+                and i + 1 < len(para_tokens)
+                and para_tokens[i + 1][0] == "abbrev_dot"
+                and para_tokens[i + 1][1].endswith(".")):
+            ab_type, ab_text, ab_exp, ab_eol, ab_split = para_tokens[i + 1]
+            para_tokens = (para_tokens[:i + 1]
+                           + [("word", ab_text[:-1], None, False, False),
+                              ("pc", ".", None, ab_eol, False)]
+                           + para_tokens[i + 2:])
         if (split
                 and ttype in ("word", "sic")
                 and i + 1 < len(para_tokens)
