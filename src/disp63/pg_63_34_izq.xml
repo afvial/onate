@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="34">
+<div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="34" col="izq">
   <head>
     <lb n="1"/>
     <w lemma="sectio" pos="NUM" msd="Number=Plur">SECTIO</w>
@@ -158,7 +158,14 @@
           <pc type="comma">,</pc>
           <lb n="11"/>
           <w lemma="alius" pos="DET" msd="Case=Dat|Gender=Fem|Number=Plur">alijs</w>
-          <w lemma="postpono" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act">postponimus</w>
+          <choice>
+            <orig>
+              <w lemma="postpono" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act">poſtponimus</w>
+            </orig>
+            <reg>
+              <w lemma="postpono" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act">postponimus</w>
+            </reg>
+          </choice>
           <pc type="comma">,</pc>
           <w lemma="alius" pos="DET" msd="Case=Dat|Gender=Fem|Number=Plur">alijs</w>
           <choice>

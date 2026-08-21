@@ -38,7 +38,7 @@ TEI_NS  = "http://www.tei-c.org/ns/1.0"
 TEI     = f"{{{TEI_NS}}}"
 
 # Ancestros que excluyen la anotación
-EXCLUDE_ANCESTORS = {"bibl", "corr", "supplied"}
+EXCLUDE_ANCESTORS = {"corr", "supplied"}  # "bibl" habilitado: se anota igual que el resto del texto
 
 # Ancestros que excluyen solo la anotación directa
 # (el <w> de <abbr> no se anota; el de <expan> sí)

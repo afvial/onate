@@ -559,6 +559,18 @@ JS_CODE = r"""(function () {
     document.addEventListener('DOMContentLoaded', initAllPanels);
   else
     initAllPanels();
+
+  // Toggle Ctrl: hover normal = lemma/pos; Ctrl+hover en cita = referencia
+  function setCtrl(v) {
+    document.body.classList.toggle('ctrl-down', v);
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Control') setCtrl(true);
+  });
+  document.addEventListener('keyup', function (e) {
+    if (e.key === 'Control') setCtrl(false);
+  });
+  window.addEventListener('blur', function () { setCtrl(false); });
 })();"""
 
 

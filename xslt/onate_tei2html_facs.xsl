@@ -156,7 +156,7 @@
           .tooltip {
             display: none;
             position: absolute;
-            bottom: 1.6em;
+            bottom: 2.2em;
             left: 0;
             background: #2a2a2a;
             color: #fff;
@@ -210,8 +210,12 @@
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
           span.tei-bibl { margin-right: -0.05em; position: relative; cursor: default; }
-          span.tei-bibl:hover > .tooltip.cit-tooltip { display: block; }
+          /* Tooltip de cita bibliografica: solo con Ctrl presionado */
+          body.ctrl-down span.tei-bibl:hover > .tooltip.cit-tooltip { display: block; }
           .tooltip.cit-tooltip:empty { display: none !important; }
+          /* Mientras Ctrl esta presionado, ocultar el tooltip normal de
+             palabra dentro de una cita para no superponer ambos */
+          body.ctrl-down span.tei-bibl:hover span.tei-w > .tooltip:not(.cit-tooltip) { display: none !important; }
 
           /* Citas de autoridad */
           span.tei-cit {
@@ -991,6 +995,18 @@
     document.addEventListener('DOMContentLoaded', initAllPanels);
   else
     initAllPanels();
+
+  // Toggle Ctrl: hover normal = lemma/pos; Ctrl+hover en cita = referencia
+  function setCtrl(v) {
+    document.body.classList.toggle('ctrl-down', v);
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Control') setCtrl(true);
+  });
+  document.addEventListener('keyup', function (e) {
+    if (e.key === 'Control') setCtrl(false);
+  });
+  window.addEventListener('blur', function () { setCtrl(false); });
 })();
 //]]>
         </script>

@@ -136,7 +136,7 @@
           .tooltip {
             display: none;
             position: absolute;
-            bottom: 1.6em;
+            bottom: 2.2em;
             left: 0;
             background: #2a2a2a;
             color: #fff;
@@ -190,8 +190,12 @@
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
           span.tei-bibl { margin-right: -0.05em; position: relative; cursor: default; }
-          span.tei-bibl:hover > .tooltip.cit-tooltip { display: block; }
+          /* Tooltip de cita bibliografica: solo con Ctrl presionado */
+          body.ctrl-down span.tei-bibl:hover > .tooltip.cit-tooltip { display: block; }
           .tooltip.cit-tooltip:empty { display: none !important; }
+          /* Mientras Ctrl esta presionado, ocultar el tooltip normal de
+             palabra dentro de una cita para no superponer ambos */
+          body.ctrl-down span.tei-bibl:hover span.tei-w > .tooltip:not(.cit-tooltip) { display: none !important; }
 
           /* Citas de autoridad */
           span.tei-cit {
@@ -400,6 +404,22 @@
           <span style="color:#7a2a7a">■ PRON</span>
           <span style="color:#aaa">■ X</span>
         </div>
+      <script>
+      (function () {
+        function setCtrl(v) {
+          document.body.classList.toggle('ctrl-down', v);
+        }
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Control') setCtrl(true);
+        });
+        document.addEventListener('keyup', function (e) {
+          if (e.key === 'Control') setCtrl(false);
+        });
+        // Evitar que quede 'atascado' en ctrl-down si se pierde el
+        // foco de la ventana mientras Ctrl está presionado (alt-tab, etc.)
+        window.addEventListener('blur', function () { setCtrl(false); });
+      })();
+      </script>
       </body>
     </html>
   </xsl:template>
@@ -816,7 +836,7 @@
       <xsl:if test="@wpair">
         <xsl:attribute name="data-wpair"><xsl:value-of select="@wpair"/></xsl:attribute>
       </xsl:if>
-      <xsl:if test="$show-tooltips and ($lemma != '' or $expansion != '') and not(ancestor::tei:bibl)">
+      <xsl:if test="$show-tooltips and ($lemma != '' or $expansion != '')">
         <span class="tooltip">
           <table>
             <xsl:if test="$lemma != ''">
