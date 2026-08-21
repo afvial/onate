@@ -20370,7 +20370,14 @@
   <p>
     <s xml:id="s_10_I" part="I" prev="#s_9_I" next="#s_10_F">
       <lb n="1"/>
-      <choice wpair="wp_9"><orig><w lemma="postmors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">tem</w></orig><reg><w lemma="postmors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">postmortem</w></reg></choice><w lemma="testor" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing">testatoris</w>
+      <choice wpair="wp_9"><orig><w lemma="postmors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">tem</w></orig><reg><w lemma="postmors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">postmortem</w></reg></choice><choice>
+        <orig>
+          <w lemma="testor" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing">teſtatoris</w>
+        </orig>
+        <reg>
+          <w lemma="testor" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing">testatoris</w>
+        </reg>
+      </choice>
       <choice>
         <orig>
           <w lemma="institutum" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">inſtitutum</w>
@@ -20379,7 +20386,14 @@
           <w lemma="institutum" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">institutum</w>
         </reg>
       </choice>
-      <w lemma="seruus" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">seruum</w>
+      <choice>
+        <orig>
+          <w lemma="seruus" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">ſeruum</w>
+        </orig>
+        <reg>
+          <w lemma="seruus" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">seruum</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <w lemma="tanto" pos="ADV">tanto</w>
       <lb n="2"/>
@@ -20405,7 +20419,14 @@
         </reg>
       </choice>
       <w lemma="Pedius" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Pe<lb break="no" n="3"/>dius</w>
-      <w lemma="scribo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">scribit</w>
+      <choice>
+        <orig>
+          <w lemma="scribo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">ſcribit</w>
+        </orig>
+        <reg>
+          <w lemma="scribo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">scribit</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="titus" pos="NUM" msd="Number=Plur">T</w>
       <choice>
@@ -20447,7 +20468,14 @@
           <w lemma="si" pos="SCONJ">si</w>
         </reg>
       </choice>
-      <w lemma="seruus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">seruus</w>
+      <choice>
+        <orig>
+          <w lemma="seruus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">ſeruus</w>
+        </orig>
+        <reg>
+          <w lemma="seruus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing">seruus</w>
+        </reg>
+      </choice>
       <w lemma="32" pos="NUM">32</w>
       <pc type="other">.</pc>
       <choice>
