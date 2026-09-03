@@ -497,6 +497,12 @@
                 <xsl:with-param name="msd" select="@msd"/>
               </xsl:call-template>
             </xsl:if>
+            <xsl:if test="@manual = '1'">
+              <tr>
+                <td class="tip-key">nota</td>
+                <td class="tip-val">lemma/pos editado manualmente</td>
+              </tr>
+            </xsl:if>
           </table>
         </span>
       </xsl:if>
@@ -827,6 +833,7 @@
         <xsl:otherwise><xsl:value-of select="$w_nlp/@msd"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="manual" select="$w/@manual = '1' or $w_nlp/@manual = '1'"/>
     <!-- Forma con macron pero sin s larga, cuando abbr contiene un choice
          anidado (p.ej. abbr=ſecundū / expan=secundum / reg=secundū) -->
     <xsl:variable name="reg_nested" select="tei:abbr/tei:choice/tei:reg/tei:w"/>
@@ -855,6 +862,12 @@
               <xsl:call-template name="format-msd">
                 <xsl:with-param name="msd" select="$msd"/>
               </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$manual">
+              <tr>
+                <td class="tip-key">nota</td>
+                <td class="tip-val">lemma/pos editado manualmente</td>
+              </tr>
             </xsl:if>
             <xsl:if test="$reg_nested != ''">
               <tr>

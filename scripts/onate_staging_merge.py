@@ -73,6 +73,7 @@ ABBREV_EXPAND_STAGING = {
     'Itaq;': 'Itaque',
     'quocunq;': 'quocunque',
     'vnusquisq;': 'vnusquisque',
+    'hucusq;': 'hucusque',
 }
 
 def _expand_macrons_positional(text: str) -> str:

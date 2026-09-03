@@ -73,6 +73,7 @@ ABBREV_WITH_DOT = {
 # Las que no están aquí quedan vacías para completar en Emacs
 ABBREV_WITH_SEMICOLON = {
     "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;", "vnusquisq;", "Vnusquisq;",
+    "hucusq;", "Hucusq;",
 }
 
 ABBREV_SEMICOLON_EXPAN = {
@@ -86,6 +87,8 @@ ABBREV_SEMICOLON_EXPAN = {
     "vnusquisq;":   "unusquisque",
     "Vnusquisq;":   "Unusquisque",
     "Vnusquisq;":   "Vnuſquiſque",
+    "hucusq;":      "hucusque",
+    "Hucusq;":      "Hucusque",
 }
 
 ABBREV_EXPAN = {
@@ -394,6 +397,7 @@ LONG_S = {
     "sanarum":          "ſanarum",
     "sanis":            "ſanis",
     "sane":             "ſane",
+    "sanae":            "ſanæ",
     "sanitas":          "ſanitas",
     "sanitatem":        "ſanitatem",
     "sanitate":         "ſanitate",
@@ -1041,6 +1045,12 @@ LONG_S = {
     "easdem":             "eaſdem",
     "eosdem":             "eoſdem",
     "eiusdem":            "eiuſdem",
+    "ansa":               "anſa",
+    "ansam":              "anſam",
+    "ansae":              "anſæ",
+    "ansas":              "anſas",
+    "ansarum":            "anſarum",
+    "ansis":              "anſis",
 }
 
 # Raíces diplomáticas: si la forma normalizada *contiene* la subcadena clave,
@@ -1138,6 +1148,9 @@ LONG_S_ROOTS = [
     ("seru",       "ſeru"),       # seruum, seruus, seruo, seruorum, seruitium, seruire…
     ("script",     "ſcript"),     # scriptum, scriptus, scriptio, scriptura…
     ("scrib",      "ſcrib"),      # scribit, scribere, scribens, scribendum…
+    ("illaes",     "illæſ"),      # illaesa, illaesus, illaesum, illaesi, illaesae…
+    ("possess",    "poſſeſſ"),    # possessore, possessor, possessorem, possessio, possessus…
+    ("frustr",     "fruſtr"),     # frustra, frustror, frustratur, frustratio, frustrari…
 ]
 
 # ss medial → ſſ: aplica cuando ss no está en posición final absoluta

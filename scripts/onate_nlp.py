@@ -34,6 +34,18 @@ import sys
 from pathlib import Path
 from lxml import etree
 
+from onate_tokens import AUTHOR_FULL_NAMES
+
+# Nombres propios (autores) que LatinCy suele lematizar/etiquetar mal por
+# falta de vocabulario. Se aplica DESPUES de spaCy, sobreescribiendo su
+# resultado, en vez de antes (a diferencia de NLP_QUERY_OVERRIDES, que
+# cambia el texto que se le consulta al modelo).
+# Sembrado automaticamente desde AUTHOR_FULL_NAMES (lemma=el propio nombre,
+# pos=PROPN). Añadir aqui manualmente variantes declinadas que necesiten
+# un lemma distinto al texto tal cual aparece, p.ej.:
+#   MANUAL_LEMMA["Salae"] = ("Salas", "PROPN", "Case=Gen|Gender=Masc|Number=Sing")
+MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for name in AUTHOR_FULL_NAMES}
+MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 TEI_NS  = "http://www.tei-c.org/ns/1.0"
 TEI     = f"{{{TEI_NS}}}"
 
@@ -238,31 +250,39 @@ def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool
 
     # Procesar en lotes para eficiencia
     texts  = [_nlp_query_text(norm) for _, norm, _ in items]
+    norms  = [norm for _, norm, _ in items]
     elems  = [(w, reg) for w, _, reg in items]
 
     docs = list(nlp.pipe(texts, batch_size=256))
 
     annotated = 0
-    for (w_elem, reg_w), doc in zip(elems, docs):
-        if not doc:
-            continue
-        tok = doc[0]  # cada texto es una sola palabra
-
-        lemma = tok.lemma_ or ""
-        pos   = tok.pos_  or ""
-        msd   = morph_to_msd(tok)
-
+    for (w_elem, reg_w), norm, doc in zip(elems, norms, docs):
+        # Override manual (nombres propios que LatinCy lematiza mal)
+        is_manual = norm in MANUAL_LEMMA
+        if is_manual:
+            lemma, pos, msd = MANUAL_LEMMA[norm]
+        else:
+            if not doc:
+                continue
+            tok = doc[0]  # cada texto es una sola palabra
+            lemma = tok.lemma_ or ""
+            pos   = tok.pos_  or ""
+            msd   = morph_to_msd(tok)
         if not dry_run:
             w_elem.set("lemma", lemma)
             w_elem.set("pos",   pos)
             if msd:
                 w_elem.set("msd", msd)
+            if is_manual:
+                w_elem.set("manual", "1")
             # Copiar al <reg><w> si existe
             if reg_w is not None:
                 reg_w.set("lemma", lemma)
                 reg_w.set("pos",   pos)
                 if msd:
                     reg_w.set("msd", msd)
+                if is_manual:
+                    reg_w.set("manual", "1")
         else:
             print(f"  {w_elem.text or ''!r:20} → lemma={lemma} pos={pos} msd={msd}")
 
