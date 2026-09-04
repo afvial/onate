@@ -992,14 +992,14 @@
       <w lemma="ad" pos="ADP">ad</w>
       <choice>
         <orig>
-          <w lemma="sancio" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Sing">ſanctiſſimum</w>
+          <w lemma="sanctus" pos="ADJ" msd="Case=Acc|Degree=Sup|Gender=Masc|Number=Sing" manual="1">ſanctiſſimum</w>
         </orig>
         <reg>
-          <w lemma="sancio" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Sing">sanctissimum</w>
+          <w lemma="sanctus" pos="ADJ" msd="Case=Acc|Degree=Sup|Gender=Masc|Number=Sing" manual="1">sanctissimum</w>
         </reg>
       </choice>
       <lb n="37"/>
-      <w lemma="Patriarcham" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing">Patriarcham</w>
+      <w lemma="patriarcha" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing" manual="1">Patriarcham</w>
       <pc type="question">?</pc>
     </s>
     <s>
@@ -1066,10 +1066,10 @@
       <w lemma="contraho" pos="VERB" msd="Aspect=Imp|Case=Gen|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act">contrahentium</w>
       <choice>
         <orig>
-          <w lemma="constitdo" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass">con<lb break="no" n="42"/>ſtitdendum</w>
+          <w lemma="constituo" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass">con<lb break="no" n="42"/>ſtituendum</w>
         </orig>
         <reg>
-          <w lemma="constitdo" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass">constitdendum</w>
+          <w lemma="constituo" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass">constituendum</w>
         </reg>
       </choice>
       <choice>
@@ -1088,7 +1088,14 @@
       <lb n="43"/>
       <w lemma="legalis" pos="ADJ" msd="Case=Voc|Gender=Masc|Number=Sing">legali</w>
       <w lemma="aut" pos="CCONJ">aut</w>
-      <w lemma="cmsuetudinarium" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing">cmsuetudinario</w>
+      <choice>
+        <orig>
+          <w lemma="consuetudinarius" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing">conſuetudinario</w>
+        </orig>
+        <reg>
+          <w lemma="consuetudinarius" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing">consuetudinario</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
     </s>
     <s>
@@ -1108,8 +1115,8 @@
           <w lemma="et" pos="CCONJ">et</w>
         </expan>
       </choice>
-      <w lemma="pretium" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">pretiùm</w>
-      <w lemma="naturalis" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing">naturale</w>
+      <w lemma="pretium" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">pretium</w>
+      <w lemma="naturalis" pos="ADJ" msd="Case=Acc|Gender=Neut|Number=Sing" manual="1">naturale</w>
       <pc type="comma">,</pc>
       <choice>
         <orig>
@@ -1119,7 +1126,7 @@
           <w lemma="seu" pos="CCONJ">seu</w>
         </reg>
       </choice>
-      <w lemma="uulgo" pos="VERB" msd="Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Pass">vulgare</w>
+      <w lemma="vulgaris" pos="ADJ" msd="Case=Acc|Gender=Neut|Number=Sing" manual="1">vulgare</w>
       <choice>
         <orig>
           <w lemma="subuerto" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act">ſubuer<lb break="no" n="46"/>tit</w>

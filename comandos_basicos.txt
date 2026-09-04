@@ -1,0 +1,19 @@
+Staging_merge:
+
+python3 scripts/onate_staging_merge.py \
+    staging/disp63/pg_63_XX_YY.xml \
+    transkribus/disp63/pg_63_XX_YY.xml \
+    --dry-run
+
+
+Server:
+
+python3 -m http.server 8000 &
+http://localhost:8000/html/disp63/disp63_facs.html
+
+
+Staging inicial a partir del PAGE XML de Transkribus:
+
+python3 scripts/onate_normalize.py \
+    transkribus/disp63/pg_63_XX_YY.xml \
+    --out staging/disp63/pg_63_XX_YY.xml

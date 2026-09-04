@@ -46,6 +46,8 @@ from onate_tokens import AUTHOR_FULL_NAMES
 #   MANUAL_LEMMA["Salae"] = ("Salas", "PROPN", "Case=Gen|Gender=Masc|Number=Sing")
 MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for name in AUTHOR_FULL_NAMES}
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
+MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
+MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
 TEI_NS  = "http://www.tei-c.org/ns/1.0"
 TEI     = f"{{{TEI_NS}}}"
 
@@ -268,6 +270,44 @@ def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool
             lemma = tok.lemma_ or ""
             pos   = tok.pos_  or ""
             msd   = morph_to_msd(tok)
+        # Override puntual de rasgos NLP (staging: [nlp:Feature=Val,...])
+        # Se lee de un atributo temporal dejado por add_w() en onate_tei.py
+        # y se elimina siempre, exista o no dry_run, para que no persista.
+        _field_ov = w_elem.get("_nlp_override")
+        if _field_ov is not None:
+            del w_elem.attrib["_nlp_override"]
+        if _field_ov:
+            override_pairs = dict(
+                pair.split("=", 1) for pair in _field_ov.split(",") if "=" in pair
+            )
+            # "lemma" y "pos" son claves reservadas: sobreescriben esos
+            # campos directamente. El resto se trata como rasgo morfológico
+            # y se fusiona dentro de msd -- salvo que "pos" también se haya
+            # sobreescrito, en cuyo caso el msd viejo (calculado para el POS
+            # incorrecto de spaCy) se descarta por completo, ya que sus
+            # rasgos (p.ej. Mood/Tense/VerbForm de un VERB) no tienen
+            # sentido para el nuevo POS.
+            override_feats = {}
+            pos_changed = "pos" in override_pairs
+            for k, v in override_pairs.items():
+                if k == "lemma":
+                    lemma = v
+                elif k == "pos":
+                    pos = v
+                else:
+                    override_feats[k] = v
+            if override_feats:
+                if pos_changed:
+                    existing_feats = {}
+                else:
+                    existing_feats = dict(
+                        pair.split("=", 1) for pair in msd.split("|") if "=" in pair
+                    ) if msd else {}
+                existing_feats.update(override_feats)
+                msd = "|".join(f"{k}={v}" for k, v in sorted(existing_feats.items()))
+            elif pos_changed:
+                msd = ""
+            is_manual = True
         if not dry_run:
             w_elem.set("lemma", lemma)
             w_elem.set("pos",   pos)

@@ -24,6 +24,16 @@ def set_long_s_overrides(overrides: dict) -> None:
     global _LONG_S_OVERRIDES
     _LONG_S_OVERRIDES = overrides or {}
 
+# ── Overrides de rasgos NLP por línea de staging ─────────────────────────────
+# Notación en staging: [nlp:Feature=Val,...]palabra corrige solo el/los
+# rasgo(s) indicado(s) del msd calculado por spaCy, para esa palabra dentro
+# de este parrafo/bloque. Se consume en onate_nlp.py sobre el atributo
+# temporal _nlp_override que add_w() deja en el <w> resultante.
+_NLP_OVERRIDES: dict = {}   # palabra.lower() → "Feature=Val,..."
+def set_nlp_overrides(overrides: dict) -> None:
+    global _NLP_OVERRIDES
+    _NLP_OVERRIDES = overrides or {}
+
 # ── Mapa de macrones por posición
 # Final → sustituye vocal+m; medial → sustituye vocal+n
 _MACRON_FINAL = {"ā": "am", "ē": "em", "ī": "im", "ō": "om", "ô": "on", "ū": "um",
@@ -76,6 +86,10 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
       - <choice><orig><w/><reg>  si es grafía original (ORIG_REG o ae→æ)
       - <w> simple si no hay choice
     """
+    # Override puntual de rasgos NLP (staging: [nlp:Feature=Val,...]palabra)
+    # Solo se aplica en la rama de <w> plano (sin choice); limitación
+    # conocida por ahora. Se consume en onate_nlp.py.
+    _nlp_ov = _NLP_OVERRIDES.get(text.lower())
     # ORIG_REG manual tiene prioridad absoluta
     reg = ORIG_REG.get(text) or ORIG_REG.get(text.replace("ſ", "s"))
 
@@ -246,6 +260,8 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         else:
             w = etree.SubElement(parent, f"{{{TEI_NS}}}w")
             w.text = text
+            if _nlp_ov:
+                w.set("_nlp_override", _nlp_ov)
 
 
 def apply_long_s_to_split(left: str, right: str):
@@ -916,6 +932,11 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
         for line in para:
             combined_overrides.update(line.get("long_s_overrides", {}))
         set_long_s_overrides(combined_overrides)
+        # Activar overrides de rasgos NLP para este párrafo
+        combined_nlp_overrides: dict = {}
+        for line in para:
+            combined_nlp_overrides.update(line.get("nlp_overrides", {}))
+        set_nlp_overrides(combined_nlp_overrides)
         spans     = _flatten_spans(para)
         sentences = _group_spans_into_sentences(spans)
 

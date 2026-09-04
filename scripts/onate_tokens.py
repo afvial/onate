@@ -1408,6 +1408,27 @@ def parse_long_s_overrides(text: str):
     clean = _LONG_S_OVERRIDE_RE.sub(_replace, text).strip()
     return clean, overrides
 
+def _parse_staging_nlp(text: str):
+    """
+    Parsea patrones [nlp:Feature=Val,Feature2=Val2]palabra en texto de
+    staging. Corrige solo el/los rasgo(s) indicado(s) del msd calculado
+    por spaCy para esa palabra dentro de este parrafo/bloque (mismo
+    alcance que parse_long_s_overrides: no toca otras ocurrencias de la
+    misma palabra fuera de este bloque, ni lemma/pos/otros rasgos).
+    Devuelve (clean_text, nlp_overrides) donde nlp_overrides es un dict
+    {palabra.lower(): "Feature=Val,..."}
+    Ejemplo:
+      "pretium [nlp:Case=Acc]naturale, seu"
+        -> "pretium naturale, seu", {"naturale": "Case=Acc"}
+    """
+    pattern = re.compile(r"\[nlp:([^\]]+)\](\w+)")
+    nlp_overrides = {}
+    def _replace(m):
+        features, word = m.group(1), m.group(2)
+        nlp_overrides[word.lower()] = features
+        return word
+    clean = pattern.sub(_replace, text)
+    return clean, nlp_overrides
 def extract_lines(page_xml_path: Path) -> list:
     """
     Lee líneas desde:
@@ -1433,6 +1454,7 @@ def extract_lines(page_xml_path: Path) -> list:
             elif no_hyphen_break:
                 text = text.rstrip()[:-1].rstrip()
             text, sic_spans = _parse_staging_sic(text)
+            text, nlp_overrides = _parse_staging_nlp(text)
             lines.append({
                 "text":               text,
                 "abbrevs":            [],
@@ -1442,6 +1464,7 @@ def extract_lines(page_xml_path: Path) -> list:
                 "summary_item_spans": [],
                 "italic_spans":       [],
                 "sic_spans":          sic_spans,
+                "nlp_overrides":      nlp_overrides,
                 "region_id":          "r1",
                 "reading_order":      i,
                 "soft_hyphen":        soft_hyphen,
