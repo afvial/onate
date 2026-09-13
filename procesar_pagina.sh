@@ -73,6 +73,7 @@ if [[ "$1" == "all" ]]; then
         echo
         bash "$0" "$p" "$c" --only page2tei $OPTS
         bash "$0" "$p" "$c" --only nlp $OPTS
+        bash "$0" "$p" "$c" --only nlp_corrections $OPTS
         bash "$0" "$p" "$c" --only enrich $OPTS
         i=$(( i + 2 ))
     done
@@ -197,6 +198,14 @@ run_nlp() {
     python3 "${SCRIPTS_DIR}/onate_nlp.py" "$SRC_XML" --out "$SRC_XML"
     ok "TEI anotado → ${SRC_XML}"
 }
+# ── PASO 1.6: Correcciones manuales de lemma/pos/msd (opcional) ──────────────
+run_nlp_corrections() {
+    local NLP_CORR_JSON="nlp_corrections/disp63/${STEM}.json"
+    if [[ -f "$NLP_CORR_JSON" ]]; then
+        info "Paso 1.6 — Correcciones NLP manuales"
+        python3 "${SCRIPTS_DIR}/onate_nlp_corrections.py" "$SRC_XML" "$NLP_CORR_JSON"
+    fi
+}
 
 # ── PASO 2: Enriquecimiento bibliográfico ─────────────────────────────────────
 run_enrich() {
@@ -276,6 +285,7 @@ case "$ONLY" in
     "")
         run_page2tei
         run_nlp
+        run_nlp_corrections
         run_enrich
         run_assemble
         run_sentences
@@ -283,16 +293,17 @@ case "$ONLY" in
         run_coords
         run_html
         ;;
-    normalize) run_normalize ;;
-    page2tei)  run_page2tei ;;
-    nlp)       run_nlp ;;
-    enrich)    run_enrich ;;
-    assemble)  run_assemble ;;
-    sentences) run_sentences ;;
-    validate)  run_validate ;;
-    coords)    run_coords ;;
-    html)      run_html ;;
-    *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|enrich|assemble|sentences|validate|html)" ;;
+    normalize)      run_normalize ;;
+    page2tei)       run_page2tei ;;
+    nlp)            run_nlp ;;
+    nlp_corrections) run_nlp_corrections ;;
+    enrich)         run_enrich ;;
+    assemble)       run_assemble ;;
+    sentences)      run_sentences ;;
+    validate)       run_validate ;;
+    coords)         run_coords ;;
+    html)           run_html ;;
+    *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|nlp_corrections|enrich|assemble|sentences|validate|html)" ;;
 esac
 
 echo
