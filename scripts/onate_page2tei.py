@@ -90,7 +90,12 @@ def main():
         penultimate_hyphen = len(lines) >= 2 and lines[-2]["soft_hyphen"]
 
         if last["soft_hyphen"] or last.get("no_hyphen_break"):
-            pass  # CASO A: onate_tei.py lo maneja (¬ o ~)
+            pass  # CASO A: onate_sentences.py (Paso 3.5) lo maneja sobre
+                  # el documento ya ensamblado, detectando el <lb break=
+                  # "no"/> y reconstruyendo la palabra entre columnas.
+                  # NO emitir fragmento aquí: crear un join_left en
+                  # onate_tei.py produciría un <w> con <lb> interno que
+                  # confunde la extracción de onate_sentences.py.
 
         elif (len(words) <= 2 and not last["soft_hyphen"] and not last.get("sic_spans")
               and (len(last_text) <= 5 or penultimate_hyphen)):
