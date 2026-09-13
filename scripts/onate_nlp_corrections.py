@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+"""
+onate_nlp_corrections.py — Aplica correcciones manuales de lemma/pos/msd
+sobre un TEI ya anotado (src/*.xml), leyendo un archivo JSON de
+correcciones por palabra, con alcance limitado a esa página/columna.
+
+Notación del JSON: {"palabra": "Feature=Val,Feature2=Val2,..."}
+  - Claves reservadas "lemma"/"pos" sobreescriben esos campos directamente.
+  - El resto se trata como rasgo morfológico y se fusiona en @msd -- salvo
+    que "pos" también se haya corregido, en cuyo caso el @msd calculado
+    por spaCy para el POS incorrecto se descarta por completo (sus rasgos
+    no tienen sentido para el nuevo POS).
+  - Todas las palabras corregidas quedan marcadas con @manual="1".
+
+No modifica lemma/pos/msd de palabras que no están en el JSON.
+Alcance: por palabra dentro de ESTE archivo (página/columna), no todo el
+corpus (ver MANUAL_LEMMA en onate_nlp.py para overrides globales).
+
+Uso:
+  python3 onate_nlp_corrections.py src/disp63/pg_63_41_izq.xml \
+      nlp_corrections/disp63/pg_63_41_izq.json
+"""
+import sys
+import json
+import argparse
+from pathlib import Path
+from lxml import etree
+
+TEI_NS = "http://www.tei-c.org/ns/1.0"
+TEI    = f"{{{TEI_NS}}}"
+
+
+def get_norm_text(w_elem) -> str:
+    """Extrae el texto normalizado de un <w>, igual que onate_nlp.py."""
+    parts = []
+    for node in w_elem.iter():
+        if node.text:
+            parts.append(node.text)
+        if node.tail and node is not w_elem:
+            parts.append(node.tail)
+    text = "".join(parts).strip()
+    if text.endswith("-"):
+        text = text[:-1]
+    return text
+
+
+def apply_correction(w_elem, correction: str) -> None:
+    """Aplica una corrección puntual a un <w>, con la misma lógica de
+    fusión de lemma/pos/msd usada en onate_nlp.py."""
+    override_pairs = dict(
+        pair.split("=", 1) for pair in correction.split(",") if "=" in pair
+    )
+    lemma = w_elem.get("lemma", "")
+    pos   = w_elem.get("pos", "")
+    msd   = w_elem.get("msd", "")
+
+    pos_changed = "pos" in override_pairs
+    override_feats = {}
+    for k, v in override_pairs.items():
+        if k == "lemma":
+            lemma = v
+        elif k == "pos":
+            pos = v
+        else:
+            override_feats[k] = v
+
+    if override_feats:
+        if pos_changed:
+            existing_feats = {}
+        else:
+            existing_feats = dict(
+                pair.split("=", 1) for pair in msd.split("|") if "=" in pair
+            ) if msd else {}
+        existing_feats.update(override_feats)
+        msd = "|".join(f"{k}={v}" for k, v in sorted(existing_feats.items()))
+    elif pos_changed:
+        msd = ""
+
+    w_elem.set("lemma", lemma)
+    w_elem.set("pos", pos)
+    if msd:
+        w_elem.set("msd", msd)
+    else:
+        w_elem.attrib.pop("msd", None)
+    w_elem.set("manual", "1")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("xml_path", help="Archivo TEI a corregir (in-place)")
+    parser.add_argument("corrections_json",
+        help="JSON de correcciones {palabra: 'Feature=Val,...'}")
+    args = parser.parse_args()
+
+    xml_path  = Path(args.xml_path)
+    json_path = Path(args.corrections_json)
+
+    if not json_path.exists():
+        print(f"  (sin correcciones: {json_path} no existe)", file=sys.stderr)
+        return
+
+    with open(json_path, encoding="utf-8") as f:
+        corrections = json.load(f)
+    if not corrections:
+        return
+
+    corrections_lower = {k.lower(): v for k, v in corrections.items()}
+
+    xml_parser = etree.XMLParser(remove_blank_text=False)
+    tree = etree.parse(str(xml_path), xml_parser)
+    root = tree.getroot()
+
+    applied = 0
+    for w in root.iter(f"{TEI}w"):
+        text = get_norm_text(w)
+        key = text.lower()
+        if key in corrections_lower:
+            apply_correction(w, corrections_lower[key])
+            applied += 1
+
+    if applied:
+        tree.write(str(xml_path), encoding="UTF-8",
+                   xml_declaration=True, pretty_print=True)
+        print(f"  ✓ {applied} corrección(es) NLP aplicada(s) desde {json_path}",
+              file=sys.stderr)
+    else:
+        print(f"  (0 coincidencias de {len(corrections)} corrección(es) en {json_path})",
+              file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()
