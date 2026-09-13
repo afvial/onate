@@ -150,21 +150,23 @@ run_page2tei() {
     fi
 
     # Leer el catchword guardado por la columna anterior (si existe)
+    STATE_DIR=".state"
+    mkdir -p "$STATE_DIR"
     JOIN_ARG=""
     if [[ "$COL" == "der" ]]; then
-        CATCHWORD_FILE=".catchword_${PAGE}_izq"
+        CATCHWORD_FILE="${STATE_DIR}/catchword_${PAGE}_izq"
     else
         PREV_PAGE=$(( PAGE - 1 ))
-        if [[ -f ".catchword_${PREV_PAGE}_der" ]]; then
-            CATCHWORD_FILE=".catchword_${PREV_PAGE}_der"
+        if [[ -f "${STATE_DIR}/catchword_${PREV_PAGE}_der" ]]; then
+            CATCHWORD_FILE="${STATE_DIR}/catchword_${PREV_PAGE}_der"
         else
             # Página anterior de una sola columna (p.ej. "unica") u otro
             # nombre no estándar: buscar cualquier catchword de esa página.
-            CANDIDATES=( .catchword_${PREV_PAGE}_* )
+            CANDIDATES=( "${STATE_DIR}"/catchword_${PREV_PAGE}_* )
             if [[ -f "${CANDIDATES[0]:-}" ]]; then
                 CATCHWORD_FILE="${CANDIDATES[0]}"
             else
-                CATCHWORD_FILE=".catchword_${PREV_PAGE}_der"
+                CATCHWORD_FILE="${STATE_DIR}/catchword_${PREV_PAGE}_der"
             fi
         fi
     fi
@@ -182,7 +184,7 @@ run_page2tei() {
         --strip-catchword ${JOIN_ARG} ${VERBOSE})
 
     # Guardar el reclamo detectado para la siguiente columna
-    SAVE_FILE=".catchword_${PAGE}_${COL}"
+    SAVE_FILE="${STATE_DIR}/catchword_${PAGE}_${COL}"
     printf '%s' "$CATCHWORD" > "$SAVE_FILE"
     if [[ -n "$CATCHWORD" ]]; then
         info "Reclamo detectado: '${CATCHWORD}' → guardado en ${SAVE_FILE}"
