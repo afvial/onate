@@ -489,20 +489,33 @@
             <pc type="other">.</pc>
           </bibl>
         </cit>
-        <cit xml:id="cit_p35_izq_noref_2">
-          <bibl>
-            <w lemma="Decimus" pos="PROPN">D.</w>
+        <cit xml:id="cit_p35_izq_Aquinas_ST_2">
+          <bibl corresp="#bib_Aquinas_ST" cert="high">
             <choice>
               <abbr>
-                <w>Th.</w>
+                <w>D.</w>
               </abbr>
               <expan>
-                <w lemma="Thomas" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Thomas</w>
+                <w lemma="diuus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Sing">Divus</w>
               </expan>
             </choice>
-            <w lemma="2" pos="NUM">2</w>
+            <author ref="#pers_ThomasAquinas">
+              <choice>
+                <abbr>
+                  <w>Th.</w>
+                </abbr>
+                <expan>
+                  <w lemma="Thomas" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Thomas</w>
+                </expan>
+              </choice>
+            </author>
+            <biblScope unit="?">
+              <w lemma="2" pos="NUM">2</w>
+            </biblScope>
             <pc type="other">.</pc>
-            <w lemma="2" pos="NUM">2</w>
+            <biblScope unit="?">
+              <w lemma="2" pos="NUM">2</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -512,7 +525,9 @@
                 <w lemma="quaestio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">quaestio</w>
               </expan>
             </choice>
-            <w lemma="77" pos="NUM">77</w>
+            <biblScope unit="quaestio">
+              <w lemma="77" pos="NUM">77</w>
+            </biblScope>
             <pc type="other">.</pc>
             <lb n="24"/>
             <choice>
@@ -523,10 +538,14 @@
                 <w lemma="articulus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">articulo</w>
               </expan>
             </choice>
-            <w lemma="1" pos="NUM">1</w>
+            <biblScope unit="articulus">
+              <w lemma="1" pos="NUM">1</w>
+            </biblScope>
             <pc type="other">.</pc>
             <w lemma="ad" pos="ADP">ad</w>
-            <w lemma="1" pos="NUM">1</w>
+            <biblScope unit="ad">
+              <w lemma="1" pos="NUM">1</w>
+            </biblScope>
             <pc type="other">.</pc>
           </bibl>
         </cit>

@@ -938,14 +938,20 @@
       <w lemma="ubi" pos="ADV">vbi</w>
       <hi rend="italic">
         <choice>
-          <orig>
-            <w lemma="glosss" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Plur">gloſſ</w>
-          </orig>
-          <reg>
-            <w lemma="glosss" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Plur">gloss</w>
-          </reg>
+          <abbr>
+            <choice>
+              <orig>
+                <w>gloſſ.</w>
+              </orig>
+              <reg>
+                <w>gloss.</w>
+              </reg>
+            </choice>
+          </abbr>
+          <expan>
+            <w lemma="glossa" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">glossa</w>
+          </expan>
         </choice>
-        <pc type="other">.</pc>
         <w lemma="lit" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">lit</w>
         <pc type="other">.</pc>
         <w lemma="1" pos="NUM">1</w>

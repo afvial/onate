@@ -174,20 +174,33 @@
     <s>
       <w lemma="ita" pos="ADV">Ita</w>
       <hi rend="italic">
-        <cit xml:id="cit_p37_izq_noref_1">
-          <bibl>
-            <w lemma="Decimus" pos="PROPN">D.</w>
+        <cit xml:id="cit_p37_izq_Aquinas_ST_1">
+          <bibl corresp="#bib_Aquinas_ST" cert="high">
             <choice>
               <abbr>
-                <w>Th.</w>
+                <w>D.</w>
               </abbr>
               <expan>
-                <w lemma="Thomas" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Thomas</w>
+                <w lemma="diuus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Sing">Divus</w>
               </expan>
             </choice>
-            <w lemma="2" pos="NUM">2</w>
+            <author ref="#pers_ThomasAquinas">
+              <choice>
+                <abbr>
+                  <w>Th.</w>
+                </abbr>
+                <expan>
+                  <w lemma="Thomas" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Thomas</w>
+                </expan>
+              </choice>
+            </author>
+            <biblScope unit="?">
+              <w lemma="2" pos="NUM">2</w>
+            </biblScope>
             <pc type="other">.</pc>
-            <w lemma="2" pos="NUM">2</w>
+            <biblScope unit="?">
+              <w lemma="2" pos="NUM">2</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -198,7 +211,9 @@
               </expan>
             </choice>
             <lb n="8"/>
-            <w lemma="27" pos="NUM">27</w>
+            <biblScope unit="quaestio">
+              <w lemma="27" pos="NUM">27</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -208,7 +223,9 @@
                 <w lemma="articulus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">articulo</w>
               </expan>
             </choice>
-            <w lemma="1" pos="NUM">1</w>
+            <biblScope unit="articulus">
+              <w lemma="1" pos="NUM">1</w>
+            </biblScope>
             <pc type="other">.</pc>
           </bibl>
         </cit>

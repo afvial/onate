@@ -23,6 +23,7 @@ ABBREV_WITH_DOT = {
     # Partes de obra
     "p.", "pp.", "tom.", "vol.", "pars.", "part.",
     "var.", "verb.", "sum.", "inst.", "instit.", "§.",
+    "gloss.",
     # Abreviaturas de autores clásicos y patrísticos
     "Arist.", "Aristot.", "Aug.", "August.", "Th.", "Thom.",
     "Cic.", "Plat.", "Plut.", "Ambr.", "Hier.", "Greg.",
@@ -92,6 +93,7 @@ ABBREV_SEMICOLON_EXPAN = {
 }
 
 ABBREV_EXPAN = {
+    "gloss.":     "glossa",
     # Referencias estructurales
     "cap.":       "capitulo",
     "lib.":       "libro",
@@ -170,7 +172,7 @@ ABBREV_EXPAN = {
     "Nauar.":     "Navarrus",
     "Ledes.":     "Ledesma",
     # Autores clásicos y patrísticos
-    "D.":         "",
+    "D.":         "Divus",
     "Arist.":     "Aristoteles",
     "Aristot.":   "Aristoteles",
     "Aug.":       "Augustinus",

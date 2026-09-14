@@ -498,14 +498,20 @@
         <bibl>
           <w lemma="ibi" pos="ADV">ibi</w>
           <choice>
-            <orig>
-              <w lemma="glosss" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Plur">gloſſ</w>
-            </orig>
-            <reg>
-              <w lemma="glosss" pos="NOUN" msd="Case=Voc|Gender=Masc|Number=Plur">gloss</w>
-            </reg>
+            <abbr>
+              <choice>
+                <orig>
+                  <w>gloſſ.</w>
+                </orig>
+                <reg>
+                  <w>gloss.</w>
+                </reg>
+              </choice>
+            </abbr>
+            <expan>
+              <w lemma="glossa" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">glossa</w>
+            </expan>
           </choice>
-          <pc type="other">.</pc>
           <w lemma="Bar" pos="PROPN" msd="Case=Voc|Gender=Fem|Number=Sing">Bar</w>
           <pc type="other">.</pc>
           <choice>
@@ -575,7 +581,14 @@
           </choice>
         </bibl>
         <bibl>
-          <w lemma="Decimus" pos="PROPN">D.</w>
+          <choice>
+            <abbr>
+              <w>D.</w>
+            </abbr>
+            <expan>
+              <w lemma="diuus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Sing">Divus</w>
+            </expan>
+          </choice>
           <w lemma="tho" pos="PROPN" msd="Case=Dat|Gender=Masc|Number=Sing">Tho</w>
           <pc type="other">.</pc>
           <w lemma="2" pos="NUM">2</w>

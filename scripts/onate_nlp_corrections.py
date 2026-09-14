@@ -30,6 +30,10 @@ TEI_NS = "http://www.tei-c.org/ns/1.0"
 TEI    = f"{{{TEI_NS}}}"
 
 
+def local(tag: str) -> str:
+    """Devuelve el nombre local del tag sin namespace."""
+    return tag.split("}")[-1] if "}" in tag else tag
+
 def get_norm_text(w_elem) -> str:
     """Extrae el texto normalizado de un <w>, igual que onate_nlp.py."""
     parts = []
@@ -112,11 +116,51 @@ def main():
     root = tree.getroot()
 
     applied = 0
+    processed = set()
+
+    # Primero: <choice> (orig/reg, abbr/expan, y variantes anidadas de
+    # s larga). La clave de busqueda es SIEMPRE el texto normalizado
+    # (reg/expan), nunca la forma diplomatica (que puede llevar ſ y no
+    # coincidir con la clave del JSON). La correccion se aplica a TODOS
+    # los <w> dentro del choice (ambas copias), para que orig y reg
+    # queden consistentes -- de lo contrario solo se corrige la copia
+    # que coincide por texto, dejando la otra (normalmente la visible
+    # en el tooltip) con el analisis viejo de spaCy.
+    for choice in root.iter(f"{TEI}choice"):
+        reg_el = choice.find(f"{TEI}reg")
+        if reg_el is None:
+            reg_el = choice.find(f"{TEI}expan")
+        if reg_el is None:
+            continue
+        reg_w = reg_el.find(f".//{TEI}w")
+        if reg_w is None:
+            continue
+        key = get_norm_text(reg_w).lower()
+        if key not in corrections_lower:
+            continue
+        correction = corrections_lower[key]
+        for w in choice.iter(f"{TEI}w"):
+            if w in processed:
+                continue
+            apply_correction(w, correction)
+            processed.add(w)
+        applied += 1
+
+    # Luego: <w> planos que no pertenecen a ningun choice ya procesado.
     for w in root.iter(f"{TEI}w"):
+        if w in processed:
+            continue
+        parent = w.getparent()
+        if parent is not None and local(parent.tag) in ("orig", "reg", "abbr", "expan"):
+            # Pertenece a un choice que ya se evaluo arriba (coincidiera
+            # o no); no reprocesar individualmente con su propio texto,
+            # que podria ser la forma diplomatica y no calzar con la clave.
+            continue
         text = get_norm_text(w)
         key = text.lower()
         if key in corrections_lower:
             apply_correction(w, corrections_lower[key])
+            processed.add(w)
             applied += 1
 
     if applied:
