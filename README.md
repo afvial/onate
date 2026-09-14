@@ -204,13 +204,13 @@ Lexical tables and tokenizer. Contains:
 - `apply_long_s_to_split()` -- reconstructs the diplomatic form for a word split
   across a line break
 - `parse_long_s_overrides()` -- parses the [-word] / [+word] / [=form] staging notation
-- `classify_tag()` -- determines whether a token is <abbr> or <orig>
+- `classify_tag()` -- determines whether a token is `<abbr>` or `<orig>`
 - `extract_lines()` -- parses the staging file and extracts text lines with metadata
 
 ### `scripts/onate_tei.py`
 TEI tree builder. Contains:
-- `add_w()` -- generates <w>, <choice><orig>/<reg>, <choice><abbr>/<expan>,
-  or nested <choice> for abbreviations with a long-s variant
+- `add_w()` -- generates `<w>`, `<choice><orig>/<reg>`, `<choice><abbr>/<expan>`,
+  or nested `<choice>` for abbreviations with a long-s variant
 - `add_w_lb()` -- generates words split by line break with diplomatic form reconstruction
 - `emit_token()` -- dispatches tokens to the appropriate builder function
 - `lines_to_tei()` -- converts a list of lines into a <div type="page"> element,
@@ -222,7 +222,7 @@ TEI tree building for a single column. Handles catchword detection
 (--strip-catchword) and cross-column word joining (--join-left).
 
 ### `scripts/onate_nlp.py`
-Morphological annotation. Runs LatinCy (la_core_web_lg) over the <w>
+Morphological annotation. Runs LatinCy (la_core_web_lg) over the `<w>`
 elements in the TEI file and adds @lemma, @pos, and @msd attributes in
 place. `MANUAL_LEMMA` holds corpus-wide overrides for words LatinCy
 consistently mislabels -- currently seeded from AUTHOR_FULL_NAMES (citation
@@ -258,8 +258,8 @@ The keys `lemma` and `pos` are reserved and override those fields directly;
 any other key is treated as a morphological feature and merged into `@msd`.
 If pos is overridden, the old @msd is discarded entirely rather than
 merged, since a wrong POS's features don't carry over to the correct one.
-Corrections are matched by the normalized (<reg>/<expan>) form of the word and
-applied consistently to every copy inside a <choice> (diplomatic and
+Corrections are matched by the normalized (`<reg>`/`<expan>`) form of the word and
+applied consistently to every copy inside a `<choice>` (diplomatic and
 normalized alike), and the corrected word is flagged `@manual="1"` so the HTML
 tooltip can indicate it was reviewed by hand.
 
@@ -269,20 +269,20 @@ textual fidelity, not linguistic analysis.
 
 ### `scripts/onate_bibl.py`
 Bibliographic token grouping. Detects sequences of author + work + locator
-tokens in the staging file and groups them into <bibl> candidates for the
+tokens in the staging file and groups them into `<bibl>` candidates for the
 enrichment step. Also implements join_split_words().
 
 ### `scripts/bibl_enricher.py`
-Bibliographic enrichment. Adds @corresp, <author ref>, <biblScope>, and
-wraps <bibl> elements in <cit xml:id>. Matches against the authority list
+Bibliographic enrichment. Adds @corresp, <author ref>, `<biblScope>`, and
+wraps `<bibl>` elements in <cit xml:id>. Matches against the authority list
 in tei_header.xml.
 
 ### `scripts/onate_sentences.py`
 Cross-column and cross-page sentence segmentation. After assembly, analyses
 each pair of consecutive columns and:
 - Detects sentences that continue across a column/page boundary
-- Adds @part, @xml:id, @next/@prev to the boundary <s> elements
-- Reconstructs words split at the boundary as <choice><orig>/<reg>,
+- Adds @part, @xml:id, @next/@prev to the boundary `<s>` elements
+- Reconstructs words split at the boundary as `<choice><orig>/<reg>`,
   re-running LatinCy on the reconstructed word for a coherent lemma/pos/msd
 - Links both halves with a shared `@wpair` id for synchronized hover highlighting
 
@@ -297,7 +297,7 @@ any JS changes must be made in both places.
 ## TEI Encoding Decisions
 
 ### Orthographic variants (long-s, ae, v/u)
-Diplomatic forms are encoded in <orig>, normalized forms in <reg>:
+Diplomatic forms are encoded in `<orig>`, normalized forms in `<reg>`:
 ```xml
 <choice>
   <orig><w>disputatio [s larga]</w></orig>
