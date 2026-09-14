@@ -9179,7 +9179,14 @@
           <w lemma="splendidus" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Sing">splendidae</w>
         </reg>
       </choice>
-      <w lemma="uestis" pos="NOUN" msd="Case=Voc|Gender=Fem|Number=Sing">vestis</w>
+      <choice>
+        <orig>
+          <w lemma="uestis" pos="NOUN" msd="Case=Voc|Gender=Fem|Number=Sing">veſtis</w>
+        </orig>
+        <reg>
+          <w lemma="uestis" pos="NOUN" msd="Case=Voc|Gender=Fem|Number=Sing">vestis</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
     </s>
     <s>
@@ -20370,14 +20377,15 @@
           <w lemma="haereo" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing">haeredem</w>
         </reg>
       </choice>
-      <choice wpair="wp_9"><orig><w lemma="postmors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">postmor<lb break="no"/></w></orig><reg><w lemma="postmors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">postmortem</w></reg></choice></s>
+      <w lemma="post" pos="ADP">post</w>
+      <choice wpair="wp_9"><orig><w lemma="mors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">mor<lb break="no"/></w></orig><reg><w lemma="mors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">mortem</w></reg></choice></s>
   </p>
 </div>
           <div xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" type="page" n="41" col="izq">
   <p>
     <s xml:id="s_9_F" part="F" prev="#s_9_I">
       <lb n="1"/>
-      <choice wpair="wp_9"><orig><w lemma="postmors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">tem</w></orig><reg><w lemma="postmors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">postmortem</w></reg></choice><choice>
+      <choice wpair="wp_9"><orig><w lemma="mors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">tem</w></orig><reg><w lemma="mors" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">mortem</w></reg></choice><choice>
         <orig>
           <w lemma="testor" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing">teſtatoris</w>
         </orig>

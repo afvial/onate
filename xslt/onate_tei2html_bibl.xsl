@@ -562,6 +562,11 @@
        Si viene precedida de lb, emite primero el salto de línea. -->
   <xsl:template match="tei:pc">
     <xsl:variable name="prev" select="preceding-sibling::*[1]"/>
+    <!-- Puntuacion de APERTURA ( [ : se comporta al reves que el resto:
+         espacio normal ANTES (sin word-joiner), pegada SIN espacio a lo
+         que sigue. El resto (. , ; : ) ] etc.) se pega a la palabra
+         ANTERIOR (word-joiner, sin espacio antes) y lleva espacio despues. -->
+    <xsl:variable name="is_open" select=". = '(' or . = '['"/>
     <xsl:choose>
       <xsl:when test="$prev[self::tei:lb and not(@break='no') and @n]">
         <!-- lb antes del pc: el pc se encarga del salto -->
@@ -577,13 +582,17 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
+      <xsl:when test="$is_open">
+        <!-- apertura: espacio normal, sin word-joiner -->
+        <xsl:text> </xsl:text>
+      </xsl:when>
       <xsl:otherwise>
         <!-- word joiner: impide wrap entre la palabra anterior y el punto -->
         <xsl:text>&#x2060;</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
     <span class="tei-pc"><xsl:value-of select="."/></span>
-    <xsl:if test="not(following-sibling::*[1][self::tei:lb])">
+    <xsl:if test="not($is_open) and not(following-sibling::*[1][self::tei:lb])">
       <xsl:text> </xsl:text>
     </xsl:if>
   </xsl:template>
