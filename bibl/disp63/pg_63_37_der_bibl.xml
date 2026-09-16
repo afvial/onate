@@ -964,16 +964,18 @@
             </choice>
           </bibl>
         </cit>
-        <cit xml:id="cit_p37_der_noref_15">
-          <bibl>
-            <choice>
-              <abbr>
-                <w>Rebel.</w>
-              </abbr>
-              <expan>
-                <w lemma="Rebellus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1">Rebellus</w>
-              </expan>
-            </choice>
+        <cit xml:id="cit_p37_der_Rebellus_Obl_15">
+          <bibl corresp="#bib_Rebellus_Obl" cert="high">
+            <author ref="#pers_Rebellus">
+              <choice>
+                <abbr>
+                  <w>Rebel.</w>
+                </abbr>
+                <expan>
+                  <w lemma="Rebellus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1">Rebellus</w>
+                </expan>
+              </choice>
+            </author>
             <choice>
               <abbr>
                 <w>p.</w>
@@ -982,7 +984,9 @@
                 <w lemma="pars" pos="NOUN" msd="Case=Voc|Gender=Fem|Number=Sing">pars</w>
               </expan>
             </choice>
-            <w lemma="2" pos="NUM">2</w>
+            <biblScope unit="part">
+              <w lemma="2" pos="NUM">2</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -992,7 +996,9 @@
                 <w lemma="liber" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">libro</w>
               </expan>
             </choice>
-            <w lemma="9" pos="NUM">9</w>
+            <biblScope unit="book">
+              <w lemma="9" pos="NUM">9</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1002,7 +1008,9 @@
                 <w lemma="quaestio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">quaestio</w>
               </expan>
             </choice>
-            <w lemma="2" pos="NUM">2</w>
+            <biblScope unit="quaestio">
+              <w lemma="2" pos="NUM">2</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1012,7 +1020,9 @@
                 <w lemma="sectio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">sectio</w>
               </expan>
             </choice>
-            <w lemma="2" pos="NUM">2</w>
+            <biblScope unit="?">
+              <w lemma="2" pos="NUM">2</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1022,10 +1032,14 @@
                 <w lemma="numerus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">numero</w>
               </expan>
             </choice>
-            <w lemma="10" pos="NUM">10</w>
+            <biblScope unit="n">
+              <w lemma="10" pos="NUM">10</w>
+            </biblScope>
             <pc type="other">.</pc>
             <w lemma="ad" pos="ADP">ad</w>
-            <w lemma="2" pos="NUM">2</w>
+            <biblScope unit="ad">
+              <w lemma="2" pos="NUM">2</w>
+            </biblScope>
             <pc type="other">.</pc>
             <lb n="20"/>
           </bibl>

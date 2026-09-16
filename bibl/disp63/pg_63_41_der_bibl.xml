@@ -899,8 +899,14 @@
       <w lemma="16" pos="NUM">16</w>
       <pc type="other">.</pc>
       <lb n="32"/>
-      <w lemma="Rebell" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing">Rebell</w>
-      <pc type="other">.</pc>
+      <choice>
+        <abbr>
+          <w>Rebell.</w>
+        </abbr>
+        <expan>
+          <w lemma="Rebellus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1">Rebellus</w>
+        </expan>
+      </choice>
       <w lemma="de" pos="ADP">de</w>
       <w lemma="obligo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">obligat</w>
       <pc type="other">.</pc>

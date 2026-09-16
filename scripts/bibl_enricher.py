@@ -99,6 +99,7 @@ WORKS = {
     "caiet":      ("bib_Caietanus_ST",       "pers_Caietanus",      "high"),
     "bannes":     ("bib_Bannes_ST",          "pers_Bannes",         "high"),
     "aragon":     ("bib_Aragon_ST",          "pers_Aragon",         "high"),
+    "rebell":     ("bib_Rebellus_Obl",      "pers_Rebellus",       "high"),
     "salon":      ("bib_Salon_ST",           "pers_Salon",          "high"),
     # Jesuitas
     "valent":     ("bib_Valentia_Comm",      "pers_Valentia",       "high"),

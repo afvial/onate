@@ -51,7 +51,7 @@ ABBREV_WITH_DOT = {
     "princ.", "conc.", "controu.", "controuers.",
     "diffieul.", "difficul.", "diffic.", "ca.", "2n.",
     "opusc.", "fect.",   # opusculum, sectio (grafía alt.)
-    "Rebel.", "Nauar.",  # Rebellus, Navarrus
+    "Rebel.", "Rebell.", "Nauar.",  # Rebellus, Navarrus
     # Términos jurídico-escolásticos abreviados
     "reip.", "repub.", "rep.", "ff.", "seqq.", "iun.", "contr.",
     # Fuentes del derecho romano y canónico
@@ -170,6 +170,7 @@ ABBREV_EXPAN = {
     "opusc.":     "opusculum",
     "fect.":      "sectio",
     "Rebel.":     "Rebellus",
+    "Rebell.":    "Rebellus",
     "Nauar.":     "Navarrus",
     "Ledes.":     "Ledesma",
     # Autores clásicos y patrísticos
@@ -258,7 +259,7 @@ AUTHOR_ABBREVS = {
     "Faust.", "Faustus.", "Valent.", "Aragon.", "Caiet.",
     "Bannes.", "Bann.", "S.", "Mai.", "Maior.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.",
-    "Rebel.", "Nauar.",
+    "Rebel.", "Rebell.", "Nauar.",
 }
 
 # Tokens que van DENTRO de un <bibl> (referencias estructurales)
