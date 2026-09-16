@@ -65,6 +65,13 @@ def apply_correction(w_elem, correction: str) -> None:
             lemma = v
         elif k == "pos":
             pos = v
+        elif k == "text":
+            # Sobreescribe el texto visible del <w> (normalmente dentro de
+            # <expan>/<reg>). Uso: cuando la expansion generada por el
+            # diccionario global de abreviaturas es incorrecta para ESTA
+            # ocurrencia puntual (ambiguedad dependiente de contexto que
+            # no se puede resolver globalmente).
+            w_elem.text = v
         else:
             override_feats[k] = v
 
@@ -139,10 +146,21 @@ def main():
         if key not in corrections_lower:
             continue
         correction = corrections_lower[key]
+        # "text" solo debe aplicarse a la copia normalizada (reg_w),
+        # nunca a la copia diplomatica (orig/abbr), que debe seguir
+        # mostrando fielmente lo impreso. Se separa antes de aplicar
+        # el resto de la correccion (lemma/pos/msd) uniformemente.
+        pairs = dict(p.split("=", 1) for p in correction.split(",") if "=" in p)
+        text_override = pairs.pop("text", None)
+        rest_correction = ",".join(f"{k}={v}" for k, v in pairs.items())
         for w in choice.iter(f"{TEI}w"):
             if w in processed:
                 continue
-            apply_correction(w, correction)
+            if rest_correction:
+                apply_correction(w, rest_correction)
+            if text_override and w is reg_w:
+                w.text = text_override
+                w.set("manual", "1")
             processed.add(w)
         applied += 1
 

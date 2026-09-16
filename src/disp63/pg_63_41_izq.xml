@@ -349,7 +349,7 @@
           </expan>
         </choice>
         <bibl>
-          <w lemma="philosophus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Philosophus</w>
+          <w lemma="Philosophus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1">Philosophus</w>
           <w lemma="etiam" pos="ADV">etiam</w>
           <choice>
             <orig>
@@ -376,8 +376,14 @@
         </bibl>
         <bibl>
           <w lemma="Aragon" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1">Aragon</w>
-          <w lemma="dies" pos="ADV">d</w>
-          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w lemma="dictus" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" manual="1">d.</w>
+            </abbr>
+            <expan>
+              <w lemma="dictus" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" manual="1">dicto</w>
+            </expan>
+          </choice>
           <choice>
             <abbr>
               <w>q.</w>

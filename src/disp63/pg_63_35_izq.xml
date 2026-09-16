@@ -1086,8 +1086,14 @@
           <w lemma="in" pos="ADP">in</w>
           <w lemma="4" pos="NUM">4</w>
           <pc type="other">.</pc>
-          <w lemma="dies" pos="ADV">d</w>
-          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>d.</w>
+            </abbr>
+            <expan>
+              <w lemma="distinctio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">distinctio</w>
+            </expan>
+          </choice>
           <w lemma="15" pos="NUM">15</w>
           <pc type="other">.</pc>
           <choice>

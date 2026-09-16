@@ -4055,8 +4055,14 @@
               <w lemma="4" pos="NUM">4</w>
             </biblScope>
             <pc type="other">.</pc>
-            <w lemma="dies" pos="ADV">d</w>
-            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>d.</w>
+              </abbr>
+              <expan>
+                <w lemma="distinctio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">distinctio</w>
+              </expan>
+            </choice>
             <biblScope unit="dist">
               <w lemma="15" pos="NUM">15</w>
             </biblScope>
@@ -6349,8 +6355,14 @@
                 </expan>
               </choice>
             </author>
-            <w lemma="dies" pos="ADV">d</w>
-            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>d.</w>
+              </abbr>
+              <expan>
+                <w lemma="distinctio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">distinctio</w>
+              </expan>
+            </choice>
             <biblScope unit="dist">
               <w lemma="3" pos="NUM">3</w>
             </biblScope>
@@ -7565,8 +7577,14 @@
               <w lemma="4" pos="NUM">4</w>
             </biblScope>
             <pc type="other">.</pc>
-            <w lemma="dies" pos="ADV">d</w>
-            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>d.</w>
+              </abbr>
+              <expan>
+                <w lemma="distinctio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">distinctio</w>
+              </expan>
+            </choice>
             <lb n="27"/>
             <biblScope unit="dist">
               <w lemma="15" pos="NUM">15</w>
@@ -20819,7 +20837,7 @@
         </choice>
         <cit xml:id="cit_p41_izq_noref_7">
           <bibl>
-            <w lemma="philosophus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing">Philosophus</w>
+            <w lemma="Philosophus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1">Philosophus</w>
             <w lemma="etiam" pos="ADV">etiam</w>
             <choice>
               <orig>
@@ -20848,8 +20866,14 @@
         <cit xml:id="cit_p41_izq_Aragon_ST_8">
           <bibl corresp="#bib_Aragon_ST" cert="high">
             <w lemma="Aragon" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1">Aragon</w>
-            <w lemma="dies" pos="ADV">d</w>
-            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w lemma="dictus" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" manual="1">d.</w>
+              </abbr>
+              <expan>
+                <w lemma="dictus" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" manual="1">dicto</w>
+              </expan>
+            </choice>
             <choice>
               <abbr>
                 <w>q.</w>
@@ -23140,8 +23164,14 @@
       <w lemma="in" pos="ADP">in</w>
       <w lemma="4" pos="NUM">4</w>
       <pc type="other">.</pc>
-      <w lemma="dies" pos="ADV">d</w>
-      <pc type="other">.</pc>
+      <choice>
+        <abbr>
+          <w>d.</w>
+        </abbr>
+        <expan>
+          <w lemma="distinctio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">distinctio</w>
+        </expan>
+      </choice>
       <w lemma="15" pos="NUM">15</w>
       <pc type="other">.</pc>
       <w lemma="Nauarr" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing">Nauarr</w>

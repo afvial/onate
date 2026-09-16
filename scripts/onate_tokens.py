@@ -16,6 +16,7 @@ TEI_NS  = "http://www.tei-c.org/ns/1.0"
 XI_NS   = "http://www.w3.org/2001/XInclude"
 
 ABBREV_WITH_DOT = {
+    "d.",
     # Referencias bibliográficas estructurales
     "cap.", "lib.", "q.", "n.", "nu.", "art.", "ar.", "disp.", "disput.",
     "tract.", "tit.", "dub.", "punct.", "sect.", "par.", "prop.",
@@ -300,6 +301,7 @@ HONORIFIC_PREFIXES = {"D.", "S.", "B.", "V.", "P.", "Fr.", "R.", "M.", "Ioan.", 
 # Nombres completos (sin punto) que actúan como inicio de <bibl>.
 # Incluye word_lb (palabras partidas por guión de línea).
 AUTHOR_FULL_NAMES = {
+    "Philosophus",
     "Reginaldus", "Bannes", "Aragon", "Salon", "Lessius", "Salas",
     "Molina", "Navarrus", "Covarrubias", "Bonacina", "Filliucius",
     "Medina", "Azorius", "Antoninus", "Sylvester", "Conradus",

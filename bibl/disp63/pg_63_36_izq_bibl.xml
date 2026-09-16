@@ -779,8 +779,14 @@
               <w lemma="4" pos="NUM">4</w>
             </biblScope>
             <pc type="other">.</pc>
-            <w lemma="dies" pos="ADV">d</w>
-            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>d.</w>
+              </abbr>
+              <expan>
+                <w lemma="distinctio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">distinctio</w>
+              </expan>
+            </choice>
             <lb n="27"/>
             <biblScope unit="dist">
               <w lemma="15" pos="NUM">15</w>
