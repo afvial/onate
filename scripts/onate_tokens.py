@@ -18,7 +18,7 @@ XI_NS   = "http://www.w3.org/2001/XInclude"
 ABBREV_WITH_DOT = {
     "d.",
     # Referencias bibliográficas estructurales
-    "cap.", "lib.", "q.", "n.", "nu.", "art.", "ar.", "disp.", "disput.",
+    "cap.", "lib.", "q.", "n.", "nu.", "num.", "art.", "ar.", "disp.", "disput.",
     "tract.", "tit.", "dub.", "punct.", "sect.", "par.", "prop.",
     "concl.", "coroll.", "obs.", "def.", "theor.", "prol.",
     # Partes de obra
@@ -264,7 +264,7 @@ AUTHOR_ABBREVS = {
 
 # Tokens que van DENTRO de un <bibl> (referencias estructurales)
 BIBL_INTRA = {
-    "cap.", "lib.", "q.", "n.", "nu.", "art.", "ar.", "disp.", "disput.",
+    "cap.", "lib.", "q.", "n.", "nu.", "num.", "art.", "ar.", "disp.", "disput.",
     "tract.", "tit.", "dub.", "punct.", "sect.", "par.", "prop.",
     "concl.", "coroll.", "obs.", "def.", "theor.", "prol.",
     "p.", "pp.", "tom.", "vol.", "pars.", "part.",

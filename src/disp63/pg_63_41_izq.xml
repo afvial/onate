@@ -637,8 +637,14 @@
           </choice>
           <w lemma="4" pos="NUM">4</w>
           <pc type="other">.</pc>
-          <w lemma="num" pos="PART">num</w>
-          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>num.</w>
+            </abbr>
+            <expan>
+              <w lemma="numerus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">numero</w>
+            </expan>
+          </choice>
           <w lemma="289" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act">289</w>
           <pc type="other">.</pc>
           <lb n="16"/>
