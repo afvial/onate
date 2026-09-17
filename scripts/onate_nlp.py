@@ -258,8 +258,11 @@ def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool
     annotated = 0
     for (w_elem, reg_w), norm, doc in zip(elems, norms, docs):
         # Override manual (nombres propios que LatinCy lematiza mal)
+        is_digit = norm.isdigit()
         is_manual = norm in MANUAL_LEMMA
-        if is_manual:
+        if is_digit:
+            lemma, pos, msd = norm, "NUM", ""
+        elif is_manual:
             lemma, pos, msd = MANUAL_LEMMA[norm]
         else:
             if not doc:
