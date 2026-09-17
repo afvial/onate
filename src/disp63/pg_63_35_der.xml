@@ -474,7 +474,7 @@
               <w lemma="disputatio" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">disputatio</w>
             </expan>
           </choice>
-          <w lemma="347" pos="NOUN" msd="Gender=Masc">347</w>
+          <w lemma="347" pos="NUM">347</w>
           <pc type="other">.</pc>
           <w lemma="in" pos="ADP">in</w>
           <choice>
@@ -600,7 +600,7 @@
               <w lemma="numerus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">numero</w>
             </expan>
           </choice>
-          <w lemma="88" pos="NUM" msd="Number=Plur">88</w>
+          <w lemma="88" pos="NUM">88</w>
           <pc type="other">.</pc>
         </bibl>
         <bibl>
@@ -761,8 +761,14 @@
           <pc type="other">.</pc>
           <w lemma="5" pos="NUM">5</w>
           <pc type="other">.</pc>
-          <w lemma="num" pos="PART">num</w>
-          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>num.</w>
+            </abbr>
+            <expan>
+              <w lemma="numerus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">numero</w>
+            </expan>
+          </choice>
           <w lemma="7" pos="NUM">7</w>
           <pc type="other">.</pc>
           <lb n="25"/>
@@ -804,7 +810,7 @@
               <w lemma="numerus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing">numero</w>
             </expan>
           </choice>
-          <w lemma="271" pos="X">271</w>
+          <w lemma="271" pos="NUM">271</w>
           <pc type="other">.</pc>
         </bibl>
         <bibl>
@@ -1626,7 +1632,7 @@
               <w lemma="et" pos="CCONJ">et</w>
             </expan>
           </choice>
-          <w lemma="276" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=3|Tense=Past|VerbForm=Fin|Voice=Act">276</w>
+          <w lemma="276" pos="NUM">276</w>
           <pc type="other">.</pc>
         </bibl>
       </hi>
@@ -1643,7 +1649,7 @@
             </expan>
           </choice>
           <w lemma="pretium" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Plur">pretia</w>
-          <w lemma="102" pos="X">102</w>
+          <w lemma="102" pos="NUM">102</w>
           <pc type="other">.</pc>
           <choice>
             <abbr>
