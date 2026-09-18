@@ -46,6 +46,8 @@ from onate_tokens import AUTHOR_FULL_NAMES
 #   MANUAL_LEMMA["Salae"] = ("Salas", "PROPN", "Case=Gen|Gender=Masc|Number=Sing")
 MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for name in AUTHOR_FULL_NAMES}
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
+MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
+MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
 TEI_NS  = "http://www.tei-c.org/ns/1.0"
 TEI     = f"{{{TEI_NS}}}"
 
