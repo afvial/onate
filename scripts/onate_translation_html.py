@@ -37,6 +37,8 @@ def local(tag):
 
 
 def diplomatic_text(el):
+    """Texto simple, reconstruyendo palabras partidas entre líneas (sin
+    guion ni salto): prefiere <orig> sobre <reg> y <abbr> sobre <expan>."""
     tag = local(el.tag)
     if tag == "lb":
         return ""
@@ -119,7 +121,7 @@ def tokenize_sentence(s_el, corrections):
         if tag == "lb":
             continue
         if tag == "pc":
-            tokens.append({"text": child.text or "", "punct": True})
+            tokens.append({"kind": "punct", "text": child.text or ""})
             continue
         if tag in ("w", "choice"):
             text = diplomatic_text(child)
@@ -130,7 +132,7 @@ def tokenize_sentence(s_el, corrections):
             if corrections and text in corrections:
                 meta = parse_correction_spec(corrections[text], meta)
             kind = choice_kind(child) if tag == "choice" else None
-            tokens.append({"text": text, "punct": False, "meta": meta, "choice_kind": kind})
+            tokens.append({"kind": "word", "text": text, "meta": meta, "choice_kind": kind})
     return tokens
 
 
@@ -153,11 +155,10 @@ def render_tooltip_table(meta):
 def render_sentence_html(tokens):
     pieces = []
     for i, tok in enumerate(tokens):
-        text = html.escape(tok["text"])
-        if tok["punct"]:
-            pieces.append(f'<span class="tei-pc">{text}</span>')
+        if tok["kind"] == "punct":
+            pieces.append(html.escape(tok["text"]))
             continue
-        prefix = "" if i == 0 else " "
+        text = html.escape(tok["text"])
         classes = ["tei-w"]
         if tok.get("choice_kind"):
             classes.append(f'tei-choice-{tok["choice_kind"]}')
@@ -171,6 +172,7 @@ def render_sentence_html(tokens):
             f'data-msd="{html.escape(meta.get("msd") or "")}"'
         )
         tooltip = f'<span class="tooltip">{render_tooltip_table(meta)}</span>' if meta else ""
+        prefix = "" if i == 0 else " "
         pieces.append(f'{prefix}<span {span_attrs}>{tooltip}{text}</span>')
     return "".join(pieces)
 
@@ -198,6 +200,8 @@ CSS = """
 
   .tei-p { display: block; margin: 0 0 0.9rem 0; text-indent: 1.2em; line-height: 1.9; }
   .tei-p-first { text-indent: 0; }
+  p.translation { margin: 0 0 0.9rem 0; line-height: 1.9; }
+
   .tei-s { display: inline; }
   .tei-s.s-hover-active { background-color: #e8f0fb; border-radius: 2px; }
 
@@ -221,7 +225,7 @@ CSS = """
   span.tei-corrected   { border-bottom: 1px dashed #b5432f; }
   span.tei-pc { margin-left: 0; }
 
-  .tooltip { display: none; position: absolute; bottom: 1.6em; left: 0;
+  .tooltip { display: none; position: absolute; bottom: 2.2em; left: 0;
              background: #2a2a2a; color: #fff; font-size: 0.68rem; font-family: monospace;
              padding: 0.3em 0.6em; border-radius: 4px; white-space: nowrap;
              width: max-content; z-index: 10; pointer-events: none;
@@ -235,7 +239,6 @@ CSS = """
   .tooltip .tip-val   { color: #aaddaa; }
   .tip-expan { color: #f0a060; }
 
-  p.translation { margin: 0 0 0.9rem 0; line-height: 1.9; }
 
   .pending-note { font-size: 0.78rem; color: #999; font-style: italic; margin-top: 0.6rem; }
 """
