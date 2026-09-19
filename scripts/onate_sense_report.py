@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 onate_sense_report.py — Recorre senses/disp63/*.json y arma una concordancia
-por lema: cada synset asignado, sus ocurrencias, y cómo se tradujo esa
-oración al español — para comparar consistencia de traducción de un mismo
-término a través del corpus.
+por lema: cada sentido distinto anclado a LiLa (o pendiente), sus
+ocurrencias, y cómo se tradujo esa oración al inglés — para comparar
+consistencia de traducción de un mismo término a través del corpus.
 
 Uso:
     python3 onate_sense_report.py [--senses-dir senses/disp63]
@@ -49,16 +49,29 @@ def main():
 
     for lemma in sorted(by_lemma):
         entries = by_lemma[lemma]
-        synsets = sorted(set(e["synset"] for e in entries))
-        lines.append(f"\n## {lemma}  ({len(entries)} ocurrencia(s), {len(synsets)} sentido(s) distinto(s))\n")
-        for synset in synsets:
-            sample = next(e for e in entries if e["synset"] == synset)
-            lines.append(f"\n### {synset} — *{sample.get('synset_name','')}*")
-            lines.append(f"> {sample.get('synset_def','')}\n")
+        # Un "sentido" se identifica por su lila_uri; si aún no tiene URI,
+        # se agrupa por el gloss_en (para no perder de vista lo pendiente).
+        def sense_key(e):
+            return e.get("lila_uri") or f"(pendiente) {e.get('gloss_en','')}"
+
+        senses = sorted(set(sense_key(e) for e in entries))
+        lines.append(f"\n## {lemma}  ({len(entries)} ocurrencia(s), {len(senses)} sentido(s) distinto(s))\n")
+        for key in senses:
+            sample = next(e for e in entries if sense_key(e) == key)
+            lila_uri = sample.get("lila_uri")
+            if lila_uri:
+                lines.append(f"\n### [{sample.get('gloss_en','')}]({lila_uri})")
+                lines.append(f"↗ {lila_uri}\n")
+            else:
+                lines.append(f"\n### {sample.get('gloss_en','')}  *(lila_uri pendiente)*\n")
+            if sample.get("lila_def"):
+                lines.append(f"> {sample['lila_def']}\n")
+            if sample.get("note"):
+                lines.append(f"*{sample['note']}*\n")
             lines.append("| Página/col | §  | Forma | Translation (EN) |")
             lines.append("|---|---|---|---|")
             for e in entries:
-                if e["synset"] != synset:
+                if sense_key(e) != key:
                     continue
                 en_short = e["en"][:90] + ("…" if len(e["en"]) > 90 else "")
                 lines.append(f"| {e['stem']} | {e['sentence']} | {e['text']} | {en_short} |")

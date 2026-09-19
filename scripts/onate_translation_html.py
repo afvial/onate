@@ -25,6 +25,7 @@ import html
 import json
 import os
 import re
+from collections import defaultdict
 from lxml import etree
 
 NS = {"tei": "http://www.tei-c.org/ns/1.0"}
@@ -114,7 +115,16 @@ def parse_correction_spec(spec, existing_meta):
     return {"lemma": lemma, "pos": pos, "msd": msd, "_corrected": True, "_spec": spec}
 
 
-def tokenize_sentence(s_el, corrections):
+def tokenize_sentence(s_el, corrections, sense_entries=None):
+    # Índice para encontrar, por (texto, ocurrencia), la entrada de sentido
+    # que corresponde a esta palabra latina puntual.
+    sense_by_occ = {}
+    if sense_entries:
+        for entry in sense_entries:
+            key = (entry["text"], entry.get("occurrence", 1))
+            sense_by_occ[key] = entry
+    occ_counts = defaultdict(int)
+
     tokens = []
     for child in s_el:
         tag = local(child.tag)
@@ -132,7 +142,12 @@ def tokenize_sentence(s_el, corrections):
             if corrections and text in corrections:
                 meta = parse_correction_spec(corrections[text], meta)
             kind = choice_kind(child) if tag == "choice" else None
-            tokens.append({"kind": "word", "text": text, "meta": meta, "choice_kind": kind})
+            occ_counts[text] += 1
+            link_entry = sense_by_occ.get((text, occ_counts[text]))
+            tokens.append({
+                "kind": "word", "text": text, "meta": meta, "choice_kind": kind,
+                "link_id": link_entry["_link_id"] if link_entry else None,
+            })
     return tokens
 
 
@@ -171,9 +186,60 @@ def render_sentence_html(tokens):
             f'data-pos="{html.escape(meta.get("pos") or "")}" '
             f'data-msd="{html.escape(meta.get("msd") or "")}"'
         )
+        if tok.get("link_id"):
+            span_attrs += f' data-sense="{html.escape(tok["link_id"])}"'
         tooltip = f'<span class="tooltip">{render_tooltip_table(meta)}</span>' if meta else ""
         prefix = "" if i == 0 else " "
         pieces.append(f'{prefix}<span {span_attrs}>{tooltip}{text}</span>')
+    return "".join(pieces)
+
+
+def render_sense_tooltip(entry):
+    rows = []
+    if entry.get("lemma"):
+        rows.append(f'<tr><td class="tip-key">latin</td><td class="tip-lemma">{html.escape(entry["lemma"])}</td></tr>')
+    if entry.get("gloss_en"):
+        rows.append(f'<tr><td class="tip-key">gloss</td><td class="tip-pos">{html.escape(entry["gloss_en"])}</td></tr>')
+    if entry.get("lila_def"):
+        rows.append(f'<tr><td class="tip-key">def</td><td class="tip-val">{html.escape(entry["lila_def"])}</td></tr>')
+    if entry.get("lila_uri"):
+        m = re.search(r"(\d{8}-[a-z])$", entry["lila_uri"])
+        if m:
+            rows.append(f'<tr><td class="tip-key">synset</td><td class="tip-feat">{html.escape(m.group(1))}</td></tr>')
+        rows.append(f'<tr><td class="tip-key">lila</td><td class="tip-val"><a href="{html.escape(entry["lila_uri"])}" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr>')
+    else:
+        rows.append('<tr><td class="tip-key">lila</td><td class="tip-val" style="color:#888">(lila_uri pendiente)</td></tr>')
+    return '<span class="tooltip"><table>' + "".join(rows) + "</table></span>"
+
+
+def render_translation_html(text, sense_entries):
+    """Envuelve en la traducción inglesa las palabras que tengan un sentido
+    anclado (senses/disp63/<stem>.json), con tooltip de sentido (LiLa). 'en_text'
+    (por defecto gloss_en) se busca como palabra completa; 'en_occurrence'
+    (por defecto 1) desambigua cuando la misma palabra aparece más de una
+    vez en la oración traducida."""
+    if not sense_entries:
+        return html.escape(text)
+    spans = []
+    for entry in sense_entries:
+        needle = entry.get("en_text") or entry.get("gloss_en")
+        if not needle:
+            continue
+        occ = entry.get("en_occurrence", 1)
+        matches = list(re.finditer(r"\b" + re.escape(needle) + r"\b", text, re.IGNORECASE))
+        if len(matches) >= occ:
+            m = matches[occ - 1]
+            spans.append((m.start(), m.end(), entry))
+    spans.sort()
+    pieces, cursor = [], 0
+    for start, end, entry in spans:
+        if start < cursor:
+            continue  # evita solapes si dos entradas caen sobre el mismo tramo
+        pieces.append(html.escape(text[cursor:start]))
+        word = html.escape(text[start:end])
+        pieces.append(f'<span class="sense-w" data-sense="{html.escape(entry["_link_id"])}">{render_sense_tooltip(entry)}{word}</span>')
+        cursor = end
+    pieces.append(html.escape(text[cursor:]))
     return "".join(pieces)
 
 
@@ -204,6 +270,7 @@ CSS = """
 
   .tei-s { display: inline; }
   .tei-s.s-hover-active { background-color: #e8f0fb; border-radius: 2px; }
+  [data-sense].w-hover-active { background-color: #ffe9a8; border-radius: 2px; }
 
   span.tei-w { display: inline; cursor: default; border-bottom: 1px dotted transparent;
                transition: border-color 0.15s; position: relative; }
@@ -223,6 +290,21 @@ CSS = """
   span.tei-choice-abbr { border-bottom: 1px dotted #8a6a2a; }
   span.tei-choice-orig { border-bottom: 1px dotted #999; }
   span.tei-corrected   { border-bottom: 1px dashed #b5432f; }
+
+  /* palabras de la TRADUCCIÓN con sentido anclado a LiLa */
+  span.sense-w { position: relative; cursor: default; color: #1a6e63;
+                 border-bottom: 1px dotted #1a6e63; }
+  span.sense-w:hover { background-color: #e6f5f2; border-radius: 2px; }
+  span.sense-w .tooltip { display: none; position: absolute; bottom: 1.7em; left: 0;
+                           background: #2a2a2a; color: #fff; font-size: 0.68rem;
+                           font-family: monospace; padding: 0.3em 0.6em; border-radius: 4px;
+                           white-space: normal; max-width: 22em; z-index: 10;
+                           pointer-events: auto; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+  span.sense-w .tooltip.tip-open { display: block; }
+  span.sense-w .tooltip table { border-collapse: collapse; line-height: 1.6; font-size: 0.65rem; }
+  span.sense-w .tooltip td { padding: 0 0.4em 0.15em 0; vertical-align: top; }
+  span.sense-w .tooltip a { color: #7ec8e3; text-decoration: underline; word-break: break-all; }
+  span.sense-w .tooltip a:hover { color: #a9dcf0; }
   span.tei-pc { margin-left: 0; }
 
   .tooltip { display: none; position: absolute; bottom: 2.2em; left: 0;
@@ -237,6 +319,7 @@ CSS = """
   .tooltip .tip-lemma { color: #7ec8e3; font-weight: bold; }
   .tooltip .tip-pos   { color: #f0c060; }
   .tooltip .tip-val   { color: #aaddaa; }
+  .tooltip .tip-feat  { color: #aaddaa; }
   .tip-expan { color: #f0a060; }
 
 
@@ -270,6 +353,31 @@ document.addEventListener('DOMContentLoaded', function () {{
       }});
     }});
   }});
+  document.querySelectorAll('[data-sense]').forEach(function (el) {{
+    el.addEventListener('mouseenter', function () {{
+      var sid = el.getAttribute('data-sense');
+      document.querySelectorAll('[data-sense="' + sid + '"]').forEach(function (m) {{
+        m.classList.add('w-hover-active');
+      }});
+    }});
+    el.addEventListener('mouseleave', function () {{
+      var sid = el.getAttribute('data-sense');
+      document.querySelectorAll('[data-sense="' + sid + '"]').forEach(function (m) {{
+        m.classList.remove('w-hover-active');
+      }});
+    }});
+  }});
+  document.querySelectorAll('span.sense-w').forEach(function (word) {{
+    var tooltip = word.querySelector('.tooltip');
+    if (!tooltip) return;
+    var hideTimer = null;
+    function show() {{ clearTimeout(hideTimer); tooltip.classList.add('tip-open'); }}
+    function hideDelayed() {{ hideTimer = setTimeout(function () {{ tooltip.classList.remove('tip-open'); }}, 250); }}
+    word.addEventListener('mouseenter', show);
+    word.addEventListener('mouseleave', hideDelayed);
+    tooltip.addEventListener('mouseenter', show);
+    tooltip.addEventListener('mouseleave', hideDelayed);
+  }});
 }});
 </script>
 </body>
@@ -301,6 +409,7 @@ def main():
     ap.add_argument("--src-dir", default="src/disp63")
     ap.add_argument("--trans-dir", default="translations/disp63")
     ap.add_argument("--corr-dir", default="nlp_corrections/disp63")
+    ap.add_argument("--senses-dir", default="senses/disp63")
     ap.add_argument("--out", default="html/disp63/disp63_trad.html")
     args = ap.parse_args()
 
@@ -335,6 +444,14 @@ def main():
             with open(corr_path, encoding="utf-8") as f:
                 corrections = json.load(f)
 
+        senses_path = os.path.join(args.senses_dir, f"{stem}.json")
+        senses_by_sentence = defaultdict(list)
+        if os.path.exists(senses_path):
+            with open(senses_path, encoding="utf-8") as f:
+                for i, entry in enumerate(json.load(f).get("senses", [])):
+                    entry["_link_id"] = f"{stem}-sense-{i}"
+                    senses_by_sentence[entry["sentence"]].append(entry)
+
         n_sent_total += len(sentences)
 
         # Agrupar oraciones por su <p> padre: sin salto de línea entre
@@ -358,9 +475,13 @@ def main():
                     n_pending += 1
                     continue
                 sid = f"{stem}-{global_idx}"
-                tokens = tokenize_sentence(s_el, corrections)
+                tokens = tokenize_sentence(s_el, corrections, senses_by_sentence.get(global_idx, []))
                 latin_run.append(f'<span class="tei-s" data-sid="{sid}">' + render_sentence_html(tokens) + "</span>")
-                trans_run.append(f'<span class="tei-s" data-sid="{sid}">' + html.escape(translations[global_idx]) + "</span>")
+                trans_run.append(
+                    f'<span class="tei-s" data-sid="{sid}">'
+                    + render_translation_html(translations[global_idx], senses_by_sentence.get(global_idx, []))
+                    + "</span>"
+                )
             if not latin_run:
                 continue
             p_class = "tei-p tei-p-first" if para_i == 0 else "tei-p"
