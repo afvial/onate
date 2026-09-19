@@ -4,7 +4,7 @@ onate_save_translation.py — Guarda o actualiza la traducción de una oración
 puntual en translations/disp63/<stem>.json, creando el archivo si no existe.
 
 Uso:
-    python3 onate_save_translation.py <translations_json> <n> "<texto en español>"
+    python3 onate_save_translation.py <translations_json> <n> "<text in English>"
 """
 import argparse
 import json
@@ -15,7 +15,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("translations_json")
     ap.add_argument("n", type=int)
-    ap.add_argument("es")
+    ap.add_argument("en")
     args = ap.parse_args()
 
     data = {"sentences": []}
@@ -26,10 +26,10 @@ def main():
     sentences = data.get("sentences", [])
     for s in sentences:
         if s["n"] == args.n:
-            s["es"] = args.es
+            s["en"] = args.en
             break
     else:
-        sentences.append({"n": args.n, "es": args.es})
+        sentences.append({"n": args.n, "en": args.en})
 
     sentences.sort(key=lambda s: s["n"])
     data["sentences"] = sentences

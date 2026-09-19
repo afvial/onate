@@ -40,7 +40,7 @@ def main():
     translations = {}
     if os.path.exists(args.translations_json):
         with open(args.translations_json, encoding="utf-8") as f:
-            translations = {s["n"]: s["es"] for s in json.load(f).get("sentences", [])}
+            translations = {s["n"]: s["en"] for s in json.load(f).get("sentences", [])}
 
     if args.n is not None:
         target = args.n

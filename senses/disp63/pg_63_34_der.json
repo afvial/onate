@@ -1,0 +1,18 @@
+{
+  "_readme": "Ancla el sentido de una palabra latina puntual (en su ocurrencia dentro de una oración concreta) a un synset de Princeton WordNet, vía una glosa en inglés que sirve de disambiguador. 'occurrence' desambigua cuándo la misma forma superficial aparece más de una vez en la oración (1 = primera aparición). El synset se guarda como '<offset 8 dígitos>-<pos>' (formato NLTK/WordNet), sin URI completa, para no atarse a una sola fuente (Princeton, Open English WordNet, BabelNet...) — la URI se construye al exportar, según a qué recurso se quiera apuntar.",
+  "page": "34_der",
+  "source_xml": "pg_63_34_der.xml",
+  "senses": [
+    {
+      "sentence": 1,
+      "text": "pretium",
+      "occurrence": 1,
+      "lemma": "pretium",
+      "gloss_en": "price",
+      "synset": "05163807-n",
+      "synset_name": "price.n.03",
+      "synset_def": "value measured by what must be given or done or undergone to obtain something",
+      "note": "Sentido amplio (no monetario), el que Oñate está definiendo aquí — no price.n.02 (13303315-n), que es solo el precio de compra en dinero."
+    }
+  ]
+}

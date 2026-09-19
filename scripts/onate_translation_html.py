@@ -283,7 +283,7 @@ PAGE_BLOCK = """<div class="page-sep"><span class="page-sep-label">Página {page
 {latin_body}
 </div>
 <div class="col">
-<div class="col-label">Traducción</div>
+<div class="col-label">Translation (EN)</div>
 {trans_body}
 </div>
 </div></div>"""
@@ -327,7 +327,7 @@ def main():
         sentences = root.findall(".//tei:s", NS)
 
         with open(trans_path, encoding="utf-8") as f:
-            translations = {s["n"]: s["es"] for s in json.load(f)["sentences"]}
+            translations = {s["n"]: s["en"] for s in json.load(f)["sentences"]}
 
         corr_path = os.path.join(args.corr_dir, f"{stem}.json")
         corrections = {}
