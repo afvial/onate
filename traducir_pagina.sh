@@ -11,7 +11,7 @@
 #       texto diplomático y la tabla lemma/pos/msd, lista para comparar
 #       y traducir en la conversación.
 #
-#   ./traducir_pagina.sh <página> <columna> guardar <n> "<text in English>"
+#   ./traducir_pagina.sh <página> <columna> guardar <n> "<texto en español>"
 #       Guarda/actualiza la traducción de la oración <n>.
 #
 #   ./traducir_pagina.sh <página> <columna> html
@@ -70,7 +70,7 @@ case "$CMD" in
         python3 "${SCRIPTS_DIR}/onate_next_sentence.py" "$SRC_XML" "$TRANS_JSON" "$@"
         ;;
     guardar)
-        [[ $# -lt 2 ]] && fail "Uso: $0 ${PAGE} ${COL} guardar <n> \"<text in English>\""
+        [[ $# -lt 2 ]] && fail "Uso: $0 ${PAGE} ${COL} guardar <n> \"<texto en español>\""
         N="$1"; ES="$2"
         python3 "${SCRIPTS_DIR}/onate_save_translation.py" "$TRANS_JSON" "$N" "$ES"
         ;;

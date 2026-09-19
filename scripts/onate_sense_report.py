@@ -35,12 +35,12 @@ def main():
         translations = {}
         if os.path.exists(trans_path):
             with open(trans_path, encoding="utf-8") as f:
-                translations = {s["n"]: s["en"] for s in json.load(f)["sentences"]}
+                translations = {s["n"]: s["es"] for s in json.load(f)["sentences"]}
 
         for entry in data.get("senses", []):
             entry = dict(entry)
             entry["stem"] = stem
-            entry["en"] = translations.get(entry["sentence"], "(sin traducción guardada)")
+            entry["es"] = translations.get(entry["sentence"], "(sin traducción guardada)")
             by_lemma[entry["lemma"]].append(entry)
 
     lines = ["# Concordancia de sentidos — Disp. LXIII\n"]
@@ -68,13 +68,13 @@ def main():
                 lines.append(f"> {sample['lila_def']}\n")
             if sample.get("note"):
                 lines.append(f"*{sample['note']}*\n")
-            lines.append("| Página/col | §  | Forma | Translation (EN) |")
+            lines.append("| Página/col | §  | Forma | Traducción |")
             lines.append("|---|---|---|---|")
             for e in entries:
                 if sense_key(e) != key:
                     continue
-                en_short = e["en"][:90] + ("…" if len(e["en"]) > 90 else "")
-                lines.append(f"| {e['stem']} | {e['sentence']} | {e['text']} | {en_short} |")
+                es_short = e["es"][:90] + ("…" if len(e["es"]) > 90 else "")
+                lines.append(f"| {e['stem']} | {e['sentence']} | {e['text']} | {es_short} |")
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:

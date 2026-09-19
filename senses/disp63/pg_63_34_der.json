@@ -1,5 +1,5 @@
 {
-  "_readme": "Ancla el sentido de una palabra latina puntual (en su ocurrencia dentro de una oración concreta) al Latin WordNet de LiLa: Linking Latin, vía una glosa en inglés que sirve de disambiguador al buscar. 'occurrence' desambigua cuándo la misma forma superficial LATINA aparece más de una vez en la oración (1 = primera aparición). 'en_text' (por defecto = gloss_en) es la palabra/frase exacta a resaltar dentro de la TRADUCCIÓN inglesa de esa oración, y 'en_occurrence' (por defecto 1) desambigua cuándo esa misma palabra aparece más de una vez en el inglés. 'lila_uri' es la URI del LexicalConcept en LiLa (buscar el lema en https://lila-erc.eu/query/, abrir el LexicalConcept del Latin WordNet correspondiente al sentido correcto, copiar su URI) — null mientras esté pendiente. 'lila_def' es la definición/gloss que muestra la propia página de LiLa para ese LexicalConcept (copiarla de ahí tal cual) — distinta de 'note', que es tu comentario editorial sobre por qué elegiste ese sentido.",
+  "_readme": "Ancla el sentido de una palabra latina puntual (en su ocurrencia dentro de una oración concreta) al Latin WordNet de LiLa: Linking Latin. 'gloss_en' es la palabra inglesa usada para buscar/desambiguar en LiLa (que muestra sus definiciones en inglés), independientemente del idioma de la traducción. 'occurrence' desambigua cuándo la misma forma superficial LATINA aparece más de una vez en la oración (1 = primera aparición). 'match_text' (por defecto = gloss_en) es la palabra/frase exacta a resaltar dentro de la TRADUCCIÓN (en el idioma que tenga translations/, ahora español), y 'match_occurrence' (por defecto 1) desambigua cuándo esa misma palabra aparece más de una vez ahí. 'lila_uri' es la URI del LexicalConcept en LiLa (buscar el lema en https://lila-erc.eu/query/, abrir el LexicalConcept del Latin WordNet correspondiente al sentido correcto, copiar su URI) — null mientras esté pendiente. 'lila_def' es la definición/gloss que muestra la propia página de LiLa para ese LexicalConcept — distinta de 'note', que es tu comentario editorial.",
   "page": "34_der",
   "source_xml": "pg_63_34_der.xml",
   "senses": [
@@ -9,8 +9,8 @@
       "occurrence": 1,
       "lemma": "pretium",
       "gloss_en": "price",
-      "en_text": "price",
-      "en_occurrence": 2,
+      "match_text": "precio",
+      "match_occurrence": 2,
       "lila_uri": "https://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05171334-n",
       "lila_def": "value measured by what must be given or done or undergone to obtain something",
       "note": "Sentido amplio (no monetario), el que Oñate está definiendo aquí — no el precio de compra concreto en dinero."
@@ -21,11 +21,11 @@
       "occurrence": 1,
       "lemma": "venio",
       "gloss_en": "approach",
-      "en_text": "approach",
-      "en_occurrence": 1,
+      "match_text": "abordemos",
+      "match_occurrence": 1,
       "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/01853188-v",
       "lila_def": "move toward, travel toward something or somebody or approach something or somebody",
-      "note": "venire ad + acusativo, 'acercarse/abordar un tema' — metáfora espacial que 'approach' conserva mejor que 'take up'."
+      "note": "venire ad + acusativo, 'acercarse/abordar un tema' — metáfora espacial que 'abordemos' conserva."
     }
   ]
 }

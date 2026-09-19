@@ -213,19 +213,20 @@ def render_sense_tooltip(entry):
 
 
 def render_translation_html(text, sense_entries):
-    """Envuelve en la traducción inglesa las palabras que tengan un sentido
-    anclado (senses/disp63/<stem>.json), con tooltip de sentido (LiLa). 'en_text'
-    (por defecto gloss_en) se busca como palabra completa; 'en_occurrence'
-    (por defecto 1) desambigua cuando la misma palabra aparece más de una
-    vez en la oración traducida."""
+    """Envuelve en la traducción las palabras que tengan un sentido anclado
+    (senses/disp63/<stem>.json), con tooltip de sentido (LiLa). 'match_text'
+    (por defecto gloss_en, aunque gloss_en está en inglés — normalmente se
+    especifica match_text en el idioma real de la traducción) se busca como
+    palabra completa; 'match_occurrence' (por defecto 1) desambigua cuando
+    la misma palabra aparece más de una vez en la oración traducida."""
     if not sense_entries:
         return html.escape(text)
     spans = []
     for entry in sense_entries:
-        needle = entry.get("en_text") or entry.get("gloss_en")
+        needle = entry.get("match_text") or entry.get("gloss_en")
         if not needle:
             continue
-        occ = entry.get("en_occurrence", 1)
+        occ = entry.get("match_occurrence", 1)
         matches = list(re.finditer(r"\b" + re.escape(needle) + r"\b", text, re.IGNORECASE))
         if len(matches) >= occ:
             m = matches[occ - 1]
@@ -391,7 +392,7 @@ PAGE_BLOCK = """<div class="page-sep"><span class="page-sep-label">Página {page
 {latin_body}
 </div>
 <div class="col">
-<div class="col-label">Translation (EN)</div>
+<div class="col-label">Traducción</div>
 {trans_body}
 </div>
 </div></div>"""
@@ -436,7 +437,7 @@ def main():
         sentences = root.findall(".//tei:s", NS)
 
         with open(trans_path, encoding="utf-8") as f:
-            translations = {s["n"]: s["en"] for s in json.load(f)["sentences"]}
+            translations = {s["n"]: s["es"] for s in json.load(f)["sentences"]}
 
         corr_path = os.path.join(args.corr_dir, f"{stem}.json")
         corrections = {}

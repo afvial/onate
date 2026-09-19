@@ -15,7 +15,7 @@ Uso:
         [--corrections <nlp_corrections_json>] --out <html_out>
 
 <translations_json>:
-    {"sentences": [{"n": 1, "en": "..."}, ...]}
+    {"sentences": [{"n": 1, "es": "..."}, ...]}
 
 <nlp_corrections_json>  (mismo formato que usa onate_nlp_corrections.py):
     {"palabra": "Case=Acc"}                     -> fusiona ese campo en el msd
@@ -261,7 +261,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <div class="bilingual">
     <div><div class="col-head">Transcripción</div></div>
     <div class="col-sep"></div>
-    <div><div class="col-head">Translation (EN)</div></div>
+    <div><div class="col-head">Traducción</div></div>
   </div>
 
 {rows}
@@ -291,7 +291,7 @@ ROW_TEMPLATE = """  <div class="bilingual sentence">
     <div class="col-sep"></div>
     <div>
       <div class="s-num">&nbsp;</div>
-      <p class="translation">{en}</p>
+      <p class="translation">{es}</p>
     </div>
   </div>"""
 
@@ -299,7 +299,7 @@ ROW_TEMPLATE = """  <div class="bilingual sentence">
 def main():
     ap = argparse.ArgumentParser(description="Genera HTML bilingüe (transcripción + traducción) para una columna.")
     ap.add_argument("src_xml", help="TEI anotado por onate_nlp.py (y opcionalmente onate_nlp_corrections.py)")
-    ap.add_argument("translations_json", help='{"sentences":[{"n":1,"en":"..."}]}')
+    ap.add_argument("translations_json", help='{"sentences":[{"n":1,"es":"..."}]}')
     ap.add_argument("--corrections", default=None, help="nlp_corrections/disp63/<stem>.json (opcional, solo para marcar visualmente)")
     ap.add_argument("--out", required=True, help="Ruta del HTML de salida")
     args = ap.parse_args()
@@ -312,7 +312,7 @@ def main():
 
     with open(args.translations_json, encoding="utf-8") as f:
         trans_data = json.load(f)
-    translations = {s["n"]: s["en"] for s in trans_data["sentences"]}
+    translations = {s["n"]: s["es"] for s in trans_data["sentences"]}
 
     corrections = {}
     if args.corrections:
@@ -328,7 +328,7 @@ def main():
             continue
         tokens = tokenize_sentence(s_el, corrections)
         latin_html = render_sentence_html(tokens)
-        rows.append(ROW_TEMPLATE.format(n=idx, latin_html=latin_html, en=html.escape(translations[idx])))
+        rows.append(ROW_TEMPLATE.format(n=idx, latin_html=latin_html, es=html.escape(translations[idx])))
 
     pending_html = ""
     if pending:
