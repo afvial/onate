@@ -40,6 +40,8 @@ onate/
   bibl/disp63/            TEI bibliographic layer
     disp63_bibl.xml       XInclude master file
   nlp_corrections/disp63/ Per-file manual overrides of lemma/pos/msd (see below)
+  translations/disp63/    Sentence-level translations, keyed by sentence number
+  senses/disp63/          Word-sense anchoring to LiLa: Linking Latin (see below)
   output/                 Assembled XML
   coords/disp63/          Per-word bounding boxes (Tesseract, aligned to Transkribus)
   facsimiles/disp63/      Page images used by the interactive facsimile viewer
@@ -340,6 +342,106 @@ not by the page2tei/catchword-joining step (which only sees one column at a time
 
 ---
 
+## Translation & Sense Linking
+
+A separate, optional layer on top of the diplomatic edition: sentence-by-sentence
+translation, plus word-sense anchoring to [LiLa: Linking Latin](https://lila-erc.eu/)
+for individual terms worth tracking across the corpus. Neither layer touches
+src/ or bibl/ -- both are additive and read the already-annotated TEI.
+
+### `translations/disp63/pg_63_NN_col.json`
+
+```json
+{
+  "sentences": [
+    {"n": 1, "es": "Antes de que abordemos la división del precio..."}
+  ]
+}
+```
+
+One entry per sentence, keyed by the same sentence number (`n`) as `<s>`
+order in the source column.
+
+### `senses/disp63/pg_63_NN_col.json`
+
+Anchors a specific occurrence of a Latin word to a LexicalConcept in LiLa's
+Latin WordNet, and records where that same concept surfaces in the
+translation:
+
+```json
+{
+  "sentence": 1,
+  "text": "pretium",
+  "occurrence": 1,
+  "lemma": "pretium",
+  "gloss_en": "price",
+  "match_text": "precio",
+  "match_occurrence": 2,
+  "lila_uri": "https://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05171334-n",
+  "lila_def": "value measured by what must be given or done or undergone to obtain something",
+  "note": "Broad (non-monetary) sense -- what Oñate is defining here."
+}
+```
+
+- `text` / `occurrence`: identifies the Latin token (occurrence disambiguates
+  repeated surface forms within the sentence, 1-indexed).
+- `match_text` / `match_occurrence`: same, for the translated sentence --
+  the word/phrase that gets highlighted and cross-linked to the Latin token.
+- `lila_uri`: found by hand at <https://lila-erc.eu/query/> (a JS app, not
+  fetchable programmatically) -- search the lemma, open the LexicalConcept
+  matching the intended sense, copy its URI. `null` while still pending.
+- `lila_def`: the `skos:definition` shown on that LexicalConcept's own page
+  (copy verbatim) -- distinct from `note`, which is editorial commentary.
+- `gloss_en`: an English gloss used as the search anchor in LiLa (which
+  documents its Latin WordNet in English regardless of the edition's target
+  language) -- not necessarily identical to `match_text`.
+
+**Coverage caveat:** LiLa's Latin WordNet ID space is its own -- offsets do
+*not* generally coincide with Princeton WordNet's (confirmed empirically:
+the same concept can carry two different offsets in each system, and some
+Latin lemmas, e.g. *propendeo*, have no Latin WordNet entry at all, only
+Lewis & Short). Treat `lila_uri` as the only externally verifiable anchor;
+don't infer a Princeton/NLTK offset from it or vice versa.
+
+### `scripts/onate_inject_translation.py`
+
+Generates `html/disp63/disp63_trad.html`. Unlike an early, now-abandoned
+approach (`onate_translation_html.py`, kept only as a fallback) that
+re-derived transcription markup from the raw TEI, this script extracts the
+already-rendered `<span class="tei-s">` elements straight out of an existing
+XSLT output (`disp63_facs.html` or `disp63_bibl.html`) and injects the
+translation column next to it -- inheriting typography, `sic/corr`
+handling, abbreviation rendering, everything, with nothing reimplemented.
+It also un-diplomatizes line layout for the translation view specifically
+(rejoins hyphenated words, drops `<br>`/line numbers) so the transcription
+reads as running prose rather than mirroring the original page breaks.
+
+```bash
+python3 scripts/onate_inject_translation.py html/disp63/disp63_facs.html \
+    --out html/disp63/disp63_trad.html
+```
+
+### `traducir_pagina.sh`
+
+Orchestrates the interactive translation workflow, independent of
+`procesar_pagina.sh` (translation is a human-in-the-loop task, not a
+deterministic pipeline step):
+
+```bash
+./traducir_pagina.sh 34 der siguiente        # next untranslated sentence + lemma/pos/msd table
+./traducir_pagina.sh 34 der siguiente --n 5  # a specific sentence instead
+./traducir_pagina.sh 34 der guardar 3 "..."  # save/update a translation
+./traducir_pagina.sh 34 der html             # regenerate that column's working HTML
+./traducir_pagina.sh libro                   # regenerate disp63_trad.html (all columns)
+```
+
+Helper scripts: `onate_next_sentence.py` (prints the pending sentence),
+`onate_save_translation.py` (writes to translations/), `onate_sense_report.py`
+(concordance across all senses/*.json, grouped by lemma, cross-referenced
+with each sentence's translation -- `output/disp63_sense_concordance.md`).
+
+---
+
 ## HTML Review Interfaces
 
 Three HTML variants are generated per run, all from the same assembled XML:
@@ -348,6 +450,10 @@ Three HTML variants are generated per run, all from the same assembled XML:
   interactive facsimile panel, syncing word-level highlighting on hover.
 - `disp63_bibl.html` -- text only, with bibliographic annotation inline.
 - `disp63_simple.html` -- a lighter text-only rendering.
+- `disp63_trad.html` -- bilingual view (transcription | translation), built
+  by `onate_inject_translation.py` from an already-generated interface
+  above. Word-level cross-highlighting on hover, and a synset/LiLa tooltip
+  on translated words that have a `senses/` entry.
 
 Common features:
 - Morphological colour-coding by POS tag
