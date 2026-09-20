@@ -8,16 +8,13 @@ lenguaje visual que disp63_facs.html / disp63_bibl.html:
   - columns > col-wrap > col (izquierda = Transcripción, derecha = Traducción)
   - span.tei-w con tooltip en <table> (lemma/pos/msd)
   - span.tei-choice-abbr / tei-choice-orig
-  - span.tei-s por oración (resalta al pasar el cursor, igual que en el facsímil)
+  - span.tei-s por oración (resalta al pasar el cursor)
+  - span.sense-w en la traducción: palabras ancladas a un LexicalConcept
+    de LiLa (senses/disp63/*.json), con resaltado cruzado (data-sense)
+    hacia su palabra latina correspondiente
 
 No requiere argumentos: infiere page/col de los nombres de archivo
 pg_63_<page>_<col>.xml en src/disp63/.
-
-Uso:
-    python3 onate_translation_html.py [--src-dir src/disp63]
-                                       [--trans-dir translations/disp63]
-                                       [--corr-dir nlp_corrections/disp63]
-                                       [--out html/disp63/disp63_trad.html]
 """
 import argparse
 import glob
@@ -39,13 +36,18 @@ def local(tag):
 
 def diplomatic_text(el):
     """Texto simple, reconstruyendo palabras partidas entre líneas (sin
-    guion ni salto): prefiere <orig> sobre <reg> y <abbr> sobre <expan>."""
+    guion ni salto). Preferencias por tipo de <choice>:
+      - orig/reg (variante gráfica)   -> muestra orig (forma impresa)
+      - abbr/expan (abreviatura)      -> muestra abbr (forma impresa)
+      - sic/corr (errata del original)-> muestra sic (forma impresa, fiel
+        al original, aunque contenga el error tipográfico)
+    """
     tag = local(el.tag)
     if tag == "lb":
         return ""
     if tag == "choice":
         chosen = None
-        for pref in ("orig", "abbr"):
+        for pref in ("orig", "abbr", "sic"):
             for child in el:
                 if local(child.tag) == pref:
                     chosen = child
@@ -67,10 +69,12 @@ def diplomatic_text(el):
 
 
 def find_meta_w(el):
+    """Busca el <w> con lemma/pos/msd, prefiriendo la copia 'resuelta'
+    (expan > reg > corr) sobre la diplomática (abbr > orig > sic)."""
     tag = local(el.tag)
     if tag == "w":
         return el if el.get("lemma") else None
-    for pref in ("expan", "reg", "abbr", "orig"):
+    for pref in ("expan", "reg", "corr", "abbr", "orig", "sic"):
         for child in el.iter():
             if local(child.tag) == pref:
                 for w in child.iter():
@@ -83,8 +87,11 @@ def choice_kind(el):
     if local(el.tag) != "choice":
         return None
     for child in el:
-        if local(child.tag) == "abbr":
+        ctag = local(child.tag)
+        if ctag == "abbr":
             return "abbr"
+        if ctag == "sic":
+            return "sic"
     return "orig"
 
 
@@ -116,8 +123,6 @@ def parse_correction_spec(spec, existing_meta):
 
 
 def tokenize_sentence(s_el, corrections, sense_entries=None):
-    # Índice para encontrar, por (texto, ocurrencia), la entrada de sentido
-    # que corresponde a esta palabra latina puntual.
     sense_by_occ = {}
     if sense_entries:
         for entry in sense_entries:
@@ -167,6 +172,55 @@ def render_tooltip_table(meta):
     return "<table>" + "".join(rows) + "</table>"
 
 
+def render_sense_tooltip(entry):
+    rows = []
+    if entry.get("lemma"):
+        rows.append(f'<tr><td class="tip-key">latin</td><td class="tip-lemma">{html.escape(entry["lemma"])}</td></tr>')
+    if entry.get("gloss_en"):
+        rows.append(f'<tr><td class="tip-key">gloss</td><td class="tip-pos">{html.escape(entry["gloss_en"])}</td></tr>')
+    if entry.get("lila_def"):
+        rows.append(f'<tr><td class="tip-key">def</td><td class="tip-val">{html.escape(entry["lila_def"])}</td></tr>')
+    if entry.get("lila_uri"):
+        m = re.search(r"(\d{8}-[a-z])$", entry["lila_uri"])
+        if m:
+            rows.append(f'<tr><td class="tip-key">synset</td><td class="tip-feat">{html.escape(m.group(1))}</td></tr>')
+        rows.append(f'<tr><td class="tip-key">lila</td><td class="tip-val"><a href="{html.escape(entry["lila_uri"])}" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr>')
+    else:
+        rows.append('<tr><td class="tip-key">lila</td><td class="tip-val" style="color:#888">(lila_uri pendiente)</td></tr>')
+    return '<span class="tooltip"><table>' + "".join(rows) + "</table></span>"
+
+
+def render_translation_html(text, sense_entries):
+    """Envuelve en la traducción las palabras que tengan un sentido anclado
+    (senses/disp63/<stem>.json), con tooltip de sentido (LiLa). 'match_text'
+    (por defecto gloss_en) se busca como palabra completa; 'match_occurrence'
+    (por defecto 1) desambigua cuando la misma palabra aparece más de una
+    vez en la oración traducida."""
+    if not sense_entries:
+        return html.escape(text)
+    spans = []
+    for entry in sense_entries:
+        needle = entry.get("match_text") or entry.get("gloss_en")
+        if not needle:
+            continue
+        occ = entry.get("match_occurrence", 1)
+        matches = list(re.finditer(r"\b" + re.escape(needle) + r"\b", text, re.IGNORECASE))
+        if len(matches) >= occ:
+            m = matches[occ - 1]
+            spans.append((m.start(), m.end(), entry))
+    spans.sort()
+    pieces, cursor = [], 0
+    for start, end, entry in spans:
+        if start < cursor:
+            continue
+        pieces.append(html.escape(text[cursor:start]))
+        word = html.escape(text[start:end])
+        pieces.append(f'<span class="sense-w" data-sense="{html.escape(entry["_link_id"])}">{render_sense_tooltip(entry)}{word}</span>')
+        cursor = end
+    pieces.append(html.escape(text[cursor:]))
+    return "".join(pieces)
+
+
 def render_sentence_html(tokens):
     pieces = []
     for i, tok in enumerate(tokens):
@@ -194,64 +248,11 @@ def render_sentence_html(tokens):
     return "".join(pieces)
 
 
-def render_sense_tooltip(entry):
-    rows = []
-    if entry.get("lemma"):
-        rows.append(f'<tr><td class="tip-key">latin</td><td class="tip-lemma">{html.escape(entry["lemma"])}</td></tr>')
-    if entry.get("gloss_en"):
-        rows.append(f'<tr><td class="tip-key">gloss</td><td class="tip-pos">{html.escape(entry["gloss_en"])}</td></tr>')
-    if entry.get("lila_def"):
-        rows.append(f'<tr><td class="tip-key">def</td><td class="tip-val">{html.escape(entry["lila_def"])}</td></tr>')
-    if entry.get("lila_uri"):
-        m = re.search(r"(\d{8}-[a-z])$", entry["lila_uri"])
-        if m:
-            rows.append(f'<tr><td class="tip-key">synset</td><td class="tip-feat">{html.escape(m.group(1))}</td></tr>')
-        rows.append(f'<tr><td class="tip-key">lila</td><td class="tip-val"><a href="{html.escape(entry["lila_uri"])}" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr>')
-    else:
-        rows.append('<tr><td class="tip-key">lila</td><td class="tip-val" style="color:#888">(lila_uri pendiente)</td></tr>')
-    return '<span class="tooltip"><table>' + "".join(rows) + "</table></span>"
-
-
-def render_translation_html(text, sense_entries):
-    """Envuelve en la traducción las palabras que tengan un sentido anclado
-    (senses/disp63/<stem>.json), con tooltip de sentido (LiLa). 'match_text'
-    (por defecto gloss_en, aunque gloss_en está en inglés — normalmente se
-    especifica match_text en el idioma real de la traducción) se busca como
-    palabra completa; 'match_occurrence' (por defecto 1) desambigua cuando
-    la misma palabra aparece más de una vez en la oración traducida."""
-    if not sense_entries:
-        return html.escape(text)
-    spans = []
-    for entry in sense_entries:
-        needle = entry.get("match_text") or entry.get("gloss_en")
-        if not needle:
-            continue
-        occ = entry.get("match_occurrence", 1)
-        matches = list(re.finditer(r"\b" + re.escape(needle) + r"\b", text, re.IGNORECASE))
-        if len(matches) >= occ:
-            m = matches[occ - 1]
-            spans.append((m.start(), m.end(), entry))
-    spans.sort()
-    pieces, cursor = [], 0
-    for start, end, entry in spans:
-        if start < cursor:
-            continue  # evita solapes si dos entradas caen sobre el mismo tramo
-        pieces.append(html.escape(text[cursor:start]))
-        word = html.escape(text[start:end])
-        pieces.append(f'<span class="sense-w" data-sense="{html.escape(entry["_link_id"])}">{render_sense_tooltip(entry)}{word}</span>')
-        cursor = end
-    pieces.append(html.escape(text[cursor:]))
-    return "".join(pieces)
-
-
 CSS = """
-  body { font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-         font-size: 0.93rem; line-height: 1.7; letter-spacing: 0.01em;
-         max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem;
-         color: #222; background: #fafaf7; }
-  h1 { font-size: 1.4rem; text-align: center; margin-bottom: 0.2rem; }
-  h2 { font-size: 1.05rem; text-align: center; color: #555; font-weight: normal; margin-top: 0; }
-  .stats { text-align: center; font-size: 0.8rem; color: #777; margin: 0.3rem 0; }
+  body { font-family: Georgia, "Times New Roman", serif; background: #faf8f2; color: #1a1a1a;
+         max-width: 76rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  h1 { font-size: 1.3rem; margin-bottom: 0.1rem; }
+  h2 { font-size: 1rem; color: #555; font-weight: normal; margin-top: 0; }
 
   .page-sep { border-top: 1px solid #aaa; border-bottom: 1px solid #aaa;
               padding: 0.2rem 0; margin: 2rem 0 1rem 0; text-align: center; }
@@ -275,9 +276,8 @@ CSS = """
 
   span.tei-w { display: inline; cursor: default; border-bottom: 1px dotted transparent;
                transition: border-color 0.15s; position: relative; }
-  span.tei-w:hover { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
+  span.tei-w:hover { border-bottom: 1px dotted #7a9abf; }
   span.tei-w[data-pos="VERB"]  { color: #1a4a8a; }
-  span.tei-w[data-pos="AUX"]   { color: #1a4a8a; }
   span.tei-w[data-pos="NOUN"]  { color: #222; }
   span.tei-w[data-pos="ADJ"]   { color: #3a6a3a; }
   span.tei-w[data-pos="ADV"]   { color: #7a4a00; }
@@ -286,10 +286,12 @@ CSS = """
   span.tei-w[data-pos="SCONJ"] { color: #888; }
   span.tei-w[data-pos="PRON"]  { color: #7a2a7a; }
   span.tei-w[data-pos="DET"]   { color: #7a2a7a; }
-  span.tei-w[data-pos="X"]     { color: #aaa; }
+  span.tei-w[data-pos="AUX"]   { color: #1a4a8a; }
+  span.tei-w[data-pos="PART"]  { color: #888; }
 
   span.tei-choice-abbr { border-bottom: 1px dotted #8a6a2a; }
   span.tei-choice-orig { border-bottom: 1px dotted #999; }
+  span.tei-choice-sic  { border-bottom: 1px dotted #b56a2a; }
   span.tei-corrected   { border-bottom: 1px dashed #b5432f; }
 
   /* palabras de la TRADUCCIÓN con sentido anclado a LiLa */
@@ -298,7 +300,8 @@ CSS = """
   span.sense-w:hover { background-color: #e6f5f2; border-radius: 2px; }
   span.sense-w .tooltip { display: none; position: absolute; bottom: 1.7em; left: 0;
                            background: #2a2a2a; color: #fff; font-size: 0.68rem;
-                           font-family: monospace; padding: 0.3em 0.6em; border-radius: 4px;
+                           font-family: "SF Mono", Menlo, Consolas, monospace;
+                           padding: 0.3em 0.6em; border-radius: 4px;
                            white-space: normal; max-width: 22em; z-index: 10;
                            pointer-events: auto; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
   span.sense-w .tooltip.tip-open { display: block; }
@@ -306,15 +309,15 @@ CSS = """
   span.sense-w .tooltip td { padding: 0 0.4em 0.15em 0; vertical-align: top; }
   span.sense-w .tooltip a { color: #7ec8e3; text-decoration: underline; word-break: break-all; }
   span.sense-w .tooltip a:hover { color: #a9dcf0; }
-  span.tei-pc { margin-left: 0; }
 
-  .tooltip { display: none; position: absolute; bottom: 2.2em; left: 0;
-             background: #2a2a2a; color: #fff; font-size: 0.68rem; font-family: monospace;
-             padding: 0.3em 0.6em; border-radius: 4px; white-space: nowrap;
-             width: max-content; z-index: 10; pointer-events: none;
-             box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+  span.tei-w .tooltip { display: none; position: absolute; bottom: 2.2em; left: 0;
+                         background: #2a2a2a; color: #fff; font-size: 0.68rem;
+                         font-family: "SF Mono", Menlo, Consolas, monospace; line-height: 1.5;
+                         padding: 0.3em 0.6em; border-radius: 4px; white-space: nowrap;
+                         z-index: 10; pointer-events: none;
+                         box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
   span.tei-w:hover .tooltip { display: block; }
-  .tooltip table { border-collapse: collapse; line-height: 1.6; font-size: 0.65rem; }
+  .tooltip table { border-collapse: collapse; }
   .tooltip td { padding: 0 0.4em 0 0; vertical-align: top; }
   .tooltip .tip-key   { color: #888; }
   .tooltip .tip-lemma { color: #7ec8e3; font-weight: bold; }
@@ -323,8 +326,15 @@ CSS = """
   .tooltip .tip-feat  { color: #aaddaa; }
   .tip-expan { color: #f0a060; }
 
+  .legend { margin-top: 2.5rem; padding: 0.8rem 1rem; background: #f0f0e8; border-radius: 4px; font-size: 0.82rem; }
+  .legend h3 { margin: 0 0 0.4rem 0; font-size: 0.9rem; }
+  .legend span { margin-right: 1rem; }
+  .stats { font-size: 0.8rem; color: #777; text-align: right; margin-top: 0.5rem; }
+  .pending { margin-top: 2rem; padding-top: 1rem; border-top: 1px dashed #ccc; font-size: 0.85rem; color: #777; }
 
-  .pending-note { font-size: 0.78rem; color: #999; font-style: italic; margin-top: 0.6rem; }
+  @media (max-width: 640px) {
+    .columns { flex-direction: column; gap: 1.5rem 0; }
+  }
 """
 
 HTML_TEMPLATE = """<html lang="es">
@@ -455,9 +465,7 @@ def main():
 
         n_sent_total += len(sentences)
 
-        # Agrupar oraciones por su <p> padre: sin salto de línea entre
-        # oraciones de un mismo párrafo, solo entre párrafos distintos.
-        paragraphs = []  # lista de (p_element, [s_elements])
+        paragraphs = []
         for s_el in sentences:
             p_el = s_el.getparent()
             if paragraphs and paragraphs[-1][0] is p_el:
