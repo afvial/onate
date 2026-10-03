@@ -15,7 +15,8 @@
 #   --force-bibl   Reconstruir <bibl> aunque ya existan
 #   --verbose      Mostrar detalle de tokens y abreviaturas
 #   --only PASO    Ejecutar solo un paso:
-#                  page2tei | enrich | assemble | validate | html
+#                  page2tei | nlp | nlp_corrections | lila | enrich |
+#                  assemble | sentences | validate | coords | html
 #
 # Ejemplos:
 #   ./procesar_pagina.sh 37 izq
@@ -36,6 +37,7 @@ BIBL_MASTER="bibl/disp63/disp63_bibl.xml"
 COMPLETO="output/disp63_bibl_completo.xml"
 HTML_OUT="html/disp63/disp63_bibl.html"
 XSLT="xslt/onate_tei2html_bibl.xsl"
+LILA_INDEX="cache/lila_index.json"
 
 # ── Colores ───────────────────────────────────────────────────────────────────
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
@@ -74,6 +76,7 @@ if [[ "$1" == "all" ]]; then
         bash "$0" "$p" "$c" --only page2tei $OPTS
         bash "$0" "$p" "$c" --only nlp $OPTS
         bash "$0" "$p" "$c" --only nlp_corrections $OPTS
+        bash "$0" "$p" "$c" --only lila $OPTS
         bash "$0" "$p" "$c" --only enrich $OPTS
         i=$(( i + 2 ))
     done
@@ -209,6 +212,21 @@ run_nlp_corrections() {
     fi
 }
 
+# ── PASO 1.7: Enlace de lemas con LiLa (@lemmaRef) ───────────────────────────
+# Va después de las correcciones manuales, para que un lema corregido se
+# enlace, y antes de enrich, que es quien copia src/ a bibl/.
+run_lila() {
+    info "Paso 1.7 — Enlace de lemas con LiLa"
+    [[ -f "$SRC_XML" ]] || fail "No existe: $SRC_XML (ejecuta primero page2tei)"
+    if [[ ! -f "$LILA_INDEX" ]]; then
+        warn "No existe ${LILA_INDEX} — se omite el enlace con LiLa"
+        warn "  (genéralo con: python3 ${SCRIPTS_DIR}/onate_lila_index.py cache/lemmaBank.ttl ${LILA_INDEX})"
+        return
+    fi
+    python3 "${SCRIPTS_DIR}/onate_lila.py" "$SRC_XML" --index "$LILA_INDEX"
+    ok "Lemas enlazados → ${SRC_XML} (pendientes: lila/pendientes.tsv)"
+}
+
 # ── PASO 2: Enriquecimiento bibliográfico ─────────────────────────────────────
 run_enrich() {
     info "Paso 2 — Enriquecimiento bibliográfico"
@@ -288,6 +306,7 @@ case "$ONLY" in
         run_page2tei
         run_nlp
         run_nlp_corrections
+        run_lila
         run_enrich
         run_assemble
         run_sentences
@@ -299,13 +318,14 @@ case "$ONLY" in
     page2tei)       run_page2tei ;;
     nlp)            run_nlp ;;
     nlp_corrections) run_nlp_corrections ;;
+    lila)           run_lila ;;
     enrich)         run_enrich ;;
     assemble)       run_assemble ;;
     sentences)      run_sentences ;;
     validate)       run_validate ;;
     coords)         run_coords ;;
     html)           run_html ;;
-    *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|nlp_corrections|enrich|assemble|sentences|validate|html)" ;;
+    *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|nlp_corrections|lila|enrich|assemble|sentences|validate|html)" ;;
 esac
 
 echo
