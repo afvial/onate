@@ -184,6 +184,20 @@
           span.tei-w:hover .tooltip { display: block; }
           span.tei-sic:hover .tooltip { display: block; }
 
+          /* Lema enlazado a LiLa. Solo los tooltips con enlace reciben el
+             ratón; el ::after cubre el hueco entre palabra y tooltip para
+             que la palabra siga en :hover mientras el ratón sube. */
+          .tooltip a.tip-lila { color: inherit; text-decoration: underline dotted; }
+          .tooltip a.tip-lila:hover { text-decoration: underline; }
+          .tooltip:has(a.tip-lila) { pointer-events: auto; }
+          .tooltip:has(a.tip-lila)::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0;
+            top: 100%;
+            height: 1.4em;
+          }
+
           /* abbr: subrayado punteado marrón (forma abreviada) */
           span.tei-choice-abbr {
             border-bottom: 1px dotted #8a6a2a;
