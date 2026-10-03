@@ -12,8 +12,11 @@ determinista: en cada ejecución recalcula todos los lemmaRef a partir de
   2) lila/excepciones.tsv    (tus decisiones manuales; tienen prioridad)
 así que regenerar una página con page2tei/nlp no pierde nada.
 
-Además mantiene un informe GLOBAL de lo que no se pudo enlazar
-automáticamente (lila/pendientes.tsv), acumulado para todo el corpus.
+Informes de lo que no se pudo enlazar automáticamente:
+  lila/pendientes.tsv          GLOBAL, una fila por (lema, POS), con páginas y
+                               líneas: para decisiones en excepciones.tsv
+  lila/paginas/<columna>.tsv   POR COLUMNA, una fila por aparición, ordenada
+                               por línea: para revisar con el facsímil
 
 Uso:
     python3 scripts/onate_lila.py src/disp63/pg_63_39_izq.xml
@@ -39,6 +42,7 @@ from lxml import etree
 
 TEI_NS = "http://www.tei-c.org/ns/1.0"
 W = f"{{{TEI_NS}}}w"
+LB = f"{{{TEI_NS}}}lb"
 
 # UPOS (LatinCy) → categorías de LiLa: [preferida, alternativas...]
 POS_MAP = {
@@ -137,8 +141,17 @@ def set_lemmaref(w, ref):
 def process_page(path: Path, index, exceptions, dry_run=False):
     tree = etree.parse(str(path))
     page_state = {}
+    occurrences = []      # pendientes de esta columna, una fila por aparición
     changed = 0
-    for w in tree.getroot().iter(W):
+    line = None
+    for el in tree.getroot().iter(W, LB):
+        # El número de línea es el del último <lb n> visto en orden de
+        # documento; una palabra partida cuenta en la línea donde empieza.
+        if el.tag == LB:
+            if el.get("n"):
+                line = el.get("n")
+            continue
+        w = el
         lemma, upos = w.get("lemma"), w.get("pos")
         if not lemma or not upos:
             continue
@@ -151,12 +164,41 @@ def process_page(path: Path, index, exceptions, dry_run=False):
         set_lemmaref(w, ref)
         key = f"{lemma}\t{upos}"
         st = page_state.setdefault(key, {"estado": status, "ref": ref,
-                                          "candidatos": fmt_cands(cands), "n": 0})
-        st["n"] += 1
+                                          "candidatos": fmt_cands(cands), "n": 0,
+                                          "lineas": []})
+        # orig/reg (y sic/corr) duplican la palabra: solo se cuenta la forma
+        # que analiza LatinCy, para que n sean apariciones reales.
+        if w.getparent().tag not in (f"{{{TEI_NS}}}orig", f"{{{TEI_NS}}}sic"):
+            st["n"] += 1
+            if status not in (OK, EXC):
+                form = "".join(w.itertext()).strip()
+                occurrences.append((line or "", form, lemma, upos, status,
+                                    ref or "", fmt_cands(cands)))
+        if line is not None and line not in st["lineas"]:
+            st["lineas"].append(line)
     if not dry_run and changed:
         data = etree.tostring(tree, xml_declaration=True, encoding="UTF-8")
         path.write_bytes(data + b"\n")   # conservar el salto de línea final
-    return page_state, changed
+    return page_state, occurrences, changed
+
+
+def write_page_report(stem, occurrences, folder: Path):
+    """Pendientes de una columna, ordenados por línea (para revisar con el facsímil)."""
+    folder.mkdir(parents=True, exist_ok=True)
+    out = folder / f"{stem}.tsv"
+    if not occurrences:
+        out.unlink(missing_ok=True)      # columna sin pendientes: sin archivo
+        return 0
+    with out.open("w", encoding="utf-8", newline="") as fh:
+        wr = csv.writer(fh, delimiter="\t", lineterminator="\n")
+        wr.writerow(["linea", "forma", "lema", "upos", "estado", "asignado", "candidatos"])
+        for row in sorted(occurrences, key=lambda r: (_num(r[0]), r[2])):
+            wr.writerow(row)
+    return len(occurrences)
+
+
+def _num(n: str):
+    return (0, int(n)) if n.isdigit() else (1, n)
 
 
 def write_report(state, path: Path):
@@ -166,17 +208,21 @@ def write_report(state, path: Path):
         for key, st in entries.items():
             if st["estado"] in (OK, EXC):
                 continue
-            r = rows.setdefault(key, {**st, "n": 0, "paginas": []})
+            r = rows.setdefault(key, {**st, "n": 0, "ubic": []})
             r["n"] += st["n"]
-            r["paginas"].append(page)
+            lineas = st.get("lineas") or []      # estado.json antiguo: sin líneas
+            r["ubic"].append((page, lineas))
     order = {AMBIG: 0, POSDIF: 1, ALT: 2, NOTFOUND: 3}
     with path.open("w", encoding="utf-8", newline="") as fh:
-        wr = csv.writer(fh, delimiter="\t")
-        wr.writerow(["estado", "lema", "upos", "asignado", "candidatos", "n", "paginas"])
+        wr = csv.writer(fh, delimiter="\t", lineterminator="\n")
+        wr.writerow(["estado", "lema", "upos", "asignado", "candidatos", "n", "ubicacion"])
         for key, r in sorted(rows.items(), key=lambda kv: (order[kv[1]["estado"]], -kv[1]["n"], kv[0])):
             lemma, upos = key.split("\t")
+            ubic = "; ".join(
+                f"{page} l.{','.join(sorted(lineas, key=_num))}" if lineas else page
+                for page, lineas in sorted(r["ubic"]))
             wr.writerow([r["estado"], lemma, upos, r["ref"] or "", r["candidatos"],
-                         r["n"], " ".join(sorted(r["paginas"]))])
+                         r["n"], ubic])
     return len(rows)
 
 
@@ -187,6 +233,8 @@ def main():
     ap.add_argument("--excepciones", type=Path, default=Path("lila/excepciones.tsv"))
     ap.add_argument("--estado", type=Path, default=Path("lila/estado.json"))
     ap.add_argument("--informe", type=Path, default=Path("lila/pendientes.tsv"))
+    ap.add_argument("--paginas", type=Path, default=Path("lila/paginas"),
+                    help="carpeta de informes por columna")
     ap.add_argument("--dry-run", action="store_true", help="no escribe los XML")
     args = ap.parse_args()
 
@@ -199,8 +247,10 @@ def main():
     state = json.loads(args.estado.read_text(encoding="utf-8")) if args.estado.exists() else {}
 
     for path in args.pages:
-        page_state, changed = process_page(path, index, exceptions, args.dry_run)
+        page_state, occurrences, changed = process_page(path, index, exceptions, args.dry_run)
         state[path.stem] = page_state
+        if not args.dry_run:
+            write_page_report(path.stem, occurrences, args.paginas)
         counts = {}
         for st in page_state.values():
             counts[st["estado"]] = counts.get(st["estado"], 0) + 1
