@@ -204,6 +204,27 @@
           <title level="m" xml:lang="la">Institutionum Moralium</title>
         </bibl>
 
+        <!-- Entradas añadidas: el enricher ya las referenciaba (WORKS) -->
+        <bibl xml:id="bib_Aug_CivDei">
+          <author ref="#pers_Augustinus">Aurelius Augustinus</author>
+          <title level="m" xml:lang="la">De civitate Dei</title>
+        </bibl>
+
+        <bibl xml:id="bib_Aug_DeTrin">
+          <author ref="#pers_Augustinus">Aurelius Augustinus</author>
+          <title level="m" xml:lang="la">De Trinitate</title>
+        </bibl>
+
+        <bibl xml:id="bib_Scotus_Sent">
+          <author ref="#pers_Scotus">Ioannes Duns Scotus</author>
+          <title level="m" xml:lang="la">Quaestiones in IV Libros Sententiarum</title>
+        </bibl>
+
+        <bibl xml:id="bib_Maior_Sent">
+          <author ref="#pers_Maior">Ioannes Maior</author>
+          <title level="m" xml:lang="la">In IV Sententiarum</title>
+        </bibl>
+
       </listBibl>
 
     </sourceDesc>
@@ -323,34 +344,45 @@
           <persName xml:lang="la">Aristoteles</persName>
           <persName xml:lang="grc">Ἀριστοτέλης</persName>
           <birth when="-0384"/><death when="-0322"/>
+          <idno type="wikidata">Q868</idno>
+          <idno type="VIAF">7524651</idno>
         </person>
 
         <person xml:id="pers_ThomasAquinas">
           <persName xml:lang="la">Thomas Aquinas</persName>
           <birth when="1225"/><death when="1274"/>
           <affiliation>Ordo Praedicatorum</affiliation>
+          <idno type="wikidata">Q9438</idno>
+          <idno type="VIAF">100910150</idno>
         </person>
 
         <person xml:id="pers_Caietanus">
           <persName xml:lang="la">Thomas de Vio Caietanus</persName>
           <birth when="1469"/><death when="1534"/>
           <affiliation>Ordo Praedicatorum; Cardinalis</affiliation>
+          <idno type="wikidata">Q435853</idno>
+          <idno type="VIAF">49196005</idno>
         </person>
 
         <person xml:id="pers_Bannes">
           <persName xml:lang="la">Dominicus Báñez</persName>
           <birth when="1528"/><death when="1604"/>
           <affiliation>Ordo Praedicatorum; Universitas Salmanticensis</affiliation>
+          <idno type="wikidata">Q934185</idno>
+          <idno type="VIAF">88708934</idno>
         </person>
 
         <person xml:id="pers_Aragon">
           <persName xml:lang="la">Petrus de Aragón</persName>
           <birth when="1545"/><death when="1592"/>
           <affiliation>Ordo Praedicatorum</affiliation>
+          <idno type="wikidata">Q84512849</idno>
+          <idno type="VIAF">59983710</idno>
         </person>
 
         <person xml:id="pers_Rebellus">
           <persName xml:lang="la">Fernandus Rebellus</persName>
+          <persName xml:lang="pt">Fernão Rebelo</persName>
           <birth when="1546"/><death when="1608"/>
           <affiliation>Societas Iesu</affiliation>
         </person>
@@ -359,36 +391,50 @@
           <persName xml:lang="la">Michael Bartholomaeus Salón</persName>
           <birth when="1539"/><death when="1621"/>
           <affiliation>Ordo Eremitarum Sancti Augustini</affiliation>
+          <idno type="wikidata">Q56000080</idno>
+          <idno type="VIAF">66704798</idno>
         </person>
 
         <person xml:id="pers_Valentia">
           <persName xml:lang="la">Gregorius de Valencia</persName>
           <birth when="1549"/><death when="1603"/>
           <affiliation>Societas Iesu</affiliation>
+          <idno type="wikidata">Q5573121</idno>
+          <idno type="VIAF">79014517</idno>
         </person>
 
         <person xml:id="pers_Antoninus">
           <persName xml:lang="la">Antoninus Florentinus</persName>
           <birth when="1389"/><death when="1459"/>
           <affiliation>Ordo Praedicatorum; Archiepiscopus Florentinus</affiliation>
+          <idno type="wikidata">Q773822</idno>
+          <idno type="VIAF">89209643</idno>
         </person>
 
         <person xml:id="pers_Prierias">
           <persName xml:lang="la">Sylvester Mazzolinus Prieranus</persName>
+          <persName xml:lang="it">Silvestro Mazzolini</persName>
           <birth when="1456"/><death when="1523"/>
           <affiliation>Ordo Praedicatorum</affiliation>
+          <idno type="wikidata">Q430685</idno>
+          <idno type="VIAF">4903823</idno>
         </person>
 
         <person xml:id="pers_Medina">
           <persName xml:lang="la">Ioannes de Medina</persName>
+          <persName xml:lang="es">Juan de Medina</persName>
           <birth when="1490"/><death when="1546"/>
           <affiliation>Universitas Complutensis</affiliation>
+          <idno type="wikidata">Q6301292</idno>
+          <idno type="VIAF">59430948</idno>
         </person>
 
         <person xml:id="pers_Summenhart">
           <persName xml:lang="la">Conradus Summenhart</persName>
           <birth when="1455"/><death when="1502"/>
           <affiliation>Universitas Tubingensis</affiliation>
+          <idno type="wikidata">Q1371865</idno>
+          <idno type="VIAF">100216531</idno>
         </person>
 
         <person xml:id="pers_Navarrus">
@@ -397,72 +443,98 @@
           <birth when="1492"/><death when="1586"/>
           <affiliation>Universitas Salmanticensis; Universitas
             Conimbricensis</affiliation>
+          <idno type="wikidata">Q1340260</idno>
+          <idno type="VIAF">59883617</idno>
         </person>
 
         <person xml:id="pers_Molina">
           <persName xml:lang="la">Ludovicus de Molina</persName>
           <birth when="1535"/><death when="1600"/>
           <affiliation>Societas Iesu</affiliation>
+          <idno type="wikidata">Q436077</idno>
+          <idno type="VIAF">5030712</idno>
         </person>
 
         <person xml:id="pers_Salas">
           <persName xml:lang="la">Ioannes de Salas</persName>
           <birth when="1553"/><death when="1612"/>
           <affiliation>Societas Iesu</affiliation>
+          <idno type="wikidata">Q41617988</idno>
+          <idno type="VIAF">40188739</idno>
         </person>
 
         <person xml:id="pers_Toletus">
           <persName xml:lang="la">Franciscus Toletus</persName>
           <birth when="1533"/><death when="1596"/>
           <affiliation>Societas Iesu; Cardinalis</affiliation>
+          <idno type="wikidata">Q1379453</idno>
+          <idno type="VIAF">76364159</idno>
         </person>
 
         <person xml:id="pers_Reginaldus">
           <persName xml:lang="la">Valerius Reginaldus</persName>
           <birth when="1545"/><death when="1623"/>
           <affiliation>Societas Iesu</affiliation>
+          <idno type="wikidata">Q7912868</idno>
+          <idno type="VIAF">69866239</idno>
         </person>
 
         <person xml:id="pers_Soto">
           <persName xml:lang="la">Dominicus de Soto</persName>
           <birth when="1494"/><death when="1560"/>
           <affiliation>Ordo Praedicatorum; Universitas Salmanticensis</affiliation>
+          <idno type="wikidata">Q1237514</idno>
+          <idno type="VIAF">88774753</idno>
         </person>
 
         <person xml:id="pers_Biel">
           <persName xml:lang="la">Gabriel Biel</persName>
           <birth when="1425"/><death when="1495"/>
           <affiliation>Fratres Vitae Communis; Universitas Tubingensis</affiliation>
+          <idno type="wikidata">Q61369</idno>
+          <idno type="VIAF">19692948</idno>
         </person>
 
         <person xml:id="pers_Bonacina">
           <persName xml:lang="la">Martinus Bonacina</persName>
+          <persName xml:lang="it">Martino Bonacina</persName>
           <birth when="1585"/><death when="1631"/>
           <affiliation>Societas Iesu</affiliation>
+          <idno type="wikidata">Q23806331</idno>
+          <idno type="VIAF">72503315</idno>
         </person>
 
         <person xml:id="pers_Covarrubias">
           <persName xml:lang="la">Didacus de Covarrubias y Leyva</persName>
           <birth when="1512"/><death when="1577"/>
           <affiliation>Episcopus Segobiensis</affiliation>
+          <idno type="wikidata">Q1220593</idno>
+          <idno type="VIAF">45099200</idno>
         </person>
 
         <person xml:id="pers_Manuel">
           <persName xml:lang="la">Emmanuel Rodrigues</persName>
-          <birth when="1553"/><death when="1613"/>
+          <persName xml:lang="pt">Manuel Rodrigues</persName>
+          <birth when="1545" source="http://viaf.org/viaf/99874810"/><death when="1613"/>
           <affiliation>Ordo Fratrum Minorum</affiliation>
+          <idno type="wikidata">Q110226630</idno>
+          <idno type="VIAF">99874810</idno>
         </person>
 
         <person xml:id="pers_Lessius">
           <persName xml:lang="la">Leonardus Lessius</persName>
           <birth when="1554"/><death when="1623"/>
           <affiliation>Societas Iesu</affiliation>
+          <idno type="wikidata">Q1367280</idno>
+          <idno type="VIAF">41895963</idno>
         </person>
 
         <person xml:id="pers_Filliucci">
           <persName xml:lang="la">Vincentius Filliucius</persName>
           <birth when="1566"/><death when="1622"/>
           <affiliation>Societas Iesu</affiliation>
+          <idno type="wikidata">Q7932231</idno>
+          <idno type="VIAF">10281025</idno>
         </person>
 
         <person xml:id="pers_Faustus_inc" cert="unknown">
@@ -476,6 +548,34 @@
           <persName xml:lang="la">Ioannes Azorius</persName>
           <birth when="1535"/><death when="1603"/>
           <affiliation>Societas Iesu</affiliation>
+          <idno type="wikidata">Q3810776</idno>
+          <idno type="VIAF">61889251</idno>
+        </person>
+
+        <!-- Entradas añadidas: el enricher ya las referenciaba (WORKS) -->
+        <person xml:id="pers_Augustinus">
+          <persName xml:lang="la">Aurelius Augustinus Hipponensis</persName>
+          <birth when="0354"/><death when="0430"/>
+          <affiliation>Episcopus Hipponensis</affiliation>
+          <idno type="wikidata">Q8018</idno>
+          <idno type="VIAF">66806872</idno>
+        </person>
+
+        <person xml:id="pers_Scotus">
+          <persName xml:lang="la">Ioannes Duns Scotus</persName>
+          <birth notBefore="1265" notAfter="1266"/><death when="1308"/>
+          <affiliation>Ordo Fratrum Minorum</affiliation>
+          <idno type="wikidata">Q190089</idno>
+          <idno type="VIAF">120697851</idno>
+        </person>
+
+        <person xml:id="pers_Maior">
+          <persName xml:lang="la">Ioannes Maior</persName>
+          <persName xml:lang="en">John Mair</persName>
+          <birth when="1467"/><death when="1550"/>
+          <affiliation>Universitas Parisiensis</affiliation>
+          <idno type="wikidata">Q579194</idno>
+          <idno type="VIAF">99949266</idno>
         </person>
 
       </listPerson>
