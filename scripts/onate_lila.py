@@ -43,6 +43,7 @@ from lxml import etree
 TEI_NS = "http://www.tei-c.org/ns/1.0"
 W = f"{{{TEI_NS}}}w"
 LB = f"{{{TEI_NS}}}lb"
+ROMAN_RE = __import__("re").compile(r"[ivxlcdmIVXLCDMjJ]+\.?")
 
 # UPOS (LatinCy) → categorías de LiLa: [preferida, alternativas...]
 POS_MAP = {
@@ -58,7 +59,7 @@ POS_MAP = {
     "SCONJ": ["subordinating_conjunction", "adverb"],
     "DET":   ["determiner", "pronoun", "adjective"],
     "PRON":  ["pronoun", "determiner"],
-    "NUM":   ["numeral", "adjective"],
+    "NUM":   ["numeral", "adjective", "determiner"],   # unus, ambo: determiner en LiLa
     "PART":  ["particle", "adverb"],
     "INTJ":  ["interjection"],
 }
@@ -155,7 +156,9 @@ def process_page(path: Path, index, exceptions, dry_run=False):
         lemma, upos = w.get("lemma"), w.get("pos")
         if not lemma or not upos:
             continue
-        if not any(ch.isalpha() for ch in lemma):   # cifras arábigas (NUM "347")
+        if not any(ch.isalpha() for ch in lemma) or (
+                upos == "NUM" and ROMAN_RE.fullmatch(lemma)):
+            # cifras arábigas ("347") y números romanos ("LXIII"): no son lemas
             set_lemmaref(w, None)
             continue
         ref, status, cands = resolve(lemma, upos, index, exceptions)
