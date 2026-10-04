@@ -146,6 +146,24 @@
           span.tei-w:hover .tooltip { display: block; }
           span.tei-sic:hover .tooltip { display: block; }
 
+          /* Lema enlazado a LiLa. Solo los tooltips con enlace reciben el
+             ratón; el ::after cubre el hueco entre palabra y tooltip para
+             que la palabra siga en :hover mientras el ratón sube. */
+          .tooltip a.tip-lila { color: inherit; text-decoration: underline dotted; }
+          .tooltip a.tip-lila:hover { text-decoration: underline; }
+          /* Enlaces del tooltip de cita (Wikidata, VIAF) */
+          .tooltip .ct-ids { margin-left: 0.4em; }
+          .tooltip a.ct-link { color: #c9b8ff; text-decoration: underline dotted; margin-left: 0.3em; font-size: 0.9em; }
+          .tooltip a.ct-link:hover { text-decoration: underline; }
+          .tooltip:has(a) { pointer-events: auto; }
+          .tooltip:has(a)::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0;
+            top: 100%;
+            height: 1.4em;
+          }
+
           /* abbr: subrayado punteado marrón (forma abreviada) */
           span.tei-choice-abbr {
             border-bottom: 1px dotted #8a6a2a;
@@ -446,7 +464,7 @@
 <body>
 <h1>Pedro de Oñate · <em>De contractibus</em></h1>
 <h2>Disputatio LXIII · Sectio I · Traducción</h2>
-<div class="stats">1 columna(s) · 5 de 9 oraciones traducidas</div>
+<div class="stats">1 columna(s) · 6 de 9 oraciones traducidas</div>
 <div class="page-sep"><span class="page-sep-label">Página 34 (col. derecha)</span></div>
 <div class="columns"><div class="col-wrap">
 <div class="col">
@@ -454,7 +472,7 @@
 <span class="tei-s" data-sid="pg_63_34_der-1"> <span class="tei-w" data-lemma="priusquam" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">priusquam</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/120723">priusquam</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -463,7 +481,7 @@
 </table></span>Priusquam</span> <span class="tei-w" data-lemma="ad" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">ad</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87344">ad</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -472,7 +490,7 @@
 </table></span>ad</span> <span class="tei-w tei-choice-reg" data-lemma="diuisio" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">diuisio</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/99948">diuisio</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -499,7 +517,7 @@
 </table></span>diuiſionem</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Gen|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pretium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119455">pretium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -557,7 +575,7 @@
 </table></span>veniamus</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="definio" data-pos="VERB" data-msd="Aspect=Prosp|Case=Acc|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">definio</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/98262">definio</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -596,7 +614,7 @@
 </table></span>definiendū</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">sum</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/126689">sum</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -635,7 +653,7 @@
 </table></span>eſt</span> <span class="tei-w" data-lemma="nos" data-pos="PRON" data-msd="Case=Dat|Number=Plur|Person=1"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">nos</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/110487">nos</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -656,7 +674,7 @@
 </table></span>nobis</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Nom|Gender=Neut|Number=Sing" data-sense="pg_63_34_der-sense-0"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pretium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119455">pretium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -681,7 +699,7 @@
 </table></span>pretium</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">in</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106748">in</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -711,7 +729,7 @@
 </table></span>genere</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="licet" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">licet</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/110432">licet</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -748,7 +766,7 @@
 </table></span>licet</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">in</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106748">in</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -757,7 +775,7 @@
 </table></span>in</span> <span class="tei-w" data-lemma="nullus" data-pos="DET" data-msd="Case=Abl|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">nullus</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/114081">nullus</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -778,7 +796,7 @@
 </table></span>nullo</span> <span class="tei-w" data-lemma="doctor" data-pos="NOUN" data-msd="Case=Abl|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">doctor</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/99985">doctor</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -799,7 +817,7 @@
 </table></span>Doctore</span> <span class="tei-w" data-lemma="is" data-pos="PRON" data-msd="Case=Gen|Gender=Masc|Number=Sing|Person=3"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">is</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109083">is</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -824,7 +842,7 @@
 </table></span>eius</span> <span class="tei-w" data-lemma="reperio" data-pos="VERB" data-msd="Aspect=Perf|Mood=Sub|Number=Sing|Person=1|Tense=Past|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">reperio</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/122659">reperio</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -861,7 +879,7 @@
 </table></span>repererim</span> <span class="tei-w" data-lemma="definitio" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">definitio</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/98263">definitio</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -882,7 +900,7 @@
 </table></span>definitionem</span>⁠<span class="tei-pc">.</span> </span> <span class="tei-s" data-sid="pg_63_34_der-2"><span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Nom|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pretium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119455">pretium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -907,7 +925,7 @@
 </table></span>Pretium</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -922,7 +940,7 @@
 </table></span>&amp;</span> <span class="tei-w tei-choice-reg" data-lemma="late" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">late</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/25311">late</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -937,7 +955,7 @@
 </table></span>latiſſimè</span> <span class="tei-w" data-lemma="dico" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">dico</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/99302">dico</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -974,7 +992,7 @@
 </table></span>dicitur</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -989,7 +1007,7 @@
 </table></span>&amp;</span> <span class="tei-w tei-choice-reg" data-lemma="stricte" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">stricte</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/111712">stricte</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1004,7 +1022,7 @@
 </table></span>ſtrictè</span>⁠<span class="tei-pc">:</span> <span class="tei-w tei-choice-reg" data-lemma="late" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">late</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/25311">late</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1019,7 +1037,7 @@
 </table></span>latiſſime</span> <span class="tei-w" data-lemma="dico" data-pos="VERB" data-msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Pass"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">dico</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/99302">dico</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1052,7 +1070,7 @@
 </table></span>dictum</span> <span class="tei-w tei-choice-reg" data-lemma="transcendo" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">transcendo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/128578">transcendo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1095,7 +1113,7 @@
 </table></span>tranſcendit</span> <span class="tei-w tei-choice-reg" data-lemma="noster" data-pos="PRON" data-msd="Case=Gen|Number=Plur|Person=1"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">noster</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/113882">noster</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1122,7 +1140,7 @@
 </table></span>noſtrum</span> <span class="tei-w tei-choice-expan" data-lemma="propositum" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">propositum</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/73758">propositum</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1153,7 +1171,7 @@
 </table></span>propoſitū</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1168,7 +1186,7 @@
 </table></span>&amp;</span> <span class="tei-w" data-lemma="materia" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">materia</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/111691">materia</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1189,7 +1207,7 @@
 </table></span>materiam</span> <span class="tei-w" data-lemma="emptio" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">emptio</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101040">emptio</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1210,7 +1228,7 @@
 </table></span>emptionum</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1225,7 +1243,7 @@
 </table></span>&amp;</span> <span class="tei-w" data-lemma="uenditio" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">uenditio</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/129753">uenditio</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1246,7 +1264,7 @@
 </table></span>venditionum</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="de" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">de</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/97932">de</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1255,7 +1273,7 @@
 </table></span>de</span> <span class="tei-w" data-lemma="qui" data-pos="PRON" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">qui</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121354">qui</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1276,7 +1294,7 @@
 </table></span>qua</span> <span class="tei-w" data-lemma="ago" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">ago</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/88140">ago</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1313,7 +1331,7 @@
 </table></span>agimus</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1328,7 +1346,7 @@
 </table></span>&amp;</span> <span class="tei-w" data-lemma="inuenio" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">inuenio</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/108806">inuenio</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1365,7 +1383,7 @@
 </table></span>inuenitur</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">in</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106748">in</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1374,7 +1392,7 @@
 </table></span>in</span> <span class="tei-w" data-lemma="omnis" data-pos="DET" data-msd="Case=Dat|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">omnis</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/114954">omnis</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1395,7 +1413,7 @@
 </table></span>omnibus</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">res</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1425,7 +1443,7 @@
 </table></span>tam</span> <span class="tei-w" data-lemma="materialis" data-pos="ADJ" data-msd="Case=Abl|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">materialis</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/111693">materialis</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1446,7 +1464,7 @@
 </table></span>materialibus</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="quam" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">quam</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/110471">quam</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1455,7 +1473,7 @@
 </table></span>quam</span> <span class="tei-w tei-choice-reg" data-lemma="spiritualis" data-pos="ADJ" data-msd="Case=Dat|Gender=Neut|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">spiritualis</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/125404">spiritualis</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1482,7 +1500,7 @@
 </table></span>ſpiritualibus</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1497,7 +1515,7 @@
 </table></span>&amp;</span> <span class="tei-w" data-lemma="nihil" data-pos="PRON" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">nihil</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/114071">nihil</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1518,7 +1536,7 @@
 </table></span>nihil</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">sum</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/126689">sum</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1557,7 +1575,7 @@
 </table></span>eſt</span> <span class="tei-w" data-lemma="alius" data-pos="DET" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">alius</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/88481">alius</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1578,7 +1596,7 @@
 </table></span>aliud</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="quam" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">quam</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/110471">quam</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1587,7 +1605,7 @@
 </table></span>quàm</span> <span class="tei-w tei-choice-reg" data-lemma="aestimatio" data-pos="NOUN" data-msd="Case=Nom|Gender=Fem|Number=Sing" data-sense="pg_63_34_der-sense-2"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">aestimatio</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87934">aestimatio</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1614,7 +1632,7 @@
 </table></span>æſtimatio</span> <span class="tei-w tei-choice-reg" data-lemma="quisque" data-pos="DET" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">quisque</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121320">quisque</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1641,7 +1659,7 @@
 </table></span>cuiuſque</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">res</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1662,7 +1680,7 @@
 </table></span>rei</span>⁠<span class="tei-pc">.</span> </span> <span class="tei-s" data-sid="pg_63_34_der-3"><span class="tei-w tei-choice-reg" data-lemma="qui" data-pos="PRON" data-msd="Case=Acc|Gender=Neut|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">qui</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121354">qui</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1689,7 +1707,7 @@
 </table></span>Quæ</span> <span class="tei-w tei-choice-reg" data-lemma="aestimatio" data-pos="NOUN" data-msd="Case=Nom|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">aestimatio</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87934">aestimatio</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1716,7 +1734,7 @@
 </table></span>æſtimatio</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">sum</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/126689">sum</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1755,7 +1773,7 @@
 </table></span>eſt</span> <span class="tei-w" data-lemma="rectus" data-pos="ADJ" data-msd="Case=Acc|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">rectus</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/38296">rectus</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1776,7 +1794,7 @@
 </table></span>rectum</span> <span class="tei-w" data-lemma="iudicium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">iudicium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109170">iudicium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1797,7 +1815,7 @@
 </table></span>iudicium</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">res</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1836,7 +1854,7 @@
 </table></span>alias</span> <span class="tei-w" data-lemma="alius" data-pos="DET" data-msd="Case=Dat|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">alius</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/88481">alius</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1857,7 +1875,7 @@
 </table></span>alijs</span> <span class="tei-w" data-lemma="confero" data-pos="VERB" data-msd="Case=Nom|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">confero</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/95728">confero</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1886,7 +1904,7 @@
 </table></span>conferentes</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1901,7 +1919,7 @@
 </table></span>&amp;</span> <span class="tei-w tei-choice-reg" data-lemma="quasi" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">quasi</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121112">quasi</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1916,7 +1934,7 @@
 </table></span>quaſi</span> <span class="tei-w" data-lemma="iudicium" data-pos="NOUN" data-msd="Case=Gen|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">iudicium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109170">iudicium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1937,7 +1955,7 @@
 </table></span>iudicij</span> <span class="tei-w tei-choice-reg" data-lemma="noster" data-pos="PRON" data-msd="Case=Nom|Gender=Masc|Number=Plur|Person=1"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">noster</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/113882">noster</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1968,7 +1986,7 @@
 </table></span>noſtri</span> <span class="tei-w" data-lemma="fidelis" data-pos="ADJ" data-msd="Case=Nom|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">fidelis</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/103256">fidelis</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -1989,7 +2007,7 @@
 </table></span>fidelis</span> <span class="tei-w" data-lemma="trutina" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">trutina</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/129116">trutina</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2010,7 +2028,7 @@
 </table></span>trutina</span> <span class="tei-w" data-lemma="pondero" data-pos="VERB" data-msd="Case=Nom|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pondero</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/118406">pondero</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2048,7 +2066,7 @@
 </table></span>alias</span> <span class="tei-w" data-lemma="alius" data-pos="DET" data-msd="Case=Dat|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">alius</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/88481">alius</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2069,7 +2087,7 @@
 </table></span>alijs</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="uel" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">uel</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/129695">uel</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2078,7 +2096,7 @@
 </table></span>vel</span> <span class="tei-w tei-choice-reg" data-lemma="postpono" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">postpono</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/118607">postpono</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2121,7 +2139,7 @@
 </table></span>poſtponimus</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="uel" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">uel</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/129695">uel</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2130,7 +2148,7 @@
 </table></span>vel</span> <span class="tei-w tei-choice-reg" data-lemma="praepono" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">praepono</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119118">praepono</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2173,7 +2191,7 @@
 </table></span>præponimus</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="uel" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">uel</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/129695">uel</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2182,7 +2200,7 @@
 </table></span>vel</span> <span class="tei-w tei-choice-reg" data-lemma="aequo" data-pos="VERB" data-msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">aequo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87869">aequo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2225,7 +2243,7 @@
 </table></span>æquamus</span> <span class="tei-w tei-choice-reg" data-lemma="secundum" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">secundum</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/127508">secundum</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2240,7 +2258,7 @@
 </table></span>ſecundum</span> <span class="tei-w tei-choice-reg" data-lemma="quicumque" data-pos="DET" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">quicumque</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121318">quicumque</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2267,7 +2285,7 @@
 </table></span>cuiuſcumque</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">res</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2288,7 +2306,7 @@
 </table></span>rei</span> <span class="tei-w" data-lemma="meritus" data-pos="ADJ" data-msd="Case=Acc|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">meritus</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/27149">meritus</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2309,7 +2327,7 @@
 </table></span>meritum</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2324,7 +2342,7 @@
 </table></span>&amp;</span> <span class="tei-w" data-lemma="dignitas" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">dignitas</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/99402">dignitas</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2345,7 +2363,7 @@
 </table></span>dignitatem</span>⁠<span class="tei-pc">.</span> </span> <span class="tei-s" data-sid="pg_63_34_der-4"><span class="tei-w" data-lemma="sicut" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">sicut</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/124723">sicut</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2354,7 +2372,7 @@
 </table></span>Sicut</span> <span class="tei-w" data-lemma="enim" data-pos="PART" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">enim</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101119">enim</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2363,7 +2381,7 @@
 </table></span>enim</span> <span class="tei-w" data-lemma="is" data-pos="PRON" data-msd="Case=Nom|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">is</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109083">is</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2384,7 +2402,7 @@
 </table></span>is</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="qui" data-pos="PRON" data-msd="Case=Nom|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">qui</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121354">qui</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2405,7 +2423,7 @@
 </table></span>qui</span> <span class="tei-w tei-choice-reg" data-lemma="aequus" data-pos="ADJ" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">aequus</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87765">aequus</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2436,7 +2454,7 @@
 </table></span>æqua</span> <span class="tei-w" data-lemma="lanx" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">lanx</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109886">lanx</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2457,7 +2475,7 @@
 </table></span>lance</span> <span class="tei-w" data-lemma="propendeo" data-pos="VERB" data-msd="Aspect=Perf|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">propendeo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119927">propendeo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2494,7 +2512,7 @@
 </table></span>propendit</span> <span class="tei-w tei-choice-expan" data-lemma="res" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">res</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2521,7 +2539,7 @@
 </table></span>rerū</span> <span class="tei-w" data-lemma="pondus" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pondus</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/118410">pondus</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2542,7 +2560,7 @@
 </table></span>pondera</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2557,7 +2575,7 @@
 </table></span>&amp;</span> <span class="tei-w" data-lemma="momentum" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">momentum</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/112640">momentum</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2578,7 +2596,7 @@
 </table></span>momenta</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="ad" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">ad</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87344">ad</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2587,7 +2605,7 @@
 </table></span>ad</span> <span class="tei-w tei-sic" data-lemma="dinosco" data-pos="VERB" data-msd="Aspect=Prosp|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Pass"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">dinosco</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/99512">dinosco</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2624,7 +2642,7 @@
 </table></span>dignoſendum</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Nom|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pretium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119455">pretium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2649,7 +2667,7 @@
 </table></span>pretium</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2664,7 +2682,7 @@
 </table></span>&amp;</span> <span class="tei-w" data-lemma="pondus" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pondus</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/118410">pondus</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2685,7 +2703,7 @@
 </table></span>pondus</span> <span class="tei-w" data-lemma="is" data-pos="PRON" data-msd="Case=Gen|Gender=Masc|Number=Sing|Person=3"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">is</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109083">is</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2710,7 +2728,7 @@
 </table></span>eius</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="alius" data-pos="DET" data-msd="Case=Dat|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">alius</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/88481">alius</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2731,7 +2749,7 @@
 </table></span>alijs</span> <span class="tei-w" data-lemma="pondus" data-pos="NOUN" data-msd="Case=Abl|Gender=Neut|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pondus</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/118410">pondus</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2752,7 +2770,7 @@
 </table></span>ponderibus</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">res</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2773,7 +2791,7 @@
 </table></span>rem</span> <span class="tei-w" data-lemma="ille" data-pos="DET" data-msd="Case=Acc|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">ille</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106221">ille</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2794,7 +2812,7 @@
 </table></span>illam</span> <span class="tei-w tei-choice-reg" data-lemma="praepono" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">praepono</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119118">praepono</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2837,7 +2855,7 @@
 </table></span>præponit</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="alius" data-pos="DET" data-msd="Case=Dat|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">alius</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/88481">alius</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2858,7 +2876,7 @@
 </table></span>alijs</span> <span class="tei-w tei-choice-reg" data-lemma="postpono" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">postpono</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/118607">postpono</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2901,7 +2919,7 @@
 </table></span>poſtponit</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="alius" data-pos="DET" data-msd="Case=Dat|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">alius</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/88481">alius</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2922,7 +2940,7 @@
 </table></span>alijs</span> <span class="tei-w tei-choice-reg" data-lemma="coaequo" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">coaequo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/94611">coaequo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2965,7 +2983,7 @@
 </table></span>coęquat</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="is" data-pos="PRON" data-msd="Case=Abl|Gender=Masc|Number=Plur|Person=3"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">is</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109083">is</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -2990,7 +3008,7 @@
 </table></span>ijs</span> <span class="tei-w tei-choice-reg" data-lemma="scilicet" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">scilicet</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/123717">scilicet</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3005,7 +3023,7 @@
 </table></span>ſcilicet</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-reg" data-lemma="quis" data-pos="PRON" data-msd="Case=Acc|Gender=Neut|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">quis</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121165">quis</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3032,7 +3050,7 @@
 </table></span>quæ</span> <span class="tei-w" data-lemma="tantusdem" data-pos="DET" data-msd="Case=Acc|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">tantusdem</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/127629">tantusdem</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3053,7 +3071,7 @@
 </table></span>tantundem</span> <span class="tei-w" data-lemma="ualor" data-pos="NOUN" data-msd="Case=Gen|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">ualor</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/84044">ualor</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3074,7 +3092,7 @@
 </table></span>valoris</span> <span class="tei-w" data-lemma="habeo" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">habeo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/105044">habeo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3111,7 +3129,7 @@
 </table></span>habent</span>⁠<span class="tei-pc">.</span> </span> <span class="tei-s" data-sid="pg_63_34_der-5"><span class="tei-w" data-lemma="ita" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">ita</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109126">ita</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3120,7 +3138,7 @@
 </table></span>Ita</span> <span class="tei-w" data-lemma="nos" data-pos="PRON" data-msd="Case=Nom|Number=Plur|Person=1"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">nos</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/110487">nos</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3141,7 +3159,7 @@
 </table></span>nos</span> <span class="tei-w" data-lemma="iudicium" data-pos="NOUN" data-msd="Case=Abl|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">iudicium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109170">iudicium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3162,7 +3180,7 @@
 </table></span>iudicio</span> <span class="tei-w tei-choice-reg" data-lemma="noster" data-pos="DET" data-msd="Case=Abl|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">noster</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/113882">noster</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3189,7 +3207,7 @@
 </table></span>noſtro</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">res</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3210,7 +3228,7 @@
 </table></span>res</span> <span class="tei-w tei-choice-reg" data-lemma="aestimo" data-pos="VERB" data-msd="Case=Nom|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">aestimo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87940">aestimo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3245,7 +3263,7 @@
 </table></span>æſtimantes</span> <span class="tei-w" data-lemma="pondero" data-pos="VERB" data-msd="Case=Nom|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pondero</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/118406">pondero</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3274,7 +3292,7 @@
 </table></span>ponderantes</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="atque" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">atque</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/90490">atque</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3283,7 +3301,7 @@
 </table></span>ac</span> <span class="tei-w" data-lemma="trutino" data-pos="VERB" data-msd="Aspect=Imp|Case=Nom|Number=Plur|VerbForm=Part|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">trutino</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/129119">trutino</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3321,7 +3339,7 @@
 </table></span>alias</span> <span class="tei-w" data-lemma="alius" data-pos="DET" data-msd="Case=Dat|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">alius</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/88481">alius</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3342,7 +3360,7 @@
 </table></span>alijs</span> <span class="tei-w tei-choice-reg" data-lemma="postpono" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">postpono</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/118607">postpono</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3394,7 +3412,7 @@
 </table></span>alias</span> <span class="tei-w" data-lemma="antefero" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">antefero</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/89184">antefero</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3440,7 +3458,7 @@
 </table></span>alias</span> <span class="tei-w tei-choice-reg" data-lemma="coaequo" data-pos="VERB" data-msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">coaequo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/94611">coaequo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3483,7 +3501,7 @@
 </table></span>coæquamus</span>⁠<span class="tei-pc">;</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3498,7 +3516,7 @@
 </table></span>&amp;</span> <span class="tei-w" data-lemma="ille" data-pos="DET" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">ille</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106221">ille</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3519,7 +3537,7 @@
 </table></span>illud</span> <span class="tei-w" data-lemma="iudicium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">iudicium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109170">iudicium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3549,7 +3567,7 @@
 </table></span>quo</span> <span class="tei-w" data-lemma="is" data-pos="PRON" data-msd="Case=Acc|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">is</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109083">is</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3570,7 +3588,7 @@
 </table></span>eas</span> <span class="tei-w tei-choice-reg" data-lemma="aestimo" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">aestimo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87940">aestimo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3613,7 +3631,7 @@
 </table></span>æſtimamus</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">sum</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/126689">sum</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3652,7 +3670,7 @@
 </table></span>eſt</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Nom|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pretium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119455">pretium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3677,7 +3695,7 @@
 </table></span>pretium</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">in</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106748">in</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3695,7 +3713,7 @@
 </table></span>quo</span> <span class="tei-w tei-choice-reg" data-lemma="idem" data-pos="DET" data-msd="Case=Acc|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">idem</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109082">idem</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3722,7 +3740,7 @@
 </table></span>eaſdem</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Acc|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">res</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3743,7 +3761,7 @@
 </table></span>res</span> <span class="tei-w" data-lemma="habeo" data-pos="VERB" data-msd="Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">habeo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/105044">habeo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3776,7 +3794,7 @@
 </table></span>habemus</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3791,7 +3809,7 @@
 </table></span>&amp;</span> <span class="tei-w" data-lemma="hic" data-pos="DET" data-msd="Case=Acc|Gender=Neut|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">hic</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/105455">hic</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3812,7 +3830,7 @@
 </table></span>hoc</span> <span class="tei-w" data-lemma="modo" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">modo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/113289">modo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3821,7 +3839,7 @@
 </table></span>modo</span> <span class="tei-w" data-lemma="tot" data-pos="DET" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">tot</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/128477">tot</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3830,7 +3848,7 @@
 </table></span>tot</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">sum</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/126689">sum</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3869,7 +3887,7 @@
 </table></span>ſunt</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">pretium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119455">pretium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3890,7 +3908,7 @@
 </table></span>pretia</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">res</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3911,7 +3929,7 @@
 </table></span>rerum</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="quot" data-pos="DET" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">quot</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121302">quot</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3920,7 +3938,7 @@
 </table></span>quot</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">sum</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/126689">sum</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3959,7 +3977,7 @@
 </table></span>ſunt</span> <span class="tei-w" data-lemma="homo" data-pos="NOUN" data-msd="Case=Gen|Gender=Masc|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">homo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/105624">homo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3980,7 +3998,7 @@
 </table></span>hominum</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="immo" data-pos="ADV" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">immo</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106420">immo</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -3989,7 +4007,7 @@
 </table></span>immo</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -4025,7 +4043,7 @@
 </table></span>Angelorum</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">et</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -4040,7 +4058,7 @@
 </table></span>&amp;</span> <span class="tei-w tei-choice-reg" data-lemma="ipse" data-pos="DET" data-msd="Case=Gen|Gender=Fem|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">ipse</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/108945">ipse</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -4067,7 +4085,7 @@
 </table></span>ipſius</span> <span class="tei-w" data-lemma="deus" data-pos="NOUN" data-msd="Case=Gen|Gender=Masc|Number=Sing"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">deus</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/99132">deus</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -4088,7 +4106,7 @@
 </table></span>Dei</span> <span class="tei-w" data-lemma="iudicium" data-pos="NOUN" data-msd="Case=Nom|Gender=Neut|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">iudicium</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109170">iudicium</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -4109,7 +4127,7 @@
 </table></span>iudicia</span> <span class="tei-w" data-lemma="de" data-pos="ADP" data-msd=""><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">de</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/97932">de</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -4118,7 +4136,7 @@
 </table></span>de</span> <span class="tei-w" data-lemma="ille" data-pos="DET" data-msd="Case=Dat|Gender=Fem|Number=Plur"><span class="tooltip"><table>
 <tr>
 <td class="tip-key">lemma</td>
-<td class="tip-lemma">ille</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106221">ille</a></td>
 </tr>
 <tr>
 <td class="tip-key">POS</td>
@@ -4136,12 +4154,798 @@
 <td class="tip-key">Number</td>
 <td class="tip-val">Plur</td>
 </tr>
-</table></span>illis</span>⁠<span class="tei-pc">.</span> </span> 
+</table></span>illis</span>⁠<span class="tei-pc">.</span> </span> <span class="tei-s" data-sid="pg_63_34_der-6"><span class="tei-w" data-lemma="hic" data-pos="DET" data-msd="Case=Abl|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/105455">hic</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">DET</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>Hac</span> <span class="tei-w" data-lemma="differentia" data-pos="NOUN" data-msd="Case=Nom|Gender=Fem|Number=Sing" data-sense="pg_63_34_der-sense-3"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/100466">differentia</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>differentia</span> <span class="tei-w tei-choice-reg" data-lemma="obseruo" data-pos="VERB" data-msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" data-sense="pg_63_34_der-sense-4"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/114414">obseruo</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Perf</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Part</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Pass</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          obseruata
+        </td>
+</tr>
+</table></span>obſeruata</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="quod" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/74854">quod</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">SCONJ</td>
+</tr>
+</table></span>quod</span> <span class="tei-w" data-lemma="iudicium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing" data-sense="pg_63_34_der-sense-5"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109170">iudicium</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>iudicium</span> <span class="tei-w" data-lemma="deus" data-pos="NOUN" data-msd="Case=Gen|Gender=Masc|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/99132">deus</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>Dei</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106748">in</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>in</span> <span class="tei-w" data-lemma="res" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Plur"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121868">res</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+</table></span>rerum</span> <span class="tei-w tei-choice-reg" data-lemma="aestimatio" data-pos="NOUN" data-msd="Case=Abl|Gender=Fem|Number=Sing" data-sense="pg_63_34_der-sense-7"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87934">aestimatio</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          aestimatione
+        </td>
+</tr>
+</table></span>ęſtimatione</span> <span class="tei-w tei-choice-reg" data-lemma="semper" data-pos="ADV" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/124294">semper</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADV</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          semper
+        </td>
+</tr>
+</table></span>ſemper</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/126689">sum</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">AUX</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">3</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          est
+        </td>
+</tr>
+</table></span>eſt</span> <span class="tei-w" data-lemma="uerum" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/111485">uerum</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">CCONJ</td>
+</tr>
+</table></span>verum</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-reg" data-lemma="semper" data-pos="ADV" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/124294">semper</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADV</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          semper
+        </td>
+</tr>
+</table></span>ſemper</span> <span class="tei-w tei-choice-reg" data-lemma="aequus" data-pos="ADJ" data-msd="Case=Nom|Gender=Neut|Number=Sing" data-sense="pg_63_34_der-sense-8"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/87765">aequus</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADJ</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          aequum
+        </td>
+</tr>
+</table></span>ęquum</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-reg" data-lemma="semper" data-pos="ADV" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/124294">semper</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADV</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          semper
+        </td>
+</tr>
+</table></span>ſemper</span> <span class="tei-w tei-choice-reg" data-lemma="noster" data-pos="DET" data-msd="Case=Gen|Gender=Masc|Number=Plur|Person=1"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/113882">noster</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">DET</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">1</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          nostrorum
+        </td>
+</tr>
+</table></span>noſtrorum</span> <span class="tei-w" data-lemma="iudicium" data-pos="NOUN" data-msd="Case=Gen|Gender=Neut|Number=Plur" data-sense="pg_63_34_der-sense-6"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109170">iudicium</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+</table></span>iudiciorum</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">CCONJ</td>
+</tr>
+<tr>
+<td class="tip-key">expan</td>
+<td class="tip-expan">
+          et
+        </td>
+</tr>
+</table></span>&amp;</span> <span class="tei-w" data-lemma="appretiatio" data-pos="NOUN" data-msd="Case=Gen|Gender=Fem|Number=Plur"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/165208">appretiatio</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+</table></span>appretiationum</span> <span class="tei-w" data-lemma="metrum" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing" data-sense="pg_63_34_der-sense-9"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/112257">metrum</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>metrum</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">CCONJ</td>
+</tr>
+<tr>
+<td class="tip-key">expan</td>
+<td class="tip-expan">
+          et
+        </td>
+</tr>
+</table></span>&amp;</span> <span class="tei-w tei-choice-reg" data-lemma="mensura" data-pos="NOUN" data-msd="Case=Nom|Gender=Fem|Number=Sing"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/113311">mensura</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          mensura
+        </td>
+</tr>
+</table></span>menſura</span>⁠<span class="tei-pc">:</span> <span class="tei-w" data-lemma="iudicium" data-pos="NOUN" data-msd="Case=Acc|Gender=Neut|Number=Sing" data-sense="pg_63_34_der-sense-14"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/109170">iudicium</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Acc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>iudicium</span> <span class="tei-w" data-lemma="uero" data-pos="PART" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/hypolemma/111474">uero</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">PART</td>
+</tr>
+</table></span>verò</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">CCONJ</td>
+</tr>
+<tr>
+<td class="tip-key">expan</td>
+<td class="tip-expan">
+          et
+        </td>
+</tr>
+</table></span>&amp;</span> <span class="tei-w" data-lemma="pretium" data-pos="NOUN" data-msd="Case=Nom|Gender=Neut|Number=Sing" data-sense="pg_63_34_der-sense-10"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/119455">pretium</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Neut</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">nota</td>
+<td class="tip-val">lemma/pos editado manualmente</td>
+</tr>
+</table></span>pretium</span> <span class="tei-w" data-lemma="homo" data-pos="NOUN" data-msd="Case=Gen|Gender=Masc|Number=Plur"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/105624">homo</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+</table></span>hominum</span> <span class="tei-w" data-lemma="fallax" data-pos="ADJ" data-msd="Case=Nom|Gender=Fem|Number=Sing" data-sense="pg_63_34_der-sense-11"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/102846">fallax</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADJ</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Nom</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>fallax</span> <span class="tei-w tei-choice-reg" data-lemma="sum" data-pos="AUX" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/126689">sum</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">AUX</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">3</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          est
+        </td>
+</tr>
+</table></span>eſt</span>⁠<span class="tei-pc">,</span> <span class="tei-w tei-choice-expan" data-lemma="et" data-pos="CCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/101542">et</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">CCONJ</td>
+</tr>
+<tr>
+<td class="tip-key">expan</td>
+<td class="tip-expan">
+          et
+        </td>
+</tr>
+</table></span>&amp;</span> <span class="tei-w" data-lemma="mendax" data-pos="ADJ" data-msd="Case=Voc|Gender=Fem|Number=Sing" data-sense="pg_63_34_der-sense-12"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/112017">mendax</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADJ</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Voc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+</table></span>mendax</span>⁠<span class="tei-pc">,</span> <span class="tei-w" data-lemma="quia" data-pos="SCONJ" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/121166">quia</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">SCONJ</td>
+</tr>
+</table></span>quia</span> <span class="tei-w" data-lemma="mendax" data-pos="ADJ" data-msd="" data-sense="pg_63_34_der-sense-13"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/112017">mendax</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADJ</td>
+</tr>
+</table></span>mendaces</span> <span class="tei-w" data-lemma="filius" data-pos="NOUN" data-msd="Case=Voc|Gender=Masc|Number=Plur"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/103307">filius</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Voc</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+</table></span>filij</span> <span class="tei-w" data-lemma="homo" data-pos="NOUN" data-msd="Case=Gen|Gender=Masc|Number=Plur"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/105624">homo</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">NOUN</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Gen</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Masc</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+</table></span>hominum</span> <span class="tei-w" data-lemma="in" data-pos="ADP" data-msd=""><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/106748">in</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">ADP</td>
+</tr>
+</table></span>in</span> <span class="tei-w tei-choice-reg" data-lemma="stater" data-pos="VERB" data-msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Pass"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma">stater</td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">VERB</td>
+</tr>
+<tr>
+<td class="tip-key">Aspect</td>
+<td class="tip-val">Imp</td>
+</tr>
+<tr>
+<td class="tip-key">Mood</td>
+<td class="tip-val">Ind</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Sing</td>
+</tr>
+<tr>
+<td class="tip-key">Person</td>
+<td class="tip-val">2</td>
+</tr>
+<tr>
+<td class="tip-key">Tense</td>
+<td class="tip-val">Pres</td>
+</tr>
+<tr>
+<td class="tip-key">VerbForm</td>
+<td class="tip-val">Fin</td>
+</tr>
+<tr>
+<td class="tip-key">Voice</td>
+<td class="tip-val">Pass</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          stateris
+        </td>
+</tr>
+</table></span>ſtateris</span> <span class="tei-w tei-choice-reg" data-lemma="suus" data-pos="DET" data-msd="Case=Abl|Gender=Fem|Number=Plur"><span class="tooltip"><table>
+<tr>
+<td class="tip-key">lemma</td>
+<td class="tip-lemma"><a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa" href="http://lila-erc.eu/data/id/lemma/127165">suus</a></td>
+</tr>
+<tr>
+<td class="tip-key">POS</td>
+<td class="tip-pos">DET</td>
+</tr>
+<tr>
+<td class="tip-key">Case</td>
+<td class="tip-val">Abl</td>
+</tr>
+<tr>
+<td class="tip-key">Gender</td>
+<td class="tip-val">Fem</td>
+</tr>
+<tr>
+<td class="tip-key">Number</td>
+<td class="tip-val">Plur</td>
+</tr>
+<tr>
+<td class="tip-key">reg</td>
+<td class="tip-expan">
+          suis
+        </td>
+</tr>
+</table></span>ſuis</span>⁠<span class="tei-pc">.</span> </span> 
 </div>
 <div class="col col-translation">
 <div class="col-label">Traducción</div>
-<p class="translation"><span class="tei-s" data-sid="pg_63_34_der-1">Antes de que <span class="sense-w" data-sense="pg_63_34_der-sense-1"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">venio</td></tr><tr><td class="tip-key">gloss</td><td class="tip-pos">approach</td></tr><tr><td class="tip-key">def</td><td class="tip-val">move toward, travel toward something or somebody or approach something or somebody</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">01853188-v</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/01853188-v" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>abordemos</span> la división del precio, debemos definir qué es el <span class="sense-w" data-sense="pg_63_34_der-sense-0"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">pretium</td></tr><tr><td class="tip-key">gloss</td><td class="tip-pos">price</td></tr><tr><td class="tip-key">def</td><td class="tip-val">value measured by what must be given or done or undergone to obtain something</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">05171334-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="https://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05171334-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>precio</span> en general, aunque no he hallado su definición en ningún Doctor.</span> <span class="tei-s" data-sid="pg_63_34_der-2">El precio se dice tanto en sentido amplísimo como en sentido estricto: dicho en sentido amplísimo, trasciende nuestro propósito y la materia de las compraventas de las que tratamos, y se halla en todas las cosas, tanto materiales como espirituales, y no es otra cosa que la <span class="sense-w" data-sense="pg_63_34_der-sense-2"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">aestimatio</td></tr><tr><td class="tip-key">gloss</td><td class="tip-pos">worth</td></tr><tr><td class="tip-key">def</td><td class="tip-val">the quality that renders something desirable or valuable or useful</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">05145473-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05145473-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>estimación</span> de cada cosa.</span> <span class="tei-s" data-sid="pg_63_34_der-3">Esta estimación es el recto juicio de las cosas, por el cual, comparando unas con otras, y como pesándolas con la fiel balanza de nuestro juicio, unas respecto de otras, o bien las posponemos, o bien las anteponemos, o bien las igualamos, según el mérito y la dignidad de cada cosa.</span> <span class="tei-s" data-sid="pg_63_34_der-4">Pues así como aquel que, con una balanza equilibrada, pesa los pesos y momentos de las cosas para determinar su precio y su peso, antepone esa cosa a unos pesos, la pospone a otros, o la iguala a otros, es decir, a aquellos que tienen tanto valor como ella.</span> <span class="tei-s" data-sid="pg_63_34_der-5">Así nosotros, evaluando, ponderando y sopesando las cosas con nuestro juicio, posponemos unas a otras, preferimos unas a otras, e igualamos otras; y aquel juicio, con el cual las evaluamos, es el precio en el que tenemos esas mismas cosas, y de este modo hay tantos precios de las cosas cuantos juicios hay de los hombres, más aún, de los Ángeles y del mismo Dios acerca de ellas.</span></p>
-<p class="pending-note">(4 oración(es) de esta columna aún sin traducir)</p>
+<p class="translation"><span class="tei-s" data-sid="pg_63_34_der-1">Antes de que <span class="sense-w" data-sense="pg_63_34_der-sense-1"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">venio</td></tr><tr><td class="tip-key">gloss</td><td class="tip-pos">approach</td></tr><tr><td class="tip-key">def</td><td class="tip-val">move toward, travel toward something or somebody or approach something or somebody</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">01853188-v</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/01853188-v" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>abordemos</span> la división del precio, debemos definir qué es el <span class="sense-w" data-sense="pg_63_34_der-sense-0"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">pretium</td></tr><tr><td class="tip-key">gloss</td><td class="tip-pos">price</td></tr><tr><td class="tip-key">def</td><td class="tip-val">value measured by what must be given or done or undergone to obtain something</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">05171334-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05171334-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>precio</span> en general, aunque no he hallado su definición en ningún Doctor.</span> <span class="tei-s" data-sid="pg_63_34_der-2">El precio se dice tanto en sentido amplísimo como en sentido estricto: dicho en sentido amplísimo, trasciende nuestro propósito y la materia de las compraventas de las que tratamos, y se halla en todas las cosas, tanto materiales como espirituales, y no es otra cosa que la <span class="sense-w" data-sense="pg_63_34_der-sense-2"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">aestimatio</td></tr><tr><td class="tip-key">gloss</td><td class="tip-pos">worth</td></tr><tr><td class="tip-key">def</td><td class="tip-val">the quality that renders something desirable or valuable or useful</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">05145473-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05145473-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>estimación</span> de cada cosa.</span> <span class="tei-s" data-sid="pg_63_34_der-3">Esta estimación es el recto juicio de las cosas, por el cual, comparando unas con otras, y como pesándolas con la fiel balanza de nuestro juicio, unas respecto de otras, o bien las posponemos, o bien las anteponemos, o bien las igualamos, según el mérito y la dignidad de cada cosa.</span> <span class="tei-s" data-sid="pg_63_34_der-4">Pues así como aquel que, con una balanza equilibrada, pesa los pesos y momentos de las cosas para determinar su precio y su peso, antepone esa cosa a unos pesos, la pospone a otros, o la iguala a otros, es decir, a aquellos que tienen tanto valor como ella.</span> <span class="tei-s" data-sid="pg_63_34_der-5">Así nosotros, evaluando, ponderando y sopesando las cosas con nuestro juicio, posponemos unas a otras, preferimos unas a otras, e igualamos otras; y aquel juicio, con el cual las evaluamos, es el precio en el que tenemos esas mismas cosas, y de este modo hay tantos precios de las cosas cuantos juicios hay de los hombres, más aún, de los Ángeles y del mismo Dios acerca de ellas.</span> <span class="tei-s" data-sid="pg_63_34_der-6"><span class="sense-w" data-sense="pg_63_34_der-sense-4"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">obseruo</td></tr><tr><td class="tip-key">def</td><td class="tip-val">observe with care or pay close attention to</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">02123398-v</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/02123398-v" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>Observada</span> esta <span class="sense-w" data-sense="pg_63_34_der-sense-3"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">differentia</td></tr><tr><td class="tip-key">def</td><td class="tip-val">a distinguishing difference between similar things or people</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">04756794-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/04756794-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>diferencia</span>: que el <span class="sense-w" data-sense="pg_63_34_der-sense-5"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">iudicium</td></tr><tr><td class="tip-key">def</td><td class="tip-val">the act of judging or assessing a person or situation or event</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">00875745-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00875745-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>juicio</span> de Dios en la <span class="sense-w" data-sense="pg_63_34_der-sense-7"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">aestimatio</td></tr><tr><td class="tip-key">def</td><td class="tip-val">an appraisal of the value of something</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">05744094-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05744094-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>estimación</span> de las cosas es siempre verdadero, siempre <span class="sense-w" data-sense="pg_63_34_der-sense-8"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">aequus</td></tr><tr><td class="tip-key">def</td><td class="tip-val">fair to all parties as dictated by reason and conscience</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">00961341-a</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00961341-a" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>justo</span>, siempre <span class="sense-w" data-sense="pg_63_34_der-sense-9"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">metrum</td></tr><tr><td class="tip-key">def</td><td class="tip-val">a basis for comparison; a reference point against which other things can be evaluated</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">07275291-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/07275291-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>metro</span> y medida de nuestros <span class="sense-w" data-sense="pg_63_34_der-sense-6"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">iudicium</td></tr><tr><td class="tip-key">def</td><td class="tip-val">the act of judging or assessing a person or situation or event</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">00875745-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00875745-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>juicios</span> y apreciaciones; en cambio, el <span class="sense-w" data-sense="pg_63_34_der-sense-14"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">iudicium</td></tr><tr><td class="tip-key">def</td><td class="tip-val">the act of judging or assessing a person or situation or event</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">00875745-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00875745-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>juicio</span> y el <span class="sense-w" data-sense="pg_63_34_der-sense-10"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">pretium</td></tr><tr><td class="tip-key">def</td><td class="tip-val">value measured by what must be given or done or undergone to obtain something</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">05171334-n</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05171334-n" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>precio</span> de los hombres es <span class="sense-w" data-sense="pg_63_34_der-sense-11"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">fallax</td></tr><tr><td class="tip-key">def</td><td class="tip-val">designed to deceive or mislead either deliberately or inadvertently</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">01226942-s</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/01226942-s" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>falaz</span> y <span class="sense-w" data-sense="pg_63_34_der-sense-12"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">mendax</td></tr><tr><td class="tip-key">def</td><td class="tip-val">not in accordance with the fact or reality or actuality</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">02470951-a</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/02470951-a" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>mendaz</span>, porque <span class="sense-w" data-sense="pg_63_34_der-sense-13"><span class="tooltip"><table><tr><td class="tip-key">latin</td><td class="tip-lemma">mendax</td></tr><tr><td class="tip-key">def</td><td class="tip-val">given to lying</td></tr><tr><td class="tip-key">synset</td><td class="tip-feat">01229002-s</td></tr><tr><td class="tip-key">lila</td><td class="tip-val"><a href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/01229002-s" target="_blank" rel="noopener">↗ lila-erc.eu</a></td></tr></table></span>mendaces</span> son los hijos de los hombres en sus balanzas.</span></p>
+<p class="pending-note">(3 oración(es) de esta columna aún sin traducir)</p>
 </div>
 </div></div>
 <script>

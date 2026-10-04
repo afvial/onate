@@ -1,5 +1,5 @@
 {
-  "_readme": "Ancla el sentido de una palabra latina puntual (en su ocurrencia dentro de una oración concreta) al Latin WordNet de LiLa: Linking Latin. 'gloss_en' es la palabra inglesa usada para buscar/desambiguar en LiLa (que muestra sus definiciones en inglés), independientemente del idioma de la traducción. 'occurrence' desambigua cuándo la misma forma superficial LATINA aparece más de una vez en la oración (1 = primera aparición). 'match_text' (por defecto = gloss_en) es la palabra/frase exacta a resaltar dentro de la TRADUCCIÓN (en el idioma que tenga translations/, ahora español), y 'match_occurrence' (por defecto 1) desambigua cuándo esa misma palabra aparece más de una vez ahí. 'lila_uri' es la URI del LexicalConcept en LiLa (buscar el lema en https://lila-erc.eu/query/, abrir el LexicalConcept del Latin WordNet correspondiente al sentido correcto, copiar su URI) — null mientras esté pendiente. 'lila_def' es la definición/gloss que muestra la propia página de LiLa para ese LexicalConcept — distinta de 'note', que es tu comentario editorial.",
+  "_readme": "Ancla el sentido de una palabra latina puntual (en su ocurrencia dentro de una oración concreta) al Latin WordNet de LiLa. 'occurrence' desambigua cuándo la misma forma latina aparece más de una vez en la oración. 'match_text' es la palabra/frase a resaltar en la TRADUCCIÓN y 'match_occurrence' desambigua si aparece varias veces. 'lemmaRef' es el lema de LiLa (como en el TEI); 'synset' el id del LexicalConcept; 'lila_uri' y 'lila_def' se rellenan desde cache/lwn_index.json con scripts/onate_save_sense.py. 'note' es el comentario editorial.",
   "page": "34_der",
   "source_xml": "pg_63_34_der.xml",
   "senses": [
@@ -11,9 +11,11 @@
       "gloss_en": "price",
       "match_text": "precio",
       "match_occurrence": 2,
-      "lila_uri": "https://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05171334-n",
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05171334-n",
       "lila_def": "value measured by what must be given or done or undergone to obtain something",
-      "note": "Sentido amplio (no monetario), el que Oñate está definiendo aquí — no el precio de compra concreto en dinero."
+      "note": "Sentido amplio (no monetario), el que Oñate está definiendo aquí — no el precio de compra concreto en dinero.",
+      "lemmaRef": "lila:119455",
+      "synset": "05171334-n"
     },
     {
       "sentence": 1,
@@ -25,7 +27,8 @@
       "match_occurrence": 1,
       "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/01853188-v",
       "lila_def": "move toward, travel toward something or somebody or approach something or somebody",
-      "note": "venire ad + acusativo, 'acercarse/abordar un tema' — metáfora espacial que 'abordemos' conserva."
+      "note": "venire ad + acusativo, 'acercarse/abordar un tema' — metáfora espacial que 'abordemos' conserva.",
+      "synset": "01853188-v"
     },
     {
       "sentence": 2,
@@ -37,7 +40,157 @@
       "match_occurrence": 1,
       "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05145473-n",
       "lila_def": "the quality that renders something desirable or valuable or useful",
-      "note": "Sentido 2 sobre el 1: aquí 'nihil est aliud, quam æstimatio cuiusque rei' predica una cualidad de la cosa (su valor), no un acto de juzgar — distinto del uso en §3 ('rectum iudicium rerum'), donde sí parece ser el acto (sentido 1, 05744094-n)."
+      "note": "Sentido 2 sobre el 1: aquí 'nihil est aliud, quam æstimatio cuiusque rei' predica una cualidad de la cosa (su valor), no un acto de juzgar — distinto del uso en §3 ('rectum iudicium rerum'), donde sí parece ser el acto (sentido 1, 05744094-n).",
+      "lemmaRef": "lila:87934",
+      "synset": "05145473-n"
+    },
+    {
+      "sentence": 6,
+      "text": "differentia",
+      "occurrence": 1,
+      "lemma": "differentia",
+      "lemmaRef": "lila:100466",
+      "synset": "04756794-n",
+      "match_text": "diferencia",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/04756794-n",
+      "lila_def": "a distinguishing difference between similar things or people"
+    },
+    {
+      "sentence": 6,
+      "text": "obſeruata",
+      "occurrence": 1,
+      "lemma": "obseruo",
+      "lemmaRef": "lila:114414",
+      "synset": "02123398-v",
+      "match_text": "Observada",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/02123398-v",
+      "lila_def": "observe with care or pay close attention to"
+    },
+    {
+      "sentence": 6,
+      "text": "iudicium",
+      "occurrence": 1,
+      "lemma": "iudicium",
+      "lemmaRef": "lila:109170",
+      "synset": "00875745-n",
+      "match_text": "juicio",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00875745-n",
+      "lila_def": "the act of judging or assessing a person or situation or event"
+    },
+    {
+      "sentence": 6,
+      "text": "iudiciorum",
+      "occurrence": 1,
+      "lemma": "iudicium",
+      "lemmaRef": "lila:109170",
+      "synset": "00875745-n",
+      "match_text": "juicios",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00875745-n",
+      "lila_def": "the act of judging or assessing a person or situation or event"
+    },
+    {
+      "sentence": 6,
+      "text": "ęſtimatione",
+      "occurrence": 1,
+      "lemma": "aestimatio",
+      "lemmaRef": "lila:87934",
+      "synset": "05744094-n",
+      "match_text": "estimación",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05744094-n",
+      "lila_def": "an appraisal of the value of something",
+      "note": "Acto de estimar (sentido 1), como en §3; no la cualidad de §2."
+    },
+    {
+      "sentence": 6,
+      "text": "ęquum",
+      "occurrence": 1,
+      "lemma": "aequus",
+      "lemmaRef": "lila:87765",
+      "synset": "00961341-a",
+      "match_text": "justo",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00961341-a",
+      "lila_def": "fair to all parties as dictated by reason and conscience"
+    },
+    {
+      "sentence": 6,
+      "text": "metrum",
+      "occurrence": 1,
+      "lemma": "metrum",
+      "lemmaRef": "lila:112257",
+      "synset": "07275291-n",
+      "match_text": "metro",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/07275291-n",
+      "lila_def": "a basis for comparison; a reference point against which other things can be evaluated"
+    },
+    {
+      "sentence": 6,
+      "text": "pretium",
+      "occurrence": 1,
+      "lemma": "pretium",
+      "lemmaRef": "lila:119455",
+      "synset": "05171334-n",
+      "match_text": "precio",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05171334-n",
+      "lila_def": "value measured by what must be given or done or undergone to obtain something",
+      "note": "Mismo sentido amplio que §1."
+    },
+    {
+      "sentence": 6,
+      "text": "fallax",
+      "occurrence": 1,
+      "lemma": "fallax",
+      "lemmaRef": "lila:102846",
+      "synset": "01226942-s",
+      "match_text": "falaz",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/01226942-s",
+      "lila_def": "designed to deceive or mislead either deliberately or inadvertently"
+    },
+    {
+      "sentence": 6,
+      "text": "mendax",
+      "occurrence": 1,
+      "lemma": "mendax",
+      "lemmaRef": "lila:112017",
+      "synset": "02470951-a",
+      "match_text": "mendaz",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/02470951-a",
+      "lila_def": "not in accordance with the fact or reality or actuality",
+      "note": "De un juicio: falso, no conforme a la realidad."
+    },
+    {
+      "sentence": 6,
+      "text": "mendaces",
+      "occurrence": 1,
+      "lemma": "mendax",
+      "lemmaRef": "lila:112017",
+      "synset": "01229002-s",
+      "match_text": "mendaces",
+      "match_occurrence": 1,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/01229002-s",
+      "lila_def": "given to lying",
+      "note": "De personas: dados a mentir. Sal 61(62),10."
+    },
+    {
+      "sentence": 6,
+      "text": "iudicium",
+      "occurrence": 2,
+      "lemma": "iudicium",
+      "lemmaRef": "lila:109170",
+      "synset": "00875745-n",
+      "match_text": "juicio",
+      "match_occurrence": 2,
+      "lila_uri": "http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00875745-n",
+      "lila_def": "the act of judging or assessing a person or situation or event"
     }
   ]
 }

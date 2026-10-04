@@ -52,7 +52,9 @@ def main():
         # Un "sentido" se identifica por su lila_uri; si aún no tiene URI,
         # se agrupa por el gloss_en (para no perder de vista lo pendiente).
         def sense_key(e):
-            return e.get("lila_uri") or f"(pendiente) {e.get('gloss_en','')}"
+            # http/https y barra final no deben separar el mismo sentido
+            uri = (e.get("lila_uri") or "").replace("https://", "http://").rstrip("/")
+            return uri or f"(pendiente) {e.get('gloss_en','')}"
 
         senses = sorted(set(sense_key(e) for e in entries))
         lines.append(f"\n## {lemma}  ({len(entries)} ocurrencia(s), {len(senses)} sentido(s) distinto(s))\n")
@@ -60,7 +62,8 @@ def main():
             sample = next(e for e in entries if sense_key(e) == key)
             lila_uri = sample.get("lila_uri")
             if lila_uri:
-                lines.append(f"\n### [{sample.get('gloss_en','')}]({lila_uri})")
+                title = sample.get("gloss_en") or sample.get("synset") or lila_uri.rsplit("/", 1)[-1]
+                lines.append(f"\n### [{title}]({lila_uri})")
                 lines.append(f"↗ {lila_uri}\n")
             else:
                 lines.append(f"\n### {sample.get('gloss_en','')}  *(lila_uri pendiente)*\n")

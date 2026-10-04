@@ -18,10 +18,20 @@
 #       Regenera el HTML bilingüe de esa columna (transcripción + traducción)
 #       con lo que haya guardado hasta el momento.
 #
+#   ./traducir_pagina.sh <página> <columna> sentido <n> <forma> <synset> --match "<texto>" [opciones]
+#       Ancla el sentido de una palabra de la oración <n> a un synset del
+#       Latin WordNet (los lista `siguiente`). Rellena lemmaRef, URI y
+#       definición, y comprueba que el synset sea de ese lema.
+#       Opciones: --match-occ N  --occ N  --gloss EN  --nota "..."  --force
+#
+#   ./traducir_pagina.sh <página> <columna> validar
+#       Revisa senses/ de la columna: añade lemmaRef, normaliza URIs y avisa
+#       de synsets que no pertenecen a su lema.
+#
 #   ./traducir_pagina.sh libro
-#       Regenera html/disp63/disp63_trad.html: el libro completo con todas
-#       las columnas que ya tengan traducción guardada (mismo formato visual
-#       que disp63_facs.html / disp63_bibl.html).
+#       Regenera html/disp63/disp63_trad.html inyectando las traducciones
+#       guardadas (y los sentidos de senses/) sobre disp63_facs.html, el HTML
+#       que ya generó el XSLT: misma tipografía y espaciado.
 #
 # Ejemplos:
 #   ./traducir_pagina.sh 34 der siguiente
@@ -36,6 +46,8 @@ SCRIPTS_DIR="scripts"
 SRC_DIR="src/disp63"
 TRANSLATIONS_DIR="translations/disp63"
 NLP_CORR_DIR="nlp_corrections/disp63"
+SENSES_DIR="senses/disp63"
+LWN_INDEX="cache/lwn_index.json"
 HTML_DIR="html/disp63"
 
 CYAN='\033[0;36m'; RED='\033[0;31m'; NC='\033[0m'
@@ -47,9 +59,12 @@ fail() { echo -e "${RED}✗ ERROR:${NC} $*" >&2; exit 1; }
 if [[ "$1" == "libro" ]]; then
     HTML_DIR="html/disp63"
     mkdir -p "$HTML_DIR"
-    python3 "${SCRIPTS_DIR}/onate_translation_html.py" \
-        --src-dir "$SRC_DIR" --trans-dir "$TRANSLATIONS_DIR" \
-        --corr-dir "$NLP_CORR_DIR" --out "${HTML_DIR}/disp63_trad.html"
+    # Enfoque actual (commit b2bb963): inyectar la traducción sobre el HTML
+    # que ya generó el XSLT, conservando su tipografía y espaciado.
+    [[ -f "${HTML_DIR}/disp63_facs.html" ]] || fail "Falta ${HTML_DIR}/disp63_facs.html (ejecuta procesar_pagina.sh … --only html)"
+    python3 "${SCRIPTS_DIR}/onate_inject_translation.py" "${HTML_DIR}/disp63_facs.html" \
+        --trans-dir "$TRANSLATIONS_DIR" --senses-dir "senses/disp63" \
+        --out "${HTML_DIR}/disp63_trad.html"
     exit 0
 fi
 
@@ -61,13 +76,25 @@ STEM="pg_63_${PAGE}_${COL}"
 SRC_XML="${SRC_DIR}/${STEM}.xml"
 TRANS_JSON="${TRANSLATIONS_DIR}/${STEM}.json"
 NLP_CORR_JSON="${NLP_CORR_DIR}/${STEM}.json"
+SENSES_JSON="${SENSES_DIR}/${STEM}.json"
 HTML_OUT="${HTML_DIR}/${STEM}_bilingue.html"
 
 [[ -f "$SRC_XML" ]] || fail "No existe: $SRC_XML (ejecuta primero procesar_pagina.sh ${PAGE} ${COL})"
 
 case "$CMD" in
     siguiente)
-        python3 "${SCRIPTS_DIR}/onate_next_sentence.py" "$SRC_XML" "$TRANS_JSON" "$@"
+        python3 "${SCRIPTS_DIR}/onate_next_sentence.py" "$SRC_XML" "$TRANS_JSON" \
+            --senses-json "$SENSES_JSON" --index "$LWN_INDEX" "$@"
+        ;;
+    sentido)
+        [[ $# -lt 3 ]] && fail "Uso: $0 ${PAGE} ${COL} sentido <n> <forma> <synset> --match \"<texto>\" [...]"
+        python3 "${SCRIPTS_DIR}/onate_save_sense.py" --index "$LWN_INDEX" anclar \
+            "$SENSES_JSON" "$SRC_XML" "$@"
+        ;;
+    validar)
+        [[ -f "$SENSES_JSON" ]] || fail "No hay sentidos anclados: $SENSES_JSON"
+        python3 "${SCRIPTS_DIR}/onate_save_sense.py" --index "$LWN_INDEX" validar \
+            "$SENSES_JSON" "$SRC_XML"
         ;;
     guardar)
         [[ $# -lt 2 ]] && fail "Uso: $0 ${PAGE} ${COL} guardar <n> \"<texto en español>\""
@@ -83,6 +110,6 @@ case "$CMD" in
         info "HTML bilingüe → ${HTML_OUT}"
         ;;
     *)
-        fail "Comando desconocido: ${CMD} (siguiente|guardar|html)"
+        fail "Comando desconocido: ${CMD} (siguiente|guardar|sentido|validar|html)"
         ;;
 esac
