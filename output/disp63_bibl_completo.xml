@@ -346,6 +346,17 @@
         lleva siempre <att>resp</att>.</tagUsage>
       </namespace>
     </tagsDecl>
+    <listPrefixDef>
+      <prefixDef ident="lila" matchPattern="(\d+)" replacementPattern="http://lila-erc.eu/data/id/lemma/$1">
+        <p>Lemas del LiLa Lemma Bank (<ref target="https://lila-erc.eu">LiLa: Linking
+        Latin</ref>), usados en <att>lemmaRef</att> de <gi>w</gi>.</p>
+      </prefixDef>
+      <prefixDef ident="lilah" matchPattern="(\d+)" replacementPattern="http://lila-erc.eu/data/id/hypolemma/$1">
+        <p>Hipolemas del LiLa Lemma Bank: formas derivadas registradas bajo un
+        lema principal (p. ej. el adverbio <mentioned>vero</mentioned>, de
+        <mentioned>verus</mentioned>).</p>
+      </prefixDef>
+    </listPrefixDef>
   </encodingDesc>
 
   <profileDesc>
@@ -613,6 +624,9 @@
 
   <revisionDesc>
     <change when="2026" who="Andrés Vial">Creación del archivo TEI.</change>
+    <change when="2026-10" who="Andrés Vial">Enlace de lemas con LiLa (<att>lemmaRef</att>,
+    prefijos <code>lila:</code> y <code>lilah:</code>); identificadores de Wikidata y VIAF
+    en <gi>listPerson</gi>.</change>
   </revisionDesc>
 
 </teiHeader>
