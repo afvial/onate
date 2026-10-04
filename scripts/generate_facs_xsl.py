@@ -474,7 +474,9 @@ JS_CODE = r"""(function () {
       var id = span.dataset.corresp.replace(/^#/, '');
       var entry = catalog[id];
       var tip = span.querySelector(':scope > .tooltip.cit-tooltip');
-      if (!entry || !tip) return;
+      // El XSLT ya rellena el tooltip desde el teiHeader; el JSON solo
+      // sirve de respaldo para citas cuyo tooltip quedó vacío.
+      if (!entry || !tip || tip.innerHTML.trim() !== '') return;
 
       var html = '';
       if (entry.author) html += '<span class="ct-author">' + escapeHtml(entry.author) + '</span>';

@@ -11,6 +11,11 @@
 
   <xsl:param name="show-tooltips" select="true()"/>
 
+  <!-- Catálogo del teiHeader (incluido por XInclude en el ensamblado):
+       obras por @xml:id y personas por @xml:id, para el tooltip de cita. -->
+  <xsl:key name="bibl-by-id"   match="tei:listBibl/tei:bibl[@xml:id]"    use="@xml:id"/>
+  <xsl:key name="person-by-id" match="tei:listPerson/tei:person[@xml:id]" use="@xml:id"/>
+
   <!-- ============================================================ -->
   <!-- RAÍZ                                                         -->
   <!-- ============================================================ -->
@@ -169,8 +174,12 @@
              que la palabra siga en :hover mientras el ratón sube. */
           .tooltip a.tip-lila { color: inherit; text-decoration: underline dotted; }
           .tooltip a.tip-lila:hover { text-decoration: underline; }
-          .tooltip:has(a.tip-lila) { pointer-events: auto; }
-          .tooltip:has(a.tip-lila)::after {
+          /* Enlaces del tooltip de cita (Wikidata, VIAF) */
+          .tooltip .ct-ids { margin-left: 0.4em; }
+          .tooltip a.ct-link { color: #c9b8ff; text-decoration: underline dotted; margin-left: 0.3em; font-size: 0.9em; }
+          .tooltip a.ct-link:hover { text-decoration: underline; }
+          .tooltip:has(a) { pointer-events: auto; }
+          .tooltip:has(a)::after {
             content: "";
             position: absolute;
             left: 0; right: 0;
@@ -678,15 +687,46 @@
       <xsl:if test="@corresp">
         <xsl:attribute name="data-corresp"><xsl:value-of select="@corresp"/></xsl:attribute>
       </xsl:if>
-      <!-- Placeholder vacío: JS lo puebla al cargar la página consultando
-           el catálogo (bibl_catalog.json) por data-corresp. No se rellena
-           aquí en el XSLT porque la estructura interna de <bibl> (dónde
-           quedó el <author>, si el <choice> es el correcto, etc.) es
-           frágil y no siempre coincide con el catálogo real. -->
+      <!-- El tooltip se construye desde el catálogo del teiHeader
+           (listBibl → author/@ref → listPerson → idno), NO desde la
+           estructura interna del <bibl>, que es frágil. Si la obra no está
+           en el catálogo, queda vacío (oculto por CSS). -->
       <xsl:if test="$show-tooltips and @corresp">
-        <span class="tooltip cit-tooltip"></span>
+        <span class="tooltip cit-tooltip">
+          <xsl:call-template name="cit-content">
+            <xsl:with-param name="work" select="key('bibl-by-id', substring-after(@corresp, '#'))[1]"/>
+          </xsl:call-template>
+        </span>
       </xsl:if>
       <xsl:apply-templates/></span>
+  </xsl:template>
+
+  <!-- Contenido del tooltip de cita: autor [Wikidata · VIAF] · obra -->
+  <xsl:template name="cit-content">
+    <xsl:param name="work"/>
+    <xsl:if test="$work">
+      <xsl:variable name="person"
+        select="key('person-by-id', substring-after($work/tei:author/@ref, '#'))[1]"/>
+      <xsl:if test="normalize-space($work/tei:author) != ''">
+        <span class="ct-author"><xsl:value-of select="normalize-space($work/tei:author)"/></span>
+      </xsl:if>
+      <xsl:if test="$person/tei:idno[@type='wikidata'] or $person/tei:idno[@type='VIAF']">
+        <span class="ct-ids">
+          <xsl:if test="$person/tei:idno[@type='wikidata']">
+            <a class="ct-link" target="_blank" rel="noopener"
+               href="https://www.wikidata.org/wiki/{normalize-space($person/tei:idno[@type='wikidata'])}">Wikidata</a>
+          </xsl:if>
+          <xsl:if test="$person/tei:idno[@type='VIAF']">
+            <a class="ct-link" target="_blank" rel="noopener"
+               href="https://viaf.org/viaf/{normalize-space($person/tei:idno[@type='VIAF'])}">VIAF</a>
+          </xsl:if>
+        </span>
+      </xsl:if>
+      <xsl:if test="normalize-space($work/tei:title) != ''">
+        <xsl:if test="normalize-space($work/tei:author) != ''"><xsl:text> · </xsl:text></xsl:if>
+        <span class="ct-work"><xsl:value-of select="normalize-space($work/tei:title)"/></span>
+      </xsl:if>
+    </xsl:if>
   </xsl:template>
 
   <!-- NOTAS MARGINALES -->

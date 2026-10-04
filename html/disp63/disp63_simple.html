@@ -153,8 +153,12 @@
              que la palabra siga en :hover mientras el ratón sube. */
           .tooltip a.tip-lila { color: inherit; text-decoration: underline dotted; }
           .tooltip a.tip-lila:hover { text-decoration: underline; }
-          .tooltip:has(a.tip-lila) { pointer-events: auto; }
-          .tooltip:has(a.tip-lila)::after {
+          /* Enlaces del tooltip de cita (Wikidata, VIAF) */
+          .tooltip .ct-ids { margin-left: 0.4em; }
+          .tooltip a.ct-link { color: #c9b8ff; text-decoration: underline dotted; margin-left: 0.3em; font-size: 0.9em; }
+          .tooltip a.ct-link:hover { text-decoration: underline; }
+          .tooltip:has(a) { pointer-events: auto; }
+          .tooltip:has(a)::after {
             content: "";
             position: absolute;
             left: 0; right: 0;

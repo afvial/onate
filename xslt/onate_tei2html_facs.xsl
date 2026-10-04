@@ -189,8 +189,12 @@
              que la palabra siga en :hover mientras el ratón sube. */
           .tooltip a.tip-lila { color: inherit; text-decoration: underline dotted; }
           .tooltip a.tip-lila:hover { text-decoration: underline; }
-          .tooltip:has(a.tip-lila) { pointer-events: auto; }
-          .tooltip:has(a.tip-lila)::after {
+          /* Enlaces del tooltip de cita (Wikidata, VIAF) */
+          .tooltip .ct-ids { margin-left: 0.4em; }
+          .tooltip a.ct-link { color: #c9b8ff; text-decoration: underline dotted; margin-left: 0.3em; font-size: 0.9em; }
+          .tooltip a.ct-link:hover { text-decoration: underline; }
+          .tooltip:has(a) { pointer-events: auto; }
+          .tooltip:has(a)::after {
             content: "";
             position: absolute;
             left: 0; right: 0;
@@ -924,7 +928,9 @@
       var id = span.dataset.corresp.replace(/^#/, '');
       var entry = catalog[id];
       var tip = span.querySelector(':scope > .tooltip.cit-tooltip');
-      if (!entry || !tip) return;
+      // El XSLT ya rellena el tooltip desde el teiHeader; el JSON solo
+      // sirve de respaldo para citas cuyo tooltip quedó vacío.
+      if (!entry || !tip || tip.innerHTML.trim() !== '') return;
 
       var html = '';
       if (entry.author) html += '<span class="ct-author">' + escapeHtml(entry.author) + '</span>';
