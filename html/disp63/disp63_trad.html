@@ -452,7 +452,8 @@
                            background: #2a2a2a; color: #fff; font-size: 0.68rem;
                            font-family: "SF Mono", Menlo, Consolas, monospace;
                            padding: 0.3em 0.6em; border-radius: 4px;
-                           white-space: normal; max-width: 22em; z-index: 10;
+                           white-space: normal; width: max-content;
+                           max-width: min(22em, calc(100vw - 2rem)); z-index: 10;
                            pointer-events: auto; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
   span.sense-w .tooltip.tip-open { display: block; }
   span.sense-w .tooltip table { border-collapse: collapse; line-height: 1.6; font-size: 0.65rem; }
@@ -4974,7 +4975,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var tooltip = word.querySelector('.tooltip');
     if (!tooltip) return;
     var hideTimer = null;
-    function show() { clearTimeout(hideTimer); tooltip.classList.add('tip-open'); }
+    // Si el tooltip se sale por la derecha (o la izquierda) de la ventana,
+    // se desplaza lo justo para quedar dentro, con un margen de 12 px.
+    function fit() {
+      tooltip.style.left = '0px';
+      var r = tooltip.getBoundingClientRect();
+      var margin = 12, shift = 0;
+      if (r.right > window.innerWidth - margin) shift = (window.innerWidth - margin) - r.right;
+      if (r.left + shift < margin) shift = margin - r.left;
+      tooltip.style.left = shift + 'px';
+    }
+    function show() { clearTimeout(hideTimer); tooltip.classList.add('tip-open'); fit(); }
     function hideDelayed() { hideTimer = setTimeout(function () { tooltip.classList.remove('tip-open'); }, 250); }
     word.addEventListener('mouseenter', show);
     word.addEventListener('mouseleave', hideDelayed);

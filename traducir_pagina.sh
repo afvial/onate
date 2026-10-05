@@ -24,6 +24,13 @@
 #       definición, y comprueba que el synset sea de ese lema.
 #       Opciones: --match-occ N  --occ N  --gloss EN  --nota "..."  --force
 #
+#   ./traducir_pagina.sh <página> <columna> candidatos
+#       Escribe candidatos/disp63/<stem>/sNN.md: un archivo por oración con
+#       los sentidos posibles (Latin WordNet) de cada palabra relevante.
+#
+#   ./traducir_pagina.sh candidatos
+#       Lo mismo para todas las columnas de src/disp63.
+#
 #   ./traducir_pagina.sh <página> <columna> validar
 #       Revisa senses/ de la columna: añade lemmaRef, normaliza URIs y avisa
 #       de synsets que no pertenecen a su lema.
@@ -55,6 +62,11 @@ info() { echo -e "${CYAN}→${NC} $*"; }
 fail() { echo -e "${RED}✗ ERROR:${NC} $*" >&2; exit 1; }
 
 [[ $# -lt 1 ]] && fail "Uso: $0 <página> <columna> <siguiente|guardar|html> [...]  |  $0 libro"
+
+if [[ "$1" == "candidatos" ]]; then
+    python3 "${SCRIPTS_DIR}/onate_sense_candidates.py" --index "cache/lwn_index.json" "${SRC_DIR}"/pg_63_*_*.xml
+    exit 0
+fi
 
 if [[ "$1" == "libro" ]]; then
     HTML_DIR="html/disp63"
@@ -91,6 +103,9 @@ case "$CMD" in
         python3 "${SCRIPTS_DIR}/onate_save_sense.py" --index "$LWN_INDEX" anclar \
             "$SENSES_JSON" "$SRC_XML" "$@"
         ;;
+    candidatos)
+        python3 "${SCRIPTS_DIR}/onate_sense_candidates.py" --index "$LWN_INDEX" "$SRC_XML"
+        ;;
     validar)
         [[ -f "$SENSES_JSON" ]] || fail "No hay sentidos anclados: $SENSES_JSON"
         python3 "${SCRIPTS_DIR}/onate_save_sense.py" --index "$LWN_INDEX" validar \
@@ -110,6 +125,6 @@ case "$CMD" in
         info "HTML bilingüe → ${HTML_OUT}"
         ;;
     *)
-        fail "Comando desconocido: ${CMD} (siguiente|guardar|sentido|validar|html)"
+        fail "Comando desconocido: ${CMD} (siguiente|guardar|sentido|candidatos|validar|html)"
         ;;
 esac
