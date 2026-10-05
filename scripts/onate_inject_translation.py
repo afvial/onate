@@ -181,7 +181,11 @@ EXTRA_CSS = """
     word-break: normal; overflow-wrap: normal; hyphens: none;
   }
   p.translation { line-height: var(--lh); }
-  p.translation { margin: 0 0 0.9rem 0; }
+  /* Párrafos de la traducción con el mismo estilo que los de la
+     transcripción (span.tei-p del XSLT): sin separación vertical y con
+     sangría de primera línea, salvo el primer párrafo de la columna. */
+  p.translation { margin: 0; text-indent: 1.2em; }
+  p.translation.p-first { text-indent: 0; }
   .pending-note { font-size: 0.78rem; color: #999; font-style: italic; margin: 0 0 0.9rem 0; }
 
   .tei-s.s-hover-active { background-color: #e8f0fb; border-radius: 2px; }
@@ -361,8 +365,13 @@ def main():
                 )
             if not latin_run:
                 continue
-            latin_paras.append("".join(latin_run))
-            trans_paras.append('<p class="translation">' + " ".join(trans_run) + "</p>")
+            # primer párrafo según el TEI (clase tei-p-first del XSLT), no
+            # según lo que haya traducido hasta ahora
+            first = p_anc is not None and "tei-p-first" in (p_anc.get("class") or "").split()
+            latin_paras.append(f'<span class="tei-p{" tei-p-first" if first else ""}">'
+                               + "".join(latin_run) + "</span>")
+            trans_paras.append(f'<p class="translation{" p-first" if first else ""}">'
+                               + " ".join(trans_run) + "</p>")
 
         n_sent_done += (len(sentences) - n_pending)
         latin_body = "".join(latin_paras)
