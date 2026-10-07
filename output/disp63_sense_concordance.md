@@ -1,7 +1,19 @@
 # Concordancia de sentidos — Disp. LXIII
 
-15 ocurrencias ancladas, 10 lema(s) distinto(s).
+24 ocurrencias ancladas, 17 lema(s) distinto(s).
 
+
+## aequalis  (1 ocurrencia(s), 1 sentido(s) distinto(s))
+
+
+### [00893124-a](http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00893124-a)
+↗ http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00893124-a
+
+> having the same quantity, value, or measure as another
+
+| Página/col | §  | Forma | Traducción |
+|---|---|---|---|
+| pg_63_34_der | 7 | ęquale | Ahora bien, así como la justicia especial conmutativa consiste en la recta ponderación de … |
 
 ## aequus  (1 ocurrencia(s), 1 sentido(s) distinto(s))
 
@@ -40,6 +52,18 @@
 |---|---|---|---|
 | pg_63_34_der | 6 | ęſtimatione | Observada esta diferencia: que el juicio de Dios en la estimación de las cosas es siempre … |
 
+## consisto  (1 ocurrencia(s), 1 sentido(s) distinto(s))
+
+
+### [02756729-v](http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/02756729-v)
+↗ http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/02756729-v
+
+> have its essential character; be comprised or contained in; be embodied in
+
+| Página/col | §  | Forma | Traducción |
+|---|---|---|---|
+| pg_63_34_der | 7 | conſiſtit | Ahora bien, así como la justicia especial conmutativa consiste en la recta ponderación de … |
+
 ## differentia  (1 ocurrencia(s), 1 sentido(s) distinto(s))
 
 
@@ -51,6 +75,18 @@
 | Página/col | §  | Forma | Traducción |
 |---|---|---|---|
 | pg_63_34_der | 6 | differentia | Observada esta diferencia: que el juicio de Dios en la estimación de las cosas es siempre … |
+
+## do  (1 ocurrencia(s), 1 sentido(s) distinto(s))
+
+
+### [02256551-v](http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/02256551-v)
+↗ http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/02256551-v
+
+> give money, usually in exchange for goods or services
+
+| Página/col | §  | Forma | Traducción |
+|---|---|---|---|
+| pg_63_34_der | 7 | detur | Ahora bien, así como la justicia especial conmutativa consiste en la recta ponderación de … |
 
 ## fallax  (1 ocurrencia(s), 1 sentido(s) distinto(s))
 
@@ -127,7 +163,33 @@
 |---|---|---|---|
 | pg_63_34_der | 6 | obſeruata | Observada esta diferencia: que el juicio de Dios en la estimación de las cosas es siempre … |
 
-## pretium  (2 ocurrencia(s), 1 sentido(s) distinto(s))
+## ponderatio  (1 ocurrencia(s), 1 sentido(s) distinto(s))
+
+
+### [00998911-n](http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00998911-n)
+↗ http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00998911-n
+
+> the act or process of assigning numbers to phenomena according to a rule
+
+| Página/col | §  | Forma | Traducción |
+|---|---|---|---|
+| pg_63_34_der | 7 | ponderatione | Ahora bien, así como la justicia especial conmutativa consiste en la recta ponderación de … |
+
+## pondus  (1 ocurrencia(s), 1 sentido(s) distinto(s))
+
+
+### [05034009-n](http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05034009-n)
+↗ http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05034009-n
+
+> the vertical force exerted by a mass as a result of gravity
+
+*Metáfora de la balanza (§3-4): el peso como valor real de la cosa.*
+
+| Página/col | §  | Forma | Traducción |
+|---|---|---|---|
+| pg_63_34_der | 7 | pondere | Ahora bien, así como la justicia especial conmutativa consiste en la recta ponderación de … |
+
+## pretium  (4 ocurrencia(s), 2 sentido(s) distinto(s))
 
 
 ### [price](http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/05171334-n)
@@ -141,6 +203,44 @@
 |---|---|---|---|
 | pg_63_34_der | 1 | pretium | Antes de que abordemos la división del precio, debemos definir qué es el precio en general… |
 | pg_63_34_der | 6 | pretium | Observada esta diferencia: que el juicio de Dios en la estimación de las cosas es siempre … |
+
+### [13434666-n](http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/13434666-n)
+↗ http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/13434666-n
+
+> the amount (of money or goods or services) that is considered to be a fair equivalent for something else
+
+*Precio como equivalente justo en el intercambio (justicia conmutativa); distinto del sentido amplio de §1.*
+
+| Página/col | §  | Forma | Traducción |
+|---|---|---|---|
+| pg_63_34_der | 7 | pretio | Ahora bien, así como la justicia especial conmutativa consiste en la recta ponderación de … |
+| pg_63_34_der | 7 | pretio | Ahora bien, así como la justicia especial conmutativa consiste en la recta ponderación de … |
+
+## rectus  (1 ocurrencia(s), 1 sentido(s) distinto(s))
+
+
+### [00634232-a](http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00634232-a)
+↗ http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00634232-a
+
+> free from error; especially conforming to fact or truth
+
+| Página/col | §  | Forma | Traducción |
+|---|---|---|---|
+| pg_63_34_der | 7 | recta | Ahora bien, así como la justicia especial conmutativa consiste en la recta ponderación de … |
+
+## res  (1 ocurrencia(s), 1 sentido(s) distinto(s))
+
+
+### [00032912-n](http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00032912-n)
+↗ http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/00032912-n
+
+> anything owned or possessed
+
+*Bienes objeto de intercambio.*
+
+| Página/col | §  | Forma | Traducción |
+|---|---|---|---|
+| pg_63_34_der | 7 | rerum | Ahora bien, así como la justicia especial conmutativa consiste en la recta ponderación de … |
 
 ## venio  (1 ocurrencia(s), 1 sentido(s) distinto(s))
 
