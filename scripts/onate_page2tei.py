@@ -83,6 +83,7 @@ def main():
     #   Se elimina y se emite en stdout como --join-left para la col. siguiente.
     #
     # Palabras largas sin ¬ previo (ej. «pretium») se conservan siempre.
+    # Tampoco es reclamo si termina en puntuación (fin de frase real, ej. «re.»).
     if args.strip_catchword and lines:
         last = lines[-1]
         last_text = last["text"].strip()
@@ -98,6 +99,7 @@ def main():
                   # confunde la extracción de onate_sentences.py.
 
         elif (len(words) <= 2 and not last["soft_hyphen"] and not last.get("sic_spans")
+              and not last_text.endswith((".", ",", ";", ":", "?", "!"))
               and (len(last_text) <= 5 or penultimate_hyphen)):
             # CASO B: reclamo tipográfico — eliminar y emitir como join_left
             lines = lines[:-1]

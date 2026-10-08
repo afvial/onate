@@ -24,7 +24,8 @@ sin modificar @part, para revisión manual del editor.
 
 Heurística
 ──────────
-    1. Palabra partida (<lb break="no"/> en último <w>)  → CONTINÚA siempre
+    1. Palabra partida (<lb break="no"/> al final del último <w>, sin
+       texto detrás)                                      → CONTINÚA siempre
     2. Sin punct. final + primera palabra en minúscula    → CONTINÚA
     3. Punct. final (. ? !) + primera palabra en mayúsc.  → NUEVA oración
     4. Sin punct. final + primera palabra en mayúscula    → DUDOSA (cert="low")
@@ -206,19 +207,41 @@ def last_real_w(s_elem):
     return ws[-1] if ws else None
 
 
+def _ends_with_open_lb(w_elem):
+    """
+    True si el <w> termina en un <lb break='no'/> sin texto detrás, es
+    decir, la palabra queda abierta al final de la columna (p.ej.
+    "con<lb break='no'/>"). Si tras el <lb> hay texto ("vende<lb
+    break='no'/>re"), la palabra ya se completó en la línea siguiente
+    de la MISMA columna y no continúa en la columna siguiente.
+    """
+    lbs = [lb for lb in w_elem.findall(T('lb')) if lb.get('break') == 'no']
+    if not lbs:
+        return False
+    last_lb = lbs[-1]
+    if (last_lb.tail or '').strip():
+        return False
+    # Ningún elemento con texto después del último <lb>
+    after = False
+    for child in w_elem:
+        if child is last_lb:
+            after = True
+            continue
+        if after and (''.join(child.itertext()).strip() or (child.tail or '').strip()):
+            return False
+    return True
+
+
 def has_word_split(s_elem):
     """
-    True si el último <w> "real" (ver last_real_w) contiene un
-    <lb break='no'/>, indicando que la palabra continúa en la
-    siguiente línea/columna.
+    True si el último <w> "real" (ver last_real_w) termina en un
+    <lb break='no'/> abierto, indicando que la palabra continúa en la
+    columna siguiente.
     """
     last_w = last_real_w(s_elem)
     if last_w is None:
         return False
-    for lb in last_w.findall(T('lb')):
-        if lb.get('break') == 'no':
-            return True
-    return False
+    return _ends_with_open_lb(last_w)
 
 
 def first_word_text(s_elem):
@@ -371,8 +394,7 @@ def add_orig_to_split_words(s_end, s_start, counter, model_name):
     w_i = last_real_w(s_end)
     if w_i is None:
         return
-    has_split = any(lb.get('break') == 'no' for lb in w_i.findall(T('lb')))
-    if not has_split:
+    if not _ends_with_open_lb(w_i):
         return
 
     # Primer <w> de s_start que no esté dentro de <orig>
