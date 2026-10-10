@@ -345,7 +345,7 @@ HTML_TEMPLATE = """<html lang="es">
 </head>
 <body>
 <h1>Pedro de Oñate · <em>De contractibus</em></h1>
-<h2>Disputatio LXIII · Sectio I · Traducción</h2>
+<h2>Disputatio LXIII · Traducción</h2>
 <div class="stats">{n_cols} columna(s) · {n_sent_done} de {n_sent_total} oraciones traducidas</div>
 {body}
 <script>

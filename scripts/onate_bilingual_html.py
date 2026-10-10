@@ -256,7 +256,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
   <h1>Pedro de Oñate · <em>De contractibus</em></h1>
-  <h2>Disputatio LXIII · Sectio I · Pág. {page_num} (columna {col})</h2>
+  <h2>Disputatio LXIII · Pág. {page_num} (columna {col})</h2>
 
   <div class="bilingual">
     <div><div class="col-head">Transcripción</div></div>

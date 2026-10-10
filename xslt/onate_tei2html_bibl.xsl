@@ -378,7 +378,7 @@
       </head>
       <body>
         <h1>Pedro de Oñate · <em>De contractibus</em></h1>
-        <h2>Disputatio LXIII · Sectio I</h2>
+        <h2>Disputatio LXIII</h2>
 
         <div class="stats">
           Palabras: <xsl:value-of select="count(//tei:w)"/> ·
