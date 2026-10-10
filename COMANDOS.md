@@ -1,6 +1,12 @@
 # Comandos frecuentes — Oñate, *De contractibus*
 
-Ejemplos con la página `52`. Cámbiala por la que corresponda.
+Antes de copiar los comandos, define la página con la que trabajas:
+
+```bash
+P=52          # número de página (cámbialo cada vez)
+```
+
+Todos los comandos usan `$P`, así que se pueden pegar tal cual en la misma terminal.
 Orden de lectura del ensamblado: `izq → der` dentro de cada página.
 
 ---
@@ -9,28 +15,28 @@ Orden de lectura del ensamblado: `izq → der` dentro de cada página.
 
 ```bash
 # 1. Copiar los PAGE XML exportados de Transkribus
-ls transkribus/disp63/pg_63_52_*.xml
+ls transkribus/disp63/pg_63_${P}_*.xml
 
 # 2. Añadir los XInclude en bibl/disp63/disp63_bibl.xml (tras los de la página anterior)
-#      <xi:include href="pg_63_52_izq_bibl.xml"/>
-#      <xi:include href="pg_63_52_der_bibl.xml"/>
+#      <xi:include href="pg_63_${P}_izq_bibl.xml"/>
+#      <xi:include href="pg_63_${P}_der_bibl.xml"/>
 
 # 3. Generar el staging inicial (NO sobre una página ya editada: lo sobrescribe)
-./procesar_pagina.sh 52 izq --only normalize
-./procesar_pagina.sh 52 der --only normalize
+./procesar_pagina.sh $P izq --only normalize
+./procesar_pagina.sh $P der --only normalize
 
 # 4. Corregir líneas añadidas a mano en Transkribus (id="l", "l_1"…)
-python3 scripts/onate_fix_line_ids.py 52
+python3 scripts/onate_fix_line_ids.py $P
 
-# 5. Editar los stagings: staging/disp63/pg_63_52_{izq,der}.xml
+# 5. Editar los stagings: staging/disp63/pg_63_${P}_{izq,der}.xml
 
 # 6. Procesar (izq da error de XInclude porque der aún no existe: es normal)
-./procesar_pagina.sh 52 izq
-./procesar_pagina.sh 52 der
-./procesar_pagina.sh 52 izq          # otra vez, para generar las coords de izq
+./procesar_pagina.sh $P izq
+./procesar_pagina.sh $P der
+./procesar_pagina.sh $P izq          # otra vez, para generar las coords de izq
 
 # 7. Comprobar que están las dos coords
-ls coords/disp63/pg_63_52_*.json
+ls coords/disp63/pg_63_${P}_*.json
 ```
 
 Qué revisar en la salida:
@@ -42,7 +48,7 @@ Qué revisar en la salida:
 ## 2. Reprocesar después de editar el staging
 
 ```bash
-./procesar_pagina.sh 52 izq                 # pipeline completo (lo más seguro)
+./procesar_pagina.sh $P izq                 # pipeline completo (lo más seguro)
 ```
 
 Pasos sueltos con `--only`:
@@ -60,7 +66,7 @@ Pasos sueltos con `--only`:
 | `html` | solo cambió el XSLT/CSS |
 
 ```bash
-./procesar_pagina.sh 52 izq --only sentences | grep p52     # ver transiciones de la página
+./procesar_pagina.sh $P izq --only sentences | grep p$P     # ver transiciones de la página
 ```
 
 ---
@@ -69,15 +75,15 @@ Pasos sueltos con `--only`:
 
 ```bash
 python3 scripts/onate_staging_merge.py \
-    staging/disp63/pg_63_52_izq.xml \
-    transkribus/disp63/pg_63_52_izq.xml \
+    staging/disp63/pg_63_${P}_izq.xml \
+    transkribus/disp63/pg_63_${P}_izq.xml \
     --dry-run                                 # primero ver qué cambia
 
 python3 scripts/onate_staging_merge.py \
-    staging/disp63/pg_63_52_izq.xml \
-    transkribus/disp63/pg_63_52_izq.xml       # aplicar
+    staging/disp63/pg_63_${P}_izq.xml \
+    transkribus/disp63/pg_63_${P}_izq.xml       # aplicar
 
-./procesar_pagina.sh 52 izq
+./procesar_pagina.sh $P izq
 ```
 
 Las líneas con macrón no se aplican automáticamente: revisarlas a mano.
@@ -103,18 +109,18 @@ El `¬` va fuera de las llaves cuando el error cruza el salto de línea.
 ```bash
 # Seguir una frase única por toda la cadena
 F="hominum, vnde sumitur"
-grep -c "$F" staging/disp63/pg_63_52_der.xml
-grep -c "$F" src/disp63/pg_63_52_der.xml
-grep -c "$F" bibl/disp63/pg_63_52_der_bibl.xml
+grep -c "$F" staging/disp63/pg_63_${P}_der.xml
+grep -c "$F" src/disp63/pg_63_${P}_der.xml
+grep -c "$F" bibl/disp63/pg_63_${P}_der_bibl.xml
 grep -c "$F" output/disp63_bibl_completo.xml
 grep -c "$F" html/disp63/disp63_bibl.html
 
 # Final de una columna / inicio de la siguiente
-tail -4 staging/disp63/pg_63_52_der.xml
-head -4 staging/disp63/pg_63_53_izq.xml
+tail -4 staging/disp63/pg_63_${P}_der.xml
+head -4 staging/disp63/pg_63_$((P+1))_izq.xml
 
 # Ids raros en el staging (líneas añadidas a mano)
-grep '<line' staging/disp63/pg_63_52_*.xml | grep -v 'tr_1_tl_'
+grep '<line' staging/disp63/pg_63_${P}_*.xml | grep -v 'tr_1_tl_'
 
 # Reclamos guardados (deberían estar vacíos salvo reclamo real)
 for f in .state/catchword_*; do [ -s "$f" ] && echo "$f: $(cat "$f")"; done
@@ -127,7 +133,7 @@ Si el HTML no cambia: recargar sin caché (Ctrl+Shift+R).
 ## 6. LiLa
 
 ```bash
-python3 scripts/onate_lila.py src/disp63/pg_63_52_izq.xml
+python3 scripts/onate_lila.py src/disp63/pg_63_${P}_izq.xml
 less lila/pendientes.tsv          # pares (lema, POS) por revisar
 # Decisiones editoriales: lila/excepciones.tsv
 ```
@@ -146,10 +152,10 @@ Commit de una página (si `git status` solo muestra esa página y salidas regene
 
 ```bash
 git add -A
-git commit -m "Add pg_63_52 (izq/der) and regenerate outputs
+git commit -m "Add pg_63_$P (izq/der) and regenerate outputs
 
-- transkribus/, staging/, src/, coords/, bibl/: page 52
-- bibl/disp63/disp63_bibl.xml: XInclude entries for pg_63_52
+- transkribus/, staging/, src/, coords/, bibl/: page $P
+- bibl/disp63/disp63_bibl.xml: XInclude entries for pg_63_$P
 - output/, html/, lila/: regenerated"
 git push
 ```
@@ -158,9 +164,9 @@ Si hay archivos de otra página sin terminar, no usar `-A`: añadir solo los de 
 
 ```bash
 git add bibl/disp63/disp63_bibl.xml html/disp63/ output/disp63_bibl_completo.xml \
-        lila/estado.json lila/pendientes.tsv lila/paginas/pg_63_52_*.tsv \
-        {transkribus,staging,src}/disp63/pg_63_52_*.xml \
-        bibl/disp63/pg_63_52_*_bibl.xml coords/disp63/pg_63_52_*.json
+        lila/estado.json lila/pendientes.tsv lila/paginas/pg_63_${P}_*.tsv \
+        {transkribus,staging,src}/disp63/pg_63_${P}_*.xml \
+        bibl/disp63/pg_63_${P}_*_bibl.xml coords/disp63/pg_63_${P}_*.json
 ```
 
 Salir de Emacs sin guardar el mensaje de commit: `C-x C-c`, responder `n`.
