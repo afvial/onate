@@ -368,6 +368,10 @@
             letter-spacing: 0.08em;
           }
 
+          .nav-links { text-align: center; font-size: 0.82rem; margin: 0 0 0.6rem 0; }
+          .nav-links a { color: #6a5520; text-decoration: none; border-bottom: 1px dotted #b09060; }
+          .nav-links a:hover { color: #3a2e10; border-bottom-style: solid; }
+
           .stats {
             font-size: 0.78rem;
             color: #999;
@@ -379,6 +383,7 @@
       <body>
         <h1>Pedro de Oñate · <em>De contractibus</em></h1>
         <h2>Disputatio LXIII</h2>
+        <p class="nav-links"><a href="concordancia.html">Concordancia · buscar en el texto</a></p>
 
         <div class="stats">
           Palabras: <xsl:value-of select="count(//tei:w)"/> ·

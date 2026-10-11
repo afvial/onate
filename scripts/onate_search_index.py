@@ -21,10 +21,14 @@ Un token por palabra o signo de puntuación, con:
     l   lema          p   POS          m   rasgos morfológicos (msd)
     pg  página        c   columna (izq / der / unica)
     ln  número de línea (<lb n>) donde empieza la palabra
+    o   número de aparición de esa misma forma diplomática dentro de la
+        línea (0, 1…): con columna + línea + forma + o, la concordancia
+        enlaza a la palabra exacta en disp63_facs.html
 
 Las palabras partidas entre columnas (@wpair) cuentan una sola vez, en la
 columna donde empiezan.
 """
+import re
 import sys
 import json
 import argparse
@@ -54,6 +58,14 @@ def side_text(el, keep):
     return "".join(out)
 
 
+def norm_adv(t):
+    """Misma normalización que normAdv() del visor facsímil
+    (generate_facs_xsl.py): la usan ambos lados para contar apariciones."""
+    t = (t or "").lower().replace("ſ", "s").replace("æ", "ae").replace("ę", "ae")
+    t = t.replace("œ", "oe").replace("&", "et")
+    return re.sub(r"[.,;:!?()\[\]{}\-\s]", "", t)
+
+
 def in_branch(el, tags):
     p = el.getparent()
     while p is not None:
@@ -76,6 +88,11 @@ def token_root(w):
 
 
 def col_names(divs):
+    """Columna de cada <div type="page">: el atributo @col que graba
+    onate_page2tei.py (izq, der, unica…) y, si falta, la posición dentro de
+    la página (izq, der), igual que generate_facs_xsl.py."""
+    if all(d.get("col") for d in divs):
+        return [d.get("col") for d in divs]
     seen, names = {}, []
     for d in divs:
         n = d.get("n", "?")
@@ -86,7 +103,8 @@ def col_names(divs):
     out = []
     for d, k in zip(divs, names):
         n = d.get("n", "?")
-        out.append("unica" if counts[n] == 1 else ("izq", "der", "c3", "c4")[k])
+        pos = "unica" if counts[n] == 1 else ("izq", "der", "c3", "c4")[k]
+        out.append(d.get("col") or pos)
     return out
 
 
@@ -99,6 +117,7 @@ def build(xml_path):
         page = div.get("n", "")
         line = ""
         done = set()
+        occ = {}                              # (línea, forma) → apariciones
         for el in div.iter(T("lb"), T("w"), T("pc")):
             if el.tag == T("lb"):
                 # lb dentro de una palabra no cambia la línea de inicio
@@ -120,7 +139,7 @@ def build(xml_path):
             if el.tag == T("pc"):
                 txt = (el.text or "").strip()
                 if txt:
-                    tokens.append([txt, txt, "", "PUNCT", "", page, col, line])
+                    tokens.append([txt, txt, "", "PUNCT", "", page, col, line, 0])
                 continue
             norm = side_text(root, NORM_BRANCH).strip().replace("ſ", "s")
             dipl = side_text(root, DIPL_BRANCH).strip()
@@ -129,10 +148,14 @@ def build(xml_path):
                 continue
             if wp:
                 seen_pairs[wp] = len(tokens)
+            key = (line, norm_adv(dipl))
+            o = occ.get(key, 0)
+            occ[key] = o + 1
             tokens.append([norm, dipl, el.get("lemma", ""), el.get("pos", ""),
-                           el.get("msd", ""), page, col, line])
+                           el.get("msd", ""), page, col, line, o])
 
-    return {"fields": ["f", "d", "l", "p", "m", "pg", "c", "ln"],
+    return {"fields": ["f", "d", "l", "p", "m", "pg", "c", "ln", "o"],
+            "colPrefix": "pg_63_",
             "source": Path(xml_path).name,
             "generated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
             "tokens": tokens}

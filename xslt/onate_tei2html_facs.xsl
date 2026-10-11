@@ -383,6 +383,10 @@
             letter-spacing: 0.08em;
           }
 
+          .nav-links { text-align: center; font-size: 0.82rem; margin: 0 0 0.6rem 0; }
+          .nav-links a { color: #6a5520; text-decoration: none; border-bottom: 1px dotted #b09060; }
+          .nav-links a:hover { color: #3a2e10; border-bottom-style: solid; }
+
           .stats {
             font-size: 0.78rem;
             color: #999;
@@ -452,11 +456,20 @@
 
           /* lb-num de break=no: en DOM pero invisible */
           .lb-num.lb-break { visibility: hidden; }
+
+          /* Destino de un enlace de la concordancia (#pg_63_N_col:línea:forma:n) */
+          span.tei-w.search-target {
+            background-color: #f6e3a1;
+            border-radius: 2px;
+            box-shadow: 0 0 0 2px #e0b84a;
+          }
+          span.tei-w.search-target-line { background-color: #fbf0c8; }
         </style>
       </head>
       <body>
         <h1>Pedro de Oñate · <em>De contractibus</em></h1>
         <h2>Disputatio LXIII</h2>
+        <p class="nav-links"><a href="concordancia.html">Concordancia · buscar en el texto</a></p>
 
         <div class="stats">
           Palabras: <xsl:value-of select="count(//tei:w)"/> ·
@@ -568,6 +581,7 @@
     loadBiblCatalog();
     wireSplitSentences();
     wireWordPairs();
+    jumpToTarget();
   }
 
   function alignPanels() {
@@ -1017,6 +1031,96 @@
       col.addEventListener('mouseleave', function () { clearCanvas(colId); });
     });
   }
+
+  /* ── Salto desde la concordancia ─────────────────────────────────────
+     Hash: #pg_63_48_izq:2:forma:0  (columna : línea : forma diplomática :
+     número de aparición de esa forma en la línea). Sin forma, o si no se
+     encuentra, se marca la línea entera. */
+  function parseTarget() {
+    var h;
+    try { h = decodeURIComponent(location.hash.replace(/^#/, '')); }
+    catch (e) { return null; }
+    var m = h.match(/^(pg_[^:]+):(\d+)(?::([^:]*):(\d+))?$/);
+    if (!m) return null;
+    return { colId: m[1], line: m[2], form: m[3] || '',
+             occ: parseInt(m[4] || '0', 10) };
+  }
+
+  function findTargetWord(col, t) {
+    if (!t.form) return null;
+    var target = normAdv(t.form);
+    var spans = Array.from(col.querySelectorAll('.tei-w[data-lb="' + t.line + '"]'));
+    var exact = [], prefix = [];
+    spans.forEach(function (s) {
+      var v = normAdv(wordText(s));
+      if (!v) return;
+      if (v === target) exact.push(s);
+      /* primera mitad de una palabra partida: el visible es un prefijo */
+      else if (v.length >= 2 && target.indexOf(v) === 0) prefix.push(s);
+    });
+    if (exact.length > t.occ) return exact[t.occ];
+    return exact[0] || prefix[0] || null;
+  }
+
+  function drawLineRect(colId, lineN) {
+    var data = cache[colId];
+    var line = data && data.lines && data.lines[String(lineN)];
+    if (!line || !line.bbox) return;
+    document.querySelectorAll('.facs-panel[data-col-id="' + colId + '"] .facs-canvas')
+      .forEach(function (canvas) {
+        var ctx = canvas.getContext('2d'), b = line.bbox;
+        var sx = canvas._sx || 1, sy = canvas._sy || 1;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(186,117,23,0.18)';
+        ctx.fillRect(b.x*sx - 2, b.y*sy - 2, b.w*sx + 4, b.h*sy + 4);
+        ctx.strokeStyle = '#BA7517';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(b.x*sx - 2, b.y*sy - 2, b.w*sx + 4, b.h*sy + 4);
+      });
+  }
+
+  function jumpToTarget() {
+    var t = parseTarget();
+    if (!t) return;
+    var col = document.querySelector('.col[data-col-id="' + t.colId + '"]');
+    if (!col) { console.warn('onate-facs: columna no encontrada:', t.colId); return; }
+    document.querySelectorAll('.search-target, .search-target-line').forEach(function (e) {
+      e.classList.remove('search-target', 'search-target-line');
+    });
+    var w = findTargetWord(col, t);
+    var anchor = w;
+    if (w) {
+      w.classList.add('search-target');
+    } else {
+      col.querySelectorAll('.tei-w[data-lb="' + t.line + '"]').forEach(function (e) {
+        e.classList.add('search-target-line');
+        if (!anchor) anchor = e;
+      });
+    }
+    (anchor || col).scrollIntoView({ block: 'center' });
+
+    /* Rectángulo en el facsímil cuando lleguen la imagen y las coords */
+    var tries = 0;
+    (function draw() {
+      var panel = document.querySelector('.facs-panel[data-col-id="' + t.colId + '"]');
+      var img = panel && panel.querySelector('.facs-img');
+      var data = cache[t.colId];
+      if (data === false || !panel) return;
+      if (data && img && img.naturalWidth > 0) {
+        var canvas = panel.querySelector('.facs-canvas');
+        if (canvas._sx === undefined || canvas.width <= 300) syncCanvas(panel);
+        if (w) drawOnCanvas(t.colId, parseInt(t.line, 10), w, col, getBrokenPartnerLine(w));
+        else drawLineRect(t.colId, t.line);
+        return;
+      }
+      if (++tries < 60) setTimeout(draw, 150);
+    })();
+  }
+
+  window.addEventListener('hashchange', jumpToTarget);
+  /* Las imágenes de páginas anteriores cambian la altura al cargar:
+     volver a centrar el destino cuando ya están todas. */
+  window.addEventListener('load', function () { if (parseTarget()) jumpToTarget(); });
 
   if (document.readyState === 'loading')
     document.addEventListener('DOMContentLoaded', initAllPanels);

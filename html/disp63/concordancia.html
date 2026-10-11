@@ -93,6 +93,11 @@ th { text-align: left; font-size: 11.5px; font-weight: 500; letter-spacing: 0.06
 td { padding: 7px 12px; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
 tr:last-child td { border-bottom: 0; }
 .loc { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.loc a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted currentColor; }
+.loc a:hover { border-bottom-style: solid; }
+.nav { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13.5px; }
+.nav a { color: var(--accent); text-decoration: none; }
+.nav a:hover { text-decoration: underline; }
 .ctx { font-family: var(--text); font-size: 17px; white-space: nowrap; }
 .left { text-align: right; max-width: 0; overflow: hidden; direction: rtl; width: 40%; }
 .left > span { direction: ltr; unicode-bidi: isolate; }
@@ -124,7 +129,8 @@ details code { font-family: var(--mono); font-size: 13px; }
   <header>
     <div class="eyebrow">Pedro de Oñate · De contractibus · Disputatio LXIII</div>
     <h1>Concordancia del <em>texto latino</em></h1>
-    <p class="lede">Busca por forma, lema, categoría gramatical o rasgos morfológicos, o encadena condiciones para encontrar construcciones. Cada resultado indica página, columna y línea de la edición.</p>
+    <nav class="nav"><a href="disp63_facs.html">Texto y facsímil</a><a href="disp63_bibl.html">Texto anotado</a></nav>
+    <p class="lede">Busca por forma, lema, categoría gramatical o rasgos morfológicos, o encadena condiciones para encontrar construcciones. Cada resultado indica página, columna y línea, y enlaza a ese lugar en el facsímil.</p>
   </header>
 
   <div class="source" id="source">
@@ -195,7 +201,7 @@ details code { font-family: var(--mono); font-size: 13px; }
 
   <div class="kwic-box">
     <table>
-      <thead><tr><th>Ubicación</th><th style="text-align:right">Contexto</th><th>Resultado</th><th></th><th>Análisis</th></tr></thead>
+      <thead><tr><th>Ubicación (ir al facsímil)</th><th style="text-align:right">Contexto</th><th>Resultado</th><th></th><th>Análisis</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>
@@ -224,7 +230,8 @@ const POS_ES = { NOUN:"sustantivo", PROPN:"nombre propio", VERB:"verbo", AUX:"au
 const PAGE = 200, CTX = 7;
 const $ = id => document.getElementById(id);
 
-let T = [];          // tokens: {f,d,l,p,m,pg,c,ln,nf,nd,nl,col}
+let T = [];          // tokens: {f,d,l,p,m,pg,c,ln,o,nf,nd,nl,col}
+let COL_PREFIX = "pg_63_";
 let mode = "simple", hits = [], shown = 0;
 
 /* ── Normalización latina ─────────────────────────────── */
@@ -241,9 +248,10 @@ function wild(v) {
 function load(idx) {
   const F = idx.fields || ["f","d","l","p","m","pg","c","ln"];
   const at = k => F.indexOf(k);
-  const iF = at("f"), iD = at("d"), iL = at("l"), iP = at("p"), iM = at("m"), iPg = at("pg"), iC = at("c"), iLn = at("ln");
+  const iF = at("f"), iD = at("d"), iL = at("l"), iP = at("p"), iM = at("m"), iPg = at("pg"), iC = at("c"), iLn = at("ln"), iO = at("o");
+  COL_PREFIX = idx.colPrefix || "pg_63_";
   T = idx.tokens.map(r => {
-    const t = { f: r[iF] || "", d: r[iD] || r[iF] || "", l: r[iL] || "", p: (r[iP] || "").toUpperCase(), m: r[iM] || "", pg: String(r[iPg] ?? ""), c: r[iC] || "", ln: String(r[iLn] ?? "") };
+    const t = { f: r[iF] || "", d: r[iD] || r[iF] || "", l: r[iL] || "", p: (r[iP] || "").toUpperCase(), m: r[iM] || "", pg: String(r[iPg] ?? ""), c: r[iC] || "", ln: String(r[iLn] ?? ""), o: iO >= 0 ? (r[iO] || 0) : 0 };
     t.nf = norm(t.f); t.nd = norm(t.d); t.nl = norm(t.l);
     t.col = t.pg + "·" + t.c;
     t.feats = new Set(t.m.split("|").filter(Boolean).map(x => x.toLowerCase()));
@@ -334,6 +342,13 @@ function ctx(from, to, col) {
   return out;
 }
 
+// Enlace al lugar exacto en disp63_facs.html: #columna:línea:forma:aparición
+// (lo interpreta jumpToTarget() en el visor, generado por generate_facs_xsl.py)
+function facsHref(t) {
+  const target = `${COL_PREFIX}${t.pg}_${t.c}:${t.ln}` + (t.p === "PUNCT" ? "" : `:${t.d}:${t.o}`);
+  return "disp63_facs.html#" + encodeURIComponent(target);
+}
+
 function render() {
   const pages = new Set(hits.map(h => T[h[0]].pg));
   $("count").innerHTML = hits.length
@@ -352,7 +367,7 @@ function more() {
     const ana = m.filter(t => t.p !== "PUNCT").map(t =>
       `<span title="${esc(t.m || "sin rasgos")}"><span class="lem">${esc(t.l || "—")}</span><span class="pos">${t.p}</span></span>`).join(" ");
     return `<tr>
-      <td class="loc">p. ${esc(t0.pg)} · ${esc(t0.c)} · l. ${esc(t0.ln)}</td>
+      <td class="loc"><a href="${facsHref(m.find(t => t.p !== "PUNCT") || t0)}" target="onate_facs" title="Ver en el facsímil">p. ${esc(t0.pg)} · ${esc(t0.c)} · l. ${esc(t0.ln)}</a></td>
       <td class="ctx left"><span>${join(left)}</span></td>
       <td class="ctx"><span class="hit">${join(m)}</span></td>
       <td class="ctx right">${join(right)}</td>
