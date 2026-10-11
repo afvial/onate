@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concordancia De contractibus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+body { margin: 0; }
+/* Layout: una columna de trabajo; formulario arriba, resumen de frecuencias, concordancia KWIC con el término centrado. */
+:root {
+  --bg: #f4f6f4;
+  --surface: #ffffff;
+  --fg: #1c2321;
+  --muted: #5b6763;
+  --rule: #d5dcd8;
+  --accent: #1d6b64;
+  --accent-soft: #e1efec;
+  --hit: #f3e4a3;
+  --hit-fg: #2a2410;
+  --warn-bg: #fbf3df;
+  --warn-fg: #6b4f12;
+  --text: "EB Garamond", "Garamond", "Iowan Old Style", Georgia, serif;
+  --ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131816; --surface: #1a201e; --fg: #e3e8e5; --muted: #98a59f; --rule: #2f3835;
+    --accent: #6cc0b5; --accent-soft: #1f3330; --hit: #514617; --hit-fg: #f6ecc4;
+    --warn-bg: #2c2615; --warn-fg: #e8cf8f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131816; --surface: #1a201e; --fg: #e3e8e5; --muted: #98a59f; --rule: #2f3835;
+  --accent: #6cc0b5; --accent-soft: #1f3330; --hit: #514617; --hit-fg: #f6ecc4;
+  --warn-bg: #2c2615; --warn-fg: #e8cf8f; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font-family: var(--ui); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 64px; display: grid; gap: 22px; }
+
+header { display: grid; gap: 4px; }
+.eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--text); font-weight: 500; font-size: clamp(30px, 5vw, 42px); line-height: 1.1; margin: 0; text-wrap: balance; }
+h1 em { font-style: italic; color: var(--accent); }
+.lede { margin: 4px 0 0; color: var(--muted); max-width: 62ch; }
+
+.source { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 10px 14px; border-radius: 6px; background: var(--warn-bg); color: var(--warn-fg); font-size: 13.5px; }
+.source.loaded { background: var(--accent-soft); color: var(--fg); }
+.source p { margin: 0; flex: 1 1 320px; min-width: 0; }
+.filebtn { font: inherit; font-weight: 500; font-size: 13px; padding: 6px 12px; border-radius: 5px; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; white-space: nowrap; }
+.filebtn:hover { background: var(--surface); }
+#file { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+form { display: grid; gap: 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; }
+.modes { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); }
+.modes button { font: inherit; font-size: 14px; font-weight: 500; padding: 6px 12px 8px; border: 0; background: none; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.modes button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field.grow { flex: 1 1 260px; }
+label, .lbl { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+input[type="text"], select { font: inherit; font-size: 15px; padding: 8px 10px; border: 1px solid var(--rule); border-radius: 5px; background: var(--bg); color: var(--fg); min-width: 0; width: 100%; }
+#seq { font-family: var(--mono); font-size: 14px; }
+input[type="text"]:focus-visible, select:focus-visible, button:focus-visible, .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.go { font: inherit; font-weight: 600; font-size: 14px; padding: 9px 18px; border-radius: 5px; border: 0; background: var(--accent); color: var(--surface); cursor: pointer; }
+.examples { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); }
+.examples code { font-family: var(--mono); font-size: 12.5px; padding: 3px 7px; border-radius: 4px; background: var(--accent-soft); color: var(--fg); border: 0; cursor: pointer; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13.5px; color: var(--muted); align-items: center; }
+.opts label { text-transform: none; letter-spacing: 0; font-size: 13.5px; display: inline-flex; gap: 6px; align-items: center; }
+.opts select { width: auto; padding: 4px 8px; font-size: 13.5px; }
+.error { color: #b3261e; font-size: 13.5px; margin: 0; }
+:root[data-theme="dark"] .error { color: #f2a59f; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .error { color: #f2a59f; } }
+
+.summary { display: grid; gap: 10px; }
+.count { font-size: 14px; color: var(--muted); }
+.count strong { color: var(--fg); font-variant-numeric: tabular-nums; font-size: 18px; font-weight: 600; margin-right: 2px; }
+.freq { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: 13px; display: inline-flex; gap: 6px; align-items: baseline; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); color: var(--fg); cursor: pointer; }
+.chip span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.chip b { font-family: var(--text); font-size: 15px; font-weight: 500; }
+.chip:hover { border-color: var(--accent); }
+
+.kwic-box { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; min-width: 720px; }
+th { text-align: left; font-size: 11.5px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+td { padding: 7px 12px; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+tr:last-child td { border-bottom: 0; }
+.loc { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ctx { font-family: var(--text); font-size: 17px; white-space: nowrap; }
+.left { text-align: right; max-width: 0; overflow: hidden; direction: rtl; width: 40%; }
+.left > span { direction: ltr; unicode-bidi: isolate; }
+.right { max-width: 0; overflow: hidden; width: 40%; }
+.hit { background: var(--hit); color: var(--hit-fg); padding: 1px 4px; border-radius: 3px; font-weight: 500; }
+.ana { white-space: nowrap; font-size: 12.5px; }
+.ana .lem { font-family: var(--text); font-size: 15px; font-style: italic; }
+.ana .pos { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-left: 6px; }
+.empty { padding: 28px 16px; text-align: center; color: var(--muted); }
+.more { justify-self: center; font: inherit; font-size: 14px; padding: 7px 16px; border-radius: 5px; border: 1px solid var(--rule); background: var(--surface); color: var(--fg); cursor: pointer; }
+
+details { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 16px; }
+summary { cursor: pointer; font-weight: 500; }
+details table { min-width: 0; margin-top: 10px; font-size: 14px; }
+details td, details th { padding: 6px 8px; }
+details code { font-family: var(--mono); font-size: 13px; }
+.note { font-size: 13.5px; color: var(--muted); margin: 10px 0 0; max-width: 70ch; }
+
+@media (max-width: 560px) {
+  .wrap { padding-inline: 16px; }
+  .go { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Pedro de Oñate · De contractibus · Disputatio LXIII</div>
+    <h1>Concordancia del <em>texto latino</em></h1>
+    <p class="lede">Busca por forma, lema, categoría gramatical o rasgos morfológicos, o encadena condiciones para encontrar construcciones. Cada resultado indica página, columna y línea de la edición.</p>
+  </header>
+
+  <div class="source" id="source">
+    <p id="sourceText"><strong>No se encontró el índice.</strong> Genera <code>search_index.js</code> con <code>./procesar_pagina.sh all --only search</code> (o <code>python3 scripts/onate_search_index.py output/disp63_bibl_completo.xml</code>) y recarga la página, o carga un índice a mano.</p>
+    <button class="filebtn" type="button" id="fileBtn">Cargar índice (.json)</button>
+    <input type="file" id="file" accept=".json,application/json">
+  </div>
+
+  <form id="form" autocomplete="off">
+    <div class="modes" role="tablist">
+      <button type="button" role="tab" id="tabSimple" aria-selected="true">Búsqueda simple</button>
+      <button type="button" role="tab" id="tabSeq" aria-selected="false">Secuencia</button>
+    </div>
+
+    <div id="simple" class="row">
+      <div class="field">
+        <label for="fieldSel">Buscar en</label>
+        <select id="fieldSel">
+          <option value="forma">Forma</option>
+          <option value="lema" selected>Lema</option>
+          <option value="morf">Morfología</option>
+        </select>
+      </div>
+      <div class="field grow">
+        <label for="q">Término</label>
+        <input type="text" id="q" value="pretium" placeholder="pretium, vend*, Case=Abl…">
+      </div>
+      <div class="field">
+        <label for="posSel">Categoría</label>
+        <select id="posSel"><option value="">Todas</option></select>
+      </div>
+      <button class="go" type="submit">Buscar</button>
+    </div>
+
+    <div id="seqBox" class="row" hidden>
+      <div class="field grow">
+        <label for="seq">Consulta</label>
+        <input type="text" id="seq" value='[lema=pretium] [pos=NOUN &amp; morf=Case=Gen]' spellcheck="false">
+      </div>
+      <button class="go" type="submit">Buscar</button>
+    </div>
+    <div class="examples" id="seqExamples" hidden>
+      Ejemplos:
+      <code data-q="[lema=pretium] [pos=NOUN &amp; morf=Case=Gen]">pretium + genitivo</code>
+      <code data-q="[pos=ADJ] [lema=pretium]">adjetivo + pretium</code>
+      <code data-q="[lema=sum] [pos=ADJ|NOUN]">sum + nombre o adjetivo</code>
+      <code data-q="[morf=VerbForm=Ger] []">gerundio + palabra</code>
+      <code data-q="[pos=NUM] [pos!=PUNCT]">número de sumario</code>
+    </div>
+
+    <div class="opts">
+      <label><input type="checkbox" id="dipl"> Mostrar forma diplomática (ſ, æ, abreviaturas)</label>
+      <label>Ordenar
+        <select id="sort">
+          <option value="pos">por posición</option>
+          <option value="form">por forma</option>
+          <option value="right">por contexto derecho</option>
+        </select>
+      </label>
+    </div>
+    <p class="error" id="err" hidden></p>
+  </form>
+
+  <section class="summary" aria-live="polite">
+    <div class="count" id="count"></div>
+    <div class="freq" id="freq"></div>
+  </section>
+
+  <div class="kwic-box">
+    <table>
+      <thead><tr><th>Ubicación</th><th style="text-align:right">Contexto</th><th>Resultado</th><th></th><th>Análisis</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <button class="more" type="button" id="more" hidden>Mostrar más</button>
+
+  <details>
+    <summary>Sintaxis de la búsqueda por secuencia</summary>
+    <table>
+      <tr><th>Escribe</th><th>Encuentra</th></tr>
+      <tr><td><code>[lema=pretium]</code></td><td>cualquier forma del lema <i>pretium</i></td></tr>
+      <tr><td><code>[forma=vend*]</code></td><td>formas que empiezan por <i>vend</i> (<code>*</code> cualquier secuencia, <code>?</code> una letra)</td></tr>
+      <tr><td><code>[pos=ADJ|NOUN]</code></td><td>adjetivo o sustantivo</td></tr>
+      <tr><td><code>[morf=Case=Abl,Number=Plur]</code></td><td>tokens que tienen todos esos rasgos</td></tr>
+      <tr><td><code>[pos=VERB &amp; morf=VerbForm=Inf]</code></td><td>varias condiciones a la vez sobre el mismo token</td></tr>
+      <tr><td><code>[pos!=PUNCT]</code></td><td>negación: cualquier token que no sea puntuación</td></tr>
+      <tr><td><code>[]</code></td><td>un token cualquiera</td></tr>
+      <tr><td><code>pretium</code></td><td>sin corchetes: busca la forma</td></tr>
+    </table>
+    <p class="note">Las comparaciones ignoran mayúsculas y acentos, y tratan como equivalentes ſ y s, æ y ae, u y v, i y j: <i>vnde</i>, <i>unde</i> y <i>Vnde</i> dan el mismo resultado. Las secuencias no cruzan de una columna a otra.</p>
+  </details>
+</div>
+
+<script src="search_index.js"></script>
+<script>
+const POS_ES = { NOUN:"sustantivo", PROPN:"nombre propio", VERB:"verbo", AUX:"auxiliar", ADJ:"adjetivo", ADV:"adverbio", ADP:"preposición", PRON:"pronombre", DET:"determinante", NUM:"numeral", CCONJ:"conj. coordinante", SCONJ:"conj. subordinante", PART:"partícula", INTJ:"interjección", PUNCT:"puntuación", X:"otro" };
+const PAGE = 200, CTX = 7;
+const $ = id => document.getElementById(id);
+
+let T = [];          // tokens: {f,d,l,p,m,pg,c,ln,nf,nd,nl,col}
+let mode = "simple", hits = [], shown = 0;
+
+/* ── Normalización latina ─────────────────────────────── */
+function norm(s) {
+  return (s || "").normalize("NFD").replace(/[̀-ͯ⁠]/g, "")
+    .toLowerCase().replace(/ſ/g, "s").replace(/æ/g, "ae").replace(/œ/g, "oe")
+    .replace(/v/g, "u").replace(/j/g, "i");
+}
+function wild(v) {
+  const esc = norm(v).replace(/[.+^${}()[\]\\]/g, "\\$&").replace(/\*/g, ".*").replace(/\?/g, ".");
+  return new RegExp("^(?:" + esc + ")$");
+}
+
+function load(idx) {
+  const F = idx.fields || ["f","d","l","p","m","pg","c","ln"];
+  const at = k => F.indexOf(k);
+  const iF = at("f"), iD = at("d"), iL = at("l"), iP = at("p"), iM = at("m"), iPg = at("pg"), iC = at("c"), iLn = at("ln");
+  T = idx.tokens.map(r => {
+    const t = { f: r[iF] || "", d: r[iD] || r[iF] || "", l: r[iL] || "", p: (r[iP] || "").toUpperCase(), m: r[iM] || "", pg: String(r[iPg] ?? ""), c: r[iC] || "", ln: String(r[iLn] ?? "") };
+    t.nf = norm(t.f); t.nd = norm(t.d); t.nl = norm(t.l);
+    t.col = t.pg + "·" + t.c;
+    t.feats = new Set(t.m.split("|").filter(Boolean).map(x => x.toLowerCase()));
+    return t;
+  });
+  const used = [...new Set(T.map(t => t.p).filter(Boolean))].sort();
+  $("posSel").innerHTML = '<option value="">Todas</option>' + used.map(p => `<option value="${p}">${POS_ES[p] || p} (${p})</option>`).join("");
+}
+
+/* ── Condiciones ──────────────────────────────────────── */
+const ATTR = { forma:"forma", form:"forma", word:"forma", f:"forma", lema:"lema", lemma:"lema", l:"lema", pos:"pos", p:"pos", upos:"pos", morf:"morf", msd:"morf", m:"morf" };
+
+function cond(attr, op, value) {
+  const a = ATTR[attr.toLowerCase()];
+  if (!a) throw new Error(`No conozco el campo «${attr}». Usa forma, lema, pos o morf.`);
+  value = value.replace(/^["']|["']$/g, "").trim();
+  if (!value) throw new Error(`Falta el valor de «${attr}».`);
+  let test;
+  if (a === "forma") { const re = wild(value); test = t => re.test(t.nf) || re.test(t.nd); }
+  else if (a === "lema") { const re = wild(value); test = t => re.test(t.nl); }
+  else if (a === "pos") { const set = value.toUpperCase().split("|").map(s => s.trim()); test = t => set.includes(t.p); }
+  else { const fs = value.split(/[,|]/).map(s => s.trim().toLowerCase()).filter(Boolean); test = t => fs.every(x => t.feats.has(x)); }
+  return op === "!=" ? t => !test(t) : test;
+}
+
+function parseSeq(q) {
+  if ((q.match(/\[/g) || []).length !== (q.match(/\]/g) || []).length)
+    throw new Error("Falta cerrar un corchete: cada token va entre [ y ].");
+  const parts = q.match(/\[[^\]]*\]|[^\s\[\]]+/g);
+  if (!parts) throw new Error("Escribe al menos un token, por ejemplo [lema=pretium].");
+  return parts.map(p => {
+    if (!p.startsWith("[")) return cond("forma", "=", p);
+    const body = p.slice(1, -1).trim();
+    if (!body) return () => true;
+    const cs = body.split("&").map(s => {
+      const m = s.trim().match(/^(\w+)\s*(!=|=)\s*(.+)$/);
+      if (!m) throw new Error(`No entiendo «${s.trim()}». Usa campo=valor, por ejemplo lema=pretium.`);
+      return cond(m[1], m[2], m[3]);
+    });
+    return t => cs.every(c => c(t));
+  });
+}
+
+function simpleSpec() {
+  const v = $("q").value.trim();
+  if (!v) throw new Error("Escribe un término para buscar.");
+  const cs = [cond($("fieldSel").value, "=", v)];
+  if ($("posSel").value) cs.push(cond("pos", "=", $("posSel").value));
+  return [t => cs.every(c => c(t))];
+}
+
+/* ── Búsqueda ─────────────────────────────────────────── */
+function search() {
+  const err = $("err"); err.hidden = true;
+  let spec;
+  try { spec = mode === "simple" ? simpleSpec() : parseSeq($("seq").value); }
+  catch (e) { err.textContent = e.message; err.hidden = false; return; }
+  hits = [];
+  const k = spec.length;
+  for (let i = 0; i + k <= T.length; i++) {
+    let ok = true;
+    for (let j = 0; j < k; j++) {
+      const t = T[i + j];
+      if (t.col !== T[i].col || !spec[j](t)) { ok = false; break; }
+    }
+    if (ok) hits.push([i, k]);
+  }
+  sortHits(); render();
+}
+
+function sortHits() {
+  const s = $("sort").value, key = h => T.slice(h[0], h[0] + h[1]).map(t => t.nf).join(" ");
+  const right = h => T.slice(h[0] + h[1], h[0] + h[1] + 3).map(t => t.nf).join(" ");
+  if (s === "form") hits.sort((a, b) => key(a).localeCompare(key(b)) || a[0] - b[0]);
+  else if (s === "right") hits.sort((a, b) => right(a).localeCompare(right(b)) || a[0] - b[0]);
+  else hits.sort((a, b) => a[0] - b[0]);
+}
+
+/* ── Presentación ─────────────────────────────────────── */
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+const form = t => $("dipl").checked ? t.d : t.f;
+function join(ts) {
+  return ts.map((t, i) => (i && !/^[.,;:!?)\]]$/.test(t.f) ? " " : "") + esc(form(t))).join("");
+}
+function ctx(from, to, col) {
+  const out = [];
+  for (let i = from; i < to; i++) if (i >= 0 && i < T.length && T[i].col === col) out.push(T[i]);
+  return out;
+}
+
+function render() {
+  const pages = new Set(hits.map(h => T[h[0]].pg));
+  $("count").innerHTML = hits.length
+    ? `<strong>${hits.length.toLocaleString("es")}</strong> resultados en ${pages.size} ${pages.size === 1 ? "página" : "páginas"}`
+    : "";
+  freq();
+  shown = 0; $("rows").innerHTML = "";
+  if (!hits.length) { $("rows").innerHTML = '<tr><td colspan="5" class="empty">Sin resultados. Prueba con un comodín (vend*) o con el lema en lugar de la forma.</td></tr>'; $("more").hidden = true; return; }
+  more();
+}
+
+function more() {
+  const html = hits.slice(shown, shown + PAGE).map(([i, k]) => {
+    const t0 = T[i], col = t0.col;
+    const left = ctx(i - CTX, i, col), right = ctx(i + k, i + k + CTX, col), m = T.slice(i, i + k);
+    const ana = m.filter(t => t.p !== "PUNCT").map(t =>
+      `<span title="${esc(t.m || "sin rasgos")}"><span class="lem">${esc(t.l || "—")}</span><span class="pos">${t.p}</span></span>`).join(" ");
+    return `<tr>
+      <td class="loc">p. ${esc(t0.pg)} · ${esc(t0.c)} · l. ${esc(t0.ln)}</td>
+      <td class="ctx left"><span>${join(left)}</span></td>
+      <td class="ctx"><span class="hit">${join(m)}</span></td>
+      <td class="ctx right">${join(right)}</td>
+      <td class="ana">${ana}</td></tr>`;
+  }).join("");
+  $("rows").insertAdjacentHTML("beforeend", html);
+  shown += PAGE;
+  $("more").hidden = shown >= hits.length;
+  $("more").textContent = `Mostrar ${Math.min(PAGE, hits.length - shown)} más`;
+}
+
+function freq() {
+  const box = $("freq"); box.innerHTML = "";
+  if (!hits.length) return;
+  const byLemma = hits.every(h => h[1] === 1);
+  const counts = new Map();
+  for (const [i, k] of hits) {
+    const key = byLemma ? (T[i].l || T[i].f) : T.slice(i, i + k).map(t => t.f).join(" ");
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  const top = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 14);
+  if (top.length < 2 && byLemma) {
+    // un solo lema: mostrar sus formas
+    const forms = new Map();
+    for (const [i] of hits) forms.set(T[i].f, (forms.get(T[i].f) || 0) + 1);
+    box.innerHTML = '<span class="lbl" style="align-self:center">Formas</span>' +
+      [...forms].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([f, n]) => `<button type="button" class="chip" data-f="${esc(f)}"><b>${esc(f)}</b><span>${n}</span></button>`).join("");
+    return;
+  }
+  box.innerHTML = `<span class="lbl" style="align-self:center">${byLemma ? "Lemas" : "Secuencias"}</span>` +
+    top.map(([k, n]) => byLemma
+      ? `<button type="button" class="chip" data-l="${esc(k)}"><b>${esc(k)}</b><span>${n}</span></button>`
+      : `<span class="chip" style="cursor:default"><b>${esc(k)}</b><span>${n}</span></span>`).join("");
+}
+
+/* ── Eventos ──────────────────────────────────────────── */
+function setMode(m) {
+  mode = m;
+  $("tabSimple").setAttribute("aria-selected", m === "simple");
+  $("tabSeq").setAttribute("aria-selected", m === "seq");
+  $("simple").hidden = m !== "simple";
+  $("seqBox").hidden = $("seqExamples").hidden = m !== "seq";
+}
+$("tabSimple").onclick = () => setMode("simple");
+$("tabSeq").onclick = () => setMode("seq");
+$("form").onsubmit = e => { e.preventDefault(); search(); };
+$("sort").onchange = () => { sortHits(); render(); };
+$("dipl").onchange = render;
+$("more").onclick = more;
+$("seqExamples").onclick = e => { const c = e.target.closest("code"); if (c) { $("seq").value = c.dataset.q; search(); } };
+$("freq").onclick = e => {
+  const c = e.target.closest("button.chip"); if (!c) return;
+  setMode("simple"); $("posSel").value = "";
+  if (c.dataset.l) { $("fieldSel").value = "lema"; $("q").value = c.dataset.l; }
+  else { $("fieldSel").value = "forma"; $("q").value = c.dataset.f; }
+  search();
+};
+$("fileBtn").onclick = () => $("file").click();
+$("file").onchange = () => {
+  const f = $("file").files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const idx = JSON.parse(r.result);
+      if (!Array.isArray(idx.tokens)) throw new Error();
+      load(idx);
+      describe(idx, f.name);
+      search();
+    } catch {
+      $("err").textContent = "Ese archivo no es un índice válido. Genéralo con onate_search_index.py y vuelve a cargarlo.";
+      $("err").hidden = false;
+    }
+  };
+  r.readAsText(f);
+};
+
+function describe(idx, name) {
+  const words = T.filter(t => t.p !== "PUNCT").length;
+  const pgs = [...new Set(T.map(t => +t.pg).filter(n => !isNaN(n)))].sort((a, b) => a - b);
+  const range = pgs.length ? `pp. ${pgs[0]}–${pgs[pgs.length - 1]}` : "";
+  $("source").classList.add("loaded");
+  $("sourceText").innerHTML = `<strong>${esc(name)}:</strong> ${words.toLocaleString("es")} palabras, ${range}` +
+    (idx.generated ? ` · generado ${esc(idx.generated)}` : "");
+  $("fileBtn").hidden = true;
+}
+
+if (window.ONATE_INDEX && Array.isArray(window.ONATE_INDEX.tokens)) {
+  load(window.ONATE_INDEX);
+  describe(window.ONATE_INDEX, "Índice");
+  search();
+}
+</script>
+
+</body>
+</html>
