@@ -194,11 +194,32 @@ JS_CODE = r"""(function () {
     setTimeout(trySync, 300);
     if (cache.hasOwnProperty(colId)) return;
     cache[colId] = null;
+    loadCoords(colId);
+  }
+
+  /* Coordenadas: primero <colId>.js con <script> (funciona también desde
+     file://, donde fetch() de archivos locales está bloqueado); si no
+     existe, el .json con fetch (necesita servidor). */
+  function loadCoords(colId) {
+    var store = window.ONATE_COORDS || {};
+    if (store[colId]) { cache[colId] = store[colId]; return; }
+    var s = document.createElement('script');
+    s.src = COORDS_BASE + colId + '.js';
+    s.onload = function () {
+      var d = (window.ONATE_COORDS || {})[colId];
+      if (d) cache[colId] = d; else fetchJson(colId);
+    };
+    s.onerror = function () { fetchJson(colId); };
+    document.head.appendChild(s);
+  }
+  function fetchJson(colId) {
     fetch(COORDS_BASE + colId + '.json')
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (d) { cache[colId] = d; })
       .catch(function (e) { cache[colId] = false;
-                            console.warn('onate-facs:', colId, e.message); });
+                            console.warn('onate-facs: sin coordenadas para', colId,
+                                         '(' + e.message + '). Genera los .js con: '
+                                         + 'python3 scripts/onate_coords.py --from-json coords/disp63/*.json'); });
   }
 
   /* Sincronizar canvas con la imagen: trabaja en coords de pantalla.

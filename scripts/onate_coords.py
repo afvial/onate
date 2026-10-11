@@ -29,6 +29,14 @@ Uso:
 
     # O integrado en procesar_pagina.sh:
     python3 scripts/onate_coords.py "$PAGE_XML" --out "$COORDS_JSON" --img "$IMG"
+
+    # Generar solo los .js a partir de JSON ya existentes (sin Tesseract):
+    python3 scripts/onate_coords.py --from-json coords/disp63/*.json
+
+Junto a cada .json se escribe un .js con los mismos datos
+(window.ONATE_COORDS["pg_63_39_der"] = {…}). El visor facsímil lo carga
+con <script>, así funciona también abriendo el HTML desde el disco
+(file://), donde el navegador bloquea fetch() de archivos locales.
 """
 
 import argparse
@@ -345,9 +353,23 @@ def add_tesseract_words(data: dict, img_path: str) -> int:
     return enriched
 
 
+def write_js(data: dict, json_path: Path) -> Path:
+    """Escribe <stem>.js junto al JSON: los mismos datos como asignación
+    a window.ONATE_COORDS[<stem>], cargable con <script> desde file://."""
+    js_path = json_path.with_suffix(".js")
+    key = json.dumps(json_path.stem)
+    body = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    js_path.write_text(
+        "window.ONATE_COORDS = window.ONATE_COORDS || {};\n"
+        f"window.ONATE_COORDS[{key}] = {body};\n", encoding="utf-8")
+    return js_path
+
+
 def main():
     ap = argparse.ArgumentParser(description="Extrae coordenadas del PAGE XML de Transkribus.")
-    ap.add_argument("page_xml", type=Path, help="Ruta al PAGE XML de Transkribus")
+    ap.add_argument("page_xml", type=Path, nargs="?", help="Ruta al PAGE XML de Transkribus")
+    ap.add_argument("--from-json", type=Path, nargs="+", metavar="JSON",
+                    help="Solo generar los .js a partir de estos JSON ya existentes")
     ap.add_argument("--out",    type=Path, default=None,
                     help="Ruta del JSON de salida")
     ap.add_argument("--img",    type=str,  default=None,
@@ -358,6 +380,13 @@ def main():
                     help="JSON con indentación (para depuración)")
     args = ap.parse_args()
 
+    if args.from_json:
+        for jp in args.from_json:
+            data = json.loads(jp.read_text(encoding="utf-8"))
+            print(f"  {jp} → {write_js(data, jp)}")
+        return
+    if args.page_xml is None:
+        ap.error("falta el PAGE XML (o usa --from-json)")
     if not args.page_xml.exists():
         sys.exit(f"ERROR: no se encuentra {args.page_xml}")
 
@@ -380,6 +409,7 @@ def main():
     indent = 2 if args.pretty else None
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(data, ensure_ascii=False, indent=indent))
+    js_path = write_js(data, out_path)
 
     print(f"  Imagen:  {data['img_name']}  ({data['img_w']}×{data['img_h']} px)")
     print(f"  Líneas:  {n_lines}")
@@ -388,6 +418,7 @@ def main():
     else:
         print(f"  Palabras: {n_words}  {'✓' if n_words else '— (solo líneas)'}")
     print(f"  → {out_path}")
+    print(f"  → {js_path}")
 
 
 if __name__ == "__main__":
