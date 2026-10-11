@@ -1,5 +1,5 @@
 linea	forma	lema	upos	estado	asignado	candidatos
-1	Contractus	contraho	ADJ	pos_distinta		lila:96338 verb
+1	Contractus	contraho	NOUN	pos_distinta		lila:96338 verb
 2	contractu	contraho	NOUN	pos_distinta		lila:96338 verb
 4	contractu	contraho	NOUN	pos_distinta		lila:96338 verb
 4	non	non	PART	pos_alternativo	lila:114108	lila:114108 adverb
@@ -7,6 +7,7 @@ linea	forma	lema	upos	estado	asignado	candidatos
 8	vendi	uo	VERB	pos_distinta		lila:84136 noun (variante)
 12	Baratae	Baratae	PROPN	no_encontrado		
 12	borocholae	borochola	NOUN	no_encontrado		
+14	carius	carus	ADV	pos_distinta		lila:92942 adjective
 14	non	non	PART	pos_alternativo	lila:114108	lila:114108 adverb
 14	vendi	uo	VERB	pos_distinta		lila:84136 noun (variante)
 15	regula	regula	NOUN	ambiguo		lila:121686 noun; lila:121689 noun
@@ -15,47 +16,54 @@ linea	forma	lema	upos	estado	asignado	candidatos
 20	veluti	uelut	SCONJ	pos_alternativo	lila:129732	lila:129732 adverb
 21	regula	regula	NOUN	ambiguo		lila:121686 noun; lila:121689 noun
 22	mercatorem	mercor	NOUN	pos_distinta		lila:112102 verb
-22	tantum	tantus	ADV	pos_distinta		lila:127630 determiner
-23	quantum	quantus	PRON	pos_alternativo	lila:121092	lila:121092 determiner
+23	quantum	quantum	SCONJ	pos_alternativo	lilah:110678	lilah:110678 adverb
 25	iuris	ius	NOUN	ambiguo		lila:109285 noun; lila:109252 noun
-25	tantum	tantus	ADV	pos_distinta		lila:127630 determiner
 26	vendi	uo	VERB	pos_distinta		lila:84136 noun (variante)
 27	vulgi	uulgus	NOUN	ambiguo		lila:130956 noun; lila:130957 noun
 28	iuris	ius	NOUN	ambiguo		lila:109285 noun; lila:109252 noun
 28	nam	nam	PART	pos_alternativo	lila:113344	lila:113344 adverb
+28	suffulta	suffulcio	ADJ	pos_distinta		lila:126640 verb
 29	Digesta	Digesta	PROPN	pos_distinta		lila:100419 noun
+29	Trebell	Trebells	PROPN	no_encontrado		
 29	l	l	ADV	pos_distinta		lila:11004 proper_noun; lila:109595 noun
-29	Trebell	trebell	PROPN	no_encontrado		
 30	Digesta	Digesta	PROPN	pos_distinta		lila:100419 noun
+30	ad legem Falcidiam	adlegemfalcidiam	NOUN	no_encontrado		
 31	Digesta	Digesta	PROPN	pos_distinta		lila:100419 noun
 31	furt	furt	NOUN	no_encontrado		
-31	ll	ll	INTJ	no_encontrado		
+31	ll	ll	PRON	no_encontrado		
+31	vis	uis	NOUN	ambiguo		lila:130360 noun; lila:156435 noun
 31	vlt	ultimus	VERB	pos_distinta		lila:130507 adjective
-31	vis	uolo	VERB	ambiguo		lila:130745 verb; lila:130746 verb
 32	Sylvester	Sylvester	PROPN	pos_distinta		lila:124804 adjective (variante)
+33	Doctoribus	Doctores	PROPN	no_encontrado		
 33	scopulos	scopulus	NOUN	ambiguo		lila:127309 noun; lila:123791 noun
-34	Nam	nam	PART	pos_alternativo	lila:113344	lila:113344 adverb
 34	siseruus	siseruus	ADJ	no_encontrado		
 35	Digesta	Digesta	PROPN	pos_distinta		lila:100419 noun
-38	ff	ff	PUNCT	pos_distinta		lila:52005 noun
-38	Quanti	quantus	PRON	pos_alternativo	lila:121092	lila:121092 determiner
-38	text	textus	VERB	pos_distinta		lilah:44368 adjective; lila:129412 noun
-40	Codex Iustinianus	Codex	PROPN	pos_distinta		lila:93188 noun (variante)
+35	in fine	info	NOUN	no_encontrado		
+36	textus	textus	VERB	pos_distinta		lilah:44368 adjective; lila:129412 noun
+37	dicta	dictum	VERB	pos_distinta		lila:100416 noun
+38	ad legem Falcidiam	adlegemFalcidia	NOUN	no_encontrado		
+38	ff	ff	CCONJ	pos_distinta		lila:52005 noun
+38	text	text	ADJ	no_encontrado		
+40	Codex Iustinianus	codexIustinianus	ADJ	no_encontrado		
 41	moderator	modero	NOUN	pos_distinta		lila:112525 verb
+42	ergo	ergo	CCONJ	pos_distinta		lila:101414 adposition; lila:101415 particle; lila:49551 verb; lila:101404 adposition (variante)
+43	quanti	quantus	PRON	pos_alternativo	lila:121092	lila:121092 determiner
 43	velit	uolo	VERB	ambiguo		lila:130745 verb; lila:130746 verb
-44	Codex Iustinianus	Codex	PROPN	pos_distinta		lila:93188 noun (variante)
+44	Trebell	Trebell	PROPN	no_encontrado		
+44	Codex Iustinianus	codexIustinianus	NOUN	no_encontrado		
 44	Ffficacius	ffficacius	ADJ	no_encontrado		
-44	Trebell	trebell	PROPN	no_encontrado		
-45	sine	sino	ADP	pos_distinta		lila:80800 verb; lila:124907 verb
-46	lit	lit	VERB	no_encontrado		
-47	tantum	tantus	ADV	pos_distinta		lila:127630 determiner
+45	quanti	quantus	PRON	pos_alternativo	lila:121092	lila:121092 determiner
+46	lit	lio	VERB	ambiguo		lila:110732 verb; lila:110605 verb
 47	vendi	uo	VERB	pos_distinta		lila:84136 noun (variante)
 48	regula	regula	NOUN	ambiguo		lila:121686 noun; lila:121689 noun
 49	regularum	regulo	NOUN	pos_distinta		lila:122547 verb
+50	Doctoribus	Doctores	PROPN	no_encontrado		
 50	non	non	PART	pos_alternativo	lila:114108	lila:114108 adverb
 54	Nam	nam	PART	pos_alternativo	lila:113344	lila:113344 adverb
 55	Digesta	Digesta	PROPN	pos_distinta		lila:100419 noun
+55	ad legem Falcidiam	adlegemFalcidia	ADV	no_encontrado		
 55	statuitur	statuo	VERB	ambiguo		lila:125614 verb; lila:82141 verb
-57	tantum	tantus	ADV	pos_distinta		lila:127630 determiner
+57	scilicet	scilicet	CCONJ	pos_alternativo	lila:123717	lila:123717 adverb
+57	tantum	tantum	DET	pos_distinta		lila:131928 noun; lilah:110679 adverb
 59	haeredem	haereo	NOUN	pos_distinta		lila:105089 verb
 59	mor	mor	NOUN	no_encontrado		

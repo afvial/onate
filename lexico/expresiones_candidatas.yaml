@@ -1,125 +1,127 @@
 # Expresiones multipalabra candidatas
-# Pares de lemas en la misma oración, ventana 3, frecuencia ≥ 3
+# Pares unidos por dependencia (amod, nmod en genitivo, conj), frecuencia ≥ 3
+# concuerdan: cuántas apariciones concuerdan además en caso y número (solo sust+adj);
+#   pocas → probable error del análisis sintáctico
 # estado: pendiente | aceptada | rechazada
+
+pretium_iustus:
+  lemas: [pretium, iustus]
+  tipo: sust+adj
+  forma: iustum pretium
+  apariciones: 51
+  asociacion_g2: 119.5
+  concuerdan: 51
+  orden: {'adj-sust': 26, 'sust-adj': 23, 'coordinado': 2}
+  ejemplos: [p33unica l.10, p36der l.9, p37der l.48, p38izq l.41]
+  estado: pendiente
 
 pretium_res:
   lemas: [pretium, res]
   tipo: sust+gen
   forma: pretia rerum
-  apariciones: 58
-  asociacion_g2: 51.5
-  orden: {'sust-gen': 34, 'gen-sust': 24}
-  ejemplos: [p33unica l.2, p34izq l.2, p34der l.29, p34der l.41]
+  apariciones: 39
+  asociacion_g2: 15.9
+  orden: {'sust-gen': 25, 'gen-sust': 13, 'coordinado': 1}
+  ejemplos: [p34der l.29, p35izq l.14, p35izq l.20, p37der l.46]
   estado: pendiente
 
 pretium_legalis:
   lemas: [pretium, legalis]
   tipo: sust+adj
   forma: pretium legale
-  apariciones: 28
-  asociacion_g2: 66.9
-  orden: {'sust-adj': 24, 'adj-sust': 4}
-  ejemplos: [p34izq l.20, p34izq l.23, p34izq l.26, p34izq l.45]
-  estado: pendiente
-
-pretium_iustus:
-  lemas: [pretium, iustus]
-  tipo: sust+adj
-  forma: iusto pretio
-  apariciones: 17
-  asociacion_g2: 3.1
-  orden: {'adj-sust': 10, 'sust-adj': 6, 'coordinado': 1}
-  ejemplos: [p33unica l.10, p37der l.48, p40izq l.27, p42izq l.22]
-  estado: pendiente
-
-aestimatio_communis:
-  lemas: [aestimatio, communis]
-  tipo: sust+adj
-  forma: communem aestimationem
-  apariciones: 15
-  asociacion_g2: 74.4
-  orden: {'coordinado': 1, 'adj-sust': 10, 'sust-adj': 4}
-  ejemplos: [p35izq l.49, p42der l.14, p42der l.42, p43izq l.53]
+  apariciones: 34
+  asociacion_g2: 105.3
+  concuerdan: 34
+  orden: {'sust-adj': 29, 'adj-sust': 3, 'coordinado': 2}
+  ejemplos: [p34izq l.20, p34izq l.26, p34izq l.45, p35izq l.40]
   estado: pendiente
 
 pretium_conuentionalis:
   lemas: [pretium, conuentionalis]
   tipo: sust+adj
-  forma: pretio conuentionali
-  apariciones: 13
-  asociacion_g2: 12.5
-  orden: {'coordinado': 3, 'sust-adj': 10}
-  ejemplos: [p34izq l.20, p35izq l.45, p37izq l.28, p37izq l.40]
-  estado: pendiente
-
-pretium_rigorosus:
-  lemas: [pretium, rigorosus]
-  tipo: sust+adj
-  forma: pretio rigoroso
-  apariciones: 11
-  asociacion_g2: 25.4
-  orden: {'sust-adj': 9, 'adj-sust': 2}
-  ejemplos: [p35der l.36, p36izq l.6, p38der l.26, p47der l.45]
-  estado: pendiente
-
-ratio_lucrum:
-  lemas: [ratio, lucrum]
-  tipo: sust+gen
-  forma: ratione lucri
-  apariciones: 10
-  asociacion_g2: 45.8
-  orden: {'sust-gen': 10}
-  ejemplos: [p40der l.13, p43der l.44, p44izq l.1, p49izq l.56]
-  estado: pendiente
-
-res_uendibilis:
-  lemas: [res, uendibilis]
-  tipo: sust+adj
-  forma: rerum vendibilium
-  apariciones: 9
-  asociacion_g2: 39.4
-  orden: {'sust-adj': 9}
-  ejemplos: [p33unica l.2, p33unica l.3, p33unica l.6, p34izq l.2]
-  estado: pendiente
-
-res_uenalis:
-  lemas: [res, uenalis]
-  tipo: sust+adj
-  forma: rerum venalium
-  apariciones: 9
-  asociacion_g2: 37.0
-  orden: {'sust-adj': 9}
-  ejemplos: [p33unica l.10, p34izq l.19, p35izq l.11, p39izq l.18]
-  estado: pendiente
-
-copia_merx:
-  lemas: [copia, merx]
-  tipo: sust+gen
-  forma: copia mercium
-  apariciones: 8
-  asociacion_g2: 31.5
-  orden: {'sust-gen': 7, 'gen-sust': 1}
-  ejemplos: [p43der l.38, p44der l.23, p46izq l.25, p46izq l.50]
-  estado: pendiente
-
-pretium_paruus:
-  lemas: [pretium, paruus]
-  tipo: sust+adj
-  forma: minori pretio
-  apariciones: 8
-  asociacion_g2: 8.0
-  orden: {'adj-sust': 7, 'sust-adj': 1}
-  ejemplos: [p43izq l.5, p43der l.37, p49der l.11, p50izq l.39]
+  forma: pretium conuentionale
+  apariciones: 26
+  asociacion_g2: 69.7
+  concuerdan: 26
+  orden: {'sust-adj': 19, 'adj-sust': 3, 'coordinado': 4}
+  ejemplos: [p34izq l.37, p34izq l.38, p34izq l.42, p35izq l.45]
   estado: pendiente
 
 pretium_naturalis:
   lemas: [pretium, naturalis]
   tipo: sust+adj
   forma: pretium naturale
+  apariciones: 17
+  asociacion_g2: 31.4
+  concuerdan: 17
+  orden: {'sust-adj': 11, 'coordinado': 5, 'adj-sust': 1}
+  ejemplos: [p34izq l.20, p34izq l.27, p34izq l.45, p35izq l.40]
+  estado: pendiente
+
+aestimatio_communis:
+  lemas: [aestimatio, communis]
+  tipo: sust+adj
+  forma: communem aestimationem
+  apariciones: 14
+  asociacion_g2: 69.8
+  concuerdan: 14
+  orden: {'adj-sust': 11, 'sust-adj': 3}
+  ejemplos: [p35izq l.49, p42der l.15, p42der l.46, p43izq l.53]
+  estado: pendiente
+
+pretium_uulgaris:
+  lemas: [pretium, uulgaris]
+  tipo: sust+adj
+  forma: pretium vulgare
+  apariciones: 12
+  asociacion_g2: 24.0
+  concuerdan: 12
+  orden: {'coordinado': 7, 'sust-adj': 5}
+  ejemplos: [p34izq l.27, p35der l.33, p35der l.46, p38izq l.26]
+  estado: pendiente
+
+res_uenalis:
+  lemas: [res, uenalis]
+  tipo: sust+adj
+  forma: rerum venalium
+  apariciones: 11
+  asociacion_g2: 54.5
+  concuerdan: 11
+  orden: {'sust-adj': 11}
+  ejemplos: [p33unica l.10, p34izq l.19, p35izq l.11, p39izq l.18]
+  estado: pendiente
+
+pretium_communis:
+  lemas: [pretium, communis]
+  tipo: sust+adj
+  forma: pretio communi
+  apariciones: 11
+  asociacion_g2: 4.8
+  concuerdan: 11
+  orden: {'sust-adj': 6, 'coordinado': 1, 'adj-sust': 4}
+  ejemplos: [p43der l.34, p44der l.42, p45izq l.31, p47der l.6]
+  estado: pendiente
+
+pretium_rigorosus:
+  lemas: [pretium, rigorosus]
+  tipo: sust+adj
+  forma: pretio rigoroso
+  apariciones: 9
+  asociacion_g2: 17.1
+  concuerdan: 9
+  orden: {'sust-adj': 8, 'adj-sust': 1}
+  ejemplos: [p35der l.36, p38der l.26, p47der l.45, p48der l.42]
+  estado: pendiente
+
+pretium_magnus:
+  lemas: [pretium, magnus]
+  tipo: sust+adj
+  forma: maiori pretio
   apariciones: 8
-  asociacion_g2: 3.6
-  orden: {'coordinado': 3, 'sust-adj': 5}
-  ejemplos: [p34izq l.20, p35izq l.40, p36izq l.13, p36der l.24]
+  asociacion_g2: 1.1
+  concuerdan: 8
+  orden: {'adj-sust': 6, 'coordinado': 1, 'sust-adj': 1}
+  ejemplos: [p34izq l.44, p37izq l.32, p37izq l.32, p37der l.1]
   estado: pendiente
 
 periculum_solutio:
@@ -127,69 +129,41 @@ periculum_solutio:
   tipo: sust+gen
   forma: periculum solutionis
   apariciones: 7
-  asociacion_g2: 51.6
+  asociacion_g2: 52.0
   orden: {'sust-gen': 7}
   ejemplos: [p50izq l.50, p50izq l.53, p50der l.6, p50der l.16]
   estado: pendiente
 
-aestimatio_res:
-  lemas: [aestimatio, res]
-  tipo: sust+gen
-  forma: rei aestimatione
-  apariciones: 7
-  asociacion_g2: 6.1
-  orden: {'gen-sust': 3, 'sust-gen': 4}
-  ejemplos: [p34izq l.7, p34der l.11, p34der l.33, p34der l.46]
-  estado: pendiente
-
-pretium_magnus:
-  lemas: [pretium, magnus]
+res_uendibilis:
+  lemas: [res, uendibilis]
   tipo: sust+adj
-  forma: maiori pretio
+  forma: rerum vendibilium
   apariciones: 7
-  asociacion_g2: 0.2
-  orden: {'sust-adj': 2, 'adj-sust': 5}
-  ejemplos: [p37izq l.14, p37izq l.32, p37izq l.32, p37izq l.37]
+  asociacion_g2: 32.2
+  concuerdan: 6
+  orden: {'sust-adj': 7}
+  ejemplos: [p33unica l.3, p35izq l.18, p35izq l.20, p35der l.55]
   estado: pendiente
 
-pretium_communis:
-  lemas: [pretium, communis]
-  tipo: sust+adj
-  forma: pretio communi
+ratio_lucrum:
+  lemas: [ratio, lucrum]
+  tipo: sust+gen
+  forma: ratione lucri
   apariciones: 7
-  asociacion_g2: 0.2
-  orden: {'coordinado': 1, 'sust-adj': 4, 'adj-sust': 2}
-  ejemplos: [p43der l.34, p45izq l.23, p48izq l.41, p50izq l.20]
+  asociacion_g2: 26.7
+  orden: {'sust-gen': 7}
+  ejemplos: [p40der l.13, p43der l.44, p49izq l.56, p49der l.5]
   estado: pendiente
 
-inopia_merx:
-  lemas: [inopia, merx]
-  tipo: sust+gen
-  forma: inopia mercium
-  apariciones: 6
-  asociacion_g2: 27.6
-  orden: {'sust-gen': 6}
-  ejemplos: [p44der l.23, p46izq l.25, p46izq l.26, p46der l.32]
-  estado: pendiente
-
-latitudo_magnus:
-  lemas: [latitudo, magnus]
+pretium_paruus:
+  lemas: [pretium, paruus]
   tipo: sust+adj
-  forma: maiorem latitudinem
-  apariciones: 6
-  asociacion_g2: 19.5
-  orden: {'adj-sust': 6}
-  ejemplos: [p37izq l.25, p40izq l.12, p42izq l.2, p42izq l.19]
-  estado: pendiente
-
-latitudo_pretium:
-  lemas: [latitudo, pretium]
-  tipo: sust+gen
-  forma: latitudine pretij
-  apariciones: 6
-  asociacion_g2: 0.7
-  orden: {'sust-gen': 6}
-  ejemplos: [p35der l.36, p36izq l.2, p36der l.9, p36der l.33]
+  forma: minori pretio
+  apariciones: 7
+  asociacion_g2: 6.0
+  concuerdan: 7
+  orden: {'adj-sust': 6, 'sust-adj': 1}
+  ejemplos: [p43izq l.5, p43der l.37, p50izq l.39, p50der l.51]
   estado: pendiente
 
 scientia_deus:
@@ -197,29 +171,81 @@ scientia_deus:
   tipo: sust+gen
   forma: scientiam dei
   apariciones: 5
-  asociacion_g2: 48.8
+  asociacion_g2: 49.5
   orden: {'sust-gen': 5}
   ejemplos: [p38izq l.11, p39der l.14, p39der l.20, p39der l.45]
   estado: pendiente
 
-ualor_res:
-  lemas: [ualor, res]
+opinio_uulgus:
+  lemas: [opinio, uulgus]
   tipo: sust+gen
-  forma: rei valori
+  forma: vulgi opinio
   apariciones: 5
-  asociacion_g2: 10.5
-  orden: {'gen-sust': 2, 'sust-gen': 3}
-  ejemplos: [p35der l.4, p39izq l.57, p39der l.58, p39der l.58]
+  asociacion_g2: 39.4
+  orden: {'coordinado': 2, 'sust-gen': 2, 'gen-sust': 1}
+  ejemplos: [p38izq l.14, p38izq l.16, p38der l.11, p39der l.25]
   estado: pendiente
 
-merx_pretium:
-  lemas: [merx, pretium]
-  tipo: sust+gen
-  forma: mercis pretij
+latitudo_magnus:
+  lemas: [latitudo, magnus]
+  tipo: sust+adj
+  forma: maiorem latitudinem
   apariciones: 5
-  asociacion_g2: 4.3
-  orden: {'sust-gen': 4, 'gen-sust': 1}
-  ejemplos: [p33unica l.6, p36izq l.43, p36izq l.43, p36izq l.47]
+  asociacion_g2: 14.9
+  concuerdan: 5
+  orden: {'adj-sust': 5}
+  ejemplos: [p37izq l.25, p42izq l.6, p42izq l.19, p42izq l.24]
+  estado: pendiente
+
+aestimatio_res:
+  lemas: [aestimatio, res]
+  tipo: sust+gen
+  forma: rei aestimatione
+  apariciones: 5
+  asociacion_g2: 2.7
+  orden: {'gen-sust': 2, 'sust-gen': 3}
+  ejemplos: [p34izq l.7, p34der l.11, p34der l.33, p39izq l.17]
+  estado: pendiente
+
+latitudo_pretium:
+  lemas: [latitudo, pretium]
+  tipo: sust+gen
+  forma: latitudine pretij
+  apariciones: 5
+  asociacion_g2: 0.3
+  orden: {'sust-gen': 5}
+  ejemplos: [p35der l.36, p36izq l.2, p36der l.9, p36der l.33]
+  estado: pendiente
+
+contraho_emptio:
+  lemas: [contraho, emptio]
+  tipo: sust+gen
+  forma: contractus emptionis
+  apariciones: 4
+  asociacion_g2: 15.2
+  orden: {'sust-gen': 4}
+  ejemplos: [p40der l.1, p41izq l.50, p51izq l.19, p52izq l.36]
+  estado: pendiente
+
+copia_magnus:
+  lemas: [copia, magnus]
+  tipo: sust+adj
+  forma: magna copia
+  apariciones: 4
+  asociacion_g2: 15.2
+  concuerdan: 4
+  orden: {'adj-sust': 3, 'coordinado': 1}
+  ejemplos: [p42der l.33, p42der l.33, p46der l.42, p51der l.31]
+  estado: pendiente
+
+ualor_merx:
+  lemas: [ualor, merx]
+  tipo: sust+gen
+  forma: valorem mercis
+  apariciones: 4
+  asociacion_g2: 14.5
+  orden: {'sust-gen': 4}
+  ejemplos: [p33unica l.6, p36izq l.43, p50izq l.17, p52izq l.17]
   estado: pendiente
 
 pretium_consuetudinarius:
@@ -227,129 +253,85 @@ pretium_consuetudinarius:
   tipo: sust+adj
   forma: pretium consuetudinarium
   apariciones: 4
-  asociacion_g2: 12.6
-  orden: {'coordinado': 3, 'sust-adj': 1}
+  asociacion_g2: 12.9
+  concuerdan: 4
+  orden: {'adj-sust': 1, 'coordinado': 3}
   ejemplos: [p39izq l.19, p39izq l.45, p41izq l.40, p41der l.20]
   estado: pendiente
 
-opinio_communis:
-  lemas: [opinio, communis]
+pretium_ordinarius:
+  lemas: [pretium, ordinarius]
   tipo: sust+adj
-  forma: communis opinio
+  forma: pretium ordinarium
   apariciones: 4
-  asociacion_g2: 12.0
-  orden: {'adj-sust': 4}
-  ejemplos: [p44der l.15, p49izq l.34, p54izq l.47, p54der l.3]
-  estado: pendiente
-
-pretium_superus:
-  lemas: [pretium, superus]
-  tipo: sust+adj
-  forma: pretio summo
-  apariciones: 4
-  asociacion_g2: 10.2
+  asociacion_g2: 10.5
+  concuerdan: 4
   orden: {'sust-adj': 3, 'coordinado': 1}
-  ejemplos: [p36izq l.6, p36der l.2, p36der l.5, p48der l.42]
+  ejemplos: [p45izq l.14, p48izq l.49, p48izq l.53, p48der l.11]
   estado: pendiente
 
-pretium_mediocris:
-  lemas: [pretium, mediocris]
+pretium_pius:
+  lemas: [pretium, pius]
   tipo: sust+adj
-  forma: pretij mediocris
+  forma: pretij pij
   apariciones: 4
-  asociacion_g2: 8.5
+  asociacion_g2: 5.6
+  concuerdan: 4
   orden: {'coordinado': 3, 'sust-adj': 1}
-  ejemplos: [p35der l.36, p36izq l.6, p36izq l.58, p38der l.26]
+  ejemplos: [p35der l.36, p36izq l.58, p38der l.26, p49der l.32]
   estado: pendiente
 
-pretium_inferus:
-  lemas: [pretium, inferus]
-  tipo: sust+adj
-  forma: pretio infimo
-  apariciones: 4
-  asociacion_g2: 7.2
-  orden: {'sust-adj': 3, 'coordinado': 1}
-  ejemplos: [p36der l.2, p49der l.27, p50der l.12, p50der l.51]
-  estado: pendiente
-
-causa_iustus:
-  lemas: [causa, iustus]
-  tipo: sust+adj
-  forma: iusta causa
-  apariciones: 4
-  asociacion_g2: 6.5
-  orden: {'adj-sust': 3, 'sust-adj': 1}
-  ejemplos: [p43der l.24, p49der l.36, p52der l.38, p54der l.32]
-  estado: pendiente
-
-pretium_locus:
-  lemas: [pretium, locus]
+pretium_merx:
+  lemas: [pretium, merx]
   tipo: sust+gen
-  forma: locorum pretia
+  forma: pretium mercis
   apariciones: 4
-  asociacion_g2: 1.4
-  orden: {'gen-sust': 2, 'sust-gen': 2}
-  ejemplos: [p45izq l.35, p48izq l.20, p51izq l.20, p51der l.1]
-  estado: pendiente
-
-donatio_pretium:
-  lemas: [donatio, pretium]
-  tipo: sust+gen
-  forma: donatio pretij
-  apariciones: 4
-  asociacion_g2: 1.2
+  asociacion_g2: 2.0
   orden: {'sust-gen': 4}
-  ejemplos: [p51der l.41, p51der l.42, p52izq l.15, p52izq l.41]
+  ejemplos: [p33unica l.4, p44der l.21, p51izq l.43, p52izq l.40]
   estado: pendiente
 
-res_emptor:
-  lemas: [res, emptor]
-  tipo: sust+gen
-  forma: emptoris res
-  apariciones: 4
-  asociacion_g2: 1.1
-  orden: {'gen-sust': 4}
-  ejemplos: [p40der l.7, p40der l.13, p40der l.15, p43der l.6]
-  estado: pendiente
-
-aestimatio_pretium:
-  lemas: [aestimatio, pretium]
-  tipo: sust+gen
-  forma: aestimatio pretij
-  apariciones: 4
-  asociacion_g2: 0.3
-  orden: {'sust-gen': 3, 'gen-sust': 1}
-  ejemplos: [p38izq l.41, p38der l.21, p40izq l.15, p44der l.41]
-  estado: pendiente
-
-finis_nundina:
-  lemas: [finis, nundina]
-  tipo: sust+gen
-  forma: fine nundinarum
-  apariciones: 3
-  asociacion_g2: 43.9
-  orden: {'sust-gen': 3}
-  ejemplos: [p53izq l.16, p54der l.13, p54der l.20]
-  estado: pendiente
-
-tempus_diuersus:
-  lemas: [tempus, diuersus]
+pretium_uerus:
+  lemas: [pretium, uerus]
   tipo: sust+adj
-  forma: diuersis temporibus
-  apariciones: 3
-  asociacion_g2: 24.2
-  orden: {'adj-sust': 3}
-  ejemplos: [p36izq l.53, p45der l.3, p51izq l.52]
+  forma: verum pretium
+  apariciones: 4
+  asociacion_g2: 0.4
+  concuerdan: 4
+  orden: {'adj-sust': 4}
+  ejemplos: [p39der l.25, p45der l.24, p46der l.35, p52izq l.40]
   estado: pendiente
 
-opinio_uulgus:
-  lemas: [opinio, uulgus]
+esse_natura:
+  lemas: [esse, natura]
   tipo: sust+gen
-  forma: vulgi opinio
+  forma: esse naturae
   apariciones: 3
-  asociacion_g2: 19.0
-  orden: {'sust-gen': 1, 'gen-sust': 2}
-  ejemplos: [p38izq l.16, p39der l.25, p40der l.27]
+  asociacion_g2: 40.2
+  orden: {'sust-gen': 3}
+  ejemplos: [p40izq l.45, p42izq l.53, p42izq l.58]
+  estado: pendiente
+
+affectio_singularis:
+  lemas: [affectio, singularis]
+  tipo: sust+adj
+  forma: singularis affectionis
+  apariciones: 3
+  asociacion_g2: 28.8
+  concuerdan: 2
+  orden: {'adj-sust': 3}
+  ejemplos: [p40der l.15, p40der l.18, p44izq l.7]
+  estado: pendiente
+
+regula_quarta:
+  lemas: [regula, quarta]
+  tipo: sust+adj
+  forma: quarta regula
+  apariciones: 3
+  asociacion_g2: 21.0
+  concuerdan: 2
+  orden: {'adj-sust': 3}
+  ejemplos: [p40izq l.48, p42der l.41, p47izq l.9]
   estado: pendiente
 
 materia_uenditio:
@@ -357,39 +339,19 @@ materia_uenditio:
   tipo: sust+gen
   forma: materia venditionis
   apariciones: 3
-  asociacion_g2: 17.5
-  orden: {'sust-gen': 3}
+  asociacion_g2: 18.7
+  orden: {'sust-gen': 1, 'coordinado': 2}
   ejemplos: [p34izq l.6, p34der l.7, p35izq l.7]
   estado: pendiente
 
-res_notus:
-  lemas: [res, notus]
-  tipo: sust+adj
-  forma: res notissima
-  apariciones: 3
-  asociacion_g2: 17.4
-  orden: {'adj-sust': 1, 'sust-adj': 2}
-  ejemplos: [p40der l.46, p42der l.10, p47izq l.21]
-  estado: pendiente
-
-inopia_pecunia:
-  lemas: [inopia, pecunia]
+periculum_expendo:
+  lemas: [periculum, expendo]
   tipo: sust+gen
-  forma: inopia pecuniae
+  forma: periculum expensarum
   apariciones: 3
-  asociacion_g2: 15.7
-  orden: {'sust-gen': 3}
-  ejemplos: [p44der l.26, p46der l.32, p46der l.38]
-  estado: pendiente
-
-industria_labor:
-  lemas: [industria, labor]
-  tipo: sust+gen
-  forma: laborum industriae
-  apariciones: 3
-  asociacion_g2: 15.3
-  orden: {'gen-sust': 3}
-  ejemplos: [p53der l.53, p54izq l.12, p54izq l.33]
+  asociacion_g2: 14.5
+  orden: {'coordinado': 3}
+  ejemplos: [p50der l.27, p50der l.39, p50der l.43]
   estado: pendiente
 
 ratio_affectio:
@@ -397,19 +359,9 @@ ratio_affectio:
   tipo: sust+gen
   forma: ratione affectionis
   apariciones: 3
-  asociacion_g2: 13.6
+  asociacion_g2: 13.9
   orden: {'sust-gen': 3}
   ejemplos: [p40der l.15, p40der l.18, p44izq l.7]
-  estado: pendiente
-
-opinio_homo:
-  lemas: [opinio, homo]
-  tipo: sust+gen
-  forma: opinione hominum
-  apariciones: 3
-  asociacion_g2: 13.5
-  orden: {'sust-gen': 2, 'gen-sust': 1}
-  ejemplos: [p38izq l.14, p39der l.25, p39der l.60]
   estado: pendiente
 
 mensura_res:
@@ -417,7 +369,7 @@ mensura_res:
   tipo: sust+gen
   forma: mensura rerum
   apariciones: 3
-  asociacion_g2: 13.0
+  asociacion_g2: 13.3
   orden: {'sust-gen': 3}
   ejemplos: [p34izq l.19, p35izq l.11, p35izq l.18]
   estado: pendiente
@@ -427,29 +379,21 @@ pretium_instus:
   tipo: sust+adj
   forma: instum pretium
   apariciones: 3
-  asociacion_g2: 13.0
+  asociacion_g2: 13.3
+  concuerdan: 3
   orden: {'adj-sust': 3}
   ejemplos: [p44der l.42, p45der l.32, p45der l.54]
   estado: pendiente
 
-respectus_merx:
-  lemas: [respectus, merx]
-  tipo: sust+gen
-  forma: respectu mercium
+regula_primus:
+  lemas: [regula, primus]
+  tipo: sust+adj
+  forma: prima regula
   apariciones: 3
-  asociacion_g2: 12.5
-  orden: {'sust-gen': 2, 'gen-sust': 1}
-  ejemplos: [p46der l.39, p46der l.39, p46der l.39]
-  estado: pendiente
-
-copia_pecunia:
-  lemas: [copia, pecunia]
-  tipo: sust+gen
-  forma: copia pecuniae
-  apariciones: 3
-  asociacion_g2: 12.1
-  orden: {'gen-sust': 1, 'sust-gen': 2}
-  ejemplos: [p44der l.27, p46der l.38, p46der l.45]
+  asociacion_g2: 12.9
+  concuerdan: 2
+  orden: {'adj-sust': 3}
+  ejemplos: [p40izq l.40, p42izq l.44, p46izq l.24]
   estado: pendiente
 
 necessitas_emptor:
@@ -457,7 +401,7 @@ necessitas_emptor:
   tipo: sust+gen
   forma: necessitatem emptoris
   apariciones: 3
-  asociacion_g2: 11.6
+  asociacion_g2: 11.9
   orden: {'sust-gen': 3}
   ejemplos: [p40izq l.46, p40der l.7, p43der l.5]
   estado: pendiente
@@ -465,31 +409,54 @@ necessitas_emptor:
 aestimatio_homo:
   lemas: [aestimatio, homo]
   tipo: sust+gen
-  forma: aestimatio hominum
+  forma: aestimationem hominum
   apariciones: 3
-  asociacion_g2: 10.5
+  asociacion_g2: 10.9
   orden: {'sust-gen': 2, 'gen-sust': 1}
-  ejemplos: [p39izq l.31, p39der l.59, p45izq l.29]
+  ejemplos: [p39der l.59, p40izq l.10, p45izq l.29]
   estado: pendiente
 
-merx_uendibilis:
-  lemas: [merx, uendibilis]
+regula_tertius:
+  lemas: [regula, tertius]
   tipo: sust+adj
-  forma: vendibilem mercem
+  forma: tertia regula
   apariciones: 3
-  asociacion_g2: 8.8
-  orden: {'adj-sust': 1, 'sust-adj': 2}
-  ejemplos: [p33unica l.4, p33unica l.6, p50izq l.23]
+  asociacion_g2: 10.8
+  concuerdan: 3
+  orden: {'adj-sust': 3}
+  ejemplos: [p40izq l.46, p42der l.11, p46der l.11]
   estado: pendiente
 
-pretium_ordinarius:
-  lemas: [pretium, ordinarius]
+regula_uerus:
+  lemas: [regula, uerus]
   tipo: sust+adj
-  forma: pretium ordinarium
+  forma: verae regulae
   apariciones: 3
-  asociacion_g2: 6.7
-  orden: {'sust-adj': 3}
-  ejemplos: [p48izq l.49, p48izq l.53, p48der l.11]
+  asociacion_g2: 9.3
+  concuerdan: 3
+  orden: {'adj-sust': 3}
+  ejemplos: [p38izq l.55, p40izq l.24, p40izq l.28]
+  estado: pendiente
+
+copia_merx:
+  lemas: [copia, merx]
+  tipo: sust+gen
+  forma: copia mercium
+  apariciones: 3
+  asociacion_g2: 8.0
+  orden: {'sust-gen': 2, 'gen-sust': 1}
+  ejemplos: [p43der l.38, p46izq l.26, p46der l.45]
+  estado: pendiente
+
+opinio_communis:
+  lemas: [opinio, communis]
+  tipo: sust+adj
+  forma: communis opinio
+  apariciones: 3
+  asociacion_g2: 7.5
+  concuerdan: 3
+  orden: {'adj-sust': 3}
+  ejemplos: [p44der l.15, p49izq l.34, p54izq l.47]
   estado: pendiente
 
 ratio_naturalis:
@@ -497,47 +464,50 @@ ratio_naturalis:
   tipo: sust+adj
   forma: ratio naturalis
   apariciones: 3
-  asociacion_g2: 5.4
+  asociacion_g2: 5.6
+  concuerdan: 3
   orden: {'sust-adj': 2, 'adj-sust': 1}
   ejemplos: [p38izq l.38, p41izq l.20, p42izq l.2]
   estado: pendiente
 
-pretium_pius:
-  lemas: [pretium, pius]
+causa_iustus:
+  lemas: [causa, iustus]
   tipo: sust+adj
-  forma: pretij pij
+  forma: iusta causa
   apariciones: 3
-  asociacion_g2: 2.5
-  orden: {'coordinado': 2, 'sust-adj': 1}
-  ejemplos: [p35der l.36, p36izq l.58, p38der l.26]
+  asociacion_g2: 4.0
+  concuerdan: 3
+  orden: {'adj-sust': 3}
+  ejemplos: [p43der l.24, p52der l.38, p54der l.33]
   estado: pendiente
 
-pretium_uilis:
-  lemas: [pretium, uilis]
+pretium_inferus:
+  lemas: [pretium, inferus]
   tipo: sust+adj
-  forma: vilissimo pretio
+  forma: pretio infimo
   apariciones: 3
-  asociacion_g2: 2.5
-  orden: {'adj-sust': 2, 'coordinado': 1}
-  ejemplos: [p42der l.22, p49der l.27, p54izq l.53]
+  asociacion_g2: 3.9
+  concuerdan: 3
+  orden: {'sust-adj': 3}
+  ejemplos: [p36der l.2, p50der l.12, p50der l.51]
   estado: pendiente
 
-aestimatio_iustus:
-  lemas: [aestimatio, iustus]
-  tipo: sust+adj
-  forma: iusta aestimatio
-  apariciones: 3
-  asociacion_g2: 1.9
-  orden: {'adj-sust': 2, 'sust-adj': 1}
-  ejemplos: [p38der l.21, p44der l.41, p45der l.46]
-  estado: pendiente
-
-ualor_pretium:
-  lemas: [ualor, pretium]
+aestimatio_pretium:
+  lemas: [aestimatio, pretium]
   tipo: sust+gen
-  forma: valor pretij
+  forma: aestimatio pretij
   apariciones: 3
-  asociacion_g2: 0.7
+  asociacion_g2: 0.8
   orden: {'sust-gen': 2, 'gen-sust': 1}
-  ejemplos: [p33unica l.6, p36izq l.43, p39der l.56]
+  ejemplos: [p38izq l.41, p38der l.22, p44der l.41]
+  estado: pendiente
+
+donatio_pretium:
+  lemas: [donatio, pretium]
+  tipo: sust+gen
+  forma: donatio pretij
+  apariciones: 3
+  asociacion_g2: 0.4
+  orden: {'sust-gen': 3}
+  ejemplos: [p51der l.41, p51der l.42, p52izq l.41]
   estado: pendiente

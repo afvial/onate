@@ -63,8 +63,8 @@ def _get_nlp(model_name):
     if _NLP_MODEL is None:
         try:
             import spacy
-            print(f"  Cargando modelo NLP ({model_name}) para palabra(s) "
-                  f"partida(s) entre columnas...", file=sys.stderr)
+            print(f"  Cargando modelo NLP ({model_name}) para palabras y "
+                  f"oraciones partidas entre columnas...", file=sys.stderr)
             _NLP_MODEL = spacy.load(model_name)
         except Exception as e:
             print(f"  ⚠ No se pudo cargar el modelo NLP ({model_name}): {e}\n"
@@ -495,6 +495,94 @@ def apply_uncertain(s_end, s_start):
     s_start.set('cert', 'low')
 
 
+
+# ─── Dependencias de las oraciones partidas ───────────────────────────────────
+
+def sentence_chains(root):
+    """{<s>: <s> inicial} para cada parte de una oración partida entre
+    columnas (part I → F, siguiendo @next)."""
+    by_id = {e.get(xml_id_attr()): e for e in root.iter(T('s')) if e.get(xml_id_attr())}
+    chain_of = {}
+    for s in root.iter(T('s')):
+        if s.get('part') != 'I' or s in chain_of:
+            continue
+        cur = s
+        while cur is not None and cur not in chain_of:
+            chain_of[cur] = s
+            nxt = (cur.get('next') or '').lstrip('#')
+            cur = by_id.get(nxt) if nxt else None
+    size = {}
+    for h in chain_of.values():
+        size[h] = size.get(h, 0) + 1
+    return {k: h for k, h in chain_of.items() if size[h] > 1}
+
+
+def _wpair_of(w):
+    for anc in w.iterancestors():
+        if anc.tag == T('choice') and anc.get('wpair'):
+            return anc.get('wpair')
+    return None
+
+
+def reparse_split_sentences(tree, model_name):
+    """
+    El paso nlp analiza cada columna por separado (src/), así que las dos
+    partes de una oración partida se analizaron como dos oraciones sueltas.
+    Aquí, ya ensamblado el texto, se vuelve a analizar cada oración partida
+    ENTERA y se reescriben @n, @head y @deprel con una numeración continua
+    a través de las columnas (la 1.ª palabra de la parte F sigue la
+    numeración de la parte I). Lema, categoría y morfología no se tocan
+    (conservan las correcciones manuales de nlp_corrections).
+    Las dos mitades de una palabra partida (@wpair) cuentan como una sola.
+    """
+    chain_of = sentence_chains(tree.getroot())
+    if not chain_of:
+        return 0
+    nlp = _get_nlp(model_name)
+    if nlp is None:
+        print("  ⚠ Sin modelo NLP: las oraciones partidas conservan el análisis "
+              "por columna.", file=sys.stderr)
+        return 0
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from onate_nlp import collect_w_elements, analyse_in_context, sentence_of
+
+    items, twins, first_of = [], [], {}
+    for it in collect_w_elements(tree):
+        s = sentence_of(it[0])
+        if s not in chain_of:
+            continue
+        wp = _wpair_of(it[0])
+        if wp and (chain_of[s], wp) in first_of:
+            twins.append((it, first_of[(chain_of[s], wp)]))   # 2.ª mitad
+            continue
+        if wp:
+            first_of[(chain_of[s], wp)] = len(items)
+        items.append(it)
+
+    res = analyse_in_context(nlp, items, group=lambda w: chain_of[sentence_of(w)])
+
+    def write(it, r):
+        w, _, reg = it
+        for target in (w, reg):
+            if target is None:
+                continue
+            if r is None:
+                for att in ('n', 'head', 'deprel'):
+                    target.attrib.pop(att, None)
+                continue
+            _, n, head, rel = r
+            target.set('n', str(n)); target.set('head', str(head))
+            if rel:
+                target.set('deprel', rel)
+            else:
+                target.attrib.pop('deprel', None)
+
+    for it, r in zip(items, res):
+        write(it, r)
+    for it, k in twins:
+        write(it, res[k])
+    return len(set(chain_of.values()))
+
 # ─── Pipeline principal ───────────────────────────────────────────────────────
 
 def col_label(div, idx):
@@ -564,6 +652,10 @@ def process(xml_path: Path, output_path: Path, report_only: bool = False,
     if report_only:
         print("  (modo --report: no se ha modificado ningún archivo)")
         return
+
+    n_re = reparse_split_sentences(tree, model_name)
+    if n_re:
+        print(f"  ✓ {n_re} oraciones partidas analizadas enteras (dependencias continuas)")
 
     tree.write(str(output_path), encoding='UTF-8',
                xml_declaration=True, pretty_print=True)

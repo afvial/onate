@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oñate · análisis por oración</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Una oración por vista: el texto arriba, la ficha de la palabra elegida al lado y, debajo, todas las palabras con su análisis. */
+:root {
+  --bg: #f4f6f4; --surface: #ffffff; --fg: #1c2321; --muted: #5b6763; --rule: #d5dcd8;
+  --accent: #1d6b64; --accent-soft: #e1efec; --sel: #fdeee0; --sel-line: #7a9abf;
+  --c-text: #3b6ea8; --c-lex: #1d6b64; --c-sense: #8a5a9e; --sense-soft: #f1e8f5;
+  --pending: #8a6a1e; --pending-bg: #f8f0da;
+  --text: "EB Garamond", "Garamond", "Iowan Old Style", Georgia, serif;
+  --ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131816; --surface: #1a201e; --fg: #e3e8e5; --muted: #98a59f; --rule: #2f3835;
+    --accent: #6cc0b5; --accent-soft: #1f3330; --sel: #3d3227; --sel-line: #9cb6d6;
+    --c-text: #8fb6e6; --c-lex: #6cc0b5; --c-sense: #c9a3dc; --sense-soft: #2d2433;
+    --pending: #e3c27a; --pending-bg: #2f2a1a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131816; --surface: #1a201e; --fg: #e3e8e5; --muted: #98a59f; --rule: #2f3835;
+  --accent: #6cc0b5; --accent-soft: #1f3330; --sel: #3d3227; --sel-line: #9cb6d6;
+  --c-text: #8fb6e6; --c-lex: #6cc0b5; --c-sense: #c9a3dc; --sense-soft: #2d2433;
+  --pending: #e3c27a; --pending-bg: #2f2a1a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--ui); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; padding-block: 22px 60px; display: grid; gap: 20px; }
+.wrap > * { min-width: 0; }
+a { color: var(--accent); }
+.top { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+.eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.links { display: flex; gap: 14px; font-size: 13.5px; }
+.links a { text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+.nav { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.nav select, .nav button { font: inherit; font-size: 14px; padding: 6px 10px; border: 1px solid var(--rule); border-radius: 5px; background: var(--surface); color: var(--fg); }
+.nav button { cursor: pointer; min-width: 38px; }
+.nav button:disabled { opacity: 0.4; cursor: default; }
+.nav label { font-size: 13px; color: var(--muted); display: inline-flex; gap: 6px; align-items: center; }
+h1 { margin: 0; font-family: var(--text); font-weight: 500; font-size: clamp(24px, 3.4vw, 32px); }
+h1 small { font-family: var(--ui); font-size: 13px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+@media (max-width: 880px) { .main { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; }
+.sentence { padding: 18px 20px; display: grid; gap: 12px; }
+.la { font-family: var(--text); font-size: 21px; line-height: 1.75; }
+.w { cursor: pointer; border-radius: 2px; padding: 0 1px; border-bottom: 1px dotted transparent; }
+.w:hover { background: var(--sel); }
+.w.on { background: var(--sel); border-bottom-color: var(--sel-line); }
+.w.mwe-ok { text-decoration: underline; text-decoration-color: var(--c-lex); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.w.mwe-cand { text-decoration: underline dashed; text-decoration-color: var(--pending); text-underline-offset: 5px; }
+.w.sensed { color: var(--c-sense); }
+.tr { font-size: 15px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 10px; }
+.tr.none { font-style: italic; font-size: 13.5px; }
+.mwes { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12.5px; color: var(--muted); }
+.chip { display: inline-flex; gap: 6px; align-items: baseline; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.chip i { font-family: var(--text); font-size: 15px; }
+.chip.ok { border-color: var(--c-lex); }
+.chip.cand { border-style: dashed; border-color: var(--pending); }
+.chip span { font-size: 11px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12.5px; color: var(--muted); }
+.legend b { font-weight: 500; }
+
+/* ficha */
+.card { padding: 16px 18px; display: grid; gap: 10px; position: sticky; top: 12px; }
+.card h2 { margin: 0; font-family: var(--text); font-weight: 500; font-size: 30px; line-height: 1.1; }
+.card .dipl { font-family: var(--text); font-size: 17px; color: var(--muted); }
+.kv { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 5px 10px; font-size: 13.5px; }
+.kv > span:nth-child(odd) { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+.mono { font-family: var(--mono); font-size: 12px; overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.feat { font-family: var(--mono); font-size: 11.5px; padding: 1px 6px; border-radius: 3px; background: var(--accent-soft); }
+.pending { display: inline-block; font-size: 12px; color: var(--pending); background: var(--pending-bg); padding: 1px 6px; border-radius: 3px; }
+.sense { background: var(--sense-soft); border-radius: 6px; padding: 10px 12px; display: grid; gap: 4px; font-size: 13.5px; }
+.sense .g { font-weight: 600; color: var(--c-sense); }
+.sense .n { color: var(--muted); }
+.nosense { font-size: 13px; color: var(--muted); }
+.card .go { font-size: 13px; }
+
+/* dependencias */
+.main > div > * { min-width: 0; }
+.deps { padding: 10px 0 6px; min-width: 0; }
+.deps h3 { margin: 0 16px 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; gap: 10px; }
+.deps h3 span { text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 12.5px; }
+.depscroll { overflow-x: auto; position: relative; padding: 0 16px 8px; }
+.depinner { position: relative; width: max-content; }
+#depsvg { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+#depsvg path { fill: none; stroke: var(--c-text); stroke-width: 1.2; opacity: 0.55; }
+#depsvg path.on { opacity: 1; stroke-width: 2; }
+#depsvg path.ah { fill: var(--c-text); stroke: none; }
+#depsvg text { font-family: var(--mono); font-size: 10.5px; fill: var(--c-text); opacity: 0.75; }
+#depsvg text.on { opacity: 1; font-weight: 500; }
+.deprow { white-space: nowrap; font-family: var(--text); font-size: 18px; }
+.deprow .dw { display: inline-block; margin-right: 14px; cursor: pointer; padding: 0 2px; border-radius: 2px; }
+.deprow .dw:hover, .deprow .dw.on { background: var(--sel); }
+.deps .none { margin: 4px 16px 6px; font-size: 13px; color: var(--muted); }
+
+/* rejilla */
+.gridhead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.gridhead h3 { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.words { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 8px; }
+.wc { text-align: left; font: inherit; color: inherit; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; cursor: pointer; display: grid; gap: 2px; min-width: 0; }
+.wc:hover, .wc.on { background: var(--sel); border-color: var(--sel-line); }
+.wc .f { font-family: var(--text); font-size: 18px; overflow-wrap: anywhere; }
+.wc .l { font-size: 12.5px; color: var(--muted); overflow-wrap: anywhere; }
+.wc .p { font-family: var(--mono); font-size: 11px; color: var(--c-lex); }
+.wc .s { font-size: 11.5px; color: var(--c-sense); }
+.wc.nolila .l::after { content: " · sin LiLa"; color: var(--pending); }
+.colbreak { font: 500 11px var(--mono); color: var(--muted); background: var(--pending-bg); border-radius: 3px; padding: 1px 5px; white-space: nowrap; vertical-align: 3px; }
+.dbreak { display: inline-block; margin-right: 14px; color: var(--muted); font: 600 15px var(--mono); }
+.empty { padding: 30px; text-align: center; color: var(--muted); }
+@media (max-width: 560px) { .wrap { padding-inline: 16px; } .la { font-size: 19px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="eyebrow">Disputatio LXIII · análisis por oración</div>
+    <div class="links"><a href="disp63_facs.html">Texto y facsímil</a><a href="concordancia.html">Concordancia</a></div>
+  </div>
+  <div class="nav">
+    <select id="col" aria-label="Columna"></select>
+    <button type="button" id="prev" aria-label="Oración anterior">‹</button>
+    <select id="sent" aria-label="Oración"></select>
+    <button type="button" id="next" aria-label="Oración siguiente">›</button>
+    <label><input type="checkbox" id="dipl"> forma diplomática</label>
+  </div>
+  <h1 id="title"></h1>
+
+  <div class="main">
+    <div style="display:grid;gap:14px;min-width:0">
+      <div class="panel sentence">
+        <div class="la" id="la"></div>
+        <div class="mwes" id="mwes"></div>
+        <div class="tr" id="tr"></div>
+        <div class="legend"><span><b style="color:var(--c-sense)">morado</b>: sentido anotado</span><span><b style="text-decoration:underline;text-decoration-color:var(--c-lex);text-decoration-thickness:2px">subrayado</b>: expresión aceptada</span><span><b style="text-decoration:underline dashed;text-decoration-color:var(--pending)">discontinuo</b>: expresión candidata</span></div>
+      </div>
+      <div class="panel deps" id="deps">
+        <h3>Dependencias <span>LatinCy · Universal Dependencies</span></h3>
+        <div class="depscroll"><div class="depinner"><svg id="depsvg"></svg><div class="deprow" id="deprow"></div></div></div>
+        <div class="none" id="depnone" hidden>Sin dependencias para esta oración: vuelve a pasar el paso <code>nlp</code> con la nueva versión de <code>onate_nlp.py</code>.</div>
+      </div>
+      <div class="gridhead"><h3>Palabras</h3><span class="mono" id="sid"></span></div>
+      <div class="words" id="words"></div>
+    </div>
+    <aside class="panel card" id="card"></aside>
+  </div>
+</div>
+
+<script src="oraciones.js"></script>
+<script>
+const D = window.ONATE_SENT || { sentences: [] };
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// UD → LexInfo (igual que onate_ontolex.py)
+const POS = { NOUN: "noun", PROPN: "properNoun", VERB: "verb", AUX: "auxiliary", ADJ: "adjective", ADV: "adverb", ADP: "preposition", PRON: "pronoun", DET: "determiner", NUM: "numeral", CCONJ: "coordinatingConjunction", SCONJ: "subordinatingConjunction", PART: "particle", INTJ: "interjection", PUNCT: "punctuation" };
+const POS_ES = { NOUN: "sustantivo", PROPN: "nombre propio", VERB: "verbo", AUX: "auxiliar", ADJ: "adjetivo", ADV: "adverbio", ADP: "preposición", PRON: "pronombre", DET: "determinante", NUM: "numeral", CCONJ: "conj. coord.", SCONJ: "conj. subord.", PART: "partícula", INTJ: "interjección" };
+const FEAT = {
+  Case: { Nom: "nominativeCase", Gen: "genitiveCase", Dat: "dativeCase", Acc: "accusativeCase", Abl: "ablativeCase", Voc: "vocativeCase", Loc: "locativeCase" },
+  Gender: { Masc: "masculine", Fem: "feminine", Neut: "neuter" },
+  Number: { Sing: "singular", Plur: "plural" },
+  Person: { 1: "firstPerson", 2: "secondPerson", 3: "thirdPerson" },
+  Tense: { Pres: "present", Past: "past", Fut: "future" },
+  Mood: { Ind: "indicative", Sub: "subjunctive", Imp: "imperative" },
+  Voice: { Act: "activeVoice", Pass: "passiveVoice" },
+  Degree: { Pos: "positive", Cmp: "comparative", Sup: "superlative" },
+  Aspect: { Imp: "imperfective", Perf: "perfective" },
+  VerbForm: { Inf: "infinitive", Part: "participle", Gdv: "gerundive" },
+};
+const SHORT = { Nom: "nom", Gen: "gen", Dat: "dat", Acc: "ac", Abl: "abl", Voc: "voc", Sing: "sg", Plur: "pl", Masc: "m", Fem: "f", Neut: "n" };
+
+const S = D.sentences;
+const COLS = [...new Map(S.map(s => [s.p + "_" + s.c, s])).values()];
+const byId = new Map(S.map((s, i) => [s.id, i]));
+let cur = 0, sel = null;
+
+function lilaUrl(ref) {
+  if (!ref) return "";
+  const [k, n] = ref.split(":");
+  return `http://lila-erc.eu/data/id/${k === "lilah" ? "hypolemma" : "lemma"}/${n}`;
+}
+const feats = m => Object.fromEntries((m || "").split("|").filter(x => x.includes("=")).map(x => x.split("=")));
+const form = t => $("dipl").checked ? t[1] : t[0];
+// columna de cada palabra: en una oración partida, t[11] = índice de la parte (s.parts)
+const partOf = (s, t) => (s.parts && s.parts[t[11] || 0]) || [s.p, s.c, s.n, s.id];
+function facsHref(s, t) {
+  const [p, c] = partOf(s, t);
+  return "disp63_facs.html#" + encodeURIComponent(`${D.colPrefix || "pg_63_"}${p}_${c}:${t[6]}:${t[1]}:${t[7]}`);
+}
+const colName = x => `p. ${x[0]}, col. ${x[1]}`;
+// marca de cambio de columna dentro de una oración partida
+const breakAt = (s, k) => k > 0 && (s.t[k][11] || 0) !== (s.t[k - 1][11] || 0);
+
+/* navegación */
+$("col").innerHTML = COLS.map(s => `<option value="${s.p}_${s.c}">p. ${s.p} · ${s.c}</option>`).join("");
+function fillSents() {
+  const key = $("col").value;
+  $("sent").innerHTML = S.map((s, i) => [s, i]).filter(([s]) => s.p + "_" + s.c === key)
+    .map(([s, i]) => `<option value="${i}">oración ${s.n}${s.cont ? " (continuación)" : s.parts && s.parts.length > 1 ? " (sigue en " + colName(s.parts[1]) + ")" : ""}</option>`).join("");
+}
+// avanzar/retroceder saltando las continuaciones (se ven con su oración inicial)
+function step(d) { let i = cur + d; while (S[i] && S[i].cont) i += d; if (S[i]) go(i); }
+const hasStep = d => { let i = cur + d; while (S[i] && S[i].cont) i += d; return !!S[i]; };
+$("col").onchange = () => { fillSents(); go(+$("sent").value); };
+$("sent").onchange = () => go(+$("sent").value);
+$("prev").onclick = () => step(-1);
+$("next").onclick = () => step(1);
+$("dipl").onchange = () => render();
+document.addEventListener("keydown", e => {
+  if (e.target.matches("input, select")) return;
+  if (e.key === "ArrowLeft") step(-1);
+  if (e.key === "ArrowRight") step(1);
+});
+window.addEventListener("hashchange", fromHash);
+
+function go(i, keepHash) {
+  if (i < 0 || i >= S.length) return;
+  const shown = i;                                   // la opción elegida (puede ser una continuación)
+  if (S[i].cont && byId.has(S[i].cont)) i = byId.get(S[i].cont);
+  cur = i; sel = null;
+  const s = S[shown];
+  $("col").value = s.p + "_" + s.c; fillSents(); $("sent").value = String(shown);
+  if (!keepHash) history.replaceState(null, "", "#" + S[i].id);
+  render();
+}
+function fromHash() {
+  const id = decodeURIComponent(location.hash.slice(1)).split(".")[0];
+  if (byId.has(id)) go(byId.get(id), true);
+}
+
+/* vista */
+function render() {
+  const s = S[cur];
+  if (!s) { $("la").innerHTML = '<div class="empty">No hay datos. Genera <code>oraciones.js</code> con <code>python3 scripts/onate_ontolex.py output/disp63_bibl_completo.xml</code>.</div>'; return; }
+  const total = S.filter(x => x.p === s.p && x.c === s.c).length;
+  const split = s.parts && s.parts.length > 1;
+  $("title").innerHTML = split
+    ? s.parts.map(x => `${esc(colName(x))} · oración ${x[2]}`).join(" → ") + `<small>oración partida entre columnas: se analiza entera</small>`
+    : `p. ${esc(s.p)}, col. ${esc(s.c)} · oración ${s.n}<small>de ${total}</small>`;
+  $("sid").textContent = s.id;
+  $("prev").disabled = !hasStep(-1); $("next").disabled = !hasStep(1);
+
+  const inMwe = {};
+  s.mwe.forEach(([name, forma, estado, idx]) => idx.forEach(k => { (inMwe[k] ||= []).push(estado === "aceptada" ? "ok" : "cand"); }));
+  $("la").innerHTML = s.t.map((t, k) => {
+    const br = breakAt(s, k) ? `<span class="colbreak" title="cambio de columna">‖ ${esc(colName(partOf(s, t)))}</span> ` : "";
+    if (t[4] === "PUNCT") return br + `<span class="pc">${esc(t[0])}</span>`;
+    const cls = ["w"];
+    if (inMwe[k]) cls.push(inMwe[k].includes("ok") ? "mwe-ok" : "mwe-cand");
+    if (t[8]) cls.push("sensed");
+    return br + `<span class="${cls.join(" ")}" data-k="${k}" tabindex="0">${esc(form(t))}</span>`;
+  }).join(" ").replace(/ <span class="pc">([.,;:?!)])/g, '<span class="pc">$1');
+
+  const seen = new Set();
+  $("mwes").innerHTML = s.mwe.length
+    ? "Expresiones: " + s.mwe.filter(m => { const k = m[0] + m[3]; if (seen.has(k)) return false; seen.add(k); return true; })
+        .map(([name, forma, estado, idx]) => `<button type="button" class="chip ${estado === "aceptada" ? "ok" : "cand"}" data-idx="${idx.join(",")}"><i>${esc(idx.map(k => s.t[k][0]).join(" … "))}</i><span>${esc(forma)} · ${estado === "aceptada" ? "aceptada" : "candidata"}</span></button>`).join("")
+    : "";
+  $("tr").className = "tr" + (s.tr ? "" : " none");
+  $("tr").textContent = s.tr || "Sin traducción todavía.";
+
+  $("words").innerHTML = s.t.map((t, k) => {
+    if (t[4] === "PUNCT") return "";
+    const f = feats(t[5]);
+    const sh = [f.Case, f.Number, f.Gender].filter(Boolean).map(v => SHORT[v] || v).join(" ");
+    return `<button type="button" class="wc${t[3] ? "" : " nolila"}" data-k="${k}">
+      <span class="f">${esc(form(t))}</span>
+      <span class="l">${esc(t[2] || "—")}</span>
+      <span class="p">${esc(t[4] || "?")}${sh ? " · " + sh : ""}</span>
+      ${t[8] ? `<span class="s">◆ ${esc(t[8].gloss || t[8].syn)}</span>` : ""}
+    </button>`;
+  }).join("");
+
+  renderDeps(s);
+  const first = s.t.findIndex(t => t[8]) >= 0 ? s.t.findIndex(t => t[8]) : s.t.findIndex(t => t[4] !== "PUNCT");
+  select(sel ?? first);
+}
+
+function renderDeps(s) {
+  const has = s.t.some(t => t[9] !== null && t[9] !== undefined);
+  $("depnone").hidden = has;
+  document.querySelector(".depscroll").hidden = !has;
+  if (!has) return;
+  $("deprow").innerHTML = s.t.map((t, k) => (breakAt(s, k) ? `<span class="dbreak" title="${esc(colName(partOf(s, t)))}">‖</span>` : "") +
+    (t[4] === "PUNCT" ? "" : `<span class="dw" data-k="${k}">${esc(form(t))}</span>`)).join("");
+  requestAnimationFrame(drawDeps);
+}
+function drawDeps() {
+  const s = S[cur], row = $("deprow"), svg = $("depsvg");
+  if (!row.children.length) return;
+  const base = row.getBoundingClientRect();
+  const cx = {};
+  row.querySelectorAll(".dw").forEach(e => { const b = e.getBoundingClientRect(); cx[e.dataset.k] = b.left - base.left + b.width / 2; });
+  const wordIdx = s.t.map((t, k) => t[4] === "PUNCT" ? null : k).filter(k => k !== null);
+  const pos = Object.fromEntries(wordIdx.map((k, i) => [k, i]));
+  let maxH = 26;
+  const arcs = [];
+  s.t.forEach((t, k) => {
+    if (t[4] === "PUNCT" || t[9] === null || t[9] === undefined) return;
+    if (t[9] < 0 || cx[t[9]] === undefined) { arcs.push({ k, root: true, rel: t[10] || "root" }); return; }
+    const dist = Math.abs(pos[k] - pos[t[9]]);
+    const h = Math.min(18 + dist * 11, 190);
+    maxH = Math.max(maxH, h + 14);
+    arcs.push({ k, h: t[9], ht: h, rel: t[10] });
+  });
+  const H = maxH;
+  svg.setAttribute("width", row.scrollWidth); svg.setAttribute("height", H);
+  svg.style.top = "0px"; row.parentElement.style.paddingTop = H + "px";   // padding: el margen colapsaría
+  svg.innerHTML = arcs.map(a => {
+    const x2 = cx[a.k];
+    if (a.root) return `<path data-a="${a.k}" d="M${x2} 4 L${x2} ${H - 2}"/><text data-a="${a.k}" x="${x2 + 4}" y="12">${esc(a.rel)}</text>`;
+    const x1 = cx[a.h], top = H - a.ht, off = x1 < x2 ? 4 : -4;
+    return `<path data-a="${a.k}" data-h="${a.h}" d="M${x1 + off} ${H - 2} C${x1 + off} ${top}, ${x2 - off} ${top}, ${x2 - off} ${H - 4}"/>` +
+           `<path class="ah" d="M${x2 - off - 3} ${H - 8} L${x2 - off} ${H - 2} L${x2 - off + 3} ${H - 8} Z"/>` +
+           `<text data-a="${a.k}" data-h="${a.h}" x="${(x1 + x2) / 2}" y="${top + a.ht * 0.25 - 2}" text-anchor="middle">${esc(a.rel)}</text>`;
+  }).join("");
+  markDeps();
+}
+function markDeps() {
+  document.querySelectorAll("#depsvg [data-a]").forEach(e => {
+    e.classList.toggle("on", sel !== null && (+e.dataset.a === sel || +e.dataset.h === sel));
+  });
+}
+
+function select(k) {
+  const s = S[cur], t = s.t[k];
+  if (!t) return;
+  sel = k;
+  document.querySelectorAll(".w, .wc, .dw").forEach(e => e.classList.toggle("on", +e.dataset.k === k));
+  markDeps();
+  const dw = document.querySelector(`.dw[data-k="${k}"]`);
+  if (dw) { const sc = document.querySelector(".depscroll"), b = dw.getBoundingClientRect(), r = sc.getBoundingClientRect();
+    if (b.left < r.left || b.right > r.right) sc.scrollLeft += b.left - r.left - r.width / 2; }
+  const f = feats(t[5]);
+  const lexinfo = Object.entries(f).map(([kf, v]) => FEAT[kf] && FEAT[kf][v]
+    ? `<span class="feat" title="${kf}=${v}">${FEAT[kf][v]}</span>`
+    : `<span class="feat" title="sin equivalente en LexInfo" style="background:var(--pending-bg)">${kf}=${v}</span>`).join("");
+  const mw = s.mwe.filter(m => m[3].includes(k));
+  const sense = t[8];
+  $("card").innerHTML = `
+    <h2>${esc(t[0])}</h2>
+    ${t[1] !== t[0] ? `<div class="dipl">diplomática: ${esc(t[1])}</div>` : ""}
+    <div class="kv">
+      <span>Lema</span><span><i style="font-family:var(--text);font-size:16px">${esc(t[2] || "—")}</i>
+        ${t[3] ? ` · <a class="mono" href="${lilaUrl(t[3])}" target="_blank" rel="noopener">${esc(t[3])}</a>` : ' <span class="pending">sin LiLa</span>'}</span>
+      <span>Categoría</span><span>${esc(POS_ES[t[4]] || t[4] || "—")} <span class="mono">lexinfo:${esc(POS[t[4]] || "?")}</span></span>
+      <span>Rasgos</span><span class="chips">${lexinfo || '<span class="mono">—</span>'}</span>
+      <span>Entrada</span><span class="mono">lex:${esc((t[2] || "").replace(/[^A-Za-z0-9_-]/g, "_"))}_${esc(t[4])}</span>
+      <span>Token</span><span class="mono">${esc(s.id)}_t${k + 1}</span>
+    </div>
+    ${t[9] !== null && t[9] !== undefined ? `<div class="kv">
+      <span>Depende de</span><span>${t[9] < 0 ? '<span class="mono">raíz de la oración</span>' : `<a href="#" class="dep-go" data-k="${t[9]}">${esc(s.t[t[9]][0])}</a>`} <span class="mono">${esc(t[10] || "")}</span></span>
+      ${(() => { const ch = s.t.map((x, j) => [x, j]).filter(([x]) => x[9] === k); return ch.length ? `<span>Rigen</span><span>${ch.map(([x, j]) => `<a href="#" class="dep-go" data-k="${j}">${esc(x[0])}</a> <span class="mono">${esc(x[10] || "")}</span>`).join(", ")}</span>` : ""; })()}
+    </div>` : ""}
+    ${sense ? `<div class="sense">
+        <span class="g">${esc(sense.gloss || "sentido")}</span>
+        ${sense.def_ ? `<span>${esc(sense.def_)}</span>` : ""}
+        ${sense.note ? `<span class="n">${esc(sense.note)}</span>` : ""}
+        <a class="mono" href="http://lila-erc.eu/data/lexicalResources/LatinWordNet/id/LexicalConcept/${esc(sense.syn)}" target="_blank" rel="noopener">lwn:${esc(sense.syn)}</a>
+        ${sense.es ? `<span class="n">en la traducción: «${esc(sense.es)}»</span>` : ""}
+      </div>` : `<div class="nosense">Sin sentido anotado en esta aparición.</div>`}
+    ${mw.length ? `<div class="kv"><span>Expresión</span><span>${mw.map(m => `<i style="font-family:var(--text);font-size:16px">${esc(m[1])}</i> <span class="${m[2] === "aceptada" ? "feat" : "pending"}">${m[2] === "aceptada" ? "aceptada" : "candidata"}</span>`).join("<br>")}</span></div>` : ""}
+    <a class="go" href="${facsHref(s, t)}" target="onate_facs">Ver en el facsímil, ${s.parts && s.parts.length > 1 ? esc(colName(partOf(s, t))) + ", " : ""}l. ${esc(t[6])} ↗</a>`;
+}
+document.addEventListener("click", e => {
+  const dg = e.target.closest(".dep-go");
+  if (dg) { e.preventDefault(); select(+dg.dataset.k); return; }
+  const w = e.target.closest(".w, .wc, .dw");
+  if (w) { select(+w.dataset.k); return; }
+  const c = e.target.closest(".chip[data-idx]");
+  if (c) {
+    const idx = c.dataset.idx.split(",").map(Number);
+    select(idx[0]);
+    document.querySelectorAll(".w").forEach(e2 => { if (idx.includes(+e2.dataset.k)) e2.classList.add("on"); });
+  }
+});
+document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.matches(".w")) select(+e.target.dataset.k); });
+
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => drawDeps());
+fillSents();
+if (location.hash && byId.has(decodeURIComponent(location.hash.slice(1)).split(".")[0])) fromHash();
+else go(Math.max(0, S.findIndex(x => x.t.some(t => t[8]))));   // primera oración con sentidos anotados
+</script>
+</body>
+</html>

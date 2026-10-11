@@ -16,7 +16,7 @@
 #   --verbose      Mostrar detalle de tokens y abreviaturas
 #   --only PASO    Ejecutar solo un paso:
 #                  page2tei | nlp | nlp_corrections | lila | enrich |
-#                  assemble | sentences | validate | coords | html | search
+#                  assemble | sentences | validate | coords | html | search | rdf
 #
 # Ejemplos:
 #   ./procesar_pagina.sh 37 izq
@@ -89,6 +89,7 @@ if [[ "$1" == "all" ]]; then
     bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only validate
     bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only html
     bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only search
+    bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only rdf
     echo
     echo -e "${BOLD}${GREEN}✓ Pipeline completo terminado${NC}"
     exit 0
@@ -313,6 +314,18 @@ run_search() {
     ok "Índice → ${SEARCH_OUT}"
 }
 
+# ── PASO 7: Análisis por oración (OntoLex + LexInfo + LiLa) ──────────────────
+# Como search, trabaja sobre el documento entero. Usa además senses/,
+# lexico/expresiones_candidatas.yaml (solo las aceptadas van al RDF) y
+# translations/. Lo usa html/disp63/oracion.html.
+run_rdf() {
+    info "Paso 7 — Análisis por oración (rdf/ + oraciones.js)"
+    [[ -f "$COMPLETO" ]] || fail "No existe: $COMPLETO"
+    [[ -f "${SCRIPTS_DIR}/onate_ontolex.py" ]] || { warn "No existe ${SCRIPTS_DIR}/onate_ontolex.py — se omite"; return; }
+    python3 "${SCRIPTS_DIR}/onate_ontolex.py" "$COMPLETO"
+    ok "RDF → rdf/disp63_texto.ttl, rdf/disp63_lexico.ttl · vista → html/disp63/oraciones.js"
+}
+
 # ── Ejecutar ──────────────────────────────────────────────────────────────────
 case "$ONLY" in
     "")
@@ -327,6 +340,7 @@ case "$ONLY" in
         run_coords
         run_html
         run_search
+        run_rdf
         ;;
     normalize)      run_normalize ;;
     page2tei)       run_page2tei ;;
@@ -340,7 +354,8 @@ case "$ONLY" in
     coords)         run_coords ;;
     html)           run_html ;;
     search)         run_search ;;
-    *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|nlp_corrections|lila|enrich|assemble|sentences|validate|coords|html|search)" ;;
+    rdf)            run_rdf ;;
+    *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|nlp_corrections|lila|enrich|assemble|sentences|validate|coords|html|search|rdf)" ;;
 esac
 
 echo

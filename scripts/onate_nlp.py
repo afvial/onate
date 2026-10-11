@@ -1,8 +1,19 @@
 #!/usr/bin/env python3
 """
-onate_nlp.py — Anotación morfológica NLP del TEI diplomático (src/)
+onate_nlp.py — Anotación morfológica y sintáctica NLP del TEI diplomático (src/)
 
-Anota cada <w> con @lemma, @pos y @msd usando latincy (spaCy).
+Anota cada <w> con @lemma, @pos y @msd usando latincy (spaCy) y, para las
+palabras que están dentro de una oración <s>, también las dependencias:
+  @n       posición de la palabra en su oración (1, 2, 3…)
+  @head    @n de la palabra de la que depende (0 = raíz de la oración)
+  @deprel  relación de dependencia (Universal Dependencies: nsubj, obj, amod…)
+
+El modelo analiza cada <s> como una oración completa, con las palabras ya
+tokenizadas por el pipeline (no vuelve a tokenizar), así que usa el contexto
+para la morfología y puede calcular la sintaxis. Las palabras fuera de toda
+<s> (encabezados, cabeceras) se analizan sueltas, como antes.
+Con --por-palabra se recupera el comportamiento anterior (cada palabra sola,
+sin dependencias), útil para comparar.
 
 Excluye <w> que sean descendientes de:
   - bibl   → nombres de autores, títulos, números de referencia
@@ -236,7 +247,91 @@ def collect_w_elements(tree):
     return results
 
 
-def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool):
+def sentence_of(w_elem):
+    """La <s> que contiene a w_elem, o None."""
+    for anc in w_elem.iterancestors():
+        if anc.tag == f"{TEI}s":
+            return anc
+    return None
+
+
+def analyse_in_context(nlp, items, group=sentence_of):
+    """
+    Analiza las palabras agrupadas por oración <s>. Devuelve una lista
+    paralela a items con (token_spacy | None, n, head, deprel).
+    Las palabras fuera de toda <s> se devuelven con token None.
+    `group(w)` da la unidad de análisis de cada palabra (por defecto su <s>;
+    onate_sentences.py agrupa las partes de una oración partida entre
+    columnas para analizarla entera).
+    """
+    from spacy.tokens import Doc
+    groups, order = {}, []
+    for k, (w_elem, norm, _) in enumerate(items):
+        key = group(w_elem)   # el propio elemento (no id(): lxml reutiliza ids)
+        if key not in groups:
+            groups[key] = []
+            order.append(key)
+        groups[key].append(k)
+
+    out = [None] * len(items)
+    for key in order:
+        idx = groups[key]
+        if key is None:
+            continue
+        words = ["".join(_nlp_query_text(items[k][1]).split()) or "_" for k in idx]
+        # Cada palabra pasa por el tokenizador de LatinCy (que normaliza u/v,
+        # i/j, acentos… igual que cuando se analizaba suelta) y luego se unen
+        # en un solo Doc para que el modelo vea la oración entera.
+        tdocs = [nlp.tokenizer(w) for w in words]
+        doc = Doc.from_docs([td for td in tdocs if len(td)], ensure_whitespace=True)
+        # from_docs marca el inicio de oración en cada palabra unida; se fija
+        # explícitamente que la <s> es UNA sola oración (el analizador respeta
+        # los límites ya establecidos)
+        for t in doc[1:]:
+            t.is_sent_start = False
+        # Posición de cada palabra en el texto del Doc. La correspondencia
+        # token → palabra se hace por posición en el texto (no por índice),
+        # porque algún componente de LatinCy puede volver a dividir tokens
+        # (enclíticos -que, -ne…) y desplazar los índices.
+        starts, pos = [], 0
+        for td in tdocs:
+            if len(td):
+                at = doc.text.find(td.text, pos)
+                at = pos if at < 0 else at
+                starts.append(at); pos = at + len(td.text)
+            else:
+                starts.append(None)
+        valid = [(st, wi) for wi, st in enumerate(starts) if st is not None]
+        import bisect
+        keys = [st for st, _ in valid]
+
+        for _, proc in nlp.pipeline:
+            doc = proc(doc)
+
+        def word_of(tok):
+            j = bisect.bisect_right(keys, tok.idx) - 1
+            return valid[j][1] if j >= 0 else None
+
+        by_word = {}
+        for tok in doc:
+            wi = word_of(tok)
+            if wi is not None:
+                by_word.setdefault(wi, []).append(tok)
+        for wi, k in enumerate(idx):
+            toks = by_word.get(wi)
+            if not toks:
+                continue
+            # rasgos: el primer token de la palabra (como cuando se analizaba
+            # suelta); sintaxis: el token cuyo núcleo está fuera de la palabra
+            main = next((t for t in toks if t.head.i == t.i or word_of(t.head) != wi), toks[0])
+            hw = None if main.head.i == main.i else word_of(main.head)
+            head = 0 if hw is None or hw == wi else hw + 1
+            out[k] = (toks[0], wi + 1, head, main.dep_ or "")
+    return out
+
+
+def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool,
+             per_word: bool = False, cambios: str = None):
     parser = etree.XMLParser(remove_blank_text=False)
     tree   = etree.parse(str(input_path), parser)
 
@@ -245,20 +340,27 @@ def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool
         print("No se encontraron <w> para anotar.", file=sys.stderr)
         return
 
-    print(f"→ {len(items)} tokens a anotar con {model_name}", file=sys.stderr)
+    mode = "palabra a palabra" if per_word else "por oración"
+    print(f"→ {len(items)} tokens a anotar con {model_name} ({mode})", file=sys.stderr)
 
     import spacy
     nlp = spacy.load(model_name)
 
-    # Procesar en lotes para eficiencia
     texts  = [_nlp_query_text(norm) for _, norm, _ in items]
     norms  = [norm for _, norm, _ in items]
     elems  = [(w, reg) for w, _, reg in items]
 
-    docs = list(nlp.pipe(texts, batch_size=256))
+    # Análisis en contexto (por oración); lo que quede fuera de <s>, suelto
+    ctx = [None] * len(items) if per_word else analyse_in_context(nlp, items)
+    loose = [k for k, c in enumerate(ctx) if c is None]
+    loose_docs = dict(zip(loose, nlp.pipe([texts[k] for k in loose], batch_size=256)))
 
-    annotated = 0
-    for (w_elem, reg_w), norm, doc in zip(elems, norms, docs):
+    changed = {"lemma": 0, "pos": 0, "msd": 0}
+    examples, all_changes = [], []
+    annotated = with_deps = 0
+    for k, ((w_elem, reg_w), norm) in enumerate(zip(elems, norms)):
+        tok = ctx[k][0] if ctx[k] is not None else None
+        doc = None if tok is not None else loose_docs.get(k)
         # Override manual (nombres propios que LatinCy lematiza mal)
         is_digit = norm.isdigit()
         is_manual = norm in MANUAL_LEMMA
@@ -267,33 +369,65 @@ def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool
         elif is_manual:
             lemma, pos, msd = MANUAL_LEMMA[norm]
         else:
-            if not doc:
-                continue
-            tok = doc[0]  # cada texto es una sola palabra
+            if tok is None:
+                if not doc:
+                    continue
+                tok = doc[0]  # palabra suelta (fuera de <s>)
             lemma = tok.lemma_ or ""
             pos   = tok.pos_  or ""
             msd   = morph_to_msd(tok)
+
+        # cuánto cambia respecto de la anotación anterior (si la había)
+        for att, new in (("lemma", lemma), ("pos", pos), ("msd", msd)):
+            old = w_elem.get(att)
+            if old is not None and old != new:
+                changed[att] += 1
+                all_changes.append((norm, att, old, new))
+                if len(examples) < 12 and att != "msd":
+                    examples.append(f"{norm}: {att} {old} → {new}")
+
+        deps = ctx[k][1:] if ctx[k] is not None else None
         if not dry_run:
-            w_elem.set("lemma", lemma)
-            w_elem.set("pos",   pos)
-            if msd:
-                w_elem.set("msd", msd)
-            if is_manual:
-                w_elem.set("manual", "1")
-            # Copiar al <reg><w> si existe
-            if reg_w is not None:
-                reg_w.set("lemma", lemma)
-                reg_w.set("pos",   pos)
+            for target in (w_elem, reg_w):
+                if target is None:
+                    continue
+                target.set("lemma", lemma)
+                target.set("pos",   pos)
                 if msd:
-                    reg_w.set("msd", msd)
+                    target.set("msd", msd)
+                elif "msd" in target.attrib:
+                    del target.attrib["msd"]
                 if is_manual:
-                    reg_w.set("manual", "1")
+                    target.set("manual", "1")
+                if deps is not None:
+                    n, head, deprel = deps
+                    target.set("n", str(n))
+                    target.set("head", str(head))
+                    if deprel:
+                        target.set("deprel", deprel)
+                else:
+                    for att in ("n", "head", "deprel"):
+                        target.attrib.pop(att, None)
         else:
             print(f"  {w_elem.text or ''!r:20} → lemma={lemma} pos={pos} msd={msd}")
 
         annotated += 1
+        if deps is not None:
+            with_deps += 1
 
-    print(f"✓ {annotated} tokens anotados", file=sys.stderr)
+    print(f"✓ {annotated} tokens anotados, {with_deps} con dependencias", file=sys.stderr)
+    if any(changed.values()):
+        print(f"  Cambios respecto de la anotación anterior: lema {changed['lemma']}, "
+              f"categoría {changed['pos']}, morfología {changed['msd']}", file=sys.stderr)
+        for e in examples:
+            print(f"    {e}", file=sys.stderr)
+    if cambios:
+        Path(cambios).parent.mkdir(parents=True, exist_ok=True)
+        with open(cambios, "w", encoding="utf-8") as fh:
+            fh.write("palabra\tcampo\tantes\tahora\n")
+            for r in all_changes:
+                fh.write("\t".join(r) + "\n")
+        print(f"  Todos los cambios → {cambios}", file=sys.stderr)
 
     if not dry_run:
         output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -311,6 +445,10 @@ def main():
                     help="Modelo spaCy a usar (default: la_core_web_lg)")
     ap.add_argument("--dry-run", action="store_true",
                     help="Mostrar anotaciones sin modificar el archivo")
+    ap.add_argument("--cambios", metavar="TSV",
+                    help="Escribir en un TSV todos los cambios respecto de la anotación anterior")
+    ap.add_argument("--por-palabra", action="store_true",
+                    help="Analizar cada palabra suelta, sin contexto ni dependencias (comportamiento anterior)")
     args = ap.parse_args()
 
     input_path = Path(args.input)
@@ -319,7 +457,8 @@ def main():
         sys.exit(1)
 
     output_path = Path(args.out) if args.out else input_path
-    annotate(input_path, output_path, args.model, args.dry_run)
+    annotate(input_path, output_path, args.model, args.dry_run, per_word=args.por_palabra,
+             cambios=args.cambios)
 
 
 if __name__ == "__main__":

@@ -397,6 +397,7 @@
         <p class="nav-links">
           <a class="nav-btn" href="concordancia.html">Concordancia</a>
           <a class="nav-btn" href="disp63_trad.html">Traducción</a>
+          <a class="nav-btn" href="oracion.html">Análisis por oración</a>
         </p>
 
         <div class="stats">

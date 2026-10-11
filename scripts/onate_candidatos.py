@@ -3,20 +3,30 @@
 """
 onate_candidatos.py
 ───────────────────
-Propone, a partir del índice de la concordancia, los términos y las
-expresiones multipalabra que conviene revisar para el léxico OntoLex.
+Propone los términos y las expresiones multipalabra que conviene revisar
+para el léxico OntoLex.
 
 Uso:
-    python3 scripts/onate_candidatos.py html/disp63/search_index.js
+    python3 scripts/onate_candidatos.py xml/disp63_bibl_completo.xml     (dependencias)
+    python3 scripts/onate_candidatos.py html/disp63/search_index.js      (ventana)
 
 Escribe (sin sobrescribir decisiones ya tomadas):
     lexico/terminos_candidatos.yaml     sustantivos y adjetivos frecuentes
     lexico/expresiones_candidatas.yaml  pares de lemas que forman expresión
     html/disp63/candidatos.html         informe con contextos y enlaces
 
-Expresiones: el latín tiene orden libre y flexión, así que se buscan pares
-de LEMAS dentro de la misma oración (aprox.: entre signos . ; : ?), a una
-distancia de hasta --ventana palabras y en cualquier orden:
+Expresiones, con el XML completo (recomendado): se usan las dependencias
+sintácticas que escribe onate_nlp.py (@n, @head, @deprel) dentro de cada <s>:
+  · amod: adjetivo que modifica a un sustantivo        (pretium legale)
+  · nmod en genitivo: sustantivo que depende de otro    (aestimatio reipublicae)
+  · conj de los anteriores: coordinados                 (pretium legale & naturale)
+Así se encuentran también pares separados por muchas palabras y se evitan
+los que solo están cerca por casualidad. Para cada par se indica cuántas
+veces además concuerdan en caso y número (control de errores del análisis).
+
+Con el índice de la concordancia (modo antiguo): se buscan pares de LEMAS
+dentro de la misma oración (aprox.: entre signos . ; : ?), a una distancia
+de hasta --ventana palabras y en cualquier orden:
   · adjetivo + sustantivo que concuerdan en caso y número
         (legale pretium, pretio legali, pretium … legale)
   · sustantivo + sustantivo en genitivo
@@ -59,6 +69,24 @@ def load_index(path):
     return d, toks
 
 
+def load_xml(path):
+    """Oraciones <s> del XML completo, con dependencias. Devuelve (meta, chunks)."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from onate_ontolex import read_sentences
+    sents = read_sentences(path)
+    i, out = 0, []
+    for s in sents:
+        ch = []
+        for t in s["toks"]:
+            t = dict(t, i=i, pg=t["pg"], c=t["col"], sid=s["id"]); i += 1
+            t["feats"] = dict(x.split("=", 1) for x in (t["m"] or "").split("|") if "=" in x)
+            t["abbr"] = t["d"] != t["f"] and t["d"].endswith(".")
+            ch.append(t)
+        out.append(ch)
+    meta = {"source": Path(path).name, "generated": "", "colPrefix": "pg_63_"}
+    return meta, out
+
+
 def chunks(toks):
     """Oraciones aproximadas: misma columna, cortadas en . ; : ? !"""
     cur, col = [], None
@@ -91,7 +119,11 @@ def agree(a, b):
     if "Case" not in fa or "Case" not in fb:
         return False
     ca, cb = fa["Case"], fb["Case"]
-    if ca != cb and CASE_GROUP.get(ca, ca) != CASE_GROUP.get(cb, cb):
+    # neutro: nominativo, acusativo y vocativo tienen siempre la misma forma
+    # (pretium legale & consuetudinarium: Acc / Nom según LatinCy)
+    neut = "Neut" in (fa.get("Gender"), fb.get("Gender"))
+    grp = lambda c: "N" if neut and c in ("Nom", "Acc", "Voc") else CASE_GROUP.get(c, c)
+    if ca != cb and grp(ca) != grp(cb):
         return False
     if "Number" in fa and "Number" in fb and fa["Number"] != fb["Number"]:
         return False
@@ -106,16 +138,105 @@ def g2(k11, k12, k21, k22):
     return 2 * (h(k11, k12, k21, k22) - h(k11 + k12, k21 + k22) - h(k11 + k21, k12 + k22))
 
 
+def add_pair(pair, key, kind, order, A, B, ch):
+    e = pair[key]
+    e["n"] += 1; e["kind"] = kind; e["order"][order] += 1
+    e["surface"][" ".join(t["f"].lower() for t in sorted((A, B), key=lambda t: t["i"]))] += 1
+    if agree(A, B) or kind == "sust+gen":
+        e["agree"] += 1
+    if len(e["ex"]) < 4:
+        e["ex"].append((A, B, ch))
+
+
+def pairs_dep(ch, pair, _ventana=None):
+    """Pares a partir de las dependencias de la oración."""
+    # t["k"]: posición en la oración; t["hidx"]: posición del núcleo (onate_ontolex.read_sentences)
+    up = lambda t: ch[t["hidx"]] if t.get("hidx") not in (None, -1) else None
+    gen = lambda t: t["feats"].get("Case") == "Gen"
+    for t in ch:
+        if not is_term(t):
+            continue
+        rel, h = t.get("rel", ""), up(t)
+        coord = False
+        # coordinados: se sube por la cadena de conj mientras el núcleo sea de
+        # la misma categoría (naturale → legale → pretium)
+        while rel == "conj" and h is not None and h["p"] == t["p"]:
+            coord = True
+            rel, h = h.get("rel", ""), up(h)
+        if h is None or not is_term(h) or h["l"] == t["l"]:
+            continue
+        # adjetivo coordinado colgado directamente del sustantivo (pretium
+        # legale & consuetudinarium → consuetudinarium conj pretium): se
+        # acepta como modificador solo si concuerda con él
+        if rel == "conj" and t["p"] == "ADJ" and h["p"] == "NOUN" and agree(h, t):
+            rel, coord = "amod", True
+        if rel == "amod" and t["p"] == "ADJ" and h["p"] == "NOUN":
+            order = "coordinado" if coord else ("sust-adj" if h["i"] < t["i"] else "adj-sust")
+            add_pair(pair, (h["l"], t["l"]), "sust+adj", order, h, t, ch)
+        elif rel == "nmod" and t["p"] == h["p"] == "NOUN" and gen(t):
+            order = "coordinado" if coord else ("sust-gen" if h["i"] < t["i"] else "gen-sust")
+            add_pair(pair, (h["l"], t["l"]), "sust+gen", order, h, t, ch)
+
+
+def pairs_window(ch, pair, ventana):
+    """Pares por proximidad (modo antiguo, sin dependencias)."""
+    seen = set()
+    for x in range(len(ch)):
+        for y in range(x + 1, min(len(ch), x + 1 + ventana)):
+            A, B = ch[x], ch[y]
+            if not (is_term(A) and is_term(B)) or A["l"] == B["l"]:
+                continue
+            kind = None
+            if {A["p"], B["p"]} == {"ADJ", "NOUN"} and agree(A, B):
+                noun, adj = (A, B) if A["p"] == "NOUN" else (B, A)
+                key, kind = (noun["l"], adj["l"]), "sust+adj"
+                order = "sust-adj" if noun is A else "adj-sust"
+            elif A["p"] == B["p"] == "NOUN" and B["feats"].get("Case") == "Gen" and A["feats"].get("Case") != "Gen":
+                key, kind, order = (A["l"], B["l"]), "sust+gen", "sust-gen"
+            elif A["p"] == B["p"] == "NOUN" and A["feats"].get("Case") == "Gen" and B["feats"].get("Case") != "Gen":
+                key, kind, order = (B["l"], A["l"]), "sust+gen", "gen-sust"
+            if not kind or (key, x, y) in seen:
+                continue
+            if kind == "sust+adj":
+                # adjetivos coordinados con el primero: pretium legale,
+                # naturale & conuentionale → cada uno forma par con pretium
+                npos = x if noun is A else y
+                k = (y if adj is B else x) + 1
+                while k < len(ch) and (ch[k]["p"] in ("CCONJ",) or (ch[k]["p"] == "ADJ" and is_term(ch[k]))):
+                    if ch[k]["p"] == "ADJ" and ch[k]["l"] != adj["l"]:
+                        kk = (noun["l"], ch[k]["l"])
+                        sk = (kk, min(npos, k), max(npos, k))
+                        if sk not in seen:
+                            seen.add(sk)
+                            ee = pair[kk]; ee["n"] += 1; ee["kind"] = "sust+adj"; ee["order"]["coordinado"] += 1
+                            ee["surface"][f'{noun["f"].lower()} … {ch[k]["f"].lower()}'] += 1
+                            if len(ee["ex"]) < 4: ee["ex"].append((noun, ch[k], ch))
+                    k += 1
+            seen.add((key, x, y))
+            e = pair[key]
+            e["n"] += 1; e["kind"] = kind; e["order"][order] += 1
+            e["surface"][" ".join(t["f"].lower() for t in (A, B))] += 1
+            if len(e["ex"]) < 4:
+                e["ex"].append((A, B, ch))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[3])
-    ap.add_argument("index", help="html/disp63/search_index.js")
+    ap.add_argument("fuente", help="xml/disp63_bibl_completo.xml (dependencias) o html/disp63/search_index.js")
     ap.add_argument("--min", type=int, default=3, help="frecuencia mínima (por defecto 3)")
-    ap.add_argument("--ventana", type=int, default=3, help="distancia máxima entre lemas (3)")
+    ap.add_argument("--ventana", type=int, default=3, help="solo con el índice: distancia máxima entre lemas (3)")
     ap.add_argument("--terminos", type=int, default=60, help="cuántos términos listar (60)")
     ap.add_argument("--outdir", default=".", help="raíz del proyecto (por defecto, la actual)")
     a = ap.parse_args()
 
-    d, toks = load_index(a.index)
+    if a.fuente.endswith(".xml"):
+        mode = "dep"
+        d, sents = load_xml(a.fuente)
+        toks = [t for ch in sents for t in ch]
+    else:
+        mode = "ventana"
+        d, toks = load_index(a.fuente)
+        sents = list(chunks(toks))
     root = Path(a.outdir)
 
     # ── términos ─────────────────────────────────────────────────────────────
@@ -133,51 +254,16 @@ def main():
     # ── expresiones ──────────────────────────────────────────────────────────
     unig = collections.Counter()
     pair = collections.defaultdict(lambda: {"n": 0, "kind": "", "order": collections.Counter(),
-                                            "surface": collections.Counter(), "ex": []})
+                                            "surface": collections.Counter(), "ex": [], "agree": 0})
     n_chunks = 0
-    for ch in chunks(toks):
+    for ch in sents:
+        if not ch:
+            continue                   # parte final de una oración partida (va con la inicial)
         n_chunks += 1
-        ts = [t for t in ch if is_term(t)]
-        for t in ts:
-            unig[t["l"]] += 1
-        seen = set()
-        for x in range(len(ch)):
-            for y in range(x + 1, min(len(ch), x + 1 + a.ventana)):
-                A, B = ch[x], ch[y]
-                if not (is_term(A) and is_term(B)) or A["l"] == B["l"]:
-                    continue
-                kind = None
-                if {A["p"], B["p"]} == {"ADJ", "NOUN"} and agree(A, B):
-                    noun, adj = (A, B) if A["p"] == "NOUN" else (B, A)
-                    key, kind = (noun["l"], adj["l"]), "sust+adj"
-                    order = "sust-adj" if noun is A else "adj-sust"
-                elif A["p"] == B["p"] == "NOUN" and B["feats"].get("Case") == "Gen" and A["feats"].get("Case") != "Gen":
-                    key, kind, order = (A["l"], B["l"]), "sust+gen", "sust-gen"
-                elif A["p"] == B["p"] == "NOUN" and A["feats"].get("Case") == "Gen" and B["feats"].get("Case") != "Gen":
-                    key, kind, order = (B["l"], A["l"]), "sust+gen", "gen-sust"
-                if not kind or (key, x, y) in seen:
-                    continue
-                if kind == "sust+adj":
-                    # adjetivos coordinados con el primero: pretium legale,
-                    # naturale & conuentionale → cada uno forma par con pretium
-                    npos = x if noun is A else y
-                    k = (y if adj is B else x) + 1
-                    while k < len(ch) and (ch[k]["p"] in ("CCONJ",) or (ch[k]["p"] == "ADJ" and is_term(ch[k]))):
-                        if ch[k]["p"] == "ADJ" and ch[k]["l"] != adj["l"]:
-                            kk = (noun["l"], ch[k]["l"])
-                            sk = (kk, min(npos, k), max(npos, k))
-                            if sk not in seen:
-                                seen.add(sk)
-                                ee = pair[kk]; ee["n"] += 1; ee["kind"] = "sust+adj"; ee["order"]["coordinado"] += 1
-                                ee["surface"][f'{noun["f"].lower()} … {ch[k]["f"].lower()}'] += 1
-                                if len(ee["ex"]) < 4: ee["ex"].append((noun, ch[k], ch))
-                        k += 1
-                seen.add((key, x, y))
-                e = pair[key]
-                e["n"] += 1; e["kind"] = kind; e["order"][order] += 1
-                e["surface"][" ".join(t["f"].lower() for t in (A, B))] += 1
-                if len(e["ex"]) < 4:
-                    e["ex"].append((A, B, ch))
+        for t in ch:
+            if is_term(t):
+                unig[t["l"]] += 1
+        (pairs_dep if mode == "dep" else pairs_window)(ch, pair, a.ventana)
     N = sum(unig.values()) or 1
     cands = []
     for (l1, l2), e in pair.items():
@@ -214,12 +300,18 @@ def main():
     write_once(lex / "terminos_candidatos.yaml", "\n".join(y))
 
     y = [f"# Expresiones multipalabra candidatas",
-         f"# Pares de lemas en la misma oración, ventana {a.ventana}, frecuencia ≥ {a.min}",
+         (f"# Pares unidos por dependencia (amod, nmod en genitivo, conj), frecuencia ≥ {a.min}"
+          if mode == "dep" else
+          f"# Pares de lemas en la misma oración, ventana {a.ventana}, frecuencia ≥ {a.min}"),
+         "# concuerdan: cuántas apariciones concuerdan además en caso y número (solo sust+adj);"
+         if mode == "dep" else "#",
+         "#   pocas → probable error del análisis sintáctico" if mode == "dep" else "#",
          f"# estado: pendiente | aceptada | rechazada", ""]
     for (l1, l2), e in cands:
         y += [f"{l1}_{l2}:", f"  lemas: [{l1}, {l2}]", f"  tipo: {e['kind']}",
               f"  forma: {e['surface'].most_common(1)[0][0].replace(' … ', ' ')}",
               f"  apariciones: {e['n']}", f"  asociacion_g2: {e['g2']:.1f}",
+              *([f"  concuerdan: {e['agree']}"] if mode == "dep" and e["kind"] == "sust+adj" else []),
               f"  orden: {dict(e['order'])}",
               f"  ejemplos: [{', '.join(loc(A) for A, B, ch in e['ex'])}]",
               f"  estado: pendiente", ""]
@@ -228,6 +320,11 @@ def main():
     # informe HTML
     def kwic(A, B, ch):
         lo = min(A["i"], B["i"]); hi = max(A["i"], B["i"])
+        if hi - lo > 12:
+            pa = [t for t in ch if lo - 3 <= t["i"] <= lo + 3]
+            pb = [t for t in ch if hi - 3 <= t["i"] <= hi + 3]
+            mk = lambda ts: " ".join(f'<b>{html.escape(t["f"])}</b>' if t["i"] in (A["i"], B["i"]) else html.escape(t["f"]) for t in ts)
+            return mk(pa) + " <span class=m>[…]</span> " + mk(pb)
         span = [t for t in ch if lo - 4 <= t["i"] <= hi + 4]
         return " ".join(f'<b>{html.escape(t["f"])}</b>' if t["i"] in (A["i"], B["i"]) else html.escape(t["f"]) for t in span)
     def facs(t):
@@ -236,6 +333,7 @@ def main():
     rows_e = "".join(
         f'<tr><td><i>{html.escape(e["surface"].most_common(1)[0][0])}</i><br><span class="m">{l1} + {l2}</span></td>'
         f'<td class="n">{e["n"]}</td><td class="n">{e["g2"]:.0f}</td><td class="m">{e["kind"]}<br>'
+        + (f'concuerdan {e["agree"]}/{e["n"]}<br>' if mode == "dep" and e["kind"] == "sust+adj" else "")
         + ", ".join(f"{k} {v}" for k, v in e["order"].items()) + '</td><td>'
         + "<br>".join(f'<a href="{facs(A)}" target="onate_facs">{loc(A)}</a> · {kwic(A, B, ch)}' for A, B, ch in e["ex"][:3])
         + "</td></tr>" for (l1, l2), e in cands)
@@ -255,7 +353,8 @@ td {{ padding: 7px 10px; border-top: 1px solid #e3e8e5; vertical-align: top; }} 
 a {{ color: #1d6b64; font: 12px ui-monospace, Menlo, monospace; }} b {{ background: #fdeee0; font-weight: 500; }}
 </style></head><body><div class="wrap">
 <h1>Candidatos para el léxico</h1>
-<p>{len(cands)} expresiones multipalabra y {len(terms)} términos propuestos a partir de {d.get("source","el índice")} ({d.get("generated","")}).
+<p>{len(cands)} expresiones multipalabra y {len(terms)} términos propuestos a partir de {d.get("source","el índice")}
+({"pares unidos por dependencia sintáctica: amod, nmod en genitivo y sus coordinados" if mode == "dep" else f"pares a distancia ≤ {a.ventana}"}).
 Las decisiones se toman en <code>lexico/expresiones_candidatas.yaml</code> y <code>lexico/terminos_candidatos.yaml</code>.
 Cada ejemplo enlaza a su lugar en el facsímil.</p>
 <h2>Expresiones multipalabra</h2>
@@ -267,7 +366,7 @@ Cada ejemplo enlaza a su lugar en el facsímil.</p>
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(page, encoding="utf-8")
     print(f"  → {out}", file=sys.stderr)
-    print(f"✓ {len(cands)} expresiones (≥{a.min}), {len(terms)} términos, {n_chunks} oraciones aprox.", file=sys.stderr)
+    print(f"✓ {len(cands)} expresiones (≥{a.min}), {len(terms)} términos, {n_chunks} oraciones" + (" (dependencias)" if mode == "dep" else " aprox. (ventana)"), file=sys.stderr)
 
 
 if __name__ == "__main__":

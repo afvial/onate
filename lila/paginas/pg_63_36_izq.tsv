@@ -1,15 +1,15 @@
 linea	forma	lema	upos	estado	asignado	candidatos
-1	quo	quis	ADV	pos_distinta		lila:121165 pronoun
 1	vulgi	uulgus	NOUN	ambiguo		lila:130956 noun; lila:130957 noun
 2	vendi	uo	VERB	pos_distinta		lila:84136 noun (variante)
 3	authores	aucto	NOUN	pos_distinta		lila:90614 verb
 4	asserunt	assero	VERB	ambiguo		lila:90320 verb; lila:90321 verb
+6	supremum	supremus	ADJ	ambiguo		lila:127078 adjective; lila:83613 adjective
 8	alias	alius	ADV	pos_distinta		lila:88481 determiner
 8	g	g	ADV	pos_distinta		lila:105012 noun; lila:7635 proper_noun
-8	v	u	INTJ	pos_distinta		lila:130986 noun; lila:24341 proper_noun
-8	venire	uenio	VERB	ambiguo		lila:129790 verb; lila:84481 verb
+8	v	u	X	pos_distinta		lila:130986 noun; lila:24341 proper_noun
 9	aliàs	alius	ADV	pos_distinta		lila:88481 determiner
 9	aliàs	alius	ADV	pos_distinta		lila:88481 determiner
+12	medium	medium	ADJ	pos_distinta		lila:111842 noun
 15	reipublicae	respublica	NOUN	ambiguo		lila:76484 noun; lila:122962 noun
 17	non	non	PART	pos_alternativo	lila:114108	lila:114108 adverb
 18	non	non	PART	pos_alternativo	lila:114108	lila:114108 adverb
@@ -17,37 +17,44 @@ linea	forma	lema	upos	estado	asignado	candidatos
 19	Digesta	Digesta	PROPN	pos_distinta		lila:100419 noun
 19	Doctores	doctores	NOUN	no_encontrado		
 19	iura	ius	NOUN	ambiguo		lila:109285 noun; lila:109252 noun
+20	ad legem Falcidiam	adlegemFalcidia	NOUN	no_encontrado		
 21	Marcellus	Marcellus	PROPN	pos_distinta		lila:13394 adjective
-21	vlt	ultimus	VERB	pos_distinta		lila:130507 adjective
+21	vlt	ultimus	DET	pos_alternativo	lila:130507	lila:130507 adjective
+22	DD	DD	PROPN	no_encontrado		
 22	Digesta	Digesta	PROPN	pos_distinta		lila:100419 noun
-22	l	l	ADV	pos_distinta		lila:11004 proper_noun; lila:109595 noun
-23	artic	artic	VERB	no_encontrado		
-23	Tho	tho	PROPN	pos_distinta		lila:133239 numeral
+22	in fine	infen	ADV	no_encontrado		
+23	Tho	Tho	PROPN	pos_distinta		lila:133239 numeral
+23	ad	ad	ADV	pos_distinta		lila:87415 coordinating_conjunction (variante); lila:87344 adposition
+23	ad legem Falcidiam	adlegemFalcidia	NOUN	no_encontrado		
+23	artic	artic	ADV	no_encontrado		
 24	Aragon	Aragon	PROPN	no_encontrado		
 24	Bannez	Bannez	PROPN	no_encontrado		
 25	Molina	Molina	PROPN	pos_distinta		lila:66086 noun
 25	Salas	Salas	PROPN	no_encontrado		
-26	Scot	scots	ADJ	no_encontrado		
+26	Scot	Scots	PROPN	no_encontrado		
 27	Maior	Maior	PROPN	ambiguo		lila:13077 proper_noun; lila:13078 proper_noun
-27	Medin	Medin	PROPN	no_encontrado		
+27	Medin	Medis	PROPN	no_encontrado		
 28	Soto	Soto	PROPN	pos_distinta		lila:81416 noun
 29	Faustus	Faustus	PROPN	pos_distinta		lila:103026 adjective
+29	Toletanus	Toletanus	PROPN	pos_distinta		lila:23850 adjective
 30	Sylvester	Sylvester	PROPN	pos_distinta		lila:124804 adjective (variante)
 31	Covarrubias	Covarrubias	PROPN	no_encontrado		
 31	Navarrus	Navarrus	PROPN	no_encontrado		
 32	Reginaldus	Reginaldus	PROPN	no_encontrado		
 33	authoritatiuè	authoritatiue	ADV	no_encontrado		
+34	indiuiduum	indiuiduus	NOUN	pos_distinta		lila:107400 adjective
 34	statuit	statuo	VERB	ambiguo		lila:125614 verb; lila:82141 verb
+35	reliqui	reliquus	NOUN	pos_distinta		lila:121488 determiner
 35	statuit	statuo	VERB	ambiguo		lila:125614 verb; lila:82141 verb
-36	solum	solus	ADV	pos_distinta		lila:125109 determiner
+36	verò	uero	CCONJ	pos_alternativo	lilah:111474	lilah:111474 adverb
 38	indiuersas	indiuersus	ADJ	no_encontrado		
-40	multa	multus	ADJ	pos_alternativo	lila:112998	lila:112998 determiner
-43	iure	ius	ADV	pos_distinta		lila:109285 noun; lila:109252 noun
+43	iure	ius	NOUN	ambiguo		lila:109285 noun; lila:109252 noun
 45	republica	respublica	NOUN	ambiguo		lila:76484 noun; lila:122962 noun
 50	respicientium	respicio	VERB	ambiguo		lila:122736 verb; lila:76468 verb
 50	republica	respublica	NOUN	ambiguo		lila:76484 noun; lila:122962 noun
 53	praedicta	praedico	VERB	ambiguo		lila:118832 verb; lila:118833 verb
 54	temporibus	tempus	NOUN	ambiguo		lila:127796 noun; lila:127522 noun
+55	carius	carus	ADV	pos_distinta		lila:92942 adjective
 55	vendi	uo	VERB	pos_distinta		lila:84136 noun (variante)
 56	republica	respublica	NOUN	ambiguo		lila:76484 noun; lila:122962 noun
 57	tempore	tempus	NOUN	ambiguo		lila:127796 noun; lila:127522 noun
