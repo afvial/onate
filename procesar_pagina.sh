@@ -16,7 +16,7 @@
 #   --verbose      Mostrar detalle de tokens y abreviaturas
 #   --only PASO    Ejecutar solo un paso:
 #                  page2tei | nlp | nlp_corrections | lila | enrich |
-#                  assemble | sentences | validate | coords | html
+#                  assemble | sentences | validate | coords | html | search
 #
 # Ejemplos:
 #   ./procesar_pagina.sh 37 izq
@@ -36,6 +36,7 @@ BIBL_DIR="bibl/disp63"
 BIBL_MASTER="bibl/disp63/disp63_bibl.xml"
 COMPLETO="output/disp63_bibl_completo.xml"
 HTML_OUT="html/disp63/disp63_bibl.html"
+SEARCH_OUT="html/disp63/search_index.js"
 XSLT="xslt/onate_tei2html_bibl.xsl"
 LILA_INDEX="cache/lila_index.json"
 
@@ -87,6 +88,7 @@ if [[ "$1" == "all" ]]; then
     bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only sentences
     bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only validate
     bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only html
+    bash "$0" "${COLS[$(( ${#COLS[@]} - 2 ))]}" "${COLS[$(( ${#COLS[@]} - 1 ))]}" --only search
     echo
     echo -e "${BOLD}${GREEN}✓ Pipeline completo terminado${NC}"
     exit 0
@@ -300,6 +302,17 @@ run_html() {
     ok "HTML facs → ${FACS_OUT}"
 }
 
+# ── PASO 6: Índice de la concordancia ─────────────────────────────────────────
+# Lee el documento ensamblado completo (no solo esta columna), así que basta
+# con ejecutarlo una vez al final. Lo usa html/disp63/concordancia.html.
+run_search() {
+    info "Paso 6 — Índice de búsqueda (concordancia)"
+    [[ -f "$COMPLETO" ]] || fail "No existe: $COMPLETO"
+    [[ -f "${SCRIPTS_DIR}/onate_search_index.py" ]] || { warn "No existe ${SCRIPTS_DIR}/onate_search_index.py — se omite"; return; }
+    python3 "${SCRIPTS_DIR}/onate_search_index.py" "$COMPLETO" --out "$SEARCH_OUT"
+    ok "Índice → ${SEARCH_OUT}"
+}
+
 # ── Ejecutar ──────────────────────────────────────────────────────────────────
 case "$ONLY" in
     "")
@@ -313,6 +326,7 @@ case "$ONLY" in
         run_validate
         run_coords
         run_html
+        run_search
         ;;
     normalize)      run_normalize ;;
     page2tei)       run_page2tei ;;
@@ -325,7 +339,8 @@ case "$ONLY" in
     validate)       run_validate ;;
     coords)         run_coords ;;
     html)           run_html ;;
-    *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|nlp_corrections|lila|enrich|assemble|sentences|validate|html)" ;;
+    search)         run_search ;;
+    *) fail "Paso desconocido: $ONLY (normalize|page2tei|nlp|nlp_corrections|lila|enrich|assemble|sentences|validate|coords|html|search)" ;;
 esac
 
 echo
