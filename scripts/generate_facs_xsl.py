@@ -44,14 +44,21 @@ FACS_CSS = """
             margin-bottom: 2rem;
           }
 
+          /* Columna de texto: ancho fijo e igual en todas las páginas, mayor
+             que los 19em de la base para que las líneas largas (white-space:
+             nowrap) no toquen el borde. Ajustar solo --col-w. */
+          :root { --col-w: 21em; }
+          .columns:not(.single-col) .col-wrap > .col {
+            width: var(--col-w);
+          }
+
           /* Panel facsímil */
           .facs-panel {
             display: block;
             width: 400px;
             min-width: 400px;
-            border-left: 1px solid #d0c8b8;
             margin-left: 0.75rem;
-            background: #f5f0e8;
+            background: transparent;   /* mismo color que la página */
           }
           /* Página de una sola columna: facsímil arriba, texto abajo.
              column-reverse invierte visualmente sin tocar el DOM (el
