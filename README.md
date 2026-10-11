@@ -6,9 +6,11 @@ Tractatus XXI: De emptione et venditione, Disputatio LXIII.
 ## Overview
 
 This project produces a TEI XML diplomatic edition from Transkribus HTR output,
-with morphological annotation, bibliographic enrichment, sentence segmentation,
-and an HTML review interface with an interactive facsimile viewer. The pipeline
-is entirely command-line driven and version-controlled with Git.
+with morphological annotation, lemma linking to LiLa, bibliographic enrichment,
+sentence segmentation, an HTML review interface with an interactive facsimile
+viewer, and a searchable concordance (form, lemma, POS, morphology) whose results
+link to the exact word in the facsimile. The pipeline is entirely command-line
+driven and version-controlled with Git.
 
 **Editor:** Andres Vial
 **Source:** De contractibus, Tomus III, Francesco Cavalli, Rome, 1646-1654
@@ -43,13 +45,18 @@ onate/
   translations/disp63/    Sentence-level translations, keyed by sentence number
   senses/disp63/          Word-sense anchoring to LiLa: Linking Latin (see below)
   output/                 Assembled XML
-  coords/disp63/          Per-word bounding boxes (Tesseract, aligned to Transkribus)
+  coords/disp63/          Per-word bounding boxes (Tesseract, aligned to Transkribus),
+                          as .json and as .js (loadable from file://, see below)
   facsimiles/disp63/      Page images used by the interactive facsimile viewer
-  html/disp63/            HTML review interfaces (three variants, see below)
+  html/disp63/            HTML interfaces (see below), concordancia.html and its
+                          search index (search_index.js)
+  lila/                   LiLa linking reports (pendientes.tsv) and editorial
+                          decisions (excepciones.tsv)
   xslt/                   XSLT stylesheets
   scripts/                Python pipeline scripts
   doc/                    Project documentation and historical reference files
   .state/                 Pipeline-internal state (catchwords between columns); safe to delete
+  COMANDOS.md             Frequently used commands (Spanish), page number as $P
   bibl_catalog.json       Authority catalogue for bibliographic citations
   tei_header.xml          TEI header, works catalogue (listBibl) and person registry (particDesc)
 ```
@@ -86,6 +93,9 @@ src/disp63/pg_63_NN_col.xml              + morphological annotation (POS, lemma,
         v  Step 1.6 -- onate_nlp_corrections.py (optional)
 src/disp63/pg_63_NN_col.xml              + manual lemma/pos/msd corrections, if any
         |
+        v  Step 1.7 -- onate_lila.py
+src/disp63/pg_63_NN_col.xml              + @lemmaRef (LiLa Lemma Bank)
+        |
         v  Step 2 -- bibl_enricher.py
 bibl/disp63/pg_63_NN_col_bibl.xml        TEI + bibliographic markup
         |
@@ -97,11 +107,14 @@ output/disp63_bibl_completo.xml          + sentence spans across column/page bou
         |
         v  Step 4 -- validation
         |
-        v  Step 4.5 -- coordinate extraction (Tesseract, aligned to Transkribus)
-coords/disp63/pg_63_NN_col.json
+        v  Step 4.5 -- onate_coords.py (Tesseract, aligned to Transkribus)
+coords/disp63/pg_63_NN_col.json + .js
         |
-        v  Step 5 -- xsltproc
+        v  Step 5 -- generate_facs_xsl.py + xsltproc
 html/disp63/*.html                       HTML review interfaces
+        |
+        v  Step 6 -- onate_search_index.py
+html/disp63/search_index.js              Concordance index (whole document)
 ```
 
 ### Normalisation
@@ -126,6 +139,18 @@ python3 scripts/onate_staging_merge.py \
     transkribus/disp63/pg_63_NN_col.xml \
     --dry-run   # preview changes before applying
 ```
+#### Lines added by hand in Transkribus
+
+A TextLine drawn by hand in the Transkribus editor (typically the last line of
+a column, which the layout analysis missed) is exported with a non-standard
+id (`l`, `l_1`, ...) instead of `tr_1_tl_N`. Rename it in both the PAGE XML and
+the staging file before processing:
+
+```bash
+python3 scripts/onate_fix_line_ids.py 52          # both columns of page 52
+python3 scripts/onate_fix_line_ids.py 52 der --dry-run
+```
+
 #### Staging markers
 
 | Marker | Meaning | TEI output |
@@ -135,7 +160,7 @@ python3 scripts/onate_staging_merge.py \
 | `{sic|corr}` | Typographic error with correction | `<choice><sic>...</sic><corr>...</corr></choice>` |
 | `{sic|}` | Error with no correction | `<sic>...</sic>` |
 | `//` | Sentence boundary | `</s><s>` |
-| `##` / `#` | Heading level 1 / 2 | `<head>` |
+| `##` / `#` | Heading level 1 / 2 (section headings: `##SECTIO III.`) | `<head>` |
 | `@ref@` | Bibliographic reference | `<bibl>` candidate |
 | `[-palabra]palabra` | Suppress automatic long-s for this occurrence | plain `<w>`, no `<choice>` |
 | `[+palabra]palabra` | Force automatic long-s for this occurrence | `<choice><orig>/<reg></choice>` |
@@ -169,9 +194,21 @@ python3 scripts/onate_staging_merge.py \
 ./procesar_pagina.sh 37 der --only assemble
 ./procesar_pagina.sh 37 der --only sentences
 ./procesar_pagina.sh 37 der --only validate
+./procesar_pagina.sh 37 izq --only lila
 ./procesar_pagina.sh 37 der --only coords
 ./procesar_pagina.sh 37 der --only html
+./procesar_pagina.sh 37 der --only search    # rebuilds the concordance index
 ```
+
+`normalize` (Step 0) is never run by the full pipeline: call it explicitly,
+once, to create the staging file of a new column
+(`./procesar_pagina.sh 37 izq --only normalize`). It refuses to overwrite an
+existing staging file.
+
+When a new page is processed, the left column is run before the right one
+exists, so its assembly step fails on the missing XInclude and the run stops
+before Step 4.5. Run the left column a second time once the right one is done,
+so that its coordinates are generated too.
 
 #### Options
 
@@ -221,7 +258,22 @@ TEI tree builder. Contains:
 ### `scripts/onate_page2tei.py`
 Main entry point for TEI generation. Orchestrates extraction, tokenization, and
 TEI tree building for a single column. Handles catchword detection
-(--strip-catchword) and cross-column word joining (--join-left).
+(--strip-catchword) and cross-column word joining (--join-left). A short last
+line is treated as a catchword only if it does not end in punctuation: a line
+such as `re.` that completes `vende¬` and closes a sentence is kept as text.
+
+### `scripts/onate_fix_line_ids.py`
+Renames hand-added Transkribus TextLines (`l`, `l_1`, ...) to the `tr_1_tl_N`
+pattern in the PAGE XML and the staging file at once, numbering on from the
+highest existing line. Changes nothing if an id does not occur exactly once in
+the staging file.
+
+### `scripts/onate_lila.py`
+Links each `<w>` to the LiLa Lemma Bank through `@lemmaRef` (`lila:N` for
+lemmas, `lilah:N` for hypolemmas), using a local index
+(`cache/lila_index.json`, built once with `onate_lila_index.py`). Unmatched or
+ambiguous (lemma, POS) pairs are reported in `lila/pendientes.tsv`; editorial
+decisions go in `lila/excepciones.tsv` and apply corpus-wide.
 
 ### `scripts/onate_nlp.py`
 Morphological annotation. Runs LatinCy (la_core_web_lg) over the `<w>`
@@ -288,11 +340,40 @@ each pair of consecutive columns and:
   re-running LatinCy on the reconstructed word for a coherent lemma/pos/msd
 - Links both halves with a shared `@wpair` id for synchronized hover highlighting
 
+A word counts as split across columns only if its `<lb break="no"/>` is the
+last thing inside the `<w>`. A word completed on the next line of the same
+column (`vende<lb break="no"/>re`) is not.
+
+### `scripts/onate_coords.py`
+Extracts line and word coordinates from the PAGE XML (word boxes from
+Tesseract, aligned to the Transkribus text) into `coords/disp63/pg_63_NN_col.json`,
+and writes the same data as `.js` (`window.ONATE_COORDS[...]`). The viewer loads
+the `.js` with a `<script>` tag, so the facsimile highlighting works when the
+HTML is opened straight from disk. To create the `.js` files for existing JSON
+without rerunning Tesseract:
+
+```bash
+python3 scripts/onate_coords.py --from-json coords/disp63/*.json
+```
+
+### `scripts/onate_search_index.py`
+Builds the concordance index from the assembled document
+(`output/disp63_bibl_completo.xml`): one entry per word or punctuation mark,
+with normalized form, diplomatic form, lemma, POS, MSD, page, column, line, and
+the occurrence number of that form within its line. Words split across columns
+count once. Written as `html/disp63/search_index.js` (Step 6).
+
 ### `scripts/generate_facs_xsl.py`
 Generates xslt/onate_tei2html_facs.xsl from the base stylesheet via
 <xsl:import>, so template-level changes to the base propagate automatically.
 JavaScript is NOT inherited via xsl:import -- only XSLT templates are -- so
 any JS changes must be made in both places.
+
+The viewer script also handles links from the concordance: a URL such as
+`disp63_facs.html#pg_63_48_izq:2:pretium:0` (column : line : diplomatic form :
+occurrence in the line) scrolls to that word, highlights it as on hover, and
+draws its box on the facsimile; if the word is not found, the whole line is
+marked.
 
 ---
 
@@ -444,7 +525,8 @@ with each sentence's translation -- `output/disp63_sense_concordance.md`).
 
 ## HTML Review Interfaces
 
-Three HTML variants are generated per run, all from the same assembled XML:
+Four HTML views are generated from the same assembled XML, plus the
+concordance:
 
 - `disp63_facs.html` -- the primary interface: two-column text with an
   interactive facsimile panel, syncing word-level highlighting on hover.
@@ -454,6 +536,13 @@ Three HTML variants are generated per run, all from the same assembled XML:
   by `onate_inject_translation.py` from an already-generated interface
   above. Word-level cross-highlighting on hover, and a synset/LiLa tooltip
   on translated words that have a `senses/` entry.
+- `concordancia.html` -- KWIC concordance over `search_index.js`. Simple
+  search by form, lemma or morphological features (with `*`/`?` wildcards and
+  a POS filter), or token sequences such as
+  `[lema=pretium] [pos=NOUN & morf=Case=Gen]`. Comparisons ignore case and
+  accents and treat s/ſ, ae/æ, u/v and i/j as equal. Shows lemma/form
+  frequencies; each result links to the word in `disp63_facs.html`, and
+  links already opened change colour.
 
 Common features:
 - Morphological colour-coding by POS tag
@@ -463,6 +552,8 @@ Common features:
 - Sentence/word-pair highlighting across column and facsimile boundaries
 - Line numbers matching the PAGE XML source
 - Single-column pages render text above/below the facsimile
+- Concordancia / Traducción buttons in the header (fixed top-right in the
+  facsimile view)
 
 ---
 
@@ -481,8 +572,19 @@ sudo apt install libxml2-utils xsltproc tesseract-ocr
 
 ### Viewing the HTML output without the full toolchain
 
-The generated HTML files load facsimile images and word coordinates
-dynamically via JavaScript, so they must be served over HTTP:
+The HTML files can be opened directly from disk: word coordinates and the
+concordance index are loaded as `.js` files, which browsers allow from
+`file://` (unlike `fetch()` of JSON).
+
+```bash
+firefox html/disp63/disp63_facs.html
+firefox html/disp63/concordancia.html
+```
+
+If the facsimile box does not appear on hover, the `.js` coordinates are
+missing (the browser console says so); create them with
+`python3 scripts/onate_coords.py --from-json coords/disp63/*.json`.
+Serving the project over HTTP also works:
 
 ```bash
 python3 -m http.server 8000

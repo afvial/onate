@@ -29,15 +29,21 @@ ls transkribus/disp63/pg_63_${P}_*.xml
 python3 scripts/onate_fix_line_ids.py $P
 
 # 5. Editar los stagings: staging/disp63/pg_63_${P}_{izq,der}.xml
+#    (encabezados de sección con ##: ##SECTIO III.)
 
 # 6. Procesar (izq da error de XInclude porque der aún no existe: es normal)
 ./procesar_pagina.sh $P izq
 ./procesar_pagina.sh $P der
 ./procesar_pagina.sh $P izq          # otra vez, para generar las coords de izq
 
-# 7. Comprobar que están las dos coords
-ls coords/disp63/pg_63_${P}_*.json
+# 7. Comprobar que están las coords de las dos columnas (.json y .js)
+ls coords/disp63/pg_63_${P}_*
+
+# 8. Ver el resultado (se abre directamente, sin servidor)
+firefox html/disp63/disp63_facs.html
 ```
+
+El pipeline completo regenera también el índice de la concordancia (paso `search`).
 
 Qué revisar en la salida:
 - `--strip-catchword: «…» se conserva.` en ambas columnas (si dice *Reclamo detectado*, comprobar que lo sea de verdad).
@@ -55,15 +61,18 @@ Pasos sueltos con `--only`:
 
 | Paso | Cuándo |
 |---|---|
-| `normalize` | solo la primera vez (genera el staging) |
+| `normalize` | solo la primera vez (genera el staging; nunca lo sobrescribe) |
 | `page2tei` | cambió el staging o `onate_tokens.py` (s larga, abreviaturas) |
 | `nlp` | tras `page2tei` |
+| `nlp_corrections` | correcciones manuales en `nlp_corrections/disp63/` |
+| `lila` | enlace de lemas con LiLa (`@lemmaRef`) |
 | `enrich` | catálogo bibliográfico (`bibl_enricher.py`, `tei_header.xml`) |
 | `assemble` | une todas las páginas por XInclude |
 | `sentences` | límites de `<s>` entre columnas (Paso 3.5) |
 | `validate` | XML bien formado, xml:id duplicados |
-| `coords` | coordenadas para el facsímil |
-| `html` | solo cambió el XSLT/CSS |
+| `coords` | coordenadas para el facsímil (`.json` y `.js`) |
+| `html` | cambió el XSLT/CSS o `generate_facs_xsl.py` |
+| `search` | regenerar el índice de la concordancia (documento entero) |
 
 ```bash
 ./procesar_pagina.sh $P izq --only sentences | grep p$P     # ver transiciones de la página
@@ -99,12 +108,50 @@ Las líneas con macrón no se aplican automáticamente: revisarlas a mano.
 | `//` | límite de oración |
 | `{sic\|corr}` | error del original con corrección (`{cnnsue\|consue}¬`) |
 | `{sic\|}` | error probable sin corrección |
+| `##` | encabezado de sección (`##SECTIO III.`) |
 
 El `¬` va fuera de las llaves cuando el error cruza el salto de línea.
 
 ---
 
-## 5. Diagnóstico: dónde se pierde un cambio
+## 5. Ver la edición y la concordancia
+
+Los HTML se abren directamente desde el disco, sin servidor:
+
+```bash
+firefox html/disp63/disp63_facs.html      # texto + facsímil
+firefox html/disp63/concordancia.html     # buscador
+```
+
+- Desde cada resultado de la concordancia se salta a la palabra en el facsímil
+  (se abre siempre en la misma pestaña aparte; los enlaces ya abiertos cambian de color).
+- El facsímil tiene arriba a la derecha los botones Concordancia y Traducción.
+
+Si al pasar el ratón no aparece el recuadro en la imagen, faltan las coordenadas en `.js`:
+
+```bash
+python3 scripts/onate_coords.py --from-json coords/disp63/*.json
+```
+
+Alternativa con servidor (desde la carpeta del proyecto):
+
+```bash
+python3 -m http.server 8000
+# → http://localhost:8000/html/disp63/disp63_facs.html
+```
+
+Ejemplos de búsqueda por secuencia en la concordancia:
+
+| Consulta | Encuentra |
+|---|---|
+| `[lema=pretium] [pos=NOUN & morf=Case=Gen]` | *pretium* + genitivo |
+| `[pos=ADJ] [lema=pretium]` | adjetivo + *pretium* |
+| `[morf=VerbForm=Ger] []` | gerundio + cualquier palabra |
+| `[forma=vend*]` | formas que empiezan por *vend* |
+
+---
+
+## 6. Diagnóstico: dónde se pierde un cambio
 
 ```bash
 # Seguir una frase única por toda la cadena
@@ -124,13 +171,16 @@ grep '<line' staging/disp63/pg_63_${P}_*.xml | grep -v 'tr_1_tl_'
 
 # Reclamos guardados (deberían estar vacíos salvo reclamo real)
 for f in .state/catchword_*; do [ -s "$f" ] && echo "$f: $(cat "$f")"; done
+
+# Encabezados de sección sin marcar con ##
+grep -n '">SECTIO' staging/disp63/*.xml
 ```
 
 Si el HTML no cambia: recargar sin caché (Ctrl+Shift+R).
 
 ---
 
-## 6. LiLa
+## 7. LiLa
 
 ```bash
 python3 scripts/onate_lila.py src/disp63/pg_63_${P}_izq.xml
@@ -140,7 +190,7 @@ less lila/pendientes.tsv          # pares (lema, POS) por revisar
 
 ---
 
-## 7. Git
+## 8. Git
 
 ```bash
 git status
@@ -166,7 +216,7 @@ Si hay archivos de otra página sin terminar, no usar `-A`: añadir solo los de 
 git add bibl/disp63/disp63_bibl.xml html/disp63/ output/disp63_bibl_completo.xml \
         lila/estado.json lila/pendientes.tsv lila/paginas/pg_63_${P}_*.tsv \
         {transkribus,staging,src}/disp63/pg_63_${P}_*.xml \
-        bibl/disp63/pg_63_${P}_*_bibl.xml coords/disp63/pg_63_${P}_*.json
+        bibl/disp63/pg_63_${P}_*_bibl.xml coords/disp63/pg_63_${P}_*.{json,js}
 ```
 
 Salir de Emacs sin guardar el mensaje de commit: `C-x C-c`, responder `n`.
