@@ -18,8 +18,10 @@ body { margin: 0; }
   --rule: #d5dcd8;
   --accent: #1d6b64;
   --accent-soft: #e1efec;
-  --hit: #f3e4a3;
+  --hit: #fdeee0;
   --hit-fg: #2a2410;
+  --hit-line: #7a9abf;
+  --seen: #8a5a9e;
   --warn-bg: #fbf3df;
   --warn-fg: #6b4f12;
   --text: "EB Garamond", "Garamond", "Iowan Old Style", Georgia, serif;
@@ -29,13 +31,15 @@ body { margin: 0; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #131816; --surface: #1a201e; --fg: #e3e8e5; --muted: #98a59f; --rule: #2f3835;
-    --accent: #6cc0b5; --accent-soft: #1f3330; --hit: #514617; --hit-fg: #f6ecc4;
+    --accent: #6cc0b5; --accent-soft: #1f3330; --hit: #4a3a2c; --hit-fg: #f6ecdc;
+    --hit-line: #9cb6d6; --seen: #c39bd3;
     --warn-bg: #2c2615; --warn-fg: #e8cf8f; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #131816; --surface: #1a201e; --fg: #e3e8e5; --muted: #98a59f; --rule: #2f3835;
-  --accent: #6cc0b5; --accent-soft: #1f3330; --hit: #514617; --hit-fg: #f6ecc4;
+  --accent: #6cc0b5; --accent-soft: #1f3330; --hit: #4a3a2c; --hit-fg: #f6ecdc;
+  --hit-line: #9cb6d6; --seen: #c39bd3;
   --warn-bg: #2c2615; --warn-fg: #e8cf8f; color-scheme: dark;
 }
 
@@ -95,6 +99,9 @@ tr:last-child td { border-bottom: 0; }
 .loc { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .loc a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted currentColor; }
 .loc a:hover { border-bottom-style: solid; }
+/* Ya abiertos: :visited lo recuerda el navegador entre sesiones; .seen
+   cubre los clics de esta sesión aunque el navegador no aplique :visited */
+.loc a:visited, .loc a.seen { color: var(--seen); }
 .nav { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13.5px; }
 .nav a { color: var(--accent); text-decoration: none; }
 .nav a:hover { text-decoration: underline; }
@@ -102,7 +109,8 @@ tr:last-child td { border-bottom: 0; }
 .left { text-align: right; max-width: 0; overflow: hidden; direction: rtl; width: 40%; }
 .left > span { direction: ltr; unicode-bidi: isolate; }
 .right { max-width: 0; overflow: hidden; width: 40%; }
-.hit { background: var(--hit); color: var(--hit-fg); padding: 1px 4px; border-radius: 3px; font-weight: 500; }
+/* Mismo destacado que una palabra del facsímil al pasar el ratón */
+.hit { background: var(--hit); color: var(--hit-fg); padding: 0 2px; border-radius: 2px; border-bottom: 1px dotted var(--hit-line); }
 .ana { white-space: nowrap; font-size: 12.5px; }
 .ana .lem { font-family: var(--text); font-size: 15px; font-style: italic; }
 .ana .pos { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-left: 6px; }
@@ -129,7 +137,7 @@ details code { font-family: var(--mono); font-size: 13px; }
   <header>
     <div class="eyebrow">Pedro de Oñate · De contractibus · Disputatio LXIII</div>
     <h1>Concordancia del <em>texto latino</em></h1>
-    <nav class="nav"><a href="disp63_facs.html">Texto y facsímil</a><a href="disp63_bibl.html">Texto anotado</a></nav>
+    <nav class="nav"><a href="disp63_facs.html">Texto y facsímil</a><a href="disp63_bibl.html">Texto anotado</a><a href="disp63_trad.html">Traducción</a></nav>
     <p class="lede">Busca por forma, lema, categoría gramatical o rasgos morfológicos, o encadena condiciones para encontrar construcciones. Cada resultado indica página, columna y línea, y enlaza a ese lugar en el facsímil.</p>
   </header>
 
@@ -232,6 +240,7 @@ const $ = id => document.getElementById(id);
 
 let T = [];          // tokens: {f,d,l,p,m,pg,c,ln,o,nf,nd,nl,col}
 let COL_PREFIX = "pg_63_";
+const SEEN = new Set();   // enlaces abiertos en esta sesión
 let mode = "simple", hits = [], shown = 0;
 
 /* ── Normalización latina ─────────────────────────────── */
@@ -367,7 +376,7 @@ function more() {
     const ana = m.filter(t => t.p !== "PUNCT").map(t =>
       `<span title="${esc(t.m || "sin rasgos")}"><span class="lem">${esc(t.l || "—")}</span><span class="pos">${t.p}</span></span>`).join(" ");
     return `<tr>
-      <td class="loc"><a href="${facsHref(m.find(t => t.p !== "PUNCT") || t0)}" target="onate_facs" title="Ver en el facsímil">p. ${esc(t0.pg)} · ${esc(t0.c)} · l. ${esc(t0.ln)}</a></td>
+      <td class="loc"><a href="${facsHref(m.find(t => t.p !== "PUNCT") || t0)}" target="onate_facs" title="Ver en el facsímil"${SEEN.has(facsHref(m.find(t => t.p !== "PUNCT") || t0)) ? ' class="seen"' : ""}>p. ${esc(t0.pg)} · ${esc(t0.c)} · l. ${esc(t0.ln)}</a></td>
       <td class="ctx left"><span>${join(left)}</span></td>
       <td class="ctx"><span class="hit">${join(m)}</span></td>
       <td class="ctx right">${join(right)}</td>
@@ -417,6 +426,10 @@ $("form").onsubmit = e => { e.preventDefault(); search(); };
 $("sort").onchange = () => { sortHits(); render(); };
 $("dipl").onchange = render;
 $("more").onclick = more;
+$("rows").addEventListener("click", e => {
+  const a = e.target.closest(".loc a");
+  if (a) { SEEN.add(a.getAttribute("href")); a.classList.add("seen"); }
+});
 $("seqExamples").onclick = e => { const c = e.target.closest("code"); if (c) { $("seq").value = c.dataset.q; search(); } };
 $("freq").onclick = e => {
   const c = e.target.closest("button.chip"); if (!c) return;

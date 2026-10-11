@@ -96,13 +96,25 @@ FACS_CSS = """
           /* lb-num de break=no: en DOM pero invisible */
           .lb-num.lb-break { visibility: hidden; }
 
-          /* Destino de un enlace de la concordancia (#pg_63_N_col:línea:forma:n) */
-          span.tei-w.search-target {
-            background-color: #f6e3a1;
+          /* Destino de un enlace de la concordancia (#pg_63_N_col:línea:forma:n):
+             mismo destacado que al pasar el ratón por una palabra */
+          span.tei-w.search-target,
+          span.tei-w.search-target-line {
+            background-color: #fdeee0;
             border-radius: 2px;
-            box-shadow: 0 0 0 2px #e0b84a;
+            border-bottom: 1px dotted #7a9abf;
           }
-          span.tei-w.search-target-line { background-color: #fbf0c8; }"""
+
+          /* Botones Concordancia / Traducción: fijos arriba a la derecha,
+             siempre a mano aunque la página sea larga */
+          .nav-links {
+            position: fixed;
+            top: 0.6rem;
+            right: 0.8rem;
+            z-index: 50;
+            margin: 0;
+          }
+          a.nav-btn { box-shadow: 0 1px 3px rgba(0,0,0,0.12); }"""
 
 # ── JavaScript del visor ──────────────────────────────────────────────────────
 JS_CODE = r"""(function () {
@@ -857,11 +869,6 @@ def build_facs_xsl(base_src: str, base_path: Path) -> str:
         </style>
       </head>
       {body_header}
-        <div class="stats">
-          Palabras: <xsl:value-of select="count(//tei:w)"/> &#183;
-          Oraciones: <xsl:value-of select="count(//tei:s)"/> &#183;
-          Párrafos: <xsl:value-of select="count(//tei:p)"/>
-        </div>
 
 {columns_block}
 

@@ -347,9 +347,20 @@
             letter-spacing: 0.08em;
           }
 
-          .nav-links { text-align: center; font-size: 0.82rem; margin: 0 0 0.6rem 0; }
-          .nav-links a { color: #6a5520; text-decoration: none; border-bottom: 1px dotted #b09060; }
-          .nav-links a:hover { color: #3a2e10; border-bottom-style: solid; }
+          .nav-links { display: flex; justify-content: center; gap: 0.5rem; margin: 0 0 0.8rem 0; }
+          a.nav-btn {
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.02em;
+            color: #5a4a20;
+            background: #f3eddc;
+            border: 1px solid #cdbf99;
+            border-radius: 4px;
+            padding: 0.25rem 0.75rem;
+            text-decoration: none;
+          }
+          a.nav-btn:hover { background: #e9dfc2; border-color: #b09060; color: #3a2e10; }
+          a.nav-btn:focus-visible { outline: 2px solid #b09060; outline-offset: 2px; }
 
           .stats {
             font-size: 0.78rem;
@@ -363,7 +374,7 @@
 <h1>Pedro de Oñate · <em>De contractibus</em>
 </h1>
 <h2>Disputatio LXIII</h2>
-<p class="nav-links"><a href="concordancia.html">Concordancia · buscar en el texto</a></p>
+<p class="nav-links"><a class="nav-btn" href="concordancia.html">Concordancia</a><a class="nav-btn" href="disp63_trad.html">Traducción</a></p>
 <div class="stats">
           Palabras: 19673 ·
           Oraciones: 208 ·

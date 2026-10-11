@@ -383,9 +383,20 @@
             letter-spacing: 0.08em;
           }
 
-          .nav-links { text-align: center; font-size: 0.82rem; margin: 0 0 0.6rem 0; }
-          .nav-links a { color: #6a5520; text-decoration: none; border-bottom: 1px dotted #b09060; }
-          .nav-links a:hover { color: #3a2e10; border-bottom-style: solid; }
+          .nav-links { display: flex; justify-content: center; gap: 0.5rem; margin: 0 0 0.8rem 0; }
+          a.nav-btn {
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.02em;
+            color: #5a4a20;
+            background: #f3eddc;
+            border: 1px solid #cdbf99;
+            border-radius: 4px;
+            padding: 0.25rem 0.75rem;
+            text-decoration: none;
+          }
+          a.nav-btn:hover { background: #e9dfc2; border-color: #b09060; color: #3a2e10; }
+          a.nav-btn:focus-visible { outline: 2px solid #b09060; outline-offset: 2px; }
 
           .stats {
             font-size: 0.78rem;
@@ -457,19 +468,34 @@
           /* lb-num de break=no: en DOM pero invisible */
           .lb-num.lb-break { visibility: hidden; }
 
-          /* Destino de un enlace de la concordancia (#pg_63_N_col:línea:forma:n) */
-          span.tei-w.search-target {
-            background-color: #f6e3a1;
+          /* Destino de un enlace de la concordancia (#pg_63_N_col:línea:forma:n):
+             mismo destacado que al pasar el ratón por una palabra */
+          span.tei-w.search-target,
+          span.tei-w.search-target-line {
+            background-color: #fdeee0;
             border-radius: 2px;
-            box-shadow: 0 0 0 2px #e0b84a;
+            border-bottom: 1px dotted #7a9abf;
           }
-          span.tei-w.search-target-line { background-color: #fbf0c8; }
+
+          /* Botones Concordancia / Traducción: fijos arriba a la derecha,
+             siempre a mano aunque la página sea larga */
+          .nav-links {
+            position: fixed;
+            top: 0.6rem;
+            right: 0.8rem;
+            z-index: 50;
+            margin: 0;
+          }
+          a.nav-btn { box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
         </style>
       </head>
       <body>
         <h1>Pedro de Oñate · <em>De contractibus</em></h1>
         <h2>Disputatio LXIII</h2>
-        <p class="nav-links"><a href="concordancia.html">Concordancia · buscar en el texto</a></p>
+        <p class="nav-links">
+          <a class="nav-btn" href="concordancia.html">Concordancia</a>
+          <a class="nav-btn" href="disp63_trad.html">Traducción</a>
+        </p>
 
         <div class="stats">
           Palabras: <xsl:value-of select="count(//tei:w)"/> ·
@@ -478,11 +504,6 @@
         </div>
 
         
-        <div class="stats">
-          Palabras: <xsl:value-of select="count(//tei:w)"/> &#183;
-          Oraciones: <xsl:value-of select="count(//tei:s)"/> &#183;
-          Párrafos: <xsl:value-of select="count(//tei:p)"/>
-        </div>
 
         <!-- Una sección por página, dos columnas + panel facsímil por sección -->
         <xsl:for-each select="//tei:div[@type='page'][
