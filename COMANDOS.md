@@ -4,9 +4,11 @@ Antes de copiar los comandos, define la página con la que trabajas:
 
 ```bash
 P=52          # número de página (cámbialo cada vez)
+C=izq         # columna: izq o der
 ```
 
-Todos los comandos usan `$P`, así que se pueden pegar tal cual en la misma terminal.
+Todos los comandos usan `$P` y `$C`, así que se pueden pegar tal cual en la misma terminal.
+Para pasar a la otra columna basta con `C=der` (o `C=izq`).
 Orden de lectura del ensamblado: `izq → der` dentro de cada página.
 
 ---
@@ -54,7 +56,7 @@ Qué revisar en la salida:
 ## 2. Reprocesar después de editar el staging
 
 ```bash
-./procesar_pagina.sh $P izq                 # pipeline completo (lo más seguro)
+./procesar_pagina.sh $P $C                  # pipeline completo (lo más seguro)
 ```
 
 Pasos sueltos con `--only`:
@@ -75,7 +77,7 @@ Pasos sueltos con `--only`:
 | `search` | regenerar el índice de la concordancia (documento entero) |
 
 ```bash
-./procesar_pagina.sh $P izq --only sentences | grep p$P     # ver transiciones de la página
+./procesar_pagina.sh $P $C --only sentences | grep p$P     # ver transiciones de la página
 ```
 
 ---
@@ -84,15 +86,15 @@ Pasos sueltos con `--only`:
 
 ```bash
 python3 scripts/onate_staging_merge.py \
-    staging/disp63/pg_63_${P}_izq.xml \
-    transkribus/disp63/pg_63_${P}_izq.xml \
+    staging/disp63/pg_63_${P}_${C}.xml \
+    transkribus/disp63/pg_63_${P}_${C}.xml \
     --dry-run                                 # primero ver qué cambia
 
 python3 scripts/onate_staging_merge.py \
-    staging/disp63/pg_63_${P}_izq.xml \
-    transkribus/disp63/pg_63_${P}_izq.xml       # aplicar
+    staging/disp63/pg_63_${P}_${C}.xml \
+    transkribus/disp63/pg_63_${P}_${C}.xml      # aplicar
 
-./procesar_pagina.sh $P izq
+./procesar_pagina.sh $P $C
 ```
 
 Las líneas con macrón no se aplican automáticamente: revisarlas a mano.
@@ -156,9 +158,9 @@ Ejemplos de búsqueda por secuencia en la concordancia:
 ```bash
 # Seguir una frase única por toda la cadena
 F="hominum, vnde sumitur"
-grep -c "$F" staging/disp63/pg_63_${P}_der.xml
-grep -c "$F" src/disp63/pg_63_${P}_der.xml
-grep -c "$F" bibl/disp63/pg_63_${P}_der_bibl.xml
+grep -c "$F" staging/disp63/pg_63_${P}_${C}.xml
+grep -c "$F" src/disp63/pg_63_${P}_${C}.xml
+grep -c "$F" bibl/disp63/pg_63_${P}_${C}_bibl.xml
 grep -c "$F" output/disp63_bibl_completo.xml
 grep -c "$F" html/disp63/disp63_bibl.html
 
@@ -174,6 +176,11 @@ for f in .state/catchword_*; do [ -s "$f" ] && echo "$f: $(cat "$f")"; done
 
 # Encabezados de sección sin marcar con ##
 grep -n '">SECTIO' staging/disp63/*.xml
+
+# Palabras sospechosas de error de HTR (informe: html/disp63/sospechosas.html)
+python3 scripts/onate_sospechosas.py html/disp63/search_index.js
+python3 scripts/onate_sospechosas.py html/disp63/search_index.js --pagina $P
+# formas revisadas que están bien → lexico/formas_correctas.txt (una por línea)
 ```
 
 Si el HTML no cambia: recargar sin caché (Ctrl+Shift+R).
@@ -183,7 +190,7 @@ Si el HTML no cambia: recargar sin caché (Ctrl+Shift+R).
 ## 7. LiLa
 
 ```bash
-python3 scripts/onate_lila.py src/disp63/pg_63_${P}_izq.xml
+python3 scripts/onate_lila.py src/disp63/pg_63_${P}_${C}.xml
 less lila/pendientes.tsv          # pares (lema, POS) por revisar
 # Decisiones editoriales: lila/excepciones.tsv
 ```
