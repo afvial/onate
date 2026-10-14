@@ -111,6 +111,7 @@ Las líneas con macrón no se aplican automáticamente: revisarlas a mano.
 | `{sic\|corr}` | error del original con corrección (`{cnnsue\|consue}¬`) |
 | `{sic\|}` | error probable sin corrección |
 | `##` | encabezado de sección (`##SECTIO III.`) |
+| `ô` | macrón que vale *n* donde la regla daría *m* (`nô` = *non*) |
 
 El `¬` va fuera de las llaves cuando el error cruza el salto de línea.
 
@@ -187,13 +188,60 @@ Si el HTML no cambia: recargar sin caché (Ctrl+Shift+R).
 
 ---
 
-## 7. LiLa
+## 7. Revisión y LiLa
+
+### Panel de revisión (lo que falta por corregir, por columna)
 
 ```bash
-python3 scripts/onate_lila.py src/disp63/pg_63_${P}_${C}.xml
-less lila/pendientes.tsv          # pares (lema, POS) por revisar
-# Decisiones editoriales: lila/excepciones.tsv
+python3 scripts/onate_sospechosas.py html/disp63/search_index.js   # erratas probables del HTR
+python3 scripts/onate_revision.py                                  # → html/disp63/revision.html
 ```
+
+`revision.html#pg_63_${P}_${C}` abre directamente una columna. Erratas: corregir en
+Transkribus/staging, merge y reprocesar. Formas correctas que no deben volver a salir:
+`lexico/formas_correctas.txt` (una por línea).
+
+### Resolver un lema de LiLa (ambiguo, categoría distinta, no encontrado)
+
+1. En `revision.html`, pulsar el botón del candidato elegido: copia la línea.
+2. Pegarla al final de `lila/excepciones.tsv` y completar la nota (4.ª columna).
+
+```
+# lema        upos  ref          nota
+respublica    NOUN  lila:76484   res publica "república"; no 122962
+conuentionalis *    lila:96429   adjetivo; LatinCy a veces lo etiqueta NOUN
+Molina        PROPN -            nombre propio: no enlazar
+```
+
+`ref`: `lila:N` (lema), `lilah:N` (hipolema) o `-` (no enlazar). `upos` `*` = cualquier categoría.
+Si el lema mismo está mal (p. ej. *vendi* → *uo*), se corrige en `nlp_corrections/`.
+
+3. Regenerar. Un lema suele aparecer en muchas columnas: se reenlaza todo el texto
+   (solo LiLa y bibliografía, sin volver a pasar LatinCy) y luego los productos del documento:
+
+```bash
+for f in staging/disp63/pg_63_*.xml; do
+  b=$(basename $f .xml); p=$(echo $b | cut -d_ -f3); c=$(echo $b | cut -d_ -f4)
+  ./procesar_pagina.sh $p $c --only lila
+  ./procesar_pagina.sh $p $c --only enrich
+done
+./procesar_pagina.sh $P $C --only assemble
+./procesar_pagina.sh $P $C --only sentences
+./procesar_pagina.sh $P $C --only html        # disp63_facs.html y demás vistas
+./procesar_pagina.sh $P $C --only search
+python3 scripts/onate_sospechosas.py html/disp63/search_index.js
+python3 scripts/onate_revision.py
+```
+
+(Los cuatro pasos `--only` del documento procesan todo el texto: da igual qué `$P $C` tengan.)
+
+4. Comprobar y recargar las páginas sin caché (Ctrl+Shift+R):
+
+```bash
+grep -c "^ambiguo	respublica" lila/pendientes.tsv     # 0 = resuelto
+```
+
+Solo una columna: `python3 scripts/onate_lila.py src/disp63/pg_63_${P}_${C}.xml`
 
 ---
 
