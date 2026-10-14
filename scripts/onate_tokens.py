@@ -337,6 +337,14 @@ ORIG_REG = {
     "intrinſeca": "intrinseca",   "intrinſecae": "intrinsecae",
 }
 
+# Abreviaturas que en el impreso aparecen SIN punto (seguidas de coma u
+# otra puntuación): el tokenizador las ve como palabras normales, así que
+# se expanden aquí. Clave = forma exacta del texto.
+ABBREV_NO_DOT = {
+    "reip":  "reipublicae",
+    "Reip":  "Reipublicae",
+}
+
 # Macrones que representan letras abreviadas
 MACRON_MAP = {
     "ā": "am", "ē": "em", "ī": "im", "ō": "on", "ô": "on", "ū": "um",

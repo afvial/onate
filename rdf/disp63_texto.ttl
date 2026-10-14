@@ -23954,7 +23954,7 @@ tok:s_p35der_8_t116
 
 tok:s_p36izq_2
     a nif:Sentence ;
-    nif:anchorOf "Infra nouem ergo, vel vltra vndecim pretia non erunt iusta, quia non sunt in usu communi reip, ut suppono."@la ;
+    nif:anchorOf "Infra nouem ergo, vel vltra vndecim pretia non erunt iusta, quia non sunt in usu communi reipublicae, ut suppono."@la ;
     dct:isPartOf tok:p36izq ;
     onate:n 2 ;
     nif:firstWord tok:s_p36izq_2_t1 .
@@ -24173,27 +24173,26 @@ tok:s_p36izq_2_t18
     nif:nextWord tok:s_p36izq_2_t19 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     lexinfo:case lexinfo:ablativeCase ;
-    lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Abl|Gender=Fem|Number=Sing" ;
+    onate:ud "Case=Abl|Number=Sing" ;
     lila:hasLemma lilalem:97171 ;
     onate:lexicalEntry lex:communis_ADJ ;
-    conll:HEAD tok:s_p36izq_2_t19 ;
     conll:EDGE "amod" ;
     onate:line 18 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_36_izq%3A18%3Acommuni%3A0> .
 
 tok:s_p36izq_2_t19
     a nif:Word ;
-    nif:anchorOf "reip"@la ;
+    nif:anchorOf "reipublicae"@la ;
+    onate:diplomatic "reip"@la ;
     nif:sentence tok:s_p36izq_2 ;
     nif:nextWord tok:s_p36izq_2_t21 ;
     lexinfo:partOfSpeech lexinfo:noun ;
-    lexinfo:case lexinfo:dativeCase ;
+    lexinfo:case lexinfo:genitiveCase ;
     lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Dat|Gender=Fem|Number=Sing" ;
-    onate:lexicalEntry lex:reip_NOUN ;
+    onate:ud "Case=Gen|Gender=Fem|Number=Sing" ;
+    onate:lexicalEntry lex:respublica_NOUN ;
     conll:EDGE "nmod" ;
     onate:line 18 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_36_izq%3A18%3Areip%3A0> .

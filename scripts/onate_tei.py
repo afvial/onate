@@ -10,7 +10,7 @@ Importa de onate_tokens y onate_bibl.
 from lxml import etree
 from onate_tokens import (
     TEI_NS, XI_NS, PC_TYPES,
-    ABBREV_EXPAN, ABBREV_SEMICOLON_EXPAN, ORIG_REG, MACRON_MAP, LONG_S, ORIG_CHARS,
+    ABBREV_EXPAN, ABBREV_SEMICOLON_EXPAN, ABBREV_NO_DOT, ORIG_REG, MACRON_MAP, LONG_S, ORIG_CHARS,
     _apply_long_s_roots, apply_abbrev_tags, tokenize, classify_tag,
 )
 from onate_bibl import join_split_words, group_bibl_tokens, group_legal_tokens
@@ -31,6 +31,11 @@ _MACRON_FINAL = {"ā": "am", "ē": "em", "ī": "im", "ō": "om", "ô": "on", "ū
 _MACRON_MEDIAL = {"ā": "an", "ē": "en", "ī": "in", "ō": "on", "ô": "on", "ū": "un",
                   "Ā": "An", "Ē": "En", "Ī": "In", "Ō": "On", "Ū": "Un"}
 _MACRON_CHARS  = set(_MACRON_FINAL)
+
+# Palabras en que el macrón final NO vale m (excepciones a la regla de
+# posición). Equivale a escribir ô en el staging, pero sin tener que
+# recordarlo: nō = non.
+_MACRON_WORDS = {"nō": "non", "Nō": "Non", "NŌ": "NON"}
 
 
 _STAGING_TO_DISPLAY = str.maketrans({"ô": "ō"})
@@ -53,6 +58,8 @@ def _expand_macrons(text: str) -> str | None:
     """
     if not any(c in text for c in _MACRON_CHARS):
         return None
+    if text in _MACRON_WORDS:
+        return _MACRON_WORDS[text]
     result = []
     n = len(text)
     for idx, ch in enumerate(text):
@@ -444,8 +451,10 @@ def emit_token(parent, tok: dict):
                  expansion=tok["expansion"], lb_n=tok.get("lb_n"),
                  no_hyphen=tok.get("no_hyphen", False))
     elif kind == "word":
-        add_w(parent, tok["text"], expansion=tok["expansion"],
-              is_abbrev=(tok["expansion"] is not None))
+        exp = tok["expansion"]
+        if exp is None:
+            exp = ABBREV_NO_DOT.get(tok["text"])   # reip, (abreviatura sin punto)
+        add_w(parent, tok["text"], expansion=exp, is_abbrev=(exp is not None))
     elif kind == "abbrev_dot":
         expan_text = (ABBREV_EXPAN.get(tok["text"], ABBREV_EXPAN.get(tok["text"].lower(), ""))
                      or ABBREV_SEMICOLON_EXPAN.get(tok["text"], ABBREV_SEMICOLON_EXPAN.get(tok["text"].lower(), "")))
