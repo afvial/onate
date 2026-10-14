@@ -16166,7 +16166,7 @@ tok:s_p35izq_10_t24
 
 tok:s_p35izq_11
     a nif:Sentence ;
-    nif:anchorOf "Hoc autem pretium in indiuisibili consistit: cùm enim, ut Divus Augustinus ait libro 11. de Ciuit. Dei capitulo 16. [ Emptor semper intendat minoris emere, venditor verò è contra maioris vendere. ] et libro de Trinitate 3. caput 3. [ vili emere, et caro vendere non est qui nom velit. ] ut cessent fraudes, et dissidia, quia difficillimum est rei valori pretium commensurare, ne iudicio fraudulento emptorum, et venditorum emptiones, et venditiones fiant, vel iudicio vulgari consuetudinis reipublicae in quod tamen error, et auaritia facilius subrepere, et se obregere potest prouidi principes, et magistratus his dolis, et fraudibus obuiandis, determinatum, et fixum pretium solent statuere, quod omnium aequissimum iudicandum est: et hoc legale pretium esse, et in indiuisibili consistere tenent Molina disputatio 347. in principio Salas tractatus de emptione dubium 4. numero 4. Filliucius tractatus 35. capitulo 4. quaestio 1. numero 78. Nauarr. capitulo 23. numero 88. Conradus quaestio 56. de contractibus Covarrubias 2. variarum capitulo 3. Bonacina disputatio 3. quaestio 2. punctum 4. numero 8. S. Faustus disputatio 6. de emptione qu. 5. numero 7. Reginaldus libro 25. capitulo 16. numero 271. Medina CodexIustinianus de restitutione quaestio 36. Azorius 3. pars institutio moralis libro 8. capitulo 23. Nauarr. libro 3. de restitutione capitulo 2. numero 4."@la ;
+    nif:anchorOf "Hoc autem pretium in indiuisibili consistit: cùm enim, ut Divus Augustinus ait libro 11. de Ciuit. Dei capitulo 16. [ Emptor semper intendat minoris emere, venditor verò è contra maioris vendere. ] et libro de Trinitate 3. caput 3. [ vili emere, et caro vendere non est qui non velit. ] ut cessent fraudes, et dissidia, quia difficillimum est rei valori pretium commensurare, ne iudicio fraudulento emptorum, et venditorum emptiones, et venditiones fiant, vel iudicio vulgari consuetudinis reipublicae in quod tamen error, et auaritia facilius subrepere, et se obtegere potest prouidi principes, et magistratus his dolis, et fraudibus obuiandis, determinatum, et fixum pretium solent statuere, quod omnium aequissimum iudicandum est: et hoc legale pretium esse, et in indiuisibili consistere tenent Molina disputatio 347. in principio Salas tractatus de emptione dubium 4. numero 4. Filliucius tractatus 35. capitulo 4. quaestio 1. numero 78. Nauarr. capitulo 23. numero 88. Conradus quaestio 56. de contractibus Covarrubias 2. variarum capitulo 3. Bonacina disputatio 3. quaestio 2. punctum 4. numero 8. S. Faustus disputatio 6. de emptione qu. 5. numero 7. Reginaldus libro 25. capitulo 16. numero 271. Medina CodexIustinianus de restitutione quaestio 36. Azorius 3. pars institutio moralis libro 8. capitulo 23. Nauarr. libro 3. de restitutione capitulo 2. numero 4."@la ;
     dct:isPartOf tok:p35izq ;
     dct:isPartOf tok:p35der ;
     onate:n 11 ;
@@ -16800,12 +16800,12 @@ tok:s_p35izq_11_t54
     nif:anchorOf "caro"@la ;
     nif:sentence tok:s_p35izq_11 ;
     nif:nextWord tok:s_p35izq_11_t55 ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    lexinfo:case lexinfo:ablativeCase ;
-    lexinfo:gender lexinfo:masculine ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    lexinfo:case lexinfo:nominativeCase ;
+    lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
-    onate:lexicalEntry lex:caro_ADJ ;
+    onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
+    onate:lexicalEntry lex:caro_NOUN ;
     conll:HEAD tok:s_p35izq_11_t55 ;
     conll:EDGE "obl" ;
     onate:line 4 ;
@@ -16880,14 +16880,15 @@ tok:s_p35izq_11_t58
 
 tok:s_p35izq_11_t59
     a nif:Word ;
-    nif:anchorOf "nom"@la ;
+    nif:anchorOf "non"@la ;
     onate:diplomatic "nō"@la ;
     nif:sentence tok:s_p35izq_11 ;
     nif:nextWord tok:s_p35izq_11_t60 ;
-    lexinfo:partOfSpeech lexinfo:adverb ;
-    onate:lexicalEntry lex:nomen_ADV ;
+    lexinfo:partOfSpeech lexinfo:particle ;
+    lila:hasLemma lilalem:114108 ;
+    onate:lexicalEntry lex:non_PART ;
     conll:HEAD tok:s_p35izq_11_t60 ;
-    conll:EDGE "obj" ;
+    conll:EDGE "advmod:neg" ;
     onate:line 4 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A4%3Anō%3A0> .
 
@@ -16905,8 +16906,8 @@ tok:s_p35izq_11_t60
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" ;
     onate:lexicalEntry lex:uolo_VERB ;
-    conll:HEAD tok:s_p35izq_11_t57 ;
-    conll:EDGE "csubj" ;
+    conll:HEAD tok:s_p35izq_11_t28 ;
+    conll:EDGE "conj" ;
     onate:line 4 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A4%3Avelit%3A0> .
 
@@ -17513,7 +17514,7 @@ tok:s_p35izq_11_t107
 
 tok:s_p35izq_11_t108
     a nif:Word ;
-    nif:anchorOf "obregere"@la ;
+    nif:anchorOf "obtegere"@la ;
     nif:sentence tok:s_p35izq_11 ;
     nif:nextWord tok:s_p35izq_11_t109 ;
     lexinfo:partOfSpeech lexinfo:verb ;
@@ -17521,11 +17522,12 @@ tok:s_p35izq_11_t108
     lexinfo:verbFormMood lexinfo:infinitive ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|VerbForm=Inf|Voice=Act" ;
-    onate:lexicalEntry lex:obrego_VERB ;
+    lila:hasLemma lilalem:114489 ;
+    onate:lexicalEntry lex:obtego_VERB ;
     conll:HEAD tok:s_p35izq_11_t104 ;
     conll:EDGE "conj" ;
     onate:line 13 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A13%3Aobregere%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A13%3Aobtegere%3A0> .
 
 tok:s_p35izq_11_t109
     a nif:Word ;
@@ -21145,7 +21147,7 @@ tok:s_p35der_5_t16
 
 tok:s_p35der_6
     a nif:Sentence ;
-    nif:anchorOf "Ita Bonacina distinctio 3. quaestio 2. punctum 4. n: 2. Aristoteles 5. Ethica capitulo 5. quia ex ipsis rebus consurgit, non quod non habeat plurimum de arbitrio, et sit varium, et inconstans, sed quia ex rebus ipsis consurgit, et attentis iudicio omnium de republica commodis, et incommodis rei vendibilis, et ptetij consurgit naturale dicitur."@la ;
+    nif:anchorOf "Ita Bonacina distinctio 3. quaestio 2. punctum 4. numero 2. Aristoteles 5. Ethica capitulo 5. quia ex ipsis rebus consurgit, non quod non habeat plurimum de arbitrio, et sit varium, et inconstans, sed quia ex rebus ipsis consurgit, et attentis iudicio omnium de republica commodis, et incommodis rei vendibilis, et pretij consurgit naturale dicitur."@la ;
     dct:isPartOf tok:p35der ;
     onate:n 6 ;
     nif:firstWord tok:s_p35der_6_t1 .
@@ -21158,7 +21160,7 @@ tok:s_p35der_6_t1
     lexinfo:partOfSpeech lexinfo:adverb ;
     lila:hasLemma lilalem:109126 ;
     onate:lexicalEntry lex:ita_ADV ;
-    conll:HEAD tok:s_p35der_6_t27 ;
+    conll:HEAD tok:s_p35der_6_t26 ;
     conll:EDGE "advmod" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A47%3AIta%3A0> .
@@ -21193,7 +21195,7 @@ tok:s_p35der_6_t3
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:99862 ;
     onate:lexicalEntry lex:distinctio_NOUN ;
-    conll:HEAD tok:s_p35der_6_t27 ;
+    conll:HEAD tok:s_p35der_6_t26 ;
     conll:EDGE "nsubj" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A49%3Ad.%3A0> .
@@ -21254,7 +21256,7 @@ tok:s_p35der_6_t9
     lila:hasLemma lilalem:120847 ;
     onate:lexicalEntry lex:punctum_NOUN ;
     conll:HEAD tok:s_p35der_6_t3 ;
-    conll:EDGE "conj" ;
+    conll:EDGE "orphan" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A49%3Apunct.%3A0> .
 
@@ -21272,40 +21274,45 @@ tok:s_p35der_6_t10
 
 tok:s_p35der_6_t12
     a nif:Word ;
-    nif:anchorOf "n"@la ;
+    nif:anchorOf "numero"@la ;
+    onate:diplomatic "n:"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t14 ;
-    lexinfo:partOfSpeech lexinfo:adverb ;
-    lila:hasLemma lilalem:113490 ;
-    onate:lexicalEntry lex:ne_ADV ;
+    nif:nextWord tok:s_p35der_6_t13 ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    lexinfo:case lexinfo:ablativeCase ;
+    lexinfo:gender lexinfo:masculine ;
+    lexinfo:number lexinfo:singular ;
+    onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
+    lila:hasLemma lilalem:113981 ;
+    onate:lexicalEntry lex:numerus_NOUN ;
     conll:HEAD tok:s_p35der_6_t3 ;
-    conll:EDGE "conj" ;
+    conll:EDGE "nmod" ;
     onate:line 49 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A49%3An%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A49%3An%3A%3A0> .
 
-tok:s_p35der_6_t14
+tok:s_p35der_6_t13
     a nif:Word ;
     nif:anchorOf "2"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t16 ;
+    nif:nextWord tok:s_p35der_6_t15 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:2_NUM ;
-    conll:HEAD tok:s_p35der_6_t16 ;
+    conll:HEAD tok:s_p35der_6_t12 ;
     conll:EDGE "nummod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A49%3A2%3A1> .
 
-tok:s_p35der_6_t16
+tok:s_p35der_6_t15
     a nif:Word ;
     nif:anchorOf "Aristoteles"@la ;
     onate:diplomatic "Ariſtot."@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t17 ;
+    nif:nextWord tok:s_p35der_6_t16 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
-    lexinfo:case lexinfo:genitiveCase ;
+    lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Gen|Gender=Masc|Number=Sing" ;
+    onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:23860 ;
     onate:lexicalEntry lex:Aristoteles_PROPN ;
     conll:HEAD tok:s_p35der_6_t3 ;
@@ -21313,24 +21320,24 @@ tok:s_p35der_6_t16
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A49%3AAriſtot.%3A0> .
 
-tok:s_p35der_6_t17
+tok:s_p35der_6_t16
     a nif:Word ;
     nif:anchorOf "5"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t19 ;
+    nif:nextWord tok:s_p35der_6_t18 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:5_NUM ;
-    conll:HEAD tok:s_p35der_6_t19 ;
+    conll:HEAD tok:s_p35der_6_t18 ;
     conll:EDGE "nummod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A49%3A5%3A0> .
 
-tok:s_p35der_6_t19
+tok:s_p35der_6_t18
     a nif:Word ;
     nif:anchorOf "Ethica"@la ;
     onate:diplomatic "ethic."@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t20 ;
+    nif:nextWord tok:s_p35der_6_t19 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -21342,12 +21349,12 @@ tok:s_p35der_6_t19
     onate:line 50 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A50%3Aethic.%3A0> .
 
-tok:s_p35der_6_t20
+tok:s_p35der_6_t19
     a nif:Word ;
     nif:anchorOf "capitulo"@la ;
     onate:diplomatic "cap."@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t21 ;
+    nif:nextWord tok:s_p35der_6_t20 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -21355,55 +21362,55 @@ tok:s_p35der_6_t20
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p35der_6_t19 ;
+    conll:HEAD tok:s_p35der_6_t18 ;
     conll:EDGE "obl" ;
     onate:line 50 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A50%3Acap.%3A0> .
 
-tok:s_p35der_6_t21
+tok:s_p35der_6_t20
     a nif:Word ;
     nif:anchorOf "5"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t23 ;
+    nif:nextWord tok:s_p35der_6_t22 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:5_NUM ;
-    conll:HEAD tok:s_p35der_6_t20 ;
+    conll:HEAD tok:s_p35der_6_t19 ;
     conll:EDGE "nummod" ;
     onate:line 50 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A50%3A5%3A0> .
 
-tok:s_p35der_6_t23
+tok:s_p35der_6_t22
     a nif:Word ;
     nif:anchorOf "quia"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t24 ;
+    nif:nextWord tok:s_p35der_6_t23 ;
     lexinfo:partOfSpeech lexinfo:subordinatingConjunction ;
     lila:hasLemma lilalem:121166 ;
     onate:lexicalEntry lex:quia_SCONJ ;
-    conll:HEAD tok:s_p35der_6_t27 ;
+    conll:HEAD tok:s_p35der_6_t26 ;
     conll:EDGE "mark" ;
     onate:line 50 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A50%3Aquia%3A0> .
 
-tok:s_p35der_6_t24
+tok:s_p35der_6_t23
     a nif:Word ;
     nif:anchorOf "ex"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t25 ;
+    nif:nextWord tok:s_p35der_6_t24 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     lila:hasLemma lilalem:101716 ;
     onate:lexicalEntry lex:ex_ADP ;
-    conll:HEAD tok:s_p35der_6_t26 ;
+    conll:HEAD tok:s_p35der_6_t25 ;
     conll:EDGE "case" ;
     onate:line 50 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A50%3Aex%3A0> .
 
-tok:s_p35der_6_t25
+tok:s_p35der_6_t24
     a nif:Word ;
     nif:anchorOf "ipsis"@la ;
     onate:diplomatic "ipſis"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t26 ;
+    nif:nextWord tok:s_p35der_6_t25 ;
     lexinfo:partOfSpeech lexinfo:determiner ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -21411,16 +21418,16 @@ tok:s_p35der_6_t25
     onate:ud "Case=Abl|Gender=Fem|Number=Plur" ;
     lila:hasLemma lilalem:108945 ;
     onate:lexicalEntry lex:ipse_DET ;
-    conll:HEAD tok:s_p35der_6_t26 ;
+    conll:HEAD tok:s_p35der_6_t25 ;
     conll:EDGE "det" ;
     onate:line 50 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A50%3Aipſis%3A0> .
 
-tok:s_p35der_6_t26
+tok:s_p35der_6_t25
     a nif:Word ;
     nif:anchorOf "rebus"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t27 ;
+    nif:nextWord tok:s_p35der_6_t26 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -21428,17 +21435,17 @@ tok:s_p35der_6_t26
     onate:ud "Case=Abl|Gender=Fem|Number=Plur" ;
     lila:hasLemma lilalem:121868 ;
     onate:lexicalEntry lex:res_NOUN ;
-    conll:HEAD tok:s_p35der_6_t27 ;
+    conll:HEAD tok:s_p35der_6_t26 ;
     conll:EDGE "obl" ;
     onate:line 50 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A50%3Arebus%3A0> .
 
-tok:s_p35der_6_t27
+tok:s_p35der_6_t26
     a nif:Word ;
     nif:anchorOf "consurgit"@la ;
     onate:diplomatic "conſurgit"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t29 ;
+    nif:nextWord tok:s_p35der_6_t28 ;
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:mood lexinfo:indicative ;
@@ -21449,54 +21456,53 @@ tok:s_p35der_6_t27
     onate:ud "Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" ;
     lila:hasLemma lilalem:96200 ;
     onate:lexicalEntry lex:consurgo_VERB ;
-    conll:HEAD tok:s_p35der_6_t68 ;
-    conll:EDGE "advcl" ;
+    conll:EDGE "ROOT" ;
     onate:line 50 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A50%3Aconſurgit%3A0> .
 
-tok:s_p35der_6_t29
+tok:s_p35der_6_t28
     a nif:Word ;
     nif:anchorOf "non"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t30 ;
+    nif:nextWord tok:s_p35der_6_t29 ;
     lexinfo:partOfSpeech lexinfo:particle ;
     lila:hasLemma lilalem:114108 ;
     onate:lexicalEntry lex:non_PART ;
-    conll:HEAD tok:s_p35der_6_t32 ;
+    conll:HEAD tok:s_p35der_6_t31 ;
     conll:EDGE "advmod:neg" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Anon%3A0> .
 
-tok:s_p35der_6_t30
+tok:s_p35der_6_t29
     a nif:Word ;
     nif:anchorOf "quod"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t31 ;
+    nif:nextWord tok:s_p35der_6_t30 ;
     lexinfo:partOfSpeech lexinfo:subordinatingConjunction ;
     onate:lexicalEntry lex:qui_SCONJ ;
-    conll:HEAD tok:s_p35der_6_t32 ;
+    conll:HEAD tok:s_p35der_6_t31 ;
     conll:EDGE "obj" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Aquod%3A0> .
 
-tok:s_p35der_6_t31
+tok:s_p35der_6_t30
     a nif:Word ;
     nif:anchorOf "non"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t32 ;
+    nif:nextWord tok:s_p35der_6_t31 ;
     lexinfo:partOfSpeech lexinfo:particle ;
     lila:hasLemma lilalem:114108 ;
     onate:lexicalEntry lex:non_PART ;
-    conll:HEAD tok:s_p35der_6_t32 ;
+    conll:HEAD tok:s_p35der_6_t31 ;
     conll:EDGE "advmod:neg" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Anon%3A1> .
 
-tok:s_p35der_6_t32
+tok:s_p35der_6_t31
     a nif:Word ;
     nif:anchorOf "habeat"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t33 ;
+    nif:nextWord tok:s_p35der_6_t32 ;
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:mood lexinfo:subjunctive ;
@@ -21507,42 +21513,42 @@ tok:s_p35der_6_t32
     onate:ud "Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" ;
     lila:hasLemma lilalem:105044 ;
     onate:lexicalEntry lex:habeo_VERB ;
-    conll:HEAD tok:s_p35der_6_t27 ;
+    conll:HEAD tok:s_p35der_6_t26 ;
     conll:EDGE "advcl" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Ahabeat%3A0> .
 
-tok:s_p35der_6_t33
+tok:s_p35der_6_t32
     a nif:Word ;
     nif:anchorOf "plurimum"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t34 ;
+    nif:nextWord tok:s_p35der_6_t33 ;
     lexinfo:partOfSpeech lexinfo:adverb ;
     lila:hasLemma lilahyp:111489 ;
     onate:lexicalEntry lex:multum_ADV ;
-    conll:HEAD tok:s_p35der_6_t32 ;
+    conll:HEAD tok:s_p35der_6_t31 ;
     conll:EDGE "obj" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Aplurimum%3A0> .
 
-tok:s_p35der_6_t34
+tok:s_p35der_6_t33
     a nif:Word ;
     nif:anchorOf "de"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t35 ;
+    nif:nextWord tok:s_p35der_6_t34 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     lila:hasLemma lilalem:97932 ;
     onate:lexicalEntry lex:de_ADP ;
-    conll:HEAD tok:s_p35der_6_t35 ;
+    conll:HEAD tok:s_p35der_6_t34 ;
     conll:EDGE "case" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Ade%3A0> .
 
-tok:s_p35der_6_t35
+tok:s_p35der_6_t34
     a nif:Word ;
     nif:anchorOf "arbitrio"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t37 ;
+    nif:nextWord tok:s_p35der_6_t36 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -21550,31 +21556,31 @@ tok:s_p35der_6_t35
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:89777 ;
     onate:lexicalEntry lex:arbitrium_NOUN ;
-    conll:HEAD tok:s_p35der_6_t32 ;
+    conll:HEAD tok:s_p35der_6_t31 ;
     conll:EDGE "obl" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Aarbitrio%3A0> .
 
-tok:s_p35der_6_t37
+tok:s_p35der_6_t36
     a nif:Word ;
     nif:anchorOf "et"@la ;
     onate:diplomatic "&"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t38 ;
+    nif:nextWord tok:s_p35der_6_t37 ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     lila:hasLemma lilalem:101542 ;
     onate:lexicalEntry lex:et_CCONJ ;
-    conll:HEAD tok:s_p35der_6_t39 ;
+    conll:HEAD tok:s_p35der_6_t38 ;
     conll:EDGE "cc" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3A&%3A0> .
 
-tok:s_p35der_6_t38
+tok:s_p35der_6_t37
     a nif:Word ;
     nif:anchorOf "sit"@la ;
     onate:diplomatic "ſit"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t39 ;
+    nif:nextWord tok:s_p35der_6_t38 ;
     lexinfo:partOfSpeech lexinfo:auxiliary ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:mood lexinfo:subjunctive ;
@@ -21584,16 +21590,16 @@ tok:s_p35der_6_t38
     onate:ud "Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin" ;
     lila:hasLemma lilalem:126689 ;
     onate:lexicalEntry lex:sum_AUX ;
-    conll:HEAD tok:s_p35der_6_t39 ;
+    conll:HEAD tok:s_p35der_6_t38 ;
     conll:EDGE "cop" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Aſit%3A0> .
 
-tok:s_p35der_6_t39
+tok:s_p35der_6_t38
     a nif:Word ;
     nif:anchorOf "varium"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t41 ;
+    nif:nextWord tok:s_p35der_6_t40 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -21601,31 +21607,31 @@ tok:s_p35der_6_t39
     onate:ud "Case=Nom|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:129584 ;
     onate:lexicalEntry lex:uarius_ADJ ;
-    conll:HEAD tok:s_p35der_6_t32 ;
+    conll:HEAD tok:s_p35der_6_t31 ;
     conll:EDGE "conj" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Avarium%3A0> .
 
-tok:s_p35der_6_t41
+tok:s_p35der_6_t40
     a nif:Word ;
     nif:anchorOf "et"@la ;
     onate:diplomatic "&"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t42 ;
+    nif:nextWord tok:s_p35der_6_t41 ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     lila:hasLemma lilalem:101542 ;
     onate:lexicalEntry lex:et_CCONJ ;
-    conll:HEAD tok:s_p35der_6_t42 ;
+    conll:HEAD tok:s_p35der_6_t41 ;
     conll:EDGE "cc" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3A&%3A1> .
 
-tok:s_p35der_6_t42
+tok:s_p35der_6_t41
     a nif:Word ;
     nif:anchorOf "inconstans"@la ;
     onate:diplomatic "inconſtans"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t44 ;
+    nif:nextWord tok:s_p35der_6_t43 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -21633,56 +21639,56 @@ tok:s_p35der_6_t42
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilahyp:75868 ;
     onate:lexicalEntry lex:inconstans_ADJ ;
-    conll:HEAD tok:s_p35der_6_t39 ;
+    conll:HEAD tok:s_p35der_6_t38 ;
     conll:EDGE "conj" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Ainconſtans%3A0> .
 
-tok:s_p35der_6_t44
+tok:s_p35der_6_t43
     a nif:Word ;
     nif:anchorOf "sed"@la ;
     onate:diplomatic "ſed"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t45 ;
+    nif:nextWord tok:s_p35der_6_t44 ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     lila:hasLemma lilalem:123994 ;
     onate:lexicalEntry lex:sed_CCONJ ;
-    conll:HEAD tok:s_p35der_6_t49 ;
+    conll:HEAD tok:s_p35der_6_t48 ;
     conll:EDGE "cc" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A51%3Aſed%3A0> .
 
-tok:s_p35der_6_t45
+tok:s_p35der_6_t44
     a nif:Word ;
     nif:anchorOf "quia"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t46 ;
+    nif:nextWord tok:s_p35der_6_t45 ;
     lexinfo:partOfSpeech lexinfo:subordinatingConjunction ;
     lila:hasLemma lilalem:121166 ;
     onate:lexicalEntry lex:quia_SCONJ ;
-    conll:HEAD tok:s_p35der_6_t49 ;
+    conll:HEAD tok:s_p35der_6_t48 ;
     conll:EDGE "mark" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A53%3Aquia%3A0> .
 
-tok:s_p35der_6_t46
+tok:s_p35der_6_t45
     a nif:Word ;
     nif:anchorOf "ex"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t47 ;
+    nif:nextWord tok:s_p35der_6_t46 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     lila:hasLemma lilalem:101716 ;
     onate:lexicalEntry lex:ex_ADP ;
-    conll:HEAD tok:s_p35der_6_t47 ;
+    conll:HEAD tok:s_p35der_6_t46 ;
     conll:EDGE "case" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A53%3Aex%3A0> .
 
-tok:s_p35der_6_t47
+tok:s_p35der_6_t46
     a nif:Word ;
     nif:anchorOf "rebus"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t48 ;
+    nif:nextWord tok:s_p35der_6_t47 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -21690,17 +21696,17 @@ tok:s_p35der_6_t47
     onate:ud "Case=Abl|Gender=Fem|Number=Plur" ;
     lila:hasLemma lilalem:121868 ;
     onate:lexicalEntry lex:res_NOUN ;
-    conll:HEAD tok:s_p35der_6_t49 ;
+    conll:HEAD tok:s_p35der_6_t48 ;
     conll:EDGE "obl" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A53%3Arebus%3A0> .
 
-tok:s_p35der_6_t48
+tok:s_p35der_6_t47
     a nif:Word ;
     nif:anchorOf "ipsis"@la ;
     onate:diplomatic "ipſis"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t49 ;
+    nif:nextWord tok:s_p35der_6_t48 ;
     lexinfo:partOfSpeech lexinfo:determiner ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -21708,17 +21714,17 @@ tok:s_p35der_6_t48
     onate:ud "Case=Abl|Gender=Fem|Number=Plur" ;
     lila:hasLemma lilalem:108945 ;
     onate:lexicalEntry lex:ipse_DET ;
-    conll:HEAD tok:s_p35der_6_t47 ;
+    conll:HEAD tok:s_p35der_6_t46 ;
     conll:EDGE "det" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A53%3Aipſis%3A0> .
 
-tok:s_p35der_6_t49
+tok:s_p35der_6_t48
     a nif:Word ;
     nif:anchorOf "consurgit"@la ;
     onate:diplomatic "conſurgit"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t51 ;
+    nif:nextWord tok:s_p35der_6_t50 ;
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:mood lexinfo:indicative ;
@@ -21729,30 +21735,30 @@ tok:s_p35der_6_t49
     onate:ud "Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" ;
     lila:hasLemma lilalem:96200 ;
     onate:lexicalEntry lex:consurgo_VERB ;
-    conll:HEAD tok:s_p35der_6_t27 ;
+    conll:HEAD tok:s_p35der_6_t26 ;
     conll:EDGE "conj" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A53%3Aconſurgit%3A0> .
 
-tok:s_p35der_6_t51
+tok:s_p35der_6_t50
     a nif:Word ;
     nif:anchorOf "et"@la ;
     onate:diplomatic "&"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t52 ;
+    nif:nextWord tok:s_p35der_6_t51 ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     lila:hasLemma lilalem:101542 ;
     onate:lexicalEntry lex:et_CCONJ ;
-    conll:HEAD tok:s_p35der_6_t66 ;
+    conll:HEAD tok:s_p35der_6_t67 ;
     conll:EDGE "cc" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A53%3A&%3A0> .
 
-tok:s_p35der_6_t52
+tok:s_p35der_6_t51
     a nif:Word ;
     nif:anchorOf "attentis"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t53 ;
+    nif:nextWord tok:s_p35der_6_t52 ;
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:case lexinfo:genitiveCase ;
@@ -21762,16 +21768,16 @@ tok:s_p35der_6_t52
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|Case=Gen|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" ;
     onate:lexicalEntry lex:attendo_VERB ;
-    conll:HEAD tok:s_p35der_6_t53 ;
+    conll:HEAD tok:s_p35der_6_t52 ;
     conll:EDGE "acl" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A53%3Aattentis%3A0> .
 
-tok:s_p35der_6_t53
+tok:s_p35der_6_t52
     a nif:Word ;
     nif:anchorOf "iudicio"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t54 ;
+    nif:nextWord tok:s_p35der_6_t53 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -21779,16 +21785,16 @@ tok:s_p35der_6_t53
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:109170 ;
     onate:lexicalEntry lex:iudicium_NOUN ;
-    conll:HEAD tok:s_p35der_6_t66 ;
+    conll:HEAD tok:s_p35der_6_t65 ;
     conll:EDGE "obl" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A54%3Aiudicio%3A0> .
 
-tok:s_p35der_6_t54
+tok:s_p35der_6_t53
     a nif:Word ;
     nif:anchorOf "omnium"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t55 ;
+    nif:nextWord tok:s_p35der_6_t54 ;
     lexinfo:partOfSpeech lexinfo:determiner ;
     lexinfo:case lexinfo:genitiveCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -21796,46 +21802,46 @@ tok:s_p35der_6_t54
     onate:ud "Case=Gen|Gender=Fem|Number=Plur" ;
     lila:hasLemma lilalem:114954 ;
     onate:lexicalEntry lex:omnis_DET ;
-    conll:HEAD tok:s_p35der_6_t53 ;
+    conll:HEAD tok:s_p35der_6_t52 ;
     conll:EDGE "det" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A54%3Aomnium%3A0> .
 
-tok:s_p35der_6_t55
+tok:s_p35der_6_t54
     a nif:Word ;
     nif:anchorOf "de"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t56 ;
+    nif:nextWord tok:s_p35der_6_t55 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     lila:hasLemma lilalem:97932 ;
     onate:lexicalEntry lex:de_ADP ;
-    conll:HEAD tok:s_p35der_6_t57 ;
+    conll:HEAD tok:s_p35der_6_t56 ;
     conll:EDGE "case" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A54%3Ade%3A0> .
 
-tok:s_p35der_6_t56
+tok:s_p35der_6_t55
     a nif:Word ;
     nif:anchorOf "republica"@la ;
     onate:diplomatic "rep."@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t57 ;
+    nif:nextWord tok:s_p35der_6_t56 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Abl|Gender=Fem|Number=Sing" ;
     onate:lexicalEntry lex:respublica_NOUN ;
-    conll:HEAD tok:s_p35der_6_t57 ;
+    conll:HEAD tok:s_p35der_6_t56 ;
     conll:EDGE "amod" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A54%3Arep.%3A0> .
 
-tok:s_p35der_6_t57
+tok:s_p35der_6_t56
     a nif:Word ;
     nif:anchorOf "commodis"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t59 ;
+    nif:nextWord tok:s_p35der_6_t58 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -21843,46 +21849,46 @@ tok:s_p35der_6_t57
     onate:ud "Case=Abl|Gender=Neut|Number=Plur" ;
     lila:hasLemma lilalem:95178 ;
     onate:lexicalEntry lex:commodum_NOUN ;
-    conll:HEAD tok:s_p35der_6_t66 ;
+    conll:HEAD tok:s_p35der_6_t65 ;
     conll:EDGE "obl" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A54%3Acommodis%3A0> .
 
-tok:s_p35der_6_t59
+tok:s_p35der_6_t58
     a nif:Word ;
     nif:anchorOf "et"@la ;
     onate:diplomatic "&"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t60 ;
+    nif:nextWord tok:s_p35der_6_t59 ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     lila:hasLemma lilalem:101542 ;
     onate:lexicalEntry lex:et_CCONJ ;
-    conll:HEAD tok:s_p35der_6_t60 ;
+    conll:HEAD tok:s_p35der_6_t59 ;
     conll:EDGE "cc" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A54%3A&%3A0> .
 
-tok:s_p35der_6_t60
+tok:s_p35der_6_t59
     a nif:Word ;
     nif:anchorOf "incommodis"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t61 ;
+    nif:nextWord tok:s_p35der_6_t60 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
     lexinfo:number lexinfo:plural ;
     onate:ud "Case=Abl|Gender=Neut|Number=Plur" ;
     onate:lexicalEntry lex:incommodus_NOUN ;
-    conll:HEAD tok:s_p35der_6_t57 ;
+    conll:HEAD tok:s_p35der_6_t56 ;
     conll:EDGE "conj" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A55%3Aincommodis%3A0> .
 
-tok:s_p35der_6_t61
+tok:s_p35der_6_t60
     a nif:Word ;
     nif:anchorOf "rei"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t62 ;
+    nif:nextWord tok:s_p35der_6_t61 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:genitiveCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -21890,64 +21896,65 @@ tok:s_p35der_6_t61
     onate:ud "Case=Gen|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:121868 ;
     onate:lexicalEntry lex:res_NOUN ;
-    conll:HEAD tok:s_p35der_6_t57 ;
+    conll:HEAD tok:s_p35der_6_t56 ;
     conll:EDGE "nmod" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A55%3Arei%3A0> .
 
-tok:s_p35der_6_t62
+tok:s_p35der_6_t61
     a nif:Word ;
     nif:anchorOf "vendibilis"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t64 ;
+    nif:nextWord tok:s_p35der_6_t63 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
-    lexinfo:case lexinfo:genitiveCase ;
+    lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Gen|Gender=Fem|Number=Sing" ;
+    onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:129749 ;
     onate:lexicalEntry lex:uendibilis_ADJ ;
-    conll:HEAD tok:s_p35der_6_t61 ;
+    conll:HEAD tok:s_p35der_6_t60 ;
     conll:EDGE "amod" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A55%3Avendibilis%3A0> .
 
-tok:s_p35der_6_t64
+tok:s_p35der_6_t63
     a nif:Word ;
     nif:anchorOf "et"@la ;
     onate:diplomatic "&"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t65 ;
+    nif:nextWord tok:s_p35der_6_t64 ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     lila:hasLemma lilalem:101542 ;
     onate:lexicalEntry lex:et_CCONJ ;
-    conll:HEAD tok:s_p35der_6_t65 ;
+    conll:HEAD tok:s_p35der_6_t64 ;
     conll:EDGE "cc" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A55%3A&%3A0> .
 
-tok:s_p35der_6_t65
+tok:s_p35der_6_t64
     a nif:Word ;
-    nif:anchorOf "ptetij"@la ;
+    nif:anchorOf "pretij"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t66 ;
+    nif:nextWord tok:s_p35der_6_t65 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:genitiveCase ;
     lexinfo:gender lexinfo:neuter ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Gen|Gender=Neut|Number=Sing" ;
-    onate:lexicalEntry lex:ptetius_NOUN ;
-    conll:HEAD tok:s_p35der_6_t61 ;
+    lila:hasLemma lilalem:119455 ;
+    onate:lexicalEntry lex:pretium_NOUN ;
+    conll:HEAD tok:s_p35der_6_t60 ;
     conll:EDGE "conj" ;
     onate:line 55 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A55%3Aptetij%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A55%3Apretij%3A0> .
 
-tok:s_p35der_6_t66
+tok:s_p35der_6_t65
     a nif:Word ;
     nif:anchorOf "consurgit"@la ;
     onate:diplomatic "cōsurgit"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t67 ;
+    nif:nextWord tok:s_p35der_6_t66 ;
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:mood lexinfo:indicative ;
@@ -21958,16 +21965,16 @@ tok:s_p35der_6_t66
     onate:ud "Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" ;
     lila:hasLemma lilalem:96200 ;
     onate:lexicalEntry lex:consurgo_VERB ;
-    conll:HEAD tok:s_p35der_6_t49 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p35der_6_t67 ;
+    conll:EDGE "nsubj:pass" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A55%3Acōsurgit%3A0> .
 
-tok:s_p35der_6_t67
+tok:s_p35der_6_t66
     a nif:Word ;
     nif:anchorOf "naturale"@la ;
     nif:sentence tok:s_p35der_6 ;
-    nif:nextWord tok:s_p35der_6_t68 ;
+    nif:nextWord tok:s_p35der_6_t67 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -21975,12 +21982,12 @@ tok:s_p35der_6_t67
     onate:ud "Case=Nom|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:113423 ;
     onate:lexicalEntry lex:naturalis_ADJ ;
-    conll:HEAD tok:s_p35der_6_t68 ;
+    conll:HEAD tok:s_p35der_6_t67 ;
     conll:EDGE "xcomp" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A55%3Anaturale%3A0> .
 
-tok:s_p35der_6_t68
+tok:s_p35der_6_t67
     a nif:Word ;
     nif:anchorOf "dicitur"@la ;
     nif:sentence tok:s_p35der_6 ;
@@ -21994,7 +22001,8 @@ tok:s_p35der_6_t68
     onate:ud "Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" ;
     lila:hasLemma lilalem:99302 ;
     onate:lexicalEntry lex:dico_VERB ;
-    conll:EDGE "ROOT" ;
+    conll:HEAD tok:s_p35der_6_t26 ;
+    conll:EDGE "conj" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_35_der%3A55%3Adicitur%3A0> .
 

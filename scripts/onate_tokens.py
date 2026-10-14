@@ -76,6 +76,8 @@ ABBREV_WITH_DOT = {
 ABBREV_WITH_SEMICOLON = {
     "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;", "vnusquisq;", "Vnusquisq;",
     "hucusq;", "Hucusq;",
+    # abreviatura con dos puntos en vez de punto (así en el impreso)
+    "n:",
 }
 
 ABBREV_SEMICOLON_EXPAN = {
@@ -88,6 +90,7 @@ ABBREV_SEMICOLON_EXPAN = {
     "Quocumq;":     "Quocumque",
     "vnusquisq;":   "unusquisque",
     "Vnusquisq;":   "Unusquisque",
+    "n:":           "numero",
     "Vnusquisq;":   "Vnuſquiſque",
     "hucusq;":      "hucusque",
     "Hucusq;":      "Hucusque",
@@ -1601,7 +1604,8 @@ def tokenize(text: str) -> list:
                 continue
         result.append((ttype, ttext))
         i += 1
-    # Fusionar word+semicolon cuando forman abreviatura conocida (e.g. Itaq;)
+    # Fusionar word+semicolon (o dos puntos) cuando forman abreviatura conocida
+    # (e.g. Itaq;  n:)
     result2 = []
     i = 0
     while i < len(result):
@@ -1609,9 +1613,9 @@ def tokenize(text: str) -> list:
         if (ttype == "word"
                 and i + 1 < len(result)
                 and result[i+1][0] == "pc"
-                and result[i+1][1] == ";"
+                and result[i+1][1] in (";", ":")
                 and not ttext.isdigit()):
-            candidate = ttext + ";"
+            candidate = ttext + result[i+1][1]
             if candidate in ABBREV_WITH_SEMICOLON or candidate.lower() in ABBREV_WITH_SEMICOLON:
                 result2.append(("abbrev_dot", candidate))
                 i += 2
