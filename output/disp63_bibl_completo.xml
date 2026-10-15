@@ -13481,10 +13481,10 @@
           <w lemma="ordo" lemmaRef="lila:115236" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing" n="9" head="7" deprel="obj">ordinem</w>
           <choice>
             <orig>
-              <w lemma="eſsentialis" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Sing" n="10" head="9" deprel="amod">eſ<lb break="no" n="13"/>ſentialem</w>
+              <w lemma="essentialis" lemmaRef="lila:131322" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Sing" n="10" head="9" deprel="amod">eſ<lb break="no" n="13"/>ſentialem</w>
             </orig>
             <reg>
-              <w lemma="eſsentialis" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Sing" n="10" head="9" deprel="amod">eſsentialem</w>
+              <w lemma="essentialis" lemmaRef="lila:131322" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Sing" n="10" head="9" deprel="amod">essentialem</w>
             </reg>
           </choice>
           <w lemma="non" lemmaRef="lila:114108" pos="PART" n="11" head="13" deprel="advmod:neg">non</w>
@@ -13558,20 +13558,27 @@
             </reg>
           </choice>
           <pc type="comma">,</pc>
-          <w lemma="nam" lemmaRef="lila:113344" pos="PART" n="31" head="35" deprel="discourse">nam</w>
+          <w lemma="nam" lemmaRef="lila:113344" pos="PART" n="31" head="32" deprel="discourse">nam</w>
           <choice>
             <abbr>
               <w>qualiscumq;</w>
             </abbr>
             <expan>
-              <w lemma="qualiscumque" lemmaRef="lila:121324" pos="DET" msd="Case=Nom|Gender=Fem|Number=Sing" n="32" head="33" deprel="det">qualiscumque</w>
+              <w lemma="qualiscumque" lemmaRef="lila:121324" pos="DET" msd="Case=Nom|Gender=Fem|Number=Sing" n="32" head="1" deprel="conj">qualiscumque</w>
             </expan>
           </choice>
-          <w lemma="ſit" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="33" head="35" deprel="nsubj">ſit</w>
+          <choice>
+            <orig>
+              <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin" n="33" head="32" deprel="cop">ſit</w>
+            </orig>
+            <reg>
+              <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin" n="33" head="32" deprel="cop">sit</w>
+            </reg>
+          </choice>
           <pc type="comma">,</pc>
           <lb n="18"/>
-          <w lemma="uerum" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="34" head="33" deprel="amod">verum</w>
-          <w lemma="facio" lemmaRef="lila:102758" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="35" head="24" deprel="conj">facit</w>
+          <w lemma="uerum" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="34" head="35" deprel="amod">verum</w>
+          <w lemma="facio" lemmaRef="lila:102758" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="35" head="1" deprel="conj">facit</w>
           <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="36" head="35" deprel="obj">pretium</w>
           <pc type="other">.</pc>
         </s>

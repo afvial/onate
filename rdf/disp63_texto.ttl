@@ -21767,6 +21767,7 @@ tok:s_p35der_6_t51
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|Case=Gen|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p35der_6_t52 ;
     conll:EDGE "acl" ;
@@ -46447,6 +46448,7 @@ tok:s_p38izq_5_t11
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Acc|Gender=Masc|Number=Sing" ;
+    lila:hasLemma lilalem:131322 ;
     onate:lexicalEntry lex:essentialis_ADJ ;
     conll:HEAD tok:s_p38izq_5_t10 ;
     conll:EDGE "amod" ;
@@ -46778,7 +46780,7 @@ tok:s_p38izq_5_t37
     lexinfo:partOfSpeech lexinfo:particle ;
     lila:hasLemma lilalem:113344 ;
     onate:lexicalEntry lex:nam_PART ;
-    conll:HEAD tok:s_p38izq_5_t42 ;
+    conll:HEAD tok:s_p38izq_5_t38 ;
     conll:EDGE "discourse" ;
     onate:line 17 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_38_izq%3A17%3Anam%3A0> .
@@ -46796,8 +46798,8 @@ tok:s_p38izq_5_t38
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:121324 ;
     onate:lexicalEntry lex:qualiscumque_DET ;
-    conll:HEAD tok:s_p38izq_5_t39 ;
-    conll:EDGE "det" ;
+    conll:HEAD tok:s_p38izq_5_t1 ;
+    conll:EDGE "conj" ;
     onate:line 17 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_38_izq%3A17%3Aqualiscumq;%3A0> .
 
@@ -46807,17 +46809,17 @@ tok:s_p38izq_5_t39
     onate:diplomatic "ſit"@la ;
     nif:sentence tok:s_p38izq_5 ;
     nif:nextWord tok:s_p38izq_5_t41 ;
-    lexinfo:partOfSpeech lexinfo:verb ;
+    lexinfo:partOfSpeech lexinfo:auxiliary ;
     lexinfo:aspect lexinfo:imperfective ;
-    lexinfo:mood lexinfo:indicative ;
+    lexinfo:mood lexinfo:subjunctive ;
     lexinfo:number lexinfo:singular ;
     lexinfo:person lexinfo:thirdPerson ;
     lexinfo:tense lexinfo:present ;
-    lexinfo:voice lexinfo:activeVoice ;
-    onate:ud "Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" ;
-    onate:lexicalEntry lex:sit_VERB ;
-    conll:HEAD tok:s_p38izq_5_t42 ;
-    conll:EDGE "nsubj" ;
+    onate:ud "Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin" ;
+    lila:hasLemma lilalem:126689 ;
+    onate:lexicalEntry lex:sum_AUX ;
+    conll:HEAD tok:s_p38izq_5_t38 ;
+    conll:EDGE "cop" ;
     onate:line 17 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_38_izq%3A17%3Aſit%3A0> .
 
@@ -46832,7 +46834,7 @@ tok:s_p38izq_5_t41
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Acc|Gender=Neut|Number=Sing" ;
     onate:lexicalEntry lex:uerum_NOUN ;
-    conll:HEAD tok:s_p38izq_5_t39 ;
+    conll:HEAD tok:s_p38izq_5_t42 ;
     conll:EDGE "amod" ;
     onate:line 18 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_38_izq%3A18%3Averum%3A0> .
@@ -46852,7 +46854,7 @@ tok:s_p38izq_5_t42
     onate:ud "Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" ;
     lila:hasLemma lilalem:102758 ;
     onate:lexicalEntry lex:facio_VERB ;
-    conll:HEAD tok:s_p38izq_5_t28 ;
+    conll:HEAD tok:s_p38izq_5_t1 ;
     conll:EDGE "conj" ;
     onate:line 18 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_38_izq%3A18%3Afacit%3A0> .
@@ -48257,6 +48259,7 @@ tok:s_p38izq_8_t72
     lexinfo:verbFormMood lexinfo:infinitive ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|VerbForm=Inf|Voice=Act" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p38izq_8_t33 ;
     conll:EDGE "conj" ;
@@ -48455,6 +48458,7 @@ tok:s_p38izq_8_t86
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|Case=Gen|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p38izq_8_t87 ;
     conll:EDGE "acl" ;
@@ -50005,6 +50009,7 @@ tok:s_p38izq_13_t6
     lexinfo:verbFormMood lexinfo:gerundive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Gdv|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:EDGE "ROOT" ;
     onate:line 55 ;
@@ -57836,6 +57841,7 @@ tok:s_p39izq_7_t22
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|Case=Acc|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p39izq_7_t21 ;
     conll:EDGE "acl" ;
@@ -57940,6 +57946,7 @@ tok:s_p39izq_7_t29
     lexinfo:verbFormMood lexinfo:infinitive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Imp|VerbForm=Inf|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p39izq_7_t30 ;
     conll:EDGE "ccomp" ;
@@ -66550,6 +66557,7 @@ tok:s_p40izq_2_t13
     lexinfo:tense lexinfo:present ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p40izq_2_t2 ;
     conll:EDGE "acl" ;
@@ -68894,6 +68902,7 @@ tok:s_p40izq_13_t7
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:EDGE "ROOT" ;
     onate:line 43 ;
@@ -77497,6 +77506,7 @@ tok:s_p41izq_4_t10
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|Case=Gen|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p41izq_4_t19 ;
     conll:EDGE "acl" ;
@@ -86713,6 +86723,7 @@ tok:s_p41der_1_t492
     lexinfo:verbFormMood lexinfo:infinitive ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|VerbForm=Inf|Voice=Act" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p41der_1_t498 ;
     conll:EDGE "xcomp" ;
@@ -91312,6 +91323,7 @@ tok:s_p42izq_1_t303
     lexinfo:verbFormMood lexinfo:gerundive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Gdv|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p42izq_1_t298 ;
     conll:EDGE "acl:relcl" ;
@@ -91756,6 +91768,7 @@ tok:s_p42izq_1_t334
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p42izq_1_t145 ;
     conll:EDGE "acl" ;
@@ -94039,6 +94052,7 @@ tok:s_p42der_1_t124
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p42der_1_t77 ;
     conll:EDGE "xcomp" ;
@@ -104680,6 +104694,7 @@ tok:s_p43izq_1_t526
     lexinfo:verbFormMood lexinfo:gerundive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Gdv|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p43izq_1_t523 ;
     conll:EDGE "conj" ;
@@ -117925,6 +117940,7 @@ tok:s_p44der_1_t5
     lexinfo:verbFormMood lexinfo:gerundive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Gdv|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p44der_1_t1 ;
     conll:EDGE "acl:relcl" ;
@@ -119636,6 +119652,7 @@ tok:s_p44der_1_t126
     lexinfo:number lexinfo:singular ;
     lexinfo:verbFormMood lexinfo:gerundive ;
     onate:ud "Case=Nom|Gender=Fem|Number=Sing|VerbForm=Gdv" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p44der_1_t56 ;
     conll:EDGE "conj" ;
@@ -127810,6 +127827,7 @@ tok:s_p45der_1_t108
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|Case=Gen|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p45der_1_t109 ;
     conll:EDGE "amod" ;
@@ -132118,6 +132136,7 @@ tok:s_p45der_1_t471
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|Case=Acc|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p45der_1_t469 ;
     conll:EDGE "acl" ;
@@ -134877,6 +134896,7 @@ tok:s_p46izq_1_t141
     lexinfo:verbFormMood lexinfo:gerundive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Gdv|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p46izq_1_t136 ;
     conll:EDGE "ccomp" ;
@@ -135161,6 +135181,7 @@ tok:s_p46izq_1_t163
     lexinfo:verbFormMood lexinfo:gerundive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Gdv|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p46izq_1_t20 ;
     conll:EDGE "advcl" ;
@@ -137948,6 +137969,7 @@ tok:s_p46izq_1_t400
     lexinfo:number lexinfo:singular ;
     lexinfo:verbFormMood lexinfo:gerundive ;
     onate:ud "Case=Nom|Gender=Fem|Number=Sing|VerbForm=Gdv" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p46izq_1_t20 ;
     conll:EDGE "conj" ;
@@ -140186,6 +140208,7 @@ tok:s_p46izq_1_t587
     lexinfo:verbFormMood lexinfo:gerundive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Gdv|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p46izq_1_t574 ;
     conll:EDGE "acl" ;
@@ -145760,6 +145783,7 @@ tok:s_p47izq_1_t58
     lexinfo:verbFormMood lexinfo:gerundive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Gdv|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p47izq_1_t42 ;
     conll:EDGE "conj" ;
@@ -157660,6 +157684,7 @@ tok:s_p48izq_1_t236
     lexinfo:verbFormMood lexinfo:gerundive ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Gdv|Voice=Pass" ;
+    lila:hasLemma lilalem:90532 ;
     onate:lexicalEntry lex:attendo_VERB ;
     conll:HEAD tok:s_p48izq_1_t212 ;
     conll:EDGE "conj" ;

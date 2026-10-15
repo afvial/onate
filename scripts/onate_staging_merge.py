@@ -100,11 +100,89 @@ def _expand_macrons_positional(text: str) -> str:
             chars.append(_MACRON_FINAL[ch])
     return ''.join(chars)
 
-def expand_macrons(text: str) -> str:
-    text = _expand_macrons_positional(text)
-    for abbr, exp in ABBREV_EXPAND_STAGING.items():
-        text = text.replace(abbr, exp)
+# Las mismas abreviaturas que expande el pipeline TEI (onate_tokens.py):
+# Transkribus las escribe EXPANDIDAS (qualiscumque, non, reipublicae) y el
+# staging conserva la forma IMPRESA (qualiscumq;, nō, reip). Para comparar,
+# ambos lados se normalizan a la forma expandida; al fusionar, la forma
+# impresa del staging se restituye.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    from onate_tokens import ABBREV_SEMICOLON_EXPAN, ABBREV_NO_DOT
+except Exception:                                   # onate_tokens sin estas tablas
+    ABBREV_SEMICOLON_EXPAN, ABBREV_NO_DOT = {}, {}
+MACRON_WORDS = {"nō": "non", "Nō": "Non", "NŌ": "NON"}   # = onate_tei._MACRON_WORDS
+ABBREV_FORMS = {k: v.replace("ſ", "s") for k, v in
+                {**ABBREV_EXPAND_STAGING, **ABBREV_SEMICOLON_EXPAN,
+                 **ABBREV_NO_DOT, **MACRON_WORDS}.items() if v}
+_WB = r"(?<![\wſ])"            # límite de palabra (las formas pueden acabar en ; o :)
+_WE = r"(?![\wſ])"
+_ABBR_RE = [(re.compile(_WB + re.escape(a) + _WE), e)
+            for a, e in sorted(ABBREV_FORMS.items(), key=lambda kv: -len(kv[0]))]
+_MACRON_WORD_RE = re.compile(r"[\wſ]*[āēīōūôĀĒĪŌŪ][\wſ]*")
+
+
+def expand_abbrevs(text: str) -> str:
+    for rx, exp in _ABBR_RE:
+        text = rx.sub(exp, text)
     return text
+
+
+def expand_macrons(text: str) -> str:
+    """Abreviaturas de palabra completa primero (quocūq; → quocunque, nō → non),
+    después la regla posicional del macrón."""
+    return _expand_macrons_positional(expand_abbrevs(text))
+
+
+def abbreviated_words(old_text: str) -> list:
+    """Palabras abreviadas del staging, en orden: [(forma_impresa, expansión, k)],
+    donde k = cuántas veces aparece ya esa expansión antes, en el texto
+    normalizado (para restituir la aparición correcta: 're non … qui nō')."""
+    base = CHOICE_RE.sub(lambda m: m.group(1), old_text)
+    hits = []
+    for rx, exp in _ABBR_RE:
+        for m in rx.finditer(base):
+            hits.append((m.start(), m.end(), m.group(), exp))
+    for m in _MACRON_WORD_RE.finditer(base):
+        if any(a <= m.start() < b for a, b, _, _ in hits):
+            continue
+        nxt = base[m.end(): m.end() + 1]
+        exp = _expand_macrons_positional(m.group() + ("¬" if nxt == "¬" else "")).rstrip("¬")
+        hits.append((m.start(), m.end(), m.group(), exp))
+    hits.sort()
+    out = []
+    for a, b, form, exp in hits:
+        prefix = strip_anns(base[:a])
+        k = len(re.findall(_pat(exp), prefix))
+        out.append((form, exp, k))
+    return out
+
+
+_EQUIV = {"s": "[sſ]", "ſ": "[sſ]", "u": "[uv]", "v": "[uv]", "U": "[UV]", "V": "[UV]"}
+
+
+def _pat(exp: str) -> str:
+    """Patrón de palabra completa para una expansión; s/ſ y u/v intercambiables
+    (Qvomodocumq; se expande a Quomodocumque, Transkribus escribe Qvomodocumque)."""
+    return _WB + "".join(_EQUIV.get(c, re.escape(c)) for c in exp) + _WE
+
+
+def fold(text: str) -> str:
+    """Para comparar: s larga y u/v no cuentan como diferencia."""
+    return text.replace("ſ", "s").replace("v", "u").replace("V", "U")
+
+
+def restore_abbrevs(merged: str, words: list):
+    """Sustituye en el texto fusionado la k-ésima aparición de cada expansión
+    por la forma impresa. Devuelve (texto, [expansiones no encontradas])."""
+    missing = []
+    for form, exp, k in reversed(words):      # de atrás adelante: los k no se desplazan
+        ms = list(re.finditer(_pat(exp), merged))
+        if len(ms) <= k:
+            missing.append(exp); continue
+        m = ms[k]
+        merged = merged[:m.start()] + form + merged[m.end():]
+    return merged, missing
+
 
 def expand_macrons_alt(text: str) -> str:
     """Variante alternativa: usa n en vez de m para nasales."""
@@ -262,10 +340,10 @@ def main():
         old_text = el.text or ''
 
         old_clean = strip_anns(old_text).strip()
-        new_clean = strip_anns(new_text).strip()
+        new_clean = strip_anns(new_text).strip()      # mismo criterio en los dos lados
 
-        if old_clean == new_clean:
-            continue  # sin cambio
+        if fold(old_clean) == fold(new_clean):
+            continue  # sin cambio (o solo ſ/s, u/v)
         # Líneas del staging con macrones (ā, ē, ī, ō, ū): el macrón no es
         # un marcador atómico como @/*/¬ — extract_anns()/apply_anns() no
         # lo reconocen ni lo reinsertan. Si se aplicara el merge normal,
@@ -275,10 +353,19 @@ def main():
         # la línea intacta para revisión manual, en vez de sobrescribirla
         # o saltarla en silencio (que ocultaría cambios reales en el resto
         # de la línea).
-        if any(c in old_text for c in 'āēīōūĀĒĪŌŪ') and not _macron_diff_is_isolated(old_text, new_clean):
-            print(f"  ⚠ Línea {lid}: contiene macrón — no se aplica "
-                  f"automáticamente (el merge no sabe reinsertarlo). "
-                  f"Revisar manualmente:")
+        # Palabras abreviadas del staging (macrón, qualiscumq;, nō, reip…):
+        # Transkribus trae la forma expandida. Si la expansión de cada una
+        # sigue en el texto nuevo, la diferencia está en otra parte de la
+        # línea: se fusiona y luego se restituye la forma impresa. Si alguna
+        # no está (Transkribus leyó esa palabra distinto), revisión manual.
+        abbr_words = abbreviated_words(old_text)
+        # cada abreviatura necesita su aparición (la k-ésima) en el texto nuevo
+        lost = [e for _, e, k in abbr_words
+                if len(re.findall(_pat(e), new_clean)) <= k]
+        if lost:
+            print(f"  ⚠ Línea {lid}: abreviatura cuya expansión no está en el "
+                  f"texto nuevo ({', '.join(lost)}) — no se aplica "
+                  f"automáticamente. Revisar manualmente:")
             print(f"      staging:    '{old_clean}'")
             print(f"      transkribus: '{new_clean}'")
             macron_warnings.append(lid)
@@ -307,6 +394,11 @@ def main():
         anns   = extract_anns(old_text)
         merged = apply_anns(new_clean, anns)
 
+        # Restituir las formas impresas de las abreviaturas (qualiscumq;, nō…)
+        merged, missing = restore_abbrevs(merged, abbr_words)
+        if missing:
+            print(f"  ⚠ Línea {lid}: no se pudo restituir {missing}; revisar.")
+
         # Reinsertar las anotaciones {orig|corr} en el texto fusionado
         for orig, corr in choices:
             merged = merged.replace(expand_macrons(orig),
@@ -331,7 +423,7 @@ def main():
     if changes:
         print(f"  {changes} línea(s) con cambios de texto.")
     if macron_warnings:
-        print(f"  {len(macron_warnings)} línea(s) con macrón pendiente(s) "
+        print(f"  {len(macron_warnings)} línea(s) con abreviatura pendiente(s) "
               f"de revisión manual: {', '.join(macron_warnings)}")
 
     if args.dry_run:

@@ -3297,6 +3297,7 @@ lex:attendo_VERB
     a ontolex:Word ;
     rdfs:label "attendo"@la ;
     lexinfo:partOfSpeech lexinfo:verb ;
+    ontolex:canonicalForm lilalem:90532 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "attendenda"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "attendendae"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "attendendam"@la ] ,
@@ -6688,12 +6689,6 @@ lex:extremus_NOUN
     rdfs:label "extremus"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "extremè"@la ] .
-
-lex:essentialis_ADJ
-    a ontolex:Word ;
-    rdfs:label "eſsentialis"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "essentialem"@la ] .
 
 lex:fabrico_VERB
     a ontolex:Word ;
@@ -16287,9 +16282,3 @@ lex:xel_CCONJ
     rdfs:label "xel"@la ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "xel"@la ] .
-
-lex:sit_VERB
-    a ontolex:Word ;
-    rdfs:label "ſit"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "sit"@la ] .
