@@ -105,13 +105,20 @@ Las líneas con macrón no se aplican automáticamente: revisarlas a mano.
 
 | Marca | Uso |
 |---|---|
+| `¶` | inicio de párrafo (al comienzo de la línea: `¶//Qvomodocumq; res…`) |
+| `//` | límite de oración (inicio de una oración nueva) |
 | `¬` | palabra partida con guion al final de línea |
 | `~` | palabra partida sin guion |
-| `//` | límite de oración |
+| `##` | encabezado de sección (`##SECTIO III.`) |
+| `#` | subencabezado |
+| `>>>` | sumario: inicio de un punto numerado |
+| `>>` | sumario: línea de continuación |
+| `@…@` | referencia bibliográfica (apertura y cierre) |
+| `*…*` | cursiva (apertura y cierre) |
 | `{sic\|corr}` | error del original con corrección (`{cnnsue\|consue}¬`) |
 | `{sic\|}` | error probable sin corrección |
-| `##` | encabezado de sección (`##SECTIO III.`) |
 | `ô` | macrón que vale *n* donde la regla daría *m* (`nô` = *non*) |
+| `[+palabra]` / `[-palabra]` | forzar / suprimir la s larga en esa palabra |
 
 El `¬` va fuera de las llaves cuando el error cruza el salto de línea.
 
