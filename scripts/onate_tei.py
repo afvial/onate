@@ -336,7 +336,10 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
         inner  = etree.SubElement(choice,
                      f"{{{TEI_NS}}}abbr" if tag_type == "abbr"
                      else f"{{{TEI_NS}}}orig")
-        _make_w_lb(inner, left, right)
+        # s larga también en la forma abreviada partida (o¬puſc.)
+        _ls_l, _ls_r = long_s_left, long_s_right
+        _make_w_lb(inner, _ls_l if _ls_l is not None else left,
+                   _ls_r if _ls_r is not None else right)
         outer_tag = f"{{{TEI_NS}}}expan" if tag_type == "abbr" else f"{{{TEI_NS}}}reg"
         outer  = etree.SubElement(choice, outer_tag)
         w_out  = etree.SubElement(outer, f"{{{TEI_NS}}}w")
@@ -825,7 +828,11 @@ def _join_split_words_6(raw6: list) -> list:
             tok["italic"]    = italic
             tok["bibl_id"]   = bibl_id
             tok["no_hyphen"] = tok.get("left", "") in no_hyphen_texts
-            _pop_attrs(tok.get("right", ""))
+            right = tok.get("right", "")
+            if right.endswith(".") and len(right) > 1:   # abreviatura partida: "pusc" + "."
+                _pop_attrs(right[:-1]); _pop_attrs(".")
+            else:
+                _pop_attrs(right)
         else:
             italic, bibl_id = _pop_attrs(tok.get("text", ""))
             tok["italic"]  = italic

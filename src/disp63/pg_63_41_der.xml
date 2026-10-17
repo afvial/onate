@@ -1002,13 +1002,20 @@
           <w lemma="sententia" lemmaRef="lila:124342" pos="NOUN" msd="Case=Dat|Gender=Fem|Number=Sing" n="39" head="40" deprel="obl">sententiae</w>
         </reg>
       </choice>
-      <w lemma="aduersor" lemmaRef="lila:87677" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Pass" n="40" head="41" deprel="xcomp">aduer<lb break="no" n="34"/>sari</w>
       <choice>
         <orig>
-          <w lemma="oppono" lemmaRef="lila:115124" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="41" head="46" deprel="ccomp">oppoſitam</w>
+          <w lemma="aduersor" lemmaRef="lila:87677" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Pass" n="40" head="41" deprel="xcomp">aduer<lb break="no" n="34"/>ſari</w>
         </orig>
         <reg>
-          <w lemma="oppono" lemmaRef="lila:115124" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="41" head="46" deprel="ccomp">oppositam</w>
+          <w lemma="aduersor" lemmaRef="lila:87677" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Pass" n="40" head="41" deprel="xcomp">aduersari</w>
+        </reg>
+      </choice>
+      <choice>
+        <orig>
+          <w lemma="oppono" lemmaRef="lila:115124" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="41" head="46" deprel="xcomp">oppoſitam</w>
+        </orig>
+        <reg>
+          <w lemma="oppono" lemmaRef="lila:115124" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="41" head="46" deprel="xcomp">oppositam</w>
         </reg>
       </choice>
       <pc type="comma">,</pc>
@@ -1036,20 +1043,26 @@
       <w lemma="neque" lemmaRef="lila:114120" pos="CCONJ" n="47" head="49" deprel="cc">nec</w>
       <choice>
         <orig>
-          <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|VerbForm=Inf" n="48" head="49" deprel="aux:pass">eſſe</w>
+          <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|VerbForm=Inf" n="48" head="49" deprel="cop">eſſe</w>
         </orig>
         <reg>
-          <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|VerbForm=Inf" n="48" head="49" deprel="aux:pass">esse</w>
+          <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|VerbForm=Inf" n="48" head="49" deprel="cop">esse</w>
         </reg>
       </choice>
       <w lemma="recipio" lemmaRef="lila:122390" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Gdv|Voice=Pass" n="49" head="46" deprel="conj">recipiendam</w>
       <pc type="other">.</pc>
       <hi rend="italic">
-        <w lemma="Aragon" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="50" head="49" deprel="nsubj">Ara<lb break="no" n="36"/>gon</w>
+        <choice>
+          <abbr>
+            <w>Ara<lb break="no" n="36"/>gon.</w>
+          </abbr>
+          <expan>
+            <w lemma="Aragonius" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="50" head="6" deprel="nsubj">Aragonius</w>
+          </expan>
+        </choice>
+        <w lemma="2" pos="NUM" n="51" head="53" deprel="nmod">2</w>
         <pc type="other">.</pc>
-        <w lemma="2" pos="NUM" n="51" head="53" deprel="nummod">2</w>
-        <pc type="other">.</pc>
-        <w lemma="2" pos="NUM" n="52" head="51" deprel="nummod">2</w>
+        <w lemma="2" pos="NUM" n="52" head="51" deprel="fixed">2</w>
         <pc type="other">.</pc>
         <choice>
           <abbr>
@@ -1059,7 +1072,7 @@
             <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="53" head="5" deprel="obl">quaestio</w>
           </expan>
         </choice>
-        <w lemma="77" pos="NUM" n="54" head="53" deprel="orphan">77</w>
+        <w lemma="77" pos="NUM" n="54" head="53" deprel="nummod">77</w>
         <pc type="other">.</pc>
         <choice>
           <abbr>
@@ -1071,7 +1084,7 @@
         </choice>
         <w lemma="1" pos="NUM" n="56" head="55" deprel="nummod">1</w>
         <pc type="other">.</pc>
-        <w lemma="§" pos="PUNCT" n="57" head="53" deprel="orphan">§.</w>
+        <w lemma="§" pos="PUNCT" n="57" head="53" deprel="conj">§.</w>
         <w lemma="hucusque" lemmaRef="lila:105382" pos="ADV" n="58" head="6" deprel="obl">hucusque</w>
       </hi>
       <pc type="comma">,</pc>
@@ -1136,14 +1149,7 @@
         </choice>
       </hi>
       <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Acc|Gender=Masc|Number=Sing" n="71" head="73" deprel="obj">quem</w>
-      <choice>
-        <orig>
-          <w lemma="falso" lemmaRef="lilah:16177" pos="ADV" n="72" head="73" deprel="advmod">falſò</w>
-        </orig>
-        <reg>
-          <w lemma="falso" lemmaRef="lilah:16177" pos="ADV" n="72" head="73" deprel="advmod">falsò</w>
-        </reg>
-      </choice>
+      <w lemma="falso" lemmaRef="lilah:16177" pos="ADV" n="72" head="73" deprel="advmod">falsò</w>
       <w lemma="cito" lemmaRef="lila:94378" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="73" head="70" deprel="acl:relcl">citat</w>
       <lb n="39"/>
       <hi rend="italic">
@@ -1235,13 +1241,19 @@
             <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="90" head="91" deprel="cc">et</w>
           </expan>
         </choice>
-        <w lemma="opusc" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing" n="91" head="88" deprel="conj">o<lb break="no" n="41"/>pusc</w>
-        <pc type="other">.</pc>
+        <choice>
+          <abbr>
+            <w>o<lb break="no" n="41"/>puſc.</w>
+          </abbr>
+          <expan>
+            <w lemma="opusculum" lemmaRef="lila:115171" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing" n="91" head="88" deprel="conj">opusculum</w>
+          </expan>
+        </choice>
         <w lemma="17" pos="NUM" n="92" head="93" deprel="nummod">17</w>
         <pc type="other">.</pc>
         <choice>
           <orig>
-            <w lemma="responsio" lemmaRef="lila:121907" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Plur" n="93" head="88" deprel="nmod">reſponsionum</w>
+            <w lemma="responsio" lemmaRef="lila:121907" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Plur" n="93" head="88" deprel="nmod">reſponſionum</w>
           </orig>
           <reg>
             <w lemma="responsio" lemmaRef="lila:121907" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Plur" n="93" head="88" deprel="nmod">responsionum</w>
@@ -1356,7 +1368,14 @@
         </choice>
         <w lemma="277" pos="NUM" n="118" head="58" deprel="conj">277</w>
         <pc type="other">.</pc>
-        <w lemma="uersus" lemmaRef="lila:130035" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" n="119" head="118" deprel="nmod">versus</w>
+        <choice>
+          <orig>
+            <w lemma="uersus" lemmaRef="lila:130035" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" n="119" head="118" deprel="nmod">verſus</w>
+          </orig>
+          <reg>
+            <w lemma="uersus" lemmaRef="lila:130035" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" n="119" head="118" deprel="nmod">versus</w>
+          </reg>
+        </choice>
         <lb n="44"/>
         <w lemma="communis" lemmaRef="lila:97171" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="120" head="123" deprel="amod">communis</w>
         <w lemma="etiam" lemmaRef="lila:101554" pos="ADV" n="121" head="123" deprel="advmod:emph">etiam</w>
@@ -1381,21 +1400,26 @@
             </choice>
           </abbr>
           <expan>
-            <w lemma="disputatio" lemmaRef="lila:99758" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="123" head="58" deprel="conj">disputatio</w>
+            <w lemma="disputatio" lemmaRef="lila:99758" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="123" head="118" deprel="conj">disputatio</w>
           </expan>
         </choice>
-        <w lemma="3" pos="NUM" n="124" head="58" deprel="conj">3</w>
+        <w lemma="3" pos="NUM" n="124" head="125" deprel="nummod">3</w>
         <choice>
-          <orig>
-            <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Nom|Gender=Fem|Number=Sing" n="125" head="133" deprel="nsubj:pass">quæ</w>
-          </orig>
-          <reg>
-            <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Nom|Gender=Fem|Number=Sing" n="125" head="133" deprel="nsubj:pass">quae</w>
-          </reg>
+          <abbr>
+            <choice>
+              <orig>
+                <w>quæſt.</w>
+              </orig>
+              <reg>
+                <w>quaest.</w>
+              </reg>
+            </choice>
+          </abbr>
+          <expan>
+            <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="125" head="118" deprel="conj">quaestio</w>
+          </expan>
         </choice>
-        <w lemma="st" pos="ADV" n="126" head="125" deprel="advmod">st</w>
-        <pc type="other">.</pc>
-        <w lemma="2" pos="NUM" n="127" head="128" deprel="nummod">2</w>
+        <w lemma="2" pos="NUM" n="126" head="125" deprel="nummod">2</w>
         <pc type="other">.</pc>
         <lb n="45"/>
         <choice>
@@ -1403,27 +1427,27 @@
             <w>punct.</w>
           </abbr>
           <expan>
-            <w lemma="punctum" lemmaRef="lila:120847" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="128" head="126" deprel="obl">punctum</w>
+            <w lemma="punctum" lemmaRef="lila:120847" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="127" head="118" deprel="conj">punctum</w>
           </expan>
         </choice>
-        <w lemma="4" pos="NUM" n="129" head="130" deprel="nummod">4</w>
+        <w lemma="4" pos="NUM" n="128" head="129" deprel="nummod">4</w>
         <pc type="other">.</pc>
         <choice>
           <abbr>
             <w>n.</w>
           </abbr>
           <expan>
-            <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="130" head="133" deprel="nmod">numero</w>
+            <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="129" head="58" deprel="conj">numero</w>
           </expan>
         </choice>
-        <w lemma="25" pos="NUM" n="131" head="130" deprel="nummod">25</w>
+        <w lemma="25" pos="NUM" n="130" head="129" deprel="nummod">25</w>
         <pc type="other">.</pc>
         <choice>
           <abbr>
             <w>Filliucc.</w>
           </abbr>
           <expan>
-            <w lemma="Filliucius" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="132" head="130" deprel="nmod">Filliucius</w>
+            <w lemma="Filliucius" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="131" head="129" deprel="nmod">Filliucius</w>
           </expan>
         </choice>
         <choice>
@@ -1431,30 +1455,30 @@
             <w>tract.</w>
           </abbr>
           <expan>
-            <w lemma="tractatus" lemmaRef="lila:129418" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="133" head="58" deprel="acl:relcl">tractatus</w>
+            <w lemma="tractatus" lemmaRef="lila:129418" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="132" head="58" deprel="fixed">tractatus</w>
           </expan>
         </choice>
-        <w lemma="35" pos="NUM" n="134" head="135" deprel="case">35</w>
+        <w lemma="35" pos="NUM" n="133" head="134" deprel="case">35</w>
         <pc type="other">.</pc>
         <choice>
           <abbr>
             <w>cap.</w>
           </abbr>
           <expan>
-            <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="135" head="133" deprel="obl">capitulo</w>
+            <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="134" head="58" deprel="conj">capitulo</w>
           </expan>
         </choice>
-        <w lemma="3" pos="NUM" n="136" head="135" deprel="nummod">3</w>
+        <w lemma="3" pos="NUM" n="135" head="134" deprel="nummod">3</w>
         <pc type="other">.</pc>
         <choice>
           <abbr>
             <w>q.</w>
           </abbr>
           <expan>
-            <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="137" head="133" deprel="conj">quaestio</w>
+            <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="136" head="58" deprel="conj">quaestio</w>
           </expan>
         </choice>
-        <w lemma="3" pos="NUM" n="138" head="139" deprel="nummod">3</w>
+        <w lemma="3" pos="NUM" n="137" head="138" deprel="nummod">3</w>
         <pc type="other">.</pc>
         <lb n="46"/>
         <choice>
@@ -1462,10 +1486,10 @@
             <w>n.</w>
           </abbr>
           <expan>
-            <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="139" head="58" deprel="conj">numero</w>
+            <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="138" head="58" deprel="conj">numero</w>
           </expan>
         </choice>
-        <w lemma="60" pos="NUM" n="140" head="139" deprel="nummod">60</w>
+        <w lemma="60" pos="NUM" n="139" head="138" deprel="nummod">60</w>
         <pc type="other">.</pc>
       </hi>
     </s>
@@ -1485,23 +1509,23 @@
           <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|VerbForm=Inf" n="8" head="9" deprel="cop">esse</w>
         </reg>
       </choice>
-      <w lemma="raxo" lemmaRef="lila:75295" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass" n="9" head="2" deprel="ccomp">raxandum</w>
-      <w lemma="prudens" lemmaRef="lila:120220" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Plur" n="10" head="11" deprel="acl">prudentium</w>
+      <w lemma="taxo" lemmaRef="lila:127704" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Masc|Number=Sing|VerbForm=Gdv|Voice=Pass" n="9" head="2" deprel="ccomp">taxandum</w>
+      <w lemma="prudens" lemmaRef="lila:120220" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Plur" n="10" head="11" deprel="amod">prudentium</w>
       <w lemma="arbitrium" lemmaRef="lila:89777" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="11" head="12" deprel="nsubj:pass">arbi<lb break="no" n="48"/>trio</w>
       <choice>
         <orig>
-          <w lemma="considero" lemmaRef="lila:96054" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="12" head="9" deprel="conj">conſideratis</w>
+          <w lemma="considero" lemmaRef="lila:96054" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="12" head="9" deprel="advcl:abs">conſideratis</w>
         </orig>
         <reg>
-          <w lemma="considero" lemmaRef="lila:96054" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="12" head="9" deprel="conj">consideratis</w>
+          <w lemma="considero" lemmaRef="lila:96054" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="12" head="9" deprel="advcl:abs">consideratis</w>
         </reg>
       </choice>
       <choice>
         <orig>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="13" head="12" deprel="nsubj">circumſtantijs</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="13" head="12" deprel="nsubj:pass">circumſtantijs</w>
         </orig>
         <reg>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="13" head="12" deprel="nsubj">circumstantijs</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="13" head="12" deprel="nsubj:pass">circumstantijs</w>
         </reg>
       </choice>
       <pc type="comma">,</pc>
@@ -1535,13 +1559,12 @@
           <w>&amp;</w>
         </abbr>
         <expan>
-          <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="21" head="25" deprel="cc">et</w>
+          <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="21" head="24" deprel="cc">et</w>
         </expan>
       </choice>
-      <w lemma="nos" lemmaRef="lilah:110487" pos="PRON" msd="Case=Nom|Number=Plur|Person=1" n="22" head="25" deprel="nsubj">nos</w>
-      <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="23" head="24" deprel="case">in</w>
-      <w lemma="fra" pos="ADV" n="24" head="25" deprel="obl">fra</w>
-      <w lemma="uideo" lemmaRef="lila:130163" pos="VERB" msd="Mood=Ind|Number=Plur|Person=1|Tense=Fut|VerbForm=Fin|Voice=Act" n="25" head="2" deprel="conj">videbimus</w>
+      <w lemma="nos" lemmaRef="lilah:110487" pos="PRON" msd="Case=Nom|Number=Plur|Person=1" n="22" head="24" deprel="nsubj">nos</w>
+      <w lemma="infra" lemmaRef="lila:107742" pos="ADV" n="23" head="24" deprel="advmod">infra</w>
+      <w lemma="uideo" lemmaRef="lila:130163" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Plur|Person=1|Tense=Fut|VerbForm=Fin|Voice=Act" n="24" head="2" deprel="conj">videbimus</w>
     </s>
   </p>
   <p>
@@ -1611,7 +1634,14 @@
           <w lemma="si" lemmaRef="lila:124676" pos="SCONJ" n="17" head="18" deprel="mark">si</w>
         </reg>
       </choice>
-      <w lemma="transilio" lemmaRef="lila:128631" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="18" head="20" deprel="obj">transiliant</w>
+      <choice>
+        <orig>
+          <w lemma="transilio" lemmaRef="lila:128631" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="18" head="20" deprel="obj">tranſiliant</w>
+        </orig>
+        <reg>
+          <w lemma="transilio" lemmaRef="lila:128631" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="18" head="20" deprel="obj">transiliant</w>
+        </reg>
+      </choice>
       <w lemma="grauiter" lemmaRef="lilah:18298" pos="ADV" n="19" head="20" deprel="advmod">grauiter</w>
       <w lemma="pecco" lemmaRef="lila:116332" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Fut|VerbForm=Fin|Voice=Act" n="20" head="8" deprel="conj">pecca<lb break="no" n="55"/>bunt</w>
       <pc type="colon">:</pc>

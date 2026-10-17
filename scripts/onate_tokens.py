@@ -16,6 +16,7 @@ TEI_NS  = "http://www.tei-c.org/ns/1.0"
 XI_NS   = "http://www.w3.org/2001/XInclude"
 
 ABBREV_WITH_DOT = {
+    "quaest.",
     "d.",
     # Referencias bibliográficas estructurales
     "cap.", "lib.", "q.", "n.", "nu.", "num.", "art.", "ar.", "disp.", "disput.",
@@ -117,6 +118,7 @@ ABBREV_EXPAN = {
     "sect.":      "sectio",
     "par.":       "paragraphus",
     "q.":         "quaestio",
+    "quaest.":    "quaestio",
     "prop.":      "propositio",
     "concl.":     "conclusio",
     "coroll.":    "corollarium",
@@ -362,6 +364,11 @@ MACRON_MAP = {
 LONG_S = {
     # nombres propios
     "esau":             "eſau",
+    # excepciones: s redonda donde la raíz pondría ſ
+    "falsò":            "falsò",
+    "falso":            "falso",
+    "versus":           "verſus",
+    "quaest.":          "quaeſt.",
     # formas de sum/esse
     "est":              "eſt",
     "esse":             "eſſe",
@@ -1102,6 +1109,10 @@ LONG_S_ROOTS = [
     ("aestimat",   "æſtimat"),    # aestimatione, aestimationem, aestimationis…
     ("aestim",     "aeſtim"),     # aestimantes, aestimant y cualquier forma no cubierta arriba
     ("rigoros",    "rigoroſ"),    # rigorosi, rigorosus, rigorosa…
+    ("respons",    "reſponſ"),    # responsio, responsionum, responsum… (antes que resp)
+    ("aduers",     "aduerſ"),     # aduersari, aduersus, aduersa…
+    ("advers",     "adverſ"),
+    ("opusc",      "opuſc"),      # opusc., opusculum, opuscula…
     ("vsurp",      "vſurp"),      # vsurpatur, vsurpatum, vsurpare…
     ("usurp",      "uſurp"),
     # cons- general (va al final: actúa solo si ninguna raíz más específica coincidió)
@@ -1143,6 +1154,7 @@ LONG_S_ROOTS = [
     ("scop",       "ſcop"),       # scopulos, scopulus, scopuli…
     ("sufful",     "ſufful"),     # suffulta, suffulcit, suffulcire…
     ("transm",     "tranſm"),     # transmittit, transmittere, transmisit…
+    ("transil",   "tranſil"),     # transiliant, transilire…
     ("transcend", "tranſcend"),   # transcendit, transcendere, transcendens, transcendentia…
     ("subst",      "ſubſt"),      # substantiae, substantia…
     ("sub",        "ſub"),        # subijt, subiit, subit, subire…

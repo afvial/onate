@@ -8,7 +8,7 @@ Importa de onate_tokens.
 """
 
 from onate_tokens import (
-    AUTHOR_ABBREVS, AUTHOR_FULL_NAMES,
+    AUTHOR_ABBREVS, AUTHOR_FULL_NAMES, ABBREV_WITH_DOT, ABBREV_EXPAN,
     BIBL_INTRA, BIBL_INTER, BIBL_INTER_2, HONORIFIC_PREFIXES, TEI_NS,
 )
 
@@ -16,6 +16,9 @@ from onate_tokens import (
 # independientemente de si está en mayúscula o en BIBL_INTRA.
 # Ej: verb. venditio, verb. pretium, verb. emptio
 BIBL_EXPECT_NEXT = {"verb.", "verbo"}
+
+# Abreviaturas con punto conocidas (las de obra y las de autor)
+_ABBREV_DOT = set(ABBREV_WITH_DOT) | {a for a in AUTHOR_ABBREVS if a.endswith(".")}
 
 # ── Construcción del árbol completo ──────────────────────────────────────────
 
@@ -52,6 +55,29 @@ def join_split_words(para_tokens: list) -> list:
                            + [("word", ab_text[:-1], None, False, False),
                               ("pc", ".", None, ab_eol, False)]
                            + para_tokens[i + 2:])
+        # Abreviatura con punto partida entre líneas: "o¬" + "pusc" + "." =
+        # "opusc." (conocida) → una sola palabra partida con su expansión;
+        # el punto forma parte de la abreviatura (como en abbrev_dot).
+        if (split
+                and ttype == "word"
+                and not expansion
+                and i + 2 < len(para_tokens)
+                and para_tokens[i + 1][0] == "word"
+                and para_tokens[i + 2][0] in ("dot", "pc")
+                and para_tokens[i + 2][1] == "."):
+            r_text = para_tokens[i + 1][1]
+            full = ttext + r_text + "."
+            if full in _ABBREV_DOT or full.lower() in _ABBREV_DOT:
+                exp = ABBREV_EXPAN.get(full) or ABBREV_EXPAN.get(full.lower())
+                if exp:
+                    result.append({
+                        "kind": "word_lb",
+                        "left": ttext, "right": r_text + ".",
+                        "expansion": exp, "eol": para_tokens[i + 2][3],
+                        "lb_n": split,
+                    })
+                    i += 3
+                    continue
         if (split
                 and ttype in ("word", "sic")
                 and i + 1 < len(para_tokens)
@@ -100,6 +126,8 @@ def is_bibl_token(tok: dict) -> bool:
     text = tok.get("text", "")
     if kind == "abbrev_dot":
         return True
+    if kind == "word_lb" and tok.get("expansion") and tok.get("right", "").endswith("."):
+        return True          # abreviatura partida entre líneas (o¬pusc.)
     if kind in ("pc", "dot"):
         return True
     if kind == "amp":
@@ -124,6 +152,8 @@ def is_intra_bibl_token(tok: dict) -> bool:
     kind = tok["kind"]
     text = tok.get("text", "")
     if kind == "abbrev_dot" and text not in AUTHOR_ABBREVS:
+        return True
+    if kind == "word_lb" and tok.get("expansion") and tok.get("right", "").endswith("."):
         return True
     if kind == "word" and text in BIBL_INTRA:
         return True
