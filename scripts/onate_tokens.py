@@ -322,7 +322,11 @@ PC_TYPES = {
 }
 
 ORIG_REG = {
+    "intollerabilem": "intolerabilem", "intollerabilis": "intolerabilis",
+    "intollerabile": "intolerabile", "intollerabili": "intolerabili",
     "vt": "ut", "vsu": "usu", "vſu": "usu",
+    # variantes gráficas de la época (se conserva la forma impresa; el lema sale de la regularizada)
+    "opportet": "oportet", "Opportet": "Oportet",
     "eft": "est", "eſt": "est",
     "ſunt": "sunt", "ſed": "sed", "ſi": "si", "ſub": "sub",
     "iuſtitiam": "iustitiam", "iuſtitiae": "iustitiae",
@@ -356,6 +360,8 @@ MACRON_MAP = {
 # el valor es la forma diplomática con ſ.
 # Regla general: ſ aparece en posición inicial y medial, nunca final.
 LONG_S = {
+    # nombres propios
+    "esau":             "eſau",
     # formas de sum/esse
     "est":              "eſt",
     "esse":             "eſſe",
@@ -1096,6 +1102,8 @@ LONG_S_ROOTS = [
     ("aestimat",   "æſtimat"),    # aestimatione, aestimationem, aestimationis…
     ("aestim",     "aeſtim"),     # aestimantes, aestimant y cualquier forma no cubierta arriba
     ("rigoros",    "rigoroſ"),    # rigorosi, rigorosus, rigorosa…
+    ("vsurp",      "vſurp"),      # vsurpatur, vsurpatum, vsurpare…
+    ("usurp",      "uſurp"),
     # cons- general (va al final: actúa solo si ninguna raíz más específica coincidió)
     ("suprem",      "ſuprem"),      # supremum, supremus, suprema… (pretium supremum)
     ("suprem",      "ſuprem"),      # supremum, supremus, suprema… (pretium supremum)

@@ -75268,7 +75268,7 @@ tok:s_p40der_14_t70
 
 tok:s_p41izq_2
     a nif:Sentence ;
-    nif:anchorOf "et lex si seruus 32. Digesta ad lex adlegemAquiliam fi. et ibi glossa litt. r. et Bald. et communis Doctorum in his legibus: ita Sylvester verbo emptio numero 7. et habetur 10. quaestio 2 hoc ius: vbi etiam glossa Divus Thomas 2. 2. quaestio 77. articulo 1. Opportet pretium esse aequale rei. et Philosophus etiam expressè 5. ethic. capitulo 5. Aragon dicto quaestio 77. articulo 1. §. hucusque et Petrus Navarrus libro 2. capitulo 3. numero 11. Salas de emptione dubium 4. Lessius libro 2. capitulo 21. dubium 3. Rebellus pars 2. libro 9. quaestio 2. sectio 2 numero 10. ad 2. Reginaldus libro 25. capitulo 14. sectio 4. numero 289. Filliucius tractatus 35. capitulo 3. quaestio 5. numero 60. et alij, quos supra citaui."@la ;
+    nif:anchorOf "et lex si seruus 32. Digesta ad lex adlegemAquiliam fi. et ibi glossa litt. r. et Bald. et communis Doctorum in his legibus: ita Sylvester verbo emptio numero 7. et habetur 10. quaestio 2 hoc ius: vbi etiam glossa Divus Thomas 2. 2. quaestio 77. articulo 1. Oportet pretium esse aequale rei. et Philosophus etiam expressè 5. ethic. capitulo 5. Aragon dicto quaestio 77. articulo 1. §. hucusque et Petrus Navarrus libro 2. capitulo 3. numero 11. Salas de emptione dubium 4. Lessius libro 2. capitulo 21. dubium 3. Rebellus pars 2. libro 9. quaestio 2. sectio 2 numero 10. ad 2. Reginaldus libro 25. capitulo 14. sectio 4. numero 289. Filliucius tractatus 35. capitulo 3. quaestio 5. numero 60. et alij, quos supra citaui."@la ;
     dct:isPartOf tok:p41izq ;
     onate:n 2 ;
     nif:firstWord tok:s_p41izq_2_t1 .
@@ -75995,7 +75995,8 @@ tok:s_p41izq_2_t59
 
 tok:s_p41izq_2_t61
     a nif:Word ;
-    nif:anchorOf "Opportet"@la ;
+    nif:anchorOf "Oportet"@la ;
+    onate:diplomatic "Opportet"@la ;
     nif:sentence tok:s_p41izq_2 ;
     nif:nextWord tok:s_p41izq_2_t62 ;
     lexinfo:partOfSpeech lexinfo:verb ;
@@ -76006,7 +76007,8 @@ tok:s_p41izq_2_t61
     lexinfo:tense lexinfo:present ;
     lexinfo:voice lexinfo:activeVoice ;
     onate:ud "Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" ;
-    onate:lexicalEntry lex:opportet_VERB ;
+    lila:hasLemma lilalem:115098 ;
+    onate:lexicalEntry lex:oportet_VERB ;
     conll:HEAD tok:s_p41izq_2_t44 ;
     conll:EDGE "acl" ;
     onate:line 9 ;
@@ -76203,8 +76205,8 @@ tok:s_p41izq_2_t78
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Aragon_PROPN ;
-    conll:HEAD tok:s_p41izq_2_t79 ;
-    conll:EDGE "amod" ;
+    conll:HEAD tok:s_p41izq_2_t2 ;
+    conll:EDGE "conj" ;
     onate:line 10 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A10%3AAragon%3A0> .
 
@@ -76220,8 +76222,8 @@ tok:s_p41izq_2_t79
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:dictus_ADJ ;
-    conll:HEAD tok:s_p41izq_2_t80 ;
-    conll:EDGE "nmod" ;
+    conll:HEAD tok:s_p41izq_2_t2 ;
+    conll:EDGE "conj" ;
     onate:line 10 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A10%3Ad.%3A0> .
 
@@ -76238,8 +76240,8 @@ tok:s_p41izq_2_t80
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:121052 ;
     onate:lexicalEntry lex:quaestio_NOUN ;
-    conll:HEAD tok:s_p41izq_2_t38 ;
-    conll:EDGE "nsubj:pass" ;
+    conll:HEAD tok:s_p41izq_2_t2 ;
+    conll:EDGE "conj" ;
     onate:line 10 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A10%3Aq.%3A0> .
 
@@ -76268,7 +76270,7 @@ tok:s_p41izq_2_t83
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:90117 ;
     onate:lexicalEntry lex:articulus_NOUN ;
-    conll:HEAD tok:s_p41izq_2_t38 ;
+    conll:HEAD tok:s_p41izq_2_t2 ;
     conll:EDGE "obl" ;
     onate:line 10 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A10%3Aar.%3A0> .
@@ -76280,7 +76282,7 @@ tok:s_p41izq_2_t84
     nif:nextWord tok:s_p41izq_2_t87 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:1_NUM ;
-    conll:HEAD tok:s_p41izq_2_t83 ;
+    conll:HEAD tok:s_p41izq_2_t86 ;
     conll:EDGE "nummod" ;
     onate:line 10 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A10%3A1%3A0> .
@@ -76294,7 +76296,7 @@ tok:s_p41izq_2_t87
     lexinfo:partOfSpeech lexinfo:adverb ;
     lila:hasLemma lilalem:105382 ;
     onate:lexicalEntry lex:hucusque_ADV ;
-    conll:HEAD tok:s_p41izq_2_t2 ;
+    conll:HEAD tok:s_p41izq_2_t90 ;
     conll:EDGE "orphan" ;
     onate:line 10 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A10%3Ahucusq;%3A0> .
@@ -76342,8 +76344,8 @@ tok:s_p41izq_2_t90
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Navarrus_PROPN ;
-    conll:HEAD tok:s_p41izq_2_t89 ;
-    conll:EDGE "flat" ;
+    conll:HEAD tok:s_p41izq_2_t2 ;
+    conll:EDGE "conj" ;
     onate:line 12 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A12%3ANau.%3A0> .
 
@@ -76360,8 +76362,8 @@ tok:s_p41izq_2_t91
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:110382 ;
     onate:lexicalEntry lex:liber_NOUN ;
-    conll:HEAD tok:s_p41izq_2_t87 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p41izq_2_t90 ;
+    conll:EDGE "obl" ;
     onate:line 12 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A12%3Alib.%3A0> .
 
@@ -76390,7 +76392,7 @@ tok:s_p41izq_2_t94
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p41izq_2_t87 ;
+    conll:HEAD tok:s_p41izq_2_t100 ;
     conll:EDGE "obl" ;
     onate:line 12 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A12%3Acap.%3A0> .
@@ -76421,7 +76423,7 @@ tok:s_p41izq_2_t97
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
     conll:HEAD tok:s_p41izq_2_t94 ;
-    conll:EDGE "advmod" ;
+    conll:EDGE "conj" ;
     onate:line 12 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A12%3An.%3A0> .
 
@@ -76448,7 +76450,7 @@ tok:s_p41izq_2_t100
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Salas_PROPN ;
-    conll:HEAD tok:s_p41izq_2_t87 ;
+    conll:HEAD tok:s_p41izq_2_t90 ;
     conll:EDGE "conj" ;
     onate:line 12 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A12%3ASalas%3A0> .
@@ -76479,7 +76481,7 @@ tok:s_p41izq_2_t102
     lila:hasLemma lilalem:101040 ;
     onate:lexicalEntry lex:emptio_NOUN ;
     conll:HEAD tok:s_p41izq_2_t2 ;
-    conll:EDGE "orphan" ;
+    conll:EDGE "nmod" ;
     onate:line 13 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A13%3Aemptione%3A0> .
 
@@ -78598,6 +78600,7 @@ tok:s_p41izq_6_t33
 tok:s_p41izq_6_t34
     a nif:Word ;
     nif:anchorOf "Esau"@la ;
+    onate:diplomatic "Eſau"@la ;
     nif:sentence tok:s_p41izq_6 ;
     nif:nextWord tok:s_p41izq_6_t36 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
@@ -78606,7 +78609,7 @@ tok:s_p41izq_6_t34
     conll:HEAD tok:s_p41izq_6_t33 ;
     conll:EDGE "nmod" ;
     onate:line 32 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A32%3AEsau%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A32%3AEſau%3A0> .
 
 tok:s_p41izq_6_t36
     a nif:Word ;
@@ -78897,7 +78900,7 @@ tok:s_p41izq_6_t53
 
 tok:s_p41izq_7
     a nif:Sentence ;
-    nif:anchorOf "Quintò, quia nec etiam in pretio conuentionali non existente legali, aut vulgari in republica hoc licet, ut proximè videbimus, etiam si tunc pretium per pactam contrahentium constituendum sit, quanto minus in pretio legali aut consuetudinario."@la ;
+    nif:anchorOf "Quintò, quia nec etiam in pretio conuentionali non existente legali, aut vulgari in republica hoc licet, ut proximè videbimus, etiam si tunc pretium per pactum contrahentium constituendum sit, quanto minus in pretio legali aut consuetudinario."@la ;
     dct:isPartOf tok:p41izq ;
     onate:n 7 ;
     nif:firstWord tok:s_p41izq_7_t1 .
@@ -79270,22 +79273,19 @@ tok:s_p41izq_7_t28
 
 tok:s_p41izq_7_t29
     a nif:Word ;
-    nif:anchorOf "pactam"@la ;
+    nif:anchorOf "pactum"@la ;
     nif:sentence tok:s_p41izq_7 ;
     nif:nextWord tok:s_p41izq_7_t30 ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    lexinfo:aspect lexinfo:perfective ;
+    lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:accusativeCase ;
-    lexinfo:gender lexinfo:feminine ;
+    lexinfo:gender lexinfo:neuter ;
     lexinfo:number lexinfo:singular ;
-    lexinfo:verbFormMood lexinfo:participle ;
-    lexinfo:voice lexinfo:passiveVoice ;
-    onate:ud "Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" ;
-    onate:lexicalEntry lex:pactam_VERB ;
+    onate:ud "Case=Acc|Gender=Neut|Number=Sing" ;
+    onate:lexicalEntry lex:paco_NOUN ;
     conll:HEAD tok:s_p41izq_7_t31 ;
     conll:EDGE "obl" ;
     onate:line 40 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A40%3Apactam%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A40%3Apactum%3A0> .
 
 tok:s_p41izq_7_t30
     a nif:Word ;
@@ -79650,7 +79650,7 @@ tok:s_p41izq_8_t14
 
 tok:s_p41izq_9
     a nif:Sentence ;
-    nif:anchorOf "Quare haec opinio omnino vera, et amplectenda est, et contraria omnino explodenda tamquam continens intollerabilem errorem in materia morali, et omnem doctrinam huius contractus emptionis, et venditionis subuertens."@la ;
+    nif:anchorOf "Quare haec opinio omnino vera, et amplectenda est, et contraria omnino explodenda tamquam continens intolerabilem errorem in materia morali, et omnem doctrinam huius contractus emptionis, et venditionis subuertens."@la ;
     dct:isPartOf tok:p41izq ;
     onate:n 9 ;
     nif:firstWord tok:s_p41izq_9_t1 .
@@ -79812,7 +79812,7 @@ tok:s_p41izq_9_t12
     lila:hasLemma lilalem:96344 ;
     onate:lexicalEntry lex:contrarius_ADJ ;
     conll:HEAD tok:s_p41izq_9_t14 ;
-    conll:EDGE "nsubj:pass" ;
+    conll:EDGE "nsubj" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A47%3Acontraria%3A0> .
 
@@ -79869,11 +79869,11 @@ tok:s_p41izq_9_t16
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:case lexinfo:nominativeCase ;
-    lexinfo:gender lexinfo:neuter ;
+    lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:activeVoice ;
-    onate:ud "Aspect=Imp|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Act" ;
+    onate:ud "Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" ;
     lila:hasLemma lilalem:96292 ;
     onate:lexicalEntry lex:contineo_VERB ;
     conll:HEAD tok:s_p41izq_9_t14 ;
@@ -79883,15 +79883,17 @@ tok:s_p41izq_9_t16
 
 tok:s_p41izq_9_t17
     a nif:Word ;
-    nif:anchorOf "intollerabilem"@la ;
+    nif:anchorOf "intolerabilem"@la ;
+    onate:diplomatic "intollerabilem"@la ;
     nif:sentence tok:s_p41izq_9 ;
     nif:nextWord tok:s_p41izq_9_t18 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     lexinfo:case lexinfo:accusativeCase ;
-    lexinfo:gender lexinfo:masculine ;
+    lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Acc|Gender=Masc|Number=Sing" ;
-    onate:lexicalEntry lex:intollerabilis_ADJ ;
+    onate:ud "Case=Acc|Gender=Fem|Number=Sing" ;
+    lila:hasLemma lilalem:108718 ;
+    onate:lexicalEntry lex:intolerabilis_ADJ ;
     conll:HEAD tok:s_p41izq_9_t18 ;
     conll:EDGE "amod" ;
     onate:line 48 ;
@@ -80112,7 +80114,7 @@ tok:s_p41izq_9_t32
 
 tok:s_p41izq_10
     a nif:Sentence ;
-    nif:anchorOf "Sed hinc oritur specials difficultas de rebus pretiosis quibusdam, quales sunt, gemmae, canes quidam generosi falcones, et huiusmodi, quae nec pretium habent legale, neque consuetudine vlurpatum, sed tantum conuentionale, vtrum hae saltem possint quocumque pretio prolibito vendi, et in eis vigeat proloquium res tantum valet, quanti"@la ;
+    nif:anchorOf "Sed hinc oritur specialis difficultas de rebus pretiosis quibusdam, quales sunt, gemmae, canes quidam generosi falcones, et huiusmodi, quae nec pretium habent legale, neque consuetudine vsurpatum, sed tantum conuentionale, vtrum hae saltem possint quocumque pretio prolibito vendi, et in eis vigeat proloquium res tantum valet, quanti"@la ;
     dct:isPartOf tok:p41izq ;
     onate:n 10 ;
     nif:firstWord tok:s_p41izq_10_t1 .
@@ -80164,20 +80166,21 @@ tok:s_p41izq_10_t3
 
 tok:s_p41izq_10_t4
     a nif:Word ;
-    nif:anchorOf "specials"@la ;
-    onate:diplomatic "ſpecials"@la ;
+    nif:anchorOf "specialis"@la ;
+    onate:diplomatic "ſpecialis"@la ;
     nif:sentence tok:s_p41izq_10 ;
     nif:nextWord tok:s_p41izq_10_t5 ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    lexinfo:case lexinfo:genitiveCase ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Gen|Gender=Fem|Number=Sing" ;
-    onate:lexicalEntry lex:specials_NOUN ;
+    onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
+    lila:hasLemma lilalem:125274 ;
+    onate:lexicalEntry lex:specialis_ADJ ;
     conll:HEAD tok:s_p41izq_10_t5 ;
-    conll:EDGE "nmod" ;
+    conll:EDGE "amod" ;
     onate:line 52 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A52%3Aſpecials%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A52%3Aſpecialis%3A0> .
 
 tok:s_p41izq_10_t5
     a nif:Word ;
@@ -80192,7 +80195,7 @@ tok:s_p41izq_10_t5
     lila:hasLemma lilalem:99347 ;
     onate:lexicalEntry lex:difficultas_NOUN ;
     conll:HEAD tok:s_p41izq_10_t3 ;
-    conll:EDGE "nsubj" ;
+    conll:EDGE "nsubj:pass" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A52%3Adifficultas%3A0> .
 
@@ -80491,7 +80494,7 @@ tok:s_p41izq_10_t28
     lila:hasLemma lilalem:110149 ;
     onate:lexicalEntry lex:legalis_ADJ ;
     conll:HEAD tok:s_p41izq_10_t32 ;
-    conll:EDGE "amod" ;
+    conll:EDGE "obl" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A54%3Alegale%3A0> .
 
@@ -80521,14 +80524,15 @@ tok:s_p41izq_10_t31
     onate:ud "Case=Abl|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:96179 ;
     onate:lexicalEntry lex:consuetudo_NOUN ;
-    conll:HEAD tok:s_p41izq_10_t32 ;
-    conll:EDGE "obl" ;
+    conll:HEAD tok:s_p41izq_10_t28 ;
+    conll:EDGE "conj" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A54%3Aconſuetudine%3A0> .
 
 tok:s_p41izq_10_t32
     a nif:Word ;
-    nif:anchorOf "vlurpatum"@la ;
+    nif:anchorOf "vsurpatum"@la ;
+    onate:diplomatic "vſurpatum"@la ;
     nif:sentence tok:s_p41izq_10 ;
     nif:nextWord tok:s_p41izq_10_t34 ;
     lexinfo:partOfSpeech lexinfo:verb ;
@@ -80539,11 +80543,12 @@ tok:s_p41izq_10_t32
     lexinfo:verbFormMood lexinfo:participle ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Perf|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Pass" ;
-    onate:lexicalEntry lex:ulurpatus_VERB ;
-    conll:HEAD tok:s_p41izq_10_t11 ;
-    conll:EDGE "nsubj" ;
+    lila:hasLemma lilalem:130904 ;
+    onate:lexicalEntry lex:usurpo_VERB ;
+    conll:HEAD tok:s_p41izq_10_t26 ;
+    conll:EDGE "acl" ;
     onate:line 54 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A54%3Avlurpatum%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A54%3Avſurpatum%3A0> .
 
 tok:s_p41izq_10_t34
     a nif:Word ;
@@ -80650,8 +80655,8 @@ tok:s_p41izq_10_t41
     onate:ud "Aspect=Imp|Mood=Sub|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" ;
     lila:hasLemma lilalem:118569 ;
     onate:lexicalEntry lex:possum_VERB ;
-    conll:HEAD tok:s_p41izq_10_t11 ;
-    conll:EDGE "csubj" ;
+    conll:HEAD tok:s_p41izq_10_t36 ;
+    conll:EDGE "acl" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A54%3Apoſſint%3A0> .
 

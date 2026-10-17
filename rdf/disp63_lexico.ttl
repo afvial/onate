@@ -8284,11 +8284,12 @@ lex:interuenio_VERB
         [ a ontolex:Form ; ontolex:writtenRep "interuenit"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "interueniunt"@la ] .
 
-lex:intollerabilis_ADJ
+lex:intolerabilis_ADJ
     a ontolex:Word ;
-    rdfs:label "intollerabilis"@la ;
+    rdfs:label "intolerabilis"@la ;
     lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "intollerabilem"@la ] .
+    ontolex:canonicalForm lilalem:108718 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "intolerabilem"@la ] .
 
 lex:intra_ADP
     a ontolex:Word ;
@@ -10736,12 +10737,6 @@ lex:oppono_VERB
     ontolex:canonicalForm lilalem:115124 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "oppositam"@la ] .
 
-lex:opportet_VERB
-    a ontolex:Word ;
-    rdfs:label "opportet"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "opportet"@la ] .
-
 lex:opprimo_VERB
     a ontolex:Word ;
     rdfs:label "opprimo"@la ;
@@ -10859,12 +10854,6 @@ lex:paco_NOUN
     rdfs:label "paco"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "pactum"@la ] .
-
-lex:pactam_VERB
-    a ontolex:Word ;
-    rdfs:label "pactam"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "pactam"@la ] .
 
 lex:palacios_ADJ
     a ontolex:Word ;
@@ -14064,12 +14053,6 @@ lex:specialiter_ADV
     ontolex:canonicalForm lilahyp:41331 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "specialiter"@la ] .
 
-lex:specials_NOUN
-    a ontolex:Word ;
-    rdfs:label "specials"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "specials"@la ] .
-
 lex:species_NOUN
     a ontolex:Word ;
     rdfs:label "species"@la ;
@@ -15888,12 +15871,6 @@ lex:ultta_ADJ
     lexinfo:partOfSpeech lexinfo:adjective ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "vltta"@la ] .
 
-lex:ulurpatus_VERB
-    a ontolex:Word ;
-    rdfs:label "ulurpatus"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "vlurpatum"@la ] .
-
 lex:um_ADV
     a ontolex:Word ;
     rdfs:label "um"@la ;
@@ -16129,7 +16106,8 @@ lex:usurpo_VERB
     rdfs:label "usurpo"@la ;
     lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:canonicalForm lilalem:130904 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "vsurpatur"@la ] .
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "vsurpatum"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "vsurpatur"@la ] .
 
 lex:usus_NOUN
     a ontolex:Word ;

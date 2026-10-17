@@ -300,6 +300,7 @@ run_html() {
     local FACS_OUT="html/disp63/disp63_facs.html"
     [[ -f "$FACS_XSLT" ]] || { warn "XSLT facs no encontrado"; return; }
     xsltproc "$FACS_XSLT" "$COMPLETO" > "$FACS_OUT"
+    xsltproc --param show-tooltips "false()" "$FACS_XSLT" "$COMPLETO" > "html/disp63/disp63_facs_simple.html"
     ok "HTML facs → ${FACS_OUT}"
 }
 
