@@ -1384,12 +1384,6 @@ lex:Gutier_PROPN
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "gutier"@la ] .
 
-lex:Hi_PROPN
-    a ontolex:Word ;
-    rdfs:label "Hi"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "hi"@la ] .
-
 lex:Hieron_PROPN
     a ontolex:Word ;
     rdfs:label "Hieron"@la ;
@@ -1433,12 +1427,6 @@ lex:Iid_PROPN
     rdfs:label "Iid"@la ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "jid"@la ] .
-
-lex:Il_PROPN
-    a ontolex:Word ;
-    rdfs:label "Il"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "il"@la ] .
 
 lex:Ilabeo_PROPN
     a ontolex:Word ;
@@ -9044,6 +9032,12 @@ lex:littera_NOUN
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "litt"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "litteram"@la ] .
 
+lex:ll_ADP
+    a ontolex:Word ;
+    rdfs:label "ll"@la ;
+    lexinfo:partOfSpeech lexinfo:preposition ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ll"@la ] .
+
 lex:ll_PRON
     a ontolex:Word ;
     rdfs:label "ll"@la ;
@@ -12042,12 +12036,6 @@ lex:probabilitas_NOUN
     ontolex:canonicalForm lilalem:119548 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "probabilitate"@la ] .
 
-lex:probant_VERB
-    a ontolex:Word ;
-    rdfs:label "probant"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "probant"@la ] .
-
 lex:probatur_VERB
     a ontolex:Word ;
     rdfs:label "probatur"@la ;
@@ -14407,6 +14395,13 @@ lex:sumptus_NOUN
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "sumptum"@la ] .
 
+lex:superfluus_ADJ
+    a ontolex:Word ;
+    rdfs:label "superfluus"@la ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:canonicalForm lilalem:126816 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "superfluos"@la ] .
+
 lex:superfluus_PRON
     a ontolex:Word ;
     rdfs:label "superfluus"@la ;
@@ -14419,12 +14414,6 @@ lex:supero_VERB
     lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:canonicalForm lilalem:126911 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "superare"@la ] .
-
-lex:supersluus_ADJ
-    a ontolex:Word ;
-    rdfs:label "supersluus"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "supersluos"@la ] .
 
 lex:superus_ADJ
     a ontolex:Word ;
