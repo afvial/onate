@@ -451,6 +451,25 @@
             margin: 0;
           }
           a.nav-btn { box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+
+          /* Índice de páginas: botón fijo arriba a la izquierda que abre la
+             lista de página-columna para saltar sin hacer scroll */
+          .pg-index { position: fixed; top: 0.6rem; left: 0.8rem; z-index: 60;
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+          .pg-toggle { font: 600 13px system-ui, sans-serif; padding: 5px 11px; border-radius: 6px;
+            border: 1px solid #c9bfa9; background: #fffdf8; color: #3b3326; cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+          .pg-toggle:hover { border-color: #7a9abf; }
+          .pg-panel { margin-top: 6px; background: #fffdf8; border: 1px solid #c9bfa9; border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15); padding: 8px; max-width: min(560px, 92vw);
+            max-height: 70vh; overflow-y: auto; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(4.6em, 1fr)); gap: 4px; }
+          .pg-panel[hidden] { display: none; }
+          .pg-panel a { font: 12.5px ui-monospace, Menlo, monospace; text-decoration: none; color: #3b3326;
+            border: 1px solid #e3dccb; border-radius: 5px; padding: 3px 5px; text-align: center; white-space: nowrap; }
+          .pg-panel a:hover { border-color: #7a9abf; background: #f3f6fa; }
+          .pg-panel a.on { background: #fdeee0; border-color: #d9a47a; font-weight: 600; }
+          .col-wrap { scroll-margin-top: 3rem; }
         </style>
 </head>
 <body>
@@ -1683,6 +1702,70 @@
       if (++tries < 60) setTimeout(draw, 150);
     })();
   }
+
+  /* ── Índice de páginas ──────────────────────────────────────────────
+     Lista de página-columna construida desde las propias columnas (id =
+     data-col-id). Un clic salta a la columna; el botón indica en qué
+     página-columna se está leyendo. */
+  function buildPageIndex() {
+    var cols = Array.prototype.slice.call(document.querySelectorAll('.col[data-col-id]'));
+    if (!cols.length || document.querySelector('.pg-index')) return;
+    var nav = document.createElement('nav'); nav.className = 'pg-index';
+    var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'pg-toggle';
+    btn.textContent = 'Páginas ▾';
+    var panel = document.createElement('div'); panel.className = 'pg-panel'; panel.hidden = true;
+    var links = {};
+    cols.forEach(function (col) {
+      var id = col.getAttribute('data-col-id');
+      var wrap = col.closest('.col-wrap') || col;
+      if (!wrap.id) wrap.id = id;
+      var m = id.match(/_(\d+)_([^_]+)$/);
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = m ? (m[1] + (m[2] === 'unica' ? '' : ' ' + m[2])) : id;
+      a.title = id;
+      a.addEventListener('click', function () { panel.hidden = true; });
+      panel.appendChild(a); links[id] = a;
+    });
+    btn.addEventListener('click', function (e) { e.stopPropagation(); panel.hidden = !panel.hidden; });
+    document.addEventListener('click', function (e) { if (!nav.contains(e.target)) panel.hidden = true; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') panel.hidden = true; });
+    nav.appendChild(btn); nav.appendChild(panel);
+    document.body.appendChild(nav);
+
+    /* página-columna visible: la más alta cuyo borde superior ya pasó
+       el primer tercio de la ventana */
+    var current = null, ticking = false;
+    function update() {
+      ticking = false;
+      var y = window.innerHeight / 3, best = null;
+      cols.forEach(function (col) {
+        var r = (col.closest('.col-wrap') || col).getBoundingClientRect();
+        if (r.top <= y) best = col.getAttribute('data-col-id');
+      });
+      best = best || cols[0].getAttribute('data-col-id');
+      if (best === current) return;
+      if (current && links[current]) links[current].classList.remove('on');
+      current = best;
+      if (links[current]) links[current].classList.add('on');
+      btn.textContent = links[current].textContent.replace(/^(\d+)/, 'p. $1') + ' ▾';
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', buildPageIndex);
+  else
+    buildPageIndex();
+  /* #pg_63_41_izq: las imágenes anteriores cambian la altura al cargar;
+     volver a la columna cuando ya están todas */
+  window.addEventListener('load', function () {
+    var h = decodeURIComponent(location.hash.replace(/^#/, ''));
+    var el = h && h.indexOf(':') < 0 ? document.getElementById(h) : null;
+    if (el) el.scrollIntoView();
+  });
 
   window.addEventListener('hashchange', jumpToTarget);
   /* Las imágenes de páginas anteriores cambian la altura al cargar:
