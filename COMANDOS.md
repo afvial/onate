@@ -199,14 +199,19 @@ Si el HTML no cambia: recargar sin caché (Ctrl+Shift+R).
 
 ### Panel de revisión (lo que falta por corregir, por columna)
 
+Después de corregir una página-columna:
+
 ```bash
-python3 scripts/onate_sospechosas.py html/disp63/search_index.js   # erratas probables del HTR
-python3 scripts/onate_revision.py                                  # → html/disp63/revision.html
+./procesar_pagina.sh $P $C                                          # reprocesar la página
+python3 scripts/onate_sospechosas.py html/disp63/search_index.js     # erratas probables del HTR
+python3 scripts/onate_revision.py                                    # → html/disp63/revision.html
+xdg-open "html/disp63/revision.html#pg_63_${P}_${C}"                 # abrir en esa columna
 ```
 
-`revision.html#pg_63_${P}_${C}` abre directamente una columna. Erratas: corregir en
-Transkribus/staging, merge y reprocesar. Formas correctas que no deben volver a salir:
-`lexico/formas_correctas.txt` (una por línea).
+Solo sospechosas de la página: `python3 scripts/onate_sospechosas.py html/disp63/search_index.js --pagina $P`.
+En el navegador, recargar sin caché (Ctrl+Shift+R). Erratas: corregir en Transkribus/staging,
+merge y reprocesar. Formas correctas que no deben volver a salir: `lexico/formas_correctas.txt`
+(una por línea).
 
 ### Resolver un lema de LiLa (ambiguo, categoría distinta, no encontrado)
 
