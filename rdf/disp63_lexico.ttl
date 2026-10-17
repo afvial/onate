@@ -8880,6 +8880,13 @@ lex:libitum_NOUN
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "libito"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "libitum"@la ] .
 
+lex:libitus_NOUN
+    a ontolex:Word ;
+    rdfs:label "libitus"@la ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:111137 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "libito"@la ] .
+
 lex:libitus_VERB
     a ontolex:Word ;
     rdfs:label "libitus"@la ;
@@ -12111,12 +12118,6 @@ lex:proinde_ADV
     lexinfo:partOfSpeech lexinfo:adverb ;
     ontolex:canonicalForm lilalem:119776 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "proinde"@la ] .
-
-lex:prolibitus_ADJ
-    a ontolex:Word ;
-    rdfs:label "prolibitus"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "prolibito"@la ] .
 
 lex:proloquium_NOUN
     a ontolex:Word ;

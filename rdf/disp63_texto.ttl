@@ -80114,7 +80114,7 @@ tok:s_p41izq_9_t32
 
 tok:s_p41izq_10
     a nif:Sentence ;
-    nif:anchorOf "Sed hinc oritur specialis difficultas de rebus pretiosis quibusdam, quales sunt, gemmae, canes quidam generosi falcones, et huiusmodi, quae nec pretium habent legale, neque consuetudine vsurpatum, sed tantum conuentionale, vtrum hae saltem possint quocumque pretio prolibito vendi, et in eis vigeat proloquium res tantum valet, quanti"@la ;
+    nif:anchorOf "Sed hinc oritur specialis difficultas de rebus pretiosis quibusdam, quales sunt, gemmae, canes quidam generosi falcones, et huiusmodi, quae nec pretium habent legale, neque consuetudine vsurpatum, sed tantum conuentionale, vtrum hae saltem possint quocumque pretio pro libito vendi, et in eis vigeat proloquium res tantum valet, quanti"@la ;
     dct:isPartOf tok:p41izq ;
     onate:n 10 ;
     nif:firstWord tok:s_p41izq_10_t1 .
@@ -80275,7 +80275,7 @@ tok:s_p41izq_10_t11
     onate:ud "Case=Nom|Gender=Fem|Number=Plur" ;
     lila:hasLemma lilalem:121068 ;
     onate:lexicalEntry lex:qualis_DET ;
-    conll:HEAD tok:s_p41izq_10_t54 ;
+    conll:HEAD tok:s_p41izq_10_t55 ;
     conll:EDGE "advcl" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A53%3Aquales%3A0> .
@@ -80689,75 +80689,89 @@ tok:s_p41izq_10_t43
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:119455 ;
     onate:lexicalEntry lex:pretium_NOUN ;
-    conll:HEAD tok:s_p41izq_10_t45 ;
+    conll:HEAD tok:s_p41izq_10_t46 ;
     conll:EDGE "obl" ;
     onate:line 59 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A59%3Apretio%3A0> .
 
 tok:s_p41izq_10_t44
     a nif:Word ;
-    nif:anchorOf "prolibito"@la ;
+    nif:anchorOf "pro"@la ;
     nif:sentence tok:s_p41izq_10 ;
     nif:nextWord tok:s_p41izq_10_t45 ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
+    lexinfo:partOfSpeech lexinfo:preposition ;
+    lila:hasLemma lilalem:118468 ;
+    onate:lexicalEntry lex:pro_ADP ;
+    conll:HEAD tok:s_p41izq_10_t45 ;
+    conll:EDGE "case" ;
+    onate:line 59 ;
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A59%3Apro%3A0> .
+
+tok:s_p41izq_10_t45
+    a nif:Word ;
+    nif:anchorOf "libito"@la ;
+    nif:sentence tok:s_p41izq_10 ;
+    nif:nextWord tok:s_p41izq_10_t46 ;
+    lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
-    onate:lexicalEntry lex:prolibitus_ADJ ;
-    conll:HEAD tok:s_p41izq_10_t43 ;
-    conll:EDGE "amod" ;
+    lila:hasLemma lilalem:111137 ;
+    onate:lexicalEntry lex:libitus_NOUN ;
+    conll:HEAD tok:s_p41izq_10_t46 ;
+    conll:EDGE "obl" ;
     onate:line 59 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A59%3Aprolibito%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A59%3Alibito%3A0> .
 
-tok:s_p41izq_10_t45
+tok:s_p41izq_10_t46
     a nif:Word ;
     nif:anchorOf "vendi"@la ;
     nif:sentence tok:s_p41izq_10 ;
-    nif:nextWord tok:s_p41izq_10_t47 ;
+    nif:nextWord tok:s_p41izq_10_t48 ;
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:case lexinfo:genitiveCase ;
     lexinfo:number lexinfo:singular ;
     lexinfo:voice lexinfo:passiveVoice ;
     onate:ud "Aspect=Prosp|Case=Gen|Number=Sing|VerbForm=Ger|Voice=Pass" ;
-    onate:lexicalEntry lex:uo_VERB ;
+    onate:lexicalEntry lex:uendi_VERB ;
     conll:HEAD tok:s_p41izq_10_t41 ;
     conll:EDGE "acl" ;
     onate:line 59 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A59%3Avendi%3A0> .
 
-tok:s_p41izq_10_t47
+tok:s_p41izq_10_t48
     a nif:Word ;
     nif:anchorOf "et"@la ;
     onate:diplomatic "&"@la ;
     nif:sentence tok:s_p41izq_10 ;
-    nif:nextWord tok:s_p41izq_10_t48 ;
+    nif:nextWord tok:s_p41izq_10_t49 ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     lila:hasLemma lilalem:101542 ;
     onate:lexicalEntry lex:et_CCONJ ;
-    conll:HEAD tok:s_p41izq_10_t50 ;
+    conll:HEAD tok:s_p41izq_10_t51 ;
     conll:EDGE "cc" ;
     onate:line 59 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A59%3A&%3A0> .
 
-tok:s_p41izq_10_t48
+tok:s_p41izq_10_t49
     a nif:Word ;
     nif:anchorOf "in"@la ;
     nif:sentence tok:s_p41izq_10 ;
-    nif:nextWord tok:s_p41izq_10_t49 ;
+    nif:nextWord tok:s_p41izq_10_t50 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     lila:hasLemma lilalem:106748 ;
     onate:lexicalEntry lex:in_ADP ;
-    conll:HEAD tok:s_p41izq_10_t49 ;
+    conll:HEAD tok:s_p41izq_10_t50 ;
     conll:EDGE "case" ;
     onate:line 59 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A59%3Ain%3A0> .
 
-tok:s_p41izq_10_t49
+tok:s_p41izq_10_t50
     a nif:Word ;
     nif:anchorOf "eis"@la ;
     nif:sentence tok:s_p41izq_10 ;
-    nif:nextWord tok:s_p41izq_10_t50 ;
+    nif:nextWord tok:s_p41izq_10_t51 ;
     lexinfo:partOfSpeech lexinfo:pronoun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -80765,16 +80779,16 @@ tok:s_p41izq_10_t49
     onate:ud "Case=Abl|Gender=Fem|Number=Plur" ;
     lila:hasLemma lilalem:109083 ;
     onate:lexicalEntry lex:is_PRON ;
-    conll:HEAD tok:s_p41izq_10_t50 ;
+    conll:HEAD tok:s_p41izq_10_t51 ;
     conll:EDGE "obl" ;
     onate:line 59 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A59%3Aeis%3A0> .
 
-tok:s_p41izq_10_t50
+tok:s_p41izq_10_t51
     a nif:Word ;
     nif:anchorOf "vigeat"@la ;
     nif:sentence tok:s_p41izq_10 ;
-    nif:nextWord tok:s_p41izq_10_t51 ;
+    nif:nextWord tok:s_p41izq_10_t52 ;
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:mood lexinfo:subjunctive ;
@@ -80790,11 +80804,11 @@ tok:s_p41izq_10_t50
     onate:line 59 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A59%3Avigeat%3A0> .
 
-tok:s_p41izq_10_t51
+tok:s_p41izq_10_t52
     a nif:Word ;
     nif:anchorOf "proloquium"@la ;
     nif:sentence tok:s_p41izq_10 ;
-    nif:nextWord tok:s_p41izq_10_t52 ;
+    nif:nextWord tok:s_p41izq_10_t53 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -80802,16 +80816,16 @@ tok:s_p41izq_10_t51
     onate:ud "Case=Nom|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:119806 ;
     onate:lexicalEntry lex:proloquium_NOUN ;
-    conll:HEAD tok:s_p41izq_10_t50 ;
+    conll:HEAD tok:s_p41izq_10_t51 ;
     conll:EDGE "nsubj" ;
     onate:line 60 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A60%3Aproloquium%3A0> .
 
-tok:s_p41izq_10_t52
+tok:s_p41izq_10_t53
     a nif:Word ;
     nif:anchorOf "res"@la ;
     nif:sentence tok:s_p41izq_10 ;
-    nif:nextWord tok:s_p41izq_10_t53 ;
+    nif:nextWord tok:s_p41izq_10_t54 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -80819,29 +80833,29 @@ tok:s_p41izq_10_t52
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:121868 ;
     onate:lexicalEntry lex:res_NOUN ;
-    conll:HEAD tok:s_p41izq_10_t54 ;
+    conll:HEAD tok:s_p41izq_10_t55 ;
     conll:EDGE "nsubj" ;
     onate:line 60 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A60%3Ares%3A0> .
 
-tok:s_p41izq_10_t53
+tok:s_p41izq_10_t54
     a nif:Word ;
     nif:anchorOf "tantum"@la ;
     nif:sentence tok:s_p41izq_10 ;
-    nif:nextWord tok:s_p41izq_10_t54 ;
+    nif:nextWord tok:s_p41izq_10_t55 ;
     lexinfo:partOfSpeech lexinfo:adverb ;
     lila:hasLemma lilahyp:110679 ;
     onate:lexicalEntry lex:tantum_ADV ;
-    conll:HEAD tok:s_p41izq_10_t54 ;
+    conll:HEAD tok:s_p41izq_10_t55 ;
     conll:EDGE "advmod" ;
     onate:line 60 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A60%3Atantum%3A0> .
 
-tok:s_p41izq_10_t54
+tok:s_p41izq_10_t55
     a nif:Word ;
     nif:anchorOf "valet"@la ;
     nif:sentence tok:s_p41izq_10 ;
-    nif:nextWord tok:s_p41izq_10_t56 ;
+    nif:nextWord tok:s_p41izq_10_t57 ;
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:mood lexinfo:indicative ;
@@ -80857,7 +80871,7 @@ tok:s_p41izq_10_t54
     onate:line 60 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_41_izq%3A60%3Avalet%3A0> .
 
-tok:s_p41izq_10_t56
+tok:s_p41izq_10_t57
     a nif:Word ;
     nif:anchorOf "quanti"@la ;
     nif:sentence tok:s_p41izq_10 ;
