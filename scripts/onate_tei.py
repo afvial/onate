@@ -52,6 +52,27 @@ def _diplomatic_sic(text: str) -> str:
               .replace("oe", "œ").replace("Oe", "Œ"))
 
 
+def _diplomatic_split(left: str, right: str):
+    """_diplomatic_sic sobre la palabra entera, repartida entre las dos mitades."""
+    full = _diplomatic_sic(left + right)
+    i = len(left) - (left.lower().count("ae") + left.lower().count("oe"))
+    return full[:i], full[i:]
+
+
+def _emit_corr_w(corr_el, corr_text: str):
+    """<w> de <corr>, con choice orig/reg si la forma corregida lleva s larga."""
+    ls = LONG_S.get(corr_text.lower()) or _apply_long_s_roots(corr_text)
+    if ls and ls != corr_text:
+        if corr_text[:1].isupper():
+            ls = ls[:1].upper() + ls[1:]
+        inner = etree.SubElement(corr_el, f"{{{TEI_NS}}}choice")
+        w_o = etree.SubElement(etree.SubElement(inner, f"{{{TEI_NS}}}orig"), f"{{{TEI_NS}}}w")
+        w_o.text = ls
+        w_r = etree.SubElement(etree.SubElement(inner, f"{{{TEI_NS}}}reg"), f"{{{TEI_NS}}}w")
+        w_r.text = corr_text
+    else:
+        etree.SubElement(corr_el, f"{{{TEI_NS}}}w").text = corr_text
+
 def _expand_macrons(text: str) -> str | None:
     """
     Expande macrones según la LETRA que sigue inmediatamente (no solo
@@ -501,27 +522,25 @@ def emit_token(parent, tok: dict):
     elif kind == "sic_lb":
         # <choice>
         #   <sic><w>left<lb break="no" n="N"/>right</w></sic>   ← diplomático
-        #   <corr><w lemma=...>left-<lb break="no" n="N"/>right</w></corr>  ← NLP
+        #   <corr><w>palabra corregida</w></corr>               ← NLP
         # </choice>
+        # corr_full: errata en la 2.ª mitad; el <corr> trae la palabra entera.
         choice  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
-
         no_hyph = tok.get("no_hyphen", False)
-
+        sic_l, sic_r = _diplomatic_split(tok["left"], tok["right"])
         sic_el      = etree.SubElement(choice, f"{{{TEI_NS}}}sic")
         w_sic       = etree.SubElement(sic_el, f"{{{TEI_NS}}}w")
-        w_sic.text  = tok["left"]
+        w_sic.text  = sic_l
         lb_sic      = etree.SubElement(w_sic, f"{{{TEI_NS}}}lb")
         lb_sic.set("break", "no")
         if no_hyph:
             lb_sic.set("rend", "no-hyphen")
         if tok.get("lb_n"):
             lb_sic.set("n", str(tok["lb_n"]))
-        lb_sic.tail = tok["right"]
-
-        corr_left   = tok.get("expansion") or tok["left"]
-        corr_el     = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
-        w_corr      = etree.SubElement(corr_el, f"{{{TEI_NS}}}w")
-        w_corr.text = corr_left + tok["right"]
+        lb_sic.tail = sic_r
+        corr_text = tok.get("corr_full") or ((tok.get("expansion") or tok["left"]) + tok["right"])
+        corr_el   = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
+        _emit_corr_w(corr_el, corr_text)
     elif kind == "amp":
         choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         abbr   = etree.SubElement(choice, f"{{{TEI_NS}}}abbr")
@@ -819,7 +838,33 @@ def _join_split_words_6(raw6: list) -> list:
     raw5 = [(t[0], t[1], t[2], t[3], abs(t[4]) if isinstance(t[4], int) else t[4])
             for t in raw5]
 
+    # {sic|corr} en la 2.ª mitad de una palabra partida (cir¬ / {cumstantij|cumstantijs}):
+    # join_split_words no une word+sic, así que el par se sustituye por un
+    # marcador y luego por un token sic_lb.
+    _sic_right = {}
+    _tmp, _k = [], 0
+    while _k < len(raw5):
+        _t = raw5[_k]
+        if (_t[0] == "word" and _t[4] and _k + 1 < len(raw5)
+                and raw5[_k + 1][0] == "sic"):
+            _s = raw5[_k + 1]
+            _key = f"\ue000{len(_sic_right)}"
+            _sic_right[_key] = {"left": _t[1], "right": _s[1],
+                                "corr": _t[1] + (_s[2] or ""), "lb_n": _t[4]}
+            _tmp.append(("word", _key, None, _s[3], _s[4]))
+            _k += 2
+            continue
+        _tmp.append(_t); _k += 1
+    raw5 = _tmp
+
     tokens = join_split_words(raw5)
+
+    for _i, _tok in enumerate(tokens):
+        if _tok.get("text") in _sic_right:
+            _d = _sic_right[_tok["text"]]
+            tokens[_i] = {"kind": "sic_lb", "left": _d["left"], "right": _d["right"],
+                          "expansion": None, "corr_full": _d["corr"],
+                          "lb_n": _d["lb_n"], "eol": _tok.get("eol", False)}
 
     for tok in tokens:
         kind = tok["kind"]
@@ -911,6 +956,15 @@ def _emit_sentences(parent, sentence_list: list, staging: bool = False):
         _emit_sentence_spans(s_el, all_raw6, staging=staging)
 
 
+def _last_diplomatic_w(s_el):
+    """Último <w> diplomático del <s>: ignora los de <expan>, <reg> y <corr>,
+    para que el <lb break="no"/> de fin de columna caiga en la forma impresa."""
+    skip = {f"{{{TEI_NS}}}expan", f"{{{TEI_NS}}}reg", f"{{{TEI_NS}}}corr"}
+    ws = [w for w in s_el.iter(f"{{{TEI_NS}}}w")
+          if not any(a.tag in skip for a in w.iterancestors())]
+    return ws[-1] if ws else None
+
+
 def _emit_para_block(parent, para_lines: list, join_left: str = None,
                      is_first_block: bool = False, staging: bool = False):
     """
@@ -984,9 +1038,9 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
         if pi == len(paragraphs) - 1 and para and para[-1]["soft_hyphen"]:
             all_s = p_el.findall(f"{{{TEI_NS}}}s")
             if all_s:
-                all_w = all_s[-1].findall(f".//{{{TEI_NS}}}w")
-                if all_w:
-                    lb = etree.SubElement(all_w[-1], f"{{{TEI_NS}}}lb")
+                _lw = _last_diplomatic_w(all_s[-1])
+                if _lw is not None:
+                    lb = etree.SubElement(_lw, f"{{{TEI_NS}}}lb")
                     lb.set("break", "no")
     set_long_s_overrides({})  # limpiar overrides al salir del bloque
 
@@ -1181,9 +1235,8 @@ def _emit_summarium(parent, lines: list):
     if item_groups and item_groups[-1] and item_groups[-1][-1].get("soft_hyphen"):
         all_s = lst.findall(f".//{{{TEI_NS}}}s")
         if all_s:
-            last_ws = all_s[-1].findall(f".//{{{TEI_NS}}}w")
-            if last_ws:
-                last_w = last_ws[-1]
+            last_w = _last_diplomatic_w(all_s[-1])
+            if last_w is not None:
                 if not last_w.findall(f"{{{TEI_NS}}}lb"):
                     lb = etree.SubElement(last_w, f"{{{TEI_NS}}}lb")
                     lb.set("break", "no")

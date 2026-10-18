@@ -134,6 +134,11 @@ except ImportError:
     _HAS_LONG_S = False
     def apply_long_s_to_split(left, right): return None, None
 
+try:
+    from onate_tei import _expand_macrons
+except Exception:
+    _expand_macrons = None
+
 # ─── Namespaces ───────────────────────────────────────────────────────────────
 
 NS     = "http://www.tei-c.org/ns/1.0"
@@ -187,7 +192,7 @@ def _is_inside_reg(w_elem):
     físico, que vive en la forma diplomática <orig>."""
     parent = w_elem.getparent()
     while parent is not None:
-        if parent.tag == T('reg'):
+        if parent.tag in (T('reg'), T('expan'), T('corr')):
             return True
         parent = parent.getparent()
     return False
@@ -384,6 +389,74 @@ def _make_choice(parent_elem, w_elem, orig_text, reg_text, keep_lb=False):
     return choice
 
 
+def _abbr_choice_of(w):
+    """<choice> abbr/expan al que pertenece w (si w está en <abbr>), o None."""
+    for anc in w.iterancestors():
+        if anc.tag == T('s'):
+            break
+        if anc.tag == T('abbr'):
+            ch = anc.getparent()
+            return ch if ch is not None and ch.tag == T('choice') else None
+    return None
+
+
+def _make_abbr_choice(parent_elem, old_elem, abbr_text, expan_text, keep_lb=False):
+    """Sustituye old_elem por <choice><abbr><w/></abbr><expan><w/></expan></choice>."""
+    idx = list(parent_elem).index(old_elem)
+    tail = old_elem.tail
+    parent_elem.remove(old_elem)
+    choice = etree.Element(T('choice'))
+    w_a = etree.SubElement(etree.SubElement(choice, T('abbr')), T('w'))
+    w_a.text = abbr_text
+    if keep_lb:
+        etree.SubElement(w_a, T('lb')).set('break', 'no')
+    w_e = etree.SubElement(etree.SubElement(choice, T('expan')), T('w'))
+    w_e.text = expan_text
+    choice.tail = tail
+    parent_elem.insert(idx, choice)
+    return choice
+
+
+def _split_abbr_across_columns(abbr_choice, w_i, w_f, counter, model_name):
+    """
+    Abreviatura partida entre columnas (cō-mer | cio): se reconstruye la
+    forma impresa completa, se expande (commercio) y las dos mitades quedan
+    como <choice><abbr>mitad</abbr><expan>palabra entera</expan></choice>.
+    """
+    part_i = (w_i.text or '').strip()            # cōmer (forma impresa)
+    part_f = orig_text_of_w(w_f)                 # cio
+    full   = (part_i + part_f).replace('ſ', 's')
+    expan  = (_expand_macrons(full) if _expand_macrons else None) or full
+    if _HAS_LONG_S:
+        orig_l, orig_r = apply_long_s_to_split(part_i, part_f)
+    else:
+        orig_l, orig_r = None, None
+    diplo_i = orig_l or part_i
+    diplo_f = orig_r or part_f
+
+    choice_i = _make_abbr_choice(abbr_choice.getparent(), abbr_choice,
+                                 diplo_i, expan, keep_lb=True)
+    # Derecha: si la mitad ya está en un <choice>, se sustituye el más externo
+    target = w_f
+    for anc in w_f.iterancestors():
+        if anc.tag == T('s'):
+            break
+        if anc.tag == T('choice'):
+            target = anc
+    choice_f = _make_abbr_choice(target.getparent(), target, diplo_f, expan)
+
+    wpair = f'wp_{counter}'
+    choice_i.set('wpair', wpair)
+    choice_f.set('wpair', wpair)
+    w_elements = [
+        choice_i.find(f"{T('abbr')}/{T('w')}"),
+        choice_i.find(f"{T('expan')}/{T('w')}"),
+        choice_f.find(f"{T('abbr')}/{T('w')}"),
+        choice_f.find(f"{T('expan')}/{T('w')}"),
+    ]
+    annotate_split_word(expan, w_elements, model_name)
+
+
 def add_orig_to_split_words(s_end, s_start, counter, model_name):
     """
     Cuando hay palabra partida entre columnas, reconstruye la forma
@@ -412,6 +485,12 @@ def add_orig_to_split_words(s_end, s_start, counter, model_name):
             break
 
     if w_f is None:
+        return
+
+    # Abreviatura (macrón) partida entre columnas: cō-mer | cio
+    abbr_choice = _abbr_choice_of(w_i)
+    if abbr_choice is not None:
+        _split_abbr_across_columns(abbr_choice, w_i, w_f, counter, model_name)
         return
 
     part_i = orig_text_of_w(w_i)   # "con"
