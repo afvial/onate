@@ -1037,8 +1037,14 @@
           <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="240" head="241" deprel="cc">et</w>
         </expan>
       </choice>
-      <w lemma="Salon" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="241" head="239" deprel="conj">Sa<lb break="no" n="30"/>lon</w>
-      <pc type="other">.</pc>
+      <choice>
+        <abbr>
+          <w>Sa<lb break="no" n="30"/>lon.</w>
+        </abbr>
+        <expan>
+          <w lemma="Salon" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="241" head="239" deprel="conj">Salon</w>
+        </expan>
+      </choice>
       <choice>
         <abbr>
           <choice>
@@ -1430,10 +1436,10 @@
       <w lemma="omnis" lemmaRef="lila:114954" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="351" head="352" deprel="det">omnibus</w>
       <choice>
         <orig>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="352" head="354" deprel="obl">circumſtantijs</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="352" head="354" deprel="obl">circumſtantijs</w>
         </orig>
         <reg>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="352" head="354" deprel="obl">circumstantijs</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="352" head="354" deprel="obl">circumstantijs</w>
         </reg>
       </choice>
       <w lemma="commutatio" lemmaRef="lila:95231" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="353" head="354" deprel="nsubj:pass">commutationem</w>
@@ -1462,10 +1468,10 @@
       <lb n="52"/>
       <choice>
         <orig>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="365" head="283" deprel="obl">circumſtantijs</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="365" head="283" deprel="obl">circumſtantijs</w>
         </orig>
         <reg>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="365" head="283" deprel="obl">circumstantijs</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="365" head="283" deprel="obl">circumstantijs</w>
         </reg>
       </choice>
       <pc type="comma">,</pc>
@@ -1588,7 +1594,14 @@
           <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin" n="396" head="395" deprel="cop">est</w>
         </reg>
       </choice>
-      <w lemma="perpendo" lemmaRef="lila:117183" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="397" head="395" deprel="csubj">per<lb break="no" n="58"/>pensas</w>
+      <choice>
+        <orig>
+          <w lemma="perpendo" lemmaRef="lila:117183" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="397" head="395" deprel="csubj">per<lb break="no" n="58"/>penſas</w>
+        </orig>
+        <reg>
+          <w lemma="perpendo" lemmaRef="lila:117183" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="397" head="395" deprel="csubj">perpensas</w>
+        </reg>
+      </choice>
       <choice>
         <orig>
           <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Perf|VerbForm=Inf" n="398" head="397" deprel="aux:pass">fuiſſe</w>

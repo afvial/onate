@@ -566,7 +566,14 @@
           <w lemma="consuetudo" lemmaRef="lila:96179" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="20" head="23" deprel="obl">cnnsue<lb break="no" n="31"/>tudine</w>
         </sic>
         <corr>
-          <w lemma="consuetudo" lemmaRef="lila:96179" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="20" head="23" deprel="obl">consuetudine</w>
+          <choice>
+            <orig>
+              <w>conſuetudine</w>
+            </orig>
+            <reg>
+              <w lemma="consuetudo" lemmaRef="lila:96179" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="20" head="23" deprel="obl">consuetudine</w>
+            </reg>
+          </choice>
         </corr>
       </choice>
       <pc type="comma">,</pc>
@@ -600,7 +607,7 @@
       <w lemma="uterque" lemmaRef="lila:135768" pos="DET" msd="Case=Abl|Gender=Masc|Number=Sing" n="26" head="27" deprel="nsubj">vtro<lb break="no" n="32"/>que</w>
       <w lemma="deficio" lemmaRef="lila:98257" pos="VERB" msd="Aspect=Imp|Case=Abl|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="27" head="31" deprel="advcl:abs">deficiente</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="28" head="31" deprel="obj">pretium</w>
-      <w lemma="conuentionalis" lemmaRef="lila:96429" pos="ADJ" msd="Case=Acc|Gender=Neut|Number=Sing" n="29" head="28" deprel="amod">conuentionale</w>
+      <w lemma="conuentionalis" lemmaRef="lila:96429" pos="ADJ" msd="Case=Acc|Gender=Neut|Number=Sing" manual="1" n="29" head="28" deprel="amod">conuentionale</w>
       <lb n="33"/>
       <choice>
         <orig>
@@ -914,21 +921,31 @@
       <w lemma="ita" lemmaRef="lila:109126" pos="ADV" n="1" head="2" deprel="advmod">Ita</w>
       <w lemma="opinor" lemmaRef="lila:115070" pos="VERB" msd="Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="2" head="0" deprel="ROOT">opinatur</w>
       <hi rend="italic">
-        <cit xml:id="cit_p38_der_noref_1">
-          <bibl>
-            <w lemma="Aluarez" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="3" head="2" deprel="nsubj">Aluarez</w>
-            <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="4" head="6" deprel="case">de</w>
-            <w lemma="contractib" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" n="5" head="6" deprel="amod">con<lb break="no" n="48"/>tractib</w>
-            <pc type="other">.</pc>
+        <cit xml:id="cit_p38_der_Summenhart_Contr_1">
+          <bibl corresp="#bib_Summenhart_Contr" cert="high">
+            <author ref="#pers_Summenhart">
+              <w lemma="Aluarez" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing" n="3" head="2" deprel="nsubj">Aluarez</w>
+            </author>
+            <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="4" head="5" deprel="case">de</w>
+            <choice>
+              <abbr>
+                <w>con<lb break="no" n="48"/>tractib.</w>
+              </abbr>
+              <expan>
+                <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="5" head="2" deprel="obl">contractibus</w>
+              </expan>
+            </choice>
             <choice>
               <abbr>
                 <w>tit.</w>
               </abbr>
               <expan>
-                <w lemma="titulus" lemmaRef="lila:128926" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="6" head="2" deprel="obl">titulo</w>
+                <w lemma="titulus" lemmaRef="lila:128926" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="6" head="5" deprel="nmod">titulo</w>
               </expan>
             </choice>
-            <w lemma="16" pos="NUM" n="7" head="6" deprel="nummod">16</w>
+            <biblScope unit="tit">
+              <w lemma="16" pos="NUM" n="7" head="6" deprel="nummod">16</w>
+            </biblScope>
             <pc type="other">.</pc>
           </bibl>
         </cit>
@@ -947,7 +964,7 @@
                 <w>contract.</w>
               </abbr>
               <expan>
-                <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="11" head="7" deprel="nmod">contractibus</w>
+                <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="11" head="5" deprel="nmod">contractibus</w>
               </expan>
             </choice>
             <choice>
@@ -955,7 +972,7 @@
                 <w>cap.</w>
               </abbr>
               <expan>
-                <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="12" head="7" deprel="flat">capitulo</w>
+                <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="12" head="5" deprel="nmod">capitulo</w>
               </expan>
             </choice>
             <lb n="49"/>
@@ -967,17 +984,17 @@
         </cit>
         <cit xml:id="cit_p38_der_noref_3">
           <bibl>
-            <w lemma="Richard" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="14" head="2" deprel="nsubj">Richard</w>
+            <w lemma="Richard" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="14" head="5" deprel="nmod">Richard</w>
             <pc type="other">.</pc>
-            <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="15" head="17" deprel="case">in</w>
-            <w lemma="1" pos="NUM" n="16" head="17" deprel="nummod">1</w>
+            <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="15" head="16" deprel="case">in</w>
+            <w lemma="1" pos="NUM" n="16" head="17" deprel="obl">1</w>
             <pc type="other">.</pc>
             <choice>
               <orig>
-                <w lemma="distinctio" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" n="17" head="2" deprel="obl">diſt</w>
+                <w lemma="distinctio" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" n="17" head="2" deprel="conj">diſt</w>
               </orig>
               <reg>
-                <w lemma="distinctio" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" n="17" head="2" deprel="obl">dist</w>
+                <w lemma="distinctio" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" n="17" head="2" deprel="conj">dist</w>
               </reg>
             </choice>
             <pc type="other">.</pc>
@@ -1005,7 +1022,7 @@
         </choice>
         <cit xml:id="cit_p38_der_noref_4">
           <bibl>
-            <w lemma="Gandau" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="22" head="20" deprel="conj">Gandau</w>
+            <w lemma="Gandau" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="22" head="19" deprel="conj">Gandau</w>
             <pc type="other">.</pc>
             <lb n="50"/>
             <w lemma="quodlib" pos="DET" msd="Case=Nom|Gender=Neut|Number=Sing" n="23" head="25" deprel="orphan">quodlib</w>

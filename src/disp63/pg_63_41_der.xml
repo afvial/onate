@@ -807,7 +807,14 @@
         </expan>
       </choice>
       <lb n="27"/>
-      <w lemma="superfluus" lemmaRef="lila:126816" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Plur" n="17" head="15" deprel="conj">superfluos</w>
+      <choice>
+        <orig>
+          <w lemma="superfluus" lemmaRef="lila:126816" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Plur" n="17" head="15" deprel="conj">ſuperfluos</w>
+        </orig>
+        <reg>
+          <w lemma="superfluus" lemmaRef="lila:126816" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Plur" n="17" head="15" deprel="conj">superfluos</w>
+        </reg>
+      </choice>
       <pc type="colon">:</pc>
       <w lemma="ergo" pos="CCONJ" n="18" head="26" deprel="discourse">ergo</w>
       <w lemma="etiam" lemmaRef="lila:101554" pos="ADV" n="19" head="26" deprel="advmod:emph">etiam</w>
@@ -1522,10 +1529,10 @@
       </choice>
       <choice>
         <orig>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="13" head="12" deprel="nsubj:pass">circumſtantijs</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="13" head="12" deprel="nsubj:pass">circumſtantijs</w>
         </orig>
         <reg>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="13" head="12" deprel="nsubj:pass">circumstantijs</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="13" head="12" deprel="nsubj:pass">circumstantijs</w>
         </reg>
       </choice>
       <pc type="comma">,</pc>
@@ -1617,10 +1624,10 @@
       <w lemma="hic" lemmaRef="lila:105455" pos="DET" msd="Case=Acc|Gender=Fem|Number=Plur" n="13" head="14" deprel="det">has</w>
       <choice>
         <orig>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Plur" n="14" head="15" deprel="obj">circumſtantias</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Plur" manual="1" n="14" head="15" deprel="obj">circumſtantias</w>
         </orig>
         <reg>
-          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Plur" n="14" head="15" deprel="obj">circumstantias</w>
+          <w lemma="circumstantia" lemmaRef="lila:97769" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Plur" manual="1" n="14" head="15" deprel="obj">circumstantias</w>
         </reg>
       </choice>
       <w lemma="attendo" lemmaRef="lila:90532" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act" n="15" head="20" deprel="xcomp">atten<lb break="no" n="54"/>dere</w>

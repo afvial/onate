@@ -60,6 +60,10 @@ MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=S
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
 
+# Effroenata: LatinCy lo toma por nombre propio por la mayúscula.
+for _f in ("Effroenata", "effroenata", "Effroenatam", "effroenatam"):
+    MANUAL_LEMMA[_f] = ("effroenatus", "ADJ", None)
+
 # LatinCy lematiza mal circumstantia (circumsto, circumstantius…).
 # msd=None: se conserva la morfología que da el modelo.
 for _f in ("circumstantia", "circumstantiae", "circumstantiam", "circumstantiis",

@@ -265,7 +265,7 @@
           <w lemma="consulo" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="66" head="59" deprel="acl:relcl">consulunt</w>
         </reg>
       </choice>
-      <w lemma="conuentionalis" lemmaRef="lila:96429" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing" n="67" head="55" deprel="obj">conuentionale</w>
+      <w lemma="conuentionalis" lemmaRef="lila:96429" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing" manual="1" n="67" head="55" deprel="obj">conuentionale</w>
       <pc type="other">.</pc>
       <w lemma="tamen" lemmaRef="lila:127607" pos="ADV" n="68" head="74" deprel="discourse">Tamen</w>
       <lb n="12"/>
@@ -302,7 +302,14 @@
         </reg>
       </choice>
       <w lemma="omnis" lemmaRef="lila:114954" pos="DET" msd="Case=Nom|Gender=Neut|Number=Plur" n="85" head="84" deprel="det">omnia</w>
-      <w lemma="perpendo" lemmaRef="lila:117183" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Part|Voice=Pass" n="86" head="151" deprel="advcl">perpensa</w>
+      <choice>
+        <orig>
+          <w lemma="perpendo" lemmaRef="lila:117183" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Part|Voice=Pass" n="86" head="151" deprel="advcl">perpenſa</w>
+        </orig>
+        <reg>
+          <w lemma="perpendo" lemmaRef="lila:117183" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Part|Voice=Pass" n="86" head="151" deprel="advcl">perpensa</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <lb n="15"/>
       <choice>
