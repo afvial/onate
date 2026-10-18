@@ -43,6 +43,15 @@ _STAGING_TO_DISPLAY = str.maketrans({"ô": "ō"})
 def _to_display(t: str) -> str:
     return t.translate(_STAGING_TO_DISPLAY)
 
+def _diplomatic_sic(text: str) -> str:
+    """Forma diplomática de la errata impresa (<sic>): s larga y æ/œ."""
+    ls = LONG_S.get(text.lower()) or _apply_long_s_roots(text) or text
+    if text[:1].isupper():
+        ls = ls[:1].upper() + ls[1:]
+    return (ls.replace("ae", "æ").replace("Ae", "Æ")
+              .replace("oe", "œ").replace("Oe", "Œ"))
+
+
 def _expand_macrons(text: str) -> str | None:
     """
     Expande macrones según la LETRA que sigue inmediatamente (no solo
@@ -321,13 +330,13 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
 
     def _make_w_lb(parent_el, w_left, w_right):
         w = etree.SubElement(parent_el, f"{{{TEI_NS}}}w")
-        w.text = w_left
+        w.text = _to_display(w_left)
         lb = etree.SubElement(w, f"{{{TEI_NS}}}lb")
         lb.set("break", "no")
         if no_hyphen:
             lb.set("rend", "no-hyphen")
         if lb_n: lb.set("n", str(lb_n))
-        lb.tail = w_right
+        lb.tail = _to_display(w_right)
         return w
 
     if expansion:
@@ -466,7 +475,7 @@ def emit_token(parent, tok: dict):
         choice  = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
         sic_el  = etree.SubElement(choice, f"{{{TEI_NS}}}sic")
         w_sic   = etree.SubElement(sic_el, f"{{{TEI_NS}}}w")
-        w_sic.text = tok["text"]
+        w_sic.text = _diplomatic_sic(tok["text"])
         corr_text = tok.get("expansion") or ""
         corr_el = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
         # Si la forma corregida tiene variante diplomatica propia (s larga,
