@@ -3857,6 +3857,12 @@ lex:circumstao_VERB
     lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "circumstantia"@la ] .
 
+lex:circumsto_NOUN
+    a ontolex:Word ;
+    rdfs:label "circumsto"@la ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "circumstantiae"@la ] .
+
 lex:circunstantia_NOUN
     a ontolex:Word ;
     rdfs:label "circunstantia"@la ;
@@ -3872,12 +3878,6 @@ lex:circunstantiarum_NOUN
     rdfs:label "circunstantiarum"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "circunstantiarum"@la ] .
-
-lex:circustantia_NOUN
-    a ontolex:Word ;
-    rdfs:label "circustantia"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "circustantiae"@la ] .
 
 lex:cis_ADP
     a ontolex:Word ;
@@ -5960,11 +5960,11 @@ lex:efficio_VERB
     ontolex:canonicalForm lilalem:100627 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "efficit"@la ] .
 
-lex:effreno_ADJ
+lex:effraenatus_ADJ
     a ontolex:Word ;
-    rdfs:label "effreno"@la ;
+    rdfs:label "effraenatus"@la ;
     lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "effrenatam"@la ] .
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "effraenatam"@la ] .
 
 lex:egeo_VERB
     a ontolex:Word ;
@@ -11906,13 +11906,6 @@ lex:primum_ADV
     ontolex:canonicalForm lilahyp:35374 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "primum"@la ] .
 
-lex:primum_NOUN
-    a ontolex:Word ;
-    rdfs:label "primum"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:canonicalForm lilalem:116338 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "primum"@la ] .
-
 lex:primus_ADJ
     a ontolex:Word ;
     rdfs:label "primus"@la ;
@@ -12249,10 +12242,10 @@ lex:prudens_ADJ
         [ a ontolex:Form ; ontolex:writtenRep "prudentivm"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "prudentum"@la ] .
 
-lex:prudentus_ADJ
+lex:prudentus_VERB
     a ontolex:Word ;
     rdfs:label "prudentus"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
+    lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "prudentum"@la ] .
 
 lex:prum_X

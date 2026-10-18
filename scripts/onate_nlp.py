@@ -59,6 +59,16 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+
+# LatinCy lematiza mal circumstantia (circumsto, circumstantius…).
+# msd=None: se conserva la morfología que da el modelo.
+for _f in ("circumstantia", "circumstantiae", "circumstantiam", "circumstantiis",
+           "circumstantijs", "circumstantias", "circumstantiarum"):
+    MANUAL_LEMMA[_f] = ("circumstantia", "NOUN", None)
+# conuentionalis (adj. escolástico, LatinCy lo toma por sustantivo)
+for _f in ("conuentionalis", "conuentionale", "conuentionali", "conuentionalem",
+           "conuentionales", "conuentionalia", "conuentionalium", "conuentionalibus"):
+    MANUAL_LEMMA[_f] = ("conuentionalis", "ADJ", None)
 TEI_NS  = "http://www.tei-c.org/ns/1.0"
 TEI     = f"{{{TEI_NS}}}"
 
@@ -368,6 +378,9 @@ def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool
             lemma, pos, msd = norm, "NUM", ""
         elif is_manual:
             lemma, pos, msd = MANUAL_LEMMA[norm]
+            if msd is None:   # conservar la morfología de LatinCy
+                _t = tok if tok is not None else (doc[0] if doc else None)
+                msd = morph_to_msd(_t) if _t is not None else ""
         else:
             if tok is None:
                 if not doc:
