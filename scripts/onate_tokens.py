@@ -24,7 +24,7 @@ ABBREV_WITH_DOT = {
     "concl.", "coroll.", "obs.", "def.", "theor.", "prol.",
     # Partes de obra
     "p.", "pp.", "tom.", "vol.", "pars.", "part.",
-    "var.", "verb.", "sum.", "inst.", "instit.", "§.",
+    "var.", "verb.", "sum.", "summ.", "inst.", "instit.", "§.",
     "gloss.",
     # Abreviaturas de autores clásicos y patrísticos
     "Arist.", "Aristot.", "Aug.", "August.", "Th.", "Thom.",
@@ -137,6 +137,7 @@ ABBREV_EXPAN = {
     "inst.":      "institutio",
     "instit.":    "institutio",
     "sum.":       "summa",
+    "summ.":      "summa",
     "var.":       "variarum",
     "verb.":      "verbo",
     # Términos jurídico-escolásticos
@@ -273,7 +274,7 @@ BIBL_INTRA = {
     "tract.", "tit.", "dub.", "punct.", "sect.", "par.", "prop.",
     "concl.", "coroll.", "obs.", "def.", "theor.", "prol.",
     "p.", "pp.", "tom.", "vol.", "pars.", "part.",
-    "var.", "verb.", "sum.", "inst.", "instit.",
+    "var.", "verb.", "sum.", "summ.", "inst.", "instit.",
     "ethic.", "mor.", "restit.", "restitut.",
     "iust.", "contract.", "contractib.", "empt.", "emptione.",
     "peccat.", "pecca.", "septem.", "trinitate.",
@@ -697,6 +698,7 @@ LONG_S = {
     "arist.":              "Ariſt.",
     "aristot.":            "Ariſtot.",
     "sum.":               "ſum.",
+    "summ.":              "ſumm.",
     "Sum.":               "Sum.",
     "restit.":            "reſtit.",
     "Restit.":            "Reſtit.",
