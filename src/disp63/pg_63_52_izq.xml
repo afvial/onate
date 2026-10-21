@@ -1390,7 +1390,7 @@
           <w>C.</w>
         </abbr>
         <expan>
-          <w lemma="codexIustinianus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="367" head="17" deprel="nsubj">Codex Iustinianus</w>
+          <w lemma="codexIustinianus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="367" head="1" deprel="conj">Codex Iustinianus</w>
         </expan>
       </choice>
       <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="368" head="369" deprel="case">de</w>
@@ -1425,17 +1425,23 @@
           <w>fin.</w>
         </abbr>
         <expan>
-          <w lemma="infen" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="373" head="367" deprel="orphan">in fine</w>
+          <w lemma="infen" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="373" head="367" deprel="nmod">in fine</w>
         </expan>
       </choice>
-      <w lemma="Conrad" pos="PROPN" msd="Case=Gen|Gender=Fem|Number=Sing" n="374" head="373" deprel="nmod">Con<lb break="no" n="58"/>rad</w>
-      <pc type="other">.</pc>
+      <choice>
+        <abbr>
+          <w>Con<lb break="no" n="58"/>rad.</w>
+        </abbr>
+        <expan>
+          <w lemma="Conradus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="374" head="367" deprel="orphan">Conradus</w>
+        </expan>
+      </choice>
       <choice>
         <abbr>
           <w>q.</w>
         </abbr>
         <expan>
-          <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="375" head="17" deprel="parataxis">quaestio</w>
+          <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="375" head="17" deprel="conj">quaestio</w>
         </expan>
       </choice>
       <w lemma="57" pos="NUM" n="376" head="375" deprel="nummod">57</w>

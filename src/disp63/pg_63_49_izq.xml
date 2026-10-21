@@ -215,7 +215,7 @@
       <w lemma="ille" lemmaRef="lila:106221" pos="DET" msd="Case=Abl|Gender=Masc|Number=Sing" n="62" head="63" deprel="det">illo</w>
       <choice>
         <orig>
-          <w lemma="praesuppono" lemmaRef="lila:131408" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass" n="63" head="64" deprel="obl">praesupp<lb break="no" n="12"/>oſito</w>
+          <w lemma="praesuppono" lemmaRef="lila:131408" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass" n="63" head="64" deprel="obl">praeſupp<lb break="no" n="12"/>oſito</w>
         </orig>
         <reg>
           <w lemma="praesuppono" lemmaRef="lila:131408" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass" n="63" head="64" deprel="obl">praesupposito</w>
@@ -809,7 +809,14 @@
       </choice>
       <w lemma="348" pos="NUM" n="186" head="184" deprel="conj">348</w>
       <pc type="other">.</pc>
-      <w lemma="uers" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="187" head="184" deprel="fixed">vers</w>
+      <choice>
+        <orig>
+          <w lemma="uers" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="187" head="184" deprel="fixed">verſ</w>
+        </orig>
+        <reg>
+          <w lemma="uers" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="187" head="184" deprel="fixed">vers</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <lb n="26"/>
       <choice>
@@ -1496,7 +1503,14 @@
       </choice>
       <w lemma="3" pos="NUM" n="368" head="369" deprel="nummod">3</w>
       <pc type="other">.</pc>
-      <w lemma="uers" pos="ADJ" n="369" head="373" deprel="nmod">vers</w>
+      <choice>
+        <orig>
+          <w lemma="uers" pos="ADJ" n="369" head="373" deprel="nmod">verſ</w>
+        </orig>
+        <reg>
+          <w lemma="uers" pos="ADJ" n="369" head="373" deprel="nmod">vers</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="12" pos="NUM" n="370" head="369" deprel="nummod">12</w>
       <pc type="other">.</pc>

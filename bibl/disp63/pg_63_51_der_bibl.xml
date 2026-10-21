@@ -19,7 +19,14 @@
       <w lemma="quo" pos="ADV" n="6" head="7" deprel="advcl">quo</w>
       <lb n="2"/>
       <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin" n="7" head="8" deprel="aux">erat</w>
-      <w lemma="transfero" lemmaRef="lila:128593" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act" n="8" head="3" deprel="acl">translaturus</w>
+      <choice>
+        <orig>
+          <w lemma="transfero" lemmaRef="lila:128593" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act" n="8" head="3" deprel="acl">tranſlaturus</w>
+        </orig>
+        <reg>
+          <w lemma="transfero" lemmaRef="lila:128593" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act" n="8" head="3" deprel="acl">translaturus</w>
+        </reg>
+      </choice>
       <w lemma="merx" lemmaRef="lila:112157" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="9" head="8" deprel="nsubj">merces</w>
       <pc type="comma">,</pc>
       <w lemma="deduco" lemmaRef="lila:98210" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="10" head="1" deprel="advcl:abs">deductis</w>
@@ -348,7 +355,14 @@
       </choice>
       <w lemma="1" pos="NUM" n="91" head="90" deprel="nummod">1</w>
       <pc type="other">.</pc>
-      <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="92" head="91" deprel="flat">vers</w>
+      <choice>
+        <orig>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="92" head="91" deprel="flat">verſ</w>
+        </orig>
+        <reg>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="92" head="91" deprel="flat">vers</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="certus" lemmaRef="lila:93581" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Sing" n="93" head="96" deprel="xcomp">certum</w>
       <pc type="comma">,</pc>
@@ -869,7 +883,14 @@
       </choice>
       <w lemma="20" pos="NUM" n="236" head="235" deprel="nummod">20</w>
       <pc type="other">.</pc>
-      <w lemma="uers" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="237" head="235" deprel="nmod">vers</w>
+      <choice>
+        <orig>
+          <w lemma="uers" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="237" head="235" deprel="nmod">verſ</w>
+        </orig>
+        <reg>
+          <w lemma="uers" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="237" head="235" deprel="nmod">vers</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="hinc" lemmaRef="lila:105454" pos="ADV" n="238" head="239" deprel="advmod:lmod">hinc</w>
       <choice>

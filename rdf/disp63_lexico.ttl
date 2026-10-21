@@ -987,12 +987,6 @@ lex:Augustinus_PROPN
     ontolex:canonicalForm lilalem:65 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "augustinus"@la ] .
 
-lex:Azor_PROPN
-    a ontolex:Word ;
-    rdfs:label "Azor"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "azor"@la ] .
-
 lex:Azorius_PROPN
     a ontolex:Word ;
     rdfs:label "Azorius"@la ;
@@ -1574,12 +1568,6 @@ lex:Medina_PROPN
     rdfs:label "Medina"@la ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "medina"@la ] .
-
-lex:Medis_PROPN
-    a ontolex:Word ;
-    rdfs:label "Medis"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "medin"@la ] .
 
 lex:Mercad_PROPN
     a ontolex:Word ;
@@ -2569,7 +2557,8 @@ lex:aestimo_VERB
         [ a ontolex:Form ; ontolex:writtenRep "aestimata"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "aestimatur"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "aestimes"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "aestimetur"@la ] .
+        [ a ontolex:Form ; ontolex:writtenRep "aestimetur"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "æstimandum"@la ] .
 
 lex:affabre_ADV
     a ontolex:Word ;
@@ -4954,12 +4943,6 @@ lex:cus_DET
     lexinfo:partOfSpeech lexinfo:determiner ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "corum"@la ] .
 
-lex:cx_CCONJ
-    a ontolex:Word ;
-    rdfs:label "cx"@la ;
-    lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "cx"@la ] .
-
 lex:dD_NUM
     a ontolex:Word ;
     rdfs:label "dD"@la ;
@@ -5830,12 +5813,6 @@ lex:dupliciter_ADV
     ontolex:canonicalForm lilahyp:13383 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "dupliciter"@la ] .
 
-lex:dustria_NOUN
-    a ontolex:Word ;
-    rdfs:label "dustria"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "dustriam"@la ] .
-
 lex:e_PROPN
     a ontolex:Word ;
     rdfs:label "e"@la ;
@@ -6191,13 +6168,6 @@ lex:et_CCONJ
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     ontolex:canonicalForm lilalem:101542 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "et"@la ] .
-
-lex:ethica_NOUN
-    a ontolex:Word ;
-    rdfs:label "ethica"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:canonicalForm lilalem:101546 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ethica"@la ] .
 
 lex:etiam_ADV
     a ontolex:Word ;
@@ -6659,12 +6629,6 @@ lex:falco_NOUN
         [ a ontolex:Form ; ontolex:writtenRep "falcones"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "falconibus"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "falconis"@la ] .
-
-lex:faleid_ADJ
-    a ontolex:Word ;
-    rdfs:label "faleid"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "faleid"@la ] .
 
 lex:fallax_ADJ
     a ontolex:Word ;
@@ -9736,7 +9700,8 @@ lex:multus_ADJ
     lexinfo:partOfSpeech lexinfo:adjective ;
     ontolex:canonicalForm lilalem:112998 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "multi"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "multis"@la ] .
+        [ a ontolex:Form ; ontolex:writtenRep "multis"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "multorum"@la ] .
 
 lex:multus_ADV
     a ontolex:Word ;
@@ -12301,8 +12266,7 @@ lex:quaestio_VERB
     a ontolex:Word ;
     rdfs:label "quaestio"@la ;
     lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "qu"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "quaest"@la ] .
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "qu"@la ] .
 
 lex:quaestus_NOUN
     a ontolex:Word ;
@@ -14239,6 +14203,13 @@ lex:summa_ADJ
     lexinfo:partOfSpeech lexinfo:adjective ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "summa"@la ] .
 
+lex:summa_NOUN
+    a ontolex:Word ;
+    rdfs:label "summa"@la ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:126706 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "summa"@la ] .
+
 lex:summus_ADJ
     a ontolex:Word ;
     rdfs:label "summus"@la ;
@@ -15205,12 +15176,6 @@ lex:uendibilis_ADJ
         [ a ontolex:Form ; ontolex:writtenRep "vendibilibus"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "vendibilis"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "vendibilium"@la ] .
-
-lex:uendibisis_ADJ
-    a ontolex:Word ;
-    rdfs:label "uendibisis"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "vendibisis"@la ] .
 
 lex:uendico_VERB
     a ontolex:Word ;

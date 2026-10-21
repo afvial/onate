@@ -439,7 +439,14 @@
       <w lemma="hic" lemmaRef="lila:105455" pos="DET" msd="Case=Abl|Gender=Fem|Number=Sing" n="147" head="149" deprel="det">hac</w>
       <lb n="40"/>
       <w lemma="omnis" lemmaRef="lila:114954" pos="DET" msd="Case=Nom|Gender=Neut|Number=Plur" n="148" head="149" deprel="nsubj:pass">omnia</w>
-      <w lemma="perpendo" lemmaRef="lila:117183" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Part|Voice=Pass" n="149" head="47" deprel="conj">perpensa</w>
+      <choice>
+        <orig>
+          <w lemma="perpendo" lemmaRef="lila:117183" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Part|Voice=Pass" n="149" head="47" deprel="conj">perpenſa</w>
+        </orig>
+        <reg>
+          <w lemma="perpendo" lemmaRef="lila:117183" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Part|Voice=Pass" n="149" head="47" deprel="conj">perpensa</w>
+        </reg>
+      </choice>
       <choice>
         <orig>
           <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin" n="150" head="149" deprel="aux:pass">ſunt</w>
@@ -604,7 +611,14 @@
         </reg>
       </choice>
       <w lemma="inuicem" lemmaRef="lila:109437" pos="ADV" n="199" head="200" deprel="advcl">inuicem</w>
-      <w lemma="aduersor" lemmaRef="lila:87677" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="200" head="188" deprel="acl:relcl">aduersantur</w>
+      <choice>
+        <orig>
+          <w lemma="aduersor" lemmaRef="lila:87677" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="200" head="188" deprel="acl:relcl">aduerſantur</w>
+        </orig>
+        <reg>
+          <w lemma="aduersor" lemmaRef="lila:87677" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="200" head="188" deprel="acl:relcl">aduersantur</w>
+        </reg>
+      </choice>
       <w lemma="alius" lemmaRef="lila:88481" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="201" head="202" deprel="det">alijs</w>
       <w lemma="augeo" lemmaRef="lila:90673" pos="VERB" msd="Aspect=Imp|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" n="202" head="200" deprel="conj">augentibus</w>
       <lb n="51"/>

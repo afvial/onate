@@ -107,7 +107,14 @@
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="30" head="31" deprel="case">in</w>
       <w lemma="deus" lemmaRef="lila:99132" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" n="31" head="36" deprel="obl">di</w>
       <lb n="6"/>
-      <w lemma="uerto" lemmaRef="lila:129966" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="32" head="33" deprel="amod">uersis</w>
+      <choice>
+        <orig>
+          <w lemma="uerto" lemmaRef="lila:129966" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="32" head="33" deprel="amod">uerſis</w>
+        </orig>
+        <reg>
+          <w lemma="uerto" lemmaRef="lila:129966" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="32" head="33" deprel="amod">uersis</w>
+        </reg>
+      </choice>
       <w lemma="locus" lemmaRef="lila:110019" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Plur" n="33" head="36" deprel="obl">locis</w>
       <pc type="comma">,</pc>
       <choice>
@@ -712,7 +719,14 @@
       </choice>
       <w lemma="347" pos="NUM" n="161" head="159" deprel="conj">347</w>
       <pc type="other">.</pc>
-      <w lemma="uers" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" n="162" head="1" deprel="obj">vers</w>
+      <choice>
+        <orig>
+          <w lemma="uers" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" n="162" head="1" deprel="obj">verſ</w>
+        </orig>
+        <reg>
+          <w lemma="uers" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" n="162" head="1" deprel="obj">vers</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="quidam" lemmaRef="lila:121313" pos="DET" msd="Case=Acc|Gender=Neut|Number=Sing" n="163" head="162" deprel="det">quoddam</w>
       <w lemma="alius" lemmaRef="lila:88481" pos="DET" msd="Case=Acc|Gender=Neut|Number=Sing" n="164" head="162" deprel="det">aliud</w>

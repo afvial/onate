@@ -50,7 +50,14 @@
       <w lemma="dominium" lemmaRef="lila:100057" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="14" head="17" deprel="obj">dominium</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="15" head="16" deprel="case">in</w>
       <w lemma="emptor" lemmaRef="lila:101043" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing" n="16" head="17" deprel="obl">emptorem</w>
-      <w lemma="transfero" lemmaRef="lila:128593" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="17" head="8" deprel="conj">trans<lb break="no" n="5"/>fert</w>
+      <choice>
+        <orig>
+          <w lemma="transfero" lemmaRef="lila:128593" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="17" head="8" deprel="conj">tranſ<lb break="no" n="5"/>fert</w>
+        </orig>
+        <reg>
+          <w lemma="transfero" lemmaRef="lila:128593" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="17" head="8" deprel="conj">transfert</w>
+        </reg>
+      </choice>
       <pc type="semicolon">;</pc>
       <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="18" head="19" deprel="case">ex</w>
       <w lemma="pars" lemmaRef="lila:116084" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="19" head="17" deprel="obl">parte</w>
@@ -65,7 +72,14 @@
       <w lemma="pariter" lemmaRef="lilah:30976" pos="ADV" n="26" head="29" deprel="advmod">pariter</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="27" head="28" deprel="case">in</w>
       <w lemma="uenditor" lemmaRef="lila:129755" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing" n="28" head="29" deprel="obl" manual="1">venditorem</w>
-      <w lemma="transfundo" lemmaRef="lila:128621" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="29" head="30" deprel="advcl">transfundit</w>
+      <choice>
+        <orig>
+          <w lemma="transfundo" lemmaRef="lila:128621" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="29" head="30" deprel="advcl">tranſfundit</w>
+        </orig>
+        <reg>
+          <w lemma="transfundo" lemmaRef="lila:128621" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="29" head="30" deprel="advcl">transfundit</w>
+        </reg>
+      </choice>
       <pc type="colon">:</pc>
       <w lemma="dico" lemmaRef="lila:99302" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Plur|Person=1|Tense=Past|VerbForm=Fin|Voice=Act" n="30" head="5" deprel="conj">diximus</w>
       <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="31" head="32" deprel="case">de</w>

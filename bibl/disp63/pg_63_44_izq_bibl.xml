@@ -411,7 +411,14 @@
       <lb n="20"/>
       <w lemma="348" pos="NUM" n="123" head="122" deprel="amod">348</w>
       <pc type="other">.</pc>
-      <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="124" head="122" deprel="amod">vers</w>
+      <choice>
+        <orig>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="124" head="122" deprel="amod">verſ</w>
+        </orig>
+        <reg>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="124" head="122" deprel="amod">vers</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <choice>
         <orig>
@@ -1043,7 +1050,14 @@
       </choice>
       <w lemma="348" pos="NUM" n="279" head="278" deprel="nummod">348</w>
       <pc type="other">.</pc>
-      <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="280" head="278" deprel="amod">vers</w>
+      <choice>
+        <orig>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="280" head="278" deprel="amod">verſ</w>
+        </orig>
+        <reg>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="280" head="278" deprel="amod">vers</w>
+        </reg>
+      </choice>
       <choice>
         <orig>
           <w lemma="obseruo" lemmaRef="lila:114414" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act" n="281" head="7" deprel="conj">obſerua</w>

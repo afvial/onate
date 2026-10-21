@@ -84,7 +84,14 @@
       </choice>
       <w lemma="32" pos="NUM" n="13" head="9" deprel="nummod">32</w>
       <pc type="other">.</pc>
-      <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="14" head="0" deprel="ROOT">vers</w>
+      <choice>
+        <orig>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="14" head="0" deprel="ROOT">verſ</w>
+        </orig>
+        <reg>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="14" head="0" deprel="ROOT">vers</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="sin" lemmaRef="lila:124676" pos="SCONJ" n="15" head="18" deprel="mark">sin</w>
       <pc type="other">.</pc>
@@ -542,9 +549,23 @@
       <w lemma="348" pos="NUM" n="176" head="175" deprel="nummod">348</w>
       <pc type="other">.</pc>
       <lb n="34"/>
-      <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="177" head="178" deprel="amod">vers</w>
+      <choice>
+        <orig>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="177" head="178" deprel="amod">verſ</w>
+        </orig>
+        <reg>
+          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="177" head="178" deprel="amod">vers</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
-      <w lemma="translatio" lemmaRef="lila:128642" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="178" head="121" deprel="conj">translatio</w>
+      <choice>
+        <orig>
+          <w lemma="translatio" lemmaRef="lila:128642" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="178" head="121" deprel="conj">tranſlatio</w>
+        </orig>
+        <reg>
+          <w lemma="translatio" lemmaRef="lila:128642" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="178" head="121" deprel="conj">translatio</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <choice>
         <abbr>

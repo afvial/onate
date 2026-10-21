@@ -202,7 +202,14 @@
       <w lemma="merces" lemmaRef="lila:112100" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="84" head="87" deprel="obj">merces</w>
       <w lemma="alius" pos="ADV" n="85" head="84" deprel="advmod">aliò</w>
       <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin" n="86" head="87" deprel="aux">erat</w>
-      <w lemma="transfero" lemmaRef="lila:128593" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act" n="87" head="82" deprel="acl:relcl">translaturus</w>
+      <choice>
+        <orig>
+          <w lemma="transfero" lemmaRef="lila:128593" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act" n="87" head="82" deprel="acl:relcl">tranſlaturus</w>
+        </orig>
+        <reg>
+          <w lemma="transfero" lemmaRef="lila:128593" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act" n="87" head="82" deprel="acl:relcl">translaturus</w>
+        </reg>
+      </choice>
       <lb n="20"/>
       <w lemma="ille" lemmaRef="lila:106221" pos="DET" msd="Case=Gen|Gender=Fem|Number=Sing" n="88" head="89" deprel="det">illius</w>
       <w lemma="locus" lemmaRef="lila:110019" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" n="89" head="90" deprel="nmod">loci</w>

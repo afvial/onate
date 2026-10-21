@@ -841,7 +841,14 @@
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="265" head="266" deprel="case">in</w>
       <w lemma="emo" lemmaRef="lila:100998" pos="VERB" msd="Aspect=Imp|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="266" head="267" deprel="obl">ementem</w>
       <lb n="48"/>
-      <w lemma="transfundo" lemmaRef="lila:128621" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="267" head="259" deprel="conj">transfundens</w>
+      <choice>
+        <orig>
+          <w lemma="transfundo" lemmaRef="lila:128621" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="267" head="259" deprel="conj">tranſfundens</w>
+        </orig>
+        <reg>
+          <w lemma="transfundo" lemmaRef="lila:128621" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="267" head="259" deprel="conj">transfundens</w>
+        </reg>
+      </choice>
       <pc type="semicolon">;</pc>
       <w lemma="unde" lemmaRef="lila:130603" pos="SCONJ" n="268" head="251" deprel="advmod:lmod">vnde</w>
       <w lemma="sicut" lemmaRef="lila:124723" pos="SCONJ" n="269" head="275" deprel="mark">sicut</w>
