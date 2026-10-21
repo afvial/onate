@@ -20,9 +20,46 @@ from onate_bibl import join_split_words, group_bibl_tokens, group_legal_tokens
 # Se actualiza por bloque antes de emitir sus tokens.
 _LONG_S_OVERRIDES: dict = {}   # palabra.lower() → True (forzar) | False (suprimir)
 
+_LS_COUNT: dict = {}           # apariciones ya emitidas de cada palabra marcada
+
 def set_long_s_overrides(overrides: dict) -> None:
-    global _LONG_S_OVERRIDES
+    global _LONG_S_OVERRIDES, _LS_COUNT
     _LONG_S_OVERRIDES = overrides or {}
+    _LS_COUNT = {}
+
+
+def _ls_override_for(key: str):
+    """Override de s larga para ESTA aparición de key (o None); avanza el contador.
+    Formato nuevo: {clave: {n: valor}}; formato antiguo (por párrafo): {clave: valor}."""
+    entry = _LONG_S_OVERRIDES.get(key)
+    if entry is None:
+        return None
+    if not isinstance(entry, dict):
+        return entry
+    n = _LS_COUNT.get(key, 0)
+    _LS_COUNT[key] = n + 1
+    return entry.get(n, entry.get("all"))
+
+
+def _ls_override_peek(key: str):
+    """Override válido para todo el párrafo (palabras partidas): no avanza el contador."""
+    entry = _LONG_S_OVERRIDES.get(key)
+    return entry.get("all") if isinstance(entry, dict) else entry
+
+
+def _collect_ls_overrides(lines: list) -> dict:
+    """Convierte las marcas por línea en {clave: {n_en_el_párrafo: valor}}."""
+    import re as _re
+    out, seen = {}, {}
+    for line in lines:
+        for k, v in line.get("long_s_overrides", {}).items():   # formato antiguo
+            out[k] = {"all": v}
+        for key, val, occ in line.get("long_s_marks", []):
+            out.setdefault(key, {})[seen.get(key.rstrip("."), 0) + occ] = val
+        for w in _re.findall(r"\w+", line.get("text", "")):
+            w = w.lower()
+            seen[w] = seen.get(w, 0) + 1
+    return out
 
 # ── Mapa de macrones por posición
 # Final → sustituye vocal+m; medial → sustituye vocal+n
@@ -118,7 +155,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
 
     # s larga: lookup en LONG_S (case-insensitive, preserva mayúscula inicial)
     long_s_orig = None
-    _ls_override = _LONG_S_OVERRIDES.get(text.lower())  # True=forzar, False=suprimir, str=forma exacta
+    _ls_override = _ls_override_for(text.lower().replace('\u2060', ''))  # True=forzar, False=suprimir, str=forma exacta
     if isinstance(_ls_override, str):
         orig_form = _ls_override
         if text and text.isupper():
@@ -295,7 +332,7 @@ def apply_long_s_to_split(left: str, right: str):
     full = left + right
     key = full.lower()
     # Respetar override [-palabra] del staging
-    if _LONG_S_OVERRIDES.get(key) is False:
+    if _ls_override_peek(key) is False:
         return None, None
     if key in LONG_S:
         orig_full = LONG_S[key]
@@ -991,10 +1028,7 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
     for pi, para in enumerate(paragraphs):
         p_el      = etree.SubElement(parent, f"{{{TEI_NS}}}p")
         # Activar overrides de s larga para este párrafo
-        combined_overrides: dict = {}
-        for line in para:
-            combined_overrides.update(line.get("long_s_overrides", {}))
-        set_long_s_overrides(combined_overrides)
+        set_long_s_overrides(_collect_ls_overrides(para))
         spans     = _flatten_spans(para)
         sentences = _group_spans_into_sentences(spans)
 
@@ -1215,10 +1249,7 @@ def _emit_summarium(parent, lines: list):
             content_lines[0] = _trim_line_by_offset(first_line, len(label_text))
 
         # Activar overrides de s larga para este item
-        _item_overrides = {}
-        for _l in item_lines:
-            _item_overrides.update(_l.get("long_s_overrides", {}))
-        set_long_s_overrides(_item_overrides)
+        set_long_s_overrides(_collect_ls_overrides(item_lines))
         # Emitir contenido del item respetando italic_spans
         s_el = etree.SubElement(item_el, f"{{{TEI_NS}}}s")
         _wrap_italic_spans(s_el, content_lines, emit_token)

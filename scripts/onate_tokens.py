@@ -791,7 +791,7 @@ LONG_S = {
     "sui":                "ſui",
     "Sui":                "Sui",
     "scutus":             "ſcutus",
-    "versatur":         "verſsatur",
+    "versatur":         "verſatur",
     # sanctus y derivados
     "sanctitatem":      "ſanctitatem",
     "sanctitas":        "ſanctitas",
@@ -1133,6 +1133,8 @@ LONG_S_ROOTS = [
     ("circunstant", "circunſtant"),
     ("circust",     "circuſt"),      # errata del impreso (circustantiæ)  # circunstantias, circunstantiarum…
     ("excus",       "excuſ"),         # excusari, excusat, excusatio…
+    ("supposit",    "ſuppoſit"),   # suppositione, suppositiones… (antes que posit)
+    ("suppon",      "ſuppon"),     # supponit, supponendum…
     ("posit",       "poſit"),          # posita, positum, positio… (excl. opp-, supp- ya en LONG_S)
     ("diuis",      "diuiſ"),       # diuisibilis, diuisibile, diuisibili… (indiuis- ya en LONG_S)
     ("salu",       "ſalu"),          # saluandorum, saluare, saluatio…
@@ -1204,7 +1206,11 @@ LONG_S_ROOTS = [
     ("frustr",     "fruſtr"),     # frustra, frustror, frustratur, frustratio, frustrari…
     ("praesent",   "præſent"),    # praesenti, repraesentatio, repraesentare…
     ("splend",     "ſplend"),      # splendidus, splendida, splendidae, splendorem…
-    ("vest",       "veſt"),        # vestis, vestimentum, vestitus, vestiarium…
+    ("vest",       "veſt"),
+    ("super",      "ſuper"),
+    ("trans",      "tranſ"),      # transportent, transferre… (general)
+    ("vers",       "verſ"),       # versus, versatur, conuersio… (general)
+    ("uers",       "uerſ"),       # grafía con u: conuersatio…      # superare, superat, insuper… (general, al final)        # vestis, vestimentum, vestitus, vestiarium…
 ]
 
 # ss medial → ſſ: aplica cuando ss no está en posición final absoluta
@@ -1462,6 +1468,43 @@ def parse_long_s_overrides(text: str):
     clean = _LONG_S_OVERRIDE_RE.sub(_replace, text).strip()
     return clean, overrides
 
+_LS_MARK_RE = re.compile(r'\[([+\-=])([^\]\s]+)\]')
+
+def parse_long_s_marks(text: str):
+    """
+    Quita las marcas de s larga del staging y las asocia a UNA aparición:
+      [-palabra]palabra   suprime la s larga solo en esa palabra
+      [+palabra]palabra   la fuerza
+      [=forma]palabra     forma diplomática exacta (ej. [=conſistit]consistit)
+    Devuelve (texto_limpio, [(clave, valor, n)]) donde n es el índice
+    (0, 1, 2…) de la aparición de la palabra dentro de la línea.
+    Se llama ANTES de parse_editorial_marks para no desplazar @ * //.
+    """
+    import sys as _sys
+    clean, marks, prev = "", [], 0
+    for m in _LS_MARK_RE.finditer(text):
+        clean += text[prev:m.start()]
+        sign, content = m.group(1), m.group(2)
+        if sign == "=":
+            key, val = content.lower().replace("ſ", "s"), content
+        else:
+            key, val = content.lower(), (sign == "+")
+        marks.append((key, val, len(clean)))
+        prev = m.end()
+    clean += text[prev:]
+    words = [(w.start(), w.group().lower()) for w in re.finditer(r"\w+", clean)]
+    out = []
+    for key, val, pos in marks:
+        base = key.rstrip(".")
+        if any(st >= pos and w == base for st, w in words):
+            occ = sum(1 for st, w in words if st < pos and w == base)
+            out.append((key, val, occ))
+        else:
+            print(f"  ⚠ marca de s larga sin la palabra detrás: [{key}] en «{clean}»",
+                  file=_sys.stderr)
+    return clean, out
+
+
 def extract_lines(page_xml_path: Path) -> list:
     """
     Lee líneas desde:
@@ -1480,6 +1523,7 @@ def extract_lines(page_xml_path: Path) -> list:
             text = (line_elem.text or "").strip()
             if not text:
                 continue
+            text, _ls_marks = parse_long_s_marks(text)
             soft_hyphen     = text.rstrip().endswith("¬")
             no_hyphen_break = text.rstrip().endswith("~")
             if soft_hyphen:
@@ -1496,6 +1540,7 @@ def extract_lines(page_xml_path: Path) -> list:
                 "summary_item_spans": [],
                 "italic_spans":       [],
                 "sic_spans":          sic_spans,
+                "long_s_marks":       _ls_marks,
                 "region_id":          "r1",
                 "reading_order":      i,
                 "soft_hyphen":        soft_hyphen,
