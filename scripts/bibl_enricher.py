@@ -125,9 +125,22 @@ WORKS = {
     "gabr":       ("bib_Biel_Sent",          "pers_Biel",           "high"),
     "manuel":     ("bib_Manuel_Sum",         "pers_Manuel",         "medium"),
     "faustus":    ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
+    "faust":      ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
+    "sfaustus":   ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
+    "sfaust":     ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
+    "sfaustinus": ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
+    "faustinus":  ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
     "sa":         ("bib_Sa_Aphorismi",       "pers_Sa",             "high"),
     "vasquez":    ("bib_Vasquez_Opusc",      "pers_Vasquez",        "medium"),
     "vasq":       ("bib_Vasquez_Opusc",      "pers_Vasquez",        "medium"),
+    "ledes":      ("bib_Ledesma_Summa",      "pers_Ledesma",       "high"),
+    "ledesm":     ("bib_Ledesma_Summa",      "pers_Ledesma",       "high"),
+    "richard":    ("bib_Mediavilla_Sent",    "pers_Mediavilla",    "high"),
+    "gandau":     ("bib_Gandavo_Quodl",      "pers_Gandavo",       "high"),
+    "cordub":     ("bib_Corduba_Casos",      "pers_Corduba",       "medium"),
+    "guttier":    ("bib_Gutierrez_Pract",    "pers_Gutierrez",     "high"),
+    "grassis":    ("bib_Grassis_Decis",      "pers_Grassis_inc",   "low"),
+    "philosophus":("bib_Arist_Ethica",       "pers_Aristoteles",   "high"),
     "manu":       ("bib_Manuel_Sum",         "pers_Manuel",        "medium"),
     # Formas no abreviadas (nombre completo en <w>)
     "dth":        ("bib_Aquinas_ST",         "pers_ThomasAquinas",  "high"),
@@ -201,7 +214,7 @@ UNIT_MAP = {
 
 def normalize_key(text: str) -> str:
     """Elimina puntuación, diacríticos y pasa a minúsculas."""
-    text = text.strip().lower()
+    text = text.strip().lower().replace('ſ', 's')
     text = ''.join(c for c in unicodedata.normalize('NFD', text)
                    if unicodedata.category(c) != 'Mn')
     text = re.sub(r'[^a-z0-9]', '', text)
@@ -234,6 +247,21 @@ def get_author_candidates(bibl_elem) -> list:
     """
     candidates = []
 
+    # 0. Primera palabra diplomática que no sea honorífico (S. Fauſtus → faustus),
+    #    aunque esté dentro de <choice><orig> por la s larga. Solo si es una
+    #    clave exacta de WORKS, para no introducir coincidencias por prefijo.
+    _NS = "{http://www.tei-c.org/ns/1.0}"
+    _HONOR = {"s", "d", "b", "v", "p", "fr", "r", "m"}
+    for _w in bibl_elem.iter(_NS + "w"):
+        if any(a.tag in (_NS + "reg", _NS + "expan", _NS + "corr") for a in _w.iterancestors()):
+            continue
+        _t = get_text_content(_w).rstrip('.').lower().replace('ſ', 's')
+        if not _t or _t in _HONOR:
+            continue
+        if _t in WORKS:
+            candidates.append(_t)
+        break
+
     # 1. Pares de abbr consecutivos (p.ej. D. + Th. → D.Th.)
     abbrs = bibl_elem.findall(f".//{tag('abbr')}")
     abbr_texts = [get_text_content(a).rstrip('.') for a in abbrs]
@@ -243,7 +271,7 @@ def get_author_candidates(bibl_elem) -> list:
 
     # 2. Primera abbr que no sea estructural
     for abbr in abbrs:
-        txt = get_text_content(abbr).rstrip('.').lower()
+        txt = get_text_content(abbr).rstrip('.').lower().replace('ſ', 's')
         txt_norm = normalize_key(txt)
         if txt_norm not in STRUCTURAL_ABBRS:
             candidates.append(get_text_content(abbr))
@@ -288,12 +316,14 @@ def get_abbr_text(bibl_elem) -> str:
 
 def bibl_contains(bibl_elem, keyword: str) -> bool:
     """Comprueba si el texto completo del <bibl> contiene la palabra clave."""
-    full = get_text_content(bibl_elem).lower()
+    full = get_text_content(bibl_elem).lower().replace('ſ', 's')
     return keyword in full
 
 
 def apply_context_rules(key: str, bib_id: str, bibl_elem) -> str:
     """Aplica reglas contextuales para desambiguar."""
+    if bib_id == "bib_Aquinas_ST" and bibl_contains(bibl_elem, "malo"):
+        return "bib_Aquinas_DeMalo"       # qq. de malo, no la Summa
     for autor_key, context_word, alt_bib in CONTEXT_RULES:
         if autor_key == key and bibl_contains(bibl_elem, context_word):
             return alt_bib
@@ -352,13 +382,13 @@ def get_prev_abbr_unit(bibl_elem, w_elem) -> str:
         if child is w_elem:
             break
         if child.tag == tag('abbr'):
-            txt = get_text_content(child).rstrip('.').lower()
+            txt = get_text_content(child).rstrip('.').lower().replace('ſ', 's')
             if txt:
                 prev_token = txt
         elif child.tag == tag('w') and child.text:
             # Un <w> cuyo texto coincide con una clave de UNIT_MAP se trata
             # como token estructural (p.ej. «ad» en «ad primum»).
-            txt = child.text.strip().rstrip('.').lower()
+            txt = child.text.strip().rstrip('.').lower().replace('ſ', 's')
             if txt in UNIT_MAP:
                 prev_token = txt
     if prev_token:
@@ -400,7 +430,7 @@ def _is_author_choice(choice_elem) -> bool:
     w = abbr.find(tag('w'))
     if w is None:
         return False
-    txt = get_text_content(w).rstrip('.').lower()
+    txt = get_text_content(w).rstrip('.').lower().replace('ſ', 's')
     return normalize_key(txt) not in STRUCTURAL_ABBRS
 
 
@@ -812,6 +842,23 @@ def regularize_aquinas_parts(root) -> int:
     return n
 
 
+def fallback_by_title(root) -> int:
+    """<bibl> sin @corresp cuyo título identifica la obra aunque falte el autor
+    (p. ej. «lib. de Trinitate 3. c. 3.», tras citar a Agustín en el texto)."""
+    NS = "{http://www.tei-c.org/ns/1.0}"
+    RULES = [("trinitat", "bib_Aug_DeTrin")]
+    n = 0
+    for b in root.iter(NS + "bibl"):
+        if "corresp" in b.attrib:
+            continue
+        txt = "".join(b.itertext()).lower().replace("ſ", "s")
+        for needle, bib_id in RULES:
+            if needle in txt:
+                b.set("corresp", "#" + bib_id); b.set("cert", "medium"); n += 1
+                break
+    return n
+
+
 def process_file(input_path: Path, output_path: Path,
                  dry_run: bool = False, verbose: bool = True) -> list:
     
@@ -860,6 +907,7 @@ def process_file(input_path: Path, output_path: Path,
             print(f"  <cit> añadidos                 : {cit_added}")
 
     if not dry_run:
+        fallback_by_title(tree.getroot())
         n_parts = regularize_aquinas_parts(tree.getroot())
         if verbose and n_parts:
             print(f"  Partes de la Summa regularizadas: {n_parts}")
