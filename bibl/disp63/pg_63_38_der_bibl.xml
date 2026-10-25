@@ -982,12 +982,16 @@
             <pc type="comma">,</pc>
           </bibl>
         </cit>
-        <cit xml:id="cit_p38_der_noref_3">
-          <bibl>
-            <w lemma="Richard" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="14" head="5" deprel="nmod">Richard</w>
+        <cit xml:id="cit_p38_der_Mediavilla_Sent_3">
+          <bibl corresp="#bib_Mediavilla_Sent" cert="high">
+            <author ref="#pers_Mediavilla">
+              <w lemma="Richard" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="14" head="5" deprel="nmod">Richard</w>
+            </author>
             <pc type="other">.</pc>
             <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="15" head="16" deprel="case">in</w>
-            <w lemma="1" pos="NUM" n="16" head="17" deprel="obl">1</w>
+            <biblScope unit="sent">
+              <w lemma="1" pos="NUM" n="16" head="17" deprel="obl">1</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <orig>
@@ -998,7 +1002,9 @@
               </reg>
             </choice>
             <pc type="other">.</pc>
-            <w lemma="33" pos="NUM" n="18" head="17" deprel="nummod">33</w>
+            <biblScope unit="dist">
+              <w lemma="33" pos="NUM" n="18" head="17" deprel="nummod">33</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1008,7 +1014,9 @@
                 <w lemma="articulus" lemmaRef="lila:90117" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="19" head="2" deprel="obl">articulo</w>
               </expan>
             </choice>
-            <w lemma="1" pos="NUM" n="20" head="19" deprel="nummod">1</w>
+            <biblScope unit="articulus">
+              <w lemma="1" pos="NUM" n="20" head="19" deprel="nummod">1</w>
+            </biblScope>
             <pc type="other">.</pc>
           </bibl>
         </cit>
@@ -1020,9 +1028,11 @@
             <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="21" head="22" deprel="cc">et</w>
           </expan>
         </choice>
-        <cit xml:id="cit_p38_der_noref_4">
-          <bibl>
-            <w lemma="Gandau" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="22" head="19" deprel="conj">Gandau</w>
+        <cit xml:id="cit_p38_der_Gandavo_Quodl_4">
+          <bibl corresp="#bib_Gandavo_Quodl" cert="high">
+            <author ref="#pers_Gandavo">
+              <w lemma="Gandau" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="22" head="19" deprel="conj">Gandau</w>
+            </author>
             <pc type="other">.</pc>
             <lb n="50"/>
             <w lemma="quodlib" pos="DET" msd="Case=Nom|Gender=Neut|Number=Sing" n="23" head="25" deprel="orphan">quodlib</w>
@@ -1037,7 +1047,9 @@
                 <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="25" head="2" deprel="conj">quaestio</w>
               </expan>
             </choice>
-            <w lemma="40" pos="NUM" n="26" head="25" deprel="nummod">40</w>
+            <biblScope unit="quaestio">
+              <w lemma="40" pos="NUM" n="26" head="25" deprel="nummod">40</w>
+            </biblScope>
             <pc type="other">.</pc>
           </bibl>
         </cit>

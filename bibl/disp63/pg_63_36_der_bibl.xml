@@ -356,12 +356,8 @@
             <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="41" head="42" deprel="cc">et</w>
           </expan>
         </choice>
-        <cit xml:id="cit_p36_der_noref_6">
-          <bibl>
-            <w lemma="Doctores" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="42" head="38" deprel="conj">Doctores</w>
-            <w lemma="communiter" lemmaRef="lilah:7873" pos="ADV" n="43" head="37" deprel="advmod">commu<lb break="no" n="10"/>niter</w>
-          </bibl>
-        </cit>
+        <w lemma="Doctores" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="42" head="38" deprel="conj">Doctores</w>
+        <w lemma="communiter" lemmaRef="lilah:7873" pos="ADV" n="43" head="37" deprel="advmod">commu<lb break="no" n="10"/>niter</w>
       </hi>
       <pc type="semicolon">;</pc>
       <choice>
@@ -397,9 +393,11 @@
     </s>
     <s>
       <hi rend="italic">
-        <cit xml:id="cit_p36_der_noref_7">
-          <bibl>
-            <w lemma="Sextus" lemmaRef="lila:21508" pos="PROPN" n="1" head="2" deprel="orphan">S.</w>
+        <cit xml:id="cit_p36_der_Faustus_Empt_6">
+          <bibl corresp="#bib_Faustus_Empt" cert="low">
+            <author ref="#pers_Faustus_inc">
+              <w lemma="Sextus" lemmaRef="lila:21508" pos="PROPN" n="1" head="2" deprel="orphan">S.</w>
+            </author>
             <choice>
               <orig>
                 <w lemma="Faustinus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="2" head="0" deprel="ROOT">Fauſtinus</w>
@@ -418,7 +416,9 @@
                 <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="5" head="2" deprel="orphan">quaestio</w>
               </expan>
             </choice>
-            <w lemma="5" pos="NUM" n="6" head="7" deprel="nummod">5</w>
+            <biblScope unit="quaestio">
+              <w lemma="5" pos="NUM" n="6" head="7" deprel="nummod">5</w>
+            </biblScope>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -428,7 +428,9 @@
                 <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="7" head="2" deprel="orphan">numero</w>
               </expan>
             </choice>
-            <w lemma="7" pos="NUM" n="8" head="7" deprel="nummod">7</w>
+            <biblScope unit="n">
+              <w lemma="7" pos="NUM" n="8" head="7" deprel="nummod">7</w>
+            </biblScope>
             <pc type="other">.</pc>
             <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Nom|Gender=Masc|Number=Plur" n="9" head="13" deprel="nsubj">qui</w>
             <w lemma="bene" lemmaRef="lila:91473" pos="ADV" n="10" head="11" deprel="advmod">bene</w>
@@ -440,7 +442,9 @@
                 <w lemma="numero" lemmaRef="lila:113978" pos="ADV" n="11" head="13" deprel="advmod">numero</w>
               </expan>
             </choice>
-            <w lemma="7" pos="NUM" n="12" head="11" deprel="nummod">7</w>
+            <biblScope unit="n">
+              <w lemma="7" pos="NUM" n="12" head="11" deprel="nummod">7</w>
+            </biblScope>
             <pc type="other">.</pc>
           </bibl>
         </cit>
@@ -494,7 +498,7 @@
             <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="21" head="22" deprel="cc">et</w>
           </expan>
         </choice>
-        <cit xml:id="cit_p36_der_Soto_IusIure_8">
+        <cit xml:id="cit_p36_der_Soto_IusIure_7">
           <bibl corresp="#bib_Soto_IusIure" cert="high">
             <author ref="#pers_Soto">
               <w lemma="Soto" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="22" head="20" deprel="conj">Soto</w>

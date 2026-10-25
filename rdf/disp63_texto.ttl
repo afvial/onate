@@ -42154,7 +42154,7 @@ tok:s_p37der_3_t23
 
 tok:s_p37der_4
     a nif:Sentence ;
-    nif:anchorOf "Ita Caietanus 2 2. quaestio 77. articulo 1. et opusculum 17. quaestio 12. Aragonius ibi. articulo 1. Navarrus capitulo 23. numero 78. Molina disputatio 348. in infine Rebellus pars 2. libro 9. quaestio 2. sectio 2. numero 10. ad 2. Leffius libro 2. capitulo 21. numero 10."@la ;
+    nif:anchorOf "Ita Caietanus 2 2. quaestio 77. articulo 1. et opusculum 17. quaestio 12. Aragonius ibi. articulo 1. Navarrus capitulo 23. numero 78. Molina disputatio 348. in infine Rebellus pars 2. libro 9. quaestio 2. sectio 2. numero 10. ad 2. Lessius libro 2. capitulo 21. numero 10."@la ;
     dct:isPartOf tok:p37der ;
     onate:n 4 ;
     nif:firstWord tok:s_p37der_4_t1 .
@@ -42711,8 +42711,8 @@ tok:s_p37der_4_t51
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p37der_4_t48 ;
-    conll:EDGE "nmod" ;
+    conll:HEAD tok:s_p37der_4_t38 ;
+    conll:EDGE "conj" ;
     onate:line 19 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_37_der%3A19%3Anu.%3A0> .
 
@@ -42735,8 +42735,8 @@ tok:s_p37der_4_t54
     nif:nextWord tok:s_p37der_4_t55 ;
     lexinfo:partOfSpeech lexinfo:adverb ;
     onate:lexicalEntry lex:ad_ADV ;
-    conll:HEAD tok:s_p37der_4_t58 ;
-    conll:EDGE "case" ;
+    conll:HEAD tok:s_p37der_4_t55 ;
+    conll:EDGE "advmod" ;
     onate:line 19 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_37_der%3A19%3Aad%3A0> .
 
@@ -42747,14 +42747,15 @@ tok:s_p37der_4_t55
     nif:nextWord tok:s_p37der_4_t57 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:2_NUM ;
-    conll:HEAD tok:s_p37der_4_t54 ;
+    conll:HEAD tok:s_p37der_4_t51 ;
     conll:EDGE "nummod" ;
     onate:line 19 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_37_der%3A19%3A2%3A3> .
 
 tok:s_p37der_4_t57
     a nif:Word ;
-    nif:anchorOf "Leffius"@la ;
+    nif:anchorOf "Lessius"@la ;
+    onate:diplomatic "Leſſius"@la ;
     nif:sentence tok:s_p37der_4 ;
     nif:nextWord tok:s_p37der_4_t58 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
@@ -42762,11 +42763,11 @@ tok:s_p37der_4_t57
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
-    onate:lexicalEntry lex:Leffius_PROPN ;
-    conll:HEAD tok:s_p37der_4_t54 ;
-    conll:EDGE "fixed" ;
+    onate:lexicalEntry lex:Lessius_PROPN ;
+    conll:HEAD tok:s_p37der_4_t38 ;
+    conll:EDGE "orphan" ;
     onate:line 20 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_37_der%3A20%3ALeffius%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_37_der%3A20%3ALeſſius%3A0> .
 
 tok:s_p37der_4_t58
     a nif:Word ;
@@ -42811,8 +42812,8 @@ tok:s_p37der_4_t61
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p37der_4_t38 ;
-    conll:EDGE "orphan" ;
+    conll:HEAD tok:s_p37der_4_t25 ;
+    conll:EDGE "obl" ;
     onate:line 20 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_37_der%3A20%3Acap.%3A0> .
 
@@ -101402,7 +101403,7 @@ tok:s_p43izq_4_t15
 
 tok:s_p43izq_5
     a nif:Sentence ;
-    nif:anchorOf "Ita Sotus 6. de iustit. quaestio 2. articulo 3. Molina disputatio 348. vers. ex dictis, Ioann. Medina CodexIustinianus de restitutione quaestio 31. Covarrubias 2. variarum capitulo 3. numero 4. Conradus de contractibus capitulo 56. Manu. summa capitulo 175. conclusio 4. numero 4. Mexia cit. à Gutier. conclusio 3. numero 18. Cordub. quaestio 84. in summa verbo tambien de lo suso dicho, Guttier libro 2. prac. quaestio 180. numero 21. conci 2. Bonacina. disputatio 3. quaestio 2. punctum 4. numero 28. Valentinus tomus 3. disputatio 5. quaestio 20. punctum 2. Lessius libro 2. capitulo 21. numero 29. Navarrus capitulo 23. numero 25. Reginaldus libro 25. capitulo 16. numero 276. Navarrus libro 3. capitulo 2. numero 25. Filliuec. tractatus 35. capitulo 3. quaestio 4. numero 59. Syluest. verbo emptio, numero 7. Salas de emptione dubium 29. numero 4. Grassis. pars 2. decis. libro 2. capitulo 115. numero 15. et 18. Rebellius libro 9. quaestio 1. sectio 7. Valentinus 1. 2. disputatio 5. quaestio 20. punctum 2. S. Faustus de emptione disputatio 6. quaestio 5. numero 14. Salas T. 7;. 77. articulo 1. controuer. 3. numero 4. et pro colophonc. Divus T hom. qq. de malo numero 13. articulo 4."@la ;
+    nif:anchorOf "Ita Sotus 6. de iustit. quaestio 2. articulo 3. Molina disputatio 348. vers. ex dictis, Ioann. Medina CodexIustinianus de restitutione quaestio 31. Covarrubias 2. variarum capitulo 3. numero 4. Conradus de contractibus capitulo 56. Manu. summa capitulo 175. conclusio 4. numero 4. Mexia cit. à Gutier. conclusio 3. numero 18. Cordub. quaestio 84. in summa verbo tambien de lo suso dicho, Guttier libro 2. prac. quaestio 180. numero 21. conci 2. Bonacina. disputatio 3. quaestio 2. punctum 4. numero 28. Valentinus tomus 3. disputatio 5. quaestio 20. punctum 2. Lessius libro 2. capitulo 21. numero 29. Navarrus capitulo 23. numero 25. Reginaldus libro 25. capitulo 16. numero 276. Navarrus libro 3. capitulo 2. numero 25. Filliuec. tractatus 35. capitulo 3. quaestio 4. numero 59. Syluest. verbo emptio, numero 7. Salas de emptione dubium 29. numero 4. Grassis. pars 2. decis. libro 2. capitulo 115. numero 15. et 18. Rebellius libro 9. quaestio 1. sectio 7. Valentinus 1. 2. disputatio 5. quaestio 20. punctum 2. S. Faustus de emptione disputatio 6. quaestio 5. numero 14. Salas T. 7;. 77. articulo 1. controuer. 3. numero 4. et pro colophonc. Divus Thomas qq. de malo numero 13. articulo 4."@la ;
     dct:isPartOf tok:p43izq ;
     onate:n 5 ;
     nif:firstWord tok:s_p43izq_5_t1 .
@@ -104175,7 +104176,7 @@ tok:s_p43izq_5_t265
     nif:nextWord tok:s_p43izq_5_t267 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:3_NUM ;
-    conll:HEAD tok:s_p43izq_5_t267 ;
+    conll:HEAD tok:s_p43izq_5_t263 ;
     conll:EDGE "nummod" ;
     onate:line 46 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A46%3A3%3A0> .
@@ -104193,8 +104194,8 @@ tok:s_p43izq_5_t267
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43izq_5_t263 ;
-    conll:EDGE "obl" ;
+    conll:HEAD tok:s_p43izq_5_t265 ;
+    conll:EDGE "appos" ;
     onate:line 46 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A46%3Anu.%3A0> .
 
@@ -104248,8 +104249,8 @@ tok:s_p43izq_5_t272
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:colophonc_NOUN ;
-    conll:HEAD tok:s_p43izq_5_t274 ;
-    conll:EDGE "nmod" ;
+    conll:HEAD tok:s_p43izq_5_t61 ;
+    conll:EDGE "obl" ;
     onate:line 46 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A46%3Acolophonc%3A0> .
 
@@ -104266,75 +104267,63 @@ tok:s_p43izq_5_t274
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:97990 ;
     onate:lexicalEntry lex:diuus_ADJ ;
-    conll:HEAD tok:s_p43izq_5_t61 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43izq_5_t272 ;
+    conll:EDGE "amod" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3AD.%3A0> .
 
 tok:s_p43izq_5_t275
     a nif:Word ;
-    nif:anchorOf "T"@la ;
+    nif:anchorOf "Thomas"@la ;
+    onate:diplomatic "Thom."@la ;
     nif:sentence tok:s_p43izq_5 ;
     nif:nextWord tok:s_p43izq_5_t276 ;
-    lexinfo:partOfSpeech lexinfo:numeral ;
-    lexinfo:number lexinfo:plural ;
-    onate:ud "Number=Plur" ;
-    onate:lexicalEntry lex:titus_NUM ;
-    conll:HEAD tok:s_p43izq_5_t61 ;
-    conll:EDGE "obl" ;
-    onate:line 47 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3AT%3A0> .
-
-tok:s_p43izq_5_t276
-    a nif:Word ;
-    nif:anchorOf "hom"@la ;
-    nif:sentence tok:s_p43izq_5 ;
-    nif:nextWord tok:s_p43izq_5_t278 ;
-    lexinfo:partOfSpeech lexinfo:noun ;
+    lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
-    onate:lexicalEntry lex:hom_NOUN ;
-    conll:HEAD tok:s_p43izq_5_t275 ;
-    conll:EDGE "nmod" ;
+    lila:hasLemma lilalem:23524 ;
+    onate:lexicalEntry lex:Thomas_PROPN ;
+    conll:HEAD tok:s_p43izq_5_t61 ;
+    conll:EDGE "nsubj" ;
     onate:line 47 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3Ahom%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3AThom.%3A0> .
 
-tok:s_p43izq_5_t278
+tok:s_p43izq_5_t276
     a nif:Word ;
     nif:anchorOf "qq"@la ;
     nif:sentence tok:s_p43izq_5 ;
-    nif:nextWord tok:s_p43izq_5_t280 ;
+    nif:nextWord tok:s_p43izq_5_t278 ;
     lexinfo:partOfSpeech lexinfo:pronoun ;
-    lexinfo:case lexinfo:accusativeCase ;
+    lexinfo:case lexinfo:ablativeCase ;
     lexinfo:number lexinfo:singular ;
-    lexinfo:person lexinfo:secondPerson ;
-    onate:ud "Case=Acc|Number=Sing|Person=2" ;
+    lexinfo:person lexinfo:firstPerson ;
+    onate:ud "Case=Abl|Number=Sing|Person=1" ;
     onate:lexicalEntry lex:qq_PRON ;
     conll:HEAD tok:s_p43izq_5_t61 ;
     conll:EDGE "obl" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3Aqq%3A0> .
 
-tok:s_p43izq_5_t280
+tok:s_p43izq_5_t278
     a nif:Word ;
     nif:anchorOf "de"@la ;
     nif:sentence tok:s_p43izq_5 ;
-    nif:nextWord tok:s_p43izq_5_t281 ;
+    nif:nextWord tok:s_p43izq_5_t279 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     lila:hasLemma lilalem:97932 ;
     onate:lexicalEntry lex:de_ADP ;
-    conll:HEAD tok:s_p43izq_5_t282 ;
+    conll:HEAD tok:s_p43izq_5_t280 ;
     conll:EDGE "case" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3Ade%3A0> .
 
-tok:s_p43izq_5_t281
+tok:s_p43izq_5_t279
     a nif:Word ;
     nif:anchorOf "malo"@la ;
     nif:sentence tok:s_p43izq_5 ;
-    nif:nextWord tok:s_p43izq_5_t282 ;
+    nif:nextWord tok:s_p43izq_5_t280 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -104342,17 +104331,17 @@ tok:s_p43izq_5_t281
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:111418 ;
     onate:lexicalEntry lex:malus_ADJ ;
-    conll:HEAD tok:s_p43izq_5_t282 ;
+    conll:HEAD tok:s_p43izq_5_t280 ;
     conll:EDGE "amod" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3Amalo%3A0> .
 
-tok:s_p43izq_5_t282
+tok:s_p43izq_5_t280
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43izq_5 ;
-    nif:nextWord tok:s_p43izq_5_t283 ;
+    nif:nextWord tok:s_p43izq_5_t281 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -104360,29 +104349,29 @@ tok:s_p43izq_5_t282
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43izq_5_t61 ;
-    conll:EDGE "obl" ;
+    conll:HEAD tok:s_p43izq_5_t276 ;
+    conll:EDGE "nmod" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3An.%3A0> .
 
-tok:s_p43izq_5_t283
+tok:s_p43izq_5_t281
     a nif:Word ;
     nif:anchorOf "13"@la ;
     nif:sentence tok:s_p43izq_5 ;
-    nif:nextWord tok:s_p43izq_5_t285 ;
+    nif:nextWord tok:s_p43izq_5_t283 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:13_NUM ;
-    conll:HEAD tok:s_p43izq_5_t282 ;
+    conll:HEAD tok:s_p43izq_5_t280 ;
     conll:EDGE "nummod" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3A13%3A0> .
 
-tok:s_p43izq_5_t285
+tok:s_p43izq_5_t283
     a nif:Word ;
     nif:anchorOf "articulo"@la ;
     onate:diplomatic "ar."@la ;
     nif:sentence tok:s_p43izq_5 ;
-    nif:nextWord tok:s_p43izq_5_t286 ;
+    nif:nextWord tok:s_p43izq_5_t284 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -104390,19 +104379,19 @@ tok:s_p43izq_5_t285
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:90117 ;
     onate:lexicalEntry lex:articulus_NOUN ;
-    conll:HEAD tok:s_p43izq_5_t61 ;
-    conll:EDGE "obl" ;
+    conll:HEAD tok:s_p43izq_5_t280 ;
+    conll:EDGE "conj" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3Aar.%3A0> .
 
-tok:s_p43izq_5_t286
+tok:s_p43izq_5_t284
     a nif:Word ;
     nif:anchorOf "4"@la ;
     nif:sentence tok:s_p43izq_5 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:4_NUM ;
-    conll:HEAD tok:s_p43izq_5_t285 ;
-    conll:EDGE "nummod" ;
+    conll:HEAD tok:s_p43izq_5_t61 ;
+    conll:EDGE "punct" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_izq%3A47%3A4%3A0> .
 

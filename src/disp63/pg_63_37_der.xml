@@ -892,18 +892,25 @@
               <w>nu.</w>
             </abbr>
             <expan>
-              <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="37" head="35" deprel="nmod">numero</w>
+              <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="37" head="28" deprel="conj">numero</w>
             </expan>
           </choice>
           <w lemma="10" pos="NUM" n="38" head="37" deprel="nummod">10</w>
           <pc type="other">.</pc>
-          <w lemma="ad" pos="ADV" n="39" head="42" deprel="case">ad</w>
-          <w lemma="2" pos="NUM" n="40" head="39" deprel="nummod">2</w>
+          <w lemma="ad" pos="ADV" n="39" head="40" deprel="advmod">ad</w>
+          <w lemma="2" pos="NUM" n="40" head="37" deprel="nummod">2</w>
           <pc type="other">.</pc>
           <lb n="20"/>
         </bibl>
         <bibl>
-          <w lemma="Leffius" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="41" head="39" deprel="fixed">Leffius</w>
+          <choice>
+            <orig>
+              <w lemma="Lessius" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="41" head="28" deprel="orphan">Leſſius</w>
+            </orig>
+            <reg>
+              <w lemma="Lessius" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="41" head="28" deprel="orphan">Lessius</w>
+            </reg>
+          </choice>
           <choice>
             <abbr>
               <w>lib.</w>
@@ -919,7 +926,7 @@
               <w>cap.</w>
             </abbr>
             <expan>
-              <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="44" head="28" deprel="orphan">capitulo</w>
+              <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="44" head="18" deprel="obl">capitulo</w>
             </expan>
           </choice>
           <w lemma="21" pos="NUM" n="45" head="44" deprel="nummod">21</w>
