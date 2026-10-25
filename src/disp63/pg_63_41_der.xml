@@ -1092,7 +1092,14 @@
         <w lemma="1" pos="NUM" n="56" head="55" deprel="nummod">1</w>
         <pc type="other">.</pc>
         <w lemma="§" pos="PUNCT" n="57" head="53" deprel="conj">§.</w>
-        <w lemma="hucusque" lemmaRef="lila:105382" pos="ADV" n="58" head="6" deprel="obl">hucusque</w>
+        <choice>
+          <orig>
+            <w lemma="hucusque" lemmaRef="lila:105382" pos="ADV" n="58" head="6" deprel="obl">hucuſque</w>
+          </orig>
+          <reg>
+            <w lemma="hucusque" lemmaRef="lila:105382" pos="ADV" n="58" head="6" deprel="obl">hucusque</w>
+          </reg>
+        </choice>
       </hi>
       <pc type="comma">,</pc>
       <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Nom|Gender=Masc|Number=Sing" n="59" head="60" deprel="nsubj">qui</w>

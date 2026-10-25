@@ -54,8 +54,22 @@
           <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin" n="20" head="21" deprel="cop">est</w>
         </reg>
       </choice>
-      <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="21" head="18" deprel="acl:relcl">causa</w>
-      <w lemma="iustifico" lemmaRef="lila:109425" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="22" head="21" deprel="acl">iu<lb break="no" n="5"/>stificans</w>
+      <choice>
+        <orig>
+          <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="21" head="18" deprel="acl:relcl">cauſa</w>
+        </orig>
+        <reg>
+          <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="21" head="18" deprel="acl:relcl">causa</w>
+        </reg>
+      </choice>
+      <choice>
+        <orig>
+          <w lemma="iustifico" lemmaRef="lila:109425" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="22" head="21" deprel="acl">iu<lb break="no" n="5"/>ſtificans</w>
+        </orig>
+        <reg>
+          <w lemma="iustifico" lemmaRef="lila:109425" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="22" head="21" deprel="acl">iustificans</w>
+        </reg>
+      </choice>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="23" head="22" deprel="obj">pretium</w>
       <pc type="colon">:</pc>
       <w lemma="quia" lemmaRef="lila:121166" pos="SCONJ" n="24" head="28" deprel="mark">quia</w>

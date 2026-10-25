@@ -402,10 +402,10 @@
       <w lemma="magnus" lemmaRef="lila:111319" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Plur" n="110" head="111" deprel="amod">magnis</w>
       <choice>
         <orig>
-          <w lemma="expendo" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" n="111" head="109" deprel="obl">expenſis</w>
+          <w lemma="expensa" lemmaRef="lila:102675" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" manual="1" n="111" head="109" deprel="obl">expenſis</w>
         </orig>
         <reg>
-          <w lemma="expendo" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" n="111" head="109" deprel="obl">expensis</w>
+          <w lemma="expensa" lemmaRef="lila:102675" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" manual="1" n="111" head="109" deprel="obl">expensis</w>
         </reg>
       </choice>
       <w lemma="cogo" lemmaRef="lila:94739" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="112" head="83" deprel="advcl">cogantur</w>
@@ -843,7 +843,14 @@
         </reg>
       </choice>
       <lb n="33"/>
-      <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="212" head="218" deprel="nsubj:pass">causa</w>
+      <choice>
+        <orig>
+          <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="212" head="218" deprel="nsubj:pass">cauſa</w>
+        </orig>
+        <reg>
+          <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="212" head="218" deprel="nsubj:pass">causa</w>
+        </reg>
+      </choice>
       <w lemma="descendo" lemmaRef="lila:98862" pos="VERB" msd="Case=Gen|VerbForm=Ger" n="213" head="212" deprel="acl">descendendi</w>
       <w lemma="multum" pos="DET" msd="Case=Nom|Gender=Neut|Number=Sing" n="214" head="212" deprel="dep">plurimum</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="215" head="216" deprel="case">in</w>

@@ -643,7 +643,14 @@
       <lb n="36"/>
       <w lemma="75" pos="NUM" n="172" head="171" deprel="nmod">75</w>
       <w lemma="primus" lemmaRef="lila:119498" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="173" head="174" deprel="nmod">Prima</w>
-      <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="174" head="176" deprel="obl">causa</w>
+      <choice>
+        <orig>
+          <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="174" head="176" deprel="obl">cauſa</w>
+        </orig>
+        <reg>
+          <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="174" head="176" deprel="obl">causa</w>
+        </reg>
+      </choice>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing" n="175" head="176" deprel="nsubj">pretium</w>
       <w lemma="augeo" lemmaRef="lila:90673" pos="VERB" msd="Aspect=Prosp|Case=Gen|Number=Sing|VerbForm=Ger|Voice=Pass" n="176" head="6" deprel="conj">augendi</w>
       <choice>
@@ -788,7 +795,14 @@
       <lb n="49"/>
       <w lemma="80" pos="NUM" n="229" head="231" deprel="nummod">80</w>
       <w lemma="secunda" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="230" head="229" deprel="fixed">Secunda</w>
-      <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="231" head="6" deprel="conj">causa</w>
+      <choice>
+        <orig>
+          <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="231" head="6" deprel="conj">cauſa</w>
+        </orig>
+        <reg>
+          <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="231" head="6" deprel="conj">causa</w>
+        </reg>
+      </choice>
       <w lemma="augeo" lemmaRef="lila:90673" pos="VERB" msd="Aspect=Prosp|Case=Gen|Number=Sing|VerbForm=Ger|Voice=Pass" n="232" head="231" deprel="acl">augendi</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing" n="233" head="235" deprel="nsubj">pretium</w>
       <choice>

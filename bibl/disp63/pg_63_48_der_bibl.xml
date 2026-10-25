@@ -387,7 +387,14 @@
       <w lemma="numero" lemmaRef="lila:113977" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act" n="161" head="80" deprel="csubj">numeraturus</w>
       <lb n="29"/>
       <w lemma="nummus" lemmaRef="lila:113989" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" n="162" head="161" deprel="obj">nummos</w>
-      <w lemma="usque" lemmaRef="lila:130872" pos="ADV" n="163" head="166" deprel="advmod">vsque</w>
+      <choice>
+        <orig>
+          <w lemma="usque" lemmaRef="lila:130872" pos="ADV" n="163" head="166" deprel="advmod">vſque</w>
+        </orig>
+        <reg>
+          <w lemma="usque" lemmaRef="lila:130872" pos="ADV" n="163" head="166" deprel="advmod">vsque</w>
+        </reg>
+      </choice>
       <w lemma="ad" lemmaRef="lila:87344" pos="ADP" n="164" head="166" deprel="case">ad</w>
       <w lemma="ille" lemmaRef="lila:106221" pos="DET" msd="Case=Acc|Gender=Neut|Number=Sing" n="165" head="166" deprel="det">illud</w>
       <w lemma="tempus" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="166" head="161" deprel="obl">tempus</w>
