@@ -60,6 +60,10 @@ MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=S
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
 
+# expensa (gasto): LatinCy lo toma por participio de expendo.
+for _f in ("expensa", "expensae", "expensam", "expensas", "expensis", "expensarum"):
+    MANUAL_LEMMA[_f] = ("expensa", "NOUN", None)
+
 # Effroenata: LatinCy lo toma por nombre propio por la mayúscula.
 for _f in ("Effroenata", "effroenata", "Effroenatam", "effroenatam"):
     MANUAL_LEMMA[_f] = ("effroenatus", "ADJ", None)
@@ -385,6 +389,10 @@ def annotate(input_path: Path, output_path: Path, model_name: str, dry_run: bool
             if msd is None:   # conservar la morfología de LatinCy
                 _t = tok if tok is not None else (doc[0] if doc else None)
                 msd = morph_to_msd(_t) if _t is not None else ""
+                if pos in ("NOUN", "ADJ", "PROPN") and msd:
+                    # rasgos verbales de un análisis previo como participio
+                    _verb = ("Aspect=", "VerbForm=", "Voice=", "Tense=", "Mood=", "Person=")
+                    msd = "|".join(f for f in msd.split("|") if not f.startswith(_verb))
         else:
             if tok is None:
                 if not doc:

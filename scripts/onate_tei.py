@@ -55,6 +55,9 @@ def _collect_ls_overrides(lines: list) -> dict:
         for k, v in line.get("long_s_overrides", {}).items():   # formato antiguo
             out[k] = {"all": v}
         for key, val, occ in line.get("long_s_marks", []):
+            if occ == "split":                       # palabra partida entre líneas
+                out["split:" + key] = {"all": val}
+                continue
             out.setdefault(key, {})[seen.get(key.rstrip("."), 0) + occ] = val
         for w in _re.findall(r"\w+", line.get("text", "")):
             w = w.lower()
@@ -109,6 +112,17 @@ def _emit_corr_w(corr_el, corr_text: str):
         w_r.text = corr_text
     else:
         etree.SubElement(corr_el, f"{{{TEI_NS}}}w").text = corr_text
+
+def _norm_expan(t: str) -> str:
+    """Forma expandida regularizada: sin s larga ni ligaduras."""
+    return (_reg_e(t).replace("ſ", "s").replace("æ", "ae").replace("Æ", "Ae")
+             .replace("œ", "oe").replace("Œ", "Oe"))
+
+
+def _reg_e(t: str) -> str:
+    """Forma regularizada: e caudata (ę) = ae."""
+    return t.replace("ę", "ae").replace("Ę", "Ae")
+
 
 def _expand_macrons(text: str) -> str | None:
     """
@@ -271,10 +285,10 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             w.text = long_s_orig
             reg_el = etree.SubElement(inner,  f"{{{TEI_NS}}}reg")
             w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-            w_reg.text = text
+            w_reg.text = _reg_e(text)
             expan  = etree.SubElement(outer,  f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
-            w_exp.text = macron_exp.replace('ſ', 's')
+            w_exp.text = _norm_expan(macron_exp)
         else:
             choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
             orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
@@ -282,7 +296,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             w.text = long_s_orig
             reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
             w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-            w_reg.text = text
+            w_reg.text = _reg_e(text)
     elif ae_orig:
         macron_exp = _expand_macrons(text) if any(c in text for c in MACRON_MAP) else None
         if macron_exp and macron_exp != text:
@@ -297,7 +311,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             w_reg.text = _to_display(ae_reg if ae_reg else text)
             expan  = etree.SubElement(outer,  f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
-            w_exp.text = macron_exp.replace("ſ", "s")
+            w_exp.text = _norm_expan(macron_exp)
         else:
             choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
             orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
@@ -316,7 +330,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             w.text = _to_display(text)
             expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
-            w_exp.text = macron_exp.replace("ſ", "s")
+            w_exp.text = _norm_expan(macron_exp)
         else:
             w = etree.SubElement(parent, f"{{{TEI_NS}}}w")
             w.text = text
@@ -332,7 +346,7 @@ def apply_long_s_to_split(left: str, right: str):
     full = left + right
     key = full.lower()
     # Respetar override [-palabra] del staging
-    if _ls_override_peek(key) is False:
+    if _ls_override_peek(key) is False or _ls_override_peek("split:" + key) is False:
         return None, None
     if key in LONG_S:
         orig_full = LONG_S[key]
@@ -433,17 +447,17 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
             _make_w_lb(orig, long_s_left, long_s_right)
             reg_el = etree.SubElement(inner,  f"{{{TEI_NS}}}reg")
             w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-            w_reg.text = full_text
+            w_reg.text = _reg_e(full_text)
             expan  = etree.SubElement(outer,  f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
-            w_exp.text = macron_exp.replace("ſ", "s")
+            w_exp.text = _norm_expan(macron_exp)
         else:
             choice = etree.SubElement(parent, f"{{{TEI_NS}}}choice")
             orig   = etree.SubElement(choice, f"{{{TEI_NS}}}orig")
             _make_w_lb(orig, long_s_left, long_s_right)
             reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
             w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
-            w_reg.text = full_text
+            w_reg.text = _reg_e(full_text)
     elif any(c in full_text for c in MACRON_MAP):
         macron_exp = _expand_macrons(full_text)
         if macron_exp and macron_exp != full_text:
@@ -459,7 +473,7 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
             _make_w_lb(abbr, w_left, w_right)
             expan  = etree.SubElement(choice, f"{{{TEI_NS}}}expan")
             w_exp  = etree.SubElement(expan,  f"{{{TEI_NS}}}w")
-            w_exp.text = macron_exp.replace("ſ", "s")
+            w_exp.text = _norm_expan(macron_exp)
         else:
             _make_w_lb(parent, left, right)
     elif ae_full:

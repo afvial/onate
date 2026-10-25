@@ -27,7 +27,7 @@ ABBREV_WITH_DOT = {
     "var.", "verb.", "sum.", "summ.", "inst.", "instit.", "§.",
     "gloss.",
     # Abreviaturas de autores clásicos y patrísticos
-    "Arist.", "Aristot.", "Aug.", "August.", "Th.", "Thom.",
+    "Arist.", "Aristot.", "Aug.", "August.", "Th.", "Thom.", "Tho.",
     "Cic.", "Plat.", "Plut.", "Ambr.", "Hier.", "Greg.",
     "Ign.", "Tert.", "Orig.", "Bas.", "Chrys.",
     # Abreviaturas de autores frecuentes en Oñate
@@ -252,7 +252,7 @@ ABBREV_EXPAN = {
 # Abreviaturas de autor que inician un nuevo <bibl>
 AUTHOR_ABBREVS = {
     # Clásicos y patrísticos
-    "Arist.", "Aristot.", "Aug.", "August.", "Th.", "Thom.",
+    "Arist.", "Aristot.", "Aug.", "August.", "Th.", "Thom.", "Tho.",
     "Cic.", "Plat.", "Plut.", "Ambr.", "Hier.", "Greg.",
     "Ign.", "Tert.", "Orig.", "Bas.", "Chrys.", "D.",
     # Escolásticos
@@ -692,6 +692,10 @@ LONG_S = {
     "probatissimam":    "probatiſſimam",
     "probatissima":     "probatiſſima",
     "vnusquisque":      "vnuſquiſque",
+    "vniuscuiusque":    "vniuſcuiuſque",
+    "expēsæ":           "expēſæ",   # = expensae (macrón + s larga)
+    "expēsae":          "expēſæ",   # ídem, staging con ae
+    "uniuscuiusque":    "uniuſcuiuſque",
     "vnusquisq;":         "vnuſquiſq;",
     "Ledes.":              "Ledeſ.",
     "ledes.":              "ledeſ.",
@@ -1208,7 +1212,13 @@ LONG_S_ROOTS = [
     ("splend",     "ſplend"),      # splendidus, splendida, splendidae, splendorem…
     ("vest",       "veſt"),
     ("super",      "ſuper"),
-    ("trans",      "tranſ"),      # transportent, transferre… (general)
+    ("trans",      "tranſ"),
+    ("solut",      "ſolut"),
+    ("vsque",      "vſque"),      # vsque, quovsque, hucvsque…
+    ("usque",      "uſque"),
+    ("compens",    "compenſ"),
+    ("caus",       "cauſ"),
+    ("iust",       "iuſt"),       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
     ("vers",       "verſ"),       # versus, versatur, conuersio… (general)
     ("uers",       "uerſ"),       # grafía con u: conuersatio…      # superare, superat, insuper… (general, al final)        # vestis, vestimentum, vestitus, vestiarium…
 ]
@@ -1500,8 +1510,13 @@ def parse_long_s_marks(text: str):
             occ = sum(1 for st, w in words if st < pos and w == base)
             out.append((key, val, occ))
         else:
-            print(f"  ⚠ marca de s larga sin la palabra detrás: [{key}] en «{clean}»",
-                  file=_sys.stderr)
+            nxt = [w for st, w in words if st >= pos]
+            if (len(nxt) == 1 and base.startswith(nxt[0])
+                    and clean.rstrip().endswith("¬")):
+                out.append((key, val, "split"))     # 1.ª mitad de palabra partida
+            else:
+                print(f"  ⚠ marca de s larga sin la palabra detrás: [{key}] en «{clean}»",
+                      file=_sys.stderr)
     return clean, out
 
 

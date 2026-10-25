@@ -44,6 +44,11 @@ ANNOTATION_RE = re.compile(
     r'|[@*]'         # apertura/cierre de referencia (@) o cursiva (*)
 )
 
+# Marcas de s larga del staging: [-palabra], [+palabra], [=forma].
+# No se reinsertan por posición relativa (como @ o *), sino delante de la
+# misma aparición de la palabra que las sigue: ver ls_marks / restore_ls_marks.
+LS_MARK_RE = re.compile(r'\[[+\-=][^\]\s]+\]')
+
 # Anotaciones de corrección manual: {orig|corr}
 # orig = lo que dice el facsímil/Transkribus, corr = forma corregida
 CHOICE_RE = re.compile(r'\{([^{}|]*)\|([^{}]*)\}')
@@ -137,7 +142,7 @@ def abbreviated_words(old_text: str) -> list:
     """Palabras abreviadas del staging, en orden: [(forma_impresa, expansión, k)],
     donde k = cuántas veces aparece ya esa expansión antes, en el texto
     normalizado (para restituir la aparición correcta: 're non … qui nō')."""
-    base = CHOICE_RE.sub(lambda m: m.group(1), old_text)
+    base = LS_MARK_RE.sub('', CHOICE_RE.sub(lambda m: m.group(1), old_text))
     hits = []
     for rx, exp in _ABBR_RE:
         for m in rx.finditer(base):
@@ -184,6 +189,37 @@ def restore_abbrevs(merged: str, words: list):
     return merged, missing
 
 
+def _plain(text: str) -> str:
+    """Texto sin marcas ni anotaciones, SIN expandir macrones (forma impresa)."""
+    text = LS_MARK_RE.sub('', CHOICE_RE.sub(lambda m: m.group(1), text))
+    return re.sub(r'  +', ' ', ANNOTATION_RE.sub('', text))
+
+
+def ls_marks(old_text: str) -> list:
+    """[(marca, palabra_siguiente, k)] — k = apariciones previas de la palabra."""
+    out = []
+    for m in LS_MARK_RE.finditer(old_text):
+        nxt = re.match(r"\s*([\wſ]+)", _plain(old_text[m.end():]))
+        if not nxt:
+            continue
+        word = nxt.group(1)
+        k = len(re.findall(_WB + re.escape(word) + _WE, _plain(old_text[:m.start()])))
+        out.append((m.group(), word, k))
+    return out
+
+
+def restore_ls_marks(merged: str, marks: list):
+    """Pone cada marca delante de la k-ésima aparición de su palabra."""
+    missing = []
+    for mark, word, k in reversed(marks):
+        ms = list(re.finditer(_WB + re.escape(word) + _WE, merged))
+        if len(ms) <= k:
+            missing.append(mark); continue
+        a = ms[k].start()
+        merged = merged[:a] + mark + merged[a:]
+    return merged, missing
+
+
 def expand_macrons_alt(text: str) -> str:
     """Variante alternativa: usa n en vez de m para nasales."""
     alt = {'am': 'an', 'em': 'en', 'om': 'on', 'um': 'un',
@@ -209,7 +245,7 @@ def strip_anns(text: str) -> str:
     siguiente línea) y dar 'con¬', no 'com¬'. Si se quitara el ¬ primero,
     'cō' parecería el final absoluto de la palabra y daría el resultado
     equivocado."""
-    text = CHOICE_RE.sub(lambda m: m.group(1), text)
+    text = LS_MARK_RE.sub('', CHOICE_RE.sub(lambda m: m.group(1), text))
     text = expand_macrons(text)
     text = ANNOTATION_RE.sub('', text)
     text = re.sub(r'  +', ' ', text)
@@ -398,6 +434,12 @@ def main():
         merged, missing = restore_abbrevs(merged, abbr_words)
         if missing:
             print(f"  ⚠ Línea {lid}: no se pudo restituir {missing}; revisar.")
+
+        # Restituir las marcas de s larga ([-palabra]…) delante de su palabra
+        merged, lost_marks = restore_ls_marks(merged, ls_marks(old_text))
+        if lost_marks:
+            print(f"  ⚠ Línea {lid}: marca(s) {lost_marks} sin su palabra en el "
+                  f"texto nuevo; volver a ponerlas a mano.")
 
         # Reinsertar las anotaciones {orig|corr} en el texto fusionado
         for orig, corr in choices:

@@ -96,6 +96,8 @@ WORKS = {
     "aug":        ("bib_Aug_CivDei",         "pers_Augustinus",     "high"),
     # Teología escolástica medieval
     "dth":        ("bib_Aquinas_ST",         "pers_ThomasAquinas",  "high"),
+    "dtho":       ("bib_Aquinas_ST",         "pers_ThomasAquinas",  "high"),
+    "dthom":      ("bib_Aquinas_ST",         "pers_ThomasAquinas",  "high"),
     "caiet":      ("bib_Caietanus_ST",       "pers_Caietanus",      "high"),
     "bannes":     ("bib_Bannes_ST",          "pers_Bannes",         "high"),
     "aragon":     ("bib_Aragon_ST",          "pers_Aragon",         "high"),
@@ -123,6 +125,10 @@ WORKS = {
     "gabr":       ("bib_Biel_Sent",          "pers_Biel",           "high"),
     "manuel":     ("bib_Manuel_Sum",         "pers_Manuel",         "medium"),
     "faustus":    ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
+    "sa":         ("bib_Sa_Aphorismi",       "pers_Sa",             "high"),
+    "vasquez":    ("bib_Vasquez_Opusc",      "pers_Vasquez",        "medium"),
+    "vasq":       ("bib_Vasquez_Opusc",      "pers_Vasquez",        "medium"),
+    "manu":       ("bib_Manuel_Sum",         "pers_Manuel",        "medium"),
     # Formas no abreviadas (nombre completo en <w>)
     "dth":        ("bib_Aquinas_ST",         "pers_ThomasAquinas",  "high"),
     "reginald":   ("bib_Reginald_Praxis",    "pers_Reginaldus",     "high"),
@@ -518,12 +524,12 @@ AUTHOR_NAMES = {
     "Bonacina", "Filliucius", "Medina", "Azorius",
     "Antoninus", "Sylvester", "Conradus", "Sotus",
     "Valentinus", "Caietanus", "Scotus", "Maior",
-    "Toletus", "Salas", "Gabriel", "Faustus",
+    "Toletus", "Salas", "Gabriel", "Faustus", "Sa", "Vasquez",
 }
 
 # Abreviaturas de autor que inician un nuevo <bibl>
 AUTHOR_ABBREVS_BIBL = {
-    "Arist.", "Aristot.", "Aug.", "August.", "Th.", "Thom.",
+    "Arist.", "Aristot.", "Aug.", "August.", "Th.", "Thom.", "Tho.",
     "Cic.", "Plat.", "Plut.", "Ambr.", "Hier.", "Greg.",
     "Ign.", "Tert.", "Orig.", "Bas.", "Chrys.", "D.",
     "Nau.", "Mol.", "Molin.", "Less.", "Lessius.", "Leff.",
@@ -770,6 +776,42 @@ def enrich_bibl(bibl_elem, report: list, dry_run: bool = False):
 # PROCESAMIENTO DE ARCHIVO
 # ─────────────────────────────────────────────────────────────────────────────
 
+def regularize_aquinas_parts(root) -> int:
+    """
+    En las citas de la Summa (corresp="#bib_Aquinas_ST"), la parte se imprime
+    de forma compacta: 22. = Secunda Secundae, 12. = Prima Secundae. El primer
+    número de la cita se convierte en <choice><orig>22</orig><reg>2. 2</reg>,
+    para que el buscador (forma f) la encuentre. Solo el primer número: no
+    toca q. 22 ni n. 22. Los atributos NLP pasan al <w> de <reg>.
+    """
+    NS = "{http://www.tei-c.org/ns/1.0}"
+    PARTS = {"12": "1. 2", "22": "2. 2"}
+    SKIP = {NS + t for t in ("orig", "reg", "abbr", "expan", "sic", "corr")}
+    n = 0
+    for b in root.iter(NS + "bibl"):
+        if b.get("corresp") != "#bib_Aquinas_ST":
+            continue
+        for w in b.iter(NS + "w"):
+            t = (w.text or "").strip()
+            if not t.isdigit():
+                continue
+            par = w.getparent()
+            if par.tag in SKIP or t not in PARTS or len(w):
+                break                      # ya regularizado, u otro número
+            ch = etree.Element(NS + "choice")
+            w_o = etree.SubElement(etree.SubElement(ch, NS + "orig"), NS + "w")
+            w_o.text = t
+            w_r = etree.SubElement(etree.SubElement(ch, NS + "reg"), NS + "w")
+            w_r.text = PARTS[t]
+            for k, v in w.attrib.items():
+                w_r.set(k, v)
+            ch.tail = w.tail
+            par.replace(w, ch)
+            n += 1
+            break
+    return n
+
+
 def process_file(input_path: Path, output_path: Path,
                  dry_run: bool = False, verbose: bool = True) -> list:
     
@@ -816,6 +858,11 @@ def process_file(input_path: Path, output_path: Path,
         print(f"  Sin coincidencia (revisar)     : {total - enriched}")
         if not dry_run:
             print(f"  <cit> añadidos                 : {cit_added}")
+
+    if not dry_run:
+        n_parts = regularize_aquinas_parts(tree.getroot())
+        if verbose and n_parts:
+            print(f"  Partes de la Summa regularizadas: {n_parts}")
 
     if not dry_run:
         output_path.parent.mkdir(parents=True, exist_ok=True)

@@ -188,7 +188,7 @@ EXTRA_CSS = """
   p.translation.p-first { text-indent: 0; }
   .pending-note { font-size: 0.78rem; color: #999; font-style: italic; margin: 0 0 0.9rem 0; }
 
-  .tei-s.s-hover-active { background-color: #e8f0fb; border-radius: 2px; }
+  .tei-s.s-hover-active { background-color: #d2e2f7; border-radius: 2px; }
   [data-sense].w-hover-active { background-color: #ffe9a8; border-radius: 2px; }
 
   span.sense-w { position: relative; cursor: default; color: #1a6e63;

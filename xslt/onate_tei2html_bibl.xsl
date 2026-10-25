@@ -112,13 +112,13 @@
           }
 
           span.tei-s { display: inline; }
-          span.tei-s:hover { background-color: #e8f0fb; border-radius: 2px; }
+          span.tei-s:hover { background-color: #d2e2f7; border-radius: 2px; }
           span.tei-s.s-part { border-radius: 2px; transition: background 0.15s; }
-          span.tei-s.s-part.s-part-active { background-color: #e8f0fb; }
+          span.tei-s.s-part.s-part-active { background-color: #d2e2f7; }
           /* Palabra partida entre columnas/páginas: además del fondo celeste
              heredado de la oración, un subrayado la distingue como palabra
              concreta (no toda la oración) mientras está activo el par. */
-          span.tei-w.wpair-active { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
+          span.tei-w.wpair-active { background-color: #fbd9b5; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
 
           span.tei-w {
             display: inline;
@@ -127,7 +127,7 @@
             transition: border-color 0.15s;
             position: relative;
           }
-          span.tei-w:hover { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
+          span.tei-w:hover { background-color: #fbd9b5; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
 
           span.tei-w[data-pos="VERB"]  { color: #1a4a8a; }
           span.tei-w[data-pos="NOUN"]  { color: #222; }
@@ -209,7 +209,7 @@
             transition: border-color 0.15s;
             position: relative;
           }
-          span.tei-sic:hover { background-color: #fdeee0; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
+          span.tei-sic:hover { background-color: #fbd9b5; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
           span.tei-bibl { margin-right: -0.05em; position: relative; cursor: default; }

@@ -271,7 +271,7 @@ CSS = """
   p.translation { margin: 0 0 0.9rem 0; line-height: 1.9; }
 
   .tei-s { display: inline; }
-  .tei-s.s-hover-active { background-color: #e8f0fb; border-radius: 2px; }
+  .tei-s.s-hover-active { background-color: #d2e2f7; border-radius: 2px; }
   [data-sense].w-hover-active { background-color: #ffe9a8; border-radius: 2px; }
 
   span.tei-w { display: inline; cursor: default; border-bottom: 1px dotted transparent;
