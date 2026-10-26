@@ -1470,6 +1470,12 @@ lex:Italia_PROPN
     ontolex:canonicalForm lilalem:10748 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "italia"@la ] .
 
+lex:Italus_PROPN
+    a ontolex:Word ;
+    rdfs:label "Italus"@la ;
+    lexinfo:partOfSpeech lexinfo:properNoun ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "itali"@la ] .
+
 lex:Iudex_PROPN
     a ontolex:Word ;
     rdfs:label "Iudex"@la ;
@@ -1743,12 +1749,6 @@ lex:Quintus_PROPN
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "quinto"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "quintus"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "quintò"@la ] .
-
-lex:Ratio_PROPN
-    a ontolex:Word ;
-    rdfs:label "Ratio"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ratio"@la ] .
 
 lex:Raymundus_PROPN
     a ontolex:Word ;
@@ -3501,12 +3501,6 @@ lex:borochola_NOUN
     rdfs:label "borochola"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "borocholae"@la ] .
-
-lex:borrocholae_NOUN
-    a ontolex:Word ;
-    rdfs:label "borrocholae"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "borrocholas"@la ] .
 
 lex:cPretium_NOUN
     a ontolex:Word ;
@@ -7075,12 +7069,6 @@ lex:h_ADP
     lexinfo:partOfSpeech lexinfo:preposition ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "h"@la ] .
 
-lex:h_ADV
-    a ontolex:Word ;
-    rdfs:label "h"@la ;
-    lexinfo:partOfSpeech lexinfo:adverb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "h"@la ] .
-
 lex:habeo_VERB
     a ontolex:Word ;
     rdfs:label "habeo"@la ;
@@ -7136,12 +7124,6 @@ lex:hasta_NOUN
     ontolex:canonicalForm lilalem:105195 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "hasta"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "hastae"@la ] .
-
-lex:hazerbaro_ADJ
-    a ontolex:Word ;
-    rdfs:label "hazerbaro"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "hazerbaratas"@la ] .
 
 lex:he_ADP
     a ontolex:Word ;
@@ -8269,12 +8251,6 @@ lex:ipsissimus_ADJ
     ontolex:canonicalForm lilalem:108947 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ipsissima"@la ] .
 
-lex:iralis_ADJ
-    a ontolex:Word ;
-    rdfs:label "iralis"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "irali"@la ] .
-
 lex:irrationabilis_ADJ
     a ontolex:Word ;
     rdfs:label "irrationabilis"@la ;
@@ -9152,19 +9128,6 @@ lex:manuductiuus_ADJ
     ontolex:canonicalForm lilalem:159791 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "manuductiuo"@la ] .
 
-lex:manuelsus_ADJ
-    a ontolex:Word ;
-    rdfs:label "manuelsus"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "manuelsum"@la ] .
-
-lex:manus_ADJ
-    a ontolex:Word ;
-    rdfs:label "manus"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:canonicalForm lilalem:111586 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "manu"@la ] .
-
 lex:manus_NOUN
     a ontolex:Word ;
     rdfs:label "manus"@la ;
@@ -9873,12 +9836,6 @@ lex:necessitudo_NOUN
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:canonicalForm lilalem:113510 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "necessitudinem"@la ] .
-
-lex:neeessitas_NOUN
-    a ontolex:Word ;
-    rdfs:label "neeessitas"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "neeessitatem"@la ] .
 
 lex:nefas_NOUN
     a ontolex:Word ;
@@ -13184,12 +13141,6 @@ lex:rursus_ADV
     ontolex:canonicalForm lilalem:122295 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "rursus"@la ] .
 
-lex:s1_AUX
-    a ontolex:Word ;
-    rdfs:label "s1"@la ;
-    lexinfo:partOfSpeech lexinfo:auxiliary ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "s1"@la ] .
-
 lex:sECTIO_NOUN
     a ontolex:Word ;
     rdfs:label "sECTIO"@la ;
@@ -14124,12 +14075,6 @@ lex:sum_AUX
         [ a ontolex:Form ; ontolex:writtenRep "sumus"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "sunt"@la ] .
 
-lex:summ_ADJ
-    a ontolex:Word ;
-    rdfs:label "summ"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "summ"@la ] .
-
 lex:summa_ADJ
     a ontolex:Word ;
     rdfs:label "summa"@la ;
@@ -14141,6 +14086,13 @@ lex:summa_NOUN
     rdfs:label "summa"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:canonicalForm lilalem:126706 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "summa"@la ] .
+
+lex:summum_NOUN
+    a ontolex:Word ;
+    rdfs:label "summum"@la ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:83305 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "summa"@la ] .
 
 lex:summus_ADJ
@@ -14617,12 +14569,6 @@ lex:titulus_NOUN
     ontolex:canonicalForm lilalem:128926 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "titulis"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "titulo"@la ] .
-
-lex:titus_NOUN
-    a ontolex:Word ;
-    rdfs:label "titus"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "t"@la ] .
 
 lex:titus_NUM
     a ontolex:Word ;
