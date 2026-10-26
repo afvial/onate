@@ -1514,11 +1514,11 @@ lex:Lima_PROPN
     ontolex:canonicalForm lilalem:12038 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "limae"@la ] .
 
-lex:Lop_PROPN
+lex:Lopez_PROPN
     a ontolex:Word ;
-    rdfs:label "Lop"@la ;
+    rdfs:label "Lopez"@la ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "lop"@la ] .
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "lopez"@la ] .
 
 lex:Lpretia_PROPN
     a ontolex:Word ;
@@ -1526,11 +1526,12 @@ lex:Lpretia_PROPN
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "lpretia"@la ] .
 
-lex:Ludou_PROPN
+lex:Ludovicus_PROPN
     a ontolex:Word ;
-    rdfs:label "Ludou"@la ;
+    rdfs:label "Ludovicus"@la ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ludou"@la ] .
+    ontolex:canonicalForm lilalem:170097 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ludovicus"@la ] .
 
 lex:Magnus_PROPN
     a ontolex:Word ;
@@ -1773,12 +1774,6 @@ lex:Regaton_PROPN
     rdfs:label "Regaton"@la ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "regatones"@la ] .
-
-lex:Reginal_PROPN
-    a ontolex:Word ;
-    rdfs:label "Reginal"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "reginal"@la ] .
 
 lex:Reginald_PROPN
     a ontolex:Word ;
@@ -7961,11 +7956,12 @@ lex:insto_VERB
     ontolex:canonicalForm lilalem:108272 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "insta"@la ] .
 
-lex:instructs_ADJ
+lex:instructorius_ADJ
     a ontolex:Word ;
-    rdfs:label "instructs"@la ;
+    rdfs:label "instructorius"@la ;
     lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "instruct"@la ] .
+    ontolex:canonicalForm lilalem:158652 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "instructorium"@la ] .
 
 lex:instrumentum_NOUN
     a ontolex:Word ;
@@ -8330,6 +8326,12 @@ lex:item_ADV
     lexinfo:partOfSpeech lexinfo:adverb ;
     ontolex:canonicalForm lilalem:109131 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "item"@la ] .
+
+lex:iterum_ADJ
+    a ontolex:Word ;
+    rdfs:label "iterum"@la ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "iterum"@la ] .
 
 lex:iterum_ADV
     a ontolex:Word ;

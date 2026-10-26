@@ -149,7 +149,14 @@
           <w lemma="huiusmodi" pos="DET" n="57" head="58" deprel="det">huiusmodi</w>
         </reg>
       </choice>
-      <w lemma="casus" lemmaRef="lila:97835" pos="NOUN" msd="Case=Dat|Gender=Masc|Number=Plur" n="58" head="59" deprel="obl">casibus</w>
+      <choice>
+        <orig>
+          <w lemma="casus" lemmaRef="lila:97835" pos="NOUN" msd="Case=Dat|Gender=Masc|Number=Plur" n="58" head="59" deprel="obl">caſibus</w>
+        </orig>
+        <reg>
+          <w lemma="casus" lemmaRef="lila:97835" pos="NOUN" msd="Case=Dat|Gender=Masc|Number=Plur" n="58" head="59" deprel="obl">casibus</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <w lemma="licet" lemmaRef="lila:110432" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="59" head="54" deprel="conj">liceat</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="60" head="65" deprel="obj">pretium</w>

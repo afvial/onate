@@ -1744,8 +1744,8 @@
       <w lemma="ita" lemmaRef="lila:109126" pos="ADV" n="1" head="11" deprel="advmod">Ita</w>
       <w lemma="etiam" lemmaRef="lila:101554" pos="ADV" n="2" head="3" deprel="advmod:emph">etiam</w>
       <hi rend="italic">
-        <cit xml:id="cit_p35_der_Reginald_Praxis_17">
-          <bibl corresp="#bib_Reginald_Praxis" cert="high">
+        <cit xml:id="cit_p35_der_noref_17">
+          <bibl>
             <w lemma="Reginaldus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="3" head="11" deprel="nsubj:pass">Regi<lb break="no" n="57"/>naldus</w>
             <choice>
               <abbr>
@@ -1755,9 +1755,7 @@
                 <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="4" head="7" deprel="nmod">capitulo</w>
               </expan>
             </choice>
-            <biblScope unit="chap">
-              <w lemma="25" pos="NUM" n="5" head="4" deprel="nummod">25</w>
-            </biblScope>
+            <w lemma="25" pos="NUM" n="5" head="4" deprel="nummod">25</w>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1767,23 +1765,17 @@
                 <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="6" head="7" deprel="obl">numero</w>
               </expan>
             </choice>
-            <biblScope unit="n">
-              <w lemma="264" pos="NUM" n="7" head="3" deprel="obl">264</w>
-            </biblScope>
+            <w lemma="264" pos="NUM" n="7" head="3" deprel="obl">264</w>
             <pc type="other">.</pc>
-            <author ref="#pers_Reginaldus">
-              <choice>
-                <abbr>
-                  <w>&amp;</w>
-                </abbr>
-                <expan>
-                  <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="8" head="9" deprel="cc">et</w>
-                </expan>
-              </choice>
-            </author>
-            <biblScope unit="?">
-              <w lemma="276" pos="NUM" n="9" head="7" deprel="conj">276</w>
-            </biblScope>
+            <choice>
+              <abbr>
+                <w>&amp;</w>
+              </abbr>
+              <expan>
+                <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="8" head="9" deprel="cc">et</w>
+              </expan>
+            </choice>
+            <w lemma="276" pos="NUM" n="9" head="7" deprel="conj">276</w>
             <pc type="other">.</pc>
           </bibl>
         </cit>

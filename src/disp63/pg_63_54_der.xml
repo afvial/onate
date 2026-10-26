@@ -174,7 +174,14 @@
       <w lemma="tertius" lemmaRef="lila:127957" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="40" head="42" deprel="nmod">tertia</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing" n="41" head="42" deprel="nmod">pretij</w>
       <w lemma="pars" lemmaRef="lila:116084" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="42" head="43" deprel="obl">parte</w>
-      <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act" n="43" head="36" deprel="acl">vilescere</w>
+      <choice>
+        <orig>
+          <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act" n="43" head="36" deprel="acl">vileſcere</w>
+        </orig>
+        <reg>
+          <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act" n="43" head="36" deprel="acl">vilescere</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <lb n="7"/>
       <w lemma="ita" lemmaRef="lila:109126" pos="ADV" n="44" head="43" deprel="advmod">Ita</w>
@@ -851,7 +858,14 @@
           <w lemma="causa" lemmaRef="lila:93253" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="212" head="218" deprel="nsubj:pass">causa</w>
         </reg>
       </choice>
-      <w lemma="descendo" lemmaRef="lila:98862" pos="VERB" msd="Case=Gen|VerbForm=Ger" n="213" head="212" deprel="acl">descendendi</w>
+      <choice>
+        <orig>
+          <w lemma="descendo" lemmaRef="lila:98862" pos="VERB" msd="Case=Gen|VerbForm=Ger" n="213" head="212" deprel="acl">deſcendendi</w>
+        </orig>
+        <reg>
+          <w lemma="descendo" lemmaRef="lila:98862" pos="VERB" msd="Case=Gen|VerbForm=Ger" n="213" head="212" deprel="acl">descendendi</w>
+        </reg>
+      </choice>
       <w lemma="multum" pos="DET" msd="Case=Nom|Gender=Neut|Number=Sing" n="214" head="212" deprel="dep">plurimum</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="215" head="216" deprel="case">in</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="216" head="217" deprel="obl">pretio</w>
@@ -1315,7 +1329,14 @@
       </choice>
       <w lemma="rogo" lemmaRef="lila:122853" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="333" head="330" deprel="conj">rogant</w>
       <pc type="comma">,</pc>
-      <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="334" head="195" deprel="conj">vilescunt</w>
+      <choice>
+        <orig>
+          <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="334" head="195" deprel="conj">vileſcunt</w>
+        </orig>
+        <reg>
+          <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="334" head="195" deprel="conj">vilescunt</w>
+        </reg>
+      </choice>
       <w lemma="magnus" lemmaRef="lila:111319" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="335" head="337" deprel="amod">magna</w>
       <lb n="51"/>
       <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="336" head="337" deprel="case">ex</w>

@@ -832,7 +832,14 @@
       <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Acc|Gender=Masc|Number=Plur" n="193" head="196" deprel="obj">quos</w>
       <lb n="29"/>
       <w lemma="regato" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" n="194" head="196" deprel="xcomp">regatones</w>
-      <w lemma="hispanus" lemmaRef="lila:57581" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur" n="195" head="194" deprel="amod">Hispani</w>
+      <choice>
+        <orig>
+          <w lemma="hispanus" lemmaRef="lila:57581" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur" n="195" head="194" deprel="amod">Hiſpani</w>
+        </orig>
+        <reg>
+          <w lemma="hispanus" lemmaRef="lila:57581" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur" n="195" head="194" deprel="amod">Hispani</w>
+        </reg>
+      </choice>
       <w lemma="appello" pos="VERB" msd="Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="196" head="198" deprel="acl:relcl">appellamus</w>
       <pc type="other">.</pc>
       <w lemma="quia" lemmaRef="lila:121166" pos="SCONJ" n="197" head="206" deprel="mark">Quia</w>
@@ -1564,7 +1571,14 @@
           <w lemma="ultroneus" lemmaRef="lila:130518" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Plur" n="347" head="346" deprel="amod">vltroneae</w>
         </reg>
       </choice>
-      <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="348" head="354" deprel="advcl">vilescunt</w>
+      <choice>
+        <orig>
+          <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="348" head="354" deprel="advcl">vileſcunt</w>
+        </orig>
+        <reg>
+          <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="348" head="354" deprel="advcl">vilescunt</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="unde" lemmaRef="lila:130603" pos="ADV" n="349" head="348" deprel="obl">Vnde</w>
       <w lemma="merx" lemmaRef="lila:112157" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Plur" n="350" head="354" deprel="nsubj">merces</w>

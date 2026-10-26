@@ -23808,13 +23808,13 @@
     "42"
    ]
   },
-  "Reginal\tPROPN": {
+  "Reginaldus\tPROPN": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
    "n": 1,
    "lineas": [
-    "42"
+    "43"
    ]
   },
   "uersus\tNOUN": {
@@ -31050,7 +31050,16 @@
     "55"
    ]
   },
-  "Ludou\tPROPN": {
+  "Ludovicus\tPROPN": {
+   "estado": "ok",
+   "ref": "lila:170097",
+   "candidatos": "lila:170097 proper_noun",
+   "n": 1,
+   "lineas": [
+    "50"
+   ]
+  },
+  "Lopez\tPROPN": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
@@ -31059,19 +31068,10 @@
     "50"
    ]
   },
-  "Lop\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "50"
-   ]
-  },
-  "instructs\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "instructorius\tADJ": {
+   "estado": "ok",
+   "ref": "lila:158652",
+   "candidatos": "lila:158652 adjective",
    "n": 1,
    "lineas": [
     "50"
@@ -64584,9 +64584,10 @@
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
-   "n": 2,
+   "n": 3,
    "lineas": [
     "10",
+    "16",
     "59"
    ]
   },
@@ -64794,20 +64795,10 @@
     "39"
    ]
   },
-  "iterum\tADV": {
-   "estado": "ok",
-   "ref": "lila:109138",
-   "candidatos": "lila:109138 adverb",
-   "n": 2,
-   "lineas": [
-    "16",
-    "18"
-   ]
-  },
-  "Reginal\tPROPN": {
-   "estado": "no_encontrado",
+  "iterum\tADJ": {
+   "estado": "pos_distinta",
    "ref": null,
-   "candidatos": "",
+   "candidatos": "lila:60396 noun; lila:109138 adverb",
    "n": 1,
    "lineas": [
     "16"
@@ -64847,6 +64838,15 @@
    "n": 1,
    "lineas": [
     "17"
+   ]
+  },
+  "iterum\tADV": {
+   "estado": "ok",
+   "ref": "lila:109138",
+   "candidatos": "lila:109138 adverb",
+   "n": 1,
+   "lineas": [
+    "18"
    ]
   },
   "ratio\tNOUN": {

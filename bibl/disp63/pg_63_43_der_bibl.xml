@@ -1562,7 +1562,7 @@
         <cit xml:id="cit_p43_der_Garcia_Contr_21">
           <bibl corresp="#bib_Garcia_Contr" cert="high">
             <author ref="#pers_Garcia">
-              <w lemma="Garzias" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="28" head="13" deprel="conj">Garzias</w>
+              <w lemma="Garzias" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="28" head="13" deprel="conj">Garzias</w>
             </author>
             <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="29" head="30" deprel="case">de</w>
             <choice>
@@ -1590,11 +1590,11 @@
                 <w>n.</w>
               </abbr>
               <expan>
-                <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="33" head="13" deprel="conj">numero</w>
+                <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="33" head="34" deprel="obl">numero</w>
               </expan>
             </choice>
             <biblScope unit="n">
-              <w lemma="216" pos="NUM" n="34" head="33" deprel="amod">216</w>
+              <w lemma="216" pos="NUM" n="34" head="13" deprel="conj">216</w>
             </biblScope>
             <pc type="other">.</pc>
           </bibl>
@@ -1602,27 +1602,45 @@
         <cit xml:id="cit_p43_der_LopezL_Instr_22">
           <bibl corresp="#bib_LopezL_Instr" cert="medium">
             <author ref="#pers_LopezL">
-              <w lemma="Ludou" pos="PROPN" msd="Case=Abl|Gender=Masc|Number=Sing" n="35" head="37" deprel="obl">Ludou</w>
+              <choice>
+                <abbr>
+                  <w>Ludou.</w>
+                </abbr>
+                <expan>
+                  <w lemma="Ludovicus" lemmaRef="lila:170097" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="35" head="13" deprel="conj">Ludovicus</w>
+                </expan>
+              </choice>
+              <choice>
+                <abbr>
+                  <w>Lop.</w>
+                </abbr>
+                <expan>
+                  <w lemma="Lopez" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="36" head="38" deprel="nmod">Lopez</w>
+                </expan>
+              </choice>
             </author>
-            <pc type="other">.</pc>
-            <w lemma="Lop" pos="PROPN" msd="Case=Acc|Gender=Neut|Number=Sing" n="36" head="35" deprel="amod">Lop</w>
-            <pc type="other">.</pc>
             <choice>
-              <orig>
-                <w lemma="instructs" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="37" head="13" deprel="conj">inſtruct</w>
-              </orig>
-              <reg>
-                <w lemma="instructs" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="37" head="13" deprel="conj">instruct</w>
-              </reg>
+              <abbr>
+                <choice>
+                  <orig>
+                    <w>inſtruct.</w>
+                  </orig>
+                  <reg>
+                    <w>instruct.</w>
+                  </reg>
+                </choice>
+              </abbr>
+              <expan>
+                <w lemma="instructorius" lemmaRef="lila:158652" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Sing" n="37" head="38" deprel="nmod">instructorium</w>
+              </expan>
             </choice>
-            <pc type="other">.</pc>
             <lb n="51"/>
             <choice>
               <abbr>
                 <w>lib.</w>
               </abbr>
               <expan>
-                <w lemma="liber" lemmaRef="lila:110382" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="38" head="37" deprel="obl">libro</w>
+                <w lemma="liber" lemmaRef="lila:110382" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="38" head="13" deprel="obl">libro</w>
               </expan>
             </choice>
             <biblScope unit="book">
@@ -1634,7 +1652,7 @@
                 <w>cap.</w>
               </abbr>
               <expan>
-                <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="40" head="37" deprel="obl">capitulo</w>
+                <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="40" head="38" deprel="conj">capitulo</w>
               </expan>
             </choice>
             <biblScope unit="chap">
@@ -1651,7 +1669,7 @@
                   <w>Conrad.</w>
                 </abbr>
                 <expan>
-                  <w lemma="Conradus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="42" head="37" deprel="cop">Conradus</w>
+                  <w lemma="Conradus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="42" head="38" deprel="flat">Conradus</w>
                 </expan>
               </choice>
             </author>
@@ -1661,7 +1679,7 @@
                 <w>contractib.</w>
               </abbr>
               <expan>
-                <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="44" head="37" deprel="obl">contractibus</w>
+                <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="44" head="38" deprel="nmod">contractibus</w>
               </expan>
             </choice>
             <choice>

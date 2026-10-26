@@ -1424,7 +1424,14 @@
       <w lemma="is" lemmaRef="lila:109083" pos="PRON" msd="Case=Acc|Gender=Fem|Number=Plur|Person=3" n="352" head="354" deprel="obl">eas</w>
       <pc type="comma">,</pc>
       <w lemma="uel" lemmaRef="lila:129695" pos="CCONJ" n="353" head="354" deprel="cc">vel</w>
-      <w lemma="descendo" lemmaRef="lila:98862" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="354" head="347" deprel="advcl">descendamus</w>
+      <choice>
+        <orig>
+          <w lemma="descendo" lemmaRef="lila:98862" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="354" head="347" deprel="advcl">deſcendamus</w>
+        </orig>
+        <reg>
+          <w lemma="descendo" lemmaRef="lila:98862" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="354" head="347" deprel="advcl">descendamus</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="355" head="356" deprel="case">in</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="356" head="354" deprel="obl">pretio</w>

@@ -409,7 +409,14 @@
       <lb n="22"/>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="122" head="124" deprel="case">in</w>
       <w lemma="hic" lemmaRef="lila:105455" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="123" head="124" deprel="det">his</w>
-      <w lemma="casus" lemmaRef="lila:97835" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Plur" n="124" head="115" deprel="obl">casibus</w>
+      <choice>
+        <orig>
+          <w lemma="casus" lemmaRef="lila:97835" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Plur" n="124" head="115" deprel="obl">caſibus</w>
+        </orig>
+        <reg>
+          <w lemma="casus" lemmaRef="lila:97835" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Plur" n="124" head="115" deprel="obl">casibus</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <choice>
         <orig>
@@ -1232,7 +1239,14 @@
       <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="324" head="325" deprel="case">ex</w>
       <w lemma="copia" lemmaRef="lila:96517" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="325" head="327" deprel="obl">copia</w>
       <w lemma="merx" lemmaRef="lila:112157" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Plur" n="326" head="327" deprel="obj">mer<lb break="no" n="53"/>cium</w>
-      <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="327" head="332" deprel="advcl">vilescunt</w>
+      <choice>
+        <orig>
+          <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="327" head="332" deprel="advcl">vileſcunt</w>
+        </orig>
+        <reg>
+          <w lemma="uilesco" lemmaRef="lila:130192" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="327" head="332" deprel="advcl">vilescunt</w>
+        </reg>
+      </choice>
       <w lemma="merx" lemmaRef="lila:112157" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Plur" n="328" head="332" deprel="nsubj:pass">merces</w>
       <pc type="comma">,</pc>
       <choice>
@@ -1290,7 +1304,14 @@
       <w lemma="noto" lemmaRef="lila:113861" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Plur|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="349" head="332" deprel="conj">notarunt</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="350" head="351" deprel="case">in</w>
       <lb n="57"/>
-      <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="351" head="354" deprel="obl">Hispania</w>
+      <choice>
+        <orig>
+          <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="351" head="354" deprel="obl">Hiſpania</w>
+        </orig>
+        <reg>
+          <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="351" head="354" deprel="obl">Hispania</w>
+        </reg>
+      </choice>
       <w lemma="magnus" lemmaRef="lila:111319" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Sing" n="352" head="353" deprel="amod">maioris</w>
       <w lemma="res" lemmaRef="lila:121868" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Plur" n="353" head="354" deprel="nsubj">res</w>
       <w lemma="uenio" lemmaRef="lila:129790" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act" n="354" head="349" deprel="ccomp">venire</w>
@@ -1310,7 +1331,14 @@
       <pc type="comma">,</pc>
       <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Acc|Gender=Fem|Number=Sing" n="364" head="354" deprel="advmod">quam</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="365" head="366" deprel="case">in</w>
-      <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="366" head="364" deprel="obl">Hispania</w>
+      <choice>
+        <orig>
+          <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="366" head="364" deprel="obl">Hiſpania</w>
+        </orig>
+        <reg>
+          <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="366" head="364" deprel="obl">Hispania</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="immo" lemmaRef="lila:106420" pos="ADV" n="367" head="371" deprel="advmod">Immo</w>
       <lb n="60"/>
