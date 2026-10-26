@@ -287,3 +287,33 @@ git add bibl/disp63/disp63_bibl.xml html/disp63/ output/disp63_bibl_completo.xml
 ```
 
 Salir de Emacs sin guardar el mensaje de commit: `C-x C-c`, responder `n`.
+
+## Omitir pasos durante la edición del texto
+
+Los pasos 6 (índice de búsqueda, `search`) y 7 (análisis por oración, `rdf` + `oraciones.js`)
+son los últimos de la cadena y no alimentan a ningún otro. Mientras se edita el texto
+pueden omitirse para que el procesamiento sea más rápido; el buscador y los paneles de
+oración del HTML quedan con la versión anterior hasta que se regeneren.
+
+Omitir pasos en una llamada (por nombre o por número):
+
+    ./procesar_pagina.sh 43 der --skip search,rdf
+    ./procesar_pagina.sh 43 der --skip 6,7
+
+Omitirlos durante toda la sesión de edición:
+
+    export SKIP="search rdf"
+    ./procesar_pagina.sh 43 der
+    ./procesar_pagina.sh 44 izq
+
+Cada paso omitido muestra «Paso omitido: … (--skip)» al ejecutarse.
+
+Al terminar la edición, desactivar y regenerar (basta una vez, desde cualquier página,
+porque ambos pasos trabajan sobre el documento ensamblado):
+
+    unset SKIP
+    ./procesar_pagina.sh 43 der --only search
+    ./procesar_pagina.sh 43 der --only rdf
+
+Números de paso: 0 normalize · 1 page2tei · 1.5 nlp · 1.6 nlp_corrections · 1.7 lila ·
+2 enrich · 3 assemble · 3.5 sentences · 4 validate · 4.5 coords · 5 html · 6 search · 7 rdf
