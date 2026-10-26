@@ -41,7 +41,7 @@ ANNOTATION_RE = re.compile(
     r'|¶'            # párrafo
     r'|¬'            # corte de palabra
     r'|~'            # corte sin guion
-    r'|[@*]'         # apertura/cierre de referencia (@) o cursiva (*)
+    r'|[@*%]'        # referencia (@), cursiva (*), lengua extranjera (%)
 )
 
 # Marcas de s larga del staging: [-palabra], [+palabra], [=forma].

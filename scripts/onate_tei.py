@@ -1287,6 +1287,81 @@ def _emit_summarium(parent, lines: list):
                     lb.set("break", "no")
 
 
+_CHOICE_PARTS = None
+
+def _wrap_foreign(div, lang: str = "es") -> int:
+    """
+    Envuelve en <foreign xml:lang="es"> las palabras marcadas en el staging con
+    %…% (castellano dentro del texto latino) y quita las marcas. Si la frase no
+    comparte contenedor (cruza una cita o una cursiva), envuelve cada palabra.
+    """
+    T = lambda n: f"{{{TEI_NS}}}{n}"
+    wrap_tags = {T(n) for n in ("choice", "orig", "reg", "abbr", "expan", "sic", "corr")}
+    def top(w):
+        el = w
+        while el.getparent() is not None and el.getparent().tag in wrap_tags:
+            el = el.getparent()
+        return el
+    def strip_marks(el):
+        for w in el.iter(T("w")):
+            if w.text:
+                w.text = w.text.replace("%", "")
+            for ch in w:
+                if ch.tail:
+                    ch.tail = ch.tail.replace("%", "")
+    import re as _re, sys as _sys
+    _LANG_PREFIX = _re.compile(r"^%([a-z]{2,3})\|")
+    def wrap(elems):
+        par = elems[0].getparent()
+        f = etree.Element(T("foreign"))
+        _lg = None
+        for _w in elems[0].iter(T("w")):        # %it|palabra → xml:lang="it"
+            _m = _LANG_PREFIX.match(_w.text or "")
+            if _m:
+                _lg = _m.group(1); _w.text = "%" + _w.text[_m.end():]
+        if _lg is None:
+            _lg = lang
+            _first = "".join(elems[0].itertext()).strip()
+            print(f"  ⚠ marca %…% sin prefijo de lengua («{_first}»): se usa "
+                  f"xml:lang=\"{lang}\"; escribe %{lang}|…% en el staging",
+                  file=_sys.stderr)
+        f.set("{http://www.w3.org/XML/1998/namespace}lang", _lg)
+        par.insert(par.index(elems[0]), f)
+        f.tail = elems[-1].tail
+        for e in elems:
+            e.tail = e.tail if e is not elems[-1] else None
+            f.append(e)
+        strip_marks(f)
+
+    tops, seen = [], set()
+    for w in div.iter(T("w")):
+        t = top(w)
+        if id(t) not in seen:
+            seen.add(id(t)); tops.append(t)
+    def txt(el):
+        return "".join(el.itertext())
+    n, i = 0, 0
+    while i < len(tops):
+        if not txt(tops[i]).lstrip().startswith("%"):
+            i += 1; continue
+        j = i
+        while j < len(tops) and not txt(tops[j]).rstrip().endswith("%"):
+            j += 1
+        if j == len(tops):
+            j = i                                    # sin cierre: solo esta palabra
+        run = tops[i:j + 1]
+        par = run[0].getparent()
+        if all(e.getparent() is par for e in run):
+            sibs = list(par)
+            a, b = sibs.index(run[0]), sibs.index(run[-1])
+            wrap(sibs[a:b + 1]); n += 1
+        else:
+            for e in run:
+                wrap([e]); n += 1
+        i = j + 1
+    return n
+
+
 def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool = False, col: str = None) -> etree._Element:
     _attrib = {"type": "page", "n": str(page_n)}
     if col:
@@ -1333,6 +1408,7 @@ def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool 
                              staging=staging)
             first_para = False
 
+    _wrap_foreign(div)
     return div
 
 

@@ -133,6 +133,12 @@ WORKS = {
     "sa":         ("bib_Sa_Aphorismi",       "pers_Sa",             "high"),
     "vasquez":    ("bib_Vasquez_Opusc",      "pers_Vasquez",        "medium"),
     "vasq":       ("bib_Vasquez_Opusc",      "pers_Vasquez",        "medium"),
+    "vazquez":    ("bib_Vasquez_Opusc",      "pers_Vasquez",        "medium"),
+    "garzias":    ("bib_Garcia_Contr",       "pers_Garcia",        "high"),
+    "ludou":      ("bib_LopezL_Instr",       "pers_LopezL",        "medium"),
+    "ludoulop":   ("bib_LopezL_Instr",       "pers_LopezL",        "high"),
+    "petrus":     ("bib_NavarraP_Restit",    "pers_NavarraP",      "high"),
+    "reginal":    ("bib_Reginald_Praxis",    "pers_Reginaldus",    "high"),
     "ledes":      ("bib_Ledesma_Summa",      "pers_Ledesma",       "high"),
     "ledesm":     ("bib_Ledesma_Summa",      "pers_Ledesma",       "high"),
     "richard":    ("bib_Mediavilla_Sent",    "pers_Mediavilla",    "high"),
@@ -554,7 +560,7 @@ AUTHOR_NAMES = {
     "Bonacina", "Filliucius", "Medina", "Azorius",
     "Antoninus", "Sylvester", "Conradus", "Sotus",
     "Valentinus", "Caietanus", "Scotus", "Maior",
-    "Toletus", "Salas", "Gabriel", "Faustus", "Sa", "Vasquez",
+    "Toletus", "Salas", "Gabriel", "Faustus", "Sa", "Vasquez", "Vazquez", "Garzias", "Petrus",
 }
 
 # Abreviaturas de autor que inician un nuevo <bibl>
@@ -564,7 +570,7 @@ AUTHOR_ABBREVS_BIBL = {
     "Ign.", "Tert.", "Orig.", "Bas.", "Chrys.", "D.",
     "Nau.", "Mol.", "Molin.", "Less.", "Lessius.", "Leff.",
     "Sal.", "Salas.", "Salon.", "Couar.", "Couarr.",
-    "Bonac.", "Bonacin.", "Regin.", "Reginald.",
+    "Bonac.", "Bonacin.", "Regin.", "Reginal.", "Reginald.",
     "Azor.", "Tolet.", "Sot.", "Sotus.", "Med.", "Medin.",
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.",
     "Anton.", "Sylu.", "Conrad.",

@@ -172,6 +172,9 @@ def collect_w_elements(tree):
         # Excluir por ancestros bloqueantes
         if is_excluded(w):
             continue
+        # Castellano u otra lengua (<foreign>): no se analiza como latín
+        if any(a.tag.endswith("}foreign") for a in w.iterancestors()):
+            continue
 
         # Excluir si está en <abbr>
         if is_in_abbr(w):

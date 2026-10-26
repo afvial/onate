@@ -34,7 +34,7 @@ ABBREV_WITH_DOT = {
     "D.", "S.", "B.", "P.", "R.", "M.", "V.", "Fr.",
     "Nau.", "Mol.", "Molin.", "Less.", "Lessius.",
     "Sal.", "Salas.", "Salon.", "Couar.", "Couarr.",
-    "Bonac.", "Bonacin.", "Regin.", "Reginald.",
+    "Bonac.", "Bonacin.", "Regin.", "Reginal.", "Reginald.",
     "Azor.", "Tolet.", "Sot.", "Sotus.", "Med.", "Medin.",
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.", "Leff.",
     "Anton.", "Sylu.", "Conrad.",
@@ -209,6 +209,7 @@ ABBREV_EXPAN = {
     "Bonacin.":   "Bonacina",
     "Regin.":     "Reginaldus",
     "Reginald.":  "Reginaldus",
+    "Reginal.":   "Reginaldus",
     "Azor.":      "Azorius",
     "Tolet.":     "Toletanus",
     "Sot.":       "Sotus",
@@ -258,7 +259,7 @@ AUTHOR_ABBREVS = {
     # Escolásticos
     "Nau.", "Mol.", "Molin.", "Less.", "Lessius.", "Leff.",
     "Sal.", "Salas.", "Salon.", "Couar.", "Couarr.",
-    "Bonac.", "Bonacin.", "Regin.", "Reginald.",
+    "Bonac.", "Bonacin.", "Regin.", "Reginal.", "Reginald.",
     "Azor.", "Tolet.", "Sot.", "Sotus.", "Med.", "Medin.",
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.",
     "Anton.", "Sylu.", "Conrad.",
@@ -1218,7 +1219,13 @@ LONG_S_ROOTS = [
     ("usque",      "uſque"),
     ("compens",    "compenſ"),
     ("caus",       "cauſ"),
-    ("iust",       "iuſt"),       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
+    ("iust",       "iuſt"),
+    ("recus",      "recuſ"),
+    ("casu",       "caſu"),       # casum, casus, casui, casuum…
+    ("casib",      "caſib"),
+    ("descen",     "deſcen"),
+    ("hisp",       "hiſp"),
+    ("vilesc",     "vileſc"),     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
     ("vers",       "verſ"),       # versus, versatur, conuersio… (general)
     ("uers",       "uerſ"),       # grafía con u: conuersatio…      # superare, superat, insuper… (general, al final)        # vestis, vestimentum, vestitus, vestiarium…
 ]

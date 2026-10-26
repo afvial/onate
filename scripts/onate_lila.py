@@ -146,6 +146,8 @@ def process_page(path: Path, index, exceptions, dry_run=False):
     changed = 0
     line = None
     for el in tree.getroot().iter(W, LB):
+        if el.tag == W and any(a.tag.endswith("}foreign") for a in el.iterancestors()):
+            continue                     # castellano: no se enlaza con LiLa
         # El número de línea es el del último <lb n> visto en orden de
         # documento; una palabra partida cuenta en la línea donde empieza.
         if el.tag == LB:
