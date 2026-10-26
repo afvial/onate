@@ -70,6 +70,7 @@ ABBREV_WITH_DOT = {
     "restit.",   # de restitutione (ya en BIBL_INTRA, aquí como abbrev)
     "glos.",     # glosa
     "fin.",      # in fine
+    "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
 }
 
@@ -158,6 +159,7 @@ ABBREV_EXPAN = {
     "Falc.":      "ad legem Falcidiam",
     "glos.":      "glosa",
     "fin.":       "in fine",
+    "fi.":        "finem",
     "ma.":        "mandati",
     "seqq.":      "sequentibus",
     "iun.":       "iuncto",
