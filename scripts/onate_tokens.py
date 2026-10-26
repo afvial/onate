@@ -39,7 +39,7 @@ ABBREV_WITH_DOT = {
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.", "Leff.",
     "Anton.", "Sylu.", "Conrad.",
     "Faustus.", "Faust.", "Valent.", "Aragon.", "Caiet.",
-    "Bannes.", "Bann.", "Mai.", "Maior.",
+    "Bannes.", "Bann.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
     # Obras y colecciones
     "ethic.", "instit.", "mor.", "restit.", "restitut.",
@@ -53,6 +53,7 @@ ABBREV_WITH_DOT = {
     "diffieul.", "difficul.", "diffic.", "ca.", "2n.",
     "opusc.", "fect.",   # opusculum, sectio (grafía alt.)
     "instruct.",         # instructorium
+    "dist.",             # distinctione
     "Rebel.", "Rebell.", "Nauar.",  # Rebellus, Navarrus
     # Términos jurídico-escolásticos abreviados
     "reip.", "repub.", "rep.", "ff.", "seqq.", "iun.", "contr.",
@@ -182,6 +183,8 @@ ABBREV_EXPAN = {
     "Rebell.":    "Rebellus",
     "Nauar.":     "Navarrus",
     "Ledes.":     "Ledesma",
+    "Scot.":      "Scotus",
+    "dist.":      "distinctione",
     "Ludou.":     "Ludovicus",
     "Lop.":       "Lopez",
     "instruct.":  "instructorium",
@@ -270,7 +273,7 @@ AUTHOR_ABBREVS = {
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.",
     "Anton.", "Sylu.", "Conrad.",
     "Faust.", "Faustus.", "Valent.", "Aragon.", "Caiet.",
-    "Bannes.", "Bann.", "S.", "Mai.", "Maior.",
+    "Bannes.", "Bann.", "S.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
     "Rebel.", "Rebell.", "Nauar.",
 }
@@ -285,7 +288,7 @@ BIBL_INTRA = {
     "ethic.", "mor.", "restit.", "restitut.",
     "iust.", "contract.", "contractib.", "empt.", "emptione.",
     "peccat.", "pecca.", "septem.", "trinitate.",
-    "c.", "instruct.",
+    "c.", "instruct.", "dist.",
     "reip.", "repub.", "ff.", "seqq.", "iun.", "contr.",
     # Preposiciones intra-bibl (forman parte del título de la obra)
     "de", "ad", "in", "ibi",
@@ -1711,7 +1714,7 @@ def tokenize(text: str) -> list:
         ttype, ttext = toks[i]
         if (ttype == "word"
                 and i + 1 < len(toks)
-                and toks[i+1][0] == "dot"
+                and toks[i+1] == ("dot", ".")      # no unir con puntos suspensivos
                 and not ttext.isdigit()):
             candidate = ttext + "."
             if candidate in ABBREV_WITH_DOT or candidate.lower() in ABBREV_WITH_DOT:

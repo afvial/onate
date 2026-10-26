@@ -106,6 +106,7 @@ while [[ $# -gt 0 ]]; do
         --force-bibl) FORCE_BIBL="--force-bibl" ;;
         --verbose)    VERBOSE="--verbose" ;;
         --only)       shift; ONLY="$1" ;;
+        --skip)       shift; SKIP="$1" ;;
         *) fail "Opción desconocida: $1" ;;
     esac
     shift
@@ -328,6 +329,17 @@ run_rdf() {
 }
 
 # ── Ejecutar ──────────────────────────────────────────────────────────────────
+# ── Pasos omitidos: --skip search,rdf  o  SKIP="search rdf" (también 6,7) ─────
+export SKIP="${SKIP:-}"
+for _s in ${SKIP//,/ }; do
+    case "$_s" in
+        0) _s=normalize ;; 1) _s=page2tei ;; 1.5) _s=nlp ;; 1.6) _s=nlp_corrections ;;
+        1.7) _s=lila ;; 2) _s=enrich ;; 3) _s=assemble ;; 3.5) _s=sentences ;;
+        4) _s=validate ;; 4.5) _s=coords ;; 5) _s=html ;; 6) _s=search ;; 7) _s=rdf ;;
+    esac
+    eval "run_${_s}() { info \"Paso omitido: ${_s} (--skip)\"; }"
+done
+
 case "$ONLY" in
     "")
         run_page2tei

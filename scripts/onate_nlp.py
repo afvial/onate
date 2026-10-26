@@ -60,6 +60,10 @@ MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=S
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
 
+# "n" suelta (p. ej. «Petrus Nau. n... lib.», signo dudoso del impreso):
+# sin análisis latino; "n." con punto sigue siendo la abreviatura de numero.
+MANUAL_LEMMA["n"] = ("n", "X", "")
+
 # expensa (gasto): LatinCy lo toma por participio de expendo.
 for _f in ("expensa", "expensae", "expensam", "expensas", "expensis", "expensarum"):
     MANUAL_LEMMA[_f] = ("expensa", "NOUN", None)

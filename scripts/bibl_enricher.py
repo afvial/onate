@@ -812,6 +812,16 @@ def enrich_bibl(bibl_elem, report: list, dry_run: bool = False):
 # PROCESAMIENTO DE ARCHIVO
 # ─────────────────────────────────────────────────────────────────────────────
 
+# Obras citadas por partes de la Summa (Tomás y sus comentaristas a la I-II / II-II)
+SUMMA_BIBLS = {
+    "#bib_Aquinas_ST",      # Tomás, Summa Theologiae
+    "#bib_Caietanus_ST",    # Cayetano, Commentaria in Summam
+    "#bib_Bannes_ST",       # Báñez, in Secundam Secundae
+    "#bib_Salon_ST",        # Salón, in Secundam Secundae
+    "#bib_Aragon_ST",       # Pedro de Aragón, in Secundam Secundae
+}
+
+
 def regularize_aquinas_parts(root) -> int:
     """
     En las citas de la Summa (corresp="#bib_Aquinas_ST"), la parte se imprime
@@ -825,7 +835,7 @@ def regularize_aquinas_parts(root) -> int:
     SKIP = {NS + t for t in ("orig", "reg", "abbr", "expan", "sic", "corr")}
     n = 0
     for b in root.iter(NS + "bibl"):
-        if b.get("corresp") != "#bib_Aquinas_ST":
+        if b.get("corresp") not in SUMMA_BIBLS:
             continue
         for w in b.iter(NS + "w"):
             t = (w.text or "").strip()

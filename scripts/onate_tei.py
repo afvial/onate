@@ -917,6 +917,27 @@ def _join_split_words_6(raw6: list) -> list:
                           "expansion": None, "corr_full": _d["corr"],
                           "lb_n": _d["lb_n"], "eol": _tok.get("eol", False)}
 
+    # Abreviatura partida entre líneas (Na¬ / uarr.): las mitades se unen aquí,
+    # después de tokenizar, así que el punto ha quedado suelto. Si la palabra
+    # completa con punto es una abreviatura conocida, se convierte en word_lb
+    # con expansión (el bucle de atributos ya maneja right que acaba en ".").
+    _merged = []
+    for _tok in tokens:
+        if (_merged and _tok.get("kind") in ("dot", "pc") and _tok.get("text") == "."
+                and _merged[-1].get("kind") == "word_lb"
+                and not _merged[-1].get("expansion")):
+            _prev = _merged[-1]
+            _full = _prev["left"] + _prev["right"] + "."
+            _exp = ABBREV_EXPAN.get(_full) or ABBREV_EXPAN.get(_full.lower())
+            if _exp:
+                _prev["right"] += "."
+                _prev["expansion"] = _exp
+                if _tok.get("eol"):
+                    _prev["eol"] = _tok["eol"]
+                continue
+        _merged.append(_tok)
+    tokens = _merged
+
     for tok in tokens:
         kind = tok["kind"]
         if kind == "sol":
