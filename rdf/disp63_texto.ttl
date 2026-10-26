@@ -110395,7 +110395,7 @@ tok:s_p43der_6_t18
 
 tok:s_p43der_7
     a nif:Sentence ;
-    nif:anchorOf "Ita Divus Thomas 2. 2. quaestio 77. articulo 1. corp. ad si. exepressè, et ibi etiam Caietanus et Doctores, Manuel summa capitulo 173. conclusio 5. numero 5. Garzias de contractibus libro 8. numero 216. Ludovicus Lopez instructorium libro 1. capitulo 12. Conradus de contractibus caput 56. conclusio 2. Bonacina disputatio 3. quaestio 2. punctum 4.; 17. Navarrus capitulo 17. numero 83. Petrus Navarrus m. libro 2. capitulo 3. numero 24. Reginaldus libro 25. capitulo 16. numero 275. Lessius libro 2. capitulo 21. dubium 4. numero 31. Rebellus 2. pars numero 9. quaestio 1. numero 36. Salon 22. quaestio 77. articulo 1. Nauarr. capitulo 23. numero 78. Scot. in 4. dist. 15. Molina 340. vers. obserua tamen."@la ;
+    nif:anchorOf "Ita Divus Thomas 2. 2. quaestio 77. articulo 1. corp. ad finem expressè, et ibi etiam Caietanus et Doctores, Manuel summa capitulo 173. conclusio 5. numero 5. Garzias de contractibus libro 8. numero 216. Ludovicus Lopez instructorium libro 1. capitulo 12. Conradus de contractibus caput 56. conclusio 2. Bonacina disputatio 3. quaestio 2. punctum 4.; 17. Navarrus capitulo 17. numero 83. Petrus Navarrus m. libro 2. capitulo 3. numero 24. Reginaldus libro 25. capitulo 16. numero 275. Lessius libro 2. capitulo 21. dubium 4. numero 31. Rebellus 2. pars numero 9. quaestio 1. numero 36. Salon 22. quaestio 77. articulo 1. Nauarr. capitulo 23. numero 78. Scot. in 4. dist. 15. Molina 340. vers. obserua tamen."@la ;
     dct:isPartOf tok:p43der ;
     onate:n 7 ;
     nif:firstWord tok:s_p43der_7_t1 .
@@ -110408,7 +110408,7 @@ tok:s_p43der_7_t1
     lexinfo:partOfSpeech lexinfo:adverb ;
     lila:hasLemma lilalem:109126 ;
     onate:lexicalEntry lex:ita_ADV ;
-    conll:HEAD tok:s_p43der_7_t99 ;
+    conll:HEAD tok:s_p43der_7_t165 ;
     conll:EDGE "advmod" ;
     onate:line 46 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A46%3AIta%3A0> .
@@ -110444,7 +110444,7 @@ tok:s_p43der_7_t3
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:23524 ;
     onate:lexicalEntry lex:Thomas_PROPN ;
-    conll:HEAD tok:s_p43der_7_t1 ;
+    conll:HEAD tok:s_p43der_7_t165 ;
     conll:EDGE "nsubj" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A47%3ATh.%3A0> .
@@ -110516,8 +110516,8 @@ tok:s_p43der_7_t11
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:90117 ;
     onate:lexicalEntry lex:articulus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t3 ;
-    conll:EDGE "orphan" ;
+    conll:HEAD tok:s_p43der_7_t18 ;
+    conll:EDGE "obl" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A47%3Aar.%3A0> .
 
@@ -110538,10 +110538,10 @@ tok:s_p43der_7_t14
     nif:anchorOf "corp"@la ;
     nif:sentence tok:s_p43der_7 ;
     nif:nextWord tok:s_p43der_7_t16 ;
-    lexinfo:partOfSpeech lexinfo:interjection ;
-    onate:lexicalEntry lex:corpus_INTJ ;
+    lexinfo:partOfSpeech lexinfo:adverb ;
+    onate:lexicalEntry lex:corpus_ADV ;
     conll:HEAD tok:s_p43der_7_t11 ;
-    conll:EDGE "nmod" ;
+    conll:EDGE "punct" ;
     onate:line 47 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A47%3Acorp%3A0> .
 
@@ -110560,81 +110560,81 @@ tok:s_p43der_7_t16
 
 tok:s_p43der_7_t17
     a nif:Word ;
-    nif:anchorOf "si"@la ;
-    onate:diplomatic "ſi"@la ;
+    nif:anchorOf "finem"@la ;
+    onate:diplomatic "fi."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t19 ;
-    lexinfo:partOfSpeech lexinfo:subordinatingConjunction ;
-    lila:hasLemma lilalem:124676 ;
-    onate:lexicalEntry lex:si_SCONJ ;
-    conll:HEAD tok:s_p43der_7_t19 ;
-    conll:EDGE "advcl" ;
+    nif:nextWord tok:s_p43der_7_t18 ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    lexinfo:case lexinfo:accusativeCase ;
+    lexinfo:gender lexinfo:feminine ;
+    lexinfo:number lexinfo:singular ;
+    onate:ud "Case=Acc|Gender=Fem|Number=Sing" ;
+    onate:lexicalEntry lex:finis_NOUN ;
+    conll:HEAD tok:s_p43der_7_t18 ;
+    conll:EDGE "obl" ;
     onate:line 47 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A47%3Aſi%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A47%3Afi.%3A0> .
 
-tok:s_p43der_7_t19
+tok:s_p43der_7_t18
     a nif:Word ;
-    nif:anchorOf "exepressè"@la ;
-    onate:diplomatic "exepreſſè"@la ;
+    nif:anchorOf "expressè"@la ;
+    onate:diplomatic "expreſsè"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t21 ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    lexinfo:aspect lexinfo:imperfective ;
-    lexinfo:verbFormMood lexinfo:infinitive ;
-    lexinfo:voice lexinfo:activeVoice ;
-    onate:ud "Aspect=Imp|VerbForm=Inf|Voice=Act" ;
-    onate:lexicalEntry lex:exepresse_VERB ;
+    nif:nextWord tok:s_p43der_7_t20 ;
+    lexinfo:partOfSpeech lexinfo:adverb ;
+    lila:hasLemma lilahyp:111619 ;
+    onate:lexicalEntry lex:expresse_ADV ;
     conll:HEAD tok:s_p43der_7_t3 ;
-    conll:EDGE "dep" ;
+    conll:EDGE "orphan" ;
     onate:line 47 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A47%3Aexepreſſè%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A47%3Aexpreſsè%3A0> .
 
-tok:s_p43der_7_t21
+tok:s_p43der_7_t20
     a nif:Word ;
     nif:anchorOf "et"@la ;
     onate:diplomatic "&"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t22 ;
+    nif:nextWord tok:s_p43der_7_t21 ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     lila:hasLemma lilalem:101542 ;
     onate:lexicalEntry lex:et_CCONJ ;
-    conll:HEAD tok:s_p43der_7_t31 ;
+    conll:HEAD tok:s_p43der_7_t21 ;
     conll:EDGE "cc" ;
     onate:line 48 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A48%3A&%3A0> .
 
-tok:s_p43der_7_t22
+tok:s_p43der_7_t21
     a nif:Word ;
     nif:anchorOf "ibi"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t23 ;
+    nif:nextWord tok:s_p43der_7_t22 ;
     lexinfo:partOfSpeech lexinfo:adverb ;
     lila:hasLemma lilalem:106053 ;
     onate:lexicalEntry lex:ibi_ADV ;
-    conll:HEAD tok:s_p43der_7_t31 ;
+    conll:HEAD tok:s_p43der_7_t30 ;
     conll:EDGE "advmod:lmod" ;
     onate:line 48 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A48%3Aibi%3A0> .
 
-tok:s_p43der_7_t23
+tok:s_p43der_7_t22
     a nif:Word ;
     nif:anchorOf "etiam"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t24 ;
+    nif:nextWord tok:s_p43der_7_t23 ;
     lexinfo:partOfSpeech lexinfo:adverb ;
     lila:hasLemma lilalem:101554 ;
     onate:lexicalEntry lex:etiam_ADV ;
-    conll:HEAD tok:s_p43der_7_t24 ;
+    conll:HEAD tok:s_p43der_7_t23 ;
     conll:EDGE "advmod:emph" ;
     onate:line 48 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A48%3Aetiam%3A0> .
 
-tok:s_p43der_7_t24
+tok:s_p43der_7_t23
     a nif:Word ;
     nif:anchorOf "Caietanus"@la ;
     onate:diplomatic "Caiet."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t25 ;
+    nif:nextWord tok:s_p43der_7_t24 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -110642,28 +110642,44 @@ tok:s_p43der_7_t24
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:2005 ;
     onate:lexicalEntry lex:Caietanus_PROPN ;
-    conll:HEAD tok:s_p43der_7_t22 ;
+    conll:HEAD tok:s_p43der_7_t21 ;
     conll:EDGE "nsubj" ;
     onate:line 48 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A48%3ACaiet.%3A0> .
 
-tok:s_p43der_7_t25
+tok:s_p43der_7_t24
     a nif:Word ;
     nif:anchorOf "et"@la ;
     onate:diplomatic "&"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t26 ;
+    nif:nextWord tok:s_p43der_7_t25 ;
     lexinfo:partOfSpeech lexinfo:coordinatingConjunction ;
     lila:hasLemma lilalem:101542 ;
     onate:lexicalEntry lex:et_CCONJ ;
-    conll:HEAD tok:s_p43der_7_t26 ;
+    conll:HEAD tok:s_p43der_7_t25 ;
     conll:EDGE "cc" ;
     onate:line 48 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A48%3A&%3A1> .
 
-tok:s_p43der_7_t26
+tok:s_p43der_7_t25
     a nif:Word ;
     nif:anchorOf "Doctores"@la ;
+    nif:sentence tok:s_p43der_7 ;
+    nif:nextWord tok:s_p43der_7_t27 ;
+    lexinfo:partOfSpeech lexinfo:properNoun ;
+    lexinfo:case lexinfo:nominativeCase ;
+    lexinfo:gender lexinfo:masculine ;
+    lexinfo:number lexinfo:singular ;
+    onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
+    onate:lexicalEntry lex:Doctores_PROPN ;
+    conll:HEAD tok:s_p43der_7_t23 ;
+    conll:EDGE "conj" ;
+    onate:line 48 ;
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A48%3ADoctores%3A0> .
+
+tok:s_p43der_7_t27
+    a nif:Word ;
+    nif:anchorOf "Manuel"@la ;
     nif:sentence tok:s_p43der_7 ;
     nif:nextWord tok:s_p43der_7_t28 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
@@ -110671,35 +110687,19 @@ tok:s_p43der_7_t26
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
-    onate:lexicalEntry lex:Doctores_PROPN ;
-    conll:HEAD tok:s_p43der_7_t24 ;
-    conll:EDGE "conj" ;
-    onate:line 48 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A48%3ADoctores%3A0> .
-
-tok:s_p43der_7_t28
-    a nif:Word ;
-    nif:anchorOf "Manuel"@la ;
-    nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t29 ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    lexinfo:case lexinfo:nominativeCase ;
-    lexinfo:gender lexinfo:masculine ;
-    lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:13355 ;
     onate:lexicalEntry lex:Manuel_PROPN ;
-    conll:HEAD tok:s_p43der_7_t24 ;
+    conll:HEAD tok:s_p43der_7_t23 ;
     conll:EDGE "conj" ;
     onate:line 48 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A48%3AManuel%3A0> .
 
-tok:s_p43der_7_t29
+tok:s_p43der_7_t28
     a nif:Word ;
     nif:anchorOf "summa"@la ;
     onate:diplomatic "ſum."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t30 ;
+    nif:nextWord tok:s_p43der_7_t29 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -110707,17 +110707,17 @@ tok:s_p43der_7_t29
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:83305 ;
     onate:lexicalEntry lex:summum_NOUN ;
-    conll:HEAD tok:s_p43der_7_t30 ;
+    conll:HEAD tok:s_p43der_7_t29 ;
     conll:EDGE "nmod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3Aſum.%3A0> .
 
-tok:s_p43der_7_t30
+tok:s_p43der_7_t29
     a nif:Word ;
     nif:anchorOf "capitulo"@la ;
     onate:diplomatic "cap."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t31 ;
+    nif:nextWord tok:s_p43der_7_t30 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -110725,29 +110725,29 @@ tok:s_p43der_7_t30
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p43der_7_t31 ;
+    conll:HEAD tok:s_p43der_7_t30 ;
     conll:EDGE "obl" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3Acap.%3A0> .
 
-tok:s_p43der_7_t31
+tok:s_p43der_7_t30
     a nif:Word ;
     nif:anchorOf "173"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t33 ;
+    nif:nextWord tok:s_p43der_7_t32 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:173_NUM ;
-    conll:HEAD tok:s_p43der_7_t19 ;
+    conll:HEAD tok:s_p43der_7_t18 ;
     conll:EDGE "conj" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3A173%3A0> .
 
-tok:s_p43der_7_t33
+tok:s_p43der_7_t32
     a nif:Word ;
     nif:anchorOf "conclusio"@la ;
     onate:diplomatic "conc."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t34 ;
+    nif:nextWord tok:s_p43der_7_t33 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -110755,29 +110755,29 @@ tok:s_p43der_7_t33
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:95546 ;
     onate:lexicalEntry lex:conclusio_NOUN ;
-    conll:HEAD tok:s_p43der_7_t19 ;
-    conll:EDGE "nsubj" ;
+    conll:HEAD tok:s_p43der_7_t30 ;
+    conll:EDGE "dep" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3Aconc.%3A0> .
 
-tok:s_p43der_7_t34
+tok:s_p43der_7_t33
     a nif:Word ;
     nif:anchorOf "5"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t36 ;
+    nif:nextWord tok:s_p43der_7_t35 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:5_NUM ;
-    conll:HEAD tok:s_p43der_7_t36 ;
+    conll:HEAD tok:s_p43der_7_t35 ;
     conll:EDGE "nummod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3A5%3A0> .
 
-tok:s_p43der_7_t36
+tok:s_p43der_7_t35
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t37 ;
+    nif:nextWord tok:s_p43der_7_t36 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -110785,75 +110785,75 @@ tok:s_p43der_7_t36
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t39 ;
+    conll:HEAD tok:s_p43der_7_t38 ;
     conll:EDGE "nmod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3An.%3A0> .
 
-tok:s_p43der_7_t37
+tok:s_p43der_7_t36
     a nif:Word ;
     nif:anchorOf "5"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t39 ;
+    nif:nextWord tok:s_p43der_7_t38 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:5_NUM ;
-    conll:HEAD tok:s_p43der_7_t36 ;
+    conll:HEAD tok:s_p43der_7_t35 ;
     conll:EDGE "nummod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3A5%3A1> .
 
-tok:s_p43der_7_t39
+tok:s_p43der_7_t38
     a nif:Word ;
     nif:anchorOf "Garzias"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t40 ;
+    nif:nextWord tok:s_p43der_7_t39 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Garzias_PROPN ;
-    conll:HEAD tok:s_p43der_7_t19 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t32 ;
+    conll:EDGE "nmod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3AGarzias%3A0> .
 
-tok:s_p43der_7_t40
+tok:s_p43der_7_t39
     a nif:Word ;
     nif:anchorOf "de"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t41 ;
+    nif:nextWord tok:s_p43der_7_t40 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     lila:hasLemma lilalem:97932 ;
     onate:lexicalEntry lex:de_ADP ;
-    conll:HEAD tok:s_p43der_7_t41 ;
+    conll:HEAD tok:s_p43der_7_t40 ;
     conll:EDGE "case" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3Ade%3A0> .
 
-tok:s_p43der_7_t41
+tok:s_p43der_7_t40
     a nif:Word ;
     nif:anchorOf "contractibus"@la ;
     onate:diplomatic "contractib."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t42 ;
+    nif:nextWord tok:s_p43der_7_t41 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:plural ;
     onate:ud "Case=Abl|Gender=Fem|Number=Plur" ;
     onate:lexicalEntry lex:contraho_NOUN ;
-    conll:HEAD tok:s_p43der_7_t42 ;
+    conll:HEAD tok:s_p43der_7_t41 ;
     conll:EDGE "nmod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3Acontractib.%3A0> .
 
-tok:s_p43der_7_t42
+tok:s_p43der_7_t41
     a nif:Word ;
     nif:anchorOf "libro"@la ;
     onate:diplomatic "lib."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t43 ;
+    nif:nextWord tok:s_p43der_7_t42 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -110861,29 +110861,29 @@ tok:s_p43der_7_t42
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:110382 ;
     onate:lexicalEntry lex:liber_NOUN ;
-    conll:HEAD tok:s_p43der_7_t19 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t30 ;
+    conll:EDGE "dep" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3Alib.%3A0> .
 
-tok:s_p43der_7_t43
+tok:s_p43der_7_t42
     a nif:Word ;
     nif:anchorOf "8"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t45 ;
+    nif:nextWord tok:s_p43der_7_t44 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:8_NUM ;
-    conll:HEAD tok:s_p43der_7_t45 ;
+    conll:HEAD tok:s_p43der_7_t44 ;
     conll:EDGE "nummod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3A8%3A0> .
 
-tok:s_p43der_7_t45
+tok:s_p43der_7_t44
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t46 ;
+    nif:nextWord tok:s_p43der_7_t45 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -110891,29 +110891,29 @@ tok:s_p43der_7_t45
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t46 ;
-    conll:EDGE "obl" ;
+    conll:HEAD tok:s_p43der_7_t50 ;
+    conll:EDGE "nmod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3An.%3A1> .
 
-tok:s_p43der_7_t46
+tok:s_p43der_7_t45
     a nif:Word ;
     nif:anchorOf "216"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t48 ;
+    nif:nextWord tok:s_p43der_7_t47 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:216_NUM ;
-    conll:HEAD tok:s_p43der_7_t19 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t44 ;
+    conll:EDGE "nummod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3A216%3A0> .
 
-tok:s_p43der_7_t48
+tok:s_p43der_7_t47
     a nif:Word ;
     nif:anchorOf "Ludovicus"@la ;
     onate:diplomatic "Ludou."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t49 ;
+    nif:nextWord tok:s_p43der_7_t48 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -110921,34 +110921,34 @@ tok:s_p43der_7_t48
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:170097 ;
     onate:lexicalEntry lex:Ludovicus_PROPN ;
-    conll:HEAD tok:s_p43der_7_t19 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t44 ;
+    conll:EDGE "flat" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3ALudou.%3A0> .
 
-tok:s_p43der_7_t49
+tok:s_p43der_7_t48
     a nif:Word ;
     nif:anchorOf "Lopez"@la ;
     onate:diplomatic "Lop."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t50 ;
+    nif:nextWord tok:s_p43der_7_t49 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Lopez_PROPN ;
-    conll:HEAD tok:s_p43der_7_t51 ;
+    conll:HEAD tok:s_p43der_7_t44 ;
     conll:EDGE "nmod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3ALop.%3A0> .
 
-tok:s_p43der_7_t50
+tok:s_p43der_7_t49
     a nif:Word ;
     nif:anchorOf "instructorium"@la ;
     onate:diplomatic "inſtruct."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t51 ;
+    nif:nextWord tok:s_p43der_7_t50 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     lexinfo:case lexinfo:accusativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -110956,17 +110956,17 @@ tok:s_p43der_7_t50
     onate:ud "Case=Acc|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:158652 ;
     onate:lexicalEntry lex:instructorius_ADJ ;
-    conll:HEAD tok:s_p43der_7_t51 ;
-    conll:EDGE "nmod" ;
+    conll:HEAD tok:s_p43der_7_t44 ;
+    conll:EDGE "amod" ;
     onate:line 49 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A49%3Ainſtruct.%3A0> .
 
-tok:s_p43der_7_t51
+tok:s_p43der_7_t50
     a nif:Word ;
     nif:anchorOf "libro"@la ;
     onate:diplomatic "lib."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t52 ;
+    nif:nextWord tok:s_p43der_7_t51 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -110974,29 +110974,29 @@ tok:s_p43der_7_t51
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:110382 ;
     onate:lexicalEntry lex:liber_NOUN ;
-    conll:HEAD tok:s_p43der_7_t19 ;
+    conll:HEAD tok:s_p43der_7_t41 ;
     conll:EDGE "obl" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A51%3Alib.%3A0> .
 
-tok:s_p43der_7_t52
+tok:s_p43der_7_t51
     a nif:Word ;
     nif:anchorOf "1"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t54 ;
+    nif:nextWord tok:s_p43der_7_t53 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:1_NUM ;
-    conll:HEAD tok:s_p43der_7_t54 ;
+    conll:HEAD tok:s_p43der_7_t50 ;
     conll:EDGE "nummod" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A51%3A1%3A0> .
 
-tok:s_p43der_7_t54
+tok:s_p43der_7_t53
     a nif:Word ;
     nif:anchorOf "capitulo"@la ;
     onate:diplomatic "cap."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t55 ;
+    nif:nextWord tok:s_p43der_7_t54 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -111004,105 +111004,105 @@ tok:s_p43der_7_t54
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p43der_7_t51 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t50 ;
+    conll:EDGE "nmod" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A51%3Acap.%3A0> .
 
-tok:s_p43der_7_t55
+tok:s_p43der_7_t54
     a nif:Word ;
     nif:anchorOf "12"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t57 ;
+    nif:nextWord tok:s_p43der_7_t56 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:12_NUM ;
-    conll:HEAD tok:s_p43der_7_t54 ;
+    conll:HEAD tok:s_p43der_7_t53 ;
     conll:EDGE "nummod" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A51%3A12%3A0> .
 
-tok:s_p43der_7_t57
+tok:s_p43der_7_t56
     a nif:Word ;
     nif:anchorOf "Conradus"@la ;
     onate:diplomatic "Conrad."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t58 ;
+    nif:nextWord tok:s_p43der_7_t57 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Conradus_PROPN ;
-    conll:HEAD tok:s_p43der_7_t51 ;
-    conll:EDGE "flat" ;
+    conll:HEAD tok:s_p43der_7_t41 ;
+    conll:EDGE "appos" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A51%3AConrad.%3A0> .
 
-tok:s_p43der_7_t58
+tok:s_p43der_7_t57
     a nif:Word ;
     nif:anchorOf "de"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t59 ;
+    nif:nextWord tok:s_p43der_7_t58 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     lila:hasLemma lilalem:97932 ;
     onate:lexicalEntry lex:de_ADP ;
-    conll:HEAD tok:s_p43der_7_t59 ;
+    conll:HEAD tok:s_p43der_7_t58 ;
     conll:EDGE "case" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A51%3Ade%3A0> .
 
-tok:s_p43der_7_t59
+tok:s_p43der_7_t58
     a nif:Word ;
     nif:anchorOf "contractibus"@la ;
     onate:diplomatic "contractib."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t60 ;
+    nif:nextWord tok:s_p43der_7_t59 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:plural ;
     onate:ud "Case=Abl|Gender=Fem|Number=Plur" ;
     onate:lexicalEntry lex:contraho_NOUN ;
-    conll:HEAD tok:s_p43der_7_t51 ;
+    conll:HEAD tok:s_p43der_7_t41 ;
     conll:EDGE "nmod" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A51%3Acontractib.%3A0> .
 
-tok:s_p43der_7_t60
+tok:s_p43der_7_t59
     a nif:Word ;
     nif:anchorOf "caput"@la ;
     onate:diplomatic "ca."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t61 ;
+    nif:nextWord tok:s_p43der_7_t60 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:neuter ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Neut|Number=Sing" ;
     onate:lexicalEntry lex:caput_NOUN ;
-    conll:HEAD tok:s_p43der_7_t19 ;
-    conll:EDGE "nsubj" ;
+    conll:HEAD tok:s_p43der_7_t30 ;
+    conll:EDGE "dep" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A51%3Aca.%3A0> .
 
-tok:s_p43der_7_t61
+tok:s_p43der_7_t60
     a nif:Word ;
     nif:anchorOf "56"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t63 ;
+    nif:nextWord tok:s_p43der_7_t62 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:56_NUM ;
-    conll:HEAD tok:s_p43der_7_t60 ;
-    conll:EDGE "nummod" ;
+    conll:HEAD tok:s_p43der_7_t59 ;
+    conll:EDGE "nmod" ;
     onate:line 51 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A51%3A56%3A0> .
 
-tok:s_p43der_7_t63
+tok:s_p43der_7_t62
     a nif:Word ;
     nif:anchorOf "conclusio"@la ;
     onate:diplomatic "conc."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t64 ;
+    nif:nextWord tok:s_p43der_7_t63 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -111110,46 +111110,46 @@ tok:s_p43der_7_t63
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:95546 ;
     onate:lexicalEntry lex:conclusio_NOUN ;
-    conll:HEAD tok:s_p43der_7_t19 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t30 ;
+    conll:EDGE "dep" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3Aconc.%3A0> .
 
-tok:s_p43der_7_t64
+tok:s_p43der_7_t63
     a nif:Word ;
     nif:anchorOf "2"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t66 ;
+    nif:nextWord tok:s_p43der_7_t65 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:2_NUM ;
-    conll:HEAD tok:s_p43der_7_t67 ;
+    conll:HEAD tok:s_p43der_7_t66 ;
     conll:EDGE "nummod" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3A2%3A0> .
 
-tok:s_p43der_7_t66
+tok:s_p43der_7_t65
     a nif:Word ;
     nif:anchorOf "Bonacina"@la ;
     onate:diplomatic "Bonacin."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t67 ;
+    nif:nextWord tok:s_p43der_7_t66 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Bonacina_PROPN ;
-    conll:HEAD tok:s_p43der_7_t67 ;
+    conll:HEAD tok:s_p43der_7_t66 ;
     conll:EDGE "amod" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3ABonacin.%3A0> .
 
-tok:s_p43der_7_t67
+tok:s_p43der_7_t66
     a nif:Word ;
     nif:anchorOf "disputatio"@la ;
     onate:diplomatic "diſp."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t68 ;
+    nif:nextWord tok:s_p43der_7_t67 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -111157,29 +111157,29 @@ tok:s_p43der_7_t67
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:99758 ;
     onate:lexicalEntry lex:disputatio_NOUN ;
-    conll:HEAD tok:s_p43der_7_t33 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t30 ;
+    conll:EDGE "dislocated" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3Adiſp.%3A0> .
 
-tok:s_p43der_7_t68
+tok:s_p43der_7_t67
     a nif:Word ;
     nif:anchorOf "3"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t70 ;
+    nif:nextWord tok:s_p43der_7_t69 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:3_NUM ;
-    conll:HEAD tok:s_p43der_7_t70 ;
+    conll:HEAD tok:s_p43der_7_t69 ;
     conll:EDGE "nummod" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3A3%3A0> .
 
-tok:s_p43der_7_t70
+tok:s_p43der_7_t69
     a nif:Word ;
     nif:anchorOf "quaestio"@la ;
     onate:diplomatic "q."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t71 ;
+    nif:nextWord tok:s_p43der_7_t70 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -111187,29 +111187,29 @@ tok:s_p43der_7_t70
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:121052 ;
     onate:lexicalEntry lex:quaestio_NOUN ;
-    conll:HEAD tok:s_p43der_7_t3 ;
+    conll:HEAD tok:s_p43der_7_t18 ;
     conll:EDGE "conj" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3Aq.%3A0> .
 
-tok:s_p43der_7_t71
+tok:s_p43der_7_t70
     a nif:Word ;
     nif:anchorOf "2"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t73 ;
+    nif:nextWord tok:s_p43der_7_t72 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:2_NUM ;
-    conll:HEAD tok:s_p43der_7_t70 ;
-    conll:EDGE "nmod" ;
+    conll:HEAD tok:s_p43der_7_t69 ;
+    conll:EDGE "nummod" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3A2%3A1> .
 
-tok:s_p43der_7_t73
+tok:s_p43der_7_t72
     a nif:Word ;
     nif:anchorOf "punctum"@la ;
     onate:diplomatic "punct."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t74 ;
+    nif:nextWord tok:s_p43der_7_t73 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:accusativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -111222,53 +111222,53 @@ tok:s_p43der_7_t73
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3Apunct.%3A0> .
 
-tok:s_p43der_7_t74
+tok:s_p43der_7_t73
     a nif:Word ;
     nif:anchorOf "4"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t77 ;
+    nif:nextWord tok:s_p43der_7_t76 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:4_NUM ;
-    conll:HEAD tok:s_p43der_7_t80 ;
+    conll:HEAD tok:s_p43der_7_t79 ;
     conll:EDGE "nummod" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3A4%3A0> .
 
-tok:s_p43der_7_t77
+tok:s_p43der_7_t76
     a nif:Word ;
     nif:anchorOf "17"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t79 ;
+    nif:nextWord tok:s_p43der_7_t78 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:17_NUM ;
-    conll:HEAD tok:s_p43der_7_t74 ;
+    conll:HEAD tok:s_p43der_7_t73 ;
     conll:EDGE "nummod" ;
     onate:line 52 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A52%3A17%3A0> .
 
-tok:s_p43der_7_t79
+tok:s_p43der_7_t78
     a nif:Word ;
     nif:anchorOf "Navarrus"@la ;
     onate:diplomatic "Nau."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t80 ;
+    nif:nextWord tok:s_p43der_7_t79 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Navarrus_PROPN ;
-    conll:HEAD tok:s_p43der_7_t74 ;
+    conll:HEAD tok:s_p43der_7_t73 ;
     conll:EDGE "flat" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3ANau.%3A0> .
 
-tok:s_p43der_7_t80
+tok:s_p43der_7_t79
     a nif:Word ;
     nif:anchorOf "capitulo"@la ;
     onate:diplomatic "cap."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t81 ;
+    nif:nextWord tok:s_p43der_7_t80 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -111276,29 +111276,29 @@ tok:s_p43der_7_t80
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p43der_7_t86 ;
-    conll:EDGE "orphan" ;
+    conll:HEAD tok:s_p43der_7_t82 ;
+    conll:EDGE "nmod" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3Acap.%3A0> .
 
-tok:s_p43der_7_t81
+tok:s_p43der_7_t80
     a nif:Word ;
     nif:anchorOf "17"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t83 ;
+    nif:nextWord tok:s_p43der_7_t82 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:17_NUM ;
-    conll:HEAD tok:s_p43der_7_t80 ;
+    conll:HEAD tok:s_p43der_7_t79 ;
     conll:EDGE "nummod" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3A17%3A0> .
 
-tok:s_p43der_7_t83
+tok:s_p43der_7_t82
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t84 ;
+    nif:nextWord tok:s_p43der_7_t83 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111306,28 +111306,28 @@ tok:s_p43der_7_t83
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t80 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t85 ;
+    conll:EDGE "orphan" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3An.%3A0> .
 
-tok:s_p43der_7_t84
+tok:s_p43der_7_t83
     a nif:Word ;
     nif:anchorOf "83"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t86 ;
+    nif:nextWord tok:s_p43der_7_t85 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:83_NUM ;
-    conll:HEAD tok:s_p43der_7_t83 ;
+    conll:HEAD tok:s_p43der_7_t82 ;
     conll:EDGE "nummod" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3A83%3A0> .
 
-tok:s_p43der_7_t86
+tok:s_p43der_7_t85
     a nif:Word ;
     nif:anchorOf "Petrus"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t87 ;
+    nif:nextWord tok:s_p43der_7_t86 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111340,41 +111340,41 @@ tok:s_p43der_7_t86
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3APetrus%3A0> .
 
-tok:s_p43der_7_t87
+tok:s_p43der_7_t86
     a nif:Word ;
     nif:anchorOf "Navarrus"@la ;
     onate:diplomatic "Nau."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t88 ;
+    nif:nextWord tok:s_p43der_7_t87 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Navarrus_PROPN ;
-    conll:HEAD tok:s_p43der_7_t86 ;
-    conll:EDGE "amod" ;
+    conll:HEAD tok:s_p43der_7_t3 ;
+    conll:EDGE "conj" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3ANau.%3A1> .
 
-tok:s_p43der_7_t88
+tok:s_p43der_7_t87
     a nif:Word ;
     nif:anchorOf "m"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t90 ;
+    nif:nextWord tok:s_p43der_7_t89 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     onate:lexicalEntry lex:mille_ADP ;
-    conll:HEAD tok:s_p43der_7_t90 ;
+    conll:HEAD tok:s_p43der_7_t89 ;
     conll:EDGE "nummod" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3Am%3A0> .
 
-tok:s_p43der_7_t90
+tok:s_p43der_7_t89
     a nif:Word ;
     nif:anchorOf "libro"@la ;
     onate:diplomatic "lib."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t91 ;
+    nif:nextWord tok:s_p43der_7_t90 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111382,29 +111382,29 @@ tok:s_p43der_7_t90
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:110382 ;
     onate:lexicalEntry lex:liber_NOUN ;
-    conll:HEAD tok:s_p43der_7_t1 ;
-    conll:EDGE "obl" ;
+    conll:HEAD tok:s_p43der_7_t3 ;
+    conll:EDGE "orphan" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3Alib.%3A0> .
 
-tok:s_p43der_7_t91
+tok:s_p43der_7_t90
     a nif:Word ;
     nif:anchorOf "2"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t93 ;
+    nif:nextWord tok:s_p43der_7_t92 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:2_NUM ;
-    conll:HEAD tok:s_p43der_7_t93 ;
+    conll:HEAD tok:s_p43der_7_t89 ;
     conll:EDGE "nummod" ;
     onate:line 53 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A53%3A2%3A0> .
 
-tok:s_p43der_7_t93
+tok:s_p43der_7_t92
     a nif:Word ;
     nif:anchorOf "capitulo"@la ;
     onate:diplomatic "cap."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t94 ;
+    nif:nextWord tok:s_p43der_7_t93 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -111412,29 +111412,29 @@ tok:s_p43der_7_t93
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p43der_7_t90 ;
-    conll:EDGE "nmod" ;
+    conll:HEAD tok:s_p43der_7_t98 ;
+    conll:EDGE "obl" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3Acap.%3A0> .
 
-tok:s_p43der_7_t94
+tok:s_p43der_7_t93
     a nif:Word ;
     nif:anchorOf "3"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t96 ;
+    nif:nextWord tok:s_p43der_7_t95 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:3_NUM ;
-    conll:HEAD tok:s_p43der_7_t93 ;
+    conll:HEAD tok:s_p43der_7_t92 ;
     conll:EDGE "nummod" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3A3%3A0> .
 
-tok:s_p43der_7_t96
+tok:s_p43der_7_t95
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t97 ;
+    nif:nextWord tok:s_p43der_7_t96 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111442,45 +111442,46 @@ tok:s_p43der_7_t96
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t93 ;
+    conll:HEAD tok:s_p43der_7_t92 ;
     conll:EDGE "nmod" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3An.%3A0> .
 
-tok:s_p43der_7_t97
+tok:s_p43der_7_t96
     a nif:Word ;
     nif:anchorOf "24"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t99 ;
+    nif:nextWord tok:s_p43der_7_t98 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:24_NUM ;
-    conll:HEAD tok:s_p43der_7_t96 ;
+    conll:HEAD tok:s_p43der_7_t95 ;
     conll:EDGE "nummod" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3A24%3A0> .
 
-tok:s_p43der_7_t99
+tok:s_p43der_7_t98
     a nif:Word ;
     nif:anchorOf "Reginaldus"@la ;
     onate:diplomatic "Reginal."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t100 ;
+    nif:nextWord tok:s_p43der_7_t99 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Reginaldus_PROPN ;
-    conll:EDGE "ROOT" ;
+    conll:HEAD tok:s_p43der_7_t124 ;
+    conll:EDGE "orphan" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3AReginal.%3A0> .
 
-tok:s_p43der_7_t100
+tok:s_p43der_7_t99
     a nif:Word ;
     nif:anchorOf "libro"@la ;
     onate:diplomatic "lib."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t101 ;
+    nif:nextWord tok:s_p43der_7_t100 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111488,29 +111489,29 @@ tok:s_p43der_7_t100
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:110382 ;
     onate:lexicalEntry lex:liber_NOUN ;
-    conll:HEAD tok:s_p43der_7_t99 ;
+    conll:HEAD tok:s_p43der_7_t98 ;
     conll:EDGE "obl" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3Alib.%3A0> .
 
-tok:s_p43der_7_t101
+tok:s_p43der_7_t100
     a nif:Word ;
     nif:anchorOf "25"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t103 ;
+    nif:nextWord tok:s_p43der_7_t102 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:25_NUM ;
-    conll:HEAD tok:s_p43der_7_t103 ;
+    conll:HEAD tok:s_p43der_7_t102 ;
     conll:EDGE "nummod" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3A25%3A0> .
 
-tok:s_p43der_7_t103
+tok:s_p43der_7_t102
     a nif:Word ;
     nif:anchorOf "capitulo"@la ;
     onate:diplomatic "cap."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t104 ;
+    nif:nextWord tok:s_p43der_7_t103 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -111518,29 +111519,29 @@ tok:s_p43der_7_t103
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p43der_7_t100 ;
+    conll:HEAD tok:s_p43der_7_t99 ;
     conll:EDGE "conj" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3Acap.%3A1> .
 
-tok:s_p43der_7_t104
+tok:s_p43der_7_t103
     a nif:Word ;
     nif:anchorOf "16"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t106 ;
+    nif:nextWord tok:s_p43der_7_t105 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:16_NUM ;
-    conll:HEAD tok:s_p43der_7_t103 ;
+    conll:HEAD tok:s_p43der_7_t102 ;
     conll:EDGE "nummod" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3A16%3A0> .
 
-tok:s_p43der_7_t106
+tok:s_p43der_7_t105
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t107 ;
+    nif:nextWord tok:s_p43der_7_t106 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111548,46 +111549,46 @@ tok:s_p43der_7_t106
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t103 ;
+    conll:HEAD tok:s_p43der_7_t102 ;
     conll:EDGE "nmod" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3An.%3A1> .
 
-tok:s_p43der_7_t107
+tok:s_p43der_7_t106
     a nif:Word ;
     nif:anchorOf "275"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t109 ;
+    nif:nextWord tok:s_p43der_7_t108 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:275_NUM ;
-    conll:HEAD tok:s_p43der_7_t106 ;
+    conll:HEAD tok:s_p43der_7_t105 ;
     conll:EDGE "nummod" ;
     onate:line 54 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A54%3A275%3A0> .
 
-tok:s_p43der_7_t109
+tok:s_p43der_7_t108
     a nif:Word ;
     nif:anchorOf "Lessius"@la ;
     onate:diplomatic "Leſſius"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t110 ;
+    nif:nextWord tok:s_p43der_7_t109 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Lessius_PROPN ;
-    conll:HEAD tok:s_p43der_7_t99 ;
+    conll:HEAD tok:s_p43der_7_t98 ;
     conll:EDGE "nsubj" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3ALeſſius%3A0> .
 
-tok:s_p43der_7_t110
+tok:s_p43der_7_t109
     a nif:Word ;
     nif:anchorOf "libro"@la ;
     onate:diplomatic "lib."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t111 ;
+    nif:nextWord tok:s_p43der_7_t110 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111595,29 +111596,29 @@ tok:s_p43der_7_t110
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:110382 ;
     onate:lexicalEntry lex:liber_NOUN ;
-    conll:HEAD tok:s_p43der_7_t99 ;
+    conll:HEAD tok:s_p43der_7_t98 ;
     conll:EDGE "obl" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3Alib.%3A0> .
 
-tok:s_p43der_7_t111
+tok:s_p43der_7_t110
     a nif:Word ;
     nif:anchorOf "2"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t113 ;
+    nif:nextWord tok:s_p43der_7_t112 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:2_NUM ;
-    conll:HEAD tok:s_p43der_7_t113 ;
+    conll:HEAD tok:s_p43der_7_t112 ;
     conll:EDGE "nummod" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3A2%3A0> .
 
-tok:s_p43der_7_t113
+tok:s_p43der_7_t112
     a nif:Word ;
     nif:anchorOf "capitulo"@la ;
     onate:diplomatic "cap."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t114 ;
+    nif:nextWord tok:s_p43der_7_t113 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -111625,29 +111626,29 @@ tok:s_p43der_7_t113
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p43der_7_t99 ;
+    conll:HEAD tok:s_p43der_7_t98 ;
     conll:EDGE "obl" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3Acap.%3A0> .
 
-tok:s_p43der_7_t114
+tok:s_p43der_7_t113
     a nif:Word ;
     nif:anchorOf "21"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t116 ;
+    nif:nextWord tok:s_p43der_7_t115 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:21_NUM ;
-    conll:HEAD tok:s_p43der_7_t113 ;
+    conll:HEAD tok:s_p43der_7_t112 ;
     conll:EDGE "nummod" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3A21%3A0> .
 
-tok:s_p43der_7_t116
+tok:s_p43der_7_t115
     a nif:Word ;
     nif:anchorOf "dubium"@la ;
     onate:diplomatic "dub."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t117 ;
+    nif:nextWord tok:s_p43der_7_t116 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     lexinfo:case lexinfo:accusativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111655,29 +111656,29 @@ tok:s_p43der_7_t116
     onate:ud "Case=Acc|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:100177 ;
     onate:lexicalEntry lex:dubius_ADJ ;
-    conll:HEAD tok:s_p43der_7_t99 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t98 ;
+    conll:EDGE "dislocated" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3Adub.%3A0> .
 
-tok:s_p43der_7_t117
+tok:s_p43der_7_t116
     a nif:Word ;
     nif:anchorOf "4"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t119 ;
+    nif:nextWord tok:s_p43der_7_t118 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:4_NUM ;
-    conll:HEAD tok:s_p43der_7_t119 ;
+    conll:HEAD tok:s_p43der_7_t121 ;
     conll:EDGE "nummod" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3A4%3A0> .
 
-tok:s_p43der_7_t119
+tok:s_p43der_7_t118
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t120 ;
+    nif:nextWord tok:s_p43der_7_t119 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111685,58 +111686,58 @@ tok:s_p43der_7_t119
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t99 ;
-    conll:EDGE "obl" ;
+    conll:HEAD tok:s_p43der_7_t116 ;
+    conll:EDGE "advmod" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3An.%3A0> .
 
-tok:s_p43der_7_t120
+tok:s_p43der_7_t119
     a nif:Word ;
     nif:anchorOf "31"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t122 ;
+    nif:nextWord tok:s_p43der_7_t121 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:31_NUM ;
-    conll:HEAD tok:s_p43der_7_t119 ;
+    conll:HEAD tok:s_p43der_7_t118 ;
     conll:EDGE "nummod" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3A31%3A0> .
 
-tok:s_p43der_7_t122
+tok:s_p43der_7_t121
     a nif:Word ;
     nif:anchorOf "Rebellus"@la ;
     onate:diplomatic "Rebell."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t123 ;
+    nif:nextWord tok:s_p43der_7_t122 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Rebellus_PROPN ;
-    conll:HEAD tok:s_p43der_7_t125 ;
+    conll:HEAD tok:s_p43der_7_t124 ;
     conll:EDGE "nmod" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3ARebell.%3A0> .
 
-tok:s_p43der_7_t123
+tok:s_p43der_7_t122
     a nif:Word ;
     nif:anchorOf "2"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t125 ;
+    nif:nextWord tok:s_p43der_7_t124 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:2_NUM ;
-    conll:HEAD tok:s_p43der_7_t122 ;
+    conll:HEAD tok:s_p43der_7_t121 ;
     conll:EDGE "nummod" ;
     onate:line 55 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A55%3A2%3A1> .
 
-tok:s_p43der_7_t125
+tok:s_p43der_7_t124
     a nif:Word ;
     nif:anchorOf "pars"@la ;
     onate:diplomatic "p."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t126 ;
+    nif:nextWord tok:s_p43der_7_t125 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -111744,17 +111745,17 @@ tok:s_p43der_7_t125
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:116084 ;
     onate:lexicalEntry lex:pars_NOUN ;
-    conll:HEAD tok:s_p43der_7_t99 ;
-    conll:EDGE "nsubj" ;
+    conll:HEAD tok:s_p43der_7_t3 ;
+    conll:EDGE "conj" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Ap.%3A0> .
 
-tok:s_p43der_7_t126
+tok:s_p43der_7_t125
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t127 ;
+    nif:nextWord tok:s_p43der_7_t126 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111762,29 +111763,29 @@ tok:s_p43der_7_t126
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t125 ;
-    conll:EDGE "orphan" ;
+    conll:HEAD tok:s_p43der_7_t124 ;
+    conll:EDGE "advmod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3An.%3A0> .
 
-tok:s_p43der_7_t127
+tok:s_p43der_7_t126
     a nif:Word ;
     nif:anchorOf "9"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t129 ;
+    nif:nextWord tok:s_p43der_7_t128 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:9_NUM ;
-    conll:HEAD tok:s_p43der_7_t126 ;
+    conll:HEAD tok:s_p43der_7_t125 ;
     conll:EDGE "nummod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A9%3A0> .
 
-tok:s_p43der_7_t129
+tok:s_p43der_7_t128
     a nif:Word ;
     nif:anchorOf "quaestio"@la ;
     onate:diplomatic "q."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t130 ;
+    nif:nextWord tok:s_p43der_7_t129 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -111792,29 +111793,29 @@ tok:s_p43der_7_t129
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:121052 ;
     onate:lexicalEntry lex:quaestio_NOUN ;
-    conll:HEAD tok:s_p43der_7_t125 ;
-    conll:EDGE "orphan" ;
+    conll:HEAD tok:s_p43der_7_t3 ;
+    conll:EDGE "conj" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Aq.%3A0> .
 
-tok:s_p43der_7_t130
+tok:s_p43der_7_t129
     a nif:Word ;
     nif:anchorOf "1"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t132 ;
+    nif:nextWord tok:s_p43der_7_t131 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:1_NUM ;
-    conll:HEAD tok:s_p43der_7_t132 ;
+    conll:HEAD tok:s_p43der_7_t128 ;
     conll:EDGE "nummod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A1%3A0> .
 
-tok:s_p43der_7_t132
+tok:s_p43der_7_t131
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t133 ;
+    nif:nextWord tok:s_p43der_7_t132 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111822,57 +111823,57 @@ tok:s_p43der_7_t132
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t129 ;
+    conll:HEAD tok:s_p43der_7_t128 ;
     conll:EDGE "nmod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3An.%3A1> .
 
-tok:s_p43der_7_t133
+tok:s_p43der_7_t132
     a nif:Word ;
     nif:anchorOf "36"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t135 ;
+    nif:nextWord tok:s_p43der_7_t134 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:36_NUM ;
-    conll:HEAD tok:s_p43der_7_t132 ;
+    conll:HEAD tok:s_p43der_7_t131 ;
     conll:EDGE "nummod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A36%3A0> .
 
-tok:s_p43der_7_t135
+tok:s_p43der_7_t134
     a nif:Word ;
     nif:anchorOf "Salon"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t136 ;
+    nif:nextWord tok:s_p43der_7_t135 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Salon_PROPN ;
-    conll:HEAD tok:s_p43der_7_t125 ;
+    conll:HEAD tok:s_p43der_7_t3 ;
     conll:EDGE "conj" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3ASalon%3A0> .
 
-tok:s_p43der_7_t136
+tok:s_p43der_7_t135
     a nif:Word ;
     nif:anchorOf "22"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t138 ;
+    nif:nextWord tok:s_p43der_7_t137 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:22_NUM ;
-    conll:HEAD tok:s_p43der_7_t135 ;
+    conll:HEAD tok:s_p43der_7_t134 ;
     conll:EDGE "nummod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A22%3A0> .
 
-tok:s_p43der_7_t138
+tok:s_p43der_7_t137
     a nif:Word ;
     nif:anchorOf "quaestio"@la ;
     onate:diplomatic "q."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t139 ;
+    nif:nextWord tok:s_p43der_7_t138 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
@@ -111880,29 +111881,29 @@ tok:s_p43der_7_t138
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     lila:hasLemma lilalem:121052 ;
     onate:lexicalEntry lex:quaestio_NOUN ;
-    conll:HEAD tok:s_p43der_7_t125 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t3 ;
+    conll:EDGE "orphan" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Aq.%3A1> .
 
-tok:s_p43der_7_t139
+tok:s_p43der_7_t138
     a nif:Word ;
     nif:anchorOf "77"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t141 ;
+    nif:nextWord tok:s_p43der_7_t140 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:77_NUM ;
-    conll:HEAD tok:s_p43der_7_t138 ;
+    conll:HEAD tok:s_p43der_7_t137 ;
     conll:EDGE "nummod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A77%3A0> .
 
-tok:s_p43der_7_t141
+tok:s_p43der_7_t140
     a nif:Word ;
     nif:anchorOf "articulo"@la ;
     onate:diplomatic "ar."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t142 ;
+    nif:nextWord tok:s_p43der_7_t141 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111910,45 +111911,45 @@ tok:s_p43der_7_t141
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:90117 ;
     onate:lexicalEntry lex:articulus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t125 ;
-    conll:EDGE "orphan" ;
+    conll:HEAD tok:s_p43der_7_t143 ;
+    conll:EDGE "obl" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Aar.%3A0> .
 
-tok:s_p43der_7_t142
+tok:s_p43der_7_t141
     a nif:Word ;
     nif:anchorOf "1"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t144 ;
+    nif:nextWord tok:s_p43der_7_t143 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:1_NUM ;
-    conll:HEAD tok:s_p43der_7_t141 ;
+    conll:HEAD tok:s_p43der_7_t140 ;
     conll:EDGE "nmod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A1%3A1> .
 
-tok:s_p43der_7_t144
+tok:s_p43der_7_t143
     a nif:Word ;
     nif:anchorOf "Nauarr"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t146 ;
+    nif:nextWord tok:s_p43der_7_t145 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:nauarr_PROPN ;
-    conll:HEAD tok:s_p43der_7_t125 ;
-    conll:EDGE "orphan" ;
+    conll:HEAD tok:s_p43der_7_t156 ;
+    conll:EDGE "advmod:tmod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3ANauarr%3A0> .
 
-tok:s_p43der_7_t146
+tok:s_p43der_7_t145
     a nif:Word ;
     nif:anchorOf "capitulo"@la ;
     onate:diplomatic "cap."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t147 ;
+    nif:nextWord tok:s_p43der_7_t146 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:neuter ;
@@ -111956,29 +111957,29 @@ tok:s_p43der_7_t146
     onate:ud "Case=Abl|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:92713 ;
     onate:lexicalEntry lex:capitulum_NOUN ;
-    conll:HEAD tok:s_p43der_7_t157 ;
+    conll:HEAD tok:s_p43der_7_t156 ;
     conll:EDGE "obl" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Acap.%3A0> .
 
-tok:s_p43der_7_t147
+tok:s_p43der_7_t146
     a nif:Word ;
     nif:anchorOf "23"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t149 ;
+    nif:nextWord tok:s_p43der_7_t148 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:23_NUM ;
-    conll:HEAD tok:s_p43der_7_t146 ;
+    conll:HEAD tok:s_p43der_7_t145 ;
     conll:EDGE "nummod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A23%3A0> .
 
-tok:s_p43der_7_t149
+tok:s_p43der_7_t148
     a nif:Word ;
     nif:anchorOf "numero"@la ;
     onate:diplomatic "n."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t150 ;
+    nif:nextWord tok:s_p43der_7_t149 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
@@ -111986,142 +111987,142 @@ tok:s_p43der_7_t149
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:113981 ;
     onate:lexicalEntry lex:numerus_NOUN ;
-    conll:HEAD tok:s_p43der_7_t146 ;
+    conll:HEAD tok:s_p43der_7_t145 ;
     conll:EDGE "conj" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3An.%3A2> .
 
-tok:s_p43der_7_t150
+tok:s_p43der_7_t149
     a nif:Word ;
     nif:anchorOf "78"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t152 ;
+    nif:nextWord tok:s_p43der_7_t151 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:78_NUM ;
-    conll:HEAD tok:s_p43der_7_t149 ;
+    conll:HEAD tok:s_p43der_7_t148 ;
     conll:EDGE "nummod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A78%3A0> .
 
-tok:s_p43der_7_t152
+tok:s_p43der_7_t151
     a nif:Word ;
     nif:anchorOf "Scot"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t154 ;
+    nif:nextWord tok:s_p43der_7_t153 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:ablativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Abl|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Scots_PROPN ;
-    conll:HEAD tok:s_p43der_7_t146 ;
+    conll:HEAD tok:s_p43der_7_t145 ;
     conll:EDGE "nmod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3AScot%3A0> .
 
-tok:s_p43der_7_t154
+tok:s_p43der_7_t153
     a nif:Word ;
     nif:anchorOf "in"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t155 ;
+    nif:nextWord tok:s_p43der_7_t154 ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     lila:hasLemma lilalem:106748 ;
     onate:lexicalEntry lex:in_ADP ;
-    conll:HEAD tok:s_p43der_7_t155 ;
+    conll:HEAD tok:s_p43der_7_t154 ;
     conll:EDGE "case" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Ain%3A0> .
 
-tok:s_p43der_7_t155
+tok:s_p43der_7_t154
     a nif:Word ;
     nif:anchorOf "4"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t157 ;
+    nif:nextWord tok:s_p43der_7_t156 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:4_NUM ;
-    conll:HEAD tok:s_p43der_7_t157 ;
+    conll:HEAD tok:s_p43der_7_t156 ;
     conll:EDGE "obl" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A4%3A0> .
 
-tok:s_p43der_7_t157
+tok:s_p43der_7_t156
     a nif:Word ;
     nif:anchorOf "dist"@la ;
     onate:diplomatic "diſt"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t159 ;
+    nif:nextWord tok:s_p43der_7_t158 ;
     lexinfo:partOfSpeech lexinfo:noun ;
     lila:hasLemma lilalem:99862 ;
     onate:lexicalEntry lex:distinctio_NOUN ;
-    conll:HEAD tok:s_p43der_7_t99 ;
-    conll:EDGE "conj" ;
+    conll:HEAD tok:s_p43der_7_t165 ;
+    conll:EDGE "parataxis" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Adiſt%3A0> .
 
-tok:s_p43der_7_t159
+tok:s_p43der_7_t158
     a nif:Word ;
     nif:anchorOf "15"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t161 ;
+    nif:nextWord tok:s_p43der_7_t160 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:15_NUM ;
-    conll:HEAD tok:s_p43der_7_t161 ;
+    conll:HEAD tok:s_p43der_7_t160 ;
     conll:EDGE "nummod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A15%3A0> .
 
-tok:s_p43der_7_t161
+tok:s_p43der_7_t160
     a nif:Word ;
     nif:anchorOf "Molina"@la ;
     onate:diplomatic "Molin."@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t162 ;
+    nif:nextWord tok:s_p43der_7_t161 ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:masculine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Masc|Number=Sing" ;
     onate:lexicalEntry lex:Molina_PROPN ;
-    conll:HEAD tok:s_p43der_7_t157 ;
-    conll:EDGE "nsubj" ;
+    conll:HEAD tok:s_p43der_7_t156 ;
+    conll:EDGE "conj" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3AMolin.%3A0> .
 
-tok:s_p43der_7_t162
+tok:s_p43der_7_t161
     a nif:Word ;
     nif:anchorOf "340"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t164 ;
+    nif:nextWord tok:s_p43der_7_t163 ;
     lexinfo:partOfSpeech lexinfo:numeral ;
     onate:lexicalEntry lex:340_NUM ;
-    conll:HEAD tok:s_p43der_7_t161 ;
+    conll:HEAD tok:s_p43der_7_t160 ;
     conll:EDGE "appos" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3A340%3A0> .
 
-tok:s_p43der_7_t164
+tok:s_p43der_7_t163
     a nif:Word ;
     nif:anchorOf "vers"@la ;
     onate:diplomatic "verſ"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t166 ;
+    nif:nextWord tok:s_p43der_7_t165 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
     onate:lexicalEntry lex:uers_ADJ ;
-    conll:HEAD tok:s_p43der_7_t166 ;
-    conll:EDGE "vocative" ;
+    conll:HEAD tok:s_p43der_7_t156 ;
+    conll:EDGE "conj" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Averſ%3A0> .
 
-tok:s_p43der_7_t166
+tok:s_p43der_7_t165
     a nif:Word ;
     nif:anchorOf "obserua"@la ;
     onate:diplomatic "obſerua"@la ;
     nif:sentence tok:s_p43der_7 ;
-    nif:nextWord tok:s_p43der_7_t167 ;
+    nif:nextWord tok:s_p43der_7_t166 ;
     lexinfo:partOfSpeech lexinfo:verb ;
     lexinfo:aspect lexinfo:imperfective ;
     lexinfo:mood lexinfo:imperative ;
@@ -112132,19 +112133,18 @@ tok:s_p43der_7_t166
     onate:ud "Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act" ;
     lila:hasLemma lilalem:114414 ;
     onate:lexicalEntry lex:obseruo_VERB ;
-    conll:HEAD tok:s_p43der_7_t99 ;
-    conll:EDGE "conj" ;
+    conll:EDGE "ROOT" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Aobſerua%3A0> .
 
-tok:s_p43der_7_t167
+tok:s_p43der_7_t166
     a nif:Word ;
     nif:anchorOf "tamen"@la ;
     nif:sentence tok:s_p43der_7 ;
     lexinfo:partOfSpeech lexinfo:adverb ;
     lila:hasLemma lilalem:127607 ;
     onate:lexicalEntry lex:tamen_ADV ;
-    conll:HEAD tok:s_p43der_7_t166 ;
+    conll:HEAD tok:s_p43der_7_t165 ;
     conll:EDGE "advmod" ;
     onate:line 56 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_43_der%3A56%3Atamen%3A0> .

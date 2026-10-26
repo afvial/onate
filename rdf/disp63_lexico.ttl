@@ -4777,10 +4777,10 @@ lex:corollaria_ADV
     lexinfo:partOfSpeech lexinfo:adverb ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "corollariè"@la ] .
 
-lex:corpus_INTJ
+lex:corpus_ADV
     a ontolex:Word ;
     rdfs:label "corpus"@la ;
-    lexinfo:partOfSpeech lexinfo:interjection ;
+    lexinfo:partOfSpeech lexinfo:adverb ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "corp"@la ] .
 
 lex:corrumpo_VERB
@@ -6264,12 +6264,6 @@ lex:exemplum_NOUN
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "exemplis"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "exemplo"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "exemplum"@la ] .
-
-lex:exepresse_VERB
-    a ontolex:Word ;
-    rdfs:label "exepresse"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "exepressè"@la ] .
 
 lex:exerceo_VERB
     a ontolex:Word ;
