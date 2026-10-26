@@ -40,7 +40,7 @@ ABBREV_WITH_DOT = {
     "Anton.", "Sylu.", "Conrad.",
     "Faustus.", "Faust.", "Valent.", "Aragon.", "Caiet.",
     "Bannes.", "Bann.", "Mai.", "Maior.",
-    "Ledes.", "Ledesm.", "Ioan.", "Io.",
+    "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
     # Obras y colecciones
     "ethic.", "instit.", "mor.", "restit.", "restitut.",
     "iust.", "contract.", "contractib.", "empt.", "emptione.",
@@ -52,6 +52,7 @@ ABBREV_WITH_DOT = {
     "princ.", "conc.", "controu.", "controuers.",
     "diffieul.", "difficul.", "diffic.", "ca.", "2n.",
     "opusc.", "fect.",   # opusculum, sectio (grafía alt.)
+    "instruct.",         # instructorium
     "Rebel.", "Rebell.", "Nauar.",  # Rebellus, Navarrus
     # Términos jurídico-escolásticos abreviados
     "reip.", "repub.", "rep.", "ff.", "seqq.", "iun.", "contr.",
@@ -179,6 +180,9 @@ ABBREV_EXPAN = {
     "Rebell.":    "Rebellus",
     "Nauar.":     "Navarrus",
     "Ledes.":     "Ledesma",
+    "Ludou.":     "Ludovicus",
+    "Lop.":       "Lopez",
+    "instruct.":  "instructorium",
     # Autores clásicos y patrísticos
     "D.":         "Divus",
     "Arist.":     "Aristoteles",
@@ -265,7 +269,7 @@ AUTHOR_ABBREVS = {
     "Anton.", "Sylu.", "Conrad.",
     "Faust.", "Faustus.", "Valent.", "Aragon.", "Caiet.",
     "Bannes.", "Bann.", "S.", "Mai.", "Maior.",
-    "Ledes.", "Ledesm.", "Ioan.", "Io.",
+    "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
     "Rebel.", "Rebell.", "Nauar.",
 }
 
@@ -279,7 +283,7 @@ BIBL_INTRA = {
     "ethic.", "mor.", "restit.", "restitut.",
     "iust.", "contract.", "contractib.", "empt.", "emptione.",
     "peccat.", "pecca.", "septem.", "trinitate.",
-    "c.",
+    "c.", "instruct.",
     "reip.", "repub.", "ff.", "seqq.", "iun.", "contr.",
     # Preposiciones intra-bibl (forman parte del título de la obra)
     "de", "ad", "in", "ibi",
@@ -315,7 +319,7 @@ AUTHOR_FULL_NAMES = {
     "Medina", "Azorius", "Antoninus", "Sylvester", "Conradus",
     "Sotus", "Soto", "Valentinus", "Caietanus", "Scotus", "Maior",
     "Toletus", "Gabriel", "Faustus", "Bannez", "Aragonius",
-    "Rebellus", "Leffius",
+    "Rebellus", "Leffius", "Ludovicus", "Lopez", "Garzias",
 }
 
 PC_TYPES = {
