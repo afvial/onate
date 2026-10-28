@@ -462,6 +462,8 @@ LONG_S = {
     "pretiosioribus":   "pretioſioribus",
     "si":               "ſi",
     "sic":              "ſic",
+    "sicut":            "ſicut",
+    "sicuti":           "ſicuti",
     "sub":              "ſub",
     "sine":             "ſine",
     "siue":             "ſiue",
@@ -554,6 +556,13 @@ LONG_S = {
     "solus":            "ſolus",
     "sola":             "ſola",
     "solo":             "ſolo",
+    "solam":             "ſolam",
+    "solae":             "ſolae",
+    "soli":              "ſoli",
+    "solos":             "ſolos",
+    "solas":             "ſolas",
+    "solorum":           "ſolorum",
+    "solarum":           "ſolarum",
     "super":            "ſuper",
     # términos jurídico-escolásticos de Oñate
     "secundum":         "ſecundum",
@@ -715,6 +724,7 @@ LONG_S = {
     "summ.":              "ſumm.",
     "Sum.":               "Sum.",
     "restit.":            "reſtit.",
+    "less.":              "leſſ.",   # Lessius (abreviatura)
     "Restit.":            "Reſtit.",
     "scutus":             "ſcutus",
     "suos":               "ſuos",
@@ -1234,7 +1244,8 @@ LONG_S_ROOTS = [
     ("casib",      "caſib"),
     ("descen",     "deſcen"),
     ("hisp",       "hiſp"),
-    ("vilesc",     "vileſc"),     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
+    ("vilesc",     "vileſc"),
+    ("instan",     "inſtan"),     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
     ("vers",       "verſ"),       # versus, versatur, conuersio… (general)
     ("uers",       "uerſ"),       # grafía con u: conuersatio…      # superare, superat, insuper… (general, al final)        # vestis, vestimentum, vestitus, vestiarium…
 ]
