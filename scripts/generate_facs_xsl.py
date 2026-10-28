@@ -34,6 +34,7 @@ OUT_XSL  = Path(sys.argv[2]) if len(sys.argv) > 2 else Path("xslt/onate_tei2html
 # ── CSS adicional del facsímil ────────────────────────────────────────────────
 FACS_CSS = """
           /* Texto: comportamiento base (hover oración y palabra desde CSS base) */
+          .tei-w.box-active, .tei-pc.box-active { background-color: #fbd9b5; border-radius: 2px; }
 
           /* Layout */
           .columns { display: block; }
@@ -597,6 +598,43 @@ JS_CODE = r"""(function () {
     });
   }
 
+  /* ── Resaltado en el texto por caja del PAGE XML ────────────────────
+     Cada <Word> del PAGE XML puede contener palabra + puntuación
+     ("[Pretia", "textus,"). Al pasar el ratón se resaltan en el texto
+     todos los tokens (tei-w y tei-pc) que caen en la misma caja. */
+  function ownerWordOfPc(pcEl, col) {
+    var lb = pcEl.dataset.lb;
+    var toks = Array.from(col.querySelectorAll(
+      '.tei-w[data-lb="' + lb + '"],.tei-pc[data-lb="' + lb + '"]'));
+    var i = toks.indexOf(pcEl);
+    var opening = /^[\[\(]$/.test((pcEl.textContent || '').trim());
+    var step = opening ? 1 : -1;            /* [ ( → siguiente; resto → anterior */
+    for (var j = i + step; j >= 0 && j < toks.length; j += step)
+      if (toks[j].classList.contains('tei-w')) return toks[j];
+    return null;
+  }
+
+  function clearBox(col) {
+    col.querySelectorAll('.box-active').forEach(function (e) {
+      e.classList.remove('box-active'); });
+  }
+
+  function markBox(col, colId, lineN, ownerW) {
+    clearBox(col);
+    var data = (window.ONATE_COORDS || {})[colId];
+    if (!data || !lineN) return;
+    var line = data.lines[String(lineN)];
+    if (!line) return;
+    var toks = Array.from(col.querySelectorAll(
+      '.tei-w[data-lb="' + lineN + '"],.tei-pc[data-lb="' + lineN + '"]'));
+    var target = findTessWord(line, ownerW, toks);
+    if (!target) return;
+    toks.forEach(function (t) {
+      var w = t.classList.contains('tei-w') ? t : ownerWordOfPc(t, col);
+      if (w && findTessWord(line, w, toks) === target) t.classList.add('box-active');
+    });
+  }
+
   function wireColumns() {
     document.querySelectorAll('.col[data-col-id]').forEach(function (col) {
       var colId = col.dataset.colId;
@@ -613,15 +651,28 @@ JS_CODE = r"""(function () {
           var lineN       = parseInt(wEl.dataset.lb, 10) || null;
           var partnerLine = getBrokenPartnerLine(wEl);
           drawOnCanvas(colId, lineN, wEl, col, partnerLine);
+          markBox(col, colId, lineN, wEl);
         });
         wEl.addEventListener('mouseleave', function (e) {
+          clearBox(col);
           var to = e.relatedTarget;
           if (to && to.classList && to.classList.contains('tei-w')) return;
           clearCanvas(colId);
         });
       });
 
-      col.addEventListener('mouseleave', function () { clearCanvas(colId); });
+      /* Puntuación: delega en la palabra de su misma caja */
+      col.querySelectorAll('.tei-pc').forEach(function (pcEl) {
+        pcEl.addEventListener('mouseenter', function () {
+          var w = ownerWordOfPc(pcEl, col);
+          if (w) w.dispatchEvent(new Event('mouseenter'));
+        });
+        pcEl.addEventListener('mouseleave', function () {
+          clearBox(col); clearCanvas(colId);
+        });
+      });
+
+      col.addEventListener('mouseleave', function () { clearBox(col); clearCanvas(colId); });
     });
   }
 
