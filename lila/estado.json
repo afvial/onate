@@ -33072,10 +33072,10 @@
   }
  },
  "pg_63_44_der": {
-  "tERTIUM\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:132831",
-   "candidatos": "lila:132831 noun",
+  "tERTIUM\tNUM": {
+   "estado": "pos_distinta",
+   "ref": null,
+   "candidatos": "lilah:111483 adverb; lila:132831 noun",
    "n": 1,
    "lineas": [
     "1"
@@ -33094,7 +33094,7 @@
    "estado": "ok",
    "ref": "lila:121354",
    "candidatos": "lila:121354 pronoun",
-   "n": 8,
+   "n": 9,
    "lineas": [
     "2",
     "6",
@@ -33102,6 +33102,7 @@
     "21",
     "41",
     "44",
+    "46",
     "49",
     "51"
    ]
@@ -33110,10 +33111,11 @@
    "estado": "excepcion",
    "ref": "lila:90532",
    "candidatos": "",
-   "n": 2,
+   "n": 3,
    "lineas": [
     "2",
-    "29"
+    "29",
+    "34"
    ]
   },
   "sum\tAUX": {
@@ -33159,18 +33161,20 @@
    "estado": "ok",
    "ref": "lila:87934",
    "candidatos": "lila:87934 noun",
-   "n": 3,
+   "n": 5,
    "lineas": [
     "3",
+    "10",
+    "16",
     "18",
     "19",
     "41"
    ]
   },
-  "praetium\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:119455",
-   "candidatos": "lila:119455 noun (variante)",
+  "praetius\tNOUN": {
+   "estado": "no_encontrado",
+   "ref": null,
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "3"
@@ -33188,7 +33192,7 @@
     "42"
    ]
   },
-  "sUMMARIUM\tNUM": {
+  "summarium\tNUM": {
    "estado": "pos_distinta",
    "ref": null,
    "candidatos": "lila:126696 noun",
@@ -33197,9 +33201,9 @@
     "5"
    ]
   },
-  "Diximus\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
+  "dico\tVERB": {
+   "estado": "excepcion",
+   "ref": "lila:99302",
    "candidatos": "",
    "n": 1,
    "lineas": [
@@ -33223,10 +33227,12 @@
    "estado": "ok",
    "ref": "lila:119455",
    "candidatos": "lila:119455 noun",
-   "n": 10,
+   "n": 12,
    "lineas": [
     "6",
     "10",
+    "13",
+    "16",
     "19",
     "21",
     "25",
@@ -33276,9 +33282,10 @@
    "estado": "ok",
    "ref": "lila:117183",
    "candidatos": "lila:117183 verb",
-   "n": 6,
+   "n": 7,
    "lineas": [
     "7",
+    "8",
     "36",
     "40",
     "43",
@@ -33295,10 +33302,10 @@
     "7"
    ]
   },
-  "domus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:48081 noun; lila:100070 noun; lila:100071 noun",
+  "demum\tADV": {
+   "estado": "ok",
+   "ref": "lila:98579",
+   "candidatos": "lila:98579 adverb",
    "n": 1,
    "lineas": [
     "8"
@@ -33311,24 +33318,6 @@
    "n": 1,
    "lineas": [
     "8"
-   ]
-  },
-  "perpen\tVERB": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "8"
-   ]
-  },
-  "deus\tNOUN": {
-   "estado": "excepcion",
-   "ref": "lila:99132",
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "9"
    ]
   },
   "per\tADP": {
@@ -33358,15 +33347,6 @@
    "lineas": [
     "9",
     "26"
-   ]
-  },
-  "Aestimatius\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "10"
    ]
   },
   "respublica\tNOUN": {
@@ -33400,20 +33380,20 @@
     "11"
    ]
   },
-  "uulgaris\tADJ": {
-   "estado": "ok",
-   "ref": "lila:131006",
-   "candidatos": "lila:131006 adjective",
+  "uulgo\tADJ": {
+   "estado": "pos_distinta",
+   "ref": null,
+   "candidatos": "lila:130954 verb; lila:130955 adverb",
    "n": 1,
    "lineas": [
     "11"
    ]
   },
-  "Lpretia\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
+  "lex\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:110351",
+   "candidatos": "lila:110351 noun",
+   "n": 2,
    "lineas": [
     "13"
    ]
@@ -33422,15 +33402,6 @@
    "estado": "pos_distinta",
    "ref": null,
    "candidatos": "lila:100419 noun",
-   "n": 1,
-   "lineas": [
-    "13"
-   ]
-  },
-  "lex\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:110351",
-   "candidatos": "lila:110351 noun",
    "n": 1,
    "lineas": [
     "13"
@@ -33464,6 +33435,15 @@
     "39"
    ]
   },
+  "dD\tNOUN": {
+   "estado": "no_encontrado",
+   "ref": null,
+   "candidatos": "",
+   "n": 1,
+   "lineas": [
+    "15"
+   ]
+  },
   "opinio\tNOUN": {
    "estado": "ok",
    "ref": "lila:115067",
@@ -33473,9 +33453,9 @@
     "15"
    ]
   },
-  "cur\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "cur\tADV": {
+   "estado": "ok",
+   "ref": "lila:97300",
    "candidatos": "lila:97300 adverb",
    "n": 1,
    "lineas": [
@@ -33493,24 +33473,6 @@
     "41"
    ]
   },
-  "astimatio\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "16"
-   ]
-  },
-  "preciu\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "16"
-   ]
-  },
   "efficio\tVERB": {
    "estado": "ok",
    "ref": "lila:100627",
@@ -33520,7 +33482,7 @@
     "17"
    ]
   },
-  "Moralitar\tPROPN": {
+  "moralitar\tNOUN": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
@@ -33603,13 +33565,14 @@
     "22"
    ]
   },
-  "Copia\tPROPN": {
+  "copia\tNOUN": {
    "estado": "ok",
-   "ref": "lila:3836",
-   "candidatos": "lila:3836 proper_noun",
-   "n": 2,
+   "ref": "lila:96517",
+   "candidatos": "lila:96517 noun",
+   "n": 3,
    "lineas": [
     "23",
+    "26",
     "28"
    ]
   },
@@ -33662,19 +33625,10 @@
     "24"
    ]
   },
-  "secunda\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:79669 noun",
-   "n": 1,
-   "lineas": [
-    "26"
-   ]
-  },
-  "copia\tNOUN": {
+  "secundus\tADJ": {
    "estado": "ok",
-   "ref": "lila:96517",
-   "candidatos": "lila:96517 noun",
+   "ref": "lila:127502",
+   "candidatos": "lila:127502 adjective",
    "n": 1,
    "lineas": [
     "26"
@@ -33767,10 +33721,10 @@
     "49"
    ]
   },
-  "cus\tDET": {
-   "estado": "no_encontrado",
+  "cum\tDET": {
+   "estado": "pos_distinta",
    "ref": null,
-   "candidatos": "",
+   "candidatos": "lila:97201 adposition; lila:97202 subordinating_conjunction; lila:97207 adverb",
    "n": 1,
    "lineas": [
     "32"
@@ -33798,22 +33752,13 @@
     "50"
    ]
   },
-  "refultas\tVERB": {
+  "refulo\tVERB": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
    "n": 1,
    "lineas": [
     "32"
-   ]
-  },
-  "attendenda\tVERB": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "34"
    ]
   },
   "indigentia\tNOUN": {
@@ -33852,7 +33797,7 @@
     "35"
    ]
   },
-  "Quinta\tPROPN": {
+  "quinta\tADJ": {
    "estado": "pos_distinta",
    "ref": null,
    "candidatos": "lila:121141 noun",
@@ -34020,15 +33965,6 @@
    "estado": "ok",
    "ref": "lila:107946",
    "candidatos": "lila:107946 verb",
-   "n": 1,
-   "lineas": [
-    "46"
-   ]
-  },
-  "quod\tPRON": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:74854 subordinating_conjunction",
    "n": 1,
    "lineas": [
     "46"
