@@ -66,6 +66,9 @@ _MACRON_FINAL = {"ā": "am", "ē": "em", "ī": "im", "ō": "om", "ô": "on", "ū
                  "Ā": "Am", "Ē": "Em", "Ī": "Im", "Ō": "Om", "Ū": "Um"}
 _MACRON_MEDIAL = {"ā": "an", "ē": "en", "ī": "in", "ō": "on", "ô": "on", "ū": "un",
                   "Ā": "An", "Ē": "En", "Ī": "In", "Ō": "On", "Ū": "Un"}
+_TILDE = {"ã": "ā", "ẽ": "ē", "ĩ": "ī", "õ": "ō", "ũ": "ū", "Ã": "Ā", "Ẽ": "Ē", "Ĩ": "Ī", "Õ": "Ō", "Ũ": "Ū"}
+for _t, _m in _TILDE.items():
+    _MACRON_FINAL[_t] = _MACRON_FINAL[_m]; _MACRON_MEDIAL[_t] = _MACRON_MEDIAL[_m]
 _MACRON_CHARS = set(_MACRON_FINAL)
 
 # Abreviaturas que Transkribus expande sistemáticamente (comportamiento del
@@ -123,7 +126,7 @@ _WB = r"(?<![\wſ])"            # límite de palabra (las formas pueden acabar e
 _WE = r"(?![\wſ])"
 _ABBR_RE = [(re.compile(_WB + re.escape(a) + _WE), e)
             for a, e in sorted(ABBREV_FORMS.items(), key=lambda kv: -len(kv[0]))]
-_MACRON_WORD_RE = re.compile(r"[\wſ]*[āēīōūôĀĒĪŌŪ][\wſ]*")
+_MACRON_WORD_RE = re.compile(r"[\wſ]*[āēīōūôĀĒĪŌŪãẽĩõũÃẼĨÕŨ][\wſ]*")
 
 
 def expand_abbrevs(text: str) -> str:

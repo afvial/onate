@@ -368,6 +368,10 @@ MACRON_MAP = {
     "Ā": "Am", "Ē": "Em", "Ī": "Im", "Ō": "On", "Ū": "Um",
 }
 
+# Tilde del impreso: equivale al macrón
+MACRON_MAP.update({"ã": "am", "ẽ": "em", "ĩ": "im", "õ": "on", "ũ": "um",
+                   "Ã": "Am", "Ẽ": "Em", "Ĩ": "Im", "Õ": "On", "Ũ": "Um"})
+
 # Grafías con s larga frecuentes en impresos latinos del s. XVII
 # La clave es la forma normalizada (como la devuelve Noscemus),
 # el valor es la forma diplomática con ſ.

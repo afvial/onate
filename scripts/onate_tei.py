@@ -70,6 +70,10 @@ _MACRON_FINAL = {"ā": "am", "ē": "em", "ī": "im", "ō": "om", "ô": "on", "ū
                  "Ā": "Am", "Ē": "Em", "Ī": "Im", "Ō": "Om", "Ū": "Um"}
 _MACRON_MEDIAL = {"ā": "an", "ē": "en", "ī": "in", "ō": "on", "ô": "on", "ū": "un",
                   "Ā": "An", "Ē": "En", "Ī": "In", "Ō": "On", "Ū": "Un"}
+# Tilde (~) del impreso: misma función que el macrón (pretiũ = pretium).
+_TILDE = {"ã": "ā", "ẽ": "ē", "ĩ": "ī", "õ": "ō", "ũ": "ū", "Ã": "Ā", "Ẽ": "Ē", "Ĩ": "Ī", "Õ": "Ō", "Ũ": "Ū"}
+for _t, _m in _TILDE.items():
+    _MACRON_FINAL[_t] = _MACRON_FINAL[_m]; _MACRON_MEDIAL[_t] = _MACRON_MEDIAL[_m]
 _MACRON_CHARS  = set(_MACRON_FINAL)
 
 # Palabras en que el macrón final NO vale m (excepciones a la regla de
@@ -1218,7 +1222,17 @@ def _wrap_italic_spans(parent, lines: list, emit_fn):
     container = parent
 
     raw    = _flatten_lines_to_raw_tokens(lines, [False])
+    # Corte sin guion (~): next_n negativo → normalizar y marcar no_hyphen,
+    # igual que _join_split_words_6 en el texto corrido.
+    _no_hyph_sum = {t[1] for t in raw
+                    if isinstance(t[4], int) and not isinstance(t[4], bool) and t[4] < 0}
+    raw = [(t[0], t[1], t[2], t[3],
+            abs(t[4]) if isinstance(t[4], int) and not isinstance(t[4], bool) else t[4])
+           for t in raw]
     tokens = join_split_words(raw)
+    for _tok in tokens:
+        if _tok.get("kind") in ("word_lb", "sic_lb") and _tok.get("left") in _no_hyph_sum:
+            _tok["no_hyphen"] = True
     for tok in tokens:
         emit_fn(container, tok)
 
