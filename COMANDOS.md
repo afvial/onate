@@ -205,7 +205,7 @@ Después de corregir una página-columna:
 ./procesar_pagina.sh $P $C                                          # reprocesar la página
 python3 scripts/onate_sospechosas.py html/disp63/search_index.js     # erratas probables del HTR
 python3 scripts/onate_revision.py                                    # → html/disp63/revision.html
-xdg-open "html/disp63/revision.html#pg_63_${P}_${C}"                 # abrir en esa columna
+xdg-open "file://$PWD/html/disp63/revision.html#pg_63_${P}_${C}"                 # abrir en esa columna
 ```
 
 Solo sospechosas de la página: `python3 scripts/onate_sospechosas.py html/disp63/search_index.js --pagina $P`.
@@ -317,3 +317,34 @@ porque ambos pasos trabajan sobre el documento ensamblado):
 
 Números de paso: 0 normalize · 1 page2tei · 1.5 nlp · 1.6 nlp_corrections · 1.7 lila ·
 2 enrich · 3 assemble · 3.5 sentences · 4 validate · 4.5 coords · 5 html · 6 search · 7 rdf
+
+## Omitir pasos durante la edición del texto
+
+Los pasos 6 (índice de búsqueda, `search`) y 7 (análisis por oración, `rdf` + `oraciones.js`)
+son los últimos de la cadena y no alimentan a ningún otro. Mientras se edita el texto
+pueden omitirse para que el procesamiento sea más rápido; el buscador, los paneles de
+oración y la página de revisión quedan con la versión anterior hasta que se regeneren.
+
+    ./procesar_pagina.sh $P $C --skip search,rdf      # o --skip 6,7
+
+Para toda la sesión de edición:
+
+    export SKIP="search rdf"
+    ./procesar_pagina.sh $P $C
+    unset SKIP                                         # al terminar
+
+Números de paso: 0 normalize · 1 page2tei · 1.5 nlp · 1.6 nlp_corrections · 1.7 lila ·
+2 enrich · 3 assemble · 3.5 sentences · 4 validate · 4.5 coords · 5 html · 6 search · 7 rdf
+
+## Actualizar la página de revisión tras editar
+
+La revisión se construye a partir del índice de búsqueda y de la lista de sospechosas,
+que no se actualizan si se procesa con --skip search. Orden (basta una vez, desde
+cualquier página, porque el índice cubre todo el documento ensamblado):
+
+    unset SKIP
+    ./procesar_pagina.sh $P $C --only search
+    ./procesar_pagina.sh $P $C --only rdf
+    python3 scripts/onate_sospechosas.py html/disp63/search_index.js --lila lila/pendientes.tsv
+    python3 scripts/onate_revision.py
+    xdg-open "file://$PWD/html/disp63/revision.html#pg_63_${P}_${C}"

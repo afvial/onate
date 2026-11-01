@@ -340,6 +340,7 @@ ORIG_REG = {
     "vt": "ut", "vsu": "usu", "vſu": "usu",
     # variantes gráficas de la época (se conserva la forma impresa; el lema sale de la regularizada)
     "opportet": "oportet", "Opportet": "Oportet",
+    "prætij": "pretij", "praetij": "pretij",   # grafía praetium (hipercorrección)
     "eft": "est", "eſt": "est",
     "ſunt": "sunt", "ſed": "sed", "ſi": "si", "ſub": "sub",
     "iuſtitiam": "iustitiam", "iuſtitiae": "iustitiae",
@@ -1249,7 +1250,8 @@ LONG_S_ROOTS = [
     ("descen",     "deſcen"),
     ("hisp",       "hiſp"),
     ("vilesc",     "vileſc"),
-    ("instan",     "inſtan"),     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
+    ("instan",     "inſtan"),
+    ("sequu",      "ſequu"),      # sequuntur, sequutus…     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
     ("vers",       "verſ"),       # versus, versatur, conuersio… (general)
     ("uers",       "uerſ"),       # grafía con u: conuersatio…      # superare, superat, insuper… (general, al final)        # vestis, vestimentum, vestitus, vestiarium…
 ]
