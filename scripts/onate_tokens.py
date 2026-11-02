@@ -1251,7 +1251,9 @@ LONG_S_ROOTS = [
     ("hisp",       "hiſp"),
     ("vilesc",     "vileſc"),
     ("instan",     "inſtan"),
-    ("sequu",      "ſequu"),      # sequuntur, sequutus…     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
+    ("sequu",      "ſequu"),
+    ("result",     "reſult"),
+    ("notesc",     "noteſc"),     # innotescat, innotescere, notescit…     # resultat, resultare, resultans…      # sequuntur, sequutus…     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
     ("vers",       "verſ"),       # versus, versatur, conuersio… (general)
     ("uers",       "uerſ"),       # grafía con u: conuersatio…      # superare, superat, insuper… (general, al final)        # vestis, vestimentum, vestitus, vestiarium…
 ]

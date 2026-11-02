@@ -60,6 +60,11 @@ MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=S
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
 
+# DIctis: primera palabra del capítulo tras la inicial, con I mayúscula;
+# participio de dico en ablativo absoluto («Dictis quae…»).
+MANUAL_LEMMA["DIctis"] = ("dico", "VERB",
+    "Aspect=Perf|Case=Abl|Gender=Neut|Number=Plur|VerbForm=Part|Voice=Pass")
+
 # "n" suelta (p. ej. «Petrus Nau. n... lib.», signo dudoso del impreso):
 # sin análisis latino; "n." con punto sigue siendo la abreviatura de numero.
 MANUAL_LEMMA["n"] = ("n", "X", "")
