@@ -274,7 +274,9 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             w_inner.text = text
         else:
             w      = etree.SubElement(orig, f"{{{TEI_NS}}}w")
-            w.text = text
+            # forma diplomática con ligaduras (praetij → prætij)
+            w.text = (text.replace("ae", "æ").replace("Ae", "Æ")
+                          .replace("oe", "œ").replace("Oe", "Œ"))
         reg_el = etree.SubElement(choice, f"{{{TEI_NS}}}reg")
         w_reg  = etree.SubElement(reg_el, f"{{{TEI_NS}}}w")
         w_reg.text = reg
