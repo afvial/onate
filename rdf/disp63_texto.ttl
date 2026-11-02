@@ -118600,7 +118600,7 @@ tok:s_p44der_2_t8
 
 tok:s_p44der_3
     a nif:Sentence ;
-    nif:anchorOf "lex pretia rerum. Digesta ad lex falcidiam expenditur"@la ;
+    nif:anchorOf "lex pretia rerum. Digesta ad lex falcidiam expenditur."@la ;
     dct:isPartOf tok:p44der ;
     onate:n 3 ;
     nif:firstWord tok:s_p44der_3_t1 .
@@ -118815,7 +118815,7 @@ tok:s_p44der_4_t5
 
 tok:s_p44der_5
     a nif:Sentence ;
-    nif:anchorOf "Cur iusti astimatio iustum preciu efficit"@la ;
+    nif:anchorOf "Cur iusti aestimatio iustum pretium efficit."@la ;
     dct:isPartOf tok:p44der ;
     onate:n 5 ;
     nif:firstWord tok:s_p44der_5_t1 .
@@ -118836,7 +118836,6 @@ tok:s_p44der_5_t1
 tok:s_p44der_5_t2
     a nif:Word ;
     nif:anchorOf "iusti"@la ;
-    onate:diplomatic "iuſti"@la ;
     nif:sentence tok:s_p44der_5 ;
     nif:nextWord tok:s_p44der_5_t3 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
@@ -118846,14 +118845,15 @@ tok:s_p44der_5_t2
     onate:ud "Case=Gen|Gender=Masc|Number=Sing" ;
     lila:hasLemma lilalem:109268 ;
     onate:lexicalEntry lex:iustus_ADJ ;
-    conll:HEAD tok:s_p44der_5_t3 ;
-    conll:EDGE "nmod" ;
+    conll:HEAD tok:s_p44der_5_t1 ;
+    conll:EDGE "amod" ;
     onate:line 16 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A16%3Aiuſti%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A16%3Aiusti%3A0> .
 
 tok:s_p44der_5_t3
     a nif:Word ;
-    nif:anchorOf "astimatio"@la ;
+    nif:anchorOf "aestimatio"@la ;
+    onate:diplomatic "æstimatio"@la ;
     nif:sentence tok:s_p44der_5 ;
     nif:nextWord tok:s_p44der_5_t4 ;
     lexinfo:partOfSpeech lexinfo:noun ;
@@ -118861,16 +118861,16 @@ tok:s_p44der_5_t3
     lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
     onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
-    onate:lexicalEntry lex:astimatio_NOUN ;
+    lila:hasLemma lilalem:87934 ;
+    onate:lexicalEntry lex:aestimatio_NOUN ;
     conll:HEAD tok:s_p44der_5_t6 ;
     conll:EDGE "nsubj" ;
     onate:line 16 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A16%3Aastimatio%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A16%3Aæstimatio%3A0> .
 
 tok:s_p44der_5_t4
     a nif:Word ;
     nif:anchorOf "iustum"@la ;
-    onate:diplomatic "iuſtum"@la ;
     nif:sentence tok:s_p44der_5 ;
     nif:nextWord tok:s_p44der_5_t5 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
@@ -118880,26 +118880,28 @@ tok:s_p44der_5_t4
     onate:ud "Case=Acc|Gender=Neut|Number=Sing" ;
     lila:hasLemma lilalem:109268 ;
     onate:lexicalEntry lex:iustus_ADJ ;
-    conll:HEAD tok:s_p44der_5_t6 ;
-    conll:EDGE "obj" ;
+    conll:HEAD tok:s_p44der_5_t5 ;
+    conll:EDGE "amod" ;
     onate:line 16 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A16%3Aiuſtum%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A16%3Aiustum%3A0> .
 
 tok:s_p44der_5_t5
     a nif:Word ;
-    nif:anchorOf "preciu"@la ;
+    nif:anchorOf "pretium"@la ;
+    onate:diplomatic "pretiũ"@la ;
     nif:sentence tok:s_p44der_5 ;
     nif:nextWord tok:s_p44der_5_t6 ;
     lexinfo:partOfSpeech lexinfo:noun ;
-    lexinfo:case lexinfo:genitiveCase ;
+    lexinfo:case lexinfo:accusativeCase ;
     lexinfo:gender lexinfo:neuter ;
     lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Gen|Gender=Neut|Number=Sing" ;
-    onate:lexicalEntry lex:preciu_NOUN ;
-    conll:HEAD tok:s_p44der_5_t4 ;
-    conll:EDGE "nmod" ;
+    onate:ud "Case=Acc|Gender=Neut|Number=Sing" ;
+    lila:hasLemma lilalem:119455 ;
+    onate:lexicalEntry lex:pretium_NOUN ;
+    conll:HEAD tok:s_p44der_5_t6 ;
+    conll:EDGE "obj" ;
     onate:line 16 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A16%3Apreciu%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A16%3Apretiũ%3A0> .
 
 tok:s_p44der_5_t6
     a nif:Word ;
@@ -118920,26 +118922,23 @@ tok:s_p44der_5_t6
 
 tok:s_p44der_6
     a nif:Sentence ;
-    nif:anchorOf "Moralitar vix contingit vulgi aestimationem in pretio taxando errare."@la ;
+    nif:anchorOf "Moraliter vix contingit vulgi aestimationem in pretio taxando errare."@la ;
     dct:isPartOf tok:p44der ;
     onate:n 6 ;
     nif:firstWord tok:s_p44der_6_t1 .
 
 tok:s_p44der_6_t1
     a nif:Word ;
-    nif:anchorOf "Moralitar"@la ;
+    nif:anchorOf "Moraliter"@la ;
     nif:sentence tok:s_p44der_6 ;
     nif:nextWord tok:s_p44der_6_t2 ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    lexinfo:case lexinfo:nominativeCase ;
-    lexinfo:gender lexinfo:feminine ;
-    lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
-    onate:lexicalEntry lex:moralitar_NOUN ;
+    lexinfo:partOfSpeech lexinfo:adverb ;
+    lila:hasLemma lilahyp:27790 ;
+    onate:lexicalEntry lex:moraliter_ADV ;
     conll:HEAD tok:s_p44der_6_t3 ;
-    conll:EDGE "nsubj" ;
+    conll:EDGE "advmod" ;
     onate:line 18 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A18%3AMoralitar%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A18%3AMoraliter%3A0> .
 
 tok:s_p44der_6_t2
     a nif:Word ;
@@ -118991,7 +118990,7 @@ tok:s_p44der_6_t4
 tok:s_p44der_6_t5
     a nif:Word ;
     nif:anchorOf "aestimationem"@la ;
-    onate:diplomatic "æſtimationem"@la ;
+    onate:diplomatic "æstimationem"@la ;
     nif:sentence tok:s_p44der_6 ;
     nif:nextWord tok:s_p44der_6_t6 ;
     lexinfo:partOfSpeech lexinfo:noun ;
@@ -119004,7 +119003,7 @@ tok:s_p44der_6_t5
     conll:HEAD tok:s_p44der_6_t9 ;
     conll:EDGE "nsubj" ;
     onate:line 18 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A18%3Aæſtimationem%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A18%3Aæstimationem%3A0> .
 
 tok:s_p44der_6_t6
     a nif:Word ;
@@ -119167,6 +119166,7 @@ tok:s_p44der_7_t6
 tok:s_p44der_7_t7
     a nif:Word ;
     nif:anchorOf "sequuntur"@la ;
+    onate:diplomatic "ſequuntur"@la ;
     nif:sentence tok:s_p44der_7 ;
     nif:nextWord tok:s_p44der_7_t8 ;
     lexinfo:partOfSpeech lexinfo:verb ;
@@ -119182,7 +119182,7 @@ tok:s_p44der_7_t7
     conll:HEAD tok:s_p44der_7_t4 ;
     conll:EDGE "acl:relcl" ;
     onate:line 21 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A21%3Asequuntur%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A21%3Aſequuntur%3A0> .
 
 tok:s_p44der_7_t8
     a nif:Word ;
@@ -119223,7 +119223,7 @@ tok:s_p44der_7_t9
 
 tok:s_p44der_8
     a nif:Sentence ;
-    nif:anchorOf "Copiae, vel inopia mercium est prima regla ad taxandum iustum pretium."@la ;
+    nif:anchorOf "Copiae, vel inopia mercium est prima regula ad taxandum iustum pretium."@la ;
     dct:isPartOf tok:p44der ;
     onate:n 8 ;
     nif:firstWord tok:s_p44der_8_t1 .
@@ -119296,7 +119296,6 @@ tok:s_p44der_8_t5
 tok:s_p44der_8_t6
     a nif:Word ;
     nif:anchorOf "est"@la ;
-    onate:diplomatic "eſt"@la ;
     nif:sentence tok:s_p44der_8 ;
     nif:nextWord tok:s_p44der_8_t7 ;
     lexinfo:partOfSpeech lexinfo:auxiliary ;
@@ -119311,7 +119310,7 @@ tok:s_p44der_8_t6
     conll:HEAD tok:s_p44der_8_t1 ;
     conll:EDGE "cop" ;
     onate:line 23 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A23%3Aeſt%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A23%3Aest%3A0> .
 
 tok:s_p44der_8_t7
     a nif:Word ;
@@ -119332,18 +119331,18 @@ tok:s_p44der_8_t7
 
 tok:s_p44der_8_t8
     a nif:Word ;
-    nif:anchorOf "regla"@la ;
+    nif:anchorOf "regula"@la ;
     nif:sentence tok:s_p44der_8 ;
     nif:nextWord tok:s_p44der_8_t9 ;
     lexinfo:partOfSpeech lexinfo:noun ;
-    lexinfo:case lexinfo:ablativeCase ;
+    lexinfo:case lexinfo:nominativeCase ;
     lexinfo:gender lexinfo:feminine ;
     lexinfo:number lexinfo:singular ;
-    onate:ud "Case=Abl|Gender=Fem|Number=Sing" ;
-    onate:lexicalEntry lex:regla_NOUN ;
+    onate:ud "Case=Nom|Gender=Fem|Number=Sing" ;
+    onate:lexicalEntry lex:regula_NOUN ;
     conll:EDGE "ROOT" ;
     onate:line 23 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A23%3Aregla%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A23%3Aregula%3A0> .
 
 tok:s_p44der_8_t9
     a nif:Word ;
@@ -119373,14 +119372,13 @@ tok:s_p44der_8_t10
     lila:hasLemma lilalem:127704 ;
     onate:lexicalEntry lex:taxo_VERB ;
     conll:HEAD tok:s_p44der_8_t8 ;
-    conll:EDGE "orphan" ;
+    conll:EDGE "nmod" ;
     onate:line 23 ;
     rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A23%3Ataxandum%3A0> .
 
 tok:s_p44der_8_t11
     a nif:Word ;
     nif:anchorOf "iustum"@la ;
-    onate:diplomatic "iuſtum"@la ;
     nif:sentence tok:s_p44der_8 ;
     nif:nextWord tok:s_p44der_8_t12 ;
     lexinfo:partOfSpeech lexinfo:adjective ;
@@ -119393,7 +119391,7 @@ tok:s_p44der_8_t11
     conll:HEAD tok:s_p44der_8_t12 ;
     conll:EDGE "amod" ;
     onate:line 23 ;
-    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A23%3Aiuſtum%3A0> .
+    rdfs:seeAlso <https://example.org/onate/html/disp63/disp63_facs.html#pg_63_44_der%3A23%3Aiustum%3A0> .
 
 tok:s_p44der_8_t12
     a nif:Word ;
