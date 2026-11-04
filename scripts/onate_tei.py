@@ -638,6 +638,8 @@ def _flatten_lines_to_raw_tokens(lines: list, first_lb_ref: list) -> list:
                 else:
                     tok_exp = exp if (ttype == "word" and seg["is_abbrev"]) else None
                     line_toks.append((ttype, ttext, tok_exp, False, False))
+        if line.get("printed_hyphen") and line_toks:
+            line_toks.append(("pc", "-", None, False, False))
         if line_toks and not is_last:
             last = line_toks[-1]
             if line["soft_hyphen"]:
@@ -758,6 +760,8 @@ def _flatten_spans(lines: list) -> list:
             toks.extend(_tokenize_with_italic(text, 0, span_abbrevs, italic_spans,
                                               line.get("sic_spans", []), bibl_spans,
                                               line_len=len(text)))
+            if line.get("printed_hyphen") and toks:
+                toks.append(("pc", "-", None, False, False, toks[-1][5], toks[-1][6]))
             if toks and not is_last_line:
                 last = toks[-1]
                 if line["soft_hyphen"]:
@@ -790,6 +794,9 @@ def _flatten_spans(lines: list) -> list:
                 toks.extend(_tokenize_with_italic(
                     span_text, span_offset, span_abbrevs, italic_spans, span_sic, bibl_spans,
                     line_len=len(text)))
+
+                if is_last_span and line.get("printed_hyphen") and toks:
+                    toks.append(("pc", "-", None, False, False, toks[-1][5], toks[-1][6]))
 
                 if is_last_span and toks and not is_last_line:
                     last = toks[-1]

@@ -328,6 +328,7 @@ AUTHOR_FULL_NAMES = {
 }
 
 PC_TYPES = {
+    "-": "hyphen",
     ",": "comma", ";": "semicolon", ":": "colon",
     "?": "question", "!": "exclamation",
     "[": "bracket", "]": "bracket",
@@ -1078,6 +1079,7 @@ LONG_S = {
     "quaestionibus":    "quæſtionibus",
     # huiusmodi
     "huiusmodi":        "huiuſmodi",
+    "eiusmodi":         "eiuſmodi",
     # decrescere y flexiones
     "decrescere":       "decreſcere",
     "decrescit":        "decreſcit",
@@ -1253,7 +1255,8 @@ LONG_S_ROOTS = [
     ("instan",     "inſtan"),
     ("sequu",      "ſequu"),
     ("result",     "reſult"),
-    ("notesc",     "noteſc"),     # innotescat, innotescere, notescit…     # resultat, resultare, resultans…      # sequuntur, sequutus…     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
+    ("notesc",     "noteſc"),
+    ("gnosc",      "gnoſc"),      # dignoscere, cognoscere, agnoscere…     # innotescat, innotescere, notescit…     # resultat, resultare, resultans…      # sequuntur, sequutus…     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
     ("vers",       "verſ"),       # versus, versatur, conuersio… (general)
     ("uers",       "uerſ"),       # grafía con u: conuersatio…      # superare, superat, insuper… (general, al final)        # vestis, vestimentum, vestitus, vestiarium…
 ]
@@ -1574,6 +1577,10 @@ def extract_lines(page_xml_path: Path) -> list:
             if not text:
                 continue
             text, _ls_marks = parse_long_s_marks(text)
+            # «-|» al final: guion impreso entre dos palabras (prae-| omnibus)
+            printed_hyphen = text.rstrip().endswith("-|")
+            if printed_hyphen:
+                text = text.rstrip()[:-2].rstrip()
             soft_hyphen     = text.rstrip().endswith("¬")
             no_hyphen_break = text.rstrip().endswith("~")
             if soft_hyphen:
@@ -1591,6 +1598,7 @@ def extract_lines(page_xml_path: Path) -> list:
                 "italic_spans":       [],
                 "sic_spans":          sic_spans,
                 "long_s_marks":       _ls_marks,
+                "printed_hyphen":     printed_hyphen,
                 "region_id":          "r1",
                 "reading_order":      i,
                 "soft_hyphen":        soft_hyphen,

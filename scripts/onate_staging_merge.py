@@ -39,6 +39,7 @@ ANNOTATION_RE = re.compile(
                       # '>>' línea de continuación (inicio de línea)
     r'|//'           # salto de línea / sentencia
     r'|¶'            # párrafo
+    r'|-\|'          # guion impreso entre dos palabras (prae-| omnibus)
     r'|¬'            # corte de palabra
     r'|~'            # corte sin guion
     r'|[@*%]'        # referencia (@), cursiva (*), lengua extranjera (%)

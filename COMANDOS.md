@@ -348,3 +348,9 @@ cualquier página, porque el índice cubre todo el documento ensamblado):
     python3 scripts/onate_sospechosas.py html/disp63/search_index.js --lila lila/pendientes.tsv
     python3 scripts/onate_revision.py
     xdg-open "file://$PWD/html/disp63/revision.html#pg_63_${P}_${C}"
+
+## Marcas de corte de línea en el staging
+
+    palabra¬     palabra partida con guion impreso   (pre¬ / tium → pretium)
+    palabra~     palabra partida sin guion           (mer~ / cis  → mercis)
+    palabra-|    guion impreso entre DOS palabras    (præ-| / omnibus → præ - omnibus)
