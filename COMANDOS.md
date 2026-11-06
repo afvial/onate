@@ -354,3 +354,9 @@ cualquier página, porque el índice cubre todo el documento ensamblado):
     palabra¬     palabra partida con guion impreso   (pre¬ / tium → pretium)
     palabra~     palabra partida sin guion           (mer~ / cis  → mercis)
     palabra-|    guion impreso entre DOS palabras    (præ-| / omnibus → præ - omnibus)
+
+## Correcciones NLP puntuales (nlp_corrections/disp63/pg_63_P_C.json)
+
+    "palabra":    "lemma=…,pos=…,Case=…"   → todas las apariciones de la página
+    "palabra#N":  "Case=…"                 → solo la N-ésima (orden de lectura);
+                                             se aplica después de la general

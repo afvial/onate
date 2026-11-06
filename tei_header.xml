@@ -308,6 +308,15 @@
         <gi>orig</gi>. La forma normalizada se ofrece en <gi>reg</gi>.
         Las abreviaturas se desarrollan en <gi>expan</gi> sin marcar
         las letras restituidas.</p>
+        <p>La marca de abreviatura se transcribe como aparece en el impreso:
+        macrón (<mentioned>ū</mentioned>) o tilde (<mentioned>ũ</mentioned>);
+        ambas se desarrollan del mismo modo en <gi>expan</gi>. Las grafías
+        propias de la época (p. ej. <mentioned>prætium</mentioned> por
+        <mentioned>pretium</mentioned>) no se tratan como errores: se
+        conservan en <gi>orig</gi> y se regularizan en <gi>reg</gi>. Las
+        erratas del impresor se codifican con <gi>choice</gi>/<gi>sic</gi>/<gi>corr</gi>;
+        los errores de la transcripción automática se corrigen sin marcar.
+        Los blancos tipográficos irregulares dentro de palabra se suprimen.</p>
       </normalization>
       <punctuation>
         <p>La puntuación original se conserva y se codifica mediante
@@ -316,7 +325,13 @@
       <hyphenation>
         <p>Las palabras partidas por salto de línea se codifican con
         <gi>lb</gi> con atributo <att>break</att> igual a <val>no</val>
-        dentro del elemento <gi>w</gi>.</p>
+        dentro del elemento <gi>w</gi>. Si el impreso no trae guion en el
+        corte, el <gi>lb</gi> lleva además <att>rend</att> igual a
+        <val>no-hyphen</val>. Cuando el impreso trae un guion entre dos
+        palabras distintas (p. ej. <mentioned>præ-</mentioned> /
+        <mentioned>omnibus</mentioned>), el guion se codifica como
+        <gi>pc</gi> con <att>type</att> igual a <val>hyphen</val> y las
+        palabras se mantienen separadas.</p>
       </hyphenation>
       <!-- Política específica para las citas de autoridad -->
       <interpretation>
@@ -335,6 +350,15 @@
         tipo <mentioned>iuncto N</mentioned> se codifican con
         <gi>note</gi> <att>subtype</att> <val>iuncto</val> y
         <gi>ref</gi> <att>type</att> <val>crossref</val>.</p>
+        <p>Solo se codifican como <gi>bibl</gi> las referencias a una obra
+        concreta e identificable (autor y obra, ley del Corpus Iuris, Glossa
+        ordinaria). Las menciones genéricas a autoridades colectivas
+        (<mentioned>DD.</mentioned>, <mentioned>alij</mentioned>,
+        <mentioned>communis Doctorum</mentioned>) y las fórmulas de enlace
+        de Oñate (<mentioned>cit. à</mentioned>, <mentioned>ex</mentioned>,
+        <mentioned>ibi tenet</mentioned>, <mentioned>innuit</mentioned>)
+        quedan fuera de <gi>bibl</gi>. La cursiva del impreso se codifica
+        independientemente con <gi>hi</gi>, aunque coincida con la cita.</p>
         <p>Valores del atributo <att>unit</att> en <gi>biblScope</gi>:
           <list type="gloss">
             <label>book</label><item>libro</item>

@@ -125,6 +125,32 @@ def main():
     applied = 0
     processed = set()
 
+    # Número de aparición (1, 2, …) de cada texto en orden de lectura, para
+    # admitir claves "palabra#N" que corrigen solo la N-ésima aparición.
+    # Se cuenta la copia normalizada (reg/expan/corr) o la palabra suelta.
+    occ_of, _seen = {}, {}
+    for _w in root.iter(f"{TEI}w"):
+        _p = _w.getparent()
+        if _p is None:
+            continue
+        _pt = local(_p.tag)
+        if _pt in ("orig", "abbr", "sic"):
+            continue
+        if _pt in ("reg", "expan") and _w is not _p.find(f".//{TEI}w"):
+            continue
+        _k = get_norm_text(_w).lower()
+        _seen[_k] = _seen.get(_k, 0) + 1
+        occ_of[_w] = _seen[_k]
+
+    def lookup(key, w):
+        """Corrección general ("palabra") + específica ("palabra#N");
+        la específica va después y sobrescribe los rasgos que coincidan."""
+        general  = corrections_lower.get(key)
+        specific = corrections_lower.get(f"{key}#{occ_of.get(w, 0)}")
+        if general and specific:
+            return general + "," + specific
+        return specific or general
+
     # Primero: <choice> (orig/reg, abbr/expan, y variantes anidadas de
     # s larga). La clave de busqueda es SIEMPRE el texto normalizado
     # (reg/expan), nunca la forma diplomatica (que puede llevar ſ y no
@@ -143,9 +169,9 @@ def main():
         if reg_w is None:
             continue
         key = get_norm_text(reg_w).lower()
-        if key not in corrections_lower:
+        correction = lookup(key, reg_w)
+        if not correction:
             continue
-        correction = corrections_lower[key]
         # "text" solo debe aplicarse a la copia normalizada (reg_w),
         # nunca a la copia diplomatica (orig/abbr), que debe seguir
         # mostrando fielmente lo impreso. Se separa antes de aplicar
@@ -176,8 +202,9 @@ def main():
             continue
         text = get_norm_text(w)
         key = text.lower()
-        if key in corrections_lower:
-            apply_correction(w, corrections_lower[key])
+        correction = lookup(key, w)
+        if correction:
+            apply_correction(w, correction)
             processed.add(w)
             applied += 1
 

@@ -73,6 +73,9 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "qu.",          # quaestio
+    "dubit.",       # dubium
+    "DD.",          # Doctores
 }
 
 # Expansiones canónicas de abreviaturas conocidas (nominativo)
@@ -162,6 +165,9 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "qu.":       "quaestio",
+    "dubit.":    "dubium",
+    "DD.":       "Doctores",
     "seqq.":      "sequentibus",
     "iun.":       "iuncto",
     "contr.":     "controversia",
@@ -289,6 +295,7 @@ BIBL_INTRA = {
     "iust.", "contract.", "contractib.", "empt.", "emptione.",
     "peccat.", "pecca.", "septem.", "trinitate.",
     "c.", "instruct.", "dist.",
+    "qu.", "dubit.",
     "reip.", "repub.", "ff.", "seqq.", "iun.", "contr.",
     # Preposiciones intra-bibl (forman parte del título de la obra)
     "de", "ad", "in", "ibi",
@@ -342,6 +349,7 @@ ORIG_REG = {
     # variantes gráficas de la época (se conserva la forma impresa; el lema sale de la regularizada)
     "opportet": "oportet", "Opportet": "Oportet",
     "prætij": "pretij", "praetij": "pretij",   # grafía praetium (hipercorrección)
+    "prætium": "pretium", "praetium": "pretium",
     "eft": "est", "eſt": "est",
     "ſunt": "sunt", "ſed": "sed", "ſi": "si", "ſub": "sub",
     "iuſtitiam": "iustitiam", "iuſtitiae": "iustitiae",
@@ -360,6 +368,7 @@ ORIG_REG = {
 # otra puntuación): el tokenizador las ve como palabras normales, así que
 # se expanden aquí. Clave = forma exacta del texto.
 ABBREV_NO_DOT = {
+    "DD":    "Doctores",
     "reip":  "reipublicae",
     "Reip":  "Reipublicae",
 }

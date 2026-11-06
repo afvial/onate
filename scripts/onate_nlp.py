@@ -60,6 +60,10 @@ MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=S
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
 
+# Doctores (expansión de DD.): sustantivo común, no nombre propio.
+for _f in ("Doctores", "Doctorum", "Doctoribus", "Doctor"):
+    MANUAL_LEMMA[_f] = ("doctor", "NOUN", None)
+
 # DIctis: primera palabra del capítulo tras la inicial, con I mayúscula;
 # participio de dico en ablativo absoluto («Dictis quae…»).
 MANUAL_LEMMA["DIctis"] = ("dico", "VERB",
