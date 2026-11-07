@@ -37769,7 +37769,7 @@
    "estado": "ok",
    "ref": "lila:119455",
    "candidatos": "lila:119455 noun",
-   "n": 19,
+   "n": 21,
    "lineas": [
     "3",
     "6",
@@ -37787,8 +37787,10 @@
     "44",
     "46",
     "47",
+    "52",
     "53",
-    "54"
+    "54",
+    "56"
    ]
   },
   "dinosco\tVERB": {
@@ -38029,7 +38031,7 @@
    "estado": "ok",
    "ref": "lila:97171",
    "candidatos": "lila:97171 adjective",
-   "n": 8,
+   "n": 9,
    "lineas": [
     "9",
     "26",
@@ -38038,7 +38040,8 @@
     "40",
     "45",
     "46",
-    "55"
+    "55",
+    "59"
    ]
   },
   "consto\tVERB": {
@@ -38417,10 +38420,11 @@
    "estado": "ok",
    "ref": "lila:114954",
    "candidatos": "lila:114954 determiner",
-   "n": 3,
+   "n": 4,
    "lineas": [
     "23",
     "24",
+    "48",
     "49"
    ]
   },
@@ -38766,10 +38770,12 @@
    "estado": "ok",
    "ref": "lila:110351",
    "candidatos": "lila:110351 noun",
-   "n": 2,
+   "n": 4,
    "lineas": [
     "38",
-    "39"
+    "39",
+    "56",
+    "57"
    ]
   },
   "Digesta\tPROPN": {
@@ -38939,24 +38945,6 @@
     "48"
    ]
   },
-  "om\tX": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "48"
-   ]
-  },
-  "nis\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "49"
-   ]
-  },
   "circumstantia\tNOUN": {
    "estado": "ok",
    "ref": "lila:97769",
@@ -39002,25 +38990,16 @@
     "51"
    ]
   },
-  "auente\tADV": {
-   "estado": "no_encontrado",
+  "attendo\tADV": {
+   "estado": "pos_distinta",
    "ref": null,
-   "candidatos": "",
+   "candidatos": "lila:90532 verb; lila:32936 verb",
    "n": 1,
    "lineas": [
     "51"
    ]
   },
-  "pratium\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "52"
-   ]
-  },
-  "confuetudinarius\tADJ": {
+  "confuetudinarius\tNOUN": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
@@ -39056,16 +39035,7 @@
     "56"
    ]
   },
-  "lpretium\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "56"
-   ]
-  },
-  "iFalcidia\tADJ": {
+  "falcidiam\tADJ": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
@@ -39074,19 +39044,10 @@
     "57"
    ]
   },
-  "texxtius\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "57"
-   ]
-  },
-  "publicus\tCCONJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:120358 adjective; lila:117175 noun",
+  "textus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129412",
+   "candidatos": "lila:129412 noun",
    "n": 1,
    "lineas": [
     "57"
@@ -39119,46 +39080,37 @@
     "58"
    ]
   },
-  "fingulus\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "singulus\tADJ": {
+   "estado": "ok",
+   "ref": "lila:123320",
+   "candidatos": "lila:123320 adjective",
    "n": 1,
    "lineas": [
     "58"
    ]
   },
-  "comnurater\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "59"
-   ]
-  },
-  "fungunscor\tVERB": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "59"
-   ]
-  },
-  "Iid\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "59"
-   ]
-  },
-  "commeo\tVERB": {
+  "communiter\tADV": {
    "estado": "ok",
-   "ref": "lila:95122",
-   "candidatos": "lila:95122 verb",
+   "ref": "lilah:7873",
+   "candidatos": "lilah:7873 adverb (variante)",
+   "n": 1,
+   "lineas": [
+    "59"
+   ]
+  },
+  "fungor\tVERB": {
+   "estado": "ok",
+   "ref": "lila:104022",
+   "candidatos": "lila:104022 verb",
+   "n": 1,
+   "lineas": [
+    "59"
+   ]
+  },
+  "is\tPRON": {
+   "estado": "excepcion",
+   "ref": "lila:109083",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "59"
@@ -39173,10 +39125,10 @@
     "60"
    ]
   },
-  "Closss\tPROPN": {
-   "estado": "no_encontrado",
+  "Glossa\tPROPN": {
+   "estado": "pos_distinta",
    "ref": null,
-   "candidatos": "",
+   "candidatos": "lila:104716 noun",
    "n": 1,
    "lineas": [
     "60"
