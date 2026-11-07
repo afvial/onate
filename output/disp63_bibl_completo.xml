@@ -34231,7 +34231,7 @@
       <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Abl|Gender=Masc|Number=Sing" n="14" head="21" deprel="advcl">quo</w>
       <lb n="4"/>
       <w lemma="hic" lemmaRef="lila:105455" pos="DET" msd="Case=Gen|Gender=Fem|Number=Sing" n="15" head="16" deprel="det">huius</w>
-      <w lemma="contraho" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="16" head="20" deprel="nmod">contractus</w>
+      <w lemma="contractus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="16" head="20" deprel="nmod">contractus</w>
       <pc type="comma">,</pc>
       <choice>
         <abbr>
@@ -35266,7 +35266,14 @@
           <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="26" head="27" deprel="cc">et</w>
         </expan>
       </choice>
-      <w lemma="confuetudinarius" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing" n="27" head="25" deprel="conj">con<lb break="no" n="53"/>fuetudinarium</w>
+      <choice>
+        <orig>
+          <w lemma="consuetudinarius" lemmaRef="lila:96178" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing" n="27" head="25" deprel="conj">con<lb break="no" n="53"/>ſuetudinarium</w>
+        </orig>
+        <reg>
+          <w lemma="consuetudinarius" lemmaRef="lila:96178" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing" n="27" head="25" deprel="conj">consuetudinarium</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <choice>
         <abbr>
