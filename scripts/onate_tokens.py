@@ -1265,7 +1265,9 @@ LONG_S_ROOTS = [
     ("sequu",      "ſequu"),
     ("result",     "reſult"),
     ("notesc",     "noteſc"),
-    ("gnosc",      "gnoſc"),      # dignoscere, cognoscere, agnoscere…     # innotescat, innotescere, notescit…     # resultat, resultare, resultans…      # sequuntur, sequutus…     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
+    ("gnosc",      "gnoſc"),
+    ("singul",     "ſingul"),     # singulorum, singularum, singulos…
+    ("pensa",      "penſa"),      # pensantur, pensare, pensatur…      # dignoscere, cognoscere, agnoscere…     # innotescat, innotescere, notescit…     # resultat, resultare, resultans…      # sequuntur, sequutus…     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
     ("vers",       "verſ"),       # versus, versatur, conuersio… (general)
     ("uers",       "uerſ"),       # grafía con u: conuersatio…      # superare, superat, insuper… (general, al final)        # vestis, vestimentum, vestitus, vestiarium…
 ]
