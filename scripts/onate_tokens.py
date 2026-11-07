@@ -39,7 +39,7 @@ ABBREV_WITH_DOT = {
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.", "Leff.",
     "Anton.", "Sylu.", "Conrad.",
     "Faustus.", "Faust.", "Valent.", "Aragon.", "Caiet.",
-    "Bannes.", "Bann.", "Mai.", "Maior.", "Scot.",
+    "Bannes.", "Bann.", "Bart.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
     # Obras y colecciones
     "ethic.", "instit.", "mor.", "restit.", "restitut.",
@@ -245,6 +245,7 @@ ABBREV_EXPAN = {
     "Aragon.":    "Aragonius",
     "Caiet.":     "Caietanus",
     "Bannes.":    "Bannez",
+    "Bart.":      "Bartolus",
     "Bann.":      "Bannez",
     "Lessius.":   "Lessius",
     "Leff.":      "Lessius",
@@ -279,7 +280,7 @@ AUTHOR_ABBREVS = {
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.",
     "Anton.", "Sylu.", "Conrad.",
     "Faust.", "Faustus.", "Valent.", "Aragon.", "Caiet.",
-    "Bannes.", "Bann.", "S.", "Mai.", "Maior.", "Scot.",
+    "Bannes.", "Bann.", "Bart.", "S.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
     "Rebel.", "Rebell.", "Nauar.",
 }
@@ -331,7 +332,7 @@ AUTHOR_FULL_NAMES = {
     "Medina", "Azorius", "Antoninus", "Sylvester", "Conradus",
     "Sotus", "Soto", "Valentinus", "Caietanus", "Scotus", "Maior",
     "Toletus", "Gabriel", "Faustus", "Bannez", "Aragonius",
-    "Rebellus", "Leffius", "Ludovicus", "Lopez", "Garzias",
+    "Rebellus", "Leffius", "Ludovicus", "Lopez", "Garzias", "Bartolus",
 }
 
 PC_TYPES = {
@@ -346,6 +347,7 @@ ORIG_REG = {
     "intollerabilem": "intolerabilem", "intollerabilis": "intolerabilis",
     "intollerabile": "intolerabile", "intollerabili": "intolerabili",
     "vt": "ut", "vsu": "usu", "vſu": "usu",
+    "prudentivm": "prudentium",   # v por u en el impreso
     # variantes gráficas de la época (se conserva la forma impresa; el lema sale de la regularizada)
     "opportet": "oportet", "Opportet": "Oportet",
     "prætij": "pretij", "praetij": "pretij",   # grafía praetium (hipercorrección)
