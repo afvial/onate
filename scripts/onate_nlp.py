@@ -60,6 +60,11 @@ MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=S
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
 
+# contractus (4.ª decl., «contrato»): LatinCy lo toma por participio de contraho.
+# No se incluye contractum/contracta, que pueden ser participio.
+for _f in ("contractus", "contractu", "contractui", "contractuum", "contractibus"):
+    MANUAL_LEMMA[_f] = ("contractus", "NOUN", None)
+
 # Doctores (expansión de DD.): sustantivo común, no nombre propio.
 for _f in ("Doctores", "Doctorum", "Doctoribus", "Doctor"):
     MANUAL_LEMMA[_f] = ("doctor", "NOUN", None)
