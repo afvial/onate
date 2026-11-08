@@ -143,6 +143,7 @@
             position: relative;
           }
           span.tei-w:hover { background-color: #fbd9b5; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
+          span.tei-space { display: inline-block; border-bottom: 1px dotted #999; height: 0.9em; vertical-align: baseline; cursor: help; }
 
           span.tei-w[data-pos="VERB"]  { color: #1a4a8a; }
           span.tei-w[data-pos="NOUN"]  { color: #222; }

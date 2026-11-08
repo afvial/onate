@@ -1406,6 +1406,30 @@ def _wrap_foreign(div, lang: str = "es") -> int:
     return n
 
 
+def _emit_spaces(div) -> int:
+    """Sustituye el marcador de hueco ({_} / {_N} en el staging) por <space/>:
+    espacio en blanco significativo del impreso (p. ej. un número que el
+    cajista no llegó a componer). Con N: unit="chars" quantity="N"."""
+    T = lambda n: f"{{{TEI_NS}}}{n}"
+    wrap = {T(n) for n in ("choice", "orig", "reg", "abbr", "expan", "sic", "corr")}
+    n = 0
+    for w in list(div.iter(T("w"))):
+        t = w.text or ""
+        if not t.startswith("\ue010"):
+            continue
+        top = w
+        while top.getparent() is not None and top.getparent().tag in wrap:
+            top = top.getparent()
+        sp = etree.Element(T("space"))
+        q = t[1:]
+        if q.isdigit():
+            sp.set("unit", "chars"); sp.set("quantity", q)
+        sp.tail = top.tail
+        top.getparent().replace(top, sp)
+        n += 1
+    return n
+
+
 def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool = False, col: str = None) -> etree._Element:
     _attrib = {"type": "page", "n": str(page_n)}
     if col:
@@ -1453,6 +1477,7 @@ def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool 
             first_para = False
 
     _wrap_foreign(div)
+    _emit_spaces(div)
     return div
 
 

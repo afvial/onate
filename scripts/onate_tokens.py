@@ -1590,6 +1590,8 @@ def extract_lines(page_xml_path: Path) -> list:
             if not text:
                 continue
             text, _ls_marks = parse_long_s_marks(text)
+            # {_} / {_N}: hueco en blanco del impreso → <space/> (ver onate_tei._emit_spaces)
+            text = re.sub(r"\{_(\d*)\}", lambda m: " \ue010" + m.group(1) + " ", text)
             # «-|» al final: guion impreso entre dos palabras (prae-| omnibus)
             printed_hyphen = text.rstrip().endswith("-|")
             if printed_hyphen:

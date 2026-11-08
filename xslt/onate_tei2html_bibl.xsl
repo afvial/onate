@@ -128,6 +128,7 @@
             position: relative;
           }
           span.tei-w:hover { background-color: #fbd9b5; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
+          span.tei-space { display: inline-block; border-bottom: 1px dotted #999; height: 0.9em; vertical-align: baseline; cursor: help; }
 
           span.tei-w[data-pos="VERB"]  { color: #1a4a8a; }
           span.tei-w[data-pos="NOUN"]  { color: #222; }
@@ -631,6 +632,21 @@
   <!-- PUNTUACIÓN: margin-left negativo absorbe el espacio previo -->
   <!-- PUNTUACIÓN: word joiner (U+2060) impide wrap entre palabra y punto.
        Si viene precedida de lb, emite primero el salto de línea. -->
+  <!-- Hueco en blanco significativo del impreso ({_} en el staging) -->
+  <xsl:template match="tei:space">
+    <xsl:variable name="n">
+      <xsl:choose>
+        <xsl:when test="@quantity"><xsl:value-of select="number(@quantity)"/></xsl:when>
+        <xsl:otherwise>3</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <span class="tei-space" title="Espacio en blanco en el impreso">
+      <xsl:attribute name="style">
+        <xsl:value-of select="concat('width:', $n * 0.6, 'em')"/>
+      </xsl:attribute>
+    </span>
+  </xsl:template>
+
   <xsl:template match="tei:pc">
     <xsl:variable name="prev" select="preceding-sibling::*[1]"/>
     <!-- Puntuacion de APERTURA ( [ : se comporta al reves que el resto:
