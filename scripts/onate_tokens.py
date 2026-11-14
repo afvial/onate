@@ -73,6 +73,8 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "ibid.",     # ibidem
+    "mort.",     # mortalibus (peccat. mort.)
     "cod.",      # Codex (Iustinianus)
     "furt.",     # de furtis (título del Digesto, D. 47, 2)
     "qu.",          # quaestio
@@ -167,6 +169,8 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "ibid.":      "ibidem",
+    "mort.":      "mortalibus",
     "cod.":       "Codex",
     "furt.":      "furtis",
     "qu.":       "quaestio",
@@ -299,7 +303,7 @@ BIBL_INTRA = {
     "ethic.", "mor.", "restit.", "restitut.",
     "iust.", "contract.", "contractib.", "empt.", "emptione.",
     "peccat.", "pecca.", "septem.", "trinitate.",
-    "c.", "instruct.", "dist.",
+    "c.", "instruct.", "dist.", "ibid.", "mort.",
     "qu.", "dubit.",
     "reip.", "repub.", "ff.", "seqq.", "iun.", "contr.",
     # Preposiciones intra-bibl (forman parte del título de la obra)
@@ -336,7 +340,7 @@ AUTHOR_FULL_NAMES = {
     "Medina", "Azorius", "Antoninus", "Sylvester", "Conradus",
     "Sotus", "Soto", "Valentinus", "Caietanus", "Scotus", "Maior",
     "Toletus", "Gabriel", "Faustus", "Bannez", "Aragonius",
-    "Rebellus", "Leffius", "Ludovicus", "Lopez", "Garzias", "Bartolus",
+    "Rebellus", "Leffius", "Ludovicus", "Lopez", "Garzias", "Raymundus", "Bartolus",
 }
 
 PC_TYPES = {
