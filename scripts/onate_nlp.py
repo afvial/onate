@@ -59,6 +59,8 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+for _f in ("glossa", "Glossa", "glosa"):
+    MANUAL_LEMMA[_f] = ("glossa", "NOUN", None)   # expansión de glos.
 
 # contractus (4.ª decl., «contrato»): LatinCy lo toma por participio de contraho.
 # No se incluye contractum/contracta, que pueden ser participio.

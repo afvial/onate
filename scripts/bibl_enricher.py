@@ -824,11 +824,12 @@ SUMMA_BIBLS = {
 
 def regularize_aquinas_parts(root) -> int:
     """
-    En las citas de la Summa (corresp="#bib_Aquinas_ST"), la parte se imprime
-    de forma compacta: 22. = Secunda Secundae, 12. = Prima Secundae. El primer
-    número de la cita se convierte en <choice><orig>22</orig><reg>2. 2</reg>,
-    para que el buscador (forma f) la encuentre. Solo el primer número: no
-    toca q. 22 ni n. 22. Los atributos NLP pasan al <w> de <reg>.
+    En las citas de la Summa y de sus comentaristas (SUMMA_BIBLS), la parte se
+    imprime de forma compacta: 22. = Secunda Secundae, 12. = Prima Secundae.
+    Se regulariza el número 12 o 22 que va justo antes de «q.» (22. q. 77.):
+    <choice><orig>22</orig><reg>2. 2</reg></choice>. Así no se tocan otros
+    números de la cita (controuers. 3, n. 22…). Los atributos NLP pasan al <w>
+    de <reg>.
     """
     NS = "{http://www.tei-c.org/ns/1.0}"
     PARTS = {"12": "1. 2", "22": "2. 2"}
@@ -837,26 +838,26 @@ def regularize_aquinas_parts(root) -> int:
     for b in root.iter(NS + "bibl"):
         if b.get("corresp") not in SUMMA_BIBLS:
             continue
-        for w in b.iter(NS + "w"):
+        toks = [w for w in b.iter(NS + "w")
+                if not any(a.tag in (NS + "reg", NS + "expan", NS + "corr") for a in w.iterancestors())]
+        for k, w in enumerate(toks):
             t = (w.text or "").strip()
-            if not t.isdigit():
+            if t not in PARTS or len(w) or w.getparent().tag in SKIP:
                 continue
-            par = w.getparent()
-            if par.tag in SKIP or t not in PARTS or len(w):
-                break                      # ya regularizado, u otro número
+            nxt = (toks[k + 1].text or "").strip().lower() if k + 1 < len(toks) else ""
+            if not nxt.startswith("q"):
+                continue
             ch = etree.Element(NS + "choice")
             w_o = etree.SubElement(etree.SubElement(ch, NS + "orig"), NS + "w")
             w_o.text = t
             w_r = etree.SubElement(etree.SubElement(ch, NS + "reg"), NS + "w")
             w_r.text = PARTS[t]
-            for k, v in w.attrib.items():
-                w_r.set(k, v)
+            for kk, v in w.attrib.items():
+                w_r.set(kk, v)
             ch.tail = w.tail
-            par.replace(w, ch)
+            w.getparent().replace(w, ch)
             n += 1
-            break
     return n
-
 
 def fallback_by_title(root) -> int:
     """<bibl> sin @corresp cuyo título identifica la obra aunque falte el autor

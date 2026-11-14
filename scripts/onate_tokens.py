@@ -73,6 +73,8 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "cod.",      # Codex (Iustinianus)
+    "furt.",     # de furtis (título del Digesto, D. 47, 2)
     "qu.",          # quaestio
     "dubit.",       # dubium
     "DD.",          # Doctores
@@ -161,10 +163,12 @@ ABBREV_EXPAN = {
     "Falcid.":    "ad legem Falcidiam",
     "Aquil.":     "ad legem Aquiliam",
     "Falc.":      "ad legem Falcidiam",
-    "glos.":      "glosa",
+    "glos.":      "glossa",
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "cod.":       "Codex",
+    "furt.":      "furtis",
     "qu.":       "quaestio",
     "dubit.":    "dubium",
     "DD.":       "Doctores",
@@ -742,6 +746,7 @@ LONG_S = {
     "Sum.":               "Sum.",
     "restit.":            "reſtit.",
     "less.":              "leſſ.",   # Lessius (abreviatura)
+    "glos.":              "gloſ.",   # glossa (abreviatura)
     "Restit.":            "Reſtit.",
     "scutus":             "ſcutus",
     "suos":               "ſuos",
@@ -1563,7 +1568,7 @@ def parse_long_s_marks(text: str):
         else:
             nxt = [w for st, w in words if st >= pos]
             if (len(nxt) == 1 and base.startswith(nxt[0])
-                    and clean.rstrip().endswith("¬")):
+                    and clean.rstrip().endswith(("¬", "~"))):
                 out.append((key, val, "split"))     # 1.ª mitad de palabra partida
             else:
                 print(f"  ⚠ marca de s larga sin la palabra detrás: [{key}] en «{clean}»",
