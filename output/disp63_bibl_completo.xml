@@ -248,6 +248,11 @@
           <title level="m" xml:lang="la">De ablatorum restitutione</title>
         </bibl>
 
+        <bibl xml:id="bib_Pennaforte_Summa">
+          <author ref="#pers_Pennaforte">Raymundus de Pennaforte</author>
+          <title level="m" xml:lang="la">Summa de casibus poenitentiae</title>
+        </bibl>
+
         <bibl xml:id="bib_Covarrubias_Var">
           <author ref="#pers_Covarrubias">Didacus de Covarrubias y Leyva</author>
           <title level="m" xml:lang="la">Variarum Resolutionum ex Iure
@@ -693,6 +698,13 @@
         <person xml:id="pers_NavarraP">
           <persName xml:lang="la">Petrus de Navarra</persName>
           <persName xml:lang="es">Pedro de Navarra</persName>
+        </person>
+
+        <person xml:id="pers_Pennaforte">
+          <persName xml:lang="la">Raymundus de Pennaforte</persName>
+          <persName xml:lang="es">Raimundo de Peñafort</persName>
+          <birth when="1175"/><death when="1275"/>
+          <affiliation>Ordo Praedicatorum</affiliation>
         </person>
 
         <person xml:id="pers_Covarrubias">
@@ -36292,17 +36304,23 @@
                 <w>peccat.</w>
               </abbr>
               <expan>
-                <w lemma="peccatum" lemmaRef="lila:120856" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" n="50" head="41" deprel="conj">peccatis</w>
+                <w lemma="peccatum" lemmaRef="lila:120856" pos="NOUN" msd="Case=Dat|Gender=Neut|Number=Plur" n="50" head="41" deprel="obl">peccatis</w>
               </expan>
             </choice>
-            <w lemma="mort" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing" n="51" head="41" deprel="amod">mort</w>
-            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>mort.</w>
+              </abbr>
+              <expan>
+                <w lemma="mortalis" lemmaRef="lila:112813" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Plur" n="51" head="50" deprel="amod">mortalibus</w>
+              </expan>
+            </choice>
             <choice>
               <abbr>
                 <w>cap.</w>
               </abbr>
               <expan>
-                <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="52" head="41" deprel="obl">capitulo</w>
+                <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="52" head="41" deprel="nmod">capitulo</w>
               </expan>
             </choice>
             <biblScope unit="chap">
@@ -36506,12 +36524,18 @@
                 <w>D.</w>
               </abbr>
               <expan>
-                <w lemma="diuus" lemmaRef="lila:97990" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Sing" n="85" head="81" deprel="amod">Divus</w>
+                <w lemma="diuus" lemmaRef="lila:97990" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Sing" n="85" head="88" deprel="amod">Divus</w>
               </expan>
             </choice>
             <w lemma="Thomas" lemmaRef="lila:23524" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="86" head="85" deprel="nsubj">Tho<lb break="no" n="23"/>mas</w>
-            <w lemma="ibid" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="87" head="81" deprel="appos">ibid</w>
-            <pc type="other">.</pc>
+            <choice>
+              <abbr>
+                <w>ibid.</w>
+              </abbr>
+              <expan>
+                <w lemma="ibidem" lemmaRef="lila:106055" pos="ADV" n="87" head="85" deprel="advmod:lmod">ibidem</w>
+              </expan>
+            </choice>
           </bibl>
         </cit>
         <cit xml:id="cit_p45_der_Scotus_Sent_17">
@@ -36536,7 +36560,7 @@
                 <w>d.</w>
               </abbr>
               <expan>
-                <w lemma="distinctio" lemmaRef="lila:99862" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="91" head="97" deprel="obl">distinctio</w>
+                <w lemma="distinctio" lemmaRef="lila:99862" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="91" head="88" deprel="orphan">distinctio</w>
               </expan>
             </choice>
             <biblScope unit="dist">
@@ -36567,11 +36591,11 @@
                 <w>l.</w>
               </abbr>
               <expan>
-                <w lemma="lex" lemmaRef="lila:110351" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="94" head="91" deprel="conj">lex</w>
+                <w lemma="lex" lemmaRef="lila:110351" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="94" head="88" deprel="conj">lex</w>
               </expan>
             </choice>
             <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="95" head="96" deprel="case">in</w>
-            <w lemma="furtum" lemmaRef="lila:104080" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" n="96" head="91" deprel="nmod">furtis</w>
+            <w lemma="furtum" lemmaRef="lila:104080" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" n="96" head="97" deprel="obl">furtis</w>
             <pc type="other">.</pc>
             <lb n="24"/>
             <choice>
@@ -36579,7 +36603,7 @@
                 <w>ff.</w>
               </abbr>
               <expan>
-                <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing" n="97" head="2" deprel="conj">Digesta</w>
+                <w lemma="Digesta" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing" n="97" head="94" deprel="nmod">Digesta</w>
               </expan>
             </choice>
             <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="98" head="100" deprel="case">de</w>
@@ -36591,7 +36615,7 @@
                 <w lemma="furtum" lemmaRef="lila:104080" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" n="99" head="100" deprel="nmod">furtis</w>
               </expan>
             </choice>
-            <w lemma="actus" lemmaRef="lila:91175" pos="NOUN" msd="Gender=Neut" n="100" head="2" deprel="acl">act</w>
+            <w lemma="actus" lemmaRef="lila:91175" pos="NOUN" msd="Gender=Neut" n="100" head="2" deprel="obl">act</w>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -36672,9 +36696,11 @@
         </choice>
         <w lemma="quis" lemmaRef="lila:121165" pos="PRON" msd="Case=Nom|Gender=Fem|Number=Sing" n="118" head="120" deprel="det">quis</w>
         <w lemma="uxor" lemmaRef="lila:130980" pos="NOUN" msd="Case=Dat|Gender=Fem|Number=Sing" n="119" head="121" deprel="obl">vxori</w>
-        <cit xml:id="cit_p45_der_noref_19">
-          <bibl>
-            <w lemma="Raymundus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="120" head="121" deprel="nsubj">Ray<lb break="no" n="27"/>mundus</w>
+        <cit xml:id="cit_p45_der_Pennaforte_Summa_19">
+          <bibl corresp="#bib_Pennaforte_Summa" cert="medium">
+            <author ref="#pers_Pennaforte">
+              <w lemma="Raymundus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="120" head="121" deprel="nsubj">Ray<lb break="no" n="27"/>mundus</w>
+            </author>
           </bibl>
         </cit>
         <w lemma="cio" lemmaRef="lila:93958" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="121" head="2" deprel="conj">cit</w>
