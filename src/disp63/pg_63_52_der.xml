@@ -165,7 +165,14 @@
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="48" head="52" deprel="obj">pretium</w>
       <w lemma="non" lemmaRef="lila:114108" pos="PART" n="49" head="50" deprel="advmod:neg">non</w>
       <lb n="9"/>
-      <w lemma="agnosco" lemmaRef="lila:88134" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="50" head="52" deprel="advcl">agnoscens</w>
+      <choice>
+        <orig>
+          <w lemma="agnosco" lemmaRef="lila:88134" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="50" head="52" deprel="advcl">agnoſcens</w>
+        </orig>
+        <reg>
+          <w lemma="agnosco" lemmaRef="lila:88134" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="50" head="52" deprel="advcl">agnoscens</w>
+        </reg>
+      </choice>
       <w lemma="paruum" lemmaRef="lila:138614" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="51" head="52" deprel="amod">paruo</w>
       <choice>
         <orig>
@@ -1164,7 +1171,14 @@
           <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin" n="303" head="304" deprel="aux:pass">est</w>
         </reg>
       </choice>
-      <w lemma="obsoletus" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="304" head="275" deprel="conj">obso<lb break="no" n="53"/>leta</w>
+      <choice>
+        <orig>
+          <w lemma="obsoletus" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="304" head="275" deprel="conj">obſo<lb break="no" n="53"/>leta</w>
+        </orig>
+        <reg>
+          <w lemma="obsoletus" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="304" head="275" deprel="conj">obsoleta</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <lb n="54"/>
       <w lemma="105" pos="NUM" n="305" head="1" deprel="conj">105</w>

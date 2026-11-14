@@ -632,7 +632,7 @@
           <w lemma="praedico" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Pass" n="189" head="190" deprel="acl">praedicti</w>
         </reg>
       </choice>
-      <w lemma="Doctores" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Plur" n="190" head="191" deprel="nsubj">Doctores</w>
+      <w lemma="doctor" lemmaRef="lila:99985" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" manual="1" n="190" head="191" deprel="nsubj">Doctores</w>
       <w lemma="affirmo" lemmaRef="lila:88015" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="191" head="186" deprel="advcl">affirmant</w>
       <pc type="comma">,</pc>
       <choice>
@@ -829,7 +829,14 @@
       </choice>
       <w lemma="uoluptas" lemmaRef="lila:130771" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="256" head="254" deprel="conj">voluptate</w>
       <w lemma="ad" lemmaRef="lila:87344" pos="ADP" n="257" head="258" deprel="case">ad</w>
-      <w lemma="instantia" lemmaRef="lila:109487" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="258" head="259" deprel="obl">instantiam</w>
+      <choice>
+        <orig>
+          <w lemma="instantia" lemmaRef="lila:109487" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="258" head="259" deprel="obl">inſtantiam</w>
+        </orig>
+        <reg>
+          <w lemma="instantia" lemmaRef="lila:109487" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="258" head="259" deprel="obl">instantiam</w>
+        </reg>
+      </choice>
       <lb n="47"/>
       <w lemma="emo" lemmaRef="lila:100998" pos="VERB" msd="Aspect=Imp|Case=Gen|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="259" head="251" deprel="advcl">ementis</w>
       <pc type="comma">,</pc>
@@ -872,7 +879,14 @@
       </choice>
       <pc type="semicolon">;</pc>
       <w lemma="unde" lemmaRef="lila:130603" pos="SCONJ" n="268" head="251" deprel="advmod:lmod">vnde</w>
-      <w lemma="sicut" lemmaRef="lila:124723" pos="SCONJ" n="269" head="275" deprel="mark">sicut</w>
+      <choice>
+        <orig>
+          <w lemma="sicut" lemmaRef="lila:124723" pos="SCONJ" n="269" head="275" deprel="mark">ſicut</w>
+        </orig>
+        <reg>
+          <w lemma="sicut" lemmaRef="lila:124723" pos="SCONJ" n="269" head="275" deprel="mark">sicut</w>
+        </reg>
+      </choice>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="270" head="271" deprel="case">in</w>
       <w lemma="damnum" lemmaRef="lila:97898" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="271" head="275" deprel="nsubj">damno</w>
       <w lemma="emergo" lemmaRef="lila:100967" pos="VERB" msd="Aspect=Imp|Case=Abl|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="272" head="271" deprel="acl">e<lb break="no" n="49"/>mergente</w>
@@ -1128,7 +1142,7 @@
         </expan>
       </choice>
       <w lemma="emptio" lemmaRef="lila:101040" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="329" head="314" deprel="appos">emptio</w>
-      <w lemma="ne" pos="X" n="330" head="329" deprel="punct">n</w>
+      <w lemma="n" pos="X" manual="1" n="330" head="329" deprel="punct">n</w>
       <w lemma="8" pos="NUM" n="331" head="332" deprel="nummod">8</w>
       <pc type="other">.</pc>
       <w lemma="Salon" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="332" head="293" deprel="conj">Salon</w>
@@ -1293,7 +1307,7 @@
           <w>contractib.</w>
         </abbr>
         <expan>
-          <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="361" head="356" deprel="nmod">contractibus</w>
+          <w lemma="contractus" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="361" head="356" deprel="nmod">contractibus</w>
         </expan>
       </choice>
       <choice>

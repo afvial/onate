@@ -929,7 +929,7 @@
               <w>con<lb break="no" n="48"/>tractib.</w>
             </abbr>
             <expan>
-              <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="5" head="2" deprel="obl">contractibus</w>
+              <w lemma="contractus" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="5" head="2" deprel="obl">contractibus</w>
             </expan>
           </choice>
           <choice>
@@ -953,7 +953,7 @@
               <w>contract.</w>
             </abbr>
             <expan>
-              <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="11" head="5" deprel="nmod">contractibus</w>
+              <w lemma="contractus" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="11" head="5" deprel="nmod">contractibus</w>
             </expan>
           </choice>
           <choice>
@@ -965,24 +965,30 @@
             </expan>
           </choice>
           <lb n="49"/>
-          <w lemma="2" pos="NUM" n="13" head="12" deprel="nummod">2</w>
+          <w lemma="2" pos="NUM" n="13" head="5" deprel="det">2</w>
           <pc type="comma">,</pc>
         </bibl>
         <bibl>
-          <w lemma="Richard" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="14" head="5" deprel="nmod">Richard</w>
+          <w lemma="Richard" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="14" head="2" deprel="nsubj">Richard</w>
           <pc type="other">.</pc>
-          <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="15" head="16" deprel="case">in</w>
-          <w lemma="1" pos="NUM" n="16" head="17" deprel="obl">1</w>
+          <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="15" head="17" deprel="case">in</w>
+          <w lemma="1" pos="NUM" n="16" head="17" deprel="nummod">1</w>
           <pc type="other">.</pc>
           <choice>
-            <orig>
-              <w lemma="distinctio" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" n="17" head="2" deprel="conj">diſt</w>
-            </orig>
-            <reg>
-              <w lemma="distinctio" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" n="17" head="2" deprel="conj">dist</w>
-            </reg>
+            <abbr>
+              <choice>
+                <orig>
+                  <w>diſt.</w>
+                </orig>
+                <reg>
+                  <w>dist.</w>
+                </reg>
+              </choice>
+            </abbr>
+            <expan>
+              <w lemma="distinctio" lemmaRef="lila:99862" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="17" head="2" deprel="obl">distinctione</w>
+            </expan>
           </choice>
-          <pc type="other">.</pc>
           <w lemma="33" pos="NUM" n="18" head="17" deprel="nummod">33</w>
           <pc type="other">.</pc>
           <choice>
@@ -990,10 +996,10 @@
               <w>art.</w>
             </abbr>
             <expan>
-              <w lemma="articulus" lemmaRef="lila:90117" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="19" head="2" deprel="obl">articulo</w>
+              <w lemma="articulus" lemmaRef="lila:90117" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="19" head="17" deprel="conj">articulo</w>
             </expan>
           </choice>
-          <w lemma="1" pos="NUM" n="20" head="19" deprel="nummod">1</w>
+          <w lemma="1" pos="NUM" n="20" head="2" deprel="nsubj">1</w>
           <pc type="other">.</pc>
         </bibl>
         <choice>
@@ -1005,7 +1011,7 @@
           </expan>
         </choice>
         <bibl>
-          <w lemma="Gandau" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="22" head="19" deprel="conj">Gandau</w>
+          <w lemma="Gandau" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="22" head="20" deprel="conj">Gandau</w>
           <pc type="other">.</pc>
           <lb n="50"/>
           <w lemma="quodlib" pos="DET" msd="Case=Nom|Gender=Neut|Number=Sing" n="23" head="25" deprel="orphan">quodlib</w>

@@ -122,28 +122,34 @@
           <w>n.</w>
         </abbr>
         <expan>
-          <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="22" head="20" deprel="conj">numero</w>
+          <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="22" head="24" deprel="det">numero</w>
         </expan>
       </choice>
       <w lemma="4" pos="NUM" n="23" head="22" deprel="nummod">4</w>
       <pc type="other">.</pc>
-      <w lemma="Corrad" pos="PROPN" msd="Case=Gen|Gender=Fem|Number=Sing" n="24" head="20" deprel="nmod">Corrad</w>
+      <w lemma="Corrad" pos="PROPN" msd="Case=Gen|Gender=Fem|Number=Sing" n="24" head="6" deprel="obl">Corrad</w>
       <pc type="other">.</pc>
-      <w lemma="quaestio" pos="SCONJ" n="25" head="24" deprel="nummod">qu</w>
-      <pc type="other">.</pc>
+      <choice>
+        <abbr>
+          <w>qu.</w>
+        </abbr>
+        <expan>
+          <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="25" head="6" deprel="nsubj">quaestio</w>
+        </expan>
+      </choice>
       <lb n="4"/>
-      <w lemma="56" pos="NUM" n="26" head="25" deprel="nummod">56</w>
+      <w lemma="56" pos="NUM" n="26" head="25" deprel="nmod">56</w>
       <pc type="other">.</pc>
       <choice>
         <orig>
-          <w lemma="conclus" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="27" head="24" deprel="nummod">concluſ</w>
+          <w lemma="conclus" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing" n="27" head="25" deprel="nmod">concluſ</w>
         </orig>
         <reg>
-          <w lemma="conclus" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="27" head="24" deprel="nummod">conclus</w>
+          <w lemma="conclus" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing" n="27" head="25" deprel="nmod">conclus</w>
         </reg>
       </choice>
       <pc type="other">.</pc>
-      <w lemma="3" pos="NUM" n="28" head="24" deprel="nummod">3</w>
+      <w lemma="3" pos="NUM" n="28" head="27" deprel="nummod">3</w>
       <pc type="other">.</pc>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="29" head="30" deprel="case">in</w>
       <w lemma="2" pos="NUM" n="30" head="35" deprel="nummod">2</w>

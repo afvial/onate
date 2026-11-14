@@ -718,8 +718,14 @@
             </reg>
           </choice>
           <w lemma="opinio" lemmaRef="lila:115067" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing" n="2" head="3" deprel="nmod">opinionis</w>
-          <w lemma="DD" pos="PROPN" n="3" head="0" deprel="ROOT">DD</w>
-          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>DD.</w>
+            </abbr>
+            <expan>
+              <w lemma="doctor" lemmaRef="lila:99985" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" manual="1" n="3" head="0" deprel="ROOT">Doctores</w>
+            </expan>
+          </choice>
         </s>
       </item>
       <item n="26">

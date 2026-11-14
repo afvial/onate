@@ -189,14 +189,20 @@
           <lb n="15"/>
           <choice>
             <orig>
-              <w lemma="hic" lemmaRef="lila:105455" pos="DET" msd="Case=Nom|Gender=Fem|Number=Sing" n="1" head="4" deprel="det">Hæc</w>
+              <w lemma="hic" lemmaRef="lila:105455" pos="DET" msd="Case=Nom|Gender=Fem|Number=Sing" n="1" head="2" deprel="det">Hæc</w>
             </orig>
             <reg>
-              <w lemma="hic" lemmaRef="lila:105455" pos="DET" msd="Case=Nom|Gender=Fem|Number=Sing" n="1" head="4" deprel="det">Haec</w>
+              <w lemma="hic" lemmaRef="lila:105455" pos="DET" msd="Case=Nom|Gender=Fem|Number=Sing" n="1" head="2" deprel="det">Haec</w>
             </reg>
           </choice>
-          <w lemma="dD" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="2" head="1" deprel="nummod">DD</w>
-          <pc type="other">.</pc>
+          <choice>
+            <abbr>
+              <w>DD.</w>
+            </abbr>
+            <expan>
+              <w lemma="doctor" lemmaRef="lila:99985" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" manual="1" n="2" head="4" deprel="nsubj">Doctores</w>
+            </expan>
+          </choice>
           <w lemma="communis" lemmaRef="lila:97171" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="3" head="4" deprel="amod">communis</w>
           <w lemma="opinio" lemmaRef="lila:115067" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="4" head="0" deprel="ROOT">opinio</w>
           <pc type="other">.</pc>

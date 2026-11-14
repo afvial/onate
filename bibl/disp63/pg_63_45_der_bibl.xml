@@ -1036,8 +1036,8 @@
             <pc type="other">.</pc>
           </bibl>
         </cit>
-        <cit xml:id="cit_p45_der_noref_16">
-          <bibl>
+        <cit xml:id="cit_p45_der_Aquinas_ST_16">
+          <bibl corresp="#bib_Aquinas_ST" cert="high">
             <choice>
               <abbr>
                 <w>D.</w>
@@ -1047,14 +1047,16 @@
               </expan>
             </choice>
             <w lemma="Thomas" lemmaRef="lila:23524" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="86" head="85" deprel="nsubj">Tho<lb break="no" n="23"/>mas</w>
-            <choice>
-              <abbr>
-                <w>ibid.</w>
-              </abbr>
-              <expan>
-                <w lemma="ibidem" lemmaRef="lila:106055" pos="ADV" n="87" head="85" deprel="advmod:lmod">ibidem</w>
-              </expan>
-            </choice>
+            <author ref="#pers_ThomasAquinas">
+              <choice>
+                <abbr>
+                  <w>ibid.</w>
+                </abbr>
+                <expan>
+                  <w lemma="ibidem" lemmaRef="lila:106055" pos="ADV" n="87" head="85" deprel="advmod:lmod">ibidem</w>
+                </expan>
+              </choice>
+            </author>
           </bibl>
         </cit>
         <cit xml:id="cit_p45_der_Scotus_Sent_17">

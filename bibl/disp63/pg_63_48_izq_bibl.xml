@@ -343,7 +343,7 @@
       <w lemma="Donatio" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="125" head="126" deprel="nmod">Donationem</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="126" head="127" deprel="obj">pretium</w>
       <w lemma="minuo" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act" n="127" head="76" deprel="xcomp">minuere</w>
-      <w lemma="Doctor" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Plur" n="128" head="129" deprel="nsubj">Do<lb break="no" n="30"/>ctores</w>
+      <w lemma="doctor" lemmaRef="lila:99985" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" manual="1" n="128" head="129" deprel="nsubj">Do<lb break="no" n="30"/>ctores</w>
       <choice>
         <orig>
           <w lemma="assero" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Plur|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="129" head="76" deprel="conj">aſſerunt</w>
@@ -570,7 +570,14 @@
       <w lemma="attendo" lemmaRef="lila:90532" pos="VERB" msd="Aspect=Prosp|Case=Nom|Gender=Neut|Number=Plur|VerbForm=Gdv|Voice=Pass" n="200" head="181" deprel="conj">attendenda</w>
       <pc type="comma">,</pc>
       <lb n="46"/>
-      <w lemma="sicut" lemmaRef="lila:124723" pos="SCONJ" n="201" head="203" deprel="mark">sicut</w>
+      <choice>
+        <orig>
+          <w lemma="sicut" lemmaRef="lila:124723" pos="SCONJ" n="201" head="203" deprel="mark">ſicut</w>
+        </orig>
+        <reg>
+          <w lemma="sicut" lemmaRef="lila:124723" pos="SCONJ" n="201" head="203" deprel="mark">sicut</w>
+        </reg>
+      </choice>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="202" head="203" deprel="case">in</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="203" head="200" deprel="advcl">pretio</w>
       <w lemma="etiam" lemmaRef="lila:101554" pos="ADV" n="204" head="205" deprel="advmod:emph">etiam</w>

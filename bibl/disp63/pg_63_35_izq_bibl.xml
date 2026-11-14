@@ -845,7 +845,7 @@
                 <w>contract.</w>
               </abbr>
               <expan>
-                <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="55" head="56" deprel="nmod">contractibus</w>
+                <w lemma="contractus" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="55" head="56" deprel="nmod">contractibus</w>
               </expan>
             </choice>
             <choice>
@@ -1043,7 +1043,7 @@
                 <w>contractib.</w>
               </abbr>
               <expan>
-                <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="83" head="81" deprel="nmod">contractibus</w>
+                <w lemma="contractus" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="83" head="81" deprel="nmod">contractibus</w>
               </expan>
             </choice>
             <choice>
@@ -1825,7 +1825,7 @@
         <w lemma="lreip" pos="VERB" msd="Mood=Sub|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Pass" n="6" head="2" deprel="acl:relcl">lreip</w>
         <pc type="other">.</pc>
       </hi>
-      <w lemma="taxo" lemmaRef="lila:127704" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Pass" n="7" head="34" deprel="nsubj:pass">taxatum</w>
+      <w lemma="taxo" lemmaRef="lila:127704" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Neut|Number=Sing|VerbForm=Part|Voice=Pass" n="7" head="0" deprel="ROOT">taxatum</w>
       <lb n="49"/>
       <choice>
         <orig>
@@ -1927,12 +1927,18 @@
           <w>&amp;</w>
         </abbr>
         <expan>
-          <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="32" head="33" deprel="cc">et</w>
+          <w lemma="et" lemmaRef="lila:101542" pos="CCONJ" n="32" head="34" deprel="cc">et</w>
         </expan>
       </choice>
-      <w lemma="omnis" lemmaRef="lila:114954" pos="DET" msd="Case=Gen|Number=Plur" n="33" head="31" deprel="conj">omnium</w>
-      <w lemma="dD" pos="NUM" n="34" head="0" deprel="ROOT">DD</w>
-      <pc type="other">.</pc>
+      <w lemma="omnis" lemmaRef="lila:114954" pos="DET" msd="Case=Gen|Gender=Fem|Number=Plur" n="33" head="34" deprel="det">omnium</w>
+      <choice>
+        <abbr>
+          <w>DD.</w>
+        </abbr>
+        <expan>
+          <w lemma="doctor" lemmaRef="lila:99985" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" manual="1" n="34" head="17" deprel="conj">Doctores</w>
+        </expan>
+      </choice>
       <lb n="54"/>
     </s>
     <s>
@@ -1952,7 +1958,14 @@
               <w lemma="Salon" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="3" head="0" deprel="ROOT">Salon</w>
             </author>
             <biblScope unit="?">
-              <w lemma="22" pos="NUM" n="4" head="3" deprel="nummod">22</w>
+              <choice>
+                <orig>
+                  <w>22</w>
+                </orig>
+                <reg>
+                  <w lemma="22" pos="NUM" n="4" head="3" deprel="nummod">2. 2</w>
+                </reg>
+              </choice>
             </biblScope>
             <pc type="other">.</pc>
             <choice>

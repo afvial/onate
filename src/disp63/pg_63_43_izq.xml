@@ -169,8 +169,14 @@
             <w lemma="Maior" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="16" head="5" deprel="conj">Maior</w>
           </expan>
         </choice>
-        <w lemma="ibid" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="17" head="16" deprel="obl">ibid</w>
-        <pc type="other">.</pc>
+        <choice>
+          <abbr>
+            <w>ibid.</w>
+          </abbr>
+          <expan>
+            <w lemma="ibidem" lemmaRef="lila:106055" pos="ADV" n="17" head="16" deprel="advmod:lmod">ibidem</w>
+          </expan>
+        </choice>
         <choice>
           <abbr>
             <w>q.</w>
@@ -584,7 +590,7 @@
       <lb n="27"/>
       <w lemma="reprobo" lemmaRef="lila:122683" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="7" head="0" deprel="ROOT">reprobatur</w>
       <w lemma="ab" lemmaRef="lila:86824" pos="ADP" n="8" head="9" deprel="case">à</w>
-      <w lemma="Doctores" pos="PROPN" msd="Case=Abl|Gender=Masc|Number=Plur" n="9" head="7" deprel="obl">Doctoribus</w>
+      <w lemma="doctor" lemmaRef="lila:99985" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Plur" manual="1" n="9" head="7" deprel="obl">Doctoribus</w>
       <pc type="comma">,</pc>
       <choice>
         <abbr>
@@ -787,7 +793,7 @@
               <w>contract.</w>
             </abbr>
             <expan>
-              <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="32" head="33" deprel="amod">contractibus</w>
+              <w lemma="contractus" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="32" head="33" deprel="amod">contractibus</w>
             </expan>
           </choice>
           <choice>
@@ -1852,7 +1858,7 @@
           <w lemma="iste" lemmaRef="lila:109122" pos="DET" msd="Case=Nom|Gender=Masc|Number=Sing" n="3" head="4" deprel="det">iste</w>
         </reg>
       </choice>
-      <w lemma="contraho" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="4" head="7" deprel="nsubj">con<lb break="no" n="58"/>tractus</w>
+      <w lemma="contractus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="4" head="7" deprel="nsubj">con<lb break="no" n="58"/>tractus</w>
       <w lemma="non" lemmaRef="lila:114108" pos="PART" n="5" head="6" deprel="advmod:neg">non</w>
       <choice>
         <orig>

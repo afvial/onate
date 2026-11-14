@@ -635,7 +635,7 @@
           <w>l.</w>
         </abbr>
         <expan>
-          <w lemma="lex" lemmaRef="lila:110351" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="157" head="159" deprel="obl">lex</w>
+          <w lemma="lex" lemmaRef="lila:110351" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="157" head="159" deprel="obl">lex</w>
         </expan>
       </choice>
       <choice>
@@ -643,7 +643,7 @@
           <w>Falcid.</w>
         </abbr>
         <expan>
-          <w lemma="adlegemFalcidia" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="158" head="159" deprel="obj">ad legem Falcidiam</w>
+          <w lemma="Falcidius" lemmaRef="lila:7034" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Sing" manual="1" n="158" head="157" deprel="nmod">Falcidiam</w>
         </expan>
       </choice>
       <choice>
@@ -780,7 +780,14 @@
       <w lemma="lana" lemmaRef="lila:109806" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Plur" n="201" head="200" deprel="nmod">lanarum</w>
       <w lemma="emo" lemmaRef="lila:100998" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Act" n="202" head="209" deprel="advcl">ementes</w>
       <w lemma="propter" lemmaRef="lila:119992" pos="ADP" n="203" head="205" deprel="case">propter</w>
-      <w lemma="insolitus" lemmaRef="lila:108186" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Sing" n="204" head="205" deprel="amod">insoli<lb break="no" n="33"/>tam</w>
+      <choice>
+        <orig>
+          <w lemma="insolitus" lemmaRef="lila:108186" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Sing" n="204" head="205" deprel="amod">inſoli<lb break="no" n="33"/>tam</w>
+        </orig>
+        <reg>
+          <w lemma="insolitus" lemmaRef="lila:108186" pos="ADJ" msd="Case=Acc|Gender=Fem|Number=Sing" n="204" head="205" deprel="amod">insolitam</w>
+        </reg>
+      </choice>
       <w lemma="quantitas" lemmaRef="lila:121088" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="205" head="209" deprel="obl">quantitatem</w>
       <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="206" head="207" deprel="case">de</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="207" head="210" deprel="obl">pretio</w>
@@ -1093,7 +1100,7 @@
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="291" head="292" deprel="case">in</w>
       <w lemma="natura" lemmaRef="lila:113421" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="292" head="294" deprel="obl">naturam</w>
       <w lemma="alter" lemmaRef="lila:88457" pos="DET" msd="Case=Gen|Gender=Neut|Number=Sing" n="293" head="294" deprel="det">al<lb break="no" n="49"/>terius</w>
-      <w lemma="contraho" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" n="294" head="299" deprel="advcl">contractus</w>
+      <w lemma="contractus" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" manual="1" n="294" head="299" deprel="advcl">contractus</w>
       <w lemma="species" lemmaRef="lila:125279" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="295" head="296" deprel="obl">specie</w>
       <choice>
         <orig>

@@ -726,11 +726,17 @@
         </expan>
       </choice>
       <w lemma="regulus" lemmaRef="lila:121690" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="12" head="10" deprel="conj">regulis</w>
-      <w lemma="trado" lemmaRef="lila:128519" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Pass" n="13" head="8" deprel="advcl:abs">traditis</w>
+      <w lemma="trado" lemmaRef="lila:128519" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Pass" n="13" head="8" deprel="acl">traditis</w>
       <w lemma="ab" lemmaRef="lila:86824" pos="ADP" n="14" head="15" deprel="case">à</w>
-      <w lemma="dD" pos="NUM" n="15" head="16" deprel="obl">DD</w>
-      <pc type="other">.</pc>
-      <w lemma="pendeo" lemmaRef="lila:116472" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="16" head="5" deprel="csubj">pendeat</w>
+      <choice>
+        <abbr>
+          <w>DD.</w>
+        </abbr>
+        <expan>
+          <w lemma="doctor" lemmaRef="lila:99985" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" manual="1" n="15" head="16" deprel="obl">Doctores</w>
+        </expan>
+      </choice>
+      <w lemma="pendeo" lemmaRef="lila:116472" pos="VERB" msd="Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="16" head="5" deprel="csubj">pendeat</w>
       <pc type="comma">,</pc>
       <lb n="44"/>
       <choice>

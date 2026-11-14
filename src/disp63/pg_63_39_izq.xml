@@ -187,7 +187,14 @@
     <s>
       <w lemma="tertio" lemmaRef="lilah:111482" pos="ADV" n="1" head="0" deprel="ROOT">Tertio</w>
       <w lemma="exemplum" lemmaRef="lila:101975" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" n="2" head="1" deprel="obl">exemplis</w>
-      <w lemma="sicut" lemmaRef="lila:138711" pos="ADV" n="3" head="4" deprel="mark">sicut</w>
+      <choice>
+        <orig>
+          <w lemma="sicut" lemmaRef="lila:138711" pos="ADV" n="3" head="4" deprel="mark">ſicut</w>
+        </orig>
+        <reg>
+          <w lemma="sicut" lemmaRef="lila:138711" pos="ADV" n="3" head="4" deprel="mark">sicut</w>
+        </reg>
+      </choice>
       <choice>
         <orig>
           <w lemma="aestimatio" lemmaRef="lila:87934" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="4" head="26" deprel="nsubj">æſtimatio</w>
@@ -1084,7 +1091,7 @@
       <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Acc|Gender=Neut|Number=Sing" n="6" head="10" deprel="obj">quod</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="7" head="9" deprel="case">in</w>
       <w lemma="omnis" lemmaRef="lila:114954" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="8" head="9" deprel="det">omnibus</w>
-      <w lemma="contraho" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="9" head="10" deprel="obl">contractibus</w>
+      <w lemma="contractus" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" manual="1" n="9" head="10" deprel="obl">contractibus</w>
       <w lemma="attingo" pos="VERB" msd="Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="10" head="4" deprel="acl:relcl">attingi<lb break="no" n="42"/>mus</w>
       <pc type="comma">,</pc>
       <w lemma="etiam" lemmaRef="lila:101554" pos="ADV" n="11" head="10" deprel="advmod:emph">etiam</w>
@@ -1268,7 +1275,7 @@
           <w lemma="rescindo" lemmaRef="lila:122708" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Masc|Number=Plur|VerbForm=Gdv|Voice=Pass" n="38" head="41" deprel="obl">rescindendos</w>
         </reg>
       </choice>
-      <w lemma="contraho" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" n="39" head="38" deprel="nsubj">contractus</w>
+      <w lemma="contractus" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Plur" manual="1" n="39" head="38" deprel="nsubj">contractus</w>
       <choice>
         <orig>
           <w lemma="iuste" lemmaRef="lilah:24479" pos="ADV" n="40" head="41" deprel="advmod">iuſtè</w>

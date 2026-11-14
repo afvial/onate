@@ -230,10 +230,16 @@
           <w lemma="solum" lemmaRef="lilah:111490" pos="ADV" n="21" head="22" deprel="advmod">solum</w>
         </reg>
       </choice>
-      <w lemma="magnus" lemmaRef="lila:111319" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="22" head="31" deprel="nsubj">maior</w>
-      <w lemma="DD" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing" n="23" head="22" deprel="obl">DD</w>
-      <pc type="other">.</pc>
-      <w lemma="auctoritas" lemmaRef="lila:90620" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="24" head="22" deprel="conj">authoritas</w>
+      <w lemma="magnus" lemmaRef="lila:111319" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="22" head="23" deprel="amod">maior</w>
+      <choice>
+        <abbr>
+          <w>DD.</w>
+        </abbr>
+        <expan>
+          <w lemma="doctor" lemmaRef="lila:99985" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="23" head="31" deprel="nsubj">Doctores</w>
+        </expan>
+      </choice>
+      <w lemma="auctoritas" lemmaRef="lila:90620" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="24" head="23" deprel="conj">authoritas</w>
       <pc type="comma">,</pc>
       <lb n="11"/>
       <choice>
@@ -245,11 +251,11 @@
         </reg>
       </choice>
       <w lemma="etiam" lemmaRef="lila:101554" pos="ADV" n="26" head="27" deprel="discourse">etiam</w>
-      <w lemma="ratio" lemmaRef="lila:121458" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Plur" n="27" head="22" deprel="conj">rationes</w>
-      <w lemma="is" lemmaRef="lila:109083" pos="PRON" msd="Case=Gen|Gender=Fem|Number=Sing" n="28" head="27" deprel="det">eius</w>
+      <w lemma="ratio" lemmaRef="lila:121458" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Plur" n="27" head="23" deprel="conj">rationes</w>
+      <w lemma="is" lemmaRef="lila:109083" pos="PRON" msd="Case=Gen|Gender=Fem|Number=Sing" n="28" head="27" deprel="nmod">eius</w>
       <pc type="comma">,</pc>
       <w lemma="magne" lemmaRef="lilah:26452" pos="ADV" n="29" head="30" deprel="advmod">maximè</w>
-      <w lemma="tertius" lemmaRef="lila:127957" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Plur" n="30" head="31" deprel="advmod">tertia</w>
+      <w lemma="tertius" lemmaRef="lila:127957" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Plur" n="30" head="31" deprel="advcl">tertia</w>
       <lb n="12"/>
       <choice>
         <orig>
