@@ -1672,30 +1672,40 @@
       <hi rend="italic">
         <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="26" head="27" deprel="case">ex</w>
         <lb n="40"/>
-        <choice>
-          <abbr>
-            <w>Aug.</w>
-          </abbr>
-          <expan>
-            <w lemma="Augustinus" lemmaRef="lila:65" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="27" head="28" deprel="obl">Augustinus</w>
-          </expan>
-        </choice>
+        <cit xml:id="cit_p45_der_Aug_CivDei_25">
+          <bibl corresp="#bib_Aug_CivDei" cert="high" xml:id="bibl_45_der_p1" next="#bibl_45_der_p1b">
+            <author ref="#pers_Augustinus">
+              <choice>
+                <abbr>
+                  <w>Aug.</w>
+                </abbr>
+                <expan>
+                  <w lemma="Augustinus" lemmaRef="lila:65" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="27" head="28" deprel="obl">Augustinus</w>
+                </expan>
+              </choice>
+            </author>
+          </bibl>
+        </cit>
         <w lemma="refero" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Plur|Person=1|Tense=Past|VerbForm=Fin|Voice=Act" n="28" head="8" deprel="advcl:cmp">retulimus</w>
-        <choice>
-          <abbr>
-            <w>lib.</w>
-          </abbr>
-          <expan>
-            <w lemma="liber" lemmaRef="lila:110382" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="29" head="28" deprel="obl">libro</w>
-          </expan>
-        </choice>
-        <w lemma="8" pos="NUM" n="30" head="29" deprel="nummod">8</w>
-        <pc type="other">.</pc>
-        <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="31" head="32" deprel="case">de</w>
-        <w lemma="Ciuit" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="32" head="8" deprel="obl">Ciuit</w>
-        <pc type="other">.</pc>
-        <w lemma="deus" lemmaRef="lila:99132" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" n="33" head="32" deprel="nmod">Dei</w>
-        <pc type="other">.</pc>
+        <cit xml:id="cit_p45_der_noref_26">
+          <bibl xml:id="bibl_45_der_p1b" prev="#bibl_45_der_p1" corresp="#bib_Aug_CivDei" cert="high">
+            <choice>
+              <abbr>
+                <w>lib.</w>
+              </abbr>
+              <expan>
+                <w lemma="liber" lemmaRef="lila:110382" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="29" head="28" deprel="obl">libro</w>
+              </expan>
+            </choice>
+            <w lemma="8" pos="NUM" n="30" head="29" deprel="nummod">8</w>
+            <pc type="other">.</pc>
+            <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="31" head="32" deprel="case">de</w>
+            <w lemma="Ciuit" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="32" head="8" deprel="obl">Ciuit</w>
+            <pc type="other">.</pc>
+            <w lemma="deus" lemmaRef="lila:99132" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" n="33" head="32" deprel="nmod">Dei</w>
+            <pc type="other">.</pc>
+          </bibl>
+        </cit>
       </hi>
       <w lemma="quia" lemmaRef="lila:121166" pos="SCONJ" n="34" head="37" deprel="mark">quia</w>
       <lb n="41"/>
@@ -1743,8 +1753,15 @@
         </expan>
       </choice>
       <lb n="43"/>
-      <w lemma="insto" lemmaRef="lila:108272" pos="VERB" msd="Aspect=Imp|Mood=Imp|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act" n="46" head="44" deprel="conj">insta</w>
-      <w lemma="is" lemmaRef="lila:109083" pos="PRON" msd="Case=Dat|Gender=Fem|Number=Plur" n="47" head="46" deprel="obl">eis</w>
+      <choice>
+        <orig>
+          <w lemma="iustus" lemmaRef="lila:109268" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="46" head="44" deprel="conj">iuſta</w>
+        </orig>
+        <reg>
+          <w lemma="iustus" lemmaRef="lila:109268" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="46" head="44" deprel="conj">iusta</w>
+        </reg>
+      </choice>
+      <w lemma="is" lemmaRef="lila:109083" pos="PRON" msd="Case=Dat|Gender=Fem|Number=Plur" n="47" head="49" deprel="obl">eis</w>
       <choice>
         <orig>
           <w lemma="compensatio" lemmaRef="lila:95298" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="48" head="49" deprel="nsubj:pass">compenſatio</w>
