@@ -41,6 +41,7 @@ ANNOTATION_RE = re.compile(
     r'|¶'            # párrafo
     r'|-\|'          # guion impreso entre dos palabras (prae-| omnibus)
     r'|\{_\d*\}'     # hueco en blanco del impreso ({_}, {_3})
+    r'|\^'           # cita discontinua: la anterior continúa en la siguiente
     r'|¬'            # corte de palabra
     r'|~'            # corte sin guion
     r'|[@*%]'        # referencia (@), cursiva (*), lengua extranjera (%)

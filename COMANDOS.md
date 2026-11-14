@@ -360,3 +360,12 @@ cualquier página, porque el índice cubre todo el documento ensamblado):
     "palabra":    "lemma=…,pos=…,Case=…"   → todas las apariciones de la página
     "palabra#N":  "Case=…"                 → solo la N-ésima (orden de lectura);
                                              se aplica después de la general
+
+## Cita discontinua (^)
+
+    @Aug.@ ^ retulimus @lib. 8. de Ciuit. Dei.@
+
+«^» entre dos citas indica que son partes de una misma referencia,
+interrumpida por texto de Oñate. En el TEI: dos <bibl> enlazados con
+xml:id + next/prev; la segunda hereda la identificación de la primera.
+Solo funciona dentro de una misma columna.

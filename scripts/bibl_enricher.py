@@ -881,6 +881,31 @@ def fallback_by_title(root) -> int:
     return n
 
 
+def link_bibl_parts(root, stem: str) -> int:
+    """Convierte _part="k:I"/"k:F" en xml:id + next/prev; la parte final
+    hereda @corresp y @cert de la inicial si no tiene identificación propia."""
+    NS = "{http://www.tei-c.org/ns/1.0}"
+    XID = "{http://www.w3.org/XML/1998/namespace}id"
+    parts = {}
+    for b in root.iter(NS + "bibl"):
+        v = b.attrib.pop("_part", None)
+        if v:
+            k, role = v.split(":")
+            parts.setdefault(k, {})[role] = b
+    n = 0
+    for k, d in parts.items():
+        a, f = d.get("I"), d.get("F")
+        if a is None or f is None:
+            continue
+        ia, iff = f"bibl_{stem}_p{k}", f"bibl_{stem}_p{k}b"
+        a.set(XID, ia); a.set("next", "#" + iff)
+        f.set(XID, iff); f.set("prev", "#" + ia)
+        if "corresp" not in f.attrib and a.get("corresp"):
+            f.set("corresp", a.get("corresp")); f.set("cert", a.get("cert", "medium"))
+        n += 1
+    return n
+
+
 def process_file(input_path: Path, output_path: Path,
                  dry_run: bool = False, verbose: bool = True) -> list:
     
@@ -930,6 +955,7 @@ def process_file(input_path: Path, output_path: Path,
 
     if not dry_run:
         fallback_by_title(tree.getroot())
+        link_bibl_parts(tree.getroot(), input_path.stem.replace('pg_63_', '').replace('_bibl', ''))
         n_parts = regularize_aquinas_parts(tree.getroot())
         if verbose and n_parts:
             print(f"  Partes de la Summa regularizadas: {n_parts}")

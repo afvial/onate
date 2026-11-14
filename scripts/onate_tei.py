@@ -1430,6 +1430,34 @@ def _emit_spaces(div) -> int:
     return n
 
 
+def _mark_bibl_parts(div) -> int:
+    """
+    «^» en el staging entre dos citas (@Aug.@ ^ retulimus @lib. 8…@) indica que
+    son partes de una misma referencia discontinua. Se marcan con un atributo
+    provisional (_part="k:I" / "k:F") que bibl_enricher.py convierte en
+    xml:id + next/prev tras la identificación, y se elimina el «^».
+    """
+    T = lambda n: f"{{{TEI_NS}}}{n}"
+    order = {el: i for i, el in enumerate(div.iter())}
+    bibls = list(div.iter(T("bibl")))
+    n = 0
+    for w in [w for w in div.iter(T("w")) if (w.text or "").strip() == "^"]:
+        pos = order[w]
+        prev = [b for b in bibls if order[b] < pos and w not in b.iter()]
+        nxt  = [b for b in bibls if order[b] > pos]
+        if prev and nxt:
+            n += 1
+            prev[-1].set("_part", f"{n}:I"); nxt[0].set("_part", f"{n}:F")
+        par, before = w.getparent(), w.getprevious()
+        if w.tail:
+            if before is not None:
+                before.tail = (before.tail or "") + w.tail
+            else:
+                par.text = (par.text or "") + w.tail
+        par.remove(w)
+    return n
+
+
 def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool = False, col: str = None) -> etree._Element:
     _attrib = {"type": "page", "n": str(page_n)}
     if col:
@@ -1478,6 +1506,7 @@ def lines_to_tei(lines: list, page_n: int, join_left: str = None, staging: bool 
 
     _wrap_foreign(div)
     _emit_spaces(div)
+    _mark_bibl_parts(div)
     return div
 
 
