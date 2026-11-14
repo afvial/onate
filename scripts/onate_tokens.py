@@ -87,6 +87,7 @@ ABBREV_WITH_DOT = {
 ABBREV_WITH_SEMICOLON = {
     "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;", "vnusquisq;", "Vnusquisq;",
     "hucusq;", "Hucusq;",
+    "atq;", "Atq;",
     # abreviatura con dos puntos en vez de punto (así en el impreso)
     "n:",
 }
@@ -105,6 +106,8 @@ ABBREV_SEMICOLON_EXPAN = {
     "Vnusquisq;":   "Vnuſquiſque",
     "hucusq;":      "hucusque",
     "Hucusq;":      "Hucusque",
+    "atq;":         "atque",
+    "Atq;":         "Atque",
 }
 
 ABBREV_EXPAN = {
@@ -1277,6 +1280,8 @@ LONG_S_ROOTS = [
     ("result",     "reſult"),
     ("notesc",     "noteſc"),
     ("gnosc",      "gnoſc"),
+    ("sole",       "ſole"),       # soleat, solet, solent, solere…
+    ("solit",      "ſolit"),      # solitus, solitum…
     ("singul",     "ſingul"),     # singulorum, singularum, singulos…
     ("pensa",      "penſa"),      # pensantur, pensare, pensatur…      # dignoscere, cognoscere, agnoscere…     # innotescat, innotescere, notescit…     # resultat, resultare, resultans…      # sequuntur, sequutus…     # instantia, instans, instanter…     # vilescere, vilescunt, vilescit…       # Hispani, Hispania, Hispanorum…     # descendere, descendendo, descensus…      # casibus      # recusare, recusarent, recusatio…       # iustit., iustus, iustitia… (general)       # causa, causam, causis, causare…    # compensatio, compensare…      # usque, quousque, hucusque…      # solutis, soluta, solutum…      # transportent, transferre… (general)
     ("vers",       "verſ"),       # versus, versatur, conuersio… (general)
