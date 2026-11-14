@@ -73,6 +73,8 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "neq.",      # neque
+    "ciuit.",    # Ciuitate (de Ciuit. Dei)
     "ibid.",     # ibidem
     "mort.",     # mortalibus (peccat. mort.)
     "cod.",      # Codex (Iustinianus)
@@ -87,6 +89,7 @@ ABBREV_WITH_DOT = {
 ABBREV_WITH_SEMICOLON = {
     "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;", "vnusquisq;", "Vnusquisq;",
     "hucusq;", "Hucusq;",
+    "vniuscuiusq;",
     "atq;", "Atq;",
     # abreviatura con dos puntos en vez de punto (así en el impreso)
     "n:",
@@ -106,6 +109,7 @@ ABBREV_SEMICOLON_EXPAN = {
     "Vnusquisq;":   "Vnuſquiſque",
     "hucusq;":      "hucusque",
     "Hucusq;":      "Hucusque",
+    "vniuscuiusq;": "vniuscuiusque",
     "atq;":         "atque",
     "Atq;":         "Atque",
 }
@@ -172,6 +176,8 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "neq.":       "neque",
+    "ciuit.":     "Ciuitate",
     "ibid.":      "ibidem",
     "mort.":      "mortalibus",
     "cod.":       "Codex",
@@ -306,7 +312,7 @@ BIBL_INTRA = {
     "ethic.", "mor.", "restit.", "restitut.",
     "iust.", "contract.", "contractib.", "empt.", "emptione.",
     "peccat.", "pecca.", "septem.", "trinitate.",
-    "c.", "instruct.", "dist.", "ibid.", "mort.",
+    "c.", "instruct.", "dist.", "ciuit.", "ibid.", "mort.",
     "qu.", "dubit.",
     "reip.", "repub.", "ff.", "seqq.", "iun.", "contr.",
     # Preposiciones intra-bibl (forman parte del título de la obra)
@@ -740,6 +746,7 @@ LONG_S = {
     "probatissima":     "probatiſſima",
     "vnusquisque":      "vnuſquiſque",
     "vniuscuiusque":    "vniuſcuiuſque",
+    "vniuscuiusq;":       "vniuſcuiuſq;",
     "expēsæ":           "expēſæ",   # = expensae (macrón + s larga)
     "expēsae":          "expēſæ",   # ídem, staging con ae
     "uniuscuiusque":    "uniuſcuiuſque",
