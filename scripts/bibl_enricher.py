@@ -97,6 +97,10 @@ WORKS = {
     # Teología escolástica medieval
     "dth":        ("bib_Aquinas_ST",         "pers_ThomasAquinas",  "high"),
     "dtho":       ("bib_Aquinas_ST",         "pers_ThomasAquinas",  "high"),
+    "regin":      ("bib_Reginald_Praxis",    "pers_Reginaldus",    "high"),
+    "reginaldus": ("bib_Reginald_Praxis",    "pers_Reginaldus",    "high"),
+    "thomas":     ("bib_Aquinas_ST",         "pers_ThomasAquinas", "high"),
+    "dthomas":    ("bib_Aquinas_ST",         "pers_ThomasAquinas", "high"),
     "dthom":      ("bib_Aquinas_ST",         "pers_ThomasAquinas",  "high"),
     "caiet":      ("bib_Caietanus_ST",       "pers_Caietanus",      "high"),
     "bannes":     ("bib_Bannes_ST",          "pers_Bannes",         "high"),
