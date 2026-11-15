@@ -130,6 +130,8 @@ WORKS = {
     "manuel":     ("bib_Manuel_Sum",         "pers_Manuel",         "medium"),
     "faustus":    ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
     "raymundus":  ("bib_Pennaforte_Summa",   "pers_Pennaforte",     "medium"),
+    "hieron":     ("bib_Hieronymus_Epist",   "pers_Hieronymus",     "high"),
+    "bhieron":    ("bib_Hieronymus_Epist",   "pers_Hieronymus",     "high"),
     "faust":      ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
     "sfaustus":   ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
     "sfaust":     ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),

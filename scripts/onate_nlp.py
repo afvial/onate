@@ -59,6 +59,7 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+MANUAL_LEMMA["beatus"] = ("beatus", "ADJ", None)   # B. (beatus) ante nombre de santo
 # Títulos jurídicos (ad l. Falcid., ad l. Aquil., ad Trebel.): adjetivos de lex/SC.
 MANUAL_LEMMA["Falcidiam"]    = ("Falcidius", "ADJ", None)
 MANUAL_LEMMA["Aquiliam"]     = ("Aquilius", "ADJ", None)

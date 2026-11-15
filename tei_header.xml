@@ -225,6 +225,11 @@
           <title level="m" xml:lang="la">Summa de casibus poenitentiae</title>
         </bibl>
 
+        <bibl xml:id="bib_Hieronymus_Epist">
+          <author ref="#pers_Hieronymus">Hieronymus</author>
+          <title level="m" xml:lang="la">Epistulae</title>
+        </bibl>
+
         <bibl xml:id="bib_Covarrubias_Var">
           <author ref="#pers_Covarrubias">Didacus de Covarrubias y Leyva</author>
           <title level="m" xml:lang="la">Variarum Resolutionum ex Iure
@@ -679,6 +684,12 @@
           <persName xml:lang="es">Raimundo de Peñafort</persName>
           <birth when="1175"/><death when="1275"/>
           <affiliation>Ordo Praedicatorum</affiliation>
+        </person>
+
+        <person xml:id="pers_Hieronymus">
+          <persName xml:lang="la">Hieronymus Stridonensis</persName>
+          <persName xml:lang="es">San Jerónimo</persName>
+          <birth notBefore="0340" notAfter="0347"/><death when="0420"/>
         </person>
 
         <person xml:id="pers_Covarrubias">

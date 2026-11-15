@@ -39,7 +39,7 @@ ABBREV_WITH_DOT = {
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.", "Leff.",
     "Anton.", "Sylu.", "Conrad.",
     "Faustus.", "Faust.", "Valent.", "Aragon.", "Caiet.",
-    "Bannes.", "Bann.", "Bart.", "Mai.", "Maior.", "Scot.",
+    "Bannes.", "Bann.", "Hieron.", "B.", "Bart.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
     # Obras y colecciones
     "ethic.", "instit.", "mor.", "restit.", "restitut.",
@@ -73,6 +73,8 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "epis.",     # epistola
+    "can.",      # canone (Decretum)
     "neq.",      # neque
     "ciuit.",    # Ciuitate (de Ciuit. Dei)
     "ibid.",     # ibidem
@@ -176,6 +178,8 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "epis.":      "Epistola",
+    "can.":       "canone",
     "neq.":       "neque",
     "ciuit.":     "Ciuitate",
     "ibid.":      "ibidem",
@@ -262,6 +266,8 @@ ABBREV_EXPAN = {
     "Aragon.":    "Aragonius",
     "Caiet.":     "Caietanus",
     "Bannes.":    "Bannez",
+    "Hieron.":    "Hieronymus",
+    "B.":         "beatus",
     "Bart.":      "Bartolus",
     "Bann.":      "Bannez",
     "Lessius.":   "Lessius",
@@ -297,7 +303,7 @@ AUTHOR_ABBREVS = {
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.",
     "Anton.", "Sylu.", "Conrad.",
     "Faust.", "Faustus.", "Valent.", "Aragon.", "Caiet.",
-    "Bannes.", "Bann.", "Bart.", "S.", "Mai.", "Maior.", "Scot.",
+    "Bannes.", "Bann.", "Hieron.", "B.", "Bart.", "S.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
     "Rebel.", "Rebell.", "Nauar.",
 }
@@ -312,7 +318,7 @@ BIBL_INTRA = {
     "ethic.", "mor.", "restit.", "restitut.",
     "iust.", "contract.", "contractib.", "empt.", "emptione.",
     "peccat.", "pecca.", "septem.", "trinitate.",
-    "c.", "instruct.", "dist.", "ciuit.", "ibid.", "mort.",
+    "c.", "instruct.", "dist.", "epis.", "can.", "ciuit.", "ibid.", "mort.",
     "qu.", "dubit.",
     "reip.", "repub.", "ff.", "seqq.", "iun.", "contr.",
     # Preposiciones intra-bibl (forman parte del título de la obra)
@@ -349,7 +355,7 @@ AUTHOR_FULL_NAMES = {
     "Medina", "Azorius", "Antoninus", "Sylvester", "Conradus",
     "Sotus", "Soto", "Valentinus", "Caietanus", "Scotus", "Maior",
     "Toletus", "Gabriel", "Faustus", "Bannez", "Aragonius",
-    "Rebellus", "Leffius", "Ludovicus", "Lopez", "Garzias", "Raymundus", "Bartolus",
+    "Rebellus", "Leffius", "Ludovicus", "Lopez", "Garzias", "Hieronymus", "Raymundus", "Bartolus",
 }
 
 PC_TYPES = {
@@ -760,6 +766,11 @@ LONG_S = {
     "Sum.":               "Sum.",
     "restit.":            "reſtit.",
     "less.":              "leſſ.",   # Lessius (abreviatura)
+    "epis.":              "epiſ.",   # epistola (abreviatura)
+    "deest":             "deeſt",
+    "deesse":            "deeſſe",
+    "deesset":           "deeſſet",
+    "deessent":          "deeſſent",
     "glos.":              "gloſ.",   # glossa (abreviatura)
     "Restit.":            "Reſtit.",
     "scutus":             "ſcutus",
@@ -1287,6 +1298,7 @@ LONG_S_ROOTS = [
     ("result",     "reſult"),
     ("notesc",     "noteſc"),
     ("gnosc",      "gnoſc"),
+    ("seric",      "ſeric"),      # sericis, sericum (seda)
     ("sole",       "ſole"),       # soleat, solet, solent, solere…
     ("solit",      "ſolit"),      # solitus, solitum…
     ("singul",     "ſingul"),     # singulorum, singularum, singulos…

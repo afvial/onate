@@ -387,6 +387,11 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
 
     # LONG_S para palabras partidas
     long_s_left, long_s_right = apply_long_s_to_split(left, right)
+    # Palabras partidas con s larga y ae: aplicar también la ligadura
+    # (circun¬ſtantiae → circun¬ſtantiæ); antes la rama ae solo actuaba sin ſ.
+    if long_s_left:
+        long_s_left  = long_s_left.replace("ae", "æ").replace("Ae", "Æ")
+        long_s_right = long_s_right.replace("ae", "æ").replace("Ae", "Æ")
 
     # ae→æ y ę→ae para palabras partidas
     ae_full = None
@@ -968,7 +973,12 @@ def _join_split_words_6(raw6: list) -> list:
             tok["bibl_id"]   = bibl_id
             tok["no_hyphen"] = tok.get("left", "") in no_hyphen_texts
             right = tok.get("right", "")
-            if right.endswith(".") and len(right) > 1:   # abreviatura partida: "pusc" + "."
+            # Abreviatura partida: la segunda mitad llega como dos piezas
+            # ("pusc" + ".") salvo que sea por sí sola una abreviatura conocida
+            # ("tract."), que el tokenizador entrega como una sola pieza.
+            from onate_tokens import ABBREV_WITH_DOT as _AWD
+            if (right.endswith(".") and len(right) > 1
+                    and right not in _AWD and right.lower() not in _AWD):
                 _pop_attrs(right[:-1]); _pop_attrs(".")
             else:
                 _pop_attrs(right)
