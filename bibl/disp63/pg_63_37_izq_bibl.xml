@@ -770,13 +770,13 @@
               </expan>
             </choice>
             <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="12" head="13" deprel="case">in</w>
-            <w lemma="res" lemmaRef="lila:121868" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="13" head="8" deprel="conj">re</w>
+            <w lemma="res" lemmaRef="lila:121868" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="13" head="15" deprel="orphan">re</w>
             <choice>
               <abbr>
                 <w>man<lb break="no" n="36"/>data.</w>
               </abbr>
               <expan>
-                <w lemma="inremandatum" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="14" head="13" deprel="acl">in re mandata</w>
+                <w lemma="inremandatum" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Plur" n="14" head="13" deprel="acl">in re mandata</w>
               </expan>
             </choice>
             <choice>
@@ -784,7 +784,7 @@
                 <w>C.</w>
               </abbr>
               <expan>
-                <w lemma="codexIustinianus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="15" head="23" deprel="nsubj">Codex Iustinianus</w>
+                <w lemma="Codex" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="15" head="23" deprel="nsubj">Codex</w>
               </expan>
             </choice>
             <choice>
@@ -792,7 +792,7 @@
                 <w>mand.</w>
               </abbr>
               <expan>
-                <w lemma="demando" pos="NOUN" msd="Case=Dat|Gender=Neut|Number=Sing" n="16" head="15" deprel="orphan">de mandato</w>
+                <w lemma="demando" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="16" head="15" deprel="orphan">de mandato</w>
               </expan>
             </choice>
             <choice>
@@ -808,7 +808,7 @@
                 <w>reg.</w>
               </abbr>
               <expan>
-                <w lemma="regula" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="18" head="16" deprel="conj">regula</w>
+                <w lemma="regula" lemmaRef="lila:121686" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="18" head="15" deprel="conj">regula</w>
               </expan>
             </choice>
             <w lemma="ius" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing" n="19" head="18" deprel="nmod">iuris</w>
@@ -1265,7 +1265,7 @@
           <w lemma="secundum" lemmaRef="lila:127508" pos="ADP" n="16" head="17" deprel="case">secundum</w>
         </reg>
       </choice>
-      <w lemma="regula" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="17" head="23" deprel="obl">regulam</w>
+      <w lemma="regula" lemmaRef="lila:121686" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="17" head="23" deprel="obl">regulam</w>
       <w lemma="ius" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing" n="18" head="17" deprel="nmod">iuris</w>
       <pc type="bracket" subtype="open">[</pc>
       <choice>
@@ -1421,7 +1421,7 @@
       </choice>
       <choice>
         <orig>
-          <w lemma="necessarius" lemmaRef="lila:113502" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Sing" n="13" head="12" deprel="amod">neceſ<lb break="no" n="60"/>ſariae</w>
+          <w lemma="necessarius" lemmaRef="lila:113502" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Sing" n="13" head="12" deprel="amod">neceſ<lb break="no" n="60"/>ſariæ</w>
         </orig>
         <reg>
           <w lemma="necessarius" lemmaRef="lila:113502" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Sing" n="13" head="12" deprel="amod">necessariae</w>

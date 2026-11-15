@@ -504,7 +504,14 @@
       <w lemma="numquam" lemmaRef="lila:114084" pos="ADV" n="119" head="122" deprel="advmod:emph">nunquam</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="120" head="121" deprel="case">in</w>
       <w lemma="mutuum" lemmaRef="lila:113184" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="121" head="122" deprel="obl">mu<lb break="no" n="19"/>tuo</w>
-      <w lemma="desum" lemmaRef="lila:98996" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="122" head="113" deprel="ccomp">deest</w>
+      <choice>
+        <orig>
+          <w lemma="desum" lemmaRef="lila:98996" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="122" head="113" deprel="ccomp">deeſt</w>
+        </orig>
+        <reg>
+          <w lemma="desum" lemmaRef="lila:98996" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="122" head="113" deprel="ccomp">deest</w>
+        </reg>
+      </choice>
       <w lemma="periculum" lemmaRef="lila:116930" pos="NOUN" msd="Case=Nom|Gender=Neut|Number=Sing" n="123" head="122" deprel="nsubj">periculum</w>
       <w lemma="aliquis" lemmaRef="lila:91108" pos="PRON" msd="Case=Acc|Gender=Neut|Number=Sing" n="124" head="123" deprel="det">aliquod</w>
       <choice>
