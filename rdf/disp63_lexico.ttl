@@ -3700,7 +3700,8 @@ lex:ciuitas_NOUN
     rdfs:label "ciuitas"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:canonicalForm lilalem:94400 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ciuitatis"@la ] .
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ciuitate"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "ciuitatis"@la ] .
 
 lex:classis_NOUN
     a ontolex:Word ;
@@ -7613,13 +7614,6 @@ lex:institutum_NOUN
     ontolex:canonicalForm lilalem:109379 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "institutum"@la ] .
 
-lex:insto_VERB
-    a ontolex:Word ;
-    rdfs:label "insto"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:canonicalForm lilalem:108272 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "insta"@la ] .
-
 lex:instructorius_ADJ
     a ontolex:Word ;
     rdfs:label "instructorius"@la ;
@@ -7704,11 +7698,6 @@ lex:intercedo_VERB
         [ a ontolex:Form ; ontolex:writtenRep "intercedere"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "intercedit"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "intercedunt"@la ] .
-
-lex:intercst_X
-    a ontolex:Word ;
-    rdfs:label "intercst"@la ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "intercst"@la ] .
 
 lex:interdum_ADV
     a ontolex:Word ;

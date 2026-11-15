@@ -36960,10 +36960,10 @@
     "40"
    ]
   },
-  "Ciuit\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "ciuitas\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:94400",
+   "candidatos": "lila:94400 noun",
    "n": 1,
    "lineas": [
     "40"
@@ -37152,9 +37152,10 @@
    "estado": "ok",
    "ref": "lila:108661",
    "candidatos": "lila:108661 verb",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "48"
+    "48",
+    "50"
    ]
   },
   "penso\tVERB": {
@@ -37181,10 +37182,12 @@
    "estado": "ok",
    "ref": "lila:97769",
    "candidatos": "lila:97769 noun",
-   "n": 2,
+   "n": 3,
    "lineas": [
     "49",
-    "52"
+    "52",
+    "58",
+    "59"
    ]
   },
   "commutatio\tNOUN": {
@@ -37205,19 +37208,10 @@
     "50"
    ]
   },
-  "ueaditor\tNOUN": {
-   "estado": "no_encontrado",
+  "uendo\tNOUN": {
+   "estado": "pos_distinta",
    "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "50"
-   ]
-  },
-  "intercst\tX": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+   "candidatos": "lila:129757 verb",
    "n": 1,
    "lineas": [
     "50"
@@ -37340,10 +37334,10 @@
     "56"
    ]
   },
-  "conprobo\tVERB": {
+  "comprobo\tVERB": {
    "estado": "ok",
    "ref": "lila:95395",
-   "candidatos": "lila:95395 verb (variante)",
+   "candidatos": "lila:95395 verb",
    "n": 1,
    "lineas": [
     "56"
@@ -37395,24 +37389,6 @@
     "58"
    ]
   },
-  "circumstan\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "58"
-   ]
-  },
-  "tia\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:133331",
-   "candidatos": "lila:133331 noun",
-   "n": 1,
-   "lineas": [
-    "59"
-   ]
-  },
   "statuo\tVERB": {
    "estado": "ambiguo",
    "ref": null,
@@ -37422,10 +37398,10 @@
     "59"
    ]
   },
-  "ponderadna\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "pondero\tVERB": {
+   "estado": "ok",
+   "ref": "lila:118406",
+   "candidatos": "lila:118406 verb",
    "n": 1,
    "lineas": [
     "60"
@@ -39475,7 +39451,8 @@
    "candidatos": "lila:127240 noun",
    "n": 1,
    "lineas": [
-    "12"
+    "12",
+    "13"
    ]
   },
   "etiam\tADV": {
@@ -39655,10 +39632,10 @@
     "19"
    ]
   },
-  "age\tVERB": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:28127 noun; lila:88139 interjection (variante)",
+  "ago\tVERB": {
+   "estado": "ok",
+   "ref": "lila:88140",
+   "candidatos": "lila:88140 verb",
    "n": 1,
    "lineas": [
     "20"
@@ -39748,10 +39725,10 @@
     "24"
    ]
   },
-  "ergo\tCCONJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:101414 adposition; lila:101415 particle; lila:49551 verb; lila:101404 adposition (variante)",
+  "ergo\tADV": {
+   "estado": "excepcion",
+   "ref": "lila:101415",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "24"
@@ -40122,10 +40099,10 @@
     "38"
    ]
   },
-  "cas\tINTJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "canon\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:92601",
+   "candidatos": "lila:92601 noun",
    "n": 1,
    "lineas": [
     "38"
@@ -40158,8 +40135,17 @@
     "39"
    ]
   },
-  "Becimus\tPROPN": {
-   "estado": "no_encontrado",
+  "beatus\tADJ": {
+   "estado": "ok",
+   "ref": "lilah:4503",
+   "candidatos": "lilah:4503 adjective",
+   "n": 1,
+   "lineas": [
+    "39"
+   ]
+  },
+  "Hieronymus\tPROPN": {
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40167,19 +40153,10 @@
     "39"
    ]
   },
-  "Hieron\tPROPN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:9290 proper_noun; lila:9291 proper_noun",
-   "n": 1,
-   "lineas": [
-    "39"
-   ]
-  },
-  "epis\tPROPN": {
+  "epistola\tNOUN": {
    "estado": "ok",
-   "ref": "lila:6176",
-   "candidatos": "lila:6176 proper_noun",
+   "ref": "lila:101298",
+   "candidatos": "lila:101298 noun (variante)",
    "n": 1,
    "lineas": [
     "39"
@@ -40223,9 +40200,9 @@
     "40"
    ]
   },
-  "uarius\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "uarius\tADJ": {
+   "estado": "ok",
+   "ref": "lila:129584",
    "candidatos": "lila:129584 adjective",
    "n": 1,
    "lineas": [
@@ -40291,7 +40268,7 @@
    "estado": "ok",
    "ref": "lila:121052",
    "candidatos": "lila:121052 noun",
-   "n": 3,
+   "n": 4,
    "lineas": [
     "41",
     "42",
@@ -40447,10 +40424,10 @@
     "46"
    ]
   },
-  "uendigio\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "uenditio\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129753",
+   "candidatos": "lila:129753 noun",
    "n": 1,
    "lineas": [
     "46"
@@ -40510,28 +40487,10 @@
     "47"
    ]
   },
-  "Secimus\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "48"
-   ]
-  },
   "Rebellus\tPROPN": {
    "estado": "pos_distinta",
    "ref": null,
    "candidatos": "lila:75385 noun",
-   "n": 1,
-   "lineas": [
-    "48"
-   ]
-  },
-  "o\tINTJ": {
-   "estado": "ok",
-   "ref": "lila:114172",
-   "candidatos": "lila:114172 interjection",
    "n": 1,
    "lineas": [
     "48"
@@ -40547,10 +40506,10 @@
     "56"
    ]
   },
-  "Secunda\tPROPN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:79669 noun",
+  "secundus\tADJ": {
+   "estado": "ok",
+   "ref": "lila:127502",
+   "candidatos": "lila:127502 adjective",
    "n": 1,
    "lineas": [
     "50"
@@ -40695,7 +40654,7 @@
     "58"
    ]
   },
-  "Callia\tPROPN": {
+  "callia\tADJ": {
    "estado": "pos_distinta",
    "ref": null,
    "candidatos": "lila:38229 noun",
