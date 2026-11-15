@@ -1127,13 +1127,16 @@ def _emit_para_block(parent, para_lines: list, join_left: str = None,
         # <lb break="no"/> dentro del último <w> del último <s>.
         # Esto se hace directamente sobre el árbol para evitar que el token
         # pase por join_split_words / group_bibl_tokens (que no lo conocen).
-        if pi == len(paragraphs) - 1 and para and para[-1]["soft_hyphen"]:
+        if (pi == len(paragraphs) - 1 and para
+                and (para[-1]["soft_hyphen"] or para[-1].get("no_hyphen_break"))):
             all_s = p_el.findall(f"{{{TEI_NS}}}s")
             if all_s:
                 _lw = _last_diplomatic_w(all_s[-1])
                 if _lw is not None:
                     lb = etree.SubElement(_lw, f"{{{TEI_NS}}}lb")
                     lb.set("break", "no")
+                    if not para[-1]["soft_hyphen"]:      # corte sin guion (~)
+                        lb.set("rend", "no-hyphen")
     set_long_s_overrides({})  # limpiar overrides al salir del bloque
 
 
@@ -1331,7 +1334,8 @@ def _emit_summarium(parent, lines: list):
     # _emit_para_block() para el mismo caso dentro del cuerpo del texto,
     # así onate_sentences.py puede reconstruir la palabra si el corte cae
     # justo en el límite de columna/página.
-    if item_groups and item_groups[-1] and item_groups[-1][-1].get("soft_hyphen"):
+    if (item_groups and item_groups[-1]
+            and (item_groups[-1][-1].get("soft_hyphen") or item_groups[-1][-1].get("no_hyphen_break"))):
         all_s = lst.findall(f".//{{{TEI_NS}}}s")
         if all_s:
             last_w = _last_diplomatic_w(all_s[-1])
@@ -1339,6 +1343,8 @@ def _emit_summarium(parent, lines: list):
                 if not last_w.findall(f"{{{TEI_NS}}}lb"):
                     lb = etree.SubElement(last_w, f"{{{TEI_NS}}}lb")
                     lb.set("break", "no")
+                    if not item_groups[-1][-1].get("soft_hyphen"):   # corte sin guion (~)
+                        lb.set("rend", "no-hyphen")
 
 
 _CHOICE_PARTS = None

@@ -59,6 +59,11 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+MANUAL_LEMMA["inquantum"] = ("inquantum", "SCONJ", "")   # in quantum, «en cuanto que»
+# Topónimos de las Indias
+MANUAL_LEMMA["Potosi"] = ("Potosi", "PROPN", None)
+MANUAL_LEMMA["Potossi"] = ("Potosi", "PROPN", None)   # grafía de época
+MANUAL_LEMMA["Limae"]  = ("Lima", "PROPN", None)
 MANUAL_LEMMA["beatus"] = ("beatus", "ADJ", None)   # B. (beatus) ante nombre de santo
 # Títulos jurídicos (ad l. Falcid., ad l. Aquil., ad Trebel.): adjetivos de lex/SC.
 MANUAL_LEMMA["Falcidiam"]    = ("Falcidius", "ADJ", None)
