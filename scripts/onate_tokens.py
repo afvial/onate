@@ -165,7 +165,7 @@ ABBREV_EXPAN = {
     "rep.":       "republica", 
     "ff.":        "Digesta",
     "l.":         "lex",
-    "C.":         "Codex Iustinianus",
+    "C.":         "Codex",
     "reg.":       "regula",
     # Títulos jurídicos
     "mand.":      "de mandato",
@@ -375,6 +375,7 @@ ORIG_REG = {
     "opportet": "oportet", "Opportet": "Oportet",
     "prætij": "pretij", "praetij": "pretij",   # grafía praetium (hipercorrección)
     "prætium": "pretium", "praetium": "pretium",
+    "precium": "pretium", "precij": "pretij", "precio": "pretio",   # grafía con c
     "eft": "est", "eſt": "est",
     "ſunt": "sunt", "ſed": "sed", "ſi": "si", "ſub": "sub",
     "iuſtitiam": "iustitiam", "iuſtitiae": "iustitiae",
