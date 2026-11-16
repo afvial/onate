@@ -40915,10 +40915,11 @@
    "estado": "ok",
    "ref": "lila:121052",
    "candidatos": "lila:121052 noun",
-   "n": 3,
+   "n": 4,
    "lineas": [
     "3",
     "6",
+    "28",
     "56"
    ]
   },
@@ -40944,9 +40945,10 @@
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "4"
+    "4",
+    "23"
    ]
   },
   "sectio\tNOUN": {
@@ -41370,10 +41372,12 @@
    "estado": "ok",
    "ref": "lila:101043",
    "candidatos": "lila:101043 noun",
-   "n": 2,
+   "n": 4,
    "lineas": [
     "17",
-    "20"
+    "20",
+    "39",
+    "42"
    ]
   },
   "expono\tVERB": {
@@ -41477,10 +41481,9 @@
    "estado": "ok",
    "ref": "lila:131462",
    "candidatos": "lila:131462 adverb",
-   "n": 2,
+   "n": 1,
    "lineas": [
-    "19",
-    "38"
+    "19"
    ]
   },
   "pro\tADP": {
@@ -41566,15 +41569,6 @@
     "22"
    ]
   },
-  "rginald\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "23"
-   ]
-  },
   "Navarrus\tPROPN": {
    "estado": "no_encontrado",
    "ref": null,
@@ -41596,15 +41590,6 @@
     "25"
    ]
   },
-  "quest\tVERB": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "28"
-   ]
-  },
   "Sotus\tPROPN": {
    "estado": "pos_distinta",
    "ref": null,
@@ -41623,10 +41608,10 @@
     "28"
    ]
   },
-  "Gahriel\tPROPN": {
-   "estado": "no_encontrado",
+  "Gabriel\tPROPN": {
+   "estado": "ambiguo",
    "ref": null,
-   "candidatos": "",
+   "candidatos": "lila:7670 proper_noun; lila:7671 proper_noun",
    "n": 1,
    "lineas": [
     "28"
@@ -41869,19 +41854,30 @@
     "37"
    ]
   },
-  "u\tPART": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
-   "n": 1,
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
+   "n": 2,
    "lineas": [
-    "37"
+    "37",
+    "41"
    ]
   },
-  "g\tADV": {
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
+   "n": 2,
+   "lineas": [
+    "38",
+    "41"
+   ]
+  },
+  "Utrum\tPROPN": {
    "estado": "pos_distinta",
    "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+   "candidatos": "lila:131462 adverb",
    "n": 1,
    "lineas": [
     "38"
@@ -41895,16 +41891,6 @@
    "lineas": [
     "39",
     "40"
-   ]
-  },
-  "emptor\tVERB": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:101043 noun",
-   "n": 2,
-   "lineas": [
-    "39",
-    "42"
    ]
   },
   "nam\tPART": {
@@ -41943,28 +41929,10 @@
     "41"
    ]
   },
-  "u\tX": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
-   "n": 1,
-   "lineas": [
-    "41"
-   ]
-  },
-  "g\tCCONJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
-   "n": 1,
-   "lineas": [
-    "41"
-   ]
-  },
-  "Hispali\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "Hispalis\tPROPN": {
+   "estado": "ok",
+   "ref": "lila:9441",
+   "candidatos": "lila:9441 proper_noun",
    "n": 1,
    "lineas": [
     "41"
