@@ -1494,17 +1494,21 @@
           <w lemma="gratia" lemmaRef="lila:104869" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="7" head="4" deprel="advcl">gratia</w>
         </expan>
       </choice>
-      <choice>
-        <orig>
-          <w lemma="Hispalis" lemmaRef="lila:9441" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="8" head="7" deprel="nmod">Hiſpali</w>
-        </orig>
-        <reg>
-          <w lemma="Hispalis" lemmaRef="lila:9441" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="8" head="7" deprel="nmod">Hispali</w>
-        </reg>
-      </choice>
+      <placeName ref="#place_Sevilla">
+        <choice>
+          <orig>
+            <w lemma="Hispalis" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" manual="1" n="8" head="7" deprel="nmod">Hiſpali</w>
+          </orig>
+          <reg>
+            <w lemma="Hispalis" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" manual="1" n="8" head="7" deprel="nmod">Hispali</w>
+          </reg>
+        </choice>
+      </placeName>
       <pc type="comma">,</pc>
       <w lemma="uel" lemmaRef="lila:129695" pos="CCONJ" n="9" head="10" deprel="cc">vel</w>
-      <w lemma="Panama" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing" n="10" head="8" deprel="conj">Panama</w>
+      <placeName ref="#place_Panama">
+        <w lemma="Panama" pos="PROPN" msd="Case=Nom|Gender=Fem|Number=Sing" manual="1" n="10" head="8" deprel="conj">Panama</w>
+      </placeName>
       <choice>
         <orig>
           <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin" n="11" head="7" deprel="cop">ſit</w>
@@ -1528,20 +1532,29 @@
       </choice>
       <w lemma="magnus" lemmaRef="lila:111319" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="16" head="14" deprel="conj">magna</w>
       <w lemma="emptor" lemmaRef="lila:101043" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Plur" manual="1" n="17" head="14" deprel="nmod">emp<lb break="no" n="43"/>torum</w>
-      <w lemma="concurro" lemmaRef="lila:95609" pos="VERB" msd="Aspect=Imp|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" n="18" head="7" deprel="acl">concurrentibus</w>
+      <choice>
+        <abbr>
+          <w>concurrētibus</w>
+        </abbr>
+        <expan>
+          <w lemma="concurro" lemmaRef="lila:95609" pos="VERB" msd="Aspect=Imp|Case=Abl|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" n="18" head="7" deprel="acl">concurrentibus</w>
+        </expan>
+      </choice>
       <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="19" head="21" deprel="case">ex</w>
       <w lemma="unus" lemmaRef="lila:85636" pos="DET" msd="Case=Abl|Gender=Fem|Number=Sing" n="20" head="21" deprel="nummod">vna</w>
       <w lemma="pars" lemmaRef="lila:116084" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="21" head="18" deprel="obl">parte</w>
       <w lemma="onerarius" lemmaRef="lila:114976" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Plur" n="22" head="18" deprel="conj">one<lb break="no" n="44"/>rarijs</w>
       <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="23" head="24" deprel="case">ex</w>
-      <choice>
-        <orig>
-          <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="24" head="22" deprel="nmod">Hiſpania</w>
-        </orig>
-        <reg>
-          <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="24" head="22" deprel="nmod">Hispania</w>
-        </reg>
-      </choice>
+      <placeName ref="#place_Hispania">
+        <choice>
+          <orig>
+            <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="24" head="22" deprel="nmod">Hiſpania</w>
+          </orig>
+          <reg>
+            <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="24" head="22" deprel="nmod">Hispania</w>
+          </reg>
+        </choice>
+      </placeName>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="25" head="27" deprel="case">in</w>
       <w lemma="annuus" lemmaRef="lila:89132" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="26" head="27" deprel="amod">annua</w>
       <choice>
@@ -1563,9 +1576,13 @@
       </choice>
       <lb n="45"/>
       <w lemma="mercator" lemmaRef="lila:112091" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Plur" n="29" head="27" deprel="conj">mercatoribus</w>
-      <w lemma="Peruani" pos="PROPN" msd="Case=Dat|Gender=Masc|Number=Plur" n="30" head="27" deprel="amod">Peruanis</w>
+      <rs type="place" ref="#place_Peru">
+        <w lemma="Peruanus" pos="ADJ" msd="Case=Dat|Gender=Masc|Number=Plur" manual="1" n="30" head="27" deprel="amod">Peruanis</w>
+      </rs>
       <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="31" head="33" deprel="case">ex</w>
-      <w lemma="peruanus" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" n="32" head="33" deprel="amod">Peruano</w>
+      <rs type="place" ref="#place_Peru">
+        <w lemma="Peruanus" pos="ADJ" msd="Case=Abl|Gender=Masc|Number=Sing" manual="1" n="32" head="33" deprel="amod">Peruano</w>
+      </rs>
       <w lemma="regnum" lemmaRef="lila:121683" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="33" head="7" deprel="nmod">Re<lb break="no" n="46"/>gno</w>
       <pc type="semicolon">;</pc>
       <choice>
@@ -1698,7 +1715,9 @@
       </choice>
       <w lemma="pauci" lemmaRef="lila:116272" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="8" head="9" deprel="amod">pau<lb break="no" n="53"/>ci</w>
       <w lemma="mercator" lemmaRef="lila:112091" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="9" head="11" deprel="nsubj">mercatores</w>
-      <w lemma="Peruianus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Plur" n="10" head="9" deprel="nmod">Peruiani</w>
+      <rs type="place" ref="#place_Peru">
+        <w lemma="Peruanus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur" manual="1" n="10" head="9" deprel="nmod">Peruiani</w>
+      </rs>
       <w lemma="accurro" lemmaRef="lila:87166" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="11" head="13" deprel="advcl">accurrerent</w>
       <pc type="comma">,</pc>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="12" head="13" deprel="nsubj">pre<lb break="no" n="54"/>tium</w>
