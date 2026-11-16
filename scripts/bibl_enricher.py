@@ -160,6 +160,7 @@ WORKS = {
     "reginald":   ("bib_Reginald_Praxis",    "pers_Reginaldus",     "high"),
     "sotus":      ("bib_Soto_IusIure",       "pers_Soto",           "high"),
     "soto":       ("bib_Soto_IusIure",       "pers_Soto",           "high"),
+    "sot":        ("bib_Soto_IusIure",       "pers_Soto",           "high"),
     "lessius":    ("bib_Lessius_IusIure",    "pers_Lessius",        "high"),
     "summist":    ("bib_Sylvestrina",        "pers_Prierias",       "medium"),
     "summistae":  ("bib_Sylvestrina",        "pers_Prierias",       "medium"),

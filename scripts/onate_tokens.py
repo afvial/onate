@@ -73,6 +73,9 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "v.",           # v. g. = verbi gratia
+    "g.",           # v. g. = verbi gratia
+    "quest.",    # quaestio (grafía quest-)
     "epis.",     # epistola
     "can.",      # canone (Decretum)
     "neq.",      # neque
@@ -178,6 +181,9 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "v.":        "verbi",
+    "g.":        "gratia",
+    "quest.":     "quaestio",
     "epis.":      "Epistola",
     "can.":       "canone",
     "neq.":       "neque",
@@ -318,7 +324,7 @@ BIBL_INTRA = {
     "ethic.", "mor.", "restit.", "restitut.",
     "iust.", "contract.", "contractib.", "empt.", "emptione.",
     "peccat.", "pecca.", "septem.", "trinitate.",
-    "c.", "instruct.", "dist.", "epis.", "can.", "ciuit.", "ibid.", "mort.",
+    "c.", "instruct.", "dist.", "quest.", "epis.", "can.", "ciuit.", "ibid.", "mort.",
     "qu.", "dubit.",
     "reip.", "repub.", "ff.", "seqq.", "iun.", "contr.",
     # Preposiciones intra-bibl (forman parte del título de la obra)
@@ -767,6 +773,7 @@ LONG_S = {
     "Sum.":               "Sum.",
     "restit.":            "reſtit.",
     "less.":              "leſſ.",   # Lessius (abreviatura)
+    "quest.":             "queſt.",  # quaestio (abreviatura)
     "epis.":              "epiſ.",   # epistola (abreviatura)
     "deest":             "deeſt",
     "deesse":            "deeſſe",

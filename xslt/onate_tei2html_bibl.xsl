@@ -875,7 +875,7 @@
           data-lemma="{tei:sic/tei:w/@lemma}"
           data-pos="{tei:sic/tei:w/@pos}"
           data-msd="{tei:sic/tei:w/@msd}">
-      <xsl:if test="$show-tooltips and not(ancestor::tei:bibl)">
+      <xsl:if test="$show-tooltips">
         <span class="tooltip">
           <table>
             <xsl:if test="tei:sic/tei:w/@lemma != ''">
@@ -913,7 +913,7 @@
                   <xsl:otherwise>corr</xsl:otherwise>
                 </xsl:choose>
               </td>
-              <td class="tip-expan"><xsl:value-of select="tei:corr/tei:w | tei:corr/tei:choice/tei:reg/tei:w"/></td>
+              <td class="tip-expan"><xsl:value-of select="tei:corr/tei:w | tei:corr/tei:choice/tei:reg/tei:w | tei:corr/tei:choice/tei:expan/tei:w"/></td>
             </tr>
           </table>
         </span>

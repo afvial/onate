@@ -104,7 +104,16 @@ def _diplomatic_split(left: str, right: str):
 
 
 def _emit_corr_w(corr_el, corr_text: str):
-    """<w> de <corr>, con choice orig/reg si la forma corregida lleva s larga."""
+    """<w> de <corr>, con choice orig/reg si la forma corregida lleva s larga,
+    o choice abbr/expan si es una abreviatura conocida ({Rginald.|Reginald.})."""
+    from onate_tokens import ABBREV_WITH_DOT as _AWD, ABBREV_EXPAN as _AEX
+    if corr_text in _AWD or corr_text.lower() in _AWD:
+        exp = _AEX.get(corr_text) or _AEX.get(corr_text.lower())
+        if exp:
+            inner = etree.SubElement(corr_el, f"{{{TEI_NS}}}choice")
+            etree.SubElement(etree.SubElement(inner, f"{{{TEI_NS}}}abbr"), f"{{{TEI_NS}}}w").text = corr_text
+            etree.SubElement(etree.SubElement(inner, f"{{{TEI_NS}}}expan"), f"{{{TEI_NS}}}w").text = exp
+            return
     ls = LONG_S.get(corr_text.lower()) or _apply_long_s_roots(corr_text)
     if ls and ls != corr_text:
         if corr_text[:1].isupper():
@@ -561,6 +570,13 @@ def emit_token(parent, tok: dict):
         w_sic.text = _diplomatic_sic(tok["text"])
         corr_text = tok.get("expansion") or ""
         corr_el = etree.SubElement(choice, f"{{{TEI_NS}}}corr")
+        # Corrección que es una abreviatura conocida ({Rginald.|Reginald.}):
+        # <corr><choice><abbr>…</abbr><expan>…</expan></choice></corr>
+        from onate_tokens import ABBREV_WITH_DOT as _AWD
+        if corr_text in _AWD or corr_text.lower() in _AWD:
+            if ABBREV_EXPAN.get(corr_text) or ABBREV_EXPAN.get(corr_text.lower()):
+                _emit_corr_w(corr_el, corr_text)
+                return
         # Si la forma corregida tiene variante diplomatica propia (s larga,
         # ss->ſſ, etc.), anidar choice orig/reg dentro de <corr>, igual que
         # se hace con abreviaturas + s larga.

@@ -59,6 +59,11 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+
+# emptor (3.ª decl., «comprador»): LatinCy a veces lo toma por verbo (emo).
+for _f in ("emptor", "emptoris", "emptori", "emptorem", "emptore",
+           "emptores", "emptorum", "emptoribus"):
+    MANUAL_LEMMA[_f] = ("emptor", "NOUN", None)
 MANUAL_LEMMA["inquantum"] = ("inquantum", "SCONJ", "")   # in quantum, «en cuanto que»
 # Topónimos de las Indias
 MANUAL_LEMMA["Potosi"] = ("Potosi", "PROPN", None)
@@ -238,8 +243,10 @@ def collect_w_elements(tree):
                         # corr contiene un choice anidado (orig=diplomatico con
                         # s larga / reg=forma plana). Usar reg/w para el NLP y
                         # como destino de copia de atributos.
+                        # También choice abbr/expan: corrección que es una
+                        # abreviatura ({Rginald.|Reginald.} → expan Reginaldus).
                         for ch in corr_children[0]:
-                            if local(ch.tag) == "reg":
+                            if local(ch.tag) in ("reg", "expan"):
                                 reg_children = list(ch)
                                 if reg_children and local(reg_children[0].tag) == "w":
                                     corr_w = reg_children[0]
