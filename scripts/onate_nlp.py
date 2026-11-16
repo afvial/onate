@@ -59,6 +59,12 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# Topónimos y gentilicios (marcados como lugares por lugares.tsv)
+for _f in ("Hispalis", "Hispali", "Hispalim", "Hispale"):
+    MANUAL_LEMMA[_f] = ("Hispalis", "PROPN", None)
+for _f in ("Peruanus", "Peruani", "Peruano", "Peruanis", "Peruanum", "Peruanorum", "Peruiani"):
+    MANUAL_LEMMA[_f] = ("Peruanus", "ADJ", None)
+MANUAL_LEMMA["Panama"] = ("Panama", "PROPN", None)
 
 # emptor (3.ª decl., «comprador»): LatinCy a veces lo toma por verbo (emo).
 for _f in ("emptor", "emptoris", "emptori", "emptorem", "emptore",

@@ -228,6 +228,7 @@ run_lila() {
         return
     fi
     python3 "${SCRIPTS_DIR}/onate_lila.py" "$SRC_XML" --index "$LILA_INDEX"
+    python3 "${SCRIPTS_DIR}/onate_lugares.py" "$SRC_XML"   # <placeName>/<rs> según lugares.tsv
     ok "Lemas enlazados → ${SRC_XML} (pendientes: lila/pendientes.tsv)"
 }
 

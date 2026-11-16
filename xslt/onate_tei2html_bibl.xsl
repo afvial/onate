@@ -19,6 +19,19 @@
   <!-- ============================================================ -->
   <!-- RAÍZ                                                         -->
   <!-- ============================================================ -->
+  <xsl:key name="lugar" match="tei:place" use="@xml:id"/>
+
+  <!-- Lugares: <placeName ref> y <rs type="place" ref> (lugares.tsv) -->
+  <xsl:template match="tei:placeName[@ref] | tei:rs[@type='place'][@ref]">
+    <xsl:variable name="p" select="key('lugar', substring-after(@ref, '#'))"/>
+    <span class="tei-place">
+      <xsl:attribute name="title">
+        <xsl:value-of select="($p/tei:placeName[@xml:lang='es'] | $p/tei:placeName)[1]"/>
+      </xsl:attribute>
+      <xsl:apply-templates/>
+    </span>
+  </xsl:template>
+
   <xsl:template match="/">
     <html lang="la">
       <head>
@@ -128,6 +141,8 @@
             position: relative;
           }
           span.tei-w:hover { background-color: #fbd9b5; border-radius: 2px; border-bottom: 1px dotted #7a9abf; }
+          span.tei-place { border-bottom: 1px dotted #2e7d32; }
+          a.place-link { font-size: 0.7em; vertical-align: super; color: #2e7d32; text-decoration: none; margin-left: 1px; }
           span.tei-space { display: inline-block; border-bottom: 1px dotted #999; height: 0.9em; vertical-align: baseline; cursor: help; }
 
           span.tei-w[data-pos="VERB"]  { color: #1a4a8a; }
@@ -579,7 +594,16 @@
   <xsl:template name="lemma-cell">
     <xsl:param name="lemma"/>
     <xsl:param name="ref"/>
+    <!-- Lugares (<placeName>/<rs type="place">): el lema enlaza con Wikidata -->
+    <xsl:variable name="pl" select="(ancestor::tei:placeName[@ref] | ancestor::tei:rs[@type='place'][@ref])[1]"/>
+    <xsl:variable name="qid" select="key('lugar', substring-after($pl/@ref, '#'))/tei:idno[@type='wikidata']"/>
     <xsl:choose>
+      <xsl:when test="$qid">
+        <a class="tip-lila" target="_blank" rel="noopener" title="Ver en Wikidata"
+           href="https://www.wikidata.org/wiki/{$qid}">
+          <xsl:value-of select="$lemma"/>
+        </a>
+      </xsl:when>
       <xsl:when test="starts-with($ref, 'lila:') or starts-with($ref, 'lilah:')">
         <a class="tip-lila" target="_blank" rel="noopener" title="Ver en LiLa">
           <xsl:attribute name="href">
