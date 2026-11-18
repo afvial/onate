@@ -1524,18 +1524,25 @@
       <pc type="other">.</pc>
     </s>
     <s>
-      <w lemma="ex" pos="NOUN" n="1" head="0" deprel="ROOT">E</w>
-      <w lemma="contra" lemmaRef="lila:96323" pos="ADV" n="2" head="1" deprel="fixed">con<lb break="no" n="52"/>tra</w>
-      <w lemma="uero" lemmaRef="lilah:111474" pos="PART" n="3" head="1" deprel="punct">verò</w>
       <choice>
         <orig>
-          <w lemma="si" lemmaRef="lila:124676" pos="SCONJ" n="4" head="13" deprel="mark">ſi</w>
+          <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="1" head="13" deprel="mark">E</w>
         </orig>
         <reg>
-          <w lemma="si" lemmaRef="lila:124676" pos="SCONJ" n="4" head="13" deprel="mark">si</w>
+          <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="1" head="13" deprel="mark">Ex</w>
         </reg>
       </choice>
-      <w lemma="aduento" lemmaRef="lila:87657" pos="VERB" msd="Aspect=Imp|Case=Abl|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="5" head="13" deprel="advcl:abs">aduentante</w>
+      <w lemma="contra" lemmaRef="lila:96323" pos="ADV" n="2" head="1" deprel="fixed">con<lb break="no" n="52"/>tra</w>
+      <w lemma="uero" lemmaRef="lilah:111474" pos="PART" n="3" head="13" deprel="discourse">verò</w>
+      <choice>
+        <orig>
+          <w lemma="si" lemmaRef="lila:124676" pos="SCONJ" n="4" head="11" deprel="mark">ſi</w>
+        </orig>
+        <reg>
+          <w lemma="si" lemmaRef="lila:124676" pos="SCONJ" n="4" head="11" deprel="mark">si</w>
+        </reg>
+      </choice>
+      <w lemma="aduento" lemmaRef="lila:87657" pos="VERB" msd="Case=Abl|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act" n="5" head="11" deprel="mark">aduentante</w>
       <w lemma="magnus" lemmaRef="lila:111319" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="6" head="7" deprel="amod">magna</w>
       <choice>
         <orig>
@@ -1545,18 +1552,25 @@
           <w lemma="classis" lemmaRef="lila:94447" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="7" head="11" deprel="obl">classe</w>
         </reg>
       </choice>
-      <w lemma="pauci" lemmaRef="lila:116272" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="8" head="9" deprel="amod">pau<lb break="no" n="53"/>ci</w>
+      <w lemma="pauci" lemmaRef="lila:116272" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="8" head="9" deprel="det">pau<lb break="no" n="53"/>ci</w>
       <w lemma="mercator" lemmaRef="lila:112091" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="9" head="11" deprel="nsubj">mercatores</w>
-      <rs type="place" ref="#place_Peru"><w lemma="Peruanus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur" manual="1" n="10" head="9" deprel="nmod">Peruiani</w></rs>
+      <rs type="place" ref="#place_Peru"><choice>
+        <orig>
+          <w lemma="Peruanus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur" manual="1" n="10" head="9" deprel="amod">Peruiani</w>
+        </orig>
+        <reg>
+          <w lemma="Peruanus" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Plur" manual="1" n="10" head="9" deprel="amod">Peruani</w>
+        </reg>
+      </choice></rs>
       <w lemma="accurro" lemmaRef="lila:87166" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Plur|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="11" head="13" deprel="advcl">accurrerent</w>
       <pc type="comma">,</pc>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="12" head="13" deprel="nsubj">pre<lb break="no" n="54"/>tium</w>
       <choice>
         <orig>
-          <w lemma="decresco" lemmaRef="lila:98135" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="13" head="1" deprel="orphan">decreſceret</w>
+          <w lemma="decresco" lemmaRef="lila:98135" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="13" head="0" deprel="ROOT">decreſceret</w>
         </orig>
         <reg>
-          <w lemma="decresco" lemmaRef="lila:98135" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="13" head="1" deprel="orphan">decresceret</w>
+          <w lemma="decresco" lemmaRef="lila:98135" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="13" head="0" deprel="ROOT">decresceret</w>
         </reg>
       </choice>
       <w lemma="iuxta" lemmaRef="lila:109295" pos="ADP" n="14" head="15" deprel="case">iuxta</w>

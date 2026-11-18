@@ -610,7 +610,14 @@
     </s>
     <s>
       <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Nom|Gender=Neut|Number=Sing" n="1" head="4" deprel="nsubj">Quod</w>
-      <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="2" head="3" deprel="case">è</w>
+      <choice>
+        <orig>
+          <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="2" head="3" deprel="case">è</w>
+        </orig>
+        <reg>
+          <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="2" head="3" deprel="case">ex</w>
+        </reg>
+      </choice>
       <w lemma="contra" lemmaRef="lila:96323" pos="ADV" n="3" head="4" deprel="obl">contra</w>
       <lb n="32"/>
       <w lemma="accido" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="4" head="0" deprel="ROOT">accidit</w>
@@ -1409,9 +1416,16 @@
       <w lemma="inopia" lemmaRef="lila:108007" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="20" head="21" deprel="obl">inopia</w>
       <w lemma="augeo" lemmaRef="lila:90673" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="21" head="3" deprel="advcl">au<lb break="no" n="54"/>gentur</w>
       <pc type="comma">,</pc>
-      <w lemma="ita" lemmaRef="lila:109126" pos="ADV" n="22" head="21" deprel="advmod">ita</w>
-      <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="23" head="28" deprel="cc">è</w>
-      <w lemma="contra" lemmaRef="lila:96323" pos="ADV" n="24" head="28" deprel="advmod">contra</w>
+      <w lemma="ita" lemmaRef="lila:109126" pos="ADV" n="22" head="28" deprel="advmod">ita</w>
+      <choice>
+        <orig>
+          <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="23" head="24" deprel="case">è</w>
+        </orig>
+        <reg>
+          <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="23" head="24" deprel="case">ex</w>
+        </reg>
+      </choice>
+      <w lemma="contra" lemmaRef="lila:96323" pos="ADV" n="24" head="28" deprel="obl">contra</w>
       <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="25" head="26" deprel="case">ex</w>
       <w lemma="copia" lemmaRef="lila:96517" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="26" head="28" deprel="obl">copia</w>
       <w lemma="nummus" lemmaRef="lila:113989" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Plur" n="27" head="26" deprel="nmod">nummo<lb break="no" n="55"/>rum</w>
@@ -1465,14 +1479,14 @@
       <w lemma="noto" lemmaRef="lila:113861" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Plur|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="38" head="28" deprel="conj">notarunt</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="39" head="40" deprel="case">in</w>
       <lb n="57"/>
-      <choice>
+      <placeName ref="#place_Hispania"><choice>
         <orig>
           <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="40" head="43" deprel="obl">Hiſpania</w>
         </orig>
         <reg>
           <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="40" head="43" deprel="obl">Hispania</w>
         </reg>
-      </choice>
+      </choice></placeName>
       <w lemma="magnus" lemmaRef="lila:111319" pos="ADJ" msd="Case=Gen|Gender=Fem|Number=Sing" n="41" head="42" deprel="amod">maioris</w>
       <w lemma="res" lemmaRef="lila:121868" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Plur" n="42" head="43" deprel="nsubj">res</w>
       <w lemma="uenio" lemmaRef="lila:129790" pos="VERB" msd="Aspect=Imp|VerbForm=Inf|Voice=Act" n="43" head="38" deprel="ccomp">venire</w>
@@ -1480,10 +1494,10 @@
       <w lemma="quam" lemmaRef="lila:74492" pos="SCONJ" n="44" head="46" deprel="mark">quam</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="45" head="46" deprel="case">in</w>
       <lb n="58"/>
-      <w lemma="Italia" lemmaRef="lila:10748" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="46" head="22" deprel="advcl:cmp">Italia</w>
+      <placeName ref="#place_Italia"><w lemma="Italia" lemmaRef="lila:10748" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="46" head="22" deprel="advcl:cmp">Italia</w></placeName>
       <pc type="comma">,</pc>
       <w lemma="aut" lemmaRef="lila:90827" pos="CCONJ" n="47" head="48" deprel="cc">aut</w>
-      <w lemma="Gallia" lemmaRef="lila:7760" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="48" head="46" deprel="conj">Gallia</w>
+      <placeName ref="#place_Gallia"><w lemma="Gallia" lemmaRef="lila:7760" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="48" head="46" deprel="conj">Gallia</w></placeName>
       <pc type="other">.</pc>
     </s>
     <s>
@@ -1494,14 +1508,14 @@
       <pc type="comma">,</pc>
       <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Acc|Gender=Fem|Number=Sing" n="5" head="11" deprel="mark">quam</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="6" head="7" deprel="case">in</w>
-      <choice>
+      <placeName ref="#place_Hispania"><choice>
         <orig>
           <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="7" head="5" deprel="obl">Hiſpania</w>
         </orig>
         <reg>
           <w lemma="Hispania" lemmaRef="lila:9443" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="7" head="5" deprel="obl">Hispania</w>
         </reg>
-      </choice>
+      </choice></placeName>
       <pc type="other">.</pc>
       <w lemma="immo" lemmaRef="lila:106420" pos="ADV" n="8" head="5" deprel="advmod">Immo</w>
       <lb n="60"/>
@@ -1516,14 +1530,14 @@
       </choice>
       <w lemma="uilis" pos="ADV" n="11" head="12" deprel="advmod">vilius</w>
       <w lemma="emo" lemmaRef="lila:100998" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Sing|Person=1|Tense=Past|VerbForm=Fin|Voice=Act" n="12" head="0" deprel="ROOT">emi</w>
-      <choice>
+      <placeName ref="#place_Lima"><choice>
         <orig>
           <w lemma="Lima" pos="PROPN" msd="Case=Gen|Gender=Fem|Number=Sing" manual="1" n="13" head="12" deprel="obl">Limæ</w>
         </orig>
         <reg>
           <w lemma="Lima" pos="PROPN" msd="Case=Gen|Gender=Fem|Number=Sing" manual="1" n="13" head="12" deprel="obl">Limae</w>
         </reg>
-      </choice>
+      </choice></placeName>
       <pc type="comma">,</pc>
       <w lemma="quam" lemmaRef="lilah:110471" pos="ADV" n="14" head="1" deprel="advmod">quam</w>
       <w lemma="Potus" pos="PROPN" msd="Case=Acc|Gender=Masc|Number=Plur" n="15" head="14" deprel="obj">Potos<lb break="no" rend="no-hyphen"/></w>
