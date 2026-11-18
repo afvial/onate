@@ -1,3 +1,4 @@
+import re
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -102,6 +103,15 @@ def _diplomatic_split(left: str, right: str):
     i = len(left) - (left.lower().count("ae") + left.lower().count("oe"))
     return full[:i], full[i:]
 
+
+
+_OE_HIATO = re.compile(r"(?i)^(poe[mt]|coe[mprtu])")   # poeta, poema, coemptio, coepi, coerceo…
+
+def _oe_lig(t: str) -> str:
+    """oe → œ, salvo en palabras con hiato (po-eta, co-emptio), que no llevan ligadura."""
+    if _OE_HIATO.match(t.lstrip("[*@")):
+        return t
+    return t.replace("oe", "œ").replace("Oe", "Œ")
 
 def _emit_corr_w(corr_el, corr_text: str):
     """<w> de <corr>, con choice orig/reg si la forma corregida lleva s larga,
@@ -211,7 +221,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         if "ae" in long_s_orig:
             long_s_orig = long_s_orig.replace("ae", "æ").replace("Ae", "Æ")
         if "oe" in long_s_orig:
-            long_s_orig = long_s_orig.replace("oe", "œ").replace("Oe", "Œ")
+            long_s_orig = _oe_lig(long_s_orig)
         if long_s_orig == text:
             long_s_orig = None
     # Aplicar æ/œ sobre long_s_orig si contiene dígrafos ae/oe sin convertir
@@ -219,7 +229,7 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
         if "ae" in long_s_orig:
             long_s_orig = long_s_orig.replace("ae", "æ").replace("Ae", "Æ")
         if "oe" in long_s_orig:
-            long_s_orig = long_s_orig.replace("oe", "œ").replace("Oe", "Œ")
+            long_s_orig = _oe_lig(long_s_orig)
         if long_s_orig == text:
             long_s_orig = None
     ae_orig = None
@@ -229,8 +239,8 @@ def add_w(parent, text: str, expansion: str = None, is_abbrev: bool = False):
             ae_orig = text.replace("ae", "æ")
             if ae_orig == text:
                 ae_orig = None
-        elif "oe" in text or "Oe" in text:
-            ae_orig = text.replace("oe", "œ").replace("Oe", "Œ")
+        elif ("oe" in text or "Oe" in text) and _oe_lig(text) != text:
+            ae_orig = _oe_lig(text)
             if ae_orig == text:
                 ae_orig = None
         elif "ę" in text or "Ę" in text:
@@ -411,7 +421,7 @@ def add_w_lb(parent, left: str, right: str, expansion: str = None, lb_n: int = N
             if ae_full == full_text:
                 ae_full = None
         elif "oe" in full_text or "Oe" in full_text:
-            ae_full = full_text.replace("oe", "œ").replace("Oe", "Œ")
+            ae_full = _oe_lig(full_text)
             if ae_full == full_text:
                 ae_full = None
         elif "ę" in full_text or "Ę" in full_text:

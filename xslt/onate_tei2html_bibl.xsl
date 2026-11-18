@@ -19,6 +19,8 @@
   <!-- ============================================================ -->
   <!-- RAÍZ                                                         -->
   <!-- ============================================================ -->
+  <xsl:key name="obra" match="tei:listBibl/tei:bibl" use="@xml:id"/>
+  <xsl:key name="persona" match="tei:person" use="@xml:id"/>
   <xsl:key name="lugar" match="tei:place" use="@xml:id"/>
 
   <!-- Lugares: <placeName ref> y <rs type="place" ref> (lugares.tsv) -->
@@ -597,7 +599,22 @@
     <!-- Lugares (<placeName>/<rs type="place">): el lema enlaza con Wikidata -->
     <xsl:variable name="pl" select="(ancestor::tei:placeName[@ref] | ancestor::tei:rs[@type='place'][@ref])[1]"/>
     <xsl:variable name="qid" select="key('lugar', substring-after($pl/@ref, '#'))/tei:idno[@type='wikidata']"/>
+    <!-- Autores: nombre propio dentro de una cita identificada → su ficha -->
+    <xsl:variable name="esPropn" select="(@pos | .//tei:w/@pos)[. = 'PROPN']"/>
+    <xsl:variable name="bib" select="ancestor::tei:bibl[@corresp][1]"/>
+    <xsl:variable name="obra" select="key('obra', substring-after($bib/@corresp, '#'))"/>
+    <xsl:variable name="pers" select="key('persona', substring-after($obra/tei:author/@ref, '#'))"/>
+    <xsl:variable name="pwd" select="$pers/tei:idno[@type='wikidata']"/>
+    <xsl:variable name="pviaf" select="$pers/tei:idno[@type='VIAF' or @type='viaf']"/>
     <xsl:choose>
+      <xsl:when test="$esPropn and $pwd">
+        <a class="tip-lila" target="_blank" rel="noopener" title="Ver en Wikidata"
+           href="https://www.wikidata.org/wiki/{$pwd}"><xsl:value-of select="$lemma"/></a>
+      </xsl:when>
+      <xsl:when test="$esPropn and $pviaf">
+        <a class="tip-lila" target="_blank" rel="noopener" title="Ver en VIAF"
+           href="https://viaf.org/viaf/{$pviaf}"><xsl:value-of select="$lemma"/></a>
+      </xsl:when>
       <xsl:when test="$qid">
         <a class="tip-lila" target="_blank" rel="noopener" title="Ver en Wikidata"
            href="https://www.wikidata.org/wiki/{$qid}">
