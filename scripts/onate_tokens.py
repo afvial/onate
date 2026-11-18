@@ -376,12 +376,14 @@ ORIG_REG = {
     "intollerabilem": "intolerabilem", "intollerabilis": "intolerabilis",
     "intollerabile": "intolerabile", "intollerabili": "intolerabili",
     "vt": "ut", "vsu": "usu", "vſu": "usu",
+    "e": "ex", "E": "Ex", "è": "ex", "È": "Ex",   # variante de ex (e contra)
     "prudentivm": "prudentium",   # v por u en el impreso
     # variantes gráficas de la época (se conserva la forma impresa; el lema sale de la regularizada)
     "opportet": "oportet", "Opportet": "Oportet",
     "prætij": "pretij", "praetij": "pretij",   # grafía praetium (hipercorrección)
     "prætium": "pretium", "praetium": "pretium",
     "precium": "pretium", "precij": "pretij", "precio": "pretio",   # grafía con c
+    "Peruiani": "Peruani",   # variante gráfica (cf. Peruvianus)
     "eft": "est", "eſt": "est",
     "ſunt": "sunt", "ſed": "sed", "ſi": "si", "ſub": "sub",
     "iuſtitiam": "iustitiam", "iuſtitiae": "iustitiae",
