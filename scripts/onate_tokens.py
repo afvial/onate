@@ -73,6 +73,7 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "reipub.",   # reipublicae
     "v.",           # v. g. = verbi gratia
     "g.",           # v. g. = verbi gratia
     "quest.",    # quaestio (grafía quest-)
@@ -181,6 +182,7 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "reipub.":    "reipublicae",
     "v.":        "verbi",
     "g.":        "gratia",
     "quest.":     "quaestio",
@@ -1308,6 +1310,9 @@ LONG_S_ROOTS = [
     ("result",     "reſult"),
     ("notesc",     "noteſc"),
     ("gnosc",      "gnoſc"),
+    ("obsid",      "obſid"),      # obsidio, obsideo…
+    ("steril",     "ſteril"),     # sterilis, sterilitas…
+    ("pest",       "peſt"),       # pestis, pestilentia…
     ("iurios",     "iurioſ"),     # iniuriosus, iniuriosam…
     ("seric",      "ſeric"),      # sericis, sericum (seda)
     ("sole",       "ſole"),       # soleat, solet, solent, solere…

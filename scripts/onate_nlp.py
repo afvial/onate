@@ -59,6 +59,9 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# quartus: LatinCy da a veces el lema en femenino (quarta)
+for _f in ("Quarta", "quarta", "Quartam", "quartam"):
+    MANUAL_LEMMA[_f] = ("quartus", "ADJ", None)
 # Topónimos y gentilicios (marcados como lugares por lugares.tsv)
 for _f in ("Hispalis", "Hispali", "Hispalim", "Hispale"):
     MANUAL_LEMMA[_f] = ("Hispalis", "PROPN", None)
