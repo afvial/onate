@@ -59,9 +59,19 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# moderatus / proportionatus como adjetivos (LatinCy da el verbo como lema)
+for _f in ("moderatus", "moderati", "moderato", "moderatum", "moderata", "moderatae", "moderatam", "moderatis"):
+    MANUAL_LEMMA[_f] = ("moderatus", "ADJ", None)
+for _f in ("proportionatus", "proportionati", "proportionato", "proportionatum", "proportionata", "proportionatae", "proportionatam", "proportionatis"):
+    MANUAL_LEMMA[_f] = ("proportionatus", "ADJ", None)
 # quartus: LatinCy da a veces el lema en femenino (quarta)
 for _f in ("Quarta", "quarta", "Quartam", "quartam"):
     MANUAL_LEMMA[_f] = ("quartus", "ADJ", None)
+for _f in ("Quinta", "quinta", "Quintam", "quintam"):
+    MANUAL_LEMMA[_f] = ("quintus", "ADJ", None)
+# Regula con mayúscula (Quinta Regula): LatinCy la toma por nombre propio
+for _f in ("Regula", "Regulam", "Regulae"):
+    MANUAL_LEMMA[_f] = ("regula", "NOUN", None)
 # Topónimos y gentilicios (marcados como lugares por lugares.tsv)
 for _f in ("Hispalis", "Hispali", "Hispalim", "Hispale"):
     MANUAL_LEMMA[_f] = ("Hispalis", "PROPN", None)

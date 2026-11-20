@@ -73,6 +73,10 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "remp.",        # rempublicam
+    "rēp.",         # rempublicam
+    "reb.",         # rebus
+    "vers.",     # versiculo (Molin. disp. 348. vers. 3.)
     "reipub.",   # reipublicae
     "v.",           # v. g. = verbi gratia
     "g.",           # v. g. = verbi gratia
@@ -95,6 +99,7 @@ ABBREV_WITH_DOT = {
 ABBREV_WITH_SEMICOLON = {
     "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;", "vnusquisq;", "Vnusquisq;",
     "hucusq;", "Hucusq;",
+    "terrasq;",
     "vniuscuiusq;",
     "atq;", "Atq;",
     # abreviatura con dos puntos en vez de punto (así en el impreso)
@@ -115,6 +120,7 @@ ABBREV_SEMICOLON_EXPAN = {
     "Vnusquisq;":   "Vnuſquiſque",
     "hucusq;":      "hucusque",
     "Hucusq;":      "Hucusque",
+    "terrasq;":     "terrasque",
     "vniuscuiusq;": "vniuscuiusque",
     "atq;":         "atque",
     "Atq;":         "Atque",
@@ -182,6 +188,10 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "remp.":     "rempublicam",
+    "rēp.":      "rempublicam",
+    "reb.":      "rebus",
+    "vers.":      "versiculo",
     "reipub.":    "reipublicae",
     "v.":        "verbi",
     "g.":        "gratia",
@@ -777,6 +787,7 @@ LONG_S = {
     "Sum.":               "Sum.",
     "restit.":            "reſtit.",
     "less.":              "leſſ.",   # Lessius (abreviatura)
+    "terrasq;":           "terraſq;",
     "quest.":             "queſt.",  # quaestio (abreviatura)
     "epis.":              "epiſ.",   # epistola (abreviatura)
     "deest":             "deeſt",
@@ -1310,6 +1321,10 @@ LONG_S_ROOTS = [
     ("result",     "reſult"),
     ("notesc",     "noteſc"),
     ("gnosc",      "gnoſc"),
+    ("expos",      "expoſ"),      # exposuerunt, expositi, expositio…
+    ("stren",      "ſtren"),      # strenuè, strenuus…
+    ("expēs",      "expēſ"),      # expēsas (expensas, abreviado)
+    ("asport",     "aſport"),     # asportare, asportandis…
     ("obsid",      "obſid"),      # obsidio, obsideo…
     ("steril",     "ſteril"),     # sterilis, sterilitas…
     ("pest",       "peſt"),       # pestis, pestilentia…
