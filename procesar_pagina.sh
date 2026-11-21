@@ -332,6 +332,8 @@ run_rdf() {
 # ── Ejecutar ──────────────────────────────────────────────────────────────────
 # ── Pasos omitidos: --skip search,rdf  o  SKIP="search rdf" (también 6,7) ─────
 export SKIP="${SKIP:-}"
+# --only tiene prioridad: si se pide un paso concreto, no se omite nada
+[ -n "$ONLY" ] && SKIP=""
 for _s in ${SKIP//,/ }; do
     case "$_s" in
         0) _s=normalize ;; 1) _s=page2tei ;; 1.5) _s=nlp ;; 1.6) _s=nlp_corrections ;;

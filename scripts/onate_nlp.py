@@ -59,6 +59,21 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# creditum «crédito, venta a plazo» (ad creditum, pro credito, in credito)
+for _f in ("creditum", "credito", "crediti", "credita", "creditis"):
+    MANUAL_LEMMA[_f] = ("creditum", "NOUN", None)
+# Correcciones de la revisión (47 der)
+for _f in ("pactum", "pacto", "pacti", "pacta", "pactis"):
+    MANUAL_LEMMA[_f] = ("pactum", "NOUN", None)
+for _f in ("SVMMARIVM", "SUMMARIUM", "Summarium"):
+    MANUAL_LEMMA[_f] = ("summarium", "NOUN", "Case=Nom|Gender=Neut|Number=Sing")
+for _f in ("SECTIO", "Sectio"):
+    MANUAL_LEMMA[_f] = ("sectio", "NOUN", "Case=Nom|Gender=Fem|Number=Sing")
+for _f in ("constituto", "constitutum", "constituta", "constitutae"):
+    MANUAL_LEMMA[_f] = ("constituo", "VERB", None)
+for _f in ("extraordinariè", "extraordinarie"):
+    MANUAL_LEMMA[_f] = ("extraordinarie", "ADV", "")
+MANUAL_LEMMA["Mercatoribus"] = ("mercator", "NOUN", None)
 # fenus/foenus «interés, ganancia» (grafía con oe)
 for _f in ("foenus", "foenoris", "foenori", "foenore", "fenus", "fenoris"):
     MANUAL_LEMMA[_f] = ("fenus", "NOUN", None)
