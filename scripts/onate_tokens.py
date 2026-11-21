@@ -99,6 +99,7 @@ ABBREV_WITH_DOT = {
 ABBREV_WITH_SEMICOLON = {
     "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;", "vnusquisq;", "Vnusquisq;",
     "hucusq;", "Hucusq;",
+    "mariq;",
     "terrasq;",
     "vniuscuiusq;",
     "atq;", "Atq;",
@@ -120,6 +121,7 @@ ABBREV_SEMICOLON_EXPAN = {
     "Vnusquisq;":   "Vnuſquiſque",
     "hucusq;":      "hucusque",
     "Hucusq;":      "Hucusque",
+    "mariq;":       "marique",
     "terrasq;":     "terrasque",
     "vniuscuiusq;": "vniuscuiusque",
     "atq;":         "atque",
@@ -1321,6 +1323,10 @@ LONG_S_ROOTS = [
     ("result",     "reſult"),
     ("notesc",     "noteſc"),
     ("gnosc",      "gnoſc"),
+    ("solù",       "ſolù"),    # solùm
+    ("quęst",      "quęſt"),   # quęstu
+    ("quaest",     "quæſt"),   # quaestu, quaestio
+    ("sper",       "ſper"),    # speret, sperare…
     ("expos",      "expoſ"),      # exposuerunt, expositi, expositio…
     ("stren",      "ſtren"),      # strenuè, strenuus…
     ("expēs",      "expēſ"),      # expēsas (expensas, abreviado)

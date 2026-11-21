@@ -59,6 +59,9 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# fenus/foenus «interés, ganancia» (grafía con oe)
+for _f in ("foenus", "foenoris", "foenori", "foenore", "fenus", "fenoris"):
+    MANUAL_LEMMA[_f] = ("fenus", "NOUN", None)
 # moderatus / proportionatus como adjetivos (LatinCy da el verbo como lema)
 for _f in ("moderatus", "moderati", "moderato", "moderatum", "moderata", "moderatae", "moderatam", "moderatis"):
     MANUAL_LEMMA[_f] = ("moderatus", "ADJ", None)
