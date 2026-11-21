@@ -1064,12 +1064,6 @@ lex:Certus_PROPN
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "certum"@la ] .
 
-lex:Cinops_PROPN
-    a ontolex:Word ;
-    rdfs:label "Cinops"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "cinopem"@la ] .
-
 lex:Codex_PROPN
     a ontolex:Word ;
     rdfs:label "Codex"@la ;
@@ -1255,12 +1249,6 @@ lex:Gabriel_PROPN
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "gabriel"@la ] .
 
-lex:Gahriel_PROPN
-    a ontolex:Word ;
-    rdfs:label "Gahriel"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "gahriel"@la ] .
-
 lex:Gallia_PROPN
     a ontolex:Word ;
     rdfs:label "Gallia"@la ;
@@ -1317,9 +1305,9 @@ lex:Hieronymus_PROPN
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "hieronymus"@la ] .
 
-lex:Hispali_PROPN
+lex:Hispalis_PROPN
     a ontolex:Word ;
-    rdfs:label "Hispali"@la ;
+    rdfs:label "Hispalis"@la ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "hispali"@la ] .
 
@@ -1430,7 +1418,6 @@ lex:Lima_PROPN
     a ontolex:Word ;
     rdfs:label "Lima"@la ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:canonicalForm lilalem:12038 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "limae"@la ] .
 
 lex:Lopez_PROPN
@@ -1539,12 +1526,6 @@ lex:Navarrus_PROPN
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "navarrus"@la ] .
 
-lex:Obserua_PROPN
-    a ontolex:Word ;
-    rdfs:label "Obserua"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "obserua"@la ] .
-
 lex:Octaua_PROPN
     a ontolex:Word ;
     rdfs:label "Octaua"@la ;
@@ -1581,17 +1562,13 @@ lex:Penna_PROPN
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "penna"@la ] .
 
-lex:Peruani_PROPN
+lex:Peruanus_ADJ
     a ontolex:Word ;
-    rdfs:label "Peruani"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "peruanis"@la ] .
-
-lex:Peruianus_PROPN
-    a ontolex:Word ;
-    rdfs:label "Peruianus"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "peruiani"@la ] .
+    rdfs:label "Peruanus"@la ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "peruani"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "peruanis"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "peruano"@la ] .
 
 lex:Petrus_PROPN
     a ontolex:Word ;
@@ -1613,11 +1590,11 @@ lex:Pinel_PROPN
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "pinel"@la ] .
 
-lex:Potor_PROPN
+lex:Potossus_PROPN
     a ontolex:Word ;
-    rdfs:label "Potor"@la ;
+    rdfs:label "Potossus"@la ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "potor"@la ] .
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "potossi"@la ] .
 
 lex:Pretia_PROPN
     a ontolex:Word ;
@@ -1630,12 +1607,6 @@ lex:Pretium_PROPN
     rdfs:label "Pretium"@la ;
     lexinfo:partOfSpeech lexinfo:properNoun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "pretium"@la ] .
-
-lex:Quare_PROPN
-    a ontolex:Word ;
-    rdfs:label "Quare"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "quare"@la ] .
 
 lex:Quartus_PROPN
     a ontolex:Word ;
@@ -2307,12 +2278,6 @@ lex:aequaliter_ADV
     lexinfo:partOfSpeech lexinfo:adverb ;
     ontolex:canonicalForm lilahyp:1146 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "aequaliter"@la ] .
-
-lex:aequissimus_ADJ
-    a ontolex:Word ;
-    rdfs:label "aequissimus"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "aequissimum"@la ] .
 
 lex:aequo_VERB
     a ontolex:Word ;
@@ -3245,12 +3210,6 @@ lex:baratum_NOUN
     ontolex:canonicalForm lilalem:34280 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "baratis"@la ] .
 
-lex:bdne_NOUN
-    a ontolex:Word ;
-    rdfs:label "bdne"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "bdne"@la ] .
-
 lex:beatus_ADJ
     a ontolex:Word ;
     rdfs:label "beatus"@la ;
@@ -3849,10 +3808,11 @@ lex:commodum_NOUN
     ontolex:canonicalForm lilalem:95178 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "commodis"@la ] .
 
-lex:commune_ADJ
+lex:commune_NOUN
     a ontolex:Word ;
     rdfs:label "commune"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:97199 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "communi"@la ] .
 
 lex:communis_ADJ
@@ -4175,7 +4135,8 @@ lex:consequor_VERB
     rdfs:label "consequor"@la ;
     lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:canonicalForm lilalem:96035 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "consequaris"@la ] ,
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "consecuturum"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "consequaris"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "consequerentur"@la ] .
 
 lex:conseruo_VERB
@@ -4259,12 +4220,6 @@ lex:consto_VERB
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "constabunt"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "constat"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "constet"@la ] .
-
-lex:consucuturum_VERB
-    a ontolex:Word ;
-    rdfs:label "consucuturum"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "consucuturum"@la ] .
 
 lex:consuesco_VERB
     a ontolex:Word ;
@@ -4919,8 +4874,7 @@ lex:deus_NOUN
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "dei"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "deo"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "deum"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "deus"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "di"@la ] .
+        [ a ontolex:Form ; ontolex:writtenRep "deus"@la ] .
 
 lex:dib_ADV
     a ontolex:Word ;
@@ -5085,6 +5039,12 @@ lex:diligenter_ADV
     lexinfo:partOfSpeech lexinfo:adverb ;
     ontolex:canonicalForm lilalem:47414 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "diligenter"@la ] .
+
+lex:diligo_ADJ
+    a ontolex:Word ;
+    rdfs:label "diligo"@la ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "diligentes"@la ] .
 
 lex:diligo_VERB
     a ontolex:Word ;
@@ -5481,13 +5441,6 @@ lex:dupliciter_ADV
     ontolex:canonicalForm lilahyp:13383 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "dupliciter"@la ] .
 
-lex:e_PROPN
-    a ontolex:Word ;
-    rdfs:label "e"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:canonicalForm lilalem:5533 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "e"@la ] .
-
 lex:eansum_VERB
     a ontolex:Word ;
     rdfs:label "eansum"@la ;
@@ -5658,7 +5611,8 @@ lex:emptor_NOUN
         [ a ontolex:Form ; ontolex:writtenRep "emptores"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "emptori"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "emptoribus"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "emptoris"@la ] .
+        [ a ontolex:Form ; ontolex:writtenRep "emptoris"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "emptorum"@la ] .
 
 lex:emptor_VERB
     a ontolex:Word ;
@@ -5870,8 +5824,7 @@ lex:ex_ADP
     rdfs:label "ex"@la ;
     lexinfo:partOfSpeech lexinfo:preposition ;
     ontolex:canonicalForm lilalem:101716 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "e"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "ex"@la ] ,
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ex"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "è"@la ] .
 
 lex:examinatio_NOUN
@@ -6243,13 +6196,8 @@ lex:facio_VERB
         [ a ontolex:Form ; ontolex:writtenRep "facit"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "faciunt"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "facto"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "fecerunt"@la ] .
-
-lex:faenus_NOUN
-    a ontolex:Word ;
-    rdfs:label "faenus"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "foenoris"@la ] .
+        [ a ontolex:Form ; ontolex:writtenRep "fecerunt"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "fecit"@la ] .
 
 lex:falcidius_ADJ
     a ontolex:Word ;
@@ -6322,6 +6270,13 @@ lex:fateor_VERB
     ontolex:canonicalForm lilalem:102985 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "fatentur"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "fateri"@la ] .
+
+lex:fenus_NOUN
+    a ontolex:Word ;
+    rdfs:label "fenus"@la ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:102816 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "foenoris"@la ] .
 
 lex:fere_ADV
     a ontolex:Word ;
@@ -6663,6 +6618,13 @@ lex:grassor_VERB
     lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:canonicalForm lilalem:104866 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "grassandi"@la ] .
+
+lex:gratia_NOUN
+    a ontolex:Word ;
+    rdfs:label "gratia"@la ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:104869 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "gratia"@la ] .
 
 lex:gratis_ADV
     a ontolex:Word ;
@@ -7141,12 +7103,6 @@ lex:in_ADP
     ontolex:canonicalForm lilalem:106748 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "in"@la ] .
 
-lex:in_quantum_SCONJ
-    a ontolex:Word ;
-    rdfs:label "in+quantum"@la ;
-    lexinfo:partOfSpeech lexinfo:subordinatingConjunction ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "inquantum"@la ] .
-
 lex:inaequalis_ADJ
     a ontolex:Word ;
     rdfs:label "inaequalis"@la ;
@@ -7495,6 +7451,19 @@ lex:inopia_NOUN
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "inopia"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "inopiae"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "inopiam"@la ] .
+
+lex:inops_ADJ
+    a ontolex:Word ;
+    rdfs:label "inops"@la ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:canonicalForm lilalem:108016 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "inopem"@la ] .
+
+lex:inquantum_SCONJ
+    a ontolex:Word ;
+    rdfs:label "inquantum"@la ;
+    lexinfo:partOfSpeech lexinfo:subordinatingConjunction ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "inquantum"@la ] .
 
 lex:inremandatum_NOUN
     a ontolex:Word ;
@@ -8364,12 +8333,6 @@ lex:lifidonatio_NOUN
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "lifidonationis"@la ] .
 
-lex:ligens_ADJ
-    a ontolex:Word ;
-    rdfs:label "ligens"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "ligentes"@la ] .
-
 lex:limes_NOUN
     a ontolex:Word ;
     rdfs:label "limes"@la ;
@@ -8501,13 +8464,6 @@ lex:loquor_VERB
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "loquatur"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "loquendo"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "loquimur"@la ] .
-
-lex:lorum_NOUN
-    a ontolex:Word ;
-    rdfs:label "lorum"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:canonicalForm lilalem:110822 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "lorum"@la ] .
 
 lex:lreip_VERB
     a ontolex:Word ;
@@ -8870,12 +8826,6 @@ lex:merces_NOUN
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "mercede"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "merces"@la ] .
 
-lex:merciuemptum_ADJ
-    a ontolex:Word ;
-    rdfs:label "merciuemptum"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "merciuemptorum"@la ] .
-
 lex:mercor_NOUN
     a ontolex:Word ;
     rdfs:label "mercor"@la ;
@@ -9029,12 +8979,18 @@ lex:mitto_VERB
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "missam"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "mittuntur"@la ] .
 
+lex:moderatus_ADJ
+    a ontolex:Word ;
+    rdfs:label "moderatus"@la ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:canonicalForm lilahyp:27538 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "moderati"@la ] .
+
 lex:modero_ADJ
     a ontolex:Word ;
     rdfs:label "modero"@la ;
     lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "moderati"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "moderatum"@la ] .
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "moderatum"@la ] .
 
 lex:modero_ADV
     a ontolex:Word ;
@@ -9793,6 +9749,12 @@ lex:obser_VERB
     lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "obser"@la ] .
 
+lex:obseruo_ADJ
+    a ontolex:Word ;
+    rdfs:label "obseruo"@la ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "obserua"@la ] .
+
 lex:obseruo_VERB
     a ontolex:Word ;
     rdfs:label "obseruo"@la ;
@@ -10190,6 +10152,7 @@ lex:panis_NOUN
     a ontolex:Word ;
     rdfs:label "panis"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:115838 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "panem"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "panes"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "panis"@la ] ,
@@ -10524,12 +10487,6 @@ lex:periculum_NOUN
         [ a ontolex:Form ; ontolex:writtenRep "periculorum"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "periculum"@la ] .
 
-lex:pericus_NOUN
-    a ontolex:Word ;
-    rdfs:label "pericus"@la ;
-    lexinfo:partOfSpeech lexinfo:noun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "pericu"@la ] .
-
 lex:peritus_ADJ
     a ontolex:Word ;
     rdfs:label "peritus"@la ;
@@ -10586,12 +10543,6 @@ lex:pertineo_VERB
     ontolex:canonicalForm lilalem:117404 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "pertinentes"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "pertinet"@la ] .
-
-lex:peruanus_ADJ
-    a ontolex:Word ;
-    rdfs:label "peruanus"@la ;
-    lexinfo:partOfSpeech lexinfo:adjective ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "peruano"@la ] .
 
 lex:pestis_NOUN
     a ontolex:Word ;
@@ -11085,8 +11036,7 @@ lex:pretia_NOUN
     rdfs:label "pretia"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:canonicalForm lilalem:119427 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "pretia"@la ] ,
-        [ a ontolex:Form ; ontolex:writtenRep "pretiam"@la ] .
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "pretia"@la ] .
 
 lex:pretiosus_ADJ
     a ontolex:Word ;
@@ -11374,11 +11324,11 @@ lex:proportionalis_ADJ
     ontolex:canonicalForm lilalem:119977 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "proportionalis"@la ] .
 
-lex:proportiono_VERB
+lex:proportionatus_ADJ
     a ontolex:Word ;
-    rdfs:label "proportiono"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:canonicalForm lilalem:131413 ;
+    rdfs:label "proportionatus"@la ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:canonicalForm lilahyp:110812 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "proportionati"@la ] .
 
 lex:propositio_NOUN
@@ -11481,6 +11431,13 @@ lex:proxenetis_VERB
     rdfs:label "proxenetis"@la ;
     lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "proxenetis"@la ] .
+
+lex:proxime_ADV
+    a ontolex:Word ;
+    rdfs:label "proxime"@la ;
+    lexinfo:partOfSpeech lexinfo:adverb ;
+    ontolex:canonicalForm lilahyp:36157 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "proximè"@la ] .
 
 lex:prudens_ADJ
     a ontolex:Word ;
@@ -11611,6 +11568,7 @@ lex:quaestus_NOUN
     a ontolex:Word ;
     rdfs:label "quaestus"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:121066 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "quaestu"@la ] .
 
 lex:qualis_DET
@@ -11763,7 +11721,8 @@ lex:quartus_ADJ
     rdfs:label "quartus"@la ;
     lexinfo:partOfSpeech lexinfo:adjective ;
     ontolex:canonicalForm lilalem:121107 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "quartam"@la ] ,
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "quarta"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "quartam"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "quartus"@la ] .
 
 lex:quartus_ADV
@@ -12068,12 +12027,6 @@ lex:realiter_ADV
     ontolex:canonicalForm lilahyp:110817 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "realiter"@la ] .
 
-lex:reb_VERB
-    a ontolex:Word ;
-    rdfs:label "reb"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "reb"@la ] .
-
 lex:recepra_ADJ
     a ontolex:Word ;
     rdfs:label "recepra"@la ;
@@ -12288,12 +12241,6 @@ lex:remaneo_VERB
     ontolex:canonicalForm lilalem:122588 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "remanere"@la ] .
 
-lex:remp_VERB
-    a ontolex:Word ;
-    rdfs:label "remp"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "remp"@la ] .
-
 lex:rempub_NOUN
     a ontolex:Word ;
     rdfs:label "rempub"@la ;
@@ -12425,7 +12372,9 @@ lex:respublica_NOUN
     a ontolex:Word ;
     rdfs:label "respublica"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:122962 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "reipublicae"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "rempublicam"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "republica"@la ] .
 
 lex:restituo_VERB
@@ -12496,12 +12445,6 @@ lex:rex_NOUN
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:canonicalForm lilalem:122013 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "reges"@la ] .
-
-lex:rginald_PROPN
-    a ontolex:Word ;
-    rdfs:label "rginald"@la ;
-    lexinfo:partOfSpeech lexinfo:properNoun ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "rginald"@la ] .
 
 lex:rigorosus_ADJ
     a ontolex:Word ;
@@ -12741,13 +12684,6 @@ lex:secludo_VERB
     lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:canonicalForm lilalem:123951 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "seclusa"@la ] .
-
-lex:seco_VERB
-    a ontolex:Word ;
-    rdfs:label "seco"@la ;
-    lexinfo:partOfSpeech lexinfo:verb ;
-    ontolex:canonicalForm lilalem:123953 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "secit"@la ] .
 
 lex:sectio_NOUN
     a ontolex:Word ;
@@ -13804,6 +13740,7 @@ lex:tempus_NOUN
     a ontolex:Word ;
     rdfs:label "tempus"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:127522 ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "tempore"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "temporibus"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "temporis"@la ] ,
@@ -14251,12 +14188,6 @@ lex:tx_VERB
     lexinfo:partOfSpeech lexinfo:verb ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "tx"@la ] .
 
-lex:u_ADP
-    a ontolex:Word ;
-    rdfs:label "u"@la ;
-    lexinfo:partOfSpeech lexinfo:preposition ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "v"@la ] .
-
 lex:u_ADV
     a ontolex:Word ;
     rdfs:label "u"@la ;
@@ -14581,7 +14512,8 @@ lex:uerbum_NOUN
     rdfs:label "uerbum"@la ;
     lexinfo:partOfSpeech lexinfo:noun ;
     ontolex:canonicalForm lilalem:131057 ;
-    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "verbis"@la ] ,
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "verbi"@la ] ,
+        [ a ontolex:Form ; ontolex:writtenRep "verbis"@la ] ,
         [ a ontolex:Form ; ontolex:writtenRep "verbo"@la ] .
 
 lex:uere_ADV
@@ -14644,6 +14576,13 @@ lex:uers_X
     a ontolex:Word ;
     rdfs:label "uers"@la ;
     ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "vers"@la ] .
+
+lex:uersiculus_NOUN
+    a ontolex:Word ;
+    rdfs:label "uersiculus"@la ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:canonicalForm lilalem:129931 ;
+    ontolex:otherForm [ a ontolex:Form ; ontolex:writtenRep "versiculo"@la ] .
 
 lex:uersor_VERB
     a ontolex:Word ;
