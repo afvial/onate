@@ -59,6 +59,23 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# Correcciones de la revisión (48 izq)
+for _f in ("Cautè", "cautè", "Caute", "caute"):
+    MANUAL_LEMMA[_f] = ("caute", "ADV", "")
+for _f in ("aliò", "Aliò", "alio"):
+    MANUAL_LEMMA[_f] = ("alio", "ADV", "")
+for _f in ("Septima", "septima", "Septimam", "septimam"):
+    MANUAL_LEMMA[_f] = ("septimus", "ADJ", None)
+for _f in ("Certum", "certum"):
+    MANUAL_LEMMA[_f] = ("certus", "ADJ", None)
+for _f in ("Ignorantia", "ignorantia", "ignorantiam", "ignorantiae"):
+    MANUAL_LEMMA[_f] = ("ignorantia", "NOUN", None)
+for _f in ("Emptores", "Emptor", "Emptoribus"):
+    MANUAL_LEMMA[_f] = ("emptor", "NOUN", None)
+for _f in ("Obijcitur", "obijcitur", "obijcit", "Obijcit", "obiicitur"):
+    MANUAL_LEMMA[_f] = ("obicio", "VERB", None)
+for _f in ("coniuncta", "coniunctum", "coniunctus", "coniuncti"):
+    MANUAL_LEMMA[_f] = ("coniungo", "VERB", None)
 # creditum «crédito, venta a plazo» (ad creditum, pro credito, in credito)
 for _f in ("creditum", "credito", "crediti", "credita", "creditis"):
     MANUAL_LEMMA[_f] = ("creditum", "NOUN", None)
