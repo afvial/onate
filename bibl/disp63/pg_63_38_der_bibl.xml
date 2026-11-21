@@ -69,7 +69,7 @@
         <w lemma="noster" lemmaRef="lila:113882" pos="DET" msd="Case=Acc|Gender=Neut|Number=Plur">nostra</w>
       </reg>
     </choice>
-    <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing">ignorantia</w>
+    <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" manual="1">ignorantia</w>
     <w lemma="habeo" lemmaRef="lila:105044" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act">habeat</w>
     <lb n="5"/>
     <w lemma="latitudo" lemmaRef="lila:110033" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing">latitudinem</w>
@@ -316,7 +316,7 @@
         </reg>
       </choice>
       <w lemma="nos" lemmaRef="lilah:110487" pos="PRON" msd="Case=Acc|Number=Plur|Person=1" n="17" head="19" deprel="nsubj:pass">nos</w>
-      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="18" head="19" deprel="nsubj:pass">ignorantia</w>
+      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" manual="1" n="18" head="19" deprel="nsubj:pass">ignorantia</w>
       <lb n="18"/>
       <choice>
         <orig>
@@ -345,10 +345,10 @@
       <w lemma="unde" lemmaRef="lila:130603" pos="ADV" n="1" head="2" deprel="advmod:lmod">Vnde</w>
       <choice>
         <orig>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="2" head="0" deprel="ROOT">aſſerit</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="2" head="0" deprel="ROOT">aſſerit</w>
         </orig>
         <reg>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="2" head="0" deprel="ROOT">asserit</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="2" head="0" deprel="ROOT">asserit</w>
         </reg>
       </choice>
       <choice>
@@ -522,10 +522,10 @@
       <lb n="28"/>
       <choice>
         <orig>
-          <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing" n="5" head="6" deprel="nmod">ignorantiæ</w>
+          <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing" manual="1" n="5" head="6" deprel="nmod">ignorantiæ</w>
         </orig>
         <reg>
-          <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing" n="5" head="6" deprel="nmod">ignorantiae</w>
+          <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing" manual="1" n="5" head="6" deprel="nmod">ignorantiae</w>
         </reg>
       </choice>
       <w lemma="tenebrae" lemmaRef="lila:127807" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="6" head="7" deprel="obl">tenebris</w>
@@ -537,7 +537,7 @@
           <w lemma="opprimo" lemmaRef="lila:115131" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Masc|Number=Plur|VerbForm=Part|Voice=Pass" n="7" head="23" deprel="advcl">oppressi</w>
         </reg>
       </choice>
-      <w lemma="tam" pos="ADV" n="8" head="9" deprel="advmod">tam</w>
+      <w lemma="tam" lemmaRef="lila:127600" pos="ADV" n="8" head="9" deprel="advmod">tam</w>
       <w lemma="rex" lemmaRef="lila:122013" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="9" head="7" deprel="obj">reges</w>
       <pc type="comma">,</pc>
       <lb n="29"/>
@@ -570,7 +570,7 @@
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="19" head="23" deprel="obj">pretium</w>
       <choice>
         <sic>
-          <w lemma="consuetudo" lemmaRef="lila:96179" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="20" head="23" deprel="obl">cnnsue<lb break="no" n="31"/>tudine</w>
+          <w lemma="consuetudo" lemmaRef="lila:96179" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="20" head="23" deprel="obl">cnnſue<lb break="no" n="31"/>tudine</w>
         </sic>
         <corr>
           <choice>
@@ -634,7 +634,7 @@
       </choice>
       <pc type="comma">,</pc>
       <w lemma="ideo" lemmaRef="lila:106085" pos="ADV" n="32" head="23" deprel="dep">ideò</w>
-      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="33" head="32" deprel="nsubj">ignorantia</w>
+      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" manual="1" n="33" head="32" deprel="nsubj">ignorantia</w>
       <choice>
         <orig>
           <w lemma="solus" lemmaRef="lila:125109" pos="DET" msd="Case=Abl|Gender=Fem|Number=Sing" n="34" head="33" deprel="det">ſola</w>
@@ -688,13 +688,13 @@
       </choice>
       <choice>
         <orig>
-          <w lemma="secludo" lemmaRef="lila:123951" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="46" head="50" deprel="advcl:abs">ſe<lb break="no" n="36"/>clusa</w>
+          <w lemma="secludo" lemmaRef="lila:123951" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="46" head="50" deprel="advcl:abs">ſe<lb break="no" n="36"/>cluſa</w>
         </orig>
         <reg>
           <w lemma="secludo" lemmaRef="lila:123951" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="46" head="50" deprel="advcl:abs">seclusa</w>
         </reg>
       </choice>
-      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="47" head="46" deprel="nsubj:pass">ignorantia</w>
+      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" manual="1" n="47" head="46" deprel="nsubj:pass">ignorantia</w>
       <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="48" head="49" deprel="case">in</w>
       <choice>
         <orig>

@@ -229,7 +229,14 @@
           <w lemma="nam" lemmaRef="lila:113344" pos="PART" n="31" head="32" deprel="discourse">nam</w>
           <choice>
             <abbr>
-              <w>qualiscumq;</w>
+              <choice>
+                <orig>
+                  <w>qualiſcumq;</w>
+                </orig>
+                <reg>
+                  <w>qualiscumq;</w>
+                </reg>
+              </choice>
             </abbr>
             <expan>
               <w lemma="qualiscumque" lemmaRef="lila:121324" pos="DET" msd="Case=Nom|Gender=Fem|Number=Sing" n="32" head="1" deprel="conj">qualiscumque</w>
@@ -350,7 +357,7 @@
           <w lemma="uere" lemmaRef="lilah:46366" pos="ADV" n="17" head="14" deprel="advmod">vere</w>
           <w lemma="bene" lemmaRef="lila:91473" pos="ADV" n="18" head="17" deprel="advmod">bene</w>
           <w lemma="ex" lemmaRef="lila:101716" pos="ADP" n="19" head="20" deprel="case">ex</w>
-          <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="20" head="14" deprel="obl">ignorantia</w>
+          <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" manual="1" n="20" head="14" deprel="obl">ignorantia</w>
           <w lemma="inuincibilis" lemmaRef="lila:108848" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="21" head="20" deprel="amod">in<lb break="no" n="24"/>uincibili</w>
           <pc type="other">.</pc>
         </s>
@@ -477,7 +484,7 @@
           <w lemma="sed" lemmaRef="lila:123994" pos="CCONJ" n="27" head="30" deprel="cc">sed</w>
         </reg>
       </choice>
-      <w lemma="tam" pos="ADV" n="28" head="29" deprel="advmod">tam</w>
+      <w lemma="tam" lemmaRef="lila:127600" pos="ADV" n="28" head="29" deprel="advmod">tam</w>
       <w lemma="pris" pos="ADV" n="29" head="30" deprel="advmod">prin</w>
       <lb n="32"/>
       <w lemma="cipo" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin|Voice=Act" n="30" head="21" deprel="conj">cipes</w>
@@ -526,7 +533,14 @@
       <w lemma="ille" lemmaRef="lila:106221" pos="DET" msd="Case=Acc|Gender=Neut|Number=Sing" n="41" head="45" deprel="obj">illud</w>
       <choice>
         <abbr>
-          <w>cō<lb break="no" n="34"/>suetudine</w>
+          <choice>
+            <orig>
+              <w>cō<lb break="no" n="34"/>ſuetudine</w>
+            </orig>
+            <reg>
+              <w>cōsuetudine</w>
+            </reg>
+          </choice>
         </abbr>
         <expan>
           <w lemma="consuetudo" lemmaRef="lila:96179" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="42" head="45" deprel="obl">consuetudine</w>
@@ -803,7 +817,7 @@
       <w lemma="res" lemmaRef="lila:121868" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Plur" n="8" head="9" deprel="nmod">rerum</w>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="9" head="13" deprel="nsubj">pretium</w>
       <pc type="comma">,</pc>
-      <w lemma="tam" pos="ADV" n="10" head="11" deprel="advmod">tam</w>
+      <w lemma="tam" lemmaRef="lila:127600" pos="ADV" n="10" head="11" deprel="advmod">tam</w>
       <w lemma="legalis" lemmaRef="lila:110149" pos="ADJ" msd="Case=Nom|Gender=Neut|Number=Sing" n="11" head="13" deprel="amod">legale</w>
       <pc type="comma">,</pc>
       <w lemma="quam" lemmaRef="lila:74492" pos="SCONJ" n="12" head="13" deprel="mark">quam</w>
@@ -888,7 +902,14 @@
           <w lemma="illustro" lemmaRef="lila:106303" pos="VERB" msd="Aspect=Prosp|Case=Acc|Gender=Fem|Number=Plur|VerbForm=Gdv|Voice=Pass" n="27" head="30" deprel="obl">illustrandas</w>
         </expan>
       </choice>
-      <w lemma="nobisdiuinus" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="28" head="29" deprel="amod">nobisdiuina</w>
+      <choice>
+        <orig>
+          <w lemma="nobisdiuinus" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="28" head="29" deprel="amod">nobiſdiuina</w>
+        </orig>
+        <reg>
+          <w lemma="nobisdiuinus" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="28" head="29" deprel="amod">nobisdiuina</w>
+        </reg>
+      </choice>
       <w lemma="largitas" lemmaRef="lila:109942" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="29" head="30" deprel="obl">largitate</w>
       <w lemma="indulgeo" lemmaRef="lila:107447" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="30" head="18" deprel="advcl">indulgeat</w>
       <pc type="other">.</pc>
@@ -979,7 +1000,7 @@
           <w lemma="noster" lemmaRef="lila:113882" pos="DET" msd="Case=Abl|Gender=Fem|Number=Sing" n="14" head="15" deprel="det">nostra</w>
         </reg>
       </choice>
-      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="15" head="19" deprel="obl">ignorantia</w>
+      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" manual="1" n="15" head="19" deprel="obl">ignorantia</w>
       <pc type="comma">,</pc>
       <choice>
         <abbr>

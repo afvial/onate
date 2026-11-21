@@ -3,7 +3,14 @@
   <p>
     <s>
       <lb n="1"/>
-      <w lemma="priusquam" lemmaRef="lila:120723" pos="SCONJ" n="1" head="5" deprel="mark">Priusquam</w>
+      <choice>
+        <orig>
+          <w lemma="priusquam" lemmaRef="lila:120723" pos="SCONJ" n="1" head="5" deprel="mark">Priuſquam</w>
+        </orig>
+        <reg>
+          <w lemma="priusquam" lemmaRef="lila:120723" pos="SCONJ" n="1" head="5" deprel="mark">Priusquam</w>
+        </reg>
+      </choice>
       <w lemma="ad" lemmaRef="lila:87344" pos="ADP" n="2" head="3" deprel="case">ad</w>
       <choice>
         <orig>
@@ -166,7 +173,7 @@
       <lb n="9"/>
       <w lemma="omnis" lemmaRef="lila:114954" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="23" head="24" deprel="det">omnibus</w>
       <w lemma="res" lemmaRef="lila:121868" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="24" head="19" deprel="obl">rebus</w>
-      <w lemma="tam" pos="ADV" n="25" head="26" deprel="advmod">tam</w>
+      <w lemma="tam" lemmaRef="lila:127600" pos="ADV" n="25" head="26" deprel="advmod">tam</w>
       <w lemma="materialis" lemmaRef="lila:111693" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Plur" n="26" head="24" deprel="amod">materialibus</w>
       <pc type="comma">,</pc>
       <w lemma="quam" lemmaRef="lila:74492" pos="SCONJ" n="27" head="28" deprel="mark">quam</w>
@@ -1253,7 +1260,7 @@
       <w lemma="integer" lemmaRef="lila:108350" pos="ADJ" msd="Case=Nom|Gender=Masc|Number=Sing" n="15" head="16" deprel="amod">integer</w>
       <choice>
         <orig>
-          <w lemma="aestimo" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="16" head="7" deprel="dep">æ<lb break="no" n="57"/>ſtimator</w>
+          <w lemma="aestimo" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="16" head="7" deprel="dep">a<lb break="no" n="57"/>eſtimator</w>
         </orig>
         <reg>
           <w lemma="aestimo" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="16" head="7" deprel="dep">aestimator</w>

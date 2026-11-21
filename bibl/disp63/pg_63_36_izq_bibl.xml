@@ -3,7 +3,14 @@
   <p>
     <s>
       <lb n="1"/>
-      <w lemma="suetudo" lemmaRef="lila:137967" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="1" head="3" deprel="obl">suetudine</w>
+      <choice>
+        <orig>
+          <w lemma="suetudo" lemmaRef="lila:137967" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="1" head="3" deprel="obl">ſuetudine</w>
+        </orig>
+        <reg>
+          <w lemma="suetudo" lemmaRef="lila:137967" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="1" head="3" deprel="obl">suetudine</w>
+        </reg>
+      </choice>
       <w lemma="uulgus" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing" n="2" head="1" deprel="nmod">vulgi</w>
       <w lemma="compono" lemmaRef="lila:95367" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="3" head="0" deprel="ROOT">componitur</w>
       <pc type="comma">,</pc>
@@ -31,10 +38,10 @@
       <w lemma="aucto" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Plur" n="15" head="16" deprel="nsubj">authores</w>
       <choice>
         <orig>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="16" head="3" deprel="conj">aſ<lb break="no" n="4"/>ſerunt</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="16" head="3" deprel="conj">aſ<lb break="no" n="4"/>ſerunt</w>
         </orig>
         <reg>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="16" head="3" deprel="conj">asserunt</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="16" head="3" deprel="conj">asserunt</w>
         </reg>
       </choice>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing" n="17" head="20" deprel="obj">pretium</w>
@@ -1359,7 +1366,14 @@
       </choice>
       <choice>
         <abbr>
-          <w>cō<lb break="no" n="37"/>sultiuè</w>
+          <choice>
+            <orig>
+              <w>cō<lb break="no" n="37"/>ſultiuè</w>
+            </orig>
+            <reg>
+              <w>cōsultiuè</w>
+            </reg>
+          </choice>
         </abbr>
         <expan>
           <w lemma="consultiue" lemmaRef="lilah:114240" pos="ADV" n="23" head="19" deprel="advmod">consultiuè</w>

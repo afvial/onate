@@ -1182,7 +1182,14 @@
       <w lemma="utilis" lemmaRef="lila:130917" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Plur" n="31" head="29" deprel="conj">vtiles</w>
       <choice>
         <abbr>
-          <w>sūt</w>
+          <choice>
+            <orig>
+              <w>ſūt</w>
+            </orig>
+            <reg>
+              <w>sūt</w>
+            </reg>
+          </choice>
         </abbr>
         <expan>
           <w lemma="sum" lemmaRef="lila:126689" pos="AUX" msd="Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin" n="32" head="31" deprel="cop">sunt</w>
@@ -1558,10 +1565,10 @@
       </choice>
       <choice>
         <orig>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="31" head="19" deprel="conj">aſſerimus</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="31" head="19" deprel="conj">aſſerimus</w>
         </orig>
         <reg>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="31" head="19" deprel="conj">asserimus</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="31" head="19" deprel="conj">asserimus</w>
         </reg>
       </choice>
       <w lemma="non" lemmaRef="lila:114108" pos="PART" n="32" head="35" deprel="advmod:neg">non</w>
@@ -1608,7 +1615,14 @@
           <w lemma="gratia" lemmaRef="lila:104869" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="42" head="40" deprel="conj">gratia</w>
         </expan>
       </choice>
-      <w lemma="ensis" lemmaRef="lila:101153" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" n="43" head="40" deprel="amod">ensis</w>
+      <choice>
+        <orig>
+          <w lemma="ensis" lemmaRef="lila:101153" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" n="43" head="40" deprel="amod">enſis</w>
+        </orig>
+        <reg>
+          <w lemma="ensis" lemmaRef="lila:101153" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" n="43" head="40" deprel="amod">ensis</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <w lemma="uel" lemmaRef="lila:129695" pos="CCONJ" n="44" head="45" deprel="cc">vel</w>
       <w lemma="domus" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="45" head="40" deprel="conj">domus</w>
@@ -1617,7 +1631,14 @@
       <w lemma="uinca" lemmaRef="lila:138261" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="47" head="40" deprel="conj">vinca</w>
       <lb n="56"/>
       <w lemma="tantus" lemmaRef="lila:127630" pos="DET" msd="Case=Gen|Gender=Masc|Number=Sing" n="48" head="40" deprel="det">tanti</w>
-      <w lemma="sto" lemmaRef="lila:124554" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="49" head="31" deprel="ccomp">stetit</w>
+      <choice>
+        <orig>
+          <w lemma="sto" lemmaRef="lila:124554" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="49" head="31" deprel="ccomp">ſtetit</w>
+        </orig>
+        <reg>
+          <w lemma="sto" lemmaRef="lila:124554" pos="VERB" msd="Aspect=Perf|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="49" head="31" deprel="ccomp">stetit</w>
+        </reg>
+      </choice>
       <w lemma="uenditor" lemmaRef="lila:129755" pos="NOUN" msd="Case=Dat|Gender=Masc|Number=Sing" n="50" head="49" deprel="obl">venditori</w>
       <pc type="comma">,</pc>
       <w lemma="uel" lemmaRef="lila:129695" pos="CCONJ" n="51" head="53" deprel="cc">vel</w>

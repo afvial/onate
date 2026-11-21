@@ -362,7 +362,14 @@
           </expan>
         </choice>
         <bibl>
-          <w lemma="Philosophus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="54" head="51" deprel="conj">Philosophus</w>
+          <choice>
+            <orig>
+              <w lemma="Philosophus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="54" head="51" deprel="conj">Philoſophus</w>
+            </orig>
+            <reg>
+              <w lemma="Philosophus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="54" head="51" deprel="conj">Philosophus</w>
+            </reg>
+          </choice>
           <w lemma="etiam" lemmaRef="lila:101554" pos="ADV" n="55" head="56" deprel="advmod:emph">etiam</w>
           <choice>
             <orig>
@@ -426,7 +433,14 @@
           <w lemma="§" pos="PUNCT" n="67" head="48" deprel="dep">§.</w>
           <choice>
             <abbr>
-              <w>hucusq;</w>
+              <choice>
+                <orig>
+                  <w>hucuſq;</w>
+                </orig>
+                <reg>
+                  <w>hucusq;</w>
+                </reg>
+              </choice>
             </abbr>
             <expan>
               <w lemma="hucusque" lemmaRef="lila:105382" pos="ADV" n="68" head="2" deprel="orphan">hucusque</w>
@@ -1341,7 +1355,14 @@
           <w lemma="pretiosus" lemmaRef="lila:119454" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Plur" n="8" head="7" deprel="amod">pretiosis</w>
         </reg>
       </choice>
-      <w lemma="quidam" lemmaRef="lila:121313" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="9" head="7" deprel="det">quibusdam</w>
+      <choice>
+        <orig>
+          <w lemma="quidam" lemmaRef="lila:121313" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="9" head="7" deprel="det">quibuſdam</w>
+        </orig>
+        <reg>
+          <w lemma="quidam" lemmaRef="lila:121313" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="9" head="7" deprel="det">quibusdam</w>
+        </reg>
+      </choice>
       <pc type="comma">,</pc>
       <w lemma="qualis" lemmaRef="lila:121068" pos="DET" msd="Case=Nom|Gender=Fem|Number=Plur" n="10" head="46" deprel="advcl">quales</w>
       <choice>

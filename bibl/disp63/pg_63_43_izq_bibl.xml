@@ -611,10 +611,10 @@
       <w lemma="regula" lemmaRef="lila:121686" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="12" head="9" deprel="conj">re<lb break="no" n="28"/>gula</w>
       <choice>
         <orig>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="13" head="7" deprel="conj">aſſeritur</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="13" head="7" deprel="conj">aſſeritur</w>
         </orig>
         <reg>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="13" head="7" deprel="conj">asseritur</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="13" head="7" deprel="conj">asseritur</w>
         </reg>
       </choice>
       <pc type="other">.</pc>
@@ -993,7 +993,14 @@
             <w lemma="tambien" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="57" head="61" deprel="obj">tambien</w>
             <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="58" head="59" deprel="case">de</w>
             <w lemma="lo" lemmaRef="lila:62547" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="59" head="61" deprel="obl">lo</w>
-            <w lemma="susus" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass" n="60" head="59" deprel="acl">suso</w>
+            <choice>
+              <orig>
+                <w lemma="susus" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass" n="60" head="59" deprel="acl">ſuſo</w>
+              </orig>
+              <reg>
+                <w lemma="susus" pos="VERB" msd="Aspect=Perf|Case=Abl|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass" n="60" head="59" deprel="acl">suso</w>
+              </reg>
+            </choice>
             <w lemma="dicho" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="61" head="53" deprel="amod">dicho</w>
           </bibl>
         </cit>
@@ -1430,9 +1437,14 @@
         </cit>
         <cit xml:id="cit_p43_izq_Sylvestrina_17">
           <bibl corresp="#bib_Sylvestrina" cert="high">
-            <author ref="#pers_Prierias">
-              <w lemma="syluest" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="125" head="44" deprel="conj">Syluest</w>
-            </author>
+            <choice>
+              <orig>
+                <w lemma="syluest" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="125" head="44" deprel="conj">Sylueſt</w>
+              </orig>
+              <reg>
+                <w lemma="syluest" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="125" head="44" deprel="conj">Syluest</w>
+              </reg>
+            </choice>
             <pc type="other">.</pc>
             <lb n="41"/>
             <choice>
@@ -1443,7 +1455,9 @@
                 <w lemma="uerbum" lemmaRef="lila:131057" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="126" head="44" deprel="obl">verbo</w>
               </expan>
             </choice>
-            <w lemma="emptio" lemmaRef="lila:101040" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="127" head="44" deprel="nsubj">emptio</w>
+            <author ref="#pers_Prierias">
+              <w lemma="emptio" lemmaRef="lila:101040" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="127" head="44" deprel="nsubj">emptio</w>
+            </author>
             <pc type="comma">,</pc>
             <choice>
               <abbr>

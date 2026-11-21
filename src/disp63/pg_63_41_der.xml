@@ -250,7 +250,14 @@
             <w lemma="infen" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="46" head="43" deprel="nmod">in fine</w>
           </expan>
         </choice>
-        <w lemma="Ledesm" pos="PROPN" n="47" head="43" deprel="nmod">Ledesm.</w>
+        <choice>
+          <orig>
+            <w lemma="Ledesm" pos="PROPN" n="47" head="43" deprel="nmod">Ledeſm.</w>
+          </orig>
+          <reg>
+            <w lemma="Ledesm" pos="PROPN" n="47" head="43" deprel="nmod">Ledesm.</w>
+          </reg>
+        </choice>
         <w lemma="2" pos="NUM" n="48" head="47" deprel="nummod">2</w>
         <pc type="other">.</pc>
         <choice>
@@ -517,10 +524,10 @@
       </hi>
       <choice>
         <orig>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Case=Gen|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" n="99" head="97" deprel="acl">aſſerentium</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Case=Gen|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" n="99" head="97" deprel="acl">aſſerentium</w>
         </orig>
         <reg>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Case=Gen|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" n="99" head="97" deprel="acl">asserentium</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Case=Gen|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" n="99" head="97" deprel="acl">asserentium</w>
         </reg>
       </choice>
       <choice>
@@ -1567,10 +1574,10 @@
       <lb n="50"/>
       <choice>
         <orig>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="20" head="2" deprel="conj">aſſerunt</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="20" head="2" deprel="conj">aſſerunt</w>
         </orig>
         <reg>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="20" head="2" deprel="conj">asserunt</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="20" head="2" deprel="conj">asserunt</w>
         </reg>
       </choice>
       <pc type="comma">,</pc>

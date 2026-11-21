@@ -258,7 +258,7 @@
         <label>50</label>
         <s>
           <lb n="15"/>
-          <w lemma="septima" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="1" head="2" deprel="amod">Septima</w>
+          <w lemma="septimus" lemmaRef="lila:124417" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" manual="1" n="1" head="2" deprel="amod">Septima</w>
           <w lemma="regula" lemmaRef="lila:121686" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="2" head="0" deprel="ROOT">regula</w>
           <pc type="comma">,</pc>
           <w lemma="neque" lemmaRef="lila:114120" pos="CCONJ" n="3" head="4" deprel="cc">nec</w>
@@ -566,7 +566,7 @@
         </choice>
         <w lemma="ll" pos="PRON" msd="Case=Nom|Gender=Fem|Number=Sing" n="52" head="53" deprel="det">ll</w>
         <pc type="other">.</pc>
-        <w lemma="uis" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="53" head="51" deprel="nsubj">vis</w>
+        <w lemma="uis" lemmaRef="lila:130360" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="53" head="51" deprel="nsubj">vis</w>
         <pc type="comma">,</pc>
         <choice>
           <abbr>
@@ -1254,7 +1254,14 @@
           <w lemma="haereo" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing" n="34" head="28" deprel="conj">haeredem</w>
         </reg>
       </choice>
-      <w lemma="post" lemmaRef="lila:118572" pos="ADP" n="35" head="36" deprel="case">post</w>
+      <choice>
+        <orig>
+          <w lemma="post" lemmaRef="lila:118572" pos="ADP" n="35" head="36" deprel="case">poſt</w>
+        </orig>
+        <reg>
+          <w lemma="post" lemmaRef="lila:118572" pos="ADP" n="35" head="36" deprel="case">post</w>
+        </reg>
+      </choice>
       <w lemma="mor" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="36" head="28" deprel="obl">mor<lb break="no"/></w>
     </s>
   </p>

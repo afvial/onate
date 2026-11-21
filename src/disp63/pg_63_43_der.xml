@@ -241,7 +241,14 @@
         <w lemma="loquor" lemmaRef="lila:110805" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass" n="41" head="27" deprel="advcl">loquatur</w>
         <pc type="colon">:</pc>
         <bibl>
-          <w lemma="Uasquez" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="42" head="41" deprel="nsubj">Vasquez</w>
+          <choice>
+            <orig>
+              <w lemma="Uasquez" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="42" head="41" deprel="nsubj">Vaſquez</w>
+            </orig>
+            <reg>
+              <w lemma="Uasquez" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="42" head="41" deprel="nsubj">Vasquez</w>
+            </reg>
+          </choice>
           <w lemma="in" lemmaRef="lila:106748" pos="ADP" n="43" head="44" deprel="case">in</w>
           <choice>
             <abbr>
@@ -567,10 +574,10 @@
       <w lemma="nos" lemmaRef="lilah:110487" pos="PRON" msd="Case=Acc|Number=Plur|Person=1" n="5" head="6" deprel="obj">nos</w>
       <choice>
         <orig>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=2|Tense=Past|VerbForm=Fin|Voice=Pass" n="6" head="2" deprel="ccomp">aſſerere</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=2|Tense=Past|VerbForm=Fin|Voice=Pass" n="6" head="2" deprel="ccomp">aſſerere</w>
         </orig>
         <reg>
-          <w lemma="assero" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=2|Tense=Past|VerbForm=Fin|Voice=Pass" n="6" head="2" deprel="ccomp">asserere</w>
+          <w lemma="assero" lemmaRef="lila:90321" pos="VERB" msd="Aspect=Imp|Mood=Sub|Number=Sing|Person=2|Tense=Past|VerbForm=Fin|Voice=Pass" n="6" head="2" deprel="ccomp">asserere</w>
         </reg>
       </choice>
       <pc type="comma">,</pc>
@@ -1232,7 +1239,7 @@
       <w lemma="emptor" lemmaRef="lila:101043" pos="NOUN" msd="Case=Gen|Gender=Masc|Number=Sing" manual="1" n="8" head="5" deprel="conj">emptoris</w>
       <choice>
         <orig>
-          <w lemma="praecido" pos="ADV" n="9" head="11" deprel="advmod">præcisè</w>
+          <w lemma="praecido" pos="ADV" n="9" head="11" deprel="advmod">præciſè</w>
         </orig>
         <reg>
           <w lemma="praecido" pos="ADV" n="9" head="11" deprel="advmod">praecisè</w>

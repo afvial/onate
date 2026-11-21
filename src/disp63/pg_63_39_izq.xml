@@ -325,7 +325,7 @@
           <w>ignorātiam</w>
         </abbr>
         <expan>
-          <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="35" head="32" deprel="obl">ignorantiam</w>
+          <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" manual="1" n="35" head="32" deprel="obl">ignorantiam</w>
         </expan>
       </choice>
       <choice>
@@ -548,7 +548,7 @@
       <w lemma="contraho" lemmaRef="lila:96338" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" n="18" head="21" deprel="advcl">contrahentes</w>
       <pc type="comma">,</pc>
       <w lemma="omnis" lemmaRef="lila:114954" pos="DET" msd="Case=Abl|Gender=Fem|Number=Sing" n="19" head="20" deprel="det">omni</w>
-      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="20" head="21" deprel="nsubj:pass">ignorantia</w>
+      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" manual="1" n="20" head="21" deprel="nsubj:pass">ignorantia</w>
       <lb n="24"/>
       <choice>
         <orig>
@@ -913,7 +913,14 @@
       <w lemma="omnis" lemmaRef="lila:114954" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="20" head="21" deprel="det">omnibus</w>
       <choice>
         <abbr>
-          <w>circunstātijs</w>
+          <choice>
+            <orig>
+              <w>circunſtātijs</w>
+            </orig>
+            <reg>
+              <w>circunstātijs</w>
+            </reg>
+          </choice>
         </abbr>
         <expan>
           <w lemma="circunstantia" lemmaRef="lila:41689" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Plur" n="21" head="8" deprel="obl">circunstantijs</w>
@@ -1215,7 +1222,14 @@
           <w lemma="si" lemmaRef="lila:124676" pos="SCONJ" n="18" head="24" deprel="mark">si</w>
         </reg>
       </choice>
-      <w lemma="post" lemmaRef="lila:118572" pos="ADP" n="19" head="20" deprel="case">post</w>
+      <choice>
+        <orig>
+          <w lemma="post" lemmaRef="lila:118572" pos="ADP" n="19" head="20" deprel="case">poſt</w>
+        </orig>
+        <reg>
+          <w lemma="post" lemmaRef="lila:118572" pos="ADP" n="19" head="20" deprel="case">post</w>
+        </reg>
+      </choice>
       <w lemma="contraho" lemmaRef="lila:96338" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Pass" n="20" head="22" deprel="obl">contractum</w>
       <choice>
         <orig>
@@ -1369,7 +1383,7 @@
       <w lemma="cum" lemmaRef="lila:97202" pos="SCONJ" n="55" head="57" deprel="mark">cùm</w>
       <w lemma="iam" lemmaRef="lila:106025" pos="ADV" n="56" head="57" deprel="advmod:tmod">iam</w>
       <w lemma="expello" lemmaRef="lila:102151" pos="VERB" msd="Aspect=Perf|Mood=Sub|Number=Plur|Person=3|Tense=Past|VerbForm=Fin|Voice=Act" n="57" head="3" deprel="advcl">expulerint</w>
-      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="58" head="57" deprel="obj">ignoran<lb break="no" n="55"/>tiam</w>
+      <w lemma="ignorantia" lemmaRef="lila:106211" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" manual="1" n="58" head="57" deprel="obj">ignoran<lb break="no" n="55"/>tiam</w>
       <pc type="comma">,</pc>
       <w lemma="propter" lemmaRef="lila:119992" pos="ADP" n="59" head="60" deprel="case">propter</w>
       <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Acc|Gender=Fem|Number=Sing" n="60" head="65" deprel="obl">quam</w>

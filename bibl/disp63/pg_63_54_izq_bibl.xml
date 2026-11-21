@@ -387,7 +387,14 @@
           <w lemma="Azorius" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="76" head="2" deprel="amod">Azorius</w>
         </expan>
       </choice>
-      <w lemma="institut" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Plur" n="77" head="76" deprel="conj">institut</w>
+      <choice>
+        <orig>
+          <w lemma="institut" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Plur" n="77" head="76" deprel="conj">inſtitut</w>
+        </orig>
+        <reg>
+          <w lemma="institut" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Plur" n="77" head="76" deprel="conj">institut</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <lb n="9"/>
       <w lemma="moralis" pos="ADV" n="78" head="76" deprel="conj">moral</w>
@@ -933,7 +940,14 @@
           <w lemma="ipse" lemmaRef="lila:108945" pos="DET" msd="Case=Nom|Gender=Masc|Number=Plur|Person=3" n="214" head="213" deprel="nsubj">ipsi</w>
         </reg>
       </choice>
-      <w lemma="sustento" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="215" head="1" deprel="advcl">sustenta</w>
+      <choice>
+        <orig>
+          <w lemma="sustento" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="215" head="1" deprel="advcl">ſuſtenta</w>
+        </orig>
+        <reg>
+          <w lemma="sustento" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="215" head="1" deprel="advcl">sustenta</w>
+        </reg>
+      </choice>
       <lb n="33"/>
       <w lemma="ris" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="216" head="215" deprel="obl">ri</w>
       <pc type="comma">,</pc>
@@ -1046,14 +1060,7 @@
       <pc type="other">.</pc>
       <w lemma="348" pos="NUM" n="244" head="243" deprel="dep">348</w>
       <pc type="other">.</pc>
-      <choice>
-        <orig>
-          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="245" head="246" deprel="amod">verſ</w>
-        </orig>
-        <reg>
-          <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="245" head="246" deprel="amod">vers</w>
-        </reg>
-      </choice>
+      <w lemma="uers" pos="ADJ" msd="Case=Nom|Gender=Fem|Number=Sing" n="245" head="246" deprel="amod">vers</w>
       <choice>
         <orig>
           <w lemma="translatio" lemmaRef="lila:128642" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="246" head="243" deprel="nsubj">tranſlatio</w>
@@ -1088,7 +1095,14 @@
           <w lemma="qui" lemmaRef="lila:121354" pos="PRON" msd="Case=Nom|Gender=Fem|Number=Sing" n="250" head="1" deprel="conj">quae</w>
         </reg>
       </choice>
-      <w lemma="st" pos="X" n="251" head="254" deprel="orphan">st</w>
+      <choice>
+        <orig>
+          <w lemma="st" pos="X" n="251" head="254" deprel="orphan">ſt</w>
+        </orig>
+        <reg>
+          <w lemma="st" pos="X" n="251" head="254" deprel="orphan">st</w>
+        </reg>
+      </choice>
       <pc type="other">.</pc>
       <w lemma="56" pos="NUM" n="252" head="251" deprel="obl">56</w>
       <pc type="other">.</pc>
@@ -1621,7 +1635,7 @@
       <w lemma="merx" lemmaRef="lila:112157" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Plur" n="350" head="354" deprel="nsubj">merces</w>
       <choice>
         <orig>
-          <w lemma="ingero" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="351" head="350" deprel="acl">inge<lb break="no" n="54"/>stę</w>
+          <w lemma="ingero" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="351" head="350" deprel="acl">inge<lb break="no" n="54"/>ſtę</w>
         </orig>
         <reg>
           <w lemma="ingero" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="351" head="350" deprel="acl">ingestae</w>
@@ -1667,7 +1681,7 @@
       </choice>
       <choice>
         <orig>
-          <w lemma="postulo" lemmaRef="lila:118629" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="360" head="358" deprel="conj">postulatæ</w>
+          <w lemma="postulo" lemmaRef="lila:118629" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="360" head="358" deprel="conj">poſtulatæ</w>
         </orig>
         <reg>
           <w lemma="postulo" lemmaRef="lila:118629" pos="VERB" msd="Aspect=Perf|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Pass" n="360" head="358" deprel="conj">postulatae</w>

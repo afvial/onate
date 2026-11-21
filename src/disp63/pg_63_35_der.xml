@@ -76,7 +76,7 @@
         </bibl>
       </hi>
       <pc type="bracket" subtype="open">[</pc>
-      <w lemma="emptor" lemmaRef="lila:101043" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="15" head="17" deprel="nsubj">Emptor</w>
+      <w lemma="emptor" lemmaRef="lila:101043" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="15" head="17" deprel="nsubj">Emptor</w>
       <choice>
         <orig>
           <w lemma="semper" lemmaRef="lila:124294" pos="ADV" n="16" head="17" deprel="advmod:tmod">ſemper</w>
@@ -350,7 +350,7 @@
         </reg>
       </choice>
       <w lemma="hic" lemmaRef="lila:105455" pos="DET" msd="Case=Abl|Gender=Fem|Number=Plur" n="86" head="87" deprel="det">his</w>
-      <w lemma="dolus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Plur" n="87" head="91" deprel="obl">dolis</w>
+      <w lemma="dolus" lemmaRef="lila:100037" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Plur" n="87" head="91" deprel="obl">dolis</w>
       <pc type="comma">,</pc>
       <choice>
         <abbr>
@@ -905,7 +905,14 @@
           </choice>
           <choice>
             <abbr>
-              <w>instit.</w>
+              <choice>
+                <orig>
+                  <w>inſtit.</w>
+                </orig>
+                <reg>
+                  <w>instit.</w>
+                </reg>
+              </choice>
             </abbr>
             <expan>
               <w lemma="institutio" lemmaRef="lila:108269" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="184" head="1" deprel="nsubj">institutio</w>
@@ -1620,7 +1627,14 @@
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing" n="51" head="48" deprel="conj">pretij</w>
       <choice>
         <abbr>
-          <w>cō<lb break="no" n="56"/>surgit</w>
+          <choice>
+            <orig>
+              <w>cō<lb break="no" n="56"/>ſurgit</w>
+            </orig>
+            <reg>
+              <w>cōsurgit</w>
+            </reg>
+          </choice>
         </abbr>
         <expan>
           <w lemma="consurgo" lemmaRef="lila:96200" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act" n="52" head="54" deprel="nsubj:pass">consurgit</w>

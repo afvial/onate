@@ -923,7 +923,14 @@
             </reg>
           </choice>
           <w lemma="plane" lemmaRef="lilah:33604" pos="ADV" n="15" head="16" deprel="advmod">planè</w>
-          <w lemma="usurarius" lemmaRef="lila:130895" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="16" head="0" deprel="ROOT">vsuraria</w>
+          <choice>
+            <orig>
+              <w lemma="usurarius" lemmaRef="lila:130895" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="16" head="0" deprel="ROOT">vſuraria</w>
+            </orig>
+            <reg>
+              <w lemma="usurarius" lemmaRef="lila:130895" pos="ADJ" msd="Case=Abl|Gender=Fem|Number=Sing" n="16" head="0" deprel="ROOT">vsuraria</w>
+            </reg>
+          </choice>
           <pc type="other">.</pc>
         </s>
       </item>
