@@ -8,7 +8,14 @@
   </head>
   <head type="sub">
     <lb n="2"/>
-    <w lemma="U." pos="PROPN">V.</w>
+    <choice>
+      <abbr>
+        <w>V.</w>
+      </abbr>
+      <expan>
+        <w lemma="uerbum" lemmaRef="lila:131057" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing">verbi</w>
+      </expan>
+    </choice>
     <w lemma="res" lemmaRef="lila:121868" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Plur">rerum</w>
     <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Sing">pretium</w>
     <w lemma="ex" lemmaRef="lila:101716" pos="ADP">ex</w>
@@ -544,10 +551,10 @@
       </choice>
       <choice>
         <orig>
-          <w lemma="magistratus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="11" head="9" deprel="conj">magiſtratus</w>
+          <w lemma="magistratus" lemmaRef="lila:111283" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="11" head="9" deprel="conj">magiſtratus</w>
         </orig>
         <reg>
-          <w lemma="magistratus" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="11" head="9" deprel="conj">magistratus</w>
+          <w lemma="magistratus" lemmaRef="lila:111283" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Plur" n="11" head="9" deprel="conj">magistratus</w>
         </reg>
       </choice>
       <w lemma="taxo" lemmaRef="lila:127704" pos="VERB" msd="Aspect=Imp|Case=Nom|Gender=Fem|Number=Plur|VerbForm=Part|Voice=Act" n="12" head="9" deprel="acl">taxantes</w>
@@ -710,7 +717,7 @@
     </s>
     <s>
       <w lemma="sicut" lemmaRef="lila:124723" pos="SCONJ" n="1" head="15" deprel="mark">Sicut</w>
-      <w lemma="quando" lemmaRef="lila:121084" pos="SCONJ" n="2" head="3" deprel="mark">quando</w>
+      <w lemma="quando" lemmaRef="lila:121084" pos="SCONJ" n="2" head="3" deprel="advcl">quando</w>
       <choice>
         <orig>
           <w lemma="aestimo" lemmaRef="lila:87940" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="3" head="15" deprel="advcl">æſtimamus</w>
@@ -719,12 +726,24 @@
           <w lemma="aestimo" lemmaRef="lila:87940" pos="VERB" msd="Aspect=Imp|Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act" n="3" head="15" deprel="advcl">aestimamus</w>
         </reg>
       </choice>
-      <w lemma="Roma" lemmaRef="lila:20293" pos="PROPN" msd="Case=Acc|Gender=Fem|Number=Sing" n="4" head="3" deprel="obj">Roma</w>
+      <w lemma="Roma" lemmaRef="lila:20293" pos="PROPN" msd="Case=Abl|Gender=Fem|Number=Sing" n="4" head="3" deprel="obj">Roma</w>
       <pc type="comma">,</pc>
-      <w lemma="u" pos="ADV" n="5" head="3" deprel="dep">v</w>
-      <pc type="other">.</pc>
-      <w lemma="g" pos="ADV" n="6" head="5" deprel="fixed">g</w>
-      <pc type="other">.</pc>
+      <choice>
+        <abbr>
+          <w>v.</w>
+        </abbr>
+        <expan>
+          <w lemma="uerbum" lemmaRef="lila:131057" pos="NOUN" msd="Case=Gen|Gender=Neut|Number=Sing" n="5" head="6" deprel="nmod">verbi</w>
+        </expan>
+      </choice>
+      <choice>
+        <abbr>
+          <w>g.</w>
+        </abbr>
+        <expan>
+          <w lemma="gratia" lemmaRef="lila:104869" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="6" head="3" deprel="xcomp">gratia</w>
+        </expan>
+      </choice>
       <lb n="38"/>
       <w lemma="uel" lemmaRef="lila:129695" pos="CCONJ" n="7" head="9" deprel="cc">vel</w>
       <choice>
@@ -737,13 +756,13 @@
       </choice>
       <choice>
         <orig>
-          <w lemma="sol" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="9" head="3" deprel="conj">ſol</w>
+          <w lemma="sol" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="9" head="6" deprel="conj">ſol</w>
         </orig>
         <reg>
-          <w lemma="sol" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="9" head="3" deprel="conj">sol</w>
+          <w lemma="sol" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="9" head="6" deprel="conj">sol</w>
         </reg>
       </choice>
-      <w lemma="quot" lemmaRef="lila:121302" pos="DET" n="10" head="14" deprel="nsubj">quot</w>
+      <w lemma="quot" lemmaRef="lila:121302" pos="DET" n="10" head="14" deprel="obj">quot</w>
       <w lemma="ab" lemmaRef="lila:86824" pos="ADP" n="11" head="12" deprel="case">ab</w>
       <w lemma="hinc" lemmaRef="lila:105454" pos="ADV" n="12" head="14" deprel="obl">hinc</w>
       <w lemma="leucus" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Plur" n="13" head="14" deprel="obl">leucis</w>

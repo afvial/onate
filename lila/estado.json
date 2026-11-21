@@ -312,9 +312,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 7,
    "lineas": [
     "9",
@@ -555,7 +555,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -917,7 +917,7 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -954,13 +954,14 @@
     "27"
    ]
   },
-  "conclus\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
+  "conclusio\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:95546",
+   "candidatos": "lila:95546 noun",
+   "n": 2,
    "lineas": [
-    "28"
+    "28",
+    "29"
    ]
   },
   "Rebellus\tPROPN": {
@@ -1000,18 +1001,9 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "29"
-   ]
-  },
-  "conclusio\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:95546",
-   "candidatos": "lila:95546 noun",
    "n": 1,
    "lineas": [
     "29"
@@ -1618,25 +1610,25 @@
     "59"
    ]
   },
-  "u\tX": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
    "n": 1,
    "lineas": [
     "60"
    ]
   },
-  "g\tCCONJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "60"
    ]
   },
-  "culia\tADJ": {
+  "culia\tNOUN": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
@@ -2653,9 +2645,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "15"
@@ -4771,9 +4763,10 @@
    "estado": "ok",
    "ref": "lila:101043",
    "candidatos": "lila:101043 noun",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "2"
+    "2",
+    "9"
    ]
   },
   "semper\tADV": {
@@ -4845,10 +4838,10 @@
     "60"
    ]
   },
-  "contra\tADV": {
-   "estado": "ok",
-   "ref": "lila:96323",
-   "candidatos": "lila:96323 adverb",
+  "contra\tNOUN": {
+   "estado": "pos_distinta",
+   "ref": null,
+   "candidatos": "lila:96322 adposition; lila:96323 adverb",
    "n": 1,
    "lineas": [
     "4"
@@ -4983,9 +4976,9 @@
    ]
   },
   "uolo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:130745 verb; lila:130746 verb",
+   "estado": "excepcion",
+   "ref": "lila:130745",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "6"
@@ -5120,15 +5113,6 @@
     "9"
    ]
   },
-  "emptor\tVERB": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:101043 noun",
-   "n": 1,
-   "lineas": [
-    "9"
-   ]
-  },
   "emptio\tNOUN": {
    "estado": "ok",
    "ref": "lila:101040",
@@ -5160,9 +5144,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 5,
    "lineas": [
     "10",
@@ -5194,9 +5178,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 5,
    "lineas": [
     "11",
@@ -5312,9 +5296,9 @@
    ]
   },
   "magistratus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:111281 noun; lila:111283 noun",
+   "estado": "excepcion",
+   "ref": "lila:111283",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "14",
@@ -5489,7 +5473,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -5535,7 +5519,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -5569,7 +5553,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -5587,7 +5571,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -5605,7 +5589,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -5643,7 +5627,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -5653,7 +5637,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -5682,7 +5666,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -7172,7 +7156,7 @@
    ]
   },
   "Bannes\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7181,7 +7165,7 @@
    ]
   },
   "Aragon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7190,7 +7174,7 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -7277,7 +7261,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7322,7 +7306,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7350,7 +7334,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -7414,7 +7398,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7469,7 +7453,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7505,7 +7489,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7514,7 +7498,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7550,7 +7534,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7577,7 +7561,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7622,7 +7606,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -7687,9 +7671,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "43",
@@ -7962,9 +7946,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "57"
@@ -7980,9 +7964,9 @@
    ]
   },
   "magistratus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:111281 noun; lila:111283 noun",
+   "estado": "excepcion",
+   "ref": "lila:111283",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "57",
@@ -8226,10 +8210,10 @@
     "55"
    ]
   },
-  "credo\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:96881 verb",
+  "creditum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:96875",
+   "candidatos": "lila:96875 noun",
    "n": 1,
    "lineas": [
     "2"
@@ -8416,7 +8400,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -8462,7 +8446,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -8776,9 +8760,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 5,
    "lineas": [
     "16",
@@ -9624,9 +9608,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "56",
@@ -10006,19 +9990,21 @@
     "11"
    ]
   },
-  "u\tX": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
-   "n": 1,
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
+   "n": 3,
    "lineas": [
-    "8"
+    "8",
+    "20",
+    "30"
    ]
   },
-  "g\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "8"
@@ -10195,9 +10181,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 5,
    "lineas": [
     "15",
@@ -10282,9 +10268,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "16"
@@ -10381,16 +10367,6 @@
    "lineas": [
     "20",
     "23"
-   ]
-  },
-  "uerbum\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:131057",
-   "candidatos": "lila:131057 noun",
-   "n": 2,
-   "lineas": [
-    "20",
-    "30"
    ]
   },
   "ulciscor\tVERB": {
@@ -10536,7 +10512,7 @@
    ]
   },
   "Aragon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -10545,7 +10521,7 @@
    ]
   },
   "Bannez\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -10620,7 +10596,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -10719,7 +10695,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -10830,7 +10806,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -10839,7 +10815,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -10857,7 +10833,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -11353,9 +11329,9 @@
    ]
   },
   "tempus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:127796 noun; lila:127522 noun",
+   "estado": "excepcion",
+   "ref": "lila:127522",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "54",
@@ -11651,7 +11627,7 @@
    ]
   },
   "Bannez\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -11896,9 +11872,10 @@
    "estado": "ok",
    "ref": "lila:131057",
    "candidatos": "lila:131057 noun",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "8"
+    "8",
+    "36"
    ]
   },
   "uenditio\tNOUN": {
@@ -11920,7 +11897,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -11969,7 +11946,7 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -12231,7 +12208,7 @@
    ]
   },
   "Aragonius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -12249,7 +12226,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -12279,13 +12256,14 @@
    "estado": "ok",
    "ref": "lila:123962",
    "candidatos": "lila:123962 noun",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "19"
+    "19",
+    "41"
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -12349,7 +12327,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -12376,7 +12354,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -12671,9 +12649,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "33"
@@ -12781,19 +12759,10 @@
     "35"
    ]
   },
-  "u\tINTJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
-   "n": 1,
-   "lineas": [
-    "36"
-   ]
-  },
-  "g\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "36"
@@ -12926,15 +12895,6 @@
     "40"
    ]
   },
-  "sectio\tNUM": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:123962 noun",
-   "n": 1,
-   "lineas": [
-    "41"
-   ]
-  },
   "quomodo\tADV": {
    "estado": "ok",
    "ref": "lila:121286",
@@ -12964,9 +12924,9 @@
     "48"
    ]
   },
-  "summarium\tNUM": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "summarium\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:126696",
    "candidatos": "lila:126696 noun",
    "n": 1,
    "lineas": [
@@ -13504,9 +13464,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 6,
    "lineas": [
     "6",
@@ -13633,7 +13593,7 @@
    ]
   },
   "Aragon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -13642,7 +13602,7 @@
    ]
   },
   "Bannes\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -13651,7 +13611,7 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -13660,7 +13620,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -14937,13 +14897,14 @@
     "1"
    ]
   },
-  "U.\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
+   "n": 2,
    "lineas": [
-    "2"
+    "2",
+    "37"
    ]
   },
   "res\tNOUN": {
@@ -15747,9 +15708,9 @@
    ]
   },
   "magistratus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:111281 noun; lila:111283 noun",
+   "estado": "excepcion",
+   "ref": "lila:111283",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "29"
@@ -15904,28 +15865,19 @@
     "37"
    ]
   },
-  "u\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
-   "n": 1,
-   "lineas": [
-    "37"
-   ]
-  },
-  "g\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "37"
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "38"
@@ -17298,9 +17250,9 @@
    ]
   },
   "magistratus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:111281 noun; lila:111283 noun",
+   "estado": "excepcion",
+   "ref": "lila:111283",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "32"
@@ -17326,9 +17278,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "33"
@@ -18090,9 +18042,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "3",
@@ -18119,9 +18071,9 @@
    ]
   },
   "panis\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:115838 noun; lila:115839 noun",
+   "estado": "excepcion",
+   "ref": "lila:115838",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "4"
@@ -20810,9 +20762,9 @@
    ]
   },
   "uolo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:130745 verb; lila:130746 verb",
+   "estado": "excepcion",
+   "ref": "lila:130745",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "43"
@@ -20910,9 +20862,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "48"
@@ -21684,9 +21636,9 @@
     "15"
    ]
   },
-  "summarium\tNUM": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "summarium\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:126696",
    "candidatos": "lila:126696 noun",
    "n": 1,
    "lineas": [
@@ -22237,10 +22189,10 @@
     "47"
    ]
   },
-  "quarta\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:121108 noun",
+  "quartus\tADJ": {
+   "estado": "ok",
+   "ref": "lila:121107",
+   "candidatos": "lila:121107 adjective",
    "n": 1,
    "lineas": [
     "48"
@@ -22579,7 +22531,7 @@
    ]
   },
   "Bannez\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -22782,7 +22734,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -22874,7 +22826,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -23465,7 +23417,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -23493,7 +23445,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -23615,7 +23567,7 @@
    ]
   },
   "Aragonius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -23688,7 +23640,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -23708,7 +23660,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -23771,7 +23723,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -23789,7 +23741,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -23872,9 +23824,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "49"
@@ -23936,9 +23888,9 @@
    ]
   },
   "magistratus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:111281 noun; lila:111283 noun",
+   "estado": "excepcion",
+   "ref": "lila:111283",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "52"
@@ -24469,9 +24421,10 @@
    "estado": "ok",
    "ref": "lila:131057",
    "candidatos": "lila:131057 noun",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "7"
+    "7",
+    "30"
    ]
   },
   "emptio\tNOUN": {
@@ -24672,7 +24625,7 @@
    ]
   },
   "Aragon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -24708,7 +24661,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -24729,7 +24682,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -24757,7 +24710,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -24803,7 +24756,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -24812,7 +24765,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -24935,9 +24888,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "19",
@@ -25297,28 +25250,19 @@
     "29"
    ]
   },
-  "u\tX": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
-   "n": 1,
-   "lineas": [
-    "30"
-   ]
-  },
-  "g\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "30"
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "30",
@@ -25482,9 +25426,9 @@
    ]
   },
   "uolo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:130745 verb; lila:130746 verb",
+   "estado": "excepcion",
+   "ref": "lila:130745",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "35"
@@ -25668,10 +25612,10 @@
     "41"
    ]
   },
-  "paco\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:17186 proper_noun; lila:115825 verb (variante); lila:115591 verb; lila:115592 verb",
+  "pactum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:120836",
+   "candidatos": "lila:120836 noun",
    "n": 1,
    "lineas": [
     "41"
@@ -26275,7 +26219,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -26354,7 +26298,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -26374,7 +26318,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -26383,7 +26327,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -26640,9 +26584,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 8,
    "lineas": [
     "13",
@@ -26792,9 +26736,9 @@
    ]
   },
   "panis\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:115838 noun; lila:115839 noun",
+   "estado": "excepcion",
+   "ref": "lila:115838",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "16",
@@ -27011,10 +26955,10 @@
     "23"
    ]
   },
-  "uers\tADV": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
    "n": 1,
    "lineas": [
     "25"
@@ -27039,7 +26983,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -27086,7 +27030,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -27407,10 +27351,10 @@
     "39"
    ]
   },
-  "quarta\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:121108 noun",
+  "quartus\tADJ": {
+   "estado": "ok",
+   "ref": "lila:121107",
+   "candidatos": "lila:121107 adjective",
    "n": 1,
    "lineas": [
     "41"
@@ -27651,19 +27595,19 @@
     "54"
    ]
   },
-  "u\tX": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
    "n": 1,
    "lineas": [
     "55"
    ]
   },
-  "g\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "55"
@@ -27807,9 +27751,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "60"
@@ -28358,9 +28302,9 @@
    ]
   },
   "uolo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:130745 verb; lila:130746 verb",
+   "estado": "excepcion",
+   "ref": "lila:130745",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "12",
@@ -28958,9 +28902,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "37",
@@ -29351,9 +29295,9 @@
    ]
   },
   "uel\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "estado": "excepcion",
+   "ref": "lila:129695",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "55"
@@ -29414,9 +29358,9 @@
    ]
   },
   "panis\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:115838 noun; lila:115839 noun",
+   "estado": "excepcion",
+   "ref": "lila:115838",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "57"
@@ -29673,9 +29617,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "4",
@@ -29692,10 +29636,10 @@
     "4"
    ]
   },
-  "quinta\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:121141 noun",
+  "quintus\tADJ": {
+   "estado": "ok",
+   "ref": "lila:121102",
+   "candidatos": "lila:121102 adjective",
    "n": 1,
    "lineas": [
     "5"
@@ -29900,7 +29844,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 4,
@@ -30122,13 +30066,14 @@
     "58"
    ]
   },
-  "uers\tX": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
+   "n": 2,
    "lineas": [
-    "13"
+    "13",
+    "58"
    ]
   },
   "obseruo\tVERB": {
@@ -30143,7 +30088,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -30152,7 +30097,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 4,
@@ -30991,7 +30936,7 @@
    ]
   },
   "Garzias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -31031,7 +30976,7 @@
    ]
   },
   "Lopez\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -31049,7 +30994,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -31094,7 +31039,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -31104,7 +31049,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -31131,21 +31076,12 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
    "lineas": [
     "56"
-   ]
-  },
-  "uers\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "58"
    ]
   },
   "tamen\tADV": {
@@ -31263,9 +31199,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 5,
    "lineas": [
     "2",
@@ -31717,10 +31653,10 @@
     "12"
    ]
   },
-  "modero\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:112525 verb",
+  "moderatus\tADJ": {
+   "estado": "ok",
+   "ref": "lilah:27538",
+   "candidatos": "lilah:27538 adjective",
    "n": 1,
    "lineas": [
     "12"
@@ -32222,10 +32158,10 @@
     "45"
    ]
   },
-  "uers\tADV": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
    "n": 1,
    "lineas": [
     "29"
@@ -32240,10 +32176,10 @@
     "29"
    ]
   },
-  "dictum\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:100416",
-   "candidatos": "lila:100416 noun",
+  "dico\tVERB": {
+   "estado": "excepcion",
+   "ref": "lila:99302",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "29"
@@ -32259,7 +32195,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -32286,7 +32222,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -32341,7 +32277,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -32519,7 +32455,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -32558,7 +32494,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -32567,7 +32503,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -32577,7 +32513,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -32623,7 +32559,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -33165,9 +33101,9 @@
     "42"
    ]
   },
-  "summarium\tNUM": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "summarium\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:126696",
    "candidatos": "lila:126696 noun",
    "n": 1,
    "lineas": [
@@ -33297,17 +33233,18 @@
    "estado": "excepcion",
    "ref": "lila:121686",
    "candidatos": "",
-   "n": 3,
+   "n": 4,
    "lineas": [
     "9",
     "24",
-    "26"
+    "26",
+    "36"
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "10",
@@ -33534,9 +33471,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "23",
@@ -33729,19 +33666,10 @@
     "34"
    ]
   },
-  "quinta\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:121141 noun",
-   "n": 1,
-   "lineas": [
-    "36"
-   ]
-  },
-  "Regula\tPROPN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:121686 noun; lila:121689 noun",
+  "quintus\tADJ": {
+   "estado": "ok",
+   "ref": "lila:121102",
+   "candidatos": "lila:121102 adjective",
    "n": 1,
    "lineas": [
     "36"
@@ -34021,9 +33949,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "51"
@@ -34811,14 +34739,13 @@
     "41"
    ]
   },
-  "uers\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 2,
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
+   "n": 1,
    "lineas": [
-    "20",
-    "41"
+    "20"
    ]
   },
   "obseruo\tVERB": {
@@ -34963,13 +34890,15 @@
     "30"
    ]
   },
-  "is\tDET": {
-   "estado": "ok",
+  "is\tPRON": {
+   "estado": "excepcion",
    "ref": "lila:109083",
-   "candidatos": "lila:109083 determiner",
-   "n": 1,
+   "candidatos": "",
+   "n": 3,
    "lineas": [
-    "26"
+    "26",
+    "32",
+    "52"
    ]
   },
   "uoluptas\tNOUN": {
@@ -34981,19 +34910,19 @@
     "26"
    ]
   },
-  "um\tADV": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
    "n": 1,
    "lineas": [
     "27"
    ]
   },
-  "gm\tADV": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "27"
@@ -35009,9 +34938,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 4,
    "lineas": [
     "27",
@@ -35155,20 +35084,10 @@
     "31"
    ]
   },
-  "is\tPRON": {
-   "estado": "excepcion",
-   "ref": "lila:109083",
-   "candidatos": "",
-   "n": 2,
-   "lineas": [
-    "32",
-    "52"
-   ]
-  },
-  "paco\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:17186 proper_noun; lila:115825 verb (variante); lila:115591 verb; lila:115592 verb",
+  "pactum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:120836",
+   "candidatos": "lila:120836 noun",
    "n": 1,
    "lineas": [
     "32"
@@ -35240,7 +35159,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -35264,7 +35183,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -35316,7 +35235,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -35352,7 +35271,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -35361,7 +35280,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -35370,13 +35289,22 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
    "lineas": [
     "40",
     "44"
+   ]
+  },
+  "uers\tADJ": {
+   "estado": "no_encontrado",
+   "ref": null,
+   "candidatos": "",
+   "n": 1,
+   "lineas": [
+    "41"
    ]
   },
   "Manuel\tPROPN": {
@@ -35497,9 +35425,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "48"
@@ -35634,7 +35562,7 @@
    ]
   },
   "Bartolus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -35835,9 +35763,9 @@
    ]
   },
   "tempus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:127796 noun; lila:127522 noun",
+   "estado": "excepcion",
+   "ref": "lila:127522",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "3",
@@ -35936,7 +35864,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -36092,7 +36020,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -36219,7 +36147,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -36258,7 +36186,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -36384,7 +36312,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -36419,10 +36347,10 @@
     "20"
    ]
   },
-  "uers\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
    "n": 1,
    "lineas": [
     "21"
@@ -36670,7 +36598,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -36689,7 +36617,7 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -36886,9 +36814,9 @@
    ]
   },
   "uolo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:130745 verb; lila:130746 verb",
+   "estado": "excepcion",
+   "ref": "lila:130745",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "37",
@@ -37104,9 +37032,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "45",
@@ -37264,9 +37192,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "53"
@@ -38055,9 +37983,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "15",
@@ -38188,9 +38116,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "21"
@@ -38273,9 +38201,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "26"
@@ -38547,9 +38475,9 @@
    ]
   },
   "tempus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:127796 noun; lila:127522 noun",
+   "estado": "excepcion",
+   "ref": "lila:127522",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "37"
@@ -39326,9 +39254,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 5,
    "lineas": [
     "8",
@@ -39966,9 +39894,9 @@
    ]
   },
   "accido\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:87112 verb; lila:87113 verb",
+   "estado": "excepcion",
+   "ref": "lila:87112",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "32"
@@ -39993,9 +39921,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "34"
@@ -40184,7 +40112,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40231,7 +40159,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40269,7 +40197,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40287,7 +40215,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40315,7 +40243,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40332,10 +40260,10 @@
     "43"
    ]
   },
-  "uers\tADV": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
    "n": 1,
    "lineas": [
     "44"
@@ -40351,7 +40279,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40372,7 +40300,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40418,7 +40346,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40436,7 +40364,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40869,7 +40797,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -40924,7 +40852,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -40942,7 +40870,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -41003,13 +40931,15 @@
     "25"
    ]
   },
-  "uers\tADV": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
+   "n": 3,
    "lineas": [
-    "5"
+    "5",
+    "24",
+    "25"
    ]
   },
   "tertius\tADJ": {
@@ -41033,7 +40963,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -41078,7 +41008,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -41308,9 +41238,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 8,
    "lineas": [
     "14",
@@ -41509,9 +41439,9 @@
    ]
   },
   "uel\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "estado": "excepcion",
+   "ref": "lila:129695",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "20"
@@ -41572,7 +41502,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -41580,16 +41510,6 @@
     "23",
     "29",
     "56"
-   ]
-  },
-  "uers\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 2,
-   "lineas": [
-    "24",
-    "25"
    ]
   },
   "Sotus\tPROPN": {
@@ -41602,7 +41522,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -42275,7 +42195,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -42830,9 +42750,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 6,
    "lineas": [
     "11",
@@ -43189,7 +43109,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -43903,9 +43823,9 @@
    ]
   },
   "magistratus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:111281 noun; lila:111283 noun",
+   "estado": "excepcion",
+   "ref": "lila:111283",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "52"
@@ -43994,7 +43914,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -46656,9 +46576,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 15,
    "lineas": [
     "3",
@@ -46792,9 +46712,9 @@
    ]
   },
   "uel\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "estado": "excepcion",
+   "ref": "lila:129695",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "5",
@@ -47076,27 +46996,27 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "14"
    ]
   },
-  "u\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
    "n": 1,
    "lineas": [
     "14"
    ]
   },
-  "g\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "14"
@@ -47539,9 +47459,9 @@
    ]
   },
   "tempus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:127796 noun; lila:127522 noun",
+   "estado": "excepcion",
+   "ref": "lila:127522",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "29"
@@ -47771,10 +47691,10 @@
     "46"
    ]
   },
-  "credo\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:96881 verb",
+  "creditum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:96875",
+   "candidatos": "lila:96875 noun",
    "n": 3,
    "lineas": [
     "41",
@@ -48716,9 +48636,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 4,
    "lineas": [
     "14",
@@ -48759,7 +48679,7 @@
    "estado": "ok",
    "ref": "lila:121052",
    "candidatos": "lila:121052 noun",
-   "n": 12,
+   "n": 13,
    "lineas": [
     "15",
     "16",
@@ -48770,6 +48690,7 @@
     "24",
     "27",
     "31",
+    "32",
     "51",
     "59"
    ]
@@ -48808,7 +48729,7 @@
    ]
   },
   "Bannes\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -48817,7 +48738,7 @@
    ]
   },
   "Aragon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -48826,7 +48747,7 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -48966,7 +48887,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -48998,7 +48919,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -49034,7 +48955,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -49108,13 +49029,14 @@
     "49"
    ]
   },
-  "uers\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
+   "n": 2,
    "lineas": [
-    "25"
+    "25",
+    "51"
    ]
   },
   "obseruo\tVERB": {
@@ -49136,7 +49058,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -49154,7 +49076,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -49201,7 +49123,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -49250,7 +49172,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -49262,15 +49184,6 @@
    "estado": "pos_distinta",
    "ref": null,
    "candidatos": "lila:75385 noun",
-   "n": 1,
-   "lineas": [
-    "32"
-   ]
-  },
-  "quest\tVERB": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
    "n": 1,
    "lineas": [
     "32"
@@ -49631,10 +49544,10 @@
     "59"
    ]
   },
-  "paco\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:17186 proper_noun; lila:115825 verb (variante); lila:115591 verb; lila:115592 verb",
+  "pactum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:120836",
+   "candidatos": "lila:120836 noun",
    "n": 1,
    "lineas": [
     "45"
@@ -49687,7 +49600,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -49747,15 +49660,6 @@
    "n": 1,
    "lineas": [
     "50"
-   ]
-  },
-  "uers\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "51"
    ]
   },
   "artic\tVERB": {
@@ -49867,9 +49771,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "60"
@@ -49972,10 +49876,10 @@
     "46"
    ]
   },
-  "credo\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:96881 verb",
+  "creditum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:96875",
+   "candidatos": "lila:96875 noun",
    "n": 1,
    "lineas": [
     "2"
@@ -50502,13 +50406,14 @@
     "17"
    ]
   },
-  "emptor\tVERB": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "emptor\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:101043",
    "candidatos": "lila:101043 noun",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "17"
+    "17",
+    "51"
    ]
   },
   "multitudo\tNOUN": {
@@ -50539,9 +50444,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "18"
@@ -50559,7 +50464,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -50669,7 +50574,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -50800,9 +50705,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 5,
    "lineas": [
     "26",
@@ -51129,19 +51034,20 @@
     "41"
    ]
   },
-  "u\tX": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
-   "n": 1,
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
+   "n": 2,
    "lineas": [
-    "42"
+    "42",
+    "56"
    ]
   },
-  "g\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "42"
@@ -51357,10 +51263,10 @@
     "50"
    ]
   },
-  "paco\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:17186 proper_noun; lila:115825 verb (variante); lila:115591 verb; lila:115592 verb",
+  "pactum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:120836",
+   "candidatos": "lila:120836 noun",
    "n": 1,
    "lineas": [
     "51"
@@ -51370,15 +51276,6 @@
    "estado": "ok",
    "ref": "lila:98210",
    "candidatos": "lila:98210 verb",
-   "n": 1,
-   "lineas": [
-    "51"
-   ]
-  },
-  "emptor\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:101043",
-   "candidatos": "lila:101043 noun",
    "n": 1,
    "lineas": [
     "51"
@@ -51440,7 +51337,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -51466,15 +51363,6 @@
     "56"
    ]
   },
-  "uerbum\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:131057",
-   "candidatos": "lila:131057 noun",
-   "n": 1,
-   "lineas": [
-    "56"
-   ]
-  },
   "n\tX": {
    "estado": "excepcion",
    "ref": null,
@@ -51485,7 +51373,7 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -51494,7 +51382,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -51503,7 +51391,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -51539,7 +51427,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -51550,7 +51438,7 @@
  },
  "pg_63_50_izq": {
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -51593,7 +51481,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -51647,10 +51535,10 @@
     "60"
    ]
   },
-  "uers\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
    "n": 2,
    "lineas": [
     "2",
@@ -51757,9 +51645,9 @@
    ]
   },
   "fructus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:103879 noun; lila:103880 noun",
+   "estado": "excepcion",
+   "ref": "lila:103880",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "4"
@@ -51775,9 +51663,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "5",
@@ -51882,9 +51770,9 @@
     "7"
    ]
   },
-  "emptor\tVERB": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "emptor\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:101043",
    "candidatos": "lila:101043 noun",
    "n": 1,
    "lineas": [
@@ -52120,9 +52008,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 8,
    "lineas": [
     "13",
@@ -52277,7 +52165,7 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -52286,7 +52174,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -52573,10 +52461,10 @@
     "27"
    ]
   },
-  "u\tX": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
    "n": 1,
    "lineas": [
     "28"
@@ -52618,8 +52506,8 @@
     "29"
    ]
   },
-  "aliqui\tDET": {
-   "estado": "pos_alternativo",
+  "aliqui\tPRON": {
+   "estado": "ok",
    "ref": "lila:91087",
    "candidatos": "lila:91087 pronoun",
    "n": 1,
@@ -52835,7 +52723,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -53094,18 +52982,18 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "46"
    ]
   },
   "panis\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:115838 noun; lila:115839 noun",
+   "estado": "excepcion",
+   "ref": "lila:115838",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "46"
@@ -53183,10 +53071,10 @@
     "49"
    ]
   },
-  "quarta\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:121108 noun",
+  "quartus\tADJ": {
+   "estado": "ok",
+   "ref": "lila:121107",
+   "candidatos": "lila:121107 adjective",
    "n": 1,
    "lineas": [
     "50"
@@ -53514,7 +53402,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -53616,10 +53504,10 @@
     "4"
    ]
   },
-  "quinta\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:121141 noun",
+  "quintus\tADJ": {
+   "estado": "ok",
+   "ref": "lila:121102",
+   "candidatos": "lila:121102 adjective",
    "n": 1,
    "lineas": [
     "5"
@@ -53783,10 +53671,10 @@
     "7"
    ]
   },
-  "credo\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:96881 verb",
+  "creditum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:96875",
+   "candidatos": "lila:96875 noun",
    "n": 4,
    "lineas": [
     "7",
@@ -54065,7 +53953,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -54084,7 +53972,7 @@
    ]
   },
   "Bannez\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -54121,7 +54009,7 @@
    ]
   },
   "Aragonius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -54236,9 +54124,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 6,
    "lineas": [
     "20",
@@ -54628,9 +54516,9 @@
    ]
   },
   "uolo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:130745 verb; lila:130746 verb",
+   "estado": "excepcion",
+   "ref": "lila:130745",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "35"
@@ -55660,18 +55548,18 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "9"
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "9",
@@ -55789,7 +55677,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -55878,7 +55766,7 @@
    ]
   },
   "Bannez\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -56053,7 +55941,8 @@
    "lineas": [
     "20",
     "21",
-    "59"
+    "59",
+    "60"
    ]
   },
   "ille\tDET": {
@@ -56209,9 +56098,9 @@
    ]
   },
   "uolo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:130745 verb; lila:130746 verb",
+   "estado": "excepcion",
+   "ref": "lila:130745",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "28"
@@ -56778,9 +56667,9 @@
    ]
   },
   "tempus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:127796 noun; lila:127522 noun",
+   "estado": "excepcion",
+   "ref": "lila:127522",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "52"
@@ -57134,7 +57023,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -57233,9 +57122,9 @@
    ]
   },
   "tempus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:127796 noun; lila:127522 noun",
+   "estado": "excepcion",
+   "ref": "lila:127522",
+   "candidatos": "",
    "n": 4,
    "lineas": [
     "6",
@@ -57379,7 +57268,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -57480,13 +57369,14 @@
     "21"
    ]
   },
-  "uers\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
+   "n": 2,
    "lineas": [
-    "12"
+    "12",
+    "38"
    ]
   },
   "certus\tADJ": {
@@ -57590,10 +57480,10 @@
     "15"
    ]
   },
-  "credo\tNOUN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:96881 verb",
+  "creditum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:96875",
+   "candidatos": "lila:96875 noun",
    "n": 1,
    "lineas": [
     "15"
@@ -57839,7 +57729,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -57881,9 +57771,10 @@
    "estado": "ok",
    "ref": "lila:101043",
    "candidatos": "lila:101043 noun",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "26"
+    "26",
+    "36"
    ]
   },
   "lana\tNOUN": {
@@ -58134,15 +58025,6 @@
     "36"
    ]
   },
-  "emptor\tVERB": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:101043 noun",
-   "n": 1,
-   "lineas": [
-    "36"
-   ]
-  },
   "uendo\tNOUN": {
    "estado": "pos_distinta",
    "ref": null,
@@ -58166,15 +58048,6 @@
    "estado": "ok",
    "ref": "lila:120847",
    "candidatos": "lila:120847 noun",
-   "n": 1,
-   "lineas": [
-    "38"
-   ]
-  },
-  "uers\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
    "n": 1,
    "lineas": [
     "38"
@@ -58311,9 +58184,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "44"
@@ -58506,19 +58379,19 @@
     "50"
    ]
   },
-  "u\tX": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:130986 noun; lila:24341 proper_noun",
+  "uerbum\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:131057",
+   "candidatos": "lila:131057 noun",
    "n": 1,
    "lineas": [
     "50"
    ]
   },
-  "g\tCCONJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:105012 noun; lila:7635 proper_noun",
+  "gratia\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:104869",
+   "candidatos": "lila:104869 noun",
    "n": 1,
    "lineas": [
     "50"
@@ -59132,9 +59005,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "9",
@@ -59519,7 +59392,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -59530,7 +59403,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -59570,7 +59443,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -59614,7 +59487,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -59653,7 +59526,7 @@
    ]
   },
   "Salon\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -59860,9 +59733,10 @@
    "estado": "ok",
    "ref": "lila:101043",
    "candidatos": "lila:101043 noun",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "38"
+    "38",
+    "42"
    ]
   },
   "uendo\tNOUN": {
@@ -59935,15 +59809,6 @@
    "n": 1,
    "lineas": [
     "41"
-   ]
-  },
-  "emptor\tVERB": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:101043 noun",
-   "n": 1,
-   "lineas": [
-    "42"
    ]
   },
   "contingo\tVERB": {
@@ -60206,7 +60071,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -60287,9 +60152,9 @@
    ]
   },
   "uolo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:130745 verb; lila:130746 verb",
+   "estado": "excepcion",
+   "ref": "lila:130745",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "59"
@@ -60408,9 +60273,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 6,
    "lineas": [
     "2",
@@ -60422,9 +60287,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "2",
@@ -60509,7 +60374,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 5,
@@ -60569,7 +60434,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -60837,7 +60702,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -61080,7 +60945,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -61150,7 +61015,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -61350,7 +61215,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -61585,17 +61450,9 @@
    "estado": "ok",
    "ref": "lila:123962",
    "candidatos": "lila:123962 noun",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "41"
-   ]
-  },
-  "sECTIO\tNOUN": {
-   "estado": "ok",
-   "ref": "lila:123962",
-   "candidatos": "lila:123962 noun",
-   "n": 1,
-   "lineas": [
+    "41",
     "42"
    ]
   },
@@ -61685,9 +61542,9 @@
     "45"
    ]
   },
-  "sUMMARIUM\tNUM": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "summarium\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:126696",
    "candidatos": "lila:126696 noun",
    "n": 1,
    "lineas": [
@@ -62194,9 +62051,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "15"
@@ -62278,9 +62135,9 @@
    ]
   },
   "tempus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:127796 noun; lila:127522 noun",
+   "estado": "excepcion",
+   "ref": "lila:127522",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "19",
@@ -62400,9 +62257,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "25",
@@ -62478,7 +62335,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -62522,10 +62379,10 @@
     "36"
    ]
   },
-  "uers\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
    "n": 1,
    "lineas": [
     "27"
@@ -62550,7 +62407,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -62619,7 +62476,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -62656,7 +62513,7 @@
    ]
   },
   "Covarrubias\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -62674,7 +62531,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -62729,7 +62586,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -62756,7 +62613,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -62792,7 +62649,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -63348,9 +63205,9 @@
     "58"
    ]
   },
-  "reipub\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
+  "respublica\tNOUN": {
+   "estado": "excepcion",
+   "ref": "lila:122962",
    "candidatos": "",
    "n": 1,
    "lineas": [
@@ -63847,7 +63704,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -63917,14 +63774,15 @@
     "18"
    ]
   },
-  "uers\tADV": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 2,
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
+   "n": 3,
    "lineas": [
     "12",
-    "15"
+    "15",
+    "60"
    ]
   },
   "obseruo\tVERB": {
@@ -63937,7 +63795,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -63968,7 +63826,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -63986,7 +63844,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -64004,7 +63862,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -64388,9 +64246,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 4,
    "lineas": [
     "26",
@@ -64784,10 +64642,10 @@
     "59"
    ]
   },
-  "contra\tADP": {
-   "estado": "ok",
-   "ref": "lila:96322",
-   "candidatos": "lila:96322 adposition",
+  "contra\tPRON": {
+   "estado": "pos_distinta",
+   "ref": null,
+   "candidatos": "lila:96322 adposition; lila:96323 adverb",
    "n": 1,
    "lineas": [
     "44"
@@ -64830,9 +64688,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "47",
@@ -65096,15 +64954,6 @@
    "lineas": [
     "60"
    ]
-  },
-  "uers\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "60"
-   ]
   }
  },
  "pg_63_54_izq": {
@@ -65248,7 +65097,7 @@
    ]
   },
   "Salas\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -65281,7 +65130,7 @@
    ]
   },
   "Lessius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -65309,7 +65158,7 @@
    ]
   },
   "Bannez\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -65359,7 +65208,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 4,
@@ -65469,7 +65318,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -65697,9 +65546,9 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "13",
@@ -66313,10 +66162,9 @@
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
-   "n": 2,
+   "n": 1,
    "lineas": [
-    "38",
-    "58"
+    "38"
    ]
   },
   "translatio\tNOUN": {
@@ -66329,7 +66177,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -66357,7 +66205,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -66388,7 +66236,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -66397,7 +66245,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -66424,13 +66272,14 @@
     "60"
    ]
   },
-  "uers\tADV": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
+   "n": 2,
    "lineas": [
-    "45"
+    "45",
+    "58"
    ]
   },
   "praeterea\tADV": {
@@ -66537,24 +66386,16 @@
    "estado": "ok",
    "ref": "lila:101043",
    "candidatos": "lila:101043 noun",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "49"
+    "49",
+    "50"
    ]
   },
   "pars\tNOUN": {
    "estado": "ok",
    "ref": "lila:116084",
    "candidatos": "lila:116084 noun",
-   "n": 1,
-   "lineas": [
-    "50"
-   ]
-  },
-  "emptor\tVERB": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:101043 noun",
    "n": 1,
    "lineas": [
     "50"
@@ -66672,9 +66513,9 @@
    ]
   },
   "uel\tCCONJ": {
-   "estado": "ok",
+   "estado": "excepcion",
    "ref": "lila:129695",
-   "candidatos": "lila:129695 coordinating_conjunction",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "56"
@@ -66690,7 +66531,7 @@
    ]
   },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -66747,7 +66588,7 @@
    ]
   },
   "Navarrus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 1,
@@ -66853,7 +66694,7 @@
    ]
   },
   "Bonacina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -67108,7 +66949,7 @@
    ]
   },
   "Filliucius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 5,
@@ -67142,24 +66983,27 @@
     "59"
    ]
   },
-  "uers\tADJ": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 3,
+  "uersiculus\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129931",
+   "candidatos": "lila:129931 noun",
+   "n": 5,
    "lineas": [
     "8",
+    "20",
     "39",
+    "53",
     "60"
    ]
   },
-  "ille\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "ille\tDET": {
+   "estado": "ok",
+   "ref": "lila:106221",
    "candidatos": "lila:106221 determiner",
-   "n": 1,
+   "n": 2,
    "lineas": [
-    "8"
+    "8",
+    "17"
    ]
   },
   "obseruo\tVERB": {
@@ -67231,9 +67075,9 @@
    ]
   },
   "minuo\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:65736 verb; lila:112408 verb",
+   "estado": "excepcion",
+   "ref": "lila:112408",
+   "candidatos": "",
    "n": 3,
    "lineas": [
     "10",
@@ -67370,10 +67214,9 @@
    "estado": "ok",
    "ref": "lila:113451",
    "candidatos": "lila:113451 noun",
-   "n": 2,
+   "n": 1,
    "lineas": [
-    "13",
-    "20"
+    "13"
    ]
   },
   "uilis\tADV": {
@@ -67490,15 +67333,6 @@
     "17"
    ]
   },
-  "ille\tDET": {
-   "estado": "ok",
-   "ref": "lila:106221",
-   "candidatos": "lila:106221 determiner",
-   "n": 1,
-   "lineas": [
-    "17"
-   ]
-  },
   "reporto\tVERB": {
    "estado": "ok",
    "ref": "lila:122676",
@@ -67548,7 +67382,7 @@
    ]
   },
   "Azorius\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -67557,23 +67391,13 @@
     "39"
    ]
   },
-  "dib\tADV": {
+  "dib\tNOUN": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
    "n": 1,
    "lineas": [
     "19"
-   ]
-  },
-  "uers\tADV": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 2,
-   "lineas": [
-    "20",
-    "53"
    ]
   },
   "praeterea\tADV": {
@@ -67596,8 +67420,17 @@
     "45"
    ]
   },
+  "nundina\tNOUN": {
+   "estado": "pos_distinta",
+   "ref": null,
+   "candidatos": "lila:139231 proper_noun",
+   "n": 1,
+   "lineas": [
+    "20"
+   ]
+  },
   "Reginaldus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -67644,7 +67477,7 @@
    ]
   },
   "Medina\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 3,
@@ -67998,7 +67831,7 @@
    ]
   },
   "Conradus\tPROPN": {
-   "estado": "no_encontrado",
+   "estado": "excepcion",
    "ref": null,
    "candidatos": "",
    "n": 2,
@@ -68071,9 +67904,9 @@
    ]
   },
   "tempus\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:127796 noun; lila:127522 noun",
+   "estado": "excepcion",
+   "ref": "lila:127522",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "41"
