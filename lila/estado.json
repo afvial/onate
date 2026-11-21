@@ -44231,7 +44231,7 @@
     "3"
    ]
   },
-  "Corrad\tPROPN": {
+  "Conradus\tPROPN": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
@@ -44249,10 +44249,10 @@
     "3"
    ]
   },
-  "conclus\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
+  "conclusio\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:95546",
+   "candidatos": "lila:95546 noun",
    "n": 1,
    "lineas": [
     "4"
@@ -44307,10 +44307,10 @@
     "39"
    ]
   },
-  "nota\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:113843 noun",
+  "noto\tVERB": {
+   "estado": "ok",
+   "ref": "lila:113861",
+   "candidatos": "lila:113861 verb",
    "n": 1,
    "lineas": [
     "6"
@@ -44430,12 +44430,14 @@
    ]
   },
   "respublica\tNOUN": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:76484 noun; lila:122962 noun",
-   "n": 2,
+   "estado": "excepcion",
+   "ref": "lila:122962",
+   "candidatos": "",
+   "n": 4,
    "lineas": [
     "8",
+    "13",
+    "14",
     "40"
    ]
   },
@@ -44528,9 +44530,9 @@
    ]
   },
   "industrius\tADJ": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:59244 adjective; lila:107461 adjective",
+   "estado": "excepcion",
+   "ref": "lila:107461",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "10"
@@ -44603,16 +44605,6 @@
     "25",
     "36",
     "49"
-   ]
-  },
-  "reipub\tNOUN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 2,
-   "lineas": [
-    "13",
-    "14"
    ]
   },
   "quia\tSCONJ": {
@@ -44742,7 +44734,7 @@
     "17"
    ]
   },
-  "sECTIO\tNUM": {
+  "sectio\tNUM": {
    "estado": "pos_distinta",
    "ref": null,
    "candidatos": "lila:123962 noun",
@@ -44760,7 +44752,7 @@
     "20"
    ]
   },
-  "sUMMARIUM\tNUM": {
+  "summarium\tNUM": {
    "estado": "pos_distinta",
    "ref": null,
    "candidatos": "lila:126696 noun",
@@ -44845,21 +44837,13 @@
    "estado": "pos_distinta",
    "ref": null,
    "candidatos": "lila:96881 verb",
-   "n": 4,
+   "n": 5,
    "lineas": [
     "28",
+    "29",
     "31",
     "34",
     "45"
-   ]
-  },
-  "credo\tVERB": {
-   "estado": "ok",
-   "ref": "lila:96881",
-   "candidatos": "lila:96881 verb",
-   "n": 1,
-   "lineas": [
-    "29"
    ]
   },
   "merx\tNOUN": {
@@ -44930,10 +44914,10 @@
     "46"
    ]
   },
-  "Saepissimus\tPROPN": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:123115 adjective",
+  "saepissime\tADV": {
+   "estado": "ok",
+   "ref": "lilah:39147",
+   "candidatos": "lilah:39147 adverb",
    "n": 1,
    "lineas": [
     "33"
@@ -45052,7 +45036,7 @@
     "41"
    ]
   },
-  "procredio\tNOUN": {
+  "procreditum\tNOUN": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
@@ -45061,7 +45045,7 @@
     "41"
    ]
   },
-  "mercatoribus\tPROPN": {
+  "Mercatoribus\tPROPN": {
    "estado": "no_encontrado",
    "ref": null,
    "candidatos": "",
@@ -45116,18 +45100,18 @@
     "44"
    ]
   },
-  "anticipo\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "anticipo\tVERB": {
+   "estado": "ok",
+   "ref": "lila:89287",
    "candidatos": "lila:89287 verb",
    "n": 1,
    "lineas": [
     "44"
    ]
   },
-  "Uenditio\tPROPN": {
-   "estado": "pos_distinta",
-   "ref": null,
+  "uenditio\tNOUN": {
+   "estado": "ok",
+   "ref": "lila:129753",
    "candidatos": "lila:129753 noun",
    "n": 1,
    "lineas": [
@@ -45170,10 +45154,10 @@
     "48"
    ]
   },
-  "secunda\tADJ": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:79669 noun",
+  "secundus\tADJ": {
+   "estado": "ok",
+   "ref": "lila:127502",
+   "candidatos": "lila:127502 adjective",
    "n": 1,
    "lineas": [
     "49"
@@ -45197,8 +45181,8 @@
     "51"
    ]
   },
-  "multus\tDET": {
-   "estado": "ok",
+  "multus\tADJ": {
+   "estado": "pos_alternativo",
    "ref": "lila:112998",
    "candidatos": "lila:112998 determiner",
    "n": 1,
