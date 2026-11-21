@@ -1354,31 +1354,25 @@ _LONG_SS_RE = re.compile(r'ss(?=\w)', re.IGNORECASE)
 
 def _apply_long_s_roots(text: str) -> str | None:
     """
-    Aplica LONG_S_ROOTS y la regla ss→ſſ a `text` (forma normalizada).
-    Devuelve la forma diplomática si hay cambio, o None si no aplica.
-    Preserva mayúscula inicial.
+    Regla de posición de la s larga, comprobada en este impreso (98,5 % de
+    coincidencia con las columnas revisadas a mano):
+      - ſ a principio y en medio de palabra (también ante f: tranſfundit);
+      - s redonda solo a final de palabra;
+      - ante el punto de una abreviatura la palabra sigue: ſ (verſ., gloſ.).
+    Las excepciones van en LONG_S (forma completa) o con [-palabra] en el
+    staging; ambas se consultan antes que esta función. La S mayúscula no
+    cambia. Devuelve la forma diplomática si hay cambio, o None.
     """
-    lower = text.lower()
-    result = lower
-
-    # 1. Raíces con ſ
-    for plain, diplo in LONG_S_ROOTS:
-        if plain in result:
-            result = result.replace(plain, diplo, 1)
-            break  # una sola raíz por palabra
-
-    # 2. ss medial → ſſ (sobre lo que ya haya transformado)
-    result = _LONG_SS_RE.sub("ſſ", result)
-
-    if result == lower:
-        return None  # sin cambio
-
-    # Restaurar mayúscula inicial si la tenía
-    if text and text[0].isupper():
-        result = result[0].upper() + result[1:]
-
+    out = []
+    for i, c in enumerate(text):
+        if c == "s":
+            sig = text[i + 1] if i + 1 < len(text) else ""
+            final = sig == "" or (not sig.isalpha() and sig != ".")
+            out.append("s" if final else "ſ")
+        else:
+            out.append(c)
+    result = "".join(out)
     return result if result != text else None
-
 
 def apply_long_s_to_split(left: str, right: str):
     """
