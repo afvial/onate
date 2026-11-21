@@ -81,6 +81,57 @@ def _morph_to_msd(token):
     return str(m) if m else ""
 
 
+_SPLIT_CACHE = {}
+
+def _postprocess_split(reg_text, w_elements):
+    """
+    Palabra reconstruida entre columnas: aplica MANUAL_LEMMA y el enlace con
+    LiLa (lemmaRef), que el paso 1.7 no pudo hacer porque cada columna solo
+    tenía media palabra. Usa el mismo índice y las mismas excepciones.
+    """
+    import sys as _sys, json as _json
+    from pathlib import Path as _P
+    ws = [w for w in w_elements if w is not None]
+    if not ws or not reg_text:
+        return
+    _sys.path.insert(0, str(_P(__file__).parent))
+    if "ok" not in _SPLIT_CACHE:
+        try:
+            from onate_nlp import MANUAL_LEMMA as _ML
+        except Exception:
+            _ML = {}
+        try:
+            import onate_lila as _L
+            idx = _P("cache/lila_index.json")
+            _SPLIT_CACHE.update(L=_L, ML=_ML,
+                                index=_json.loads(idx.read_text(encoding="utf-8"))["entries"] if idx.exists() else None,
+                                exc=_L.load_exceptions(_P("lila/excepciones.tsv")))
+        except Exception as e:
+            print(f"  ⚠ LiLa no disponible para palabras entre columnas: {e}", file=_sys.stderr)
+            _SPLIT_CACHE.update(L=None, ML=_ML, index=None, exc=None)
+        _SPLIT_CACHE["ok"] = True
+    C = _SPLIT_CACHE
+    # 1. MANUAL_LEMMA, con la forma completa (sin s larga)
+    key = reg_text.replace("ſ", "s")
+    if key in C["ML"]:
+        lem, pos, msd = C["ML"][key]
+        for w in ws:
+            w.set("lemma", lem); w.set("pos", pos); w.set("manual", "1")
+            if msd is not None:
+                if msd: w.set("msd", msd)
+                elif "msd" in w.attrib: del w.attrib["msd"]
+    # 2. Enlace con LiLa
+    if C["L"] is None or C["index"] is None:
+        return
+    lemma, upos = ws[0].get("lemma"), ws[0].get("pos")
+    if not lemma:
+        return
+    ref = C["L"].resolve(lemma, upos, C["index"], C["exc"])[0]
+    if ref:
+        for w in ws:
+            C["L"].set_lemmaref(w, ref)
+
+
 def annotate_split_word(reg_text, w_elements, model_name):
     """
     Anota lemma/pos/msd en todos los <w> dados (orig+reg de ambas mitades
@@ -455,6 +506,7 @@ def _split_abbr_across_columns(abbr_choice, w_i, w_f, counter, model_name):
         choice_f.find(f"{T('expan')}/{T('w')}"),
     ]
     annotate_split_word(expan, w_elements, model_name)
+    _postprocess_split(expan, w_elements)
 
 
 def add_orig_to_split_words(s_end, s_start, counter, model_name):
@@ -547,6 +599,7 @@ def add_orig_to_split_words(s_end, s_start, counter, model_name):
             choice_f.find(f"{T('reg')}/{T('w')}"),
         ]
         annotate_split_word(reg, w_elements, model_name)
+        _postprocess_split(reg, w_elements)
 
 
 def apply_continues(s_end, s_start, counter, model_name):

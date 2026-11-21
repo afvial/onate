@@ -73,6 +73,7 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "conclus.",  # conclusione
     "remp.",        # rempublicam
     "rēp.",         # rempublicam
     "reb.",         # rebus
@@ -190,6 +191,7 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "conclus.":   "conclusione",
     "remp.":     "rempublicam",
     "rēp.":      "rempublicam",
     "reb.":      "rebus",
@@ -789,6 +791,7 @@ LONG_S = {
     "Sum.":               "Sum.",
     "restit.":            "reſtit.",
     "less.":              "leſſ.",   # Lessius (abreviatura)
+    "conclus.":           "concluſ.",
     "terrasq;":           "terraſq;",
     "quest.":             "queſt.",  # quaestio (abreviatura)
     "epis.":              "epiſ.",   # epistola (abreviatura)

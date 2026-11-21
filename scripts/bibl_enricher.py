@@ -126,6 +126,7 @@ WORKS = {
     "med":        ("bib_Medina_Restit",      "pers_Medina",         "high"),
     "medin":      ("bib_Medina_Restit",      "pers_Medina",         "high"),
     "conrad":     ("bib_Summenhart_Contr",   "pers_Summenhart",     "high"),
+    "corrad":     ("bib_Summenhart_Contr",   "pers_Summenhart",     "high"),
     "gabr":       ("bib_Biel_Sent",          "pers_Biel",           "high"),
     "manuel":     ("bib_Manuel_Sum",         "pers_Manuel",         "medium"),
     "faustus":    ("bib_Faustus_Empt",       "pers_Faustus_inc",    "low"),
