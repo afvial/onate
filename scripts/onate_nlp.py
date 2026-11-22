@@ -59,6 +59,11 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# vendi: infinitivo pasivo de vendo (LatinCy da «uo»)
+MANUAL_LEMMA["vendi"] = ("vendo", "VERB", "Tense=Pres|VerbForm=Inf|Voice=Pass")
+# schola (LatinCy da «scholarus»)
+for _f in ("scholarum", "scholis", "scholae", "scholas", "scholam", "schola"):
+    MANUAL_LEMMA[_f] = ("schola", "NOUN", None)
 # Correcciones de la revisión (48 izq)
 for _f in ("Cautè", "cautè", "Caute", "caute"):
     MANUAL_LEMMA[_f] = ("caute", "ADV", "")
