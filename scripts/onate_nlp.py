@@ -59,6 +59,11 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# Superlativo y comparativo: lema del positivo
+for _f in ("formalissimam", "formalissimus", "formalissima", "formalissimum", "formalissime"):
+    MANUAL_LEMMA[_f] = ("formalis", "ADJ", None)
+for _f in ("peior", "peioris", "peiori", "peiorem", "peiore", "peiores", "peius"):
+    MANUAL_LEMMA[_f] = ("malus", "ADJ", None)
 # vendi: infinitivo pasivo de vendo (LatinCy da «uo»)
 MANUAL_LEMMA["vendi"] = ("vendo", "VERB", "Tense=Pres|VerbForm=Inf|Voice=Pass")
 # schola (LatinCy da «scholarus»)
