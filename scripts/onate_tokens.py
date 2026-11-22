@@ -73,6 +73,8 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "action.",      # actionibus
+    "contrahen.",   # contrahenda
     "conclus.",  # conclusione
     "remp.",        # rempublicam
     "rēp.",         # rempublicam
@@ -191,6 +193,8 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "action.":   "actionibus",
+    "contrahen.":"contrahenda",
     "conclus.":   "conclusione",
     "remp.":     "rempublicam",
     "rēp.":      "rempublicam",
