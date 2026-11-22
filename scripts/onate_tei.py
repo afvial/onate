@@ -386,8 +386,14 @@ def apply_long_s_to_split(left: str, right: str):
         orig_full = orig_full[0].upper() + orig_full[1:]
     if orig_full == full:
         return None, None
-    _n_lig    = left.lower().count("ae") + left.lower().count("oe")
-    _idx      = len(left) - _n_lig
+    # Punto de corte en la forma diplomática: recorrerla contando æ/œ como dos
+    # letras del original, hasta cubrir la primera mitad. Así vale tanto si
+    # orig_full lleva la ligadura (præ) como si no (ſaepius: antes se restaba
+    # siempre y el corte salía desplazado: ſa / epius).
+    _plain, _idx = 0, 0
+    while _idx < len(orig_full) and _plain < len(left):
+        _plain += 2 if orig_full[_idx] in "æœÆŒ" else 1
+        _idx += 1
     orig_left  = orig_full[:_idx]
     orig_right = orig_full[_idx:]
     return orig_left, orig_right
