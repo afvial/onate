@@ -87,6 +87,9 @@ def main():
         if not m:
             print(f"✗ {lid}: no existe la línea en el staging"); err += 1; continue
         texto = m.group(2)
+        if xml_esc(nuevo) in texto:
+            print(f"· {lid}: ya estaba aplicado «{nuevo}»")
+            continue
         if xml_esc(orig) not in texto:
             if xml_esc(nuevo) in texto:
                 print(f"· {lid}: ya estaba aplicado «{nuevo}»")
