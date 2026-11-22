@@ -59,6 +59,33 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# Correcciones de la revisión (48 der)
+for _f in ('venditor', 'venditoris', 'venditori', 'venditorem', 'venditore', 'venditores', 'venditorum', 'venditoribus'):
+    MANUAL_LEMMA[_f] = ("venditor", "NOUN", None)
+for _f in ('mercatorem', 'mercatoris', 'mercatori', 'mercatore'):
+    MANUAL_LEMMA[_f] = ("mercator", "NOUN", None)
+for _f in ('mutuum', 'mutuo', 'mutui'):
+    MANUAL_LEMMA[_f] = ("mutuum", "NOUN", None)
+for _f in ('dubium', 'dubij', 'dubii', 'dubio', 'dubia'):
+    MANUAL_LEMMA[_f] = ("dubium", "NOUN", None)
+for _f in ('iusto',):
+    MANUAL_LEMMA[_f] = ("iustus", "ADJ", None)
+for _f in ('ementi', 'emens', 'ementem', 'ementis', 'emente', 'ementes'):
+    MANUAL_LEMMA[_f] = ("emo", "VERB", None)
+for _f in ('bellantia', 'bellans', 'bellantes'):
+    MANUAL_LEMMA[_f] = ("bello", "VERB", None)
+for _f in ('præcisè', 'praecisè', 'praecise', 'præcise'):
+    MANUAL_LEMMA[_f] = ("praecise", "ADV", "")
+for _f in ('Tria', 'tria'):
+    MANUAL_LEMMA[_f] = ("tres", "NUM", None)
+for _f in ('Primò', 'primò'):
+    MANUAL_LEMMA[_f] = ("primo", "ADV", "")
+for _f in ('Secundò', 'secundò'):
+    MANUAL_LEMMA[_f] = ("secundo", "ADV", "")
+for _f in ('Tertiò', 'tertiò'):
+    MANUAL_LEMMA[_f] = ("tertio", "ADV", "")
+for _f in ('Quartò', 'quartò'):
+    MANUAL_LEMMA[_f] = ("quarto", "ADV", "")
 # Superlativo y comparativo: lema del positivo
 for _f in ("formalissimam", "formalissimus", "formalissima", "formalissimum", "formalissime"):
     MANUAL_LEMMA[_f] = ("formalis", "ADJ", None)
