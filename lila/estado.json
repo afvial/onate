@@ -50306,10 +50306,10 @@
     "60"
    ]
   },
-  "sa\tNUM": {
-   "estado": "pos_distinta",
+  "Sa\tPROPN": {
+   "estado": "excepcion",
    "ref": null,
-   "candidatos": "lila:77676 noun",
+   "candidatos": "",
    "n": 1,
    "lineas": [
     "21"
@@ -50325,13 +50325,14 @@
     "31"
    ]
   },
-  "bonacus\tADJ": {
-   "estado": "pos_distinta",
+  "Bonacina\tPROPN": {
+   "estado": "excepcion",
    "ref": null,
-   "candidatos": "lila:91775 noun (variante)",
-   "n": 1,
+   "candidatos": "",
+   "n": 2,
    "lineas": [
-    "22"
+    "22",
+    "57"
    ]
   },
   "distinctio\tNOUN": {
@@ -50381,9 +50382,9 @@
    ]
   },
   "praedico\tVERB": {
-   "estado": "ambiguo",
-   "ref": null,
-   "candidatos": "lila:118832 verb; lila:118833 verb",
+   "estado": "excepcion",
+   "ref": "lila:118833",
+   "candidatos": "",
    "n": 2,
    "lineas": [
     "24",
@@ -50420,10 +50421,10 @@
     "43"
    ]
   },
-  "carus\tADV": {
-   "estado": "pos_distinta",
-   "ref": null,
-   "candidatos": "lila:92942 adjective",
+  "care\tADV": {
+   "estado": "ok",
+   "ref": "lilah:5800",
+   "candidatos": "lilah:5800 adverb",
    "n": 1,
    "lineas": [
     "27"
@@ -50450,10 +50451,10 @@
     "33"
    ]
   },
-  "uilis\tADJ": {
+  "uiliter\tADV": {
    "estado": "ok",
-   "ref": "lila:130199",
-   "candidatos": "lila:130199 adjective",
+   "ref": "lilah:46604",
+   "candidatos": "lilah:46604 adverb",
    "n": 1,
    "lineas": [
     "28"
@@ -51044,16 +51045,7 @@
    "estado": "excepcion",
    "ref": null,
    "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "55"
-   ]
-  },
-  "Nauarr\tPROPN": {
-   "estado": "no_encontrado",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
+   "n": 2,
    "lineas": [
     "55"
    ]
@@ -51074,15 +51066,6 @@
    "n": 1,
    "lineas": [
     "56"
-   ]
-  },
-  "Bonacina\tPROPN": {
-   "estado": "excepcion",
-   "ref": null,
-   "candidatos": "",
-   "n": 1,
-   "lineas": [
-    "57"
    ]
   },
   "Conradus\tPROPN": {
