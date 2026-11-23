@@ -150,7 +150,7 @@
             <w>Valent.</w>
           </abbr>
           <expan>
-            <w lemma="Valentinus" lemmaRef="lila:24634" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="28" head="29" deprel="nmod">Valentinus</w>
+            <w lemma="Valentinus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="28" head="29" deprel="nmod">Valentinus</w>
           </expan>
         </choice>
         <choice>
@@ -471,7 +471,7 @@
         <lb n="11"/>
         <w lemma="48" pos="NUM" n="87" head="86" deprel="nummod">48</w>
         <pc type="other">.</pc>
-        <w lemma="Sa" pos="PROPN" msd="Case=Gen|Gender=Masc|Number=Sing" n="88" head="82" deprel="flat">Sa</w>
+        <w lemma="Sa" pos="PROPN" msd="Case=Gen|Gender=Masc|Number=Sing" manual="1" n="88" head="82" deprel="flat">Sa</w>
         <choice>
           <abbr>
             <w>verb.</w>
@@ -1303,22 +1303,28 @@
             <w>d.</w>
           </abbr>
           <expan>
-            <w lemma="distinctio" lemmaRef="lila:99862" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="101" head="58" deprel="orphan">distinctio</w>
+            <w lemma="distinctio" lemmaRef="lila:99862" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="101" head="58" deprel="orphan">distinctio</w>
           </expan>
         </choice>
         <w lemma="15" pos="NUM" n="102" head="101" deprel="nummod">15</w>
         <pc type="other">.</pc>
-        <w lemma="Nauarr" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" n="103" head="58" deprel="acl:relcl">Nauarr</w>
-        <pc type="other">.</pc>
+        <choice>
+          <abbr>
+            <w>Nauarr.</w>
+          </abbr>
+          <expan>
+            <w lemma="Navarrus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="103" head="58" deprel="conj">Navarrus</w>
+          </expan>
+        </choice>
         <choice>
           <abbr>
             <w>lib.</w>
           </abbr>
           <expan>
-            <w lemma="liber" lemmaRef="lila:110382" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="104" head="58" deprel="fixed">libro</w>
+            <w lemma="liber" lemmaRef="lila:110382" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="104" head="58" deprel="conj">libro</w>
           </expan>
         </choice>
-        <w lemma="3" pos="NUM" n="105" head="106" deprel="nummod">3</w>
+        <w lemma="3" pos="NUM" n="105" head="104" deprel="nummod">3</w>
         <pc type="other">.</pc>
         <choice>
           <abbr>

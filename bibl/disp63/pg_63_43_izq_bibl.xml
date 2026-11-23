@@ -1128,7 +1128,7 @@
                   <w>Valent.</w>
                 </abbr>
                 <expan>
-                  <w lemma="Valentinus" lemmaRef="lila:24634" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="81" head="79" deprel="nmod">Valentinus</w>
+                  <w lemma="Valentinus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="81" head="79" deprel="nmod">Valentinus</w>
                 </expan>
               </choice>
               <choice>
@@ -1379,11 +1379,9 @@
             <lb n="40"/>
           </bibl>
         </cit>
-        <cit xml:id="cit_p43_izq_Filliucci_QMor_16">
-          <bibl corresp="#bib_Filliucci_QMor" cert="high">
-            <author ref="#pers_Filliucci">
-              <w lemma="Filliuec" pos="PROPN" msd="Case=Acc|Gender=Neut|Number=Sing" n="116" head="114" deprel="flat">Filliuec</w>
-            </author>
+        <cit xml:id="cit_p43_izq_noref_16">
+          <bibl>
+            <w lemma="Filliuec" pos="PROPN" msd="Case=Acc|Gender=Neut|Number=Sing" n="116" head="114" deprel="flat">Filliuec</w>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1393,9 +1391,7 @@
                 <w lemma="tractatus" lemmaRef="lila:129418" pos="NOUN" msd="Case=Nom|Gender=Masc|Number=Sing" n="117" head="102" deprel="nsubj">tractatus</w>
               </expan>
             </choice>
-            <biblScope unit="tract">
-              <w lemma="35" pos="NUM" n="118" head="119" deprel="case">35</w>
-            </biblScope>
+            <w lemma="35" pos="NUM" n="118" head="119" deprel="case">35</w>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1405,9 +1401,7 @@
                 <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="119" head="102" deprel="obl">capitulo</w>
               </expan>
             </choice>
-            <biblScope unit="chap">
-              <w lemma="3" pos="NUM" n="120" head="119" deprel="nummod">3</w>
-            </biblScope>
+            <w lemma="3" pos="NUM" n="120" head="119" deprel="nummod">3</w>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1417,9 +1411,7 @@
                 <w lemma="quaestio" lemmaRef="lila:121052" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="121" head="44" deprel="obj">quaestio</w>
               </expan>
             </choice>
-            <biblScope unit="quaestio">
-              <w lemma="4" pos="NUM" n="122" head="123" deprel="nummod">4</w>
-            </biblScope>
+            <w lemma="4" pos="NUM" n="122" head="123" deprel="nummod">4</w>
             <pc type="other">.</pc>
             <choice>
               <abbr>
@@ -1429,9 +1421,7 @@
                 <w lemma="numerus" lemmaRef="lila:113981" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="123" head="121" deprel="nmod">numero</w>
               </expan>
             </choice>
-            <biblScope unit="n">
-              <w lemma="59" pos="NUM" n="124" head="123" deprel="nummod">59</w>
-            </biblScope>
+            <w lemma="59" pos="NUM" n="124" head="123" deprel="nummod">59</w>
             <pc type="other">.</pc>
           </bibl>
         </cit>
@@ -1643,7 +1633,7 @@
                   <w>Valent.</w>
                 </abbr>
                 <expan>
-                  <w lemma="Valentinus" lemmaRef="lila:24634" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="156" head="154" deprel="fixed">Valentinus</w>
+                  <w lemma="Valentinus" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="156" head="154" deprel="fixed">Valentinus</w>
                 </expan>
               </choice>
             </author>
@@ -1893,10 +1883,10 @@
       <lb n="49"/>
       <choice>
         <orig>
-          <w lemma="praedico" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="7" head="8" deprel="acl">prædictam</w>
+          <w lemma="praedico" lemmaRef="lila:118833" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="7" head="8" deprel="acl">prædictam</w>
         </orig>
         <reg>
-          <w lemma="praedico" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="7" head="8" deprel="acl">praedictam</w>
+          <w lemma="praedico" lemmaRef="lila:118833" pos="VERB" msd="Aspect=Perf|Case=Acc|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Pass" n="7" head="8" deprel="acl">praedictam</w>
         </reg>
       </choice>
       <w lemma="regula" lemmaRef="lila:121686" pos="NOUN" msd="Case=Acc|Gender=Fem|Number=Sing" n="8" head="12" deprel="obl">regulam</w>
