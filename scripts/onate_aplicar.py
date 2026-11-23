@@ -69,6 +69,9 @@ def main():
         tsv.write_text("linea\toriginal\tnuevo\tpage\tnota\n", encoding="utf-8")
         sys.exit(f"Creada la plantilla {tsv}: rellénala y vuelve a ejecutar.")
 
+    import subprocess as _sp
+    _sp.run([sys.executable, str(Path(__file__).parent / "onate_ordenar_correcciones.py"), a.pagina, a.columna],
+            stdout=_sp.DEVNULL)
     st_path = Path(f"staging/disp63/{stem}.xml")
     pg_path = Path(f"transkribus/disp63/{stem}.xml")
     s = st_path.read_text(encoding="utf-8")
@@ -80,6 +83,7 @@ def main():
                  if (r.get("linea") or "").strip() and not r["linea"].startswith("#")]
 
     ok = err = pg = 0
+    hechas = set()
     for r in filas:
         lid, orig, nuevo = r["linea"].strip(), r["original"], r["nuevo"]
         modo = (r.get("page") or "").strip().lower()
@@ -98,6 +102,7 @@ def main():
             continue
         s = s[:m.start(2)] + texto.replace(xml_esc(orig), xml_esc(nuevo), 1) + s[m.end(2):]
         ok += 1
+        hechas.add((lid, orig, nuevo))
 
         if modo == "no" or (modo != "si" and lectura(orig) == lectura(nuevo)):
             print(f"✓ {lid}: «{orig}» → «{nuevo}»   (solo staging)"); continue
@@ -133,6 +138,14 @@ def main():
     st_path.write_text(s, encoding="utf-8")
     tree.write(str(pg_path), encoding="UTF-8", xml_declaration=True)
     print(f"Escritos {st_path} y {pg_path}")
+    lineas_tsv = tsv.read_text(encoding="utf-8").splitlines()
+    marcadas = 0
+    for k, l in enumerate(lineas_tsv):
+        c = l.split("\t")
+        if len(c) >= 3 and not l.startswith("#") and (c[0].strip(), c[1], c[2]) in hechas:
+            lineas_tsv[k] = "#✓" + l; marcadas += 1
+    tsv.write_text("\n".join(lineas_tsv) + "\n", encoding="utf-8")
+    print(f"{marcadas} filas marcadas como hechas (#✓) en {tsv}")
     if a.procesar:
         subprocess.run(["./procesar_pagina.sh", a.pagina, a.columna, "--skip", "search,rdf"])
 

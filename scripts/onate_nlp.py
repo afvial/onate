@@ -59,6 +59,23 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+for _f in ("sequenti", "sequente", "sequens", "sequentem", "sequentis", "sequentibus"):
+    MANUAL_LEMMA[_f] = ("sequor", "VERB", None)   # participio (dub. seq. = sequenti)
+# Correcciones de la revisión (49 izq)
+for _f in ("citatis", "citati", "citatos", "citatus", "citata"):
+    MANUAL_LEMMA[_f] = ("cito", "VERB", None)
+for _f in ("diuitibus", "diuites", "diuitum", "diuiti", "diuitem"):
+    MANUAL_LEMMA[_f] = ("diues", "ADJ", None)
+for _f in ("indubitata", "indubitatus", "indubitatum", "indubitatam"):
+    MANUAL_LEMMA[_f] = ("indubitatus", "ADJ", None)
+for _f in ("indubiè", "indubie"):
+    MANUAL_LEMMA[_f] = ("indubie", "ADV", "")
+for _f in ("palliatum", "palliatū", "palliatus", "palliata"):
+    MANUAL_LEMMA[_f] = ("pallio", "VERB", None)
+for _f in ("plerique", "pleraque", "plerumque"):
+    MANUAL_LEMMA[_f] = ("plerusque", "ADJ", None)
+MANUAL_LEMMA["Valent"] = ("Valentinus", "PROPN", None)   # sin punto en el impreso
+MANUAL_LEMMA["Reginald"] = ("Reginaldus", "PROPN", None)   # sin punto en el impreso
 # Correcciones de la revisión (48 der)
 for _f in ('venditor', 'venditoris', 'venditori', 'venditorem', 'venditore', 'venditores', 'venditorum', 'venditoribus'):
     MANUAL_LEMMA[_f] = ("venditor", "NOUN", None)

@@ -115,6 +115,7 @@ WORKS = {
     "reginald":   ("bib_Reginald_Praxis",    "pers_Reginaldus",     "high"),
     "lessius":    ("bib_Lessius_IusIure",    "pers_Lessius",        "high"),
     "filliuc":    ("bib_Filliucci_QMor",     "pers_Filliucci",      "high"),
+    "filliucc":    ("bib_Filliucci_QMor",     "pers_Filliucci",      "high"),
     "bonacin":    ("bib_Bonacina_Contr",     "pers_Bonacina",       "high"),
     "azor":       ("bib_Azor_InstMor",       "pers_Azor",           "high"),
     # Escuela de Salamanca
@@ -123,6 +124,8 @@ WORKS = {
     # Summistas / medievales tardíos
     "anton":      ("bib_Antoninus_Summa",    "pers_Antoninus",      "high"),
     "sylu":       ("bib_Sylvestrina",        "pers_Prierias",       "high"),
+    "angel":      ("bib_Angelica",           "pers_Carletti",       "high"),
+    "rosel":      ("bib_Rosella",            "pers_Trovamala",      "high"),
     "med":        ("bib_Medina_Restit",      "pers_Medina",         "high"),
     "medin":      ("bib_Medina_Restit",      "pers_Medina",         "high"),
     "conrad":     ("bib_Summenhart_Contr",   "pers_Summenhart",     "high"),
@@ -561,7 +564,7 @@ AUTHOR_NAMES = {
     "Bannes", "Aragon", "Salon", "Lessius", "Salas",
     "Tolet", "Couar", "Gabr", "Manuel", "Conrad",
     "Valent", "Caiet", "Reginald", "Bonacin", "Filliuc",
-    "Medin", "Sotus", "Soto", "Azor", "Anton", "Sylu",
+    "Medin", "Sotus", "Soto", "Azor", "Anton", "Sylu", "Angel", "Rosel",
     "Scotus", "Maior",
     # Formas latinas completas
     "Reginaldus", "Bannez", "Aragonius", "Salonius",
@@ -582,7 +585,7 @@ AUTHOR_ABBREVS_BIBL = {
     "Bonac.", "Bonacin.", "Regin.", "Reginal.", "Reginald.",
     "Azor.", "Tolet.", "Sot.", "Sotus.", "Med.", "Medin.",
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.",
-    "Anton.", "Sylu.", "Conrad.",
+    "Anton.", "Sylu.", "Angel.", "Rosel.", "Conrad.",
     "Faust.", "Faustus.", "Valent.", "Aragon.", "Caiet.",
     "Bannes.", "Bann.", "S.",
     "Scot.", "Scotus.", "Mai.", "Maior.",
