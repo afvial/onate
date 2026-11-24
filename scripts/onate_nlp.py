@@ -59,6 +59,8 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+for _f in ("venustam", "venustus", "venusta", "venustum", "venustae", "venusti"):
+    MANUAL_LEMMA[_f] = ("venustus", "ADJ", None)
 MANUAL_LEMMA["carius"] = ("care", "ADV", "Degree=Cmp")   # vendere carius
 MANUAL_LEMMA["vilius"] = ("uiliter", "ADV", "Degree=Cmp")   # emere vilius
 MANUAL_LEMMA["Sa"] = ("Sa", "PROPN", None)   # Manuel de Sá

@@ -124,6 +124,7 @@ WORKS = {
     # Summistas / medievales tardíos
     "anton":      ("bib_Antoninus_Summa",    "pers_Antoninus",      "high"),
     "sylu":       ("bib_Sylvestrina",        "pers_Prierias",       "high"),
+    "pinel":      ("bib_Pinel_Rescind",      "pers_Pinel",          "high"),
     "angel":      ("bib_Angelica",           "pers_Carletti",       "high"),
     "rosel":      ("bib_Rosella",            "pers_Trovamala",      "high"),
     "med":        ("bib_Medina_Restit",      "pers_Medina",         "high"),
@@ -585,7 +586,7 @@ AUTHOR_ABBREVS_BIBL = {
     "Bonac.", "Bonacin.", "Regin.", "Reginal.", "Reginald.",
     "Azor.", "Tolet.", "Sot.", "Sotus.", "Med.", "Medin.",
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.",
-    "Anton.", "Sylu.", "Angel.", "Rosel.", "Conrad.",
+    "Anton.", "Sylu.", "Angel.", "Rosel.", "Pinel.", "Conrad.",
     "Faust.", "Faustus.", "Valent.", "Aragon.", "Caiet.",
     "Bannes.", "Bann.", "S.",
     "Scot.", "Scotus.", "Mai.", "Maior.",

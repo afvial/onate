@@ -37,7 +37,7 @@ ABBREV_WITH_DOT = {
     "Bonac.", "Bonacin.", "Regin.", "Reginal.", "Reginald.",
     "Azor.", "Tolet.", "Sot.", "Sotus.", "Med.", "Medin.",
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.", "Leff.",
-    "Anton.", "Sylu.", "Angel.", "Rosel.", "Bonaci.", "Nauarr.", "Conrad.",
+    "Anton.", "Sylu.", "Angel.", "Rosel.", "Pinel.", "Bonaci.", "Nauarr.", "Conrad.",
     "Faustus.", "Faust.", "Valent.", "Aragon.", "Caiet.",
     "Bannes.", "Bann.", "Hieron.", "B.", "Bart.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
@@ -73,6 +73,8 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "ancil.",       # ancilla
+    "rescind.",     # rescindenda
     "seq.",      # sequenti
     "artic.",    # articulo
     "action.",      # actionibus
@@ -195,6 +197,8 @@ ABBREV_EXPAN = {
     "fin.":       "in fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "ancil.":    "ancilla",
+    "rescind.":  "rescindenda",
     "seq.":       "sequenti",
     "action.":   "actionibus",
     "contrahen.":"contrahenda",
@@ -288,6 +292,7 @@ ABBREV_EXPAN = {
     "Gabr.":      "Gabriel",
     "Anton.":     "Antoninus",
     "Sylu.":      "Sylvester",
+    "Pinel.":     "Pinelus",
     "Bonaci.":    "Bonacina",
     "Angel.":     "Angelus",
     "Rosel.":     "Rosella",
@@ -333,7 +338,7 @@ AUTHOR_ABBREVS = {
     "Bonac.", "Bonacin.", "Regin.", "Reginal.", "Reginald.",
     "Azor.", "Tolet.", "Sot.", "Sotus.", "Med.", "Medin.",
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.",
-    "Anton.", "Sylu.", "Angel.", "Rosel.", "Bonaci.", "Nauarr.", "Conrad.",
+    "Anton.", "Sylu.", "Angel.", "Rosel.", "Pinel.", "Bonaci.", "Nauarr.", "Conrad.",
     "Faust.", "Faustus.", "Valent.", "Aragon.", "Caiet.",
     "Bannes.", "Bann.", "Hieron.", "B.", "Bart.", "S.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
