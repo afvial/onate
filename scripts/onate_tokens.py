@@ -73,6 +73,8 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "vlt.",      # vltimo (cap. vlt., q. vlt.)
+    "vsur.",        # vsuris
     "ancil.",       # ancilla
     "rescind.",     # rescindenda
     "seq.",      # sequenti
@@ -194,9 +196,11 @@ ABBREV_EXPAN = {
     "Aquil.":     "Aquiliam",
     "Falc.":      "Falcidiam",
     "glos.":      "glossa",
-    "fin.":       "in fine",
+    "fin.":       "fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "vlt.":       "vltimo",
+    "vsur.":     "vsuris",
     "ancil.":    "ancilla",
     "rescind.":  "rescindenda",
     "seq.":       "sequenti",

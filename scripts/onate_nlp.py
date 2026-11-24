@@ -59,6 +59,28 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+for _f in ("versiculo", "versiculus", "versiculum", "versiculi"):
+    MANUAL_LEMMA[_f] = ("versiculus", "NOUN", None)   # vers. (en las citas)
+MANUAL_LEMMA["fine"] = ("finis", "NOUN", "Case=Abl|Number=Sing")   # in fin., vers. fin.
+# Correcciones de la revisión (50 izq)
+for _f in ('authoribus', 'authores', 'authore', 'authoris', 'authorem', 'author', 'authorum'):
+    MANUAL_LEMMA[_f] = ("auctor", "NOUN", None)
+for _f in ('vltimo', 'ultimo', 'vltima', 'vltimum', 'vltimus', 'vltimae'):
+    MANUAL_LEMMA[_f] = ("ultimus", "ADJ", None)
+for _f in ('claudis', 'claudus', 'claudi', 'claudum'):
+    MANUAL_LEMMA[_f] = ("claudus", "ADJ", None)
+for _f in ('contrario',):
+    MANUAL_LEMMA[_f] = ("contrarius", "ADJ", None)
+for _f in ('excellentem', 'excellens', 'excellenti', 'excellentes'):
+    MANUAL_LEMMA[_f] = ("excellens", "ADJ", None)
+for _f in ('praestantem', 'praestans', 'praestanti', 'praestantes', 'præstantem', 'præstans'):
+    MANUAL_LEMMA[_f] = ("praestans", "ADJ", None)
+for _f in ('hordeaceus', 'hordeaceum', 'hordeacei'):
+    MANUAL_LEMMA[_f] = ("hordeaceus", "ADJ", None)
+for _f in ('furfuraceus', 'furfuraceum', 'furfuracei'):
+    MANUAL_LEMMA[_f] = ("furfuraceus", "ADJ", None)
+for _f in ('finali', 'finalis', 'finale'):
+    MANUAL_LEMMA[_f] = ("finalis", "ADJ", None)
 for _f in ("venustam", "venustus", "venusta", "venustum", "venustae", "venusti"):
     MANUAL_LEMMA[_f] = ("venustus", "ADJ", None)
 MANUAL_LEMMA["carius"] = ("care", "ADV", "Degree=Cmp")   # vendere carius
