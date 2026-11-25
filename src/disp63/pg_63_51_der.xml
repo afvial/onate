@@ -400,7 +400,7 @@
           </choice>
         </abbr>
         <expan>
-          <w lemma="uersiculus" lemmaRef="lila:129931" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="92" head="93" deprel="obl">versiculo</w>
+          <w lemma="versiculus" lemmaRef="lila:129931" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" manual="1" n="92" head="93" deprel="obl">versiculo</w>
         </expan>
       </choice>
       <w lemma="certus" lemmaRef="lila:93581" pos="ADJ" msd="Case=Acc|Gender=Masc|Number=Sing" manual="1" n="93" head="96" deprel="xcomp">certum</w>
@@ -610,17 +610,23 @@
           <w lemma="capitulum" lemmaRef="lila:92713" pos="NOUN" msd="Case=Abl|Gender=Neut|Number=Sing" n="140" head="139" deprel="obl">capitulo</w>
         </expan>
       </choice>
-      <w lemma="nauigo" lemmaRef="lila:113459" pos="VERB" msd="Aspect=Imp|Case=Dat|Gender=Fem|Number=Sing|VerbForm=Part|Voice=Act" n="141" head="139" deprel="advcl">nauiganti</w>
+      <w lemma="nauigo" lemmaRef="lila:113459" pos="VERB" msd="Case=Dat|Gender=Masc|Number=Sing|VerbForm=Part|Voice=Act" n="141" head="140" deprel="acl">nauiganti</w>
       <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="142" head="143" deprel="case">de</w>
       <choice>
-        <orig>
-          <w lemma="usur" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="143" head="139" deprel="obl">vſur</w>
-        </orig>
-        <reg>
-          <w lemma="usur" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="143" head="139" deprel="obl">vsur</w>
-        </reg>
+        <abbr>
+          <choice>
+            <orig>
+              <w>vſur.</w>
+            </orig>
+            <reg>
+              <w>vsur.</w>
+            </reg>
+          </choice>
+        </abbr>
+        <expan>
+          <w lemma="usura" lemmaRef="lila:130925" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Plur" n="143" head="139" deprel="obl">vsuris</w>
+        </expan>
       </choice>
-      <pc type="other">.</pc>
       <choice>
         <abbr>
           <w>&amp;</w>
@@ -635,7 +641,7 @@
           <w>l.</w>
         </abbr>
         <expan>
-          <w lemma="lex" lemmaRef="lila:110351" pos="NOUN" msd="Case=Nom|Gender=Fem|Number=Sing" n="145" head="143" deprel="conj">lex</w>
+          <w lemma="lex" lemmaRef="lila:110351" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="145" head="139" deprel="conj">lex</w>
         </expan>
       </choice>
       <w lemma="pretium" lemmaRef="lila:119455" pos="NOUN" msd="Case=Acc|Gender=Neut|Number=Plur" n="146" head="139" deprel="nsubj:pass">pretia</w>
@@ -976,7 +982,7 @@
           </choice>
         </abbr>
         <expan>
-          <w lemma="uersiculus" lemmaRef="lila:129931" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" n="237" head="239" deprel="obl">versiculo</w>
+          <w lemma="versiculus" lemmaRef="lila:129931" pos="NOUN" msd="Case=Abl|Gender=Masc|Number=Sing" manual="1" n="237" head="239" deprel="obl">versiculo</w>
         </expan>
       </choice>
       <w lemma="hinc" lemmaRef="lila:105454" pos="ADV" n="238" head="239" deprel="advmod:lmod">hinc</w>
