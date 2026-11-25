@@ -73,6 +73,7 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "tra.",      # tractatu
     "vlt.",      # vltimo (cap. vlt., q. vlt.)
     "vsur.",        # vsuris
     "ancil.",       # ancilla
@@ -199,6 +200,7 @@ ABBREV_EXPAN = {
     "fin.":       "fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "tra.":       "tractatu",
     "vlt.":       "vltimo",
     "vsur.":     "vsuris",
     "ancil.":    "ancilla",
@@ -742,7 +744,7 @@ LONG_S = {
     "praesumptio":      "præſumptio",
     "substantia":       "ſubſtantia",
     "subiectum":        "ſubiectum",
-    "subrepere":        "ſubreperc",
+    "subrepere":        "ſubrepere",
     "sufficit":         "ſufficit",
     "supponit":         "ſupponit",
     "supponitur":       "ſupponitur",
@@ -884,14 +886,6 @@ LONG_S = {
     "transgredior":       "tranſgredior",
     "transgreditur":      "tranſgreditur",
     "transgrediuntur":    "tranſgrediuntur",
-    "transgressus":       "tranſgressus",
-    "transgressa":        "tranſgressa",
-    "transgressum":       "tranſgressum",
-    "transgressi":        "tranſgressi",
-    "transgressio":       "tranſgressio",
-    "transgressionis":    "tranſgressionis",
-    "transgressionem":    "tranſgressionem",
-    "transgressor":       "tranſgressor",
     "suos":               "ſuos",
     "Suos":               "Suos",
     "suas":               "ſuas",
