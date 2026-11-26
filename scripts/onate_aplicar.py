@@ -45,6 +45,9 @@ def impreso(t: str) -> str:
 
 def lectura(t: str) -> str:
     """Para comparar: forma impresa con macrones expandidos, sin ſ ni ligaduras (los acentos sí cuentan)."""
+    # ante el corte de línea (¬, ~) el macrón vale n (cō¬tractus → con-tractus)
+    for m_, v_ in zip("āēīōū", "aeiou"):
+        t = t.replace(m_ + "¬", v_ + "n¬").replace(m_ + "~", v_ + "n~")
     t = " ".join((_expand_macrons(w) or w) for w in impreso(t).split())
     for a, b in (("ſ", "s"), ("æ", "ae"), ("Æ", "Ae"), ("œ", "oe"), ("Œ", "Oe"), ("ę", "ae")):
         t = t.replace(a, b)

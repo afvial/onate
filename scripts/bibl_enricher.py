@@ -124,6 +124,10 @@ WORKS = {
     # Summistas / medievales tardíos
     "anton":      ("bib_Antoninus_Summa",    "pers_Antoninus",      "high"),
     "sylu":       ("bib_Sylvestrina",        "pers_Prierias",       "high"),
+    "salic":     ("bib_Salicet_Cod",         "pers_Saliceto",        "high"),
+    "panormit":  ("bib_Panormit_Comm",       "pers_Panormitanus",    "high"),
+    "ioan":      ("bib_IoanAndr_Novella",    "pers_IoanAndreae",     "high"),
+    "innocent":  ("bib_Innocent_Apparatus",  "pers_InnocentIV",      "high"),
     "pinel":      ("bib_Pinel_Rescind",      "pers_Pinel",          "high"),
     "angel":      ("bib_Angelica",           "pers_Carletti",       "high"),
     "rosel":      ("bib_Rosella",            "pers_Trovamala",      "high"),

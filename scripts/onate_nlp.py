@@ -59,6 +59,17 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+for _f in ("mercator", "mercatores", "mercatorum", "mercatoribus"):
+    MANUAL_LEMMA[_f] = ("mercator", "NOUN", None)
+for _f in ("Tenent", "Tenet", "Tenemus"):
+    MANUAL_LEMMA[_f] = ("teneo", "VERB", None)
+for _f in ("spontaneè", "spontanee"):
+    MANUAL_LEMMA[_f] = ("spontanee", "ADV", "")
+MANUAL_LEMMA["Filliuccius"] = ("Filliucius", "PROPN", None)   # grafía con cc
+for _f in ("Fatemur", "fatemur", "fatetur", "fateor", "fatentur"):
+    MANUAL_LEMMA[_f] = ("fateor", "VERB", None)
+for _f in ("Azorium", "Azorio", "Azorius"):
+    MANUAL_LEMMA[_f] = ("Azor", "PROPN", None)
 for _f in ("tractatu", "tractatus", "tractatum", "tractatui"):
     MANUAL_LEMMA[_f] = ("tractatus", "NOUN", None)   # tra., tract. (en las citas)
 # Correcciones de la revisión (50 der)
