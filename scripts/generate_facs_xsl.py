@@ -153,6 +153,7 @@ JS_CODE = r"""(function () {
     wireColumns();
     loadBiblCatalog();
     wireSplitSentences();
+    wireSplitBibl();
     wireWordPairs();
     jumpToTarget();
   }
@@ -570,6 +571,33 @@ JS_CODE = r"""(function () {
       el.addEventListener('mouseleave', function () {
         document.querySelectorAll('.s-part-active').forEach(function (e) {
           e.classList.remove('s-part-active');
+        });
+      });
+    });
+  }
+
+  function wireSplitBibl() {
+    document.querySelectorAll('.tei-bibl[data-bid]').forEach(function (el) {
+      if (!(el.dataset.bnext || el.dataset.bprev)) return;
+      el.addEventListener('mouseenter', function () {
+        var queue = [el], seen = {};
+        while (queue.length) {
+          var cur = queue.pop();
+          if (seen[cur.dataset.bid]) continue;
+          seen[cur.dataset.bid] = true;
+          cur.classList.add('bibl-part-active');
+          ['bnext', 'bprev'].forEach(function (k) {
+            var id = cur.dataset[k];
+            if (id) {
+              var n = document.querySelector('.tei-bibl[data-bid="' + id + '"]');
+              if (n) queue.push(n);
+            }
+          });
+        }
+      });
+      el.addEventListener('mouseleave', function () {
+        document.querySelectorAll('.bibl-part-active').forEach(function (e) {
+          e.classList.remove('bibl-part-active');
         });
       });
     });

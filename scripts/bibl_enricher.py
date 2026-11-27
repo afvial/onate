@@ -115,6 +115,8 @@ WORKS = {
     "reginald":   ("bib_Reginald_Praxis",    "pers_Reginaldus",     "high"),
     "lessius":    ("bib_Lessius_IusIure",    "pers_Lessius",        "high"),
     "filliuc":    ("bib_Filliucci_QMor",     "pers_Filliucci",      "high"),
+    "filliucius":    ("bib_Filliucci_QMor",     "pers_Filliucci",      "high"),
+    "filliuccius":    ("bib_Filliucci_QMor",     "pers_Filliucci",      "high"),
     "filliucc":    ("bib_Filliucci_QMor",     "pers_Filliucci",      "high"),
     "bonacin":    ("bib_Bonacina_Contr",     "pers_Bonacina",       "high"),
     "azor":       ("bib_Azor_InstMor",       "pers_Azor",           "high"),

@@ -73,6 +73,7 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "praeced.",  # praecedenti (l. … praeced.)
     "tra.",      # tractatu
     "vlt.",      # vltimo (cap. vlt., q. vlt.)
     "vsur.",        # vsuris
@@ -200,6 +201,7 @@ ABBREV_EXPAN = {
     "fin.":       "fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "praeced.":   "praecedenti",
     "tra.":       "tractatu",
     "vlt.":       "vltimo",
     "vsur.":     "vsuris",

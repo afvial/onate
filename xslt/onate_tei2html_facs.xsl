@@ -231,6 +231,7 @@
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
           span.tei-bibl { margin-right: -0.05em; position: relative; cursor: default; }
+          span.tei-bibl.bibl-part-active { background: rgba(255, 200, 0, 0.30); border-radius: 2px; }
           /* Tooltip de cita bibliografica: solo con Ctrl presionado */
           body.ctrl-down span.tei-bibl:hover > .tooltip.cit-tooltip { display: block; }
           .tooltip.cit-tooltip:empty { display: none !important; }
@@ -625,6 +626,7 @@
     wireColumns();
     loadBiblCatalog();
     wireSplitSentences();
+    wireSplitBibl();
     wireWordPairs();
     jumpToTarget();
   }
@@ -1042,6 +1044,33 @@
       el.addEventListener('mouseleave', function () {
         document.querySelectorAll('.s-part-active').forEach(function (e) {
           e.classList.remove('s-part-active');
+        });
+      });
+    });
+  }
+
+  function wireSplitBibl() {
+    document.querySelectorAll('.tei-bibl[data-bid]').forEach(function (el) {
+      if (!(el.dataset.bnext || el.dataset.bprev)) return;
+      el.addEventListener('mouseenter', function () {
+        var queue = [el], seen = {};
+        while (queue.length) {
+          var cur = queue.pop();
+          if (seen[cur.dataset.bid]) continue;
+          seen[cur.dataset.bid] = true;
+          cur.classList.add('bibl-part-active');
+          ['bnext', 'bprev'].forEach(function (k) {
+            var id = cur.dataset[k];
+            if (id) {
+              var n = document.querySelector('.tei-bibl[data-bid="' + id + '"]');
+              if (n) queue.push(n);
+            }
+          });
+        }
+      });
+      el.addEventListener('mouseleave', function () {
+        document.querySelectorAll('.bibl-part-active').forEach(function (e) {
+          e.classList.remove('bibl-part-active');
         });
       });
     });

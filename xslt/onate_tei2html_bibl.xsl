@@ -231,6 +231,7 @@
           span.tei-hi-italic { font-style: italic; padding-right: 0.15em; }
           span.tei-q    { font-style: italic; padding-right: 0.15em; }
           span.tei-bibl { margin-right: -0.05em; position: relative; cursor: default; }
+          span.tei-bibl.bibl-part-active { background: rgba(255, 200, 0, 0.30); border-radius: 2px; }
           /* Tooltip de cita bibliografica: solo con Ctrl presionado */
           body.ctrl-down span.tei-bibl:hover > .tooltip.cit-tooltip { display: block; }
           .tooltip.cit-tooltip:empty { display: none !important; }
@@ -761,6 +762,9 @@
   <!-- REFERENCIA BIBLIOGRÁFICA inline -->
   <xsl:template match="tei:bibl | tei:ref[@type='bibl']">
     <span class="tei-bibl">
+      <xsl:if test="@xml:id"><xsl:attribute name="data-bid"><xsl:value-of select="@xml:id"/></xsl:attribute></xsl:if>
+      <xsl:if test="@next"><xsl:attribute name="data-bnext"><xsl:value-of select="substring-after(@next,'#')"/></xsl:attribute></xsl:if>
+      <xsl:if test="@prev"><xsl:attribute name="data-bprev"><xsl:value-of select="substring-after(@prev,'#')"/></xsl:attribute></xsl:if>
       <xsl:if test="@corresp">
         <xsl:attribute name="data-corresp"><xsl:value-of select="@corresp"/></xsl:attribute>
       </xsl:if>
