@@ -59,6 +59,18 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+# Correcciones de la revisión (52 izq)
+for _f in ("textus", "textu", "textum"):
+    MANUAL_LEMMA[_f] = ("textus", "NOUN", None)
+for _f in ("consensui", "consensus", "consensum", "consensu"):
+    MANUAL_LEMMA[_f] = ("consensus", "NOUN", None)
+for _f in ("ficta", "fictus", "fictum", "fictam"):
+    MANUAL_LEMMA[_f] = ("fingo", "VERB", None)
+MANUAL_LEMMA["professo"] = ("profiteor", "VERB", None)   # ex professo
+MANUAL_LEMMA["Quare"] = ("quare", "ADV", "")
+MANUAL_LEMMA["intantum"] = ("intantum", "ADV", "")   # como inquantum
+MANUAL_LEMMA["contract"] = ("contractus", "NOUN", None)   # «de contract» sin punto
+MANUAL_LEMMA["contrahen"] = ("contraho", "VERB", None)   # «de contrahen empt.» sin punto
 for _f in ("Hostiensis", "hostiensis"):
     MANUAL_LEMMA[_f] = ("Hostiensis", "PROPN", None)   # Ho¬stien. (Enrique de Susa)
 MANUAL_LEMMA["plus"] = ("plus", "ADV", "")

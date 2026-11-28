@@ -37,7 +37,7 @@ ABBREV_WITH_DOT = {
     "Bonac.", "Bonacin.", "Regin.", "Reginal.", "Reginald.",
     "Azor.", "Tolet.", "Sot.", "Sotus.", "Med.", "Medin.",
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.", "Leff.",
-    "Anton.", "Sylu.", "Angel.", "Rosel.", "Innocent.", "Ioan.", "Andr.", "Panormit.", "Salic.", "Ioann.", "Ancharan.", "Hostien.", "Maior.", "Pinel.", "Bonaci.", "Nauarr.", "Conrad.",
+    "Anton.", "Sylu.", "Angel.", "Rosel.", "Innocent.", "Ioan.", "Andr.", "Panormit.", "Salic.", "Ioann.", "Ancharan.", "Hostien.", "Maior.", "Salyc.", "Paul.", "Viuian.", "Emanu.", "Mercad.", "Graffes.", "Pinel.", "Bonaci.", "Nauarr.", "Conrad.",
     "Faustus.", "Faust.", "Valent.", "Aragon.", "Caiet.",
     "Bannes.", "Bann.", "Hieron.", "B.", "Bart.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
@@ -73,6 +73,11 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "contract.",    # contractibus
+    "signif.",      # significatione
+    "notab.",       # notabili
+    "praecit.",     # praecitata
+    "contrah.",     # contrahenda
     "emption.",  # emptionis
     "praeced.",  # praecedenti (l. … praeced.)
     "tra.",      # tractatu
@@ -111,6 +116,7 @@ ABBREV_WITH_DOT = {
 ABBREV_WITH_SEMICOLON = {
     "Itaq;", "qualiscumq;", "Qvomodocumq;", "quocūq;", "Quocūq;", "quocumq;", "Quocumq;", "vnusquisq;", "Vnusquisq;",
     "hucusq;", "Hucusq;",
+    "vtriusq;",
     "mariq;",
     "terrasq;",
     "vniuscuiusq;",
@@ -133,6 +139,7 @@ ABBREV_SEMICOLON_EXPAN = {
     "Vnusquisq;":   "Vnuſquiſque",
     "hucusq;":      "hucusque",
     "Hucusq;":      "Hucusque",
+    "vtriusq;":     "vtriusque",
     "mariq;":       "marique",
     "terrasq;":     "terrasque",
     "vniuscuiusq;": "vniuscuiusque",
@@ -202,6 +209,10 @@ ABBREV_EXPAN = {
     "fin.":       "fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "signif.":   "significatione",
+    "notab.":    "notabili",
+    "praecit.":  "praecitata",
+    "contrah.":  "contrahenda",
     "emption.":   "emptionis",
     "praeced.":   "praecedenti",
     "tra.":       "tractatu",
@@ -302,6 +313,12 @@ ABBREV_EXPAN = {
     "Gabr.":      "Gabriel",
     "Anton.":     "Antoninus",
     "Sylu.":      "Sylvester",
+    "Graffes.":   "Graffis",
+    "Mercad.":    "Mercatus",
+    "Emanu.":     "Emmanuel",
+    "Viuian.":    "Viuianus",
+    "Paul.":      "Paulus",
+    "Salyc.":     "Salicetus",
     "Hostien.":   "Hostiensis",
     "Ancharan.":  "Ancharanus",
     "Ioann.":     "Ioannes",
