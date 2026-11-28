@@ -37,7 +37,7 @@ ABBREV_WITH_DOT = {
     "Bonac.", "Bonacin.", "Regin.", "Reginal.", "Reginald.",
     "Azor.", "Tolet.", "Sot.", "Sotus.", "Med.", "Medin.",
     "Filliuc.", "Filliucc.", "Gabr.", "Manuel.", "Leff.",
-    "Anton.", "Sylu.", "Angel.", "Rosel.", "Innocent.", "Ioan.", "Andr.", "Panormit.", "Salic.", "Pinel.", "Bonaci.", "Nauarr.", "Conrad.",
+    "Anton.", "Sylu.", "Angel.", "Rosel.", "Innocent.", "Ioan.", "Andr.", "Panormit.", "Salic.", "Ioann.", "Ancharan.", "Hostien.", "Maior.", "Pinel.", "Bonaci.", "Nauarr.", "Conrad.",
     "Faustus.", "Faust.", "Valent.", "Aragon.", "Caiet.",
     "Bannes.", "Bann.", "Hieron.", "B.", "Bart.", "Mai.", "Maior.", "Scot.",
     "Ledes.", "Ledesm.", "Ioan.", "Io.", "Ludou.", "Lop.",
@@ -73,6 +73,7 @@ ABBREV_WITH_DOT = {
     "fin.",      # in fine
     "fi.",       # ad finem
     "ma.",       # mandati (forma ultracorta)
+    "emption.",  # emptionis
     "praeced.",  # praecedenti (l. … praeced.)
     "tra.",      # tractatu
     "vlt.",      # vltimo (cap. vlt., q. vlt.)
@@ -201,6 +202,7 @@ ABBREV_EXPAN = {
     "fin.":       "fine",
     "fi.":        "finem",
     "ma.":        "mandati",
+    "emption.":   "emptionis",
     "praeced.":   "praecedenti",
     "tra.":       "tractatu",
     "vlt.":       "vltimo",
@@ -300,6 +302,9 @@ ABBREV_EXPAN = {
     "Gabr.":      "Gabriel",
     "Anton.":     "Antoninus",
     "Sylu.":      "Sylvester",
+    "Hostien.":   "Hostiensis",
+    "Ancharan.":  "Ancharanus",
+    "Ioann.":     "Ioannes",
     "Salic.":     "Salicetus",
     "Panormit.":  "Panormitanus",
     "Andr.":      "Andreae",

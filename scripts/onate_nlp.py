@@ -59,6 +59,11 @@ MANUAL_LEMMA = {name: (name, "PROPN", "Case=Nom|Gender=Masc|Number=Sing") for na
 MANUAL_LEMMA["republica"] = ("respublica", "NOUN", "Case=Abl|Gender=Fem|Number=Sing")
 MANUAL_LEMMA["sanctissimum"] = ("sanctus", "ADJ", "Case=Acc|Degree=Sup|Gender=Masc|Number=Sing")
 MANUAL_LEMMA["Patriarcham"] = ("patriarcha", "NOUN", "Case=Acc|Gender=Masc|Number=Sing")
+for _f in ("Hostiensis", "hostiensis"):
+    MANUAL_LEMMA[_f] = ("Hostiensis", "PROPN", None)   # Ho¬stien. (Enrique de Susa)
+MANUAL_LEMMA["plus"] = ("plus", "ADV", "")
+for _f in ("fanecas", "faneca", "fanecae", "fanecis"):
+    MANUAL_LEMMA[_f] = ("faneca", "NOUN", None)   # fanega (medida castellana)
 for _f in ("mercator", "mercatores", "mercatorum", "mercatoribus"):
     MANUAL_LEMMA[_f] = ("mercator", "NOUN", None)
 for _f in ("Tenent", "Tenet", "Tenemus"):

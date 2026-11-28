@@ -126,6 +126,9 @@ WORKS = {
     # Summistas / medievales tardíos
     "anton":      ("bib_Antoninus_Summa",    "pers_Antoninus",      "high"),
     "sylu":       ("bib_Sylvestrina",        "pers_Prierias",       "high"),
+    "ho":        ("bib_Hostiens_Lectura",    "pers_Hostiensis",      "high"),
+    "hostien":   ("bib_Hostiens_Lectura",    "pers_Hostiensis",      "high"),
+    "ancharan":  ("bib_Ancharan_Comm",       "pers_Ancharano",       "high"),
     "salic":     ("bib_Salicet_Cod",         "pers_Saliceto",        "high"),
     "panormit":  ("bib_Panormit_Comm",       "pers_Panormitanus",    "high"),
     "ioan":      ("bib_IoanAndr_Novella",    "pers_IoanAndreae",     "high"),
