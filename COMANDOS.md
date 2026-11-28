@@ -307,6 +307,7 @@ Búsquedas por secuencia en la concordancia:
 | La revisión muestra cosas ya corregidas | índice sin actualizar: `ls -l html/disp63/search_index.js`; `unset SKIP` y `--only search` |
 | «Paso omitido» con `--only` | versión antigua del script; `unset SKIP` |
 | Las cajas del facsímil no corresponden a la palabra | numeración de líneas con huecos: `onate_renumerar.py` |
+| Las cajas de una línea están amontonadas o con anchura cero (suele ser la última) | `python3 scripts/onate_rehacer_cajas.py P C tr_1_tl_N` (el informe previo lo detecta) |
 | No aparece el recuadro al pasar el ratón | faltan coordenadas: `python3 scripts/onate_coords.py --from-json coords/disp63/*.json` |
 | `No module named 'lxml'` | terminal sin `(venv)`: `source venv/bin/activate` |
 | Archivo `pg_63__.xml` | `P` y `C` vacías: definirlas |

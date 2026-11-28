@@ -134,6 +134,29 @@ def main():
             if ab.lower() not in abrevs and not conocida(m.group(1)):
                 filas.append((lid, ab, ab, "¿abreviatura no registrada? (añadirla a onate_tokens.py)"))
 
+    # 6. Cajas rotas en el PAGE XML (anchura cero, amontonadas, fuera de orden)
+    from collections import Counter as _C
+    from lxml import etree as _et
+    _NS = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15"
+    _T = lambda n: f"{{{_NS}}}{n}"
+    _pg = Path(f"transkribus/disp63/{stem}.xml")
+    if _pg.exists():
+        for _line in _et.parse(str(_pg)).iter(_T("TextLine")):
+            _cs = []
+            for _w in _line.findall(_T("Word")):
+                _pts = [tuple(map(int, q.split(","))) for q in _w.find(_T("Coords")).get("points").split()]
+                _cs.append((min(p[0] for p in _pts), max(p[0] for p in _pts)))
+            if len(_cs) < 2:
+                continue
+            _cero = sum(1 for i, f in _cs if f - i <= 3)
+            _amont = sum(n for n in _C(i for i, _ in _cs).values() if n > 1)
+            _desord = sum(1 for (i1, _), (i2, _) in zip(_cs, _cs[1:]) if i2 < i1 - 5)
+            if _cero or _amont or _desord:
+                _lid = _line.get("id")
+                filas.append(("(cajas)", _lid, "",
+                              f"cajas rotas: {_cero} de anchura cero, {_amont} amontonadas, {_desord} fuera de orden "
+                              f"→ python3 scripts/onate_rehacer_cajas.py {a.pagina} {a.columna} {_lid}"))
+
     # 5. Lemas problemáticos de esta columna
     src = Path(f"src/disp63/{stem}.xml")
     if src.exists():
