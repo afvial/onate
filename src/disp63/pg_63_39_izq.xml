@@ -361,21 +361,27 @@
       <hi rend="italic">
         <bibl>
           <w lemma="Salas" pos="PROPN" msd="Case=Nom|Gender=Masc|Number=Sing" manual="1" n="42" head="41" deprel="obj">Salas</w>
-          <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="43" head="44" deprel="case">de</w>
-          <w lemma="emption" pos="NOUN" msd="Case=Abl|Gender=Fem|Number=Sing" n="44" head="42" deprel="nmod">emption</w>
-          <pc type="other">.</pc>
+          <w lemma="de" lemmaRef="lila:97932" pos="ADP" n="43" head="45" deprel="case">de</w>
+          <choice>
+            <abbr>
+              <w>emption.</w>
+            </abbr>
+            <expan>
+              <w lemma="emptio" lemmaRef="lila:101040" pos="NOUN" msd="Case=Gen|Gender=Fem|Number=Sing" n="44" head="45" deprel="nmod">emptionis</w>
+            </expan>
+          </choice>
           <choice>
             <abbr>
               <w>dub.</w>
             </abbr>
             <expan>
-              <w lemma="dubium" lemmaRef="lila:48364" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing" manual="1" n="45" head="42" deprel="amod">dubium</w>
+              <w lemma="dubium" lemmaRef="lila:48364" pos="NOUN" msd="Case=Acc|Gender=Masc|Number=Sing" manual="1" n="45" head="41" deprel="obl">dubium</w>
             </expan>
           </choice>
           <w lemma="4" pos="NUM" n="46" head="41" deprel="obl">4</w>
           <pc type="other">.</pc>
-          <w lemma="num" lemmaRef="lila:113791" pos="PART" n="47" head="1" deprel="conj">num</w>
-          <w lemma="5" pos="NUM" n="48" head="1" deprel="nummod">5</w>
+          <w lemma="num" lemmaRef="lila:113791" pos="PART" n="47" head="1" deprel="punct">num</w>
+          <w lemma="5" pos="NUM" n="48" head="1" deprel="punct">5</w>
           <pc type="other">.</pc>
         </bibl>
       </hi>
